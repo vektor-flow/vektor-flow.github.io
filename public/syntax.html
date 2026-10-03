@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Syntax</title><style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif;line-height:1.6}
+body{margin:0}header,main,footer{max-width:850px;margin:auto;padding:1.2rem}
+header{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;border-bottom:1px solid #8885}
+header>a{font-weight:700}nav{display:flex;gap:1rem}.version{margin-left:auto;font-size:.85rem}
+a{color:inherit;text-underline-offset:.2em}h2{margin-top:2.5rem}h3{margin-top:2rem}
+pre{overflow:auto;padding:1rem;background:#8881;border:1px solid #8884;border-radius:.5rem}
+code{font-family:ui-monospace,monospace;font-size:.9em}.table-scroll{overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #8884}
+button:disabled{color:#888;background:#8881;border:1px solid #8884;border-radius:.35rem;padding:.5rem .8rem;cursor:not-allowed}
+.downloads{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}footer{font-size:.85rem;color:#888}
+@media(max-width:600px){header,main,footer{padding:1rem}.version{margin-left:0}}
+</style></head>
+<body><header><a href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="version">0.7.0 · Preview</span></header>
+<main><h1 id="syntax">Syntax</h1>
+<p>This reference describes intended VKF syntax. Section 0 takes precedence over the later language direction. Examples are future compiler correction targets; this draft does not claim that every construct works in every compiler target.</p>
+<h2 id="bindings-and-scopes">Bindings and scopes</h2>
+<p><code>name: expression</code> declares a binding. <code>.name: expression</code> updates the nearest existing binding; it does not create a missing name. Bindings may be shadowed in an inner scope, but not redeclared in the same scope. Updates describe new values; aliases retain their own previously observed values.</p>
+<pre><code>x:3
+.x:x+1
+num y:x/2</code></pre>
+<p>Indentation forms a scope. Its last expression supplies its result. Parentheses can group a scope or expression. A bare <code>:</code> returns the local scope as a record. Semicolons separate logical rows while preserving their indentation context. <code>#</code> begins a comment; <code>:: expression</code> writes an ordinary value.</p>
+<pre><code>make(x):
+    y:x+1
+    (x:x,y:y)</code></pre>
+<h2 id="values-and-types">Values and types</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Form</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>42</code>, <code>1.5</code></td><td>Numeric literals</td></tr>
+<tr><td><code>true</code>, <code>false</code></td><td>Boolean values</td></tr>
+<tr><td><code>null</code></td><td>No value</td></tr>
+<tr><td><code>num(2,3)</code></td><td>Complex value with real and imaginary components</td></tr>
+<tr><td><code>&quot;text&quot;</code></td><td>Immediate string</td></tr>
+<tr><td><code>&#39;text&#39;</code></td><td>Deferred template</td></tr>
+<tr><td><code>(1,2)</code></td><td>Tuple</td></tr>
+<tr><td><code>(1,)</code></td><td>One-element tuple; <code>(1)</code> is grouping</td></tr>
+<tr><td><code>(x:1,y:2)</code></td><td>Named tuple / record</td></tr>
+<tr><td><code>[1,2,3]</code></td><td>Vector</td></tr>
+<tr><td><code>[[1,2],[3,4]]</code></td><td>Rank-two vector</td></tr>
+<tr><td><code>[value:n]</code></td><td>Repeated value</td></tr>
+<tr><td><code>{&quot;a&quot;:2,&quot;b&quot;:1}</code></td><td>Multiset with counts</td></tr>
+<tr><td><code>value.</code></td><td>The value&#39;s actual type</td></tr>
+<tr><td><code>value.x</code>, <code>value.0</code></td><td>Named or positional member</td></tr>
+</tbody></table></div>
+<p>Primitive type handles include <code>bit</code>, <code>chr</code>, <code>int</code>, <code>num</code> and <code>str</code>; <code>dig</code> captures a decimal digit in compile-time suffix parameters. Types are values. Type constructors describe vectors, tuples, records and multisets:</p>
+<pre><code>identity(x:T)-&gt;T:x
+first(x:[T:n])-&gt;T:x.(0)
+pair_sum(x:(num,num))-&gt;num:x.0+x.1</code></pre>
+<p>Unbound generic type names such as <code>T</code> bind from a call. Repeated occurrences require one consistent type. Shape parameters such as <code>n</code> bind independently. <code>[T:n]</code> describes a fixed vector type; <code>[T]</code> describes a vector without a fixed extent. Tuple structure never adds vector rank. Thus <code>[(1,2),(3,4)]_a</code> is rank one, while <code>[[1,2],[3,4]]_ab</code> is rank two.</p>
+<h2 id="functions-calls-and-specialization">Functions, calls and specialization</h2>
+<pre><code>add(x,y:1):x+y
+f(x:int)-&gt;int:x+1
+twice:((x):2*x)
+::add(2,y:3)</code></pre>
+<p>Parentheses call a function. Square brackets at a call site bind arguments into a callable. Binding every argument still creates a zero-argument callable; <code>()</code> evaluates it. A bare function name remains the unspecialized function.</p>
+<pre><code>f(x,n,step):x+n*step
+g:f[step:2]
+::g(3,4)
+h:f[x:3,n:4,step:2]
+::h()</code></pre>
+<p>Functions and operators are first-class values. Operator specialization uses named operands: <code>+[b:2]</code> maps <code>a</code> to <code>a+2</code>; <code>-[a:2]</code> maps <code>b</code> to <code>2-b</code>. Functions may close over values, recurse and have forward declarations. Overloads use the same name with different compatible parameter types.</p>
+<p>Runtime positional spilling uses <code>:args</code>, including <code>f(:[1,2,3])</code> and <code>f(:record)</code>. A declaration&#39;s <code>...args:T</code> captures remaining positional arguments; <code>:::named</code> captures remaining named arguments. Call-site spilling uses <code>:</code>, not <code>...</code>. Process forwarding must use the final ordinary call rules; its exact variadic declaration remains undecided.</p>
+<h2 id="compile-time-suffix-parameters">Compile-time suffix parameters</h2>
+<p>Square brackets between a function name and its runtime parameter list declare compile-time parameters. <code>dig</code>, <code>bit</code> and <code>chr</code> capture a decimal digit, a binary digit and a character respectively.</p>
+<pre><code>L[n:dig,m:dig](x):x+n+m
+::L_03(4)
+f[...args:chr](x):x</code></pre>
+<p><code>f_i(x)</code>, <code>f_ij(x)</code> and <code>f_uvw(x)</code> supply compile-time suffix sequences to the variadic declaration. The parser determines the suffix&#39;s grammatical role; semantic resolution distinguishes compile-time parameters from value dimensions. Exact identifiers such as <code>E_pot</code>, <code>x_min</code> and <code>particle_count</code> take precedence where applicable. Underscores alone do not prove a structural suffix.</p>
+<h2 id="named-and-anonymous-dimensions">Named and anonymous dimensions</h2>
+<p>Named dimensions are single alphabetic characters. Digits are coordinates or values, never dimension names. Anonymous axes are positional and align only with anonymous axes. Equal extents do not make named and anonymous axes equal.</p>
+<pre><code>A:[[1,2],[3,4]]_ij
+B:[[5,6],[7,8]]_jk
+C:sum_j(A*B)
+diagonal:A_ii</code></pre>
+<p>Names align by identity. <code>A*B</code> has axes <code>i,j,k</code>; multiplication never silently contracts <code>j</code>. <code>sum_j</code> explicitly removes it. Section 0 permits repeated names in a selection such as <code>A_ii</code> to select equal coordinates / a diagonal; repeated structural function selectors are invalid. Distinct stored dimension identities are unique. Aligned sizes must be compatible.</p>
+<p>Without <code>...</code>, a naming suffix covers the entire vector rank. A rank-two value requires two names. One structural ellipsis explicitly retains any remaining anonymous dimensions; it may expand to zero dimensions:</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Suffix on a rank-five value</th><th scope="col">Axes</th></tr></thead><tbody>
+<tr><td><code>_i...k</code></td><td><code>(i,_,_,_,k)</code></td></tr>
+<tr><td><code>_...ij</code></td><td><code>(_,_,_,i,j)</code></td></tr>
+<tr><td><code>_ij...</code></td><td><code>(i,j,_,_,_)</code></td></tr>
+<tr><td><code>_i...jk</code></td><td><code>(i,_,_,j,k)</code></td></tr>
+</tbody></table></div>
+<p>Use ASCII <code>...</code>; only one structural ellipsis may occur. Anonymous dimensions align positionally among anonymous dimensions; they are not silently remapped onto named axes.</p>
+<h2 id="lifting-and-structural-calls">Lifting and structural calls</h2>
+<p>Ordinary functions lift over compatible argument dimensions, independently of their declarations. Tuple and record structure remains separate from vector dimensions. Whole-container overloads take precedence when they match.</p>
+<pre><code>ReLU(x):max(0,x)
+::ReLU([-1,2,3]_i)</code></pre>
+<p><code>f_i(A_ij)</code> passes <code>_i</code> intact into <code>f</code> and lifts over <code>_j</code>. The selected axis does not have to disappear: the function result determines its structure. <code>f_ij(A_ijkt)</code> selects both <code>i</code> and <code>j</code> and lifts over the remaining axes.</p>
+<h2 id="operators">Operators</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Form</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>+ - * / // % ^</code></td><td>Elementwise arithmetic with dimensional alignment</td></tr>
+<tr><td><code>= ~= ~ &lt; &lt;= &gt; &gt;=</code></td><td>Elementwise comparisons and logical operations</td></tr>
+<tr><td><code>== !=</code></td><td>Whole-value comparison</td></tr>
+<tr><td><code>A &amp;_i B</code></td><td>Concatenate along dimension <code>i</code></td></tr>
+<tr><td><code>A &amp; B</code></td><td>Concatenate when one dimension can be inferred</td></tr>
+<tr><td><code>f &amp; g</code></td><td>Composition: apply <code>f</code>, then <code>g</code></td></tr>
+<tr><td><code>f+g</code>, <code>f^2</code></td><td>Pointwise operations on compatible functions</td></tr>
+<tr><td><code>+(a,b)</code>, <code>*(a,b)</code></td><td>Call an operator as a function</td></tr>
+<tr><td><code>=&gt;</code></td><td>Implication outside a matching arm</td></tr>
+<tr><td><code>-&gt;</code></td><td>Function / return type</td></tr>
+</tbody></table></div>
+<p>Implicit multiplication is permitted where unambiguous, such as <code>2x</code>, <code>3(x+1)</code> and <code>2sin(x)</code>. Adjacent variable names form an identifier: <code>xy</code> is one name, so write <code>x*y</code> for variable multiplication. <code>R[L]</code> in a domain context is a domain qualification, not implicit multiplication.</p>
+<h2 id="index-access-and-ranges">Index access and ranges</h2>
+<p>Index access uses <code>.()</code>. A numeric index selects a coordinate; a range selects a span. Bounds violations are errors, including an element access on an empty vector. Evaluate the base and index expressions in their defined source order.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Index token</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>:</code></td><td>Preserve one existing dimension</td></tr>
+<tr><td><code>...</code></td><td>Preserve all remaining dimensions</td></tr>
+<tr><td><code>::</code></td><td>Insert one size-one dimension</td></tr>
+</tbody></table></div>
+<p>For shape <code>(3,4)</code>, <code>a.(::,:,:)</code> has shape <code>(1,3,4)</code>, <code>a.(:,::,:)</code> has shape <code>(3,1,4)</code> and <code>a.(...,::)</code> has shape <code>(3,4,1)</code>.</p>
+<p>Ranges are inclusive. <code>..0</code> contains zero, <code>..10</code> contains zero through ten, <code>a..b</code> includes both endpoints, and <code>..</code> is unbounded. Vectors are lazy by default; finite demand can consume an infinite value. Empty structural work performs no element operations; it is not an ordinary descending range.</p>
+<h2 id="folds-recurrence-and-composition">Folds, recurrence and composition</h2>
+<pre><code>step(z,c):z+c
+::reduce_i(step,[1,2,3]_i,0)</code></pre>
+<p><code>reduce_i(f,A_i,initial)</code> is an ordered fold with exactly one binary reducer, one input collection and one initial accumulator. It calls <code>f(f(f(initial,A_0),A_1),A_2)...</code>. There is no variadic collection-fold interface. Parallel reassociation requires permission from the reducer&#39;s numerical contract.</p>
+<p><code>sum_i(A)=reduce_i(+,A,0)</code>, <code>prod_i(A)=reduce_i(*,A,1)</code> and <code>chain_i(F)=reduce_i(&amp;,F,id)</code>. Empty calls yield <code>sum()=0</code>, <code>prod()=1</code> and <code>chain()=id</code>. Multiple reduction selectors remove only those dimensions.</p>
+<p>For a recurrence with several varying inputs, specialize first:</p>
+<pre><code>step(z,n,c):z^2+c
+n_i:..10
+F_i:step[n:n_i,c:num(0.1,0.2)]
+::chain_i(F)(0)</code></pre>
+<h2 id="pipes-and-loop-coordinates">Pipes and loop coordinates</h2>
+<p><code>&gt;&gt;</code> passes values into a scope; <code>$</code> is the current value. Flat pipes progress; indentation or parentheses nests them. Outer pipe values use <code>$$</code>, <code>$$$</code>. Selected named coordinates use <code>$i</code>, with outer coordinates such as <code>$$i</code>.</p>
+<pre><code>[10,20]_i &gt;&gt;_i
+    ::$i
+    ::$0
+    ::$</code></pre>
+<p><code>$0</code> is the outermost loop&#39;s iteration index; <code>$n</code> selects the loop at literal nonnegative integer depth <code>n</code>. Named and anonymous loops both count. Multiple selected axes introduce loops in selector order. Scalar scopes do not add a loop. Indices count positions from zero, even for offset or descending ranges; they are read-only and scoped. Sibling loops reuse the same depth.</p>
+<h2 id="conditions-matching-and-errors">Conditions, matching and errors</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Form</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>condition? expression</code></td><td>Conditional expression / indented suite</td></tr>
+<tr><td><code>condition?!</code></td><td>Assertion, optionally followed by a message</td></tr>
+<tr><td><code>value ??</code> with <code>pattern =&gt; result</code></td><td>Matching expression</td></tr>
+<tr><td>Bare final matching row</td><td>Fallback arm</td></tr>
+<tr><td><code>condition?&gt;</code></td><td>Conditional loop</td></tr>
+<tr><td><code>value??&gt;</code></td><td>Repeatedly evaluate and match</td></tr>
+<tr><td><code>@:</code></td><td>Return a value immediately</td></tr>
+<tr><td><code>@</code></td><td>Return <code>null</code></td></tr>
+<tr><td><code>@&gt;</code></td><td>Continue the nearest loop / pipe</td></tr>
+<tr><td><code>@|</code></td><td>Break the nearest loop / pipe</td></tr>
+<tr><td><code>error!</code></td><td>Raise a typed error value</td></tr>
+<tr><td><code>expression!?</code></td><td>Catch errors with matching arms</td></tr>
+</tbody></table></div>
+<pre><code>value:2
+label:value ??
+    0 =&gt; &quot;zero&quot;
+    1 =&gt; &quot;one&quot;
+    &quot;many&quot;</code></pre>
+<p>Error construction alone does not raise. Only error types and error values may be raised; unmatched errors continue outward. In a pipe block, <code>@:</code> returns from that element rather than the enclosing function.</p>
+<pre><code>:.errors
+(Error(&quot;message&quot;)!)!?
+    Error =&gt; ::$.message</code></pre>
+<h2 id="nominal-types-reflection-and-modules">Nominal types, reflection and modules</h2>
+<p>Uppercase constructors create nominal types. A spilled backing value can carry local overrides and extensions. Compatible operations reconstruct through the constructor; impossible reconstruction is an error. Distinct nominal types do not implicitly unify because their backing values happen to match.</p>
+<pre><code>Point(x:num,y:num):
+    :[x,y]
+p:Point(1,2)
+::(p+1).x</code></pre>
+<p>Postfix <code>.</code> returns the actual type. For a closed record, <code>[:record]</code> and <code>[:record.]</code> return accessible field names in declaration order; <code>(:record.)</code> retains record field types. <code>record.(name)</code> selects a named field. Operators and dotted access may be overloaded with ordinary typed functions.</p>
+<p><code>.name</code> names a module handle. Bind an alias with <code>m:.math</code>, or spill its exports with <code>:.math</code>. Local modules use the same import model. Lexical shadowing does not replace an already captured qualified module handle.</p>
+<h2 id="symbolic-domains-and-calculus">Symbolic domains and calculus</h2>
+<p><code>x:R</code> declares a real symbolic domain; <code>z:C</code> declares a complex domain. Domain information is authoritative and distinct from a variable&#39;s spelling. Ordinary evaluation, symbolic reasoning, transforms and compile-time evaluation share semantic values. <code>simplify(f)</code> preserves domain assumptions and singularities; executing a simplified expression requires a justified numerical policy.</p>
+<p><code>f&#39;x</code> and <code>f&#39;&#39;xy</code> are exact function-variable differentiation transforms; finite differences use separate operations such as <code>diff_i(A)</code>. <code>integ_x(f)</code> and <code>integ_xy(f)</code> select formal variables, not structural axes. An absent differentiation dependency yields zero; integration may introduce an absent variable.</p>
+<pre><code>f(x):x^2
+slope:f&#39;x
+::slope(3)
+I:integ_x(f)
+F:I[from:0]</code></pre>
+<p>Integration parameters are ordinary callable parameters. General <code>from</code> and <code>to</code> bounds can be overridden by variable-specific bounds such as <code>x_from</code> and <code>y_to</code>. Specialization does not evaluate the integral by itself.</p>
+<h2 id="physical-domains-and-units">Physical domains and units</h2>
+<p><code>Domain[Dimension]</code> qualifies a numerical domain with a physical dimension: <code>R[L]</code>, <code>R[L/T]</code>, <code>R^3[M*L/T^2]</code> and complex domains use the same mechanism. <code>R</code> and <code>C</code> alone are physically dimensionless.</p>
+<p>The seven SI base dimensions are <code>L M T I Θ N J</code>. Rational compile-time exponents, such as <code>L^(1/2)</code>, are permitted. Units contain a physical dimension, scale to canonical SI, display symbol, LaTeX symbol and optional quantity kind. Named units such as newtons do not introduce new base dimensions.</p>
+<pre><code>x:2m+30cm
+v:[1,2,3]m
+::x.to(cm)
+::v.to(cm)</code></pre>
+<p>Addition, subtraction and comparison require compatible dimensions. Addition and subtraction inherit the left operand&#39;s preferred unit. Multiplication and division combine dimensions algebraically. Exponents must be dimensionless; dimensional bases normally require compile-time-known exponents.</p>
+<p>A vector has one unit for the whole value. Conversions preserve the physical quantity and change its preferred representation; canonical SI backing remains available to computation. Unit display is automatic. Its priority is explicit <code>.to(...)</code>, configured preference, inherited arithmetic preference, automatic SI prefix, then canonical SI. The complete configuration surface is documented when finalized; this reference does not invent additional configuration syntax.</p>
+<p><code>rad</code> and <code>deg</code> are physically dimensionless angle units; radians are canonical. <code>sin</code>, <code>cos</code>, <code>exp</code>, <code>ln</code> and <code>log</code> require dimensionless inputs. For example, <code>exp(num(0,1)*180deg)</code> represents Euler&#39;s relation and returns ordinary dimensionless output. Angles are not an eighth base physical dimension.</p>
+<p><code>sum</code>, <code>mean</code>, <code>min</code> and <code>max</code> preserve physical dimensions; variance squares them and standard deviation restores them. Differentiation divides by the variable&#39;s dimension; integration multiplies by it. Ordinary printing, LaTeX and plot labels consume the same unit information.</p>
+<h2 id="strings-and-templates">Strings and templates</h2>
+<p>Double quotes interpolate immediately; single quotes defer substitution. <code>$x</code> selects a value, <code>$x.1f</code> formats it, <code>$x.0.1f</code> accesses a member before formatting and <code>$x.$format</code> selects a dynamic format. <code>.format(...)</code> follows ordinary vectorization and accepts spilled named tuples.</p>
+<pre><code>s:(x:1.23,y:4.56)
+::&#39;[$x.1f, $y.1f]&#39;.format(:s)</code></pre>
+<h2 id="geometry-views-and-physics">Geometry, views and physics</h2>
+<p>The later integration direction gives <code>u,v,w</code> connected-topology meanings, <code>t</code> time, <code>c</code> components and <code>m</code> reference-member slots. It does not override Section 0&#39;s ordinary dimension alignment and structural-call rules. Other letters are generic grouping dimensions.</p>
+<p><code>p_uc</code>, <code>p_uvc</code> and <code>p_uvwc</code> describe connected curves, surfaces and volumes. Explicit topology uses reference values: <code>edge_bm</code> can reference vertices grouped by <code>i</code> without aligning <code>b</code> with <code>i</code>. Subsets likewise carry references into a parent group; sparse properties need no dense null entries.</p>
+<p>Properties keep their names; supplied values carry their dimensions: <code>frame.add(p:p_ic)</code> and <code>world.add(p:p_ic,v:v_ic)</code>.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Operation</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>set(...)</code></td><td>Change persistent configuration</td></tr>
+<tr><td><code>add(...)</code></td><td>Create one layer</td></tr>
+<tr><td><code>push()</code></td><td>Freeze / push the composed state</td></tr>
+<tr><td><code>append(...)</code></td><td>Add and push</td></tr>
+<tr><td><code>show()</code></td><td>Display</td></tr>
+<tr><td><code>plot(...)</code></td><td>Append and show</td></tr>
+</tbody></table></div>
+<p>Frame layers render data; world layers may evolve physical state. Laws are ordinary functions; Embeddings map state into perception. Without <code>_t</code>, <code>p</code>, <code>v</code> and <code>a</code> provide initial state. With <code>_t</code>, they prescribe motion. Precedence is prescribed position, velocity, acceleration, then Laws. Prescribed degrees of freedom act as kinematic constraints during physical interaction.</p>
+<p>Camera/view configuration can vary over a grouping dimension while geometry is invariant. Styles, colormaps and interpolation are ordinary properties and functions, including structural suffixes such as <code>jet_i</code> and <code>cubic_t</code>. Side-specific limits override the corresponding side of combined limits. Symbolic plotting uses the same API; relations denote boundaries or regions and rendering adapts to geometry, zoom and discontinuities.</p>
+<h2 id="event-and-i-o-concurrency">Event and I/O concurrency</h2>
+<p>The <code>.concurrent</code> library supplies <code>process</code>, <code>queue</code>, <code>broadcast</code> and <code>shared</code>. Numeric concurrency is compiler-managed; these constructs coordinate events and I/O using ordinary function call semantics.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Form</th><th scope="col">Meaning</th></tr></thead><tbody>
+<tr><td><code>process(worker,10,events:events)</code></td><td>Start an isolated concurrent function with ordinary positional/named arguments</td></tr>
+<tr><td><code>p.join()</code></td><td>Wait and return the worker result</td></tr>
+<tr><td><code>p.kill()</code></td><td>Forced termination</td></tr>
+<tr><td><code>queue()</code></td><td>Destructive FIFO queue</td></tr>
+<tr><td><code>q.put(value)</code></td><td>Send one item</td></tr>
+<tr><td><code>q.get()</code></td><td>Suspend until an item is available</td></tr>
+<tr><td><code>broadcast()</code></td><td>Publish to active subscribers</td></tr>
+<tr><td><code>b.subscribe()</code></td><td>Create a subscriber stream</td></tr>
+<tr><td><code>shared(value)</code></td><td>Share exactly one ordinary value</td></tr>
+</tbody></table></div>
+<p>Each queue item goes to one receiver. Every active broadcast subscriber receives every subsequently published value. Per-producer ordering is preserved.</p>
+<pre><code>(event:events.get())??&gt;
+    MouseEvent =&gt; handle_mouse(event)
+    KeyEvent =&gt; handle_key(event)
+    Stop =&gt; @|</code></pre>
+<p>The receive expression is evaluated each iteration. The event remains bound in its selected arm. Shared values retain ordinary vector/tuple/record structure; published generations are immutable. Bulk-data descriptors may reference shared backing rather than copying vectors through queues.</p>
+<h2 id="grammar-decisions-still-open">Grammar decisions still open</h2>
+<p>Do not infer new syntax for deterministic external-resource cleanup, publishing shared generations, complete UI bindings/controls, every unit-literal and dimension-suffix precedence combination, or a final process variadic declaration. These remain explicit design decisions. Editor highlighting should use semantic resolution for suffixes and dimension identity, rather than treating every underscore name as structural.</p></main><footer>Experimental language · Documentation draft</footer></body></html>

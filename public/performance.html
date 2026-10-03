@@ -1,12 +1,29 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Vektor Flow: a few powerful principles for calculations, data and visual programs. Try supported examples in your browser."><title>Performance · Vektor Flow</title><link rel="canonical" href="https://vektorflow.org/performance.html"><link rel="stylesheet" href="./site.css"></head><body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="./index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="./index.html">Home</a><a href="./learn.html">Learn</a><a href="./language.html">Language</a><a href="./build.html">Build</a><a aria-current="location" href="./results.html">Results</a><a href="./about.html">About</a></nav><span class="release-version" data-release-version="0.4.7" data-browser-wasm="https://vektorflow.org/runtimes/v0.4.7/vkf-shared-compiler.wasm?sha256=f20160a988e057c1405dec86b4190bf18bc0f3c727b7783e365cfacc1f636ce6" aria-label="Stable release 0.4.7">Version 0.4.7</span></header><main class="documentation"><article id="readme-documentation" class="readme"><h1 id="performance">Performance</h1>
-<p>Benchmarks run on Linux after all current examples pass. Results awaiting measurement are shown as <code>-</code>.</p>
-<h2>Test computer</h2>
-<p>AMD Ryzen 7 3700X · 8 cores / 16 threads · 30.3 GiB RAM · NVIDIA GeForce GT 1030, 2 GiB · Ubuntu 26.04.1 LTS.</p>
-<table><thead><tr><th>Suite</th><th>Linux</th><th>Windows</th><th>macOS</th><th>WASM</th></tr></thead><tbody>
-<tr><td>Core language</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td>Linear algebra</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Performance</title><style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif;line-height:1.6}
+body{margin:0}header,main,footer{max-width:850px;margin:auto;padding:1.2rem}
+header{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;border-bottom:1px solid #8885}
+header>a{font-weight:700}nav{display:flex;gap:1rem}.version{margin-left:auto;font-size:.85rem}
+a{color:inherit;text-underline-offset:.2em}h2{margin-top:2.5rem}h3{margin-top:2rem}
+pre{overflow:auto;padding:1rem;background:#8881;border:1px solid #8884;border-radius:.5rem}
+code{font-family:ui-monospace,monospace;font-size:.9em}.table-scroll{overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #8884}
+button:disabled{color:#888;background:#8881;border:1px solid #8884;border-radius:.35rem;padding:.5rem .8rem;cursor:not-allowed}
+.downloads{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}footer{font-size:.85rem;color:#888}
+@media(max-width:600px){header,main,footer{padding:1rem}.version{margin-left:0}}
+</style></head>
+<body><header><a href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="version">0.7.0 · Preview</span></header>
+<main><h1 id="performance">Performance</h1>
+<p>Measurements will use the current compiler on Linux. Each <code>-</code> means no published measurement. Results from earlier compilers are not carried forward.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">VKF time</th><th scope="col">C++ ratio</th><th scope="col">Rust ratio</th><th scope="col">Zig ratio</th></tr></thead><tbody>
+<tr><td>Matrix multiplication</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td>Linear solve</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td>Reductions</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td>Lazy data</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td>Symbolic mathematics</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td>Physics</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-</tbody></table>
-</article></main><footer class="site-footer">Experimental software · <a href="./origins.html">Origins</a></footer></body></html>
+<tr><td>Physics state evolution</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td>Browser WebAssembly</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</tbody></table></div>
+<h2 id="hardware">Hardware</h2>
+<p>AMD Ryzen 7 3700X, 8 cores / 16 threads; 32 GB RAM; NVIDIA GeForce GT 1030, 2 GB VRAM; Ubuntu 26.04.1 LTS, x86-64.</p>
+<p>These are the current development machine&#39;s specifications. No benchmark measurements are published for this compiler yet.</p></main><footer>Experimental language · Documentation draft</footer></body></html>

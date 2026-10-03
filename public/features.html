@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Features</title><style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif;line-height:1.6}
+body{margin:0}header,main,footer{max-width:850px;margin:auto;padding:1.2rem}
+header{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;border-bottom:1px solid #8885}
+header>a{font-weight:700}nav{display:flex;gap:1rem}.version{margin-left:auto;font-size:.85rem}
+a{color:inherit;text-underline-offset:.2em}h2{margin-top:2.5rem}h3{margin-top:2rem}
+pre{overflow:auto;padding:1rem;background:#8881;border:1px solid #8884;border-radius:.5rem}
+code{font-family:ui-monospace,monospace;font-size:.9em}.table-scroll{overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #8884}
+button:disabled{color:#888;background:#8881;border:1px solid #8884;border-radius:.35rem;padding:.5rem .8rem;cursor:not-allowed}
+.downloads{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}footer{font-size:.85rem;color:#888}
+@media(max-width:600px){header,main,footer{padding:1rem}.version{margin-left:0}}
+</style></head>
+<body><header><a href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="version">0.7.0 · Preview</span></header>
+<main><h1 id="features">Features</h1>
+<p>This numbered inventory covers the intended language, execution, visualization and physics design. Section 0 is authoritative wherever later direction conflicts. Inclusion means design scope, not implemented or verified support. The examples and syntax reference supply compiler correction targets.</p>
+<ol start="1">
+<li><strong>Mathematical source.</strong> Express values, relationships and transformations in a compact, keyword-free language.</li>
+<li><strong>Demand-driven execution.</strong> Compute only values needed by observations or dependencies.</li>
+<li><strong>Partial demand.</strong> Evaluate selected regions when dependency analysis permits it.</li>
+<li><strong>Fusion and materialization.</strong> Avoid unnecessary intermediates; choose streaming, caching, recomputation and storage from observable semantics.</li>
+<li><strong>Compiler-managed compute.</strong> Select SIMD, parallel CPU or GPU execution without source-level kernel launches or memory transfers.</li>
+<li><strong>Semantic optimization contracts.</strong> Substitute equivalent BLAS, sparse, physics or rendering implementations using semantic traits rather than function names alone.</li>
+<li><strong>One semantic graph.</strong> Represent ordinary, symbolic, lazy, transform and optimizer expressions with common types, shapes, dimensions, domains, effects and provenance.</li>
+<li><strong>Compile-time evaluation.</strong> Partially evaluate known graph regions without introducing a separate expression language.</li>
+<li><strong>Numerical correctness contracts.</strong> Preserve evaluation order, domains and serial observations; reassociate reductions only when permitted.</li>
+<li><strong>Orthogonal meaning.</strong> Keep properties, structural dimensions, numerical domains, physical dimensions, units, quantity kinds, functions, Laws, Embeddings and execution strategy distinct.</li>
+<li><strong>Bindings and updates.</strong> Declare with <code>name:</code>; update an existing binding with <code>.name:</code>; support lexical shadowing without accidental redeclaration.</li>
+<li><strong>Expression-valued scopes.</strong> Use indentation or parentheses for scopes, final expressions for results and bare <code>:</code> for scope records.</li>
+<li><strong>Tuple structure.</strong> Distinguish tuples, singleton tuples and named tuples from vector dimensions.</li>
+<li><strong>Vector structure.</strong> Square brackets add rank; support nested, fixed and dynamic vector values.</li>
+<li><strong>Lazy vectors.</strong> Use ordinary vectors for large and infinite values, without a separate generator/yield construct.</li>
+<li><strong>Inclusive ranges.</strong> Support finite, descending and unbounded ranges; distinguish iteration positions from coordinate values.</li>
+<li><strong>Typed repetition and emptiness.</strong> Repetition preserves element type and rank at zero length; empty demand performs no element work.</li>
+<li><strong>Anonymous dimensions.</strong> Give unnamed axes positional identity, separate from named axes.</li>
+<li><strong>Named dimensions.</strong> Attach single-letter structural dimensions to values; numbers remain coordinates or values.</li>
+<li><strong>Complete rank naming.</strong> Require a suffix to name the entire rank unless an explicit structural ellipsis is present.</li>
+<li><strong>Structural ellipsis.</strong> Allow one ASCII <code>...</code> to retain the required anonymous dimensions, including zero dimensions.</li>
+<li><strong>Named alignment.</strong> Align dimensions by identity and require compatible sizes; never silently resize aligned values.</li>
+<li><strong>Anonymous alignment.</strong> Align anonymous axes only with compatible anonymous positions; never silently map them onto named axes.</li>
+<li><strong>Diagonal selection.</strong> Repeated value-selection names identify equal coordinates, as in <code>A_ii</code>, according to Section 0.</li>
+<li><strong>Elementwise arithmetic.</strong> Align/lift <code>+ - * / // % ^</code>; multiplication does not imply contraction.</li>
+<li><strong>Two comparison levels.</strong> Distinguish elementwise comparisons/logical operations from whole-value <code>==</code> and <code>!=</code>.</li>
+<li><strong>Concatenation.</strong> Join values along an explicit dimension or a uniquely inferable dimension.</li>
+<li><strong>Composition and function arithmetic.</strong> Compose first-class functions and apply compatible pointwise operators to them.</li>
+<li><strong>Callable operators.</strong> Use operators as function values, including indexed collections and specialization.</li>
+<li><strong>Ordinary lifting.</strong> Lift compatible function calls by argument structure; preserve tuple/record atomicity and exact container-overload priority.</li>
+<li><strong>Structural calls.</strong> Pass selected dimensions intact to a function and lift over the remainder; result structure determines which axes survive.</li>
+<li><strong>Ordered folds.</strong> Reduce one indexed collection with one binary reducer and one initial accumulator.</li>
+<li><strong>Multidimensional reductions.</strong> Remove exactly the selected dimensions; reject repeated reduction selectors.</li>
+<li><strong>Named reductions and identities.</strong> Provide sum, product and function-chain reductions with their defined empty identities.</li>
+<li><strong>Recurrence.</strong> Express state evolution through ordered folds or specialized function chains, including multiple varying inputs.</li>
+<li><strong>Explicit specialization.</strong> Distinguish <code>f(...)</code> evaluation from <code>f[...]</code> binding, including zero-argument bound callables.</li>
+<li><strong>Indexed specialization.</strong> Lift argument binding to form dimensioned collections of specialized functions.</li>
+<li><strong>Compile-time suffix parameters.</strong> Bind declaration parameters from suffix characters/digits with <code>chr</code>, <code>dig</code> and <code>bit</code>.</li>
+<li><strong>Variadic compile-time suffixes.</strong> Capture arbitrary suffix sequences with <code>...args:chr</code> in a compile-time declaration.</li>
+<li><strong>Ordinary underscore identifiers.</strong> Resolve exact names before interpreting structural suffixes where appropriate.</li>
+<li><strong>Ordinary call arguments.</strong> Support positional, named, typed and default arguments using one call model.</li>
+<li><strong>Runtime spilling.</strong> Spill ordinary vectors, tuples or named tuples with prefix <code>:</code>; do not use call-site <code>...</code> for runtime spreading.</li>
+<li><strong>Runtime variadics.</strong> Capture remaining positional/named arguments using the core declaration grammar; process forwarding reuses that grammar.</li>
+<li><strong>Generic types and shapes.</strong> Infer compile-time type/extent parameters consistently across parameter and result structures.</li>
+<li><strong>Overloads and type dispatch.</strong> Select compatible ordinary functions, operators and dotted-access overloads.</li>
+<li><strong>Closures and declarations.</strong> Support lambdas, captured values, recursion, higher-order functions and forward declarations with source-order effects preserved.</li>
+<li><strong>Nominal values.</strong> Construct uppercase nominal types with spill-backed structure; reconstruct compatible operations without losing nominal identity.</li>
+<li><strong>Type and member reflection.</strong> Expose actual types, ordered record keys, member selection and structural type spilling.</li>
+<li><strong>Modules and lexical qualification.</strong> Import module handles, alias or spill exports, and preserve captured qualified meanings under shadowing.</li>
+<li><strong>Symbolic numerical domains.</strong> Declare real, complex, continuous or discrete domains authoritatively rather than guessing from variable names.</li>
+<li><strong>Assumption-preserving simplification.</strong> Retain domains, singularities and principal complex behavior during symbolic inspection and numerical lowering.</li>
+<li><strong>Exact differentiation.</strong> Use function-variable transforms and ordinary calculus; keep finite differences separate.</li>
+<li><strong>Integration and bound specialization.</strong> Select formal variables, introduce absent variables, bind general bounds and override them with variable-specific bounds.</li>
+<li><strong>Physical-domain qualification.</strong> Use <code>Domain[Dimension]</code>, including vector and complex domains, without conflating it with multiplication or display units.</li>
+<li><strong>SI physical dimensions.</strong> Represent seven base dimensions with rational compile-time exponents and algebraically derived dimensions.</li>
+<li><strong>Unit definitions and canonical SI.</strong> Define scale, physical dimension, symbols and quantity kind once; resolve conversion statically where possible.</li>
+<li><strong>Whole-value units.</strong> Give a scalar, vector or matrix one quantity representation rather than per-element unit metadata.</li>
+<li><strong>Dimensional compatibility.</strong> Require compatible dimensions for addition, subtraction and comparison.</li>
+<li><strong>Left-operand representation.</strong> Preserve the left operand&#39;s preferred unit in compatible addition and subtraction.</li>
+<li><strong>Multiplicative dimensions.</strong> Derive dimensions through multiplication/division and recognize named derived units without new base dimensions.</li>
+<li><strong>Explicit conversion views.</strong> Use <code>.to(unit)</code> to change preferred representation while preserving the physical quantity, canonical SI backing and aliases.</li>
+<li><strong>Dimensionless quantities and angles.</strong> Separate ordinary dimensionless values from angle-kind quantities; radians/degrees share physical dimension one.</li>
+<li><strong>Unit-aware trigonometry.</strong> Accept dimensionless numbers and canonical-radian angle magnitudes; reject dimensional arguments.</li>
+<li><strong>Exponential and logarithmic domains.</strong> Require dimensionless inputs; preserve Euler&#39;s relation for angle quantities and return ordinary dimensionless exponential output.</li>
+<li><strong>Dimensional powers.</strong> Require dimensionless exponents and normally compile-time-known powers for dimensional bases; support rational resulting dimensions.</li>
+<li><strong>Units through reductions.</strong> Preserve dimensions through sum/mean/min/max, square them for variance and restore them for standard deviation.</li>
+<li><strong>Units through calculus.</strong> Derive derivative dimensions by division and integral dimensions by multiplication with the variable&#39;s dimension.</li>
+<li><strong>Symbolic dimensional validation.</strong> Reject physically inconsistent symbolic expressions before numerical evaluation.</li>
+<li><strong>Quantity output and display policy.</strong> Print units automatically; support automatic SI prefixes, configured precision/preferences and explicit conversion priority.</li>
+<li><strong>Semantic LaTeX.</strong> Render numerical domains, physical dimensions, concrete units, derived units and angles from the same definitions used by printing and plots.</li>
+<li><strong>Strings and templates.</strong> Support immediate/deferred interpolation, member selection, static/dynamic formats and vectorized <code>.format</code> with ordinary spilling.</li>
+<li><strong>Conditions and matching.</strong> Use expression-valued conditionals, value/type matching, implication and an unlabelled fallback arm.</li>
+<li><strong>Pipes and coordinates.</strong> Expose current/outer values and named coordinates; distinguish progressive pipes from explicitly nested scopes.</li>
+<li><strong>Loops and early control.</strong> Support conditional/matching loops, numbered read-only loop indices, continue, break and early return with scope-correct behavior.</li>
+<li><strong>Typed errors and assertions.</strong> Construct, raise, match and propagate typed errors; retain source locations through compiler lowering.</li>
+<li><strong>Multisets.</strong> Support counted values, exact element types, count-combining operations and multiset type values.</li>
+<li><strong>Connected topology.</strong> Use <code>u,v,w</code> for curves/surfaces/volumes, <code>c</code> for components and <code>t</code> for time in the later integration direction, without overriding Section 0&#39;s ordinary dimension rules.</li>
+<li><strong>Generic groups and coordinate labels.</strong> Give ordinary grouping dimensions no object-specific meaning; associated coordinates/labels align with their own dimension.</li>
+<li><strong>Explicit topology and references.</strong> Describe edges, faces and volume elements with reference values and <code>m</code> member slots connecting independent entity groups.</li>
+<li><strong>Subsets and sparse properties.</strong> Attach properties to referenced selections rather than filling parent collections with null entries.</li>
+<li><strong>Compositional plot lifecycle.</strong> Define persistent defaults, one-layer add, composed-state push, append, show and plot through their ordinary operations.</li>
+<li><strong>Frame and world layers.</strong> Separate render/data layers from simulation-capable layers while consuming the same ordinary values.</li>
+<li><strong>Positions, components and Embeddings.</strong> Map Cartesian/polar/spherical, complex and higher-component data into perception without making rendering dictate physical state.</li>
+<li><strong>Styling, colormaps and interpolation.</strong> Use ordinary per-property/per-primitive functions, structures and dimension-aware suffixes rather than parallel plot-type/color-by systems.</li>
+<li><strong>Limits and modes.</strong> Support combined/side-specific limits, dimensional configuration and extend/clamp/repeat/mirror/discard behavior where meaningful.</li>
+<li><strong>Cameras and shared multi-view geometry.</strong> Represent camera position/target/projection as ordinary structures; let views vary while invariant geometry remains shared.</li>
+<li><strong>Compositional axes and labels.</strong> Generate axes, grids, ticks and text as ordinary layers; propagate quantity units into default labels.</li>
+<li><strong>Symbolic plots, relations and roots.</strong> Use the ordinary plotting API for expressions, equations and inequalities; infer geometric dimension and map complex roots through components.</li>
+<li><strong>Adaptive symbolic rendering.</strong> Refine with zoom, curvature, discontinuities, singularities, cusps, asymptotes and domain boundaries while retaining true nonsmoothness.</li>
+<li><strong>Motion and kinematic constraints.</strong> Distinguish initial from time-prescribed <code>p/v/a</code>; apply position &gt; velocity &gt; acceleration &gt; Laws, including deterministic collision interaction.</li>
+<li><strong>Unified physical Laws and solver choice.</strong> Evolve ordinary properties with ordinary functions; permit rigid/continuum and hybrid APIC/FLIP/MLS-MPM/sparse-grid backends, adaptive resolution, sleeping, splitting/merging and GPU fusion.</li>
+<li><strong>Lighting and derived views.</strong> Use emissive layers and derived camera views for lighting, mirrors, screens, portals and camera feeds.</li>
+<li><strong>Processes.</strong> Start ordinary functions in isolated event/I/O contexts; return their results from <code>join</code> and permit forced <code>kill</code> without a separate argument-packing language.</li>
+<li><strong>Queues and event loops.</strong> Deliver each FIFO item to one receiver; suspend efficiently and re-evaluate matching-loop receives each iteration.</li>
+<li><strong>Broadcast.</strong> Deliver publications to every active subscriber, preserve per-producer order and clean up subscriptions with lifetime where possible.</li>
+<li><strong>Shared ordinary storage.</strong> Share one arbitrary ordinary value; preserve type, shape and dimensions across CPU/GPU/shared/mapped/lazy backing and bulk-data handles/views.</li>
+<li><strong>Immutable published generations.</strong> Support one logical writer and multiple readers with unobservable buffer reuse, swaps or copy-on-write; the public generation-update API remains unresolved.</li>
+<li><strong>Semantic highlighting.</strong> Color nested vector depth and resolved dimension identities; keep anonymous axes neutral and distinguish compile-time literal suffixes from ordinary underscore identifiers.</li>
+<li><strong>Unresolved surface design.</strong> Track deterministic external-resource cleanup, complete UI binding/control syntax, unit/suffix precedence and final process variadic spelling explicitly; invent none of them in implementation-facing examples.</li>
+<li><strong>End-to-end language acceptance.</strong> Require coherent original-source behavior across compilers and targets, including Section 0&#39;s Mandelbrot, finite complex power-tower and infinite convergence visual integration cases; example counts alone do not establish completion.</li>
+</ol>
+<p>All implementation and verification statuses remain separate from this inventory. No benchmarks, downloads, build results or platform-support claims are implied.</p></main><footer>Experimental language · Documentation draft</footer></body></html>

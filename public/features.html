@@ -1,19 +1,11 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Features</title><style>
-:root{color-scheme:light dark;font-family:system-ui,sans-serif;line-height:1.6}
-body{margin:0}header,main,footer{max-width:850px;margin:auto;padding:1.2rem}
-header{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;border-bottom:1px solid #8885}
-header>a{font-weight:700}nav{display:flex;gap:1rem}.version{margin-left:auto;font-size:.85rem}
-a{color:inherit;text-underline-offset:.2em}h2{margin-top:2.5rem}h3{margin-top:2rem}
-pre{overflow:auto;padding:1rem;background:#8881;border:1px solid #8884;border-radius:.5rem}
-code{font-family:ui-monospace,monospace;font-size:.9em}.table-scroll{overflow:auto}
-table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #8884}
-button:disabled{color:#888;background:#8881;border:1px solid #8884;border-radius:.35rem;padding:.5rem .8rem;cursor:not-allowed}
-.downloads{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}footer{font-size:.85rem;color:#888}
-@media(max-width:600px){header,main,footer{padding:1rem}.version{margin-left:0}}
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Features</title><link rel="canonical" href="https://vektorflow.org/features.html"><link rel="stylesheet" href="./site.css"><style>
+.downloads{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}
+.downloads button:disabled{color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:6px;padding:.6rem 1rem;cursor:not-allowed;opacity:.65}
+.readme li{margin-block:.65rem}
 </style></head>
-<body><header><a href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="version">0.7.0 · Preview</span></header>
-<main><h1 id="features">Features</h1>
+<body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html" aria-current="page">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="release-version">0.7.0 · Preview</span></header>
+<main class="documentation"><article id="readme-documentation" class="readme"><h1 id="features">Features</h1>
 <p>This numbered inventory covers the intended language, execution, visualization and physics design. Section 0 is authoritative wherever later direction conflicts. Inclusion means design scope, not implemented or verified support. The examples and syntax reference supply compiler correction targets.</p>
 <ol start="1">
 <li><strong>Mathematical source.</strong> Express values, relationships and transformations in a compact, keyword-free language.</li>
@@ -117,4 +109,4 @@ button:disabled{color:#888;background:#8881;border:1px solid #8884;border-radius
 <li><strong>Unresolved surface design.</strong> Track deterministic external-resource cleanup, complete UI binding/control syntax, unit/suffix precedence and final process variadic spelling explicitly; invent none of them in implementation-facing examples.</li>
 <li><strong>End-to-end language acceptance.</strong> Require coherent original-source behavior across compilers and targets, including Section 0&#39;s Mandelbrot, finite complex power-tower and infinite convergence visual integration cases; example counts alone do not establish completion.</li>
 </ol>
-<p>All implementation and verification statuses remain separate from this inventory. No benchmarks, downloads, build results or platform-support claims are implied.</p></main><footer>Experimental language · Documentation draft</footer></body></html>
+<p>All implementation and verification statuses remain separate from this inventory. No benchmarks, downloads, build results or platform-support claims are implied.</p></article></main><footer class="site-footer">Experimental language · Documentation draft</footer></body></html>

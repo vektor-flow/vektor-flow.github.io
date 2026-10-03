@@ -142,6 +142,15 @@ export function highlightVkf(source) {
       cursor += string[0].length;
       continue;
     }
+    // Function-variable differentiation is one operator, including its selectors.
+    // Match only after a value so a deferred single-quoted template is distinct.
+    const derivative = /[A-Za-z0-9_)\]]/u.test(source[cursor - 1] ?? "")
+      ? /^['’]+[a-z]+/u.exec(rest) : null;
+    if (derivative) {
+      html += token("operator", derivative[0]);
+      cursor += derivative[0].length;
+      continue;
+    }
     const number = /^\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/u.exec(rest);
     if (number) {
       html += token("number", number[0]);

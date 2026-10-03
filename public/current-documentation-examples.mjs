@@ -1,5 +1,5 @@
 // Preserve the original editor/console UI without loading an unverified compiler.
-import {highlightVkf} from './editor/vkf-highlighter.mjs';
+import {highlightVkf} from './editor/vkf-highlighter.mjs?asset=031616f17de7caab';
 
 for (const example of document.querySelectorAll('.readme-example')) {
   const source = example.querySelector('.readme-example-source');

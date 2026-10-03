@@ -20,21 +20,16 @@ function token(kind, value) {
   return `<span class="vf-token ${kind}">${escapeHtml(value)}</span>`;
 }
 
-function dimensionColor(value) {
-  if (/^[a-z]$/u.test(value)) {
-    const index = value.codePointAt(0) - "a".codePointAt(0);
-    return `hsl(${Math.round((200 + index * 137.508) % 360)} 72% 72%)`;
-  }
-  let hash = 2166136261;
-  for (const character of value) {
-    hash ^= character.codePointAt(0);
-    hash = Math.imul(hash, 16777619) >>> 0;
-  }
-  return `hsl(${hash % 360} 72% 72%)`;
-}
-
+// Fixed alphabetical identity: a–j use ten hues; k starts the same cycle.
+// Color each label, never hash an entire suffix such as ij or jk.
+const DIMENSION_HUES = [200, 236, 272, 308, 344, 20, 56, 92, 128, 164];
 function dimensionToken(value) {
-  return `<span class="vf-token dimension" style="--vf-dimension-color:${dimensionColor(value)}">${escapeHtml(value)}</span>`;
+  return [...value].map(character => {
+    if (/^[0-9]$/u.test(character)) return token("compile-time", character);
+    const index = character.codePointAt(0) - "a".codePointAt(0);
+    const color = `hsl(${DIMENSION_HUES[index % DIMENSION_HUES.length]} 72% 72%)`;
+    return `<span class="vf-token dimension" style="--vf-dimension-color:${color}">${escapeHtml(character)}</span>`;
+  }).join("");
 }
 
 function codeOnly(source) {

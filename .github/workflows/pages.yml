@@ -1,0 +1,40 @@
+name: Publish reviewed public assets
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Verify reviewed deployment bytes
+        run: |
+          python3 - <<'PYVERIFY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('public')
+          manifest=json.loads((root/'DEPLOYMENT-MANIFEST.json').read_text())
+          expected={r['path'] for r in manifest['files']}|{'DEPLOYMENT-MANIFEST.json','.vkf-site-generated'}
+          actual={str(p.relative_to(root)) for p in root.rglob('*') if p.is_file()}
+          assert actual==expected
+          for row in manifest['files']:
+              data=(root/row['path']).read_bytes()
+              assert len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256'],row['path']
+          print('Verified',len(manifest['files']),'reviewed public files')
+          PYVERIFY
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+      - uses: actions/upload-pages-artifact@98ef48e41587a300b82de4cf298aa98b57b2faae
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346

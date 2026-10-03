@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Live interactive Vektor Flow research sessions for water, rigid rocks, trees, and grass.">
+  <title>Coming soon · Vektor Flow</title>
+  <link rel="canonical" href="https://vektorflow.org/coming-soon.html">
+  <link rel="stylesheet" href="./site.css">
+  <link rel="prefetch" href="./previews/0.6.0/live/tree/assets/tree-mesh.bin.gz" as="fetch" crossorigin>
+  <style>
+    .live-intro { max-width: 74ch; }
+    .application-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border, #666); scroll-margin-top: 2rem; }
+    .application-description { max-width: 74ch; }
+    .source-browser { margin-top: 1.5rem; min-width: 0; border: 1px solid var(--border, #666); border-radius: .6rem; overflow: hidden; }
+    .source-heading { padding: .9rem 1rem; margin: 0; background: var(--surface, #152024); }
+    .source-heading .source-label { margin: 0 0 .4rem; font-size: 1rem; font-weight: 700; }
+    .source-heading p { margin: 0; font-size: .85rem; }
+    .source-tabs { display: flex; overflow-x: auto; gap: .25rem; padding: .5rem; border-block: 1px solid var(--border, #666); }
+    .source-tabs button { flex: 0 0 auto; min-height: 44px; padding: .5rem .8rem; border: 1px solid transparent; border-radius: .35rem; background: transparent; color: inherit; font: 13px ui-monospace, monospace; cursor: pointer; }
+    .source-tabs button[aria-selected="true"] { background: #dcebe7; color: #102027; }
+    .source-tabs button:focus-visible { outline: 2px solid #a8cfc2; outline-offset: 1px; }
+    .source-panel { max-height: 34rem; overflow: auto; background: #0b1113; color: #dcebe7; }
+    .source-panel pre { margin: 0; padding: 1rem; border: 0; background: transparent; color: inherit; white-space: pre; }
+    .source-panel code { font: 13px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; color: inherit; background: transparent; }
+    .source-footer { margin: 0; padding: .65rem 1rem; font-size: .85rem; border-top: 1px solid var(--border, #666); }
+    .source-run { padding: .4rem .65rem; border: 1px solid #73897c; border-radius: .35rem; background: #20352b; color: #dcebe7; font: inherit; cursor: pointer; }
+    .source-panel .token.comment { color: #94a7a0; }
+    .source-panel .token.string { color: #b5d99b; }
+    .source-panel .token.number,.source-panel .token.boolean { color: #edc992; }
+    .source-panel .token.function { color: #93cbe4; }
+    .source-panel .token.namespace,.source-panel .token.class-name,.source-panel .token.builtin { color: #d5b4ed; }
+    .source-panel .token.operator,.source-panel .token.keyword { color: #efb0bf; }
+    .source-panel .token.variable { color: #dcebe7; }
+    .session-shell { overflow: hidden; overscroll-behavior: none; touch-action: none; border: 1px solid var(--border, #666); border-radius: .85rem; background: #0b1113; box-shadow: 0 24px 70px rgb(0 0 0 / .18); }
+    .session-shell iframe { display: block; width: 100%; height: min(76vh, 760px); min-height: 560px; border: 0; background: #0b1113; overscroll-behavior: none; touch-action: none; }
+    .session-note { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; margin: .75rem 0 0; color: var(--muted, #687274); font-size: .92rem; }
+    @media (max-width: 680px) { .session-shell { margin-inline: -16px; border-radius: 0; border-inline: 0; } .session-shell iframe { height: 72vh; min-height: 540px; } .session-note { display: block; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#live-sessions">Skip to content</a>
+  <header class="site-nav">
+    <a class="wordmark" href="./index.html">Vektor Flow</a>
+    <nav aria-label="Main navigation">
+      <a href="./index.html">Home</a><a href="./learn.html">Learn</a><a href="./language.html">Language</a><a href="./build.html">Build</a><a href="./results.html">Results</a><a aria-current="location" href="./about.html">About</a>
+    </nav>
+    <span class="release-version" data-release-version="0.4.7" data-browser-wasm="https://vektorflow.org/runtimes/v0.4.7/vkf-shared-compiler.wasm?sha256=f20160a988e057c1405dec86b4190bf18bc0f3c727b7783e365cfacc1f636ce6" aria-label="Stable release 0.4.7">Version 0.4.7</span>
+  </header>
+  <main id="live-sessions" class="documentation">
+    <article class="readme">
+      <h1>Coming soon</h1>
+      <p class="live-intro">The 0.6.0 work is in progress. These independent previews test physical Worlds, composable Laws, and visual Embeddings; they are experiments, not a stable release. The water wheel, stones, and tree have compiled VKF source below each view.</p>
+      <section id="contact-tests" class="application-section" aria-labelledby="contact-tests-heading">
+        <h2 id="contact-tests-heading">Contact solver</h2>
+        <p class="application-description">Purpose: check GPU rigid-body contacts, separation, and rotational edge cases at 10,000 or 1,000,000 particles. State: isolated algorithm test, not yet the wheel backend. <a href="./previews/0.6.0/contact-core-1/">Open contact test</a>.</p>
+      </section>
+      <section id="wheel" class="application-section" aria-labelledby="wheel-heading">
+        <h2 id="wheel-heading">Water wheel</h2>
+        <p class="application-description">Purpose: test water against a rotating boundary. State: compiled VKF preview; the water World contains the physical layer and its View draws the status text. <a href="./previews/0.6.0/live/material-wheel/?v=wheel-water-only-44">Open wheel</a>.</p>
+        <div class="session-shell"><iframe title="Water rotating wheel live session" src="./previews/0.6.0/live/material-wheel/?v=wheel-water-only-44" loading="lazy" allow="fullscreen" scrolling="no"></iframe></div>
+        <div class="source-browser" data-source-app="wheel">
+          <div class="source-heading"><p class="source-label">Executable VKF source</p><p>World.add owns physical layers; View.add owns nonphysical text. Pixel and relative coordinates start top-left; data coordinates follow the View.</p></div>
+          <div class="source-tabs" role="tablist" aria-label="wheel VKF source files"></div>
+          <div class="source-panel" id="wheel-source-panel" role="tabpanel" tabindex="0"><pre><code>Loading main.vkf…</code></pre></div>
+          <p class="source-footer"><a data-source-download href="./sources/coming-soon/wheel/main.vkf" download>Download main.vkf</a> · <a href="./sources/coming-soon/README.md">Source contract and file structure</a></p>
+        </div>
+      </section>
+      <section id="stones" class="application-section" aria-labelledby="stones-heading">
+        <h2 id="stones-heading">Stones</h2>
+        <p class="application-description">Purpose: test lift, drop, and frictional contact across five irregular stones. State: compiled VKF preview with material-specific geometry and mass. <a href="./previews/0.6.0/live/rocks/?v=stones-mixed-19">Open stones</a>.</p>
+        <div class="session-shell"><iframe title="Five fieldstones lift collide and settle live session" src="./previews/0.6.0/live/rocks/?v=stones-mixed-19" loading="lazy" allow="fullscreen" scrolling="no"></iframe></div>
+        <div class="source-browser" data-source-app="stones">
+          <div class="source-heading"><p class="source-label">Executable VKF source</p><p>Initial positions and stone properties define the physical scene.</p></div>
+          <div class="source-tabs" role="tablist" aria-label="stones VKF source files"></div>
+          <div class="source-panel" id="stones-source-panel" role="tabpanel" tabindex="0"><pre><code>Loading main.vkf…</code></pre></div>
+          <p class="source-footer"><a data-source-download href="./sources/coming-soon/stones/main.vkf" download>Download main.vkf</a> · <a href="./sources/coming-soon/README.md">Source contract and file structure</a></p>
+        </div>
+      </section>
+      <section id="tree" class="application-section" aria-labelledby="tree-heading">
+        <h2 id="tree-heading">Tree, lawn, and wind</h2>
+        <p class="application-description">Purpose: test air–foliage momentum exchange on a generated tree and lawn. State: compiled VKF preview with wind controls from 0 to 20 m/s and authored generation controls. <a href="./previews/0.6.0/live/tree/?v=tree-air-14">Open tree</a>.</p>
+        <div class="session-shell"><iframe title="Procedural tree grass and air live session" src="./previews/0.6.0/live/tree/?v=tree-air-14" loading="lazy" allow="fullscreen" scrolling="no"></iframe></div>
+        <div class="source-browser" data-source-app="tree">
+          <div class="source-heading"><p class="source-label">Executable VKF source</p><p>Tree, lawn, elastic nodes, and air parcels are layers of one World.</p></div>
+          <div class="source-tabs" role="tablist" aria-label="tree VKF source files"></div>
+          <div class="source-panel" id="tree-source-panel" role="tabpanel" tabindex="0"><pre><code>Loading main.vkf…</code></pre></div>
+          <p class="source-footer"><a data-source-download href="./sources/coming-soon/tree/main.vkf" download>Download main.vkf</a> · <a href="./sources/coming-soon/README.md">Source contract and file structure</a></p>
+        </div>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer">Experimental software · <a href="./origins.html">Origins</a></footer>
+  <script type="module" src="./coming-soon.mjs?v=preview-release-30"></script>
+</body>
+</html>

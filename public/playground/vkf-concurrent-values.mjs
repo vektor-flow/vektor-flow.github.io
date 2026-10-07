@@ -57,6 +57,10 @@ export function captureValue(memory, pointer, used) {
         node.bytes = Array.from(new Uint8Array(view.buffer, payload, count));
         break;
       case 4: case 6: case 11:
+        if (tag === 4) {
+          const shape = view.getUint32(address + 12, true);
+          if (shape) node.logicalShape = capture(shape);
+        }
         children(payload, count, 4);
         break;
       case 5: case 9:
@@ -125,7 +129,27 @@ export function materializeValue(api, graph) {
       if (!payload) throw new RangeError('concurrent collection allocation failed');
       node.children.forEach((child, offset) =>
         new DataView(api.memory.buffer).setUint32(payload + offset * 4, childPointer(child), true));
-      new DataView(api.memory.buffer).setUint32(address + 8, payload, true);
+      const current = new DataView(api.memory.buffer);
+      current.setUint32(address + 8, payload, true);
+      if (node.tag === 4) {
+        if (node.logicalShape !== undefined) {
+          childPointer(node.logicalShape); // Validate the edge before dereferencing it.
+          const shape = graph.nodes[node.logicalShape];
+          if (shape.tag !== 4 || shape.logicalShape !== undefined) {
+            throw new TypeError('concurrent logical shape requires a plain extent array');
+          }
+          for (const child of shape.children) {
+            childPointer(child);
+            const extent = graph.nodes[child];
+            const bits = new DataView(Uint8Array.from(extent.slot).buffer);
+            if (extent.tag !== 2 || !Number.isSafeInteger(bits.getFloat64(8, true)) || bits.getFloat64(8, true) < 0) {
+              throw new TypeError('concurrent logical shape requires nonnegative integer extents');
+            }
+          }
+        }
+        current.setUint32(address + 12,
+          node.logicalShape === undefined ? 0 : childPointer(node.logicalShape), true);
+      }
     } else if (node.tag === 8 || node.tag === 12) {
       if (node.children.length !== 2) throw new TypeError('concurrent display wrapper is invalid');
       view.setUint32(address + 4, childPointer(node.children[0]), true);

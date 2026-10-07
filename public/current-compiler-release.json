@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "status": "verified-examples",
+  "complete": false,
+  "package": {
+    "module": "./playground/canonical/compiler.mjs",
+    "wasm": "./playground/canonical/compiler.wasm",
+    "data": "./playground/canonical/compiler.data"
+  },
+  "compiler_source": "d36715d61d549bbddd6fff00d626a77f1c72523d",
+  "spec_source": "1d36e80654a4156835eb517a8936d6039037e021",
+  "sha256": {
+    "compiler.mjs": "c991dd7794bd9e695e81df4a2e62919e4d59dc8a5d50d36ee805aa4c3969b2b7",
+    "compiler.wasm": "e4cb7a80c04ee7ee0a8c86c4cc255bf8b0dcb40b6584da2eb605491e170f28a0",
+    "compiler.data": "266e78929be870859c65e16f4ecbeba2681d60e10dd280a60904c86374f830ce"
+  },
+  "verification": {
+    "displayed_examples": 51,
+    "status": "passed",
+    "full_language_complete": false,
+    "scope": "51 displayed examples; desktop/mobile editing, output, drawings and concurrent workers"
+  },
+  "release_version": "0.7.1",
+  "release_source": "5e1603e6c5ff764f16be42ec18e453f183e822d2",
+  "release_spec": "e0d2d18e8b77ccfd23bbfb0351c511cbe514c2d9",
+  "linux": {
+    "archive": "./downloads/current/vkf-linux-x86_64.tar.gz",
+    "sha256": "2b2a944064683a8acfb07d20faad88939bc0e531302078e3fd060a46a7bc25a1",
+    "compiler_sha256": "994dc5b6b6805b7811dd0305754a797b3e4b46319e9ae45ecc8c89b26118ffc4",
+    "architecture": "x86-64",
+    "minimum_glibc": "2.38",
+    "scope": "48 console examples; native GUI excluded"
+  }
+}

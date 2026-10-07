@@ -8117,6 +8117,7 @@
       } catch (_) {}
     }
     rec.entries.length = 0;
+    rec.software3DFrameEl = null;
     if (opts.removeSimple2DCanvas === true && rec.simple2DCanvas && rec.simple2DCanvas.parentNode) {
       try { rec.simple2DCanvas.parentNode.removeChild(rec.simple2DCanvas); } catch (_) {}
     }
@@ -11482,6 +11483,118 @@
     return true;
   }
 
+  // Canvas consumes the same compiled field meshes as the GPU renderer. It is
+  // a projection backend only: it never creates simulation state or geometry.
+  function mountSoftware3DRenderer(fid, frameEl, geomSpec, specs) {
+    if (!specs.length || !specs.every(function (s) {
+      return s && s.type === "field_mesh" && s.mode3d === true &&
+        ["line-list", "triangle-list", "point-list"].indexOf(s.topology) >= 0 &&
+        !s.instances && !s.physics && !s.material && s.casts_shadow !== true &&
+        (s.no_lighting === true || !(geomSpec.lights || []).length);
+    })) { return false; }
+    var meshes = specs.map(function (s) {
+      var vertices = s.vertices || [], indices = s.indices || [];
+      if (vertices.length % 10 !== 0 || vertices.length > 10000000 || indices.length > 3000000) {
+        throw new Error("Invalid software field mesh bounds");
+      }
+      var matrix = s._modelMatrix || meshModelMatrix(s);
+      var points = [];
+      for (var n = 0; n < vertices.length; n += 10) {
+        var pt = transformPointMat4(matrix, Number(vertices[n]), Number(vertices[n + 1]), Number(vertices[n + 2]));
+        if (!pt.every(Number.isFinite)) { throw new Error("Non-finite software mesh position"); }
+        points.push(pt);
+      }
+      var step = s.topology === "triangle-list" ? 3 : s.topology === "line-list" ? 2 : 1;
+      if ((indices.length || points.length) % step !== 0) { throw new Error("Invalid software mesh primitive count"); }
+      for (var j = 0; j < indices.length; j++) {
+        if (!Number.isInteger(Number(indices[j])) || indices[j] < 0 || indices[j] >= points.length) {
+          throw new Error("Software mesh index outside compiled vertices");
+        }
+      }
+      return { spec: s, vertices: vertices, indices: indices, points: points, step: step };
+    });
+    var lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+    meshes.forEach(function (m) { m.points.forEach(function (p) {
+      for (var a = 0; a < 3; a++) { lo[a] = Math.min(lo[a], p[a]); hi[a] = Math.max(hi[a], p[a]); }
+    }); });
+    if (!lo.every(Number.isFinite)) { return false; }
+    var center = lo.map(function (v, a) { return (v + hi[a]) / 2; });
+    var radius = Math.max(0.001, Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2);
+    var camera = geomSpec.camera || {
+      pos: [center[0] + radius * 2, center[1] + radius * 1.5, center[2] + radius * 3],
+      target: center, up: [0, 1, 0], projection: "orthographic", ortho_scale: radius * 1.4
+    };
+    if (!frameRecs[fid]) { frameRecs[fid] = { entries: [] }; }
+    stopGeomFrameRenderers(fid, { removeSimple2DCanvas: true });
+    var canvas = ensureGeomCanvas(frameEl, 0, fid);
+    canvas.setAttribute("data-vf-render-backend", "canvas3d");
+    var context = canvas.getContext("2d");
+    if (!context) { throw new Error("Canvas 2D rendering unavailable"); }
+    var active = true;
+    function draw() {
+      if (!active) { return; }
+      if (!frameEl.isConnected) { stopGeomFrameRenderers(fid); return; }
+      layoutGeomCanvas(frameEl, canvas, fid);
+      var size = syncCanvasSize(canvas), w = size.w, h = size.h;
+      context.clearRect(0, 0, w, h);
+      var view = Array.isArray(camera.view_matrix) ? camera.view_matrix : lookAtMatrixLocal(camera.pos, camera.target, camera.up || [0, 1, 0]);
+      var projection = geomSpec.camera ? cameraProjectionMatrixLocal(camera, Math.max(1e-6, w / h)) :
+        orthographicZ01MatrixLocal(camera.ortho_scale, Math.max(1e-6, w / h), radius / 1000, radius * 20);
+      var vp = mat4MulLocal(projection, view), primitives = [];
+      meshes.forEach(function (m) {
+        var projected = m.points.map(function (p) {
+          var clip = projectWorldToClipLocal(vp, p);
+          if (!clip || !(clip[3] > 1e-9)) { return null; }
+          var depth = clip[2] / clip[3];
+          if (!Number.isFinite(depth) || depth < 0 || depth > 1) { return null; }
+          return { xy: [(clip[0] / clip[3] + 1) * w / 2, (1 - clip[1] / clip[3]) * h / 2], depth: depth };
+        });
+        var indices = m.indices.length ? m.indices : m.points.map(function (_, i) { return i; });
+        for (var i = 0; i + m.step <= indices.length; i += m.step) {
+          var ps = [], depth = 0;
+          for (var j = 0; j < m.step; j++) {
+            var p = projected[indices[i + j]];
+            if (!p) { ps = []; break; }
+            ps.push(p.xy); depth += p.depth;
+          }
+          if (ps.length) { primitives.push({ mesh: m, points: ps, first: indices[i], depth: depth / m.step }); }
+        }
+      });
+      // Painter ordering is deliberately a Canvas capability, not GPU depth/PBR parity.
+      primitives.sort(function (a, b) { return b.depth - a.depth; });
+      primitives.forEach(function (p) {
+        var s = p.mesh.spec, offset = p.first * 10;
+        var color = [0, 1, 2, 3].map(function (a) { return Number(p.mesh.vertices[offset + 6 + a]); });
+        if (!color.every(Number.isFinite)) { color = s.color || [1, 1, 1, 1]; }
+        context.strokeStyle = context.fillStyle = runtimeColorCss(color);
+        context.lineWidth = Math.max(1, Number(s.edge_width) || 1);
+        context.beginPath();
+        if (p.points.length === 1) {
+          context.arc(p.points[0][0], p.points[0][1], Math.max(2, Number(s.marker_size) || 3), 0, Math.PI * 2); context.fill();
+        } else {
+          context.moveTo(p.points[0][0], p.points[0][1]);
+          for (var i = 1; i < p.points.length; i++) { context.lineTo(p.points[i][0], p.points[i][1]); }
+          if (p.points.length === 3) { context.closePath(); context.fill(); } else { context.stroke(); }
+        }
+      });
+      canvas.setAttribute("data-vf-rendered-primitives", String(primitives.length));
+      renderGeomLineOverlay(fid, frameEl, geomSpec, w, h);
+      renderGeomTextOverlay(fid, frameEl, geomSpec);
+    }
+    var observer = typeof ResizeObserver === "function" ? new ResizeObserver(draw) : null;
+    var handler = function (event) {
+      if (String((event.detail || {}).frameId || "") === String(geomTargetFrameId(fid))) { draw(); }
+    };
+    global.addEventListener("vf-frame-live-resize", handler);
+    frameRecs[fid].entries.push({ canvas: canvas, resizeObserver: observer, renderer: { stop: function () {
+      active = false; global.removeEventListener("vf-frame-live-resize", handler);
+    } } });
+    if (observer) { observer.observe(geomFrameHost(frameEl, fid) || frameEl); }
+    frameRecs[fid].software3DFrameEl = frameEl;
+    draw();
+    return true;
+  }
+
   function formatPhysicsProfiler(profile) {
     if (!profile) { return "physics: waiting"; }
     var mb = Number(profile.cellItemsBytes || 0) / (1024 * 1024);
@@ -11593,6 +11706,14 @@
       }
     }
 
+    if (!frameRecs[fid]) { frameRecs[fid] = { entries: [] }; }
+    frameRecs[fid].latestGeomSpec = geomSpec;
+    if ((!(global.navigator && global.navigator.gpu) ||
+         frameRecs[fid].software3DFrameEl === frameEl) &&
+        mountSoftware3DRenderer(fid, frameEl, geomSpec, renderableSpecs)) {
+      return;
+    }
+
     var Ctor = global.VfGeomWgpu;
     if (!Ctor) {
       vlog("warn", "updateGeomFrame [" + fid + "]: VfGeomWgpu not loaded — geom skipped");
@@ -11700,11 +11821,28 @@
           cv.style.pointerEvents = "none";
           // Assign stable object_id (1-based: 0 means "no object")
           r._objectId = meshIdx + 1;
+          function entryIsCurrent() {
+            return frameRecs[fidInner] === rec && rec.entries.indexOf(entry) >= 0 &&
+              frameEl.isConnected !== false && findFrameEl(geomTargetFrameId(fidInner)) === frameEl;
+          }
+          function stopStaleEntry() {
+            try { if (r && typeof r.stop === "function") { r.stop(); } } catch (_) {}
+          }
+          function mountInitFailureFallback() {
+            if (!entryIsCurrent()) { stopStaleEntry(); return false; }
+            var latest = rec.latestGeomSpec || geomSpec;
+            return mountSoftware3DRenderer(fidInner, frameEl, latest,
+              renderableGeomSpecs(latest.meshes || []));
+          }
+          var initAccepted = false;
           r.init().then(function(ok) {
+            if (!entryIsCurrent()) { stopStaleEntry(); return; }
             if (!ok) {
               entry.initError = global.__vfGeomWgpuLastError || "renderer init returned false";
               vlog("error", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init FAILED (WebGPU unavailable?)");
+              mountInitFailureFallback();
             } else {
+              initAccepted = true;
               entry.initError = "";
               vlog("info", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init OK, starting render loop");
               prewarmGeomRenderer(r);
@@ -11724,8 +11862,10 @@
               ensureGeomFrameEvents(fidInner);
             }
           }).catch(function(err) {
+            if (!entryIsCurrent()) { stopStaleEntry(); return; }
             entry.initError = (err && err.message ? err.message : String(err));
             vlog("error", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init threw: " + (err && err.message ? err.message : String(err)));
+            if (!initAccepted) { mountInitFailureFallback(); }
           });
         })(refHolder, fid, i, canvas);
       }
@@ -13409,6 +13549,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
   function normalizeGeomCamera(camera) {
     if (!camera || typeof camera !== "object") { return camera; }
     var out = Object.assign({}, camera);
+    if (!Array.isArray(out.pos) && Array.isArray(out.p)) {
+      out.pos = out.p.slice();
+    }
     if (!Array.isArray(out.pos) && Array.isArray(out.position)) {
       out.pos = out.position.slice();
     }
@@ -13420,6 +13563,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     }
     if (!Array.isArray(out.up)) {
       out.up = [0, 0, 1];
+      if (Array.isArray(out.pos) && Array.isArray(out.target)) {
+        var direction = geomVec3Sub(out.target, out.pos);
+        var length = geomVec3Len(direction);
+        if (length > 1e-9 && geomVec3Len(geomVec3Cross(direction, out.up)) <= length * 1e-9) {
+          out.up = [0, 1, 0];
+        }
+      }
     }
     return out;
   }

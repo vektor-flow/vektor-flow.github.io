@@ -61,9 +61,20 @@ export function mountRetainedSceneResult(container, packets, {
   const selectors = ownedPackets.map((packet) => packet.metadata.scene.view_selector);
   const hasViewSelector = ownedPackets.length > 1 && selectors.every((selector, index) =>
     selector?.axis === "n" && selector.index === index && selector.count === ownedPackets.length);
+  const separateViewports = !hasViewSelector && ownedPackets.length > 1 && ownedPackets.every(packet => {
+    const scene = packet.metadata.scene;
+    return (scene.container_kind ?? "viewport") === "viewport"
+      && (!scene.pos || (scene.pos[0] === 0 && scene.pos[1] === 0))
+      && (!scene.size || (scene.size[0] === 1 && scene.size[1] === 1));
+  });
   const layer = document.createElement("div");
   layer.className = "readme-example-retained-layer";
   layer.dataset.vfRenderState = "pending";
+  if (separateViewports) {
+    layer.style.display = "grid";
+    layer.style.gridTemplateColumns = "repeat(auto-fit,minmax(min(260px,100%),1fr))";
+    layer.style.gap = "12px";
+  }
   const frames = [];
   const showFrame = (frame, visible) => {
     if (!frame?.root) return;
@@ -97,6 +108,9 @@ export function mountRetainedSceneResult(container, packets, {
       frame.root.style.bottom = "auto";
       frame.root.style.width = `${scene.size[0] * 100}%`;
       frame.root.style.height = `${scene.size[1] * 100}%`;
+    }
+    if (separateViewports && frame?.root?.style) {
+      Object.assign(frame.root.style, {position:"relative", inset:"auto", width:"100%", height:"328px"});
     }
     showFrame(frame, !hasViewSelector || index === 0);
     frames.push(frame);

@@ -1,0 +1,5240 @@
+{
+  "schema": "vektor-flow.public-linux-benchmarks.v1",
+  "release": "0.7.1",
+  "generated_at": "2026-10-07T21:44:22.055Z",
+  "release_source": "5e1603e6c5ff764f16be42ec18e453f183e822d2",
+  "release_spec": "e0d2d18e8b77ccfd23bbfb0351c511cbe514c2d9",
+  "compiler_sha256": "994dc5b6b6805b7811dd0305754a797b3e4b46319e9ae45ecc8c89b26118ffc4",
+  "download_archive_sha256": "2b2a944064683a8acfb07d20faad88939bc0e531302078e3fd060a46a7bc25a1",
+  "host": {
+    "platform": "linux 7.0.0-38-generic",
+    "architecture": "x64",
+    "cpu": "AMD Ryzen 7 3700X 8-Core Processor",
+    "logicalCpuCount": 16,
+    "node": "v22.22.1"
+  },
+  "protocol": {
+    "samples": 10,
+    "raw_warmups_requested": 5,
+    "raw_warmups_actual": 5,
+    "rotation_batch_samples": 5,
+    "compile_warmups": 1,
+    "process_warmups": 1,
+    "metric": "raw kernel milliseconds",
+    "native_affinity_logical_cpus": [
+      0,
+      1,
+      8,
+      9
+    ],
+    "parallel_physical_cores": 2,
+    "firefox_overlap": false,
+    "optimizer": "Explicit current-release auto; calibration outside measured compilation; retained policy cache reused. This is not default-CLI compile latency.",
+    "ancillary_retention": "Peer compile and all process timings retain count/aggregates only. Raw kernel timings retain every sample. VKF compile samples retain individual receipts."
+  },
+  "correctness": {
+    "passed": true,
+    "failures": []
+  },
+  "rows": [
+    {
+      "case": "spectral-norm-large",
+      "language": "vkf",
+      "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/spectral-norm-large/vkf.vkf",
+        "sha256": "74b5bfe819229b434a594b7d6ed75ef75c6f4c70b084c8df4d1ee731c2cdf011",
+        "normalized_source_sha256": "0f2caef3f8ac8c87120d2f8b089a4825ff5dafd1ac1ad1e9a7684a3b11d82a5c",
+        "template_normalized_sha256": "0f2caef3f8ac8c87120d2f8b089a4825ff5dafd1ac1ad1e9a7684a3b11d82a5c"
+      },
+      "compiled_kernel_sha256": "07464decfbda9daa12a58b0f865a2e18a89be1f0b6a65d623c96b013a6c728ed",
+      "validation_value": 1.2742241159529055,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 36.444386,
+        "medianMs": 36.446815,
+        "minMs": 36.412319,
+        "maxMs": 36.477659,
+        "p95Ms": 36.477659,
+        "stddevMs": 0.019982,
+        "ci95LowerMs": 36.432001,
+        "ci95UpperMs": 36.456771,
+        "samplesMs": [
+          36.45868,
+          36.477659,
+          36.4536,
+          36.458469,
+          36.45583,
+          36.428959,
+          36.412319,
+          36.436869,
+          36.421449,
+          36.440029
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": true,
+        "count": 10,
+        "meanMs": 5015.018513,
+        "medianMs": 5015.432469,
+        "minMs": 4984.127732,
+        "maxMs": 5035.493298,
+        "p95Ms": 5035.493298,
+        "stddevMs": 14.662244,
+        "ci95LowerMs": 5005.93076,
+        "ci95UpperMs": 5024.106266,
+        "samples_ms": [
+          5008.793276999997,
+          5018.886018999998,
+          5014.534602,
+          4984.127732000001,
+          5035.4932980000085,
+          5027.936799000003,
+          5029.716772,
+          5016.330335999999,
+          5007.1491559999995,
+          5007.217135999992
+        ]
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 38.856308,
+        "medianMs": 38.899527,
+        "minMs": 38.739299,
+        "maxMs": 38.980332,
+        "p95Ms": 38.980332,
+        "stddevMs": 0.094541,
+        "ci95LowerMs": 38.797711,
+        "ci95UpperMs": 38.914905,
+        "startupAdjustedMeanMs": 38.856308
+      },
+      "internal_compile": {
+        "count": 10,
+        "meanMs": 4908.530764,
+        "medianMs": 4908.728616,
+        "minMs": 4877.297878,
+        "maxMs": 4929.047828,
+        "p95Ms": 4929.047828,
+        "stddevMs": 14.77482,
+        "ci95LowerMs": 4899.373235,
+        "ci95UpperMs": 4917.688292,
+        "samples_retained": true,
+        "samples_ms": [
+          4902.292486,
+          4912.782135,
+          4907.633727,
+          4877.297878,
+          4929.047828,
+          4921.319337,
+          4923.538716,
+          4909.823505,
+          4900.791927,
+          4900.780096
+        ]
+      },
+      "optimizer": {
+        "requested": "auto",
+        "selected": "mask-0",
+        "measured_compile_receipts": [
+          {
+            "sample": 1,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 2,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 3,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 4,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 5,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 6,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 7,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 8,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 9,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 10,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "spectral-norm-large",
+      "language": "cpp",
+      "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/spectral-norm-large/cpp.cpp",
+        "sha256": "ce0b45929b5793a13129097e538c8878630b38f82c0ef27460f445d6651af91d",
+        "normalized_source_sha256": "692b733c35a89dc6125aec416494aee607a27d595c34bf43448b87404fc8411e",
+        "template_normalized_sha256": "dc6d8025d0d52636b0317503919efc0b0f57b73ce64e8a86d25e2654033732d1"
+      },
+      "compiled_kernel_sha256": "62b40abfbd86a3ccb666b4149b0082d4204e8d441429a86d51036a65278a92b4",
+      "validation_value": 1.2742241159529055,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 6.877983,
+        "medianMs": 6.876296,
+        "minMs": 6.87154,
+        "maxMs": 6.886751,
+        "p95Ms": 6.886751,
+        "stddevMs": 0.005214,
+        "ci95LowerMs": 6.874752,
+        "ci95UpperMs": 6.881215,
+        "samplesMs": [
+          6.87184,
+          6.877501,
+          6.88151,
+          6.876191,
+          6.87607,
+          6.8764,
+          6.87611,
+          6.886751,
+          6.885921,
+          6.87154
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 171.251391,
+        "medianMs": 171.45999,
+        "minMs": 169.790192,
+        "maxMs": 172.050033,
+        "p95Ms": 172.050033,
+        "stddevMs": 0.686269,
+        "ci95LowerMs": 170.826037,
+        "ci95UpperMs": 171.676745
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 9.275085,
+        "medianMs": 9.316282,
+        "minMs": 9.12261,
+        "maxMs": 9.387794,
+        "p95Ms": 9.387794,
+        "stddevMs": 0.103565,
+        "ci95LowerMs": 9.210895,
+        "ci95UpperMs": 9.339275,
+        "startupAdjustedMeanMs": 9.275085
+      }
+    },
+    {
+      "case": "spectral-norm-large",
+      "language": "rust",
+      "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "source": {
+        "file": "sources/spectral-norm-large/rust.rs",
+        "sha256": "bc61af3f4b6156439f1ea28f6f235637805d44b2e19f6c5e5cc22ac7d88d5b59",
+        "normalized_source_sha256": "03c7f878032856ba576a97b3e7dfda02e19c63ace23f1f6c0db72125754f0b37",
+        "template_normalized_sha256": "03c7f878032856ba576a97b3e7dfda02e19c63ace23f1f6c0db72125754f0b37"
+      },
+      "compiled_kernel_sha256": "e4e4128da8c65ecc1336b40b55ece89d14fa6f0bfcffabe4922c04193b037ed1",
+      "validation_value": 1.2742241159529055,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 11.421295,
+        "medianMs": 11.42474,
+        "minMs": 11.40428,
+        "maxMs": 11.43456,
+        "p95Ms": 11.43456,
+        "stddevMs": 0.011976,
+        "ci95LowerMs": 11.413872,
+        "ci95UpperMs": 11.428718,
+        "samplesMs": [
+          11.43329,
+          11.42742,
+          11.40824,
+          11.422061,
+          11.43327,
+          11.41747,
+          11.43456,
+          11.40428,
+          11.40472,
+          11.42764
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 206.119583,
+        "medianMs": 206.406074,
+        "minMs": 203.402695,
+        "maxMs": 208.733935,
+        "p95Ms": 208.733935,
+        "stddevMs": 1.97205,
+        "ci95LowerMs": 204.897294,
+        "ci95UpperMs": 207.341873
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 13.860208,
+        "medianMs": 13.796321,
+        "minMs": 13.758801,
+        "maxMs": 14.172847,
+        "p95Ms": 14.172847,
+        "stddevMs": 0.133578,
+        "ci95LowerMs": 13.777416,
+        "ci95UpperMs": 13.943001,
+        "startupAdjustedMeanMs": 13.860208
+      }
+    },
+    {
+      "case": "spectral-norm-large",
+      "language": "zig",
+      "tool": "0.16.0",
+      "source": {
+        "file": "sources/spectral-norm-large/zig.zig",
+        "sha256": "fe7f16deac9025a4d99e0a4bdea989fa49b6872f4bdd0d8deb3296e37d35646a",
+        "normalized_source_sha256": "48ea906c8beec1af399f904aba36a0a5e46caa7240910790f104c3092aa13c8f",
+        "template_normalized_sha256": "48ea906c8beec1af399f904aba36a0a5e46caa7240910790f104c3092aa13c8f"
+      },
+      "compiled_kernel_sha256": "af23225091d33b31cfbf604b026b1c71707e7467f856ea2254f7b9fbaa99d37f",
+      "validation_value": 1.2742241159529055,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 11.422972,
+        "medianMs": 11.420795,
+        "minMs": 11.39558,
+        "maxMs": 11.464531,
+        "p95Ms": 11.464531,
+        "stddevMs": 0.018998,
+        "ci95LowerMs": 11.411197,
+        "ci95UpperMs": 11.434747,
+        "samplesMs": [
+          11.427781,
+          11.41562,
+          11.40261,
+          11.41666,
+          11.464531,
+          11.41864,
+          11.428671,
+          11.43668,
+          11.42295,
+          11.39558
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 140.912425,
+        "medianMs": 139.280471,
+        "minMs": 138.144577,
+        "maxMs": 152.268822,
+        "p95Ms": 152.268822,
+        "stddevMs": 4.287891,
+        "ci95LowerMs": 138.254762,
+        "ci95UpperMs": 143.570087
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 13.83086,
+        "medianMs": 13.801172,
+        "minMs": 13.68195,
+        "maxMs": 14.210026,
+        "p95Ms": 14.210026,
+        "stddevMs": 0.163628,
+        "ci95LowerMs": 13.729442,
+        "ci95UpperMs": 13.932277,
+        "startupAdjustedMeanMs": 13.83086
+      }
+    },
+    {
+      "case": "fannkuch-redux-large",
+      "language": "vkf",
+      "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/fannkuch-redux-large/vkf.vkf",
+        "sha256": "dfc6ac1d563607cfbc875b3750bcf65466dea388da0e264edf9cab39c06ff721",
+        "normalized_source_sha256": "17d1f923c93606b7b7ccb7c53b96d32e852c0708f0356537aebd85bf7d031403",
+        "template_normalized_sha256": "17d1f923c93606b7b7ccb7c53b96d32e852c0708f0356537aebd85bf7d031403"
+      },
+      "compiled_kernel_sha256": "cfca251aa7fbb2f3426aa3e583e1f2314bba81e9e8ba9a020dd5647c1a623bfe",
+      "validation_value": 7319638,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 787.272777,
+        "medianMs": 786.814842,
+        "minMs": 786.435732,
+        "maxMs": 790.173131,
+        "p95Ms": 790.173131,
+        "stddevMs": 1.116491,
+        "ci95LowerMs": 786.580769,
+        "ci95UpperMs": 787.964785,
+        "samplesMs": [
+          786.935868,
+          786.613605,
+          790.173131,
+          787.590056,
+          786.637335,
+          786.435732,
+          786.598474,
+          787.786419,
+          787.263333,
+          786.693815
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": true,
+        "count": 10,
+        "meanMs": 165.614283,
+        "medianMs": 165.656043,
+        "minMs": 164.728426,
+        "maxMs": 166.219466,
+        "p95Ms": 166.219466,
+        "stddevMs": 0.466208,
+        "ci95LowerMs": 165.325324,
+        "ci95UpperMs": 165.903242,
+        "samples_ms": [
+          165.2147630000254,
+          166.1068249999953,
+          165.75179899999057,
+          166.09985400000005,
+          164.72842599998694,
+          166.21946600000956,
+          165.67436799997813,
+          165.42351600000984,
+          165.28609400001005,
+          165.63771799998358
+        ]
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 785.225403,
+        "medianMs": 784.850216,
+        "minMs": 781.412366,
+        "maxMs": 788.58279,
+        "p95Ms": 788.58279,
+        "stddevMs": 2.605198,
+        "ci95LowerMs": 783.610684,
+        "ci95UpperMs": 786.840121,
+        "startupAdjustedMeanMs": 785.225403
+      },
+      "internal_compile": {
+        "count": 10,
+        "meanMs": 65.013036,
+        "medianMs": 65.071601,
+        "minMs": 64.418337,
+        "maxMs": 65.486461,
+        "p95Ms": 65.486461,
+        "stddevMs": 0.345669,
+        "ci95LowerMs": 64.798788,
+        "ci95UpperMs": 65.227284,
+        "samples_retained": true,
+        "samples_ms": [
+          64.418337,
+          64.763022,
+          65.084265,
+          65.486461,
+          64.63532,
+          65.339779,
+          65.269608,
+          65.273388,
+          65.058936,
+          64.801242
+        ]
+      },
+      "optimizer": {
+        "requested": "auto",
+        "selected": "mask-0",
+        "measured_compile_receipts": [
+          {
+            "sample": 1,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 2,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 3,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 4,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 5,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 6,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 7,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 8,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 9,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 10,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "fannkuch-redux-large",
+      "language": "cpp",
+      "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/fannkuch-redux-large/cpp.cpp",
+        "sha256": "c7eac1d1f4d950ba51f7bfa0d6bdcb67ee9c42601ebb0b18e7fe9d946e3ad105",
+        "normalized_source_sha256": "3bd979df7330649c0726cf635fd1cab31a6135a974379fc54816747286e9906e",
+        "template_normalized_sha256": "6ee9a1f6978fc0ce743c6815b2634277b5f3c17e08061821d54e362defa591f9"
+      },
+      "compiled_kernel_sha256": "ce5a229554e37c1e1de61f0ead2e10fee77a9152a62383223401de1f9bff25d2",
+      "validation_value": 7319638,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 142.543122,
+        "medianMs": 142.59721,
+        "minMs": 138.987938,
+        "maxMs": 146.00962,
+        "p95Ms": 146.00962,
+        "stddevMs": 3.585486,
+        "ci95LowerMs": 140.320814,
+        "ci95UpperMs": 144.765429,
+        "samplesMs": [
+          146.00962,
+          145.954659,
+          145.866608,
+          146.00601,
+          145.878139,
+          138.999518,
+          139.327812,
+          139.251361,
+          139.14955,
+          138.987938
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 68.129968,
+        "medianMs": 68.190352,
+        "minMs": 67.163893,
+        "maxMs": 68.944226,
+        "p95Ms": 68.944226,
+        "stddevMs": 0.511094,
+        "ci95LowerMs": 67.813188,
+        "ci95UpperMs": 68.446747
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 140.531224,
+        "medianMs": 139.815859,
+        "minMs": 139.085269,
+        "maxMs": 144.241936,
+        "p95Ms": 144.241936,
+        "stddevMs": 1.576317,
+        "ci95LowerMs": 139.554212,
+        "ci95UpperMs": 141.508236,
+        "startupAdjustedMeanMs": 140.531224
+      }
+    },
+    {
+      "case": "fannkuch-redux-large",
+      "language": "rust",
+      "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "source": {
+        "file": "sources/fannkuch-redux-large/rust.rs",
+        "sha256": "cba7d822924d6cfc4664e396f581405740c5fda6c471a9d3b59fdaf54bc182c9",
+        "normalized_source_sha256": "3ebbb45b42ddcf5f2e21b0136ef92f2b68930ad0dbcb69193ffea520095939d6",
+        "template_normalized_sha256": "3ebbb45b42ddcf5f2e21b0136ef92f2b68930ad0dbcb69193ffea520095939d6"
+      },
+      "compiled_kernel_sha256": "5b212341a14bc077e28596ca4447d90c018413cbaa7747ada860ad43599ada1a",
+      "validation_value": 7319638,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 167.852691,
+        "medianMs": 165.277543,
+        "minMs": 165.024001,
+        "maxMs": 171.985621,
+        "p95Ms": 171.985621,
+        "stddevMs": 3.446766,
+        "ci95LowerMs": 165.716364,
+        "ci95UpperMs": 169.989019,
+        "samplesMs": [
+          165.024001,
+          171.957661,
+          171.985621,
+          171.741259,
+          171.737918,
+          165.251423,
+          165.178833,
+          165.182152,
+          165.164382,
+          165.303664
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 207.612418,
+        "medianMs": 207.359597,
+        "minMs": 204.967646,
+        "maxMs": 210.695541,
+        "p95Ms": 210.695541,
+        "stddevMs": 1.821322,
+        "ci95LowerMs": 206.483552,
+        "ci95UpperMs": 208.741285
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 167.468833,
+        "medianMs": 167.376805,
+        "minMs": 166.260366,
+        "maxMs": 168.665968,
+        "p95Ms": 168.665968,
+        "stddevMs": 0.971534,
+        "ci95LowerMs": 166.86667,
+        "ci95UpperMs": 168.070996,
+        "startupAdjustedMeanMs": 167.468833
+      }
+    },
+    {
+      "case": "fannkuch-redux-large",
+      "language": "zig",
+      "tool": "0.16.0",
+      "source": {
+        "file": "sources/fannkuch-redux-large/zig.zig",
+        "sha256": "d176930c5b01c9318612c4e10bf7f1a9a0f33cb2260209c4a4c61b3a67f7291e",
+        "normalized_source_sha256": "ed4f7cc69dd9ae8a66e05417808a2e1bb16d2874be9bb77656fce26938f189e3",
+        "template_normalized_sha256": "ed4f7cc69dd9ae8a66e05417808a2e1bb16d2874be9bb77656fce26938f189e3"
+      },
+      "compiled_kernel_sha256": "81f4a1c4ea58bddf51d537ea5f83aac1fba88d1364fdaee3c96b4adc1e046342",
+      "validation_value": 7319638,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 183.142211,
+        "medianMs": 183.634025,
+        "minMs": 181.76162,
+        "maxMs": 184.425135,
+        "p95Ms": 184.425135,
+        "stddevMs": 1.091556,
+        "ci95LowerMs": 182.465658,
+        "ci95UpperMs": 183.818765,
+        "samplesMs": [
+          183.583214,
+          183.684836,
+          183.978669,
+          184.0073,
+          184.123931,
+          181.870362,
+          181.76162,
+          182.077865,
+          181.909182,
+          184.425135
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 140.335127,
+        "medianMs": 138.668438,
+        "minMs": 136.0918,
+        "maxMs": 149.519537,
+        "p95Ms": 149.519537,
+        "stddevMs": 4.620322,
+        "ci95LowerMs": 137.471422,
+        "ci95UpperMs": 143.198832
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 185.403848,
+        "medianMs": 185.371782,
+        "minMs": 184.03319,
+        "maxMs": 186.920528,
+        "p95Ms": 186.920528,
+        "stddevMs": 0.85078,
+        "ci95LowerMs": 184.876529,
+        "ci95UpperMs": 185.931167,
+        "startupAdjustedMeanMs": 185.403848
+      }
+    },
+    {
+      "case": "n-body-large",
+      "language": "vkf",
+      "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/n-body-large/vkf.vkf",
+        "sha256": "adbc7f0506207649ce90e5a4918c2ab7943cff345b4cd4bb7fc2be5ce5b448c5",
+        "normalized_source_sha256": "efb13c5d4234ca757f1dbbef069551872b42e36fbc88bd05c56fbcf940568309",
+        "template_normalized_sha256": "efb13c5d4234ca757f1dbbef069551872b42e36fbc88bd05c56fbcf940568309"
+      },
+      "compiled_kernel_sha256": "90e38ffa7e7bfae494c4e6a2074400309ca730e076ac99a3bac67fdbe1693b3a",
+      "validation_value": 0.1779462269170188,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 36.289552,
+        "medianMs": 36.291067,
+        "minMs": 36.256697,
+        "maxMs": 36.321058,
+        "p95Ms": 36.321058,
+        "stddevMs": 0.023011,
+        "ci95LowerMs": 36.27529,
+        "ci95UpperMs": 36.303815,
+        "samplesMs": [
+          36.262437,
+          36.316807,
+          36.311138,
+          36.298727,
+          36.256697,
+          36.269807,
+          36.298357,
+          36.283777,
+          36.276717,
+          36.321058
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": true,
+        "count": 10,
+        "meanMs": 300.298913,
+        "medianMs": 299.706051,
+        "minMs": 298.273002,
+        "maxMs": 307.836649,
+        "p95Ms": 307.836649,
+        "stddevMs": 2.721376,
+        "ci95LowerMs": 298.612187,
+        "ci95UpperMs": 301.98564,
+        "samples_ms": [
+          307.8366490000044,
+          299.5420589999994,
+          298.9592910000356,
+          299.35153600003105,
+          298.8314390000305,
+          300.2010279999813,
+          300.0025559999631,
+          299.87004399998114,
+          300.12152700003935,
+          298.2730020000017
+        ]
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 39.647826,
+        "medianMs": 39.650171,
+        "minMs": 38.902492,
+        "maxMs": 40.362671,
+        "p95Ms": 40.362671,
+        "stddevMs": 0.350857,
+        "ci95LowerMs": 39.430363,
+        "ci95UpperMs": 39.86529,
+        "startupAdjustedMeanMs": 39.647826
+      },
+      "internal_compile": {
+        "count": 10,
+        "meanMs": 195.03786,
+        "medianMs": 194.556568,
+        "minMs": 193.1551,
+        "maxMs": 201.042414,
+        "p95Ms": 201.042414,
+        "stddevMs": 2.173447,
+        "ci95LowerMs": 193.690744,
+        "ci95UpperMs": 196.384976,
+        "samples_retained": true,
+        "samples_ms": [
+          201.042414,
+          194.021681,
+          194.473987,
+          194.753661,
+          194.156883,
+          194.813622,
+          194.63915,
+          194.333416,
+          194.988684,
+          193.1551
+        ]
+      },
+      "optimizer": {
+        "requested": "auto",
+        "selected": "mask-0",
+        "measured_compile_receipts": [
+          {
+            "sample": 1,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 2,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 3,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 4,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 5,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 6,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 7,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 8,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 9,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 10,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "n-body-large",
+      "language": "cpp",
+      "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/n-body-large/cpp.cpp",
+        "sha256": "13ff62afbfbe98033f8c3a9010889262fc9062aa72f621a7b5c839c0053f6f2f",
+        "normalized_source_sha256": "8df9d2e5196a0f2519bc1a571833ef93f2b9a8397d164eb09d93205b04498b0b",
+        "template_normalized_sha256": "84e3a6000309ff1c28dd83a696fa8d2c3ab92fc87ba8988772be2c2c30bf8b09"
+      },
+      "compiled_kernel_sha256": "581a0f9406beb8d610e46039bfac7b7aa81a24c5b36817fa7c3617780b90dce8",
+      "validation_value": 0.1779462269170188,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 11.096108,
+        "medianMs": 11.100556,
+        "minMs": 11.055936,
+        "maxMs": 11.131657,
+        "p95Ms": 11.131657,
+        "stddevMs": 0.024213,
+        "ci95LowerMs": 11.081101,
+        "ci95UpperMs": 11.111115,
+        "samplesMs": [
+          11.055936,
+          11.059225,
+          11.131657,
+          11.106686,
+          11.097886,
+          11.117286,
+          11.096086,
+          11.111106,
+          11.103226,
+          11.081986
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 166.969766,
+        "medianMs": 165.499891,
+        "minMs": 164.588085,
+        "maxMs": 175.765262,
+        "p95Ms": 175.765262,
+        "stddevMs": 3.622442,
+        "ci95LowerMs": 164.724553,
+        "ci95UpperMs": 169.214978
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 14.312534,
+        "medianMs": 14.333463,
+        "minMs": 13.516258,
+        "maxMs": 14.845515,
+        "p95Ms": 14.845515,
+        "stddevMs": 0.33127,
+        "ci95LowerMs": 14.107211,
+        "ci95UpperMs": 14.517857,
+        "startupAdjustedMeanMs": 14.312534
+      }
+    },
+    {
+      "case": "n-body-large",
+      "language": "rust",
+      "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "source": {
+        "file": "sources/n-body-large/rust.rs",
+        "sha256": "4c467afc7a14705c9d7c13afd4ca07047bb51a210bd2cc7a7336218c02dd4ba3",
+        "normalized_source_sha256": "be264511206dfa6ecf4ae7d184c354b3706995bbabfb47e29de3185d747ee51c",
+        "template_normalized_sha256": "be264511206dfa6ecf4ae7d184c354b3706995bbabfb47e29de3185d747ee51c"
+      },
+      "compiled_kernel_sha256": "731cdaa2043f481e3feabf0fc8b73a20eb5c4f0381579fe1838f88fb7c7cd238",
+      "validation_value": 0.1779462269170188,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 7.80515,
+        "medianMs": 7.797968,
+        "minMs": 7.777772,
+        "maxMs": 7.844623,
+        "p95Ms": 7.844623,
+        "stddevMs": 0.023099,
+        "ci95LowerMs": 7.790833,
+        "ci95UpperMs": 7.819466,
+        "samplesMs": [
+          7.844623,
+          7.827293,
+          7.822923,
+          7.824713,
+          7.791572,
+          7.793102,
+          7.786373,
+          7.780292,
+          7.777772,
+          7.802833
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 222.594219,
+        "medianMs": 220.657387,
+        "minMs": 219.213643,
+        "maxMs": 232.916323,
+        "p95Ms": 232.916323,
+        "stddevMs": 4.160158,
+        "ci95LowerMs": 220.015727,
+        "ci95UpperMs": 225.172712
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 11.136005,
+        "medianMs": 11.212243,
+        "minMs": 10.64041,
+        "maxMs": 11.369559,
+        "p95Ms": 11.369559,
+        "stddevMs": 0.216799,
+        "ci95LowerMs": 11.001632,
+        "ci95UpperMs": 11.270379,
+        "startupAdjustedMeanMs": 11.136005
+      }
+    },
+    {
+      "case": "n-body-large",
+      "language": "zig",
+      "tool": "0.16.0",
+      "source": {
+        "file": "sources/n-body-large/zig.zig",
+        "sha256": "aa11fa363f0d433a3102c40faa1ea39ca863aa456be0ec94da46ad9a88d3092c",
+        "normalized_source_sha256": "b194bb44e2a6121356e111c4da16b9d7c547460687d842b6480d4789ee4aca46",
+        "template_normalized_sha256": "b194bb44e2a6121356e111c4da16b9d7c547460687d842b6480d4789ee4aca46"
+      },
+      "compiled_kernel_sha256": "8a8e102c92094b3b354a20d993aab0d9b9c8a3a00f2a8ee29dc3baa6c796ba4d",
+      "validation_value": 0.17794622691804032,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 15.511081,
+        "medianMs": 15.503398,
+        "minMs": 15.472153,
+        "maxMs": 15.561624,
+        "p95Ms": 15.561624,
+        "stddevMs": 0.035924,
+        "ci95LowerMs": 15.488815,
+        "ci95UpperMs": 15.533347,
+        "samplesMs": [
+          15.551405,
+          15.561624,
+          15.561485,
+          15.472153,
+          15.515904,
+          15.474793,
+          15.480454,
+          15.516724,
+          15.485374,
+          15.490893
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 143.583338,
+        "medianMs": 142.023922,
+        "minMs": 139.550005,
+        "maxMs": 151.786067,
+        "p95Ms": 151.786067,
+        "stddevMs": 4.399887,
+        "ci95LowerMs": 140.85626,
+        "ci95UpperMs": 146.310416
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 18.773495,
+        "medianMs": 18.842003,
+        "minMs": 17.956516,
+        "maxMs": 19.071901,
+        "p95Ms": 19.071901,
+        "stddevMs": 0.297787,
+        "ci95LowerMs": 18.588924,
+        "ci95UpperMs": 18.958065,
+        "startupAdjustedMeanMs": 18.773495
+      }
+    },
+    {
+      "case": "combined-kernels-large",
+      "language": "vkf",
+      "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/combined-kernels-large/vkf.vkf",
+        "sha256": "8f4e01b3f2da81e1279b0cd287da0392326776e48e5e30f7c181904d6885eb7a",
+        "normalized_source_sha256": "d7ba2ecb9495d6ed5f6b61466cf83f79094c094aa5c93d7734c2df37580c6da1",
+        "template_normalized_sha256": "d7ba2ecb9495d6ed5f6b61466cf83f79094c094aa5c93d7734c2df37580c6da1"
+      },
+      "compiled_kernel_sha256": "2f5af78282200c01f1f413c550bb985d708c84dc0a04381546ae57c4509eef3f",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 394.25176,
+        "medianMs": 393.614366,
+        "minMs": 392.822146,
+        "maxMs": 399.847358,
+        "p95Ms": 399.847358,
+        "stddevMs": 2.004764,
+        "ci95LowerMs": 393.009195,
+        "ci95UpperMs": 395.494326,
+        "samplesMs": [
+          392.822146,
+          393.578895,
+          393.602726,
+          393.428354,
+          393.443614,
+          399.847358,
+          393.790788,
+          393.626006,
+          394.181384,
+          394.196334
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": true,
+        "count": 10,
+        "meanMs": 5117.611299,
+        "medianMs": 5116.055852,
+        "minMs": 5082.191792,
+        "maxMs": 5153.51182,
+        "p95Ms": 5153.51182,
+        "stddevMs": 21.81748,
+        "ci95LowerMs": 5104.088684,
+        "ci95UpperMs": 5131.133913,
+        "samples_ms": [
+          5098.920411999978,
+          5135.192238999996,
+          5113.740616999974,
+          5142.7095379999955,
+          5123.30168199999,
+          5082.191791999969,
+          5099.698611999978,
+          5108.475188000011,
+          5118.371088000014,
+          5153.511820000014
+        ]
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 398.573494,
+        "medianMs": 398.315608,
+        "minMs": 397.242354,
+        "maxMs": 400.74751,
+        "p95Ms": 400.74751,
+        "stddevMs": 1.074156,
+        "ci95LowerMs": 397.907725,
+        "ci95UpperMs": 399.239263,
+        "startupAdjustedMeanMs": 398.573494
+      },
+      "internal_compile": {
+        "count": 10,
+        "meanMs": 5004.090385,
+        "medianMs": 5001.488681,
+        "minMs": 4969.178466,
+        "maxMs": 5040.323701,
+        "p95Ms": 5040.323701,
+        "stddevMs": 21.973011,
+        "ci95LowerMs": 4990.471372,
+        "ci95UpperMs": 5017.709398,
+        "samples_retained": true,
+        "samples_ms": [
+          4984.889392,
+          5023.018414,
+          5000.309145,
+          5029.417808,
+          5009.710238,
+          4969.178466,
+          4986.313601,
+          4995.074867,
+          5002.668217,
+          5040.323701
+        ]
+      },
+      "optimizer": {
+        "requested": "auto",
+        "selected": "mask-0",
+        "measured_compile_receipts": [
+          {
+            "sample": 1,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 2,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 3,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 4,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 5,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 6,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 7,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 8,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 9,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 10,
+            "cache_hit": true,
+            "composition_cache_hit": true,
+            "total_calibration_runs": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "combined-kernels-large",
+      "language": "cpp",
+      "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/combined-kernels-large/cpp.cpp",
+        "sha256": "aabfd5115b84a61deb2c29cae1202975abe8e0439ea5c47923ae82eb3e7482e5",
+        "normalized_source_sha256": "decdfdf4bd5b32f7dd050d05b8d68dd61f99453a1cb91b6be613088b4853572b",
+        "template_normalized_sha256": "46880583626b585e176684c42a2a71cda0c4b634ee70c1bf833891b0099eefaf"
+      },
+      "compiled_kernel_sha256": "abb1d2870157ddf305a1043f50cde850c19545540732f1e15be26c8566fbe797",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 173.092476,
+        "medianMs": 172.711856,
+        "minMs": 172.62749,
+        "maxMs": 175.817842,
+        "p95Ms": 175.817842,
+        "stddevMs": 0.993932,
+        "ci95LowerMs": 172.476431,
+        "ci95UpperMs": 173.708522,
+        "samplesMs": [
+          172.761542,
+          172.723351,
+          172.694331,
+          173.534462,
+          175.817842,
+          172.700361,
+          172.677351,
+          172.64925,
+          172.738782,
+          172.62749
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 273.053104,
+        "medianMs": 272.289751,
+        "minMs": 269.395783,
+        "maxMs": 280.193505,
+        "p95Ms": 280.193505,
+        "stddevMs": 3.092664,
+        "ci95LowerMs": 271.136251,
+        "ci95UpperMs": 274.969957
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 81.342191,
+        "medianMs": 81.36727,
+        "minMs": 80.148664,
+        "maxMs": 82.033999,
+        "p95Ms": 82.033999,
+        "stddevMs": 0.476022,
+        "ci95LowerMs": 81.047149,
+        "ci95UpperMs": 81.637232,
+        "startupAdjustedMeanMs": 81.342191
+      }
+    },
+    {
+      "case": "combined-kernels-large",
+      "language": "rust",
+      "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "source": {
+        "file": "sources/combined-kernels-large/rust.rs",
+        "sha256": "2c1bf0eb7c93ae6b46449682b508eb634e6605a44fa2af47863904197770c0e6",
+        "normalized_source_sha256": "9938dc2bfc7e1b23f1989bc9c149e0af096c71657d22475f2445da442afdfba7",
+        "template_normalized_sha256": "9938dc2bfc7e1b23f1989bc9c149e0af096c71657d22475f2445da442afdfba7"
+      },
+      "compiled_kernel_sha256": "0d25efa063889447409e6552a68c00d21bb642deebeae69e1502b8bceee6f10c",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 106.312376,
+        "medianMs": 106.255887,
+        "minMs": 106.019234,
+        "maxMs": 106.781584,
+        "p95Ms": 106.781584,
+        "stddevMs": 0.254755,
+        "ci95LowerMs": 106.154477,
+        "ci95UpperMs": 106.470275,
+        "samplesMs": [
+          106.255017,
+          106.49582,
+          106.100006,
+          106.059544,
+          106.019234,
+          106.283418,
+          106.256757,
+          106.215447,
+          106.781584,
+          106.656933
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 279.304551,
+        "medianMs": 278.855107,
+        "minMs": 274.873355,
+        "maxMs": 283.007041,
+        "p95Ms": 283.007041,
+        "stddevMs": 2.576885,
+        "ci95LowerMs": 277.707381,
+        "ci95UpperMs": 280.901721
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 111.10598,
+        "medianMs": 110.908748,
+        "minMs": 109.49195,
+        "maxMs": 113.135048,
+        "p95Ms": 113.135048,
+        "stddevMs": 0.897349,
+        "ci95LowerMs": 110.549797,
+        "ci95UpperMs": 111.662163,
+        "startupAdjustedMeanMs": 111.10598
+      }
+    },
+    {
+      "case": "combined-kernels-large",
+      "language": "zig",
+      "tool": "0.16.0",
+      "source": {
+        "file": "sources/combined-kernels-large/zig.zig",
+        "sha256": "5382e36eceb705deff842b2b10bb54f5c5fc8bfb34c52adf0dd0a31529e09cf9",
+        "normalized_source_sha256": "d41f7c1d332a383c70bc00751484bbb52106671c581e6a36f35c2066e27c9129",
+        "template_normalized_sha256": "d41f7c1d332a383c70bc00751484bbb52106671c581e6a36f35c2066e27c9129"
+      },
+      "compiled_kernel_sha256": "14ef1000af3897f20d66fcc2c7a4f7dd90b140902600680c759cc4b4869e6473",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 93.665251,
+        "medianMs": 93.591446,
+        "minMs": 93.466119,
+        "maxMs": 94.070647,
+        "p95Ms": 94.070647,
+        "stddevMs": 0.188382,
+        "ci95LowerMs": 93.54849,
+        "ci95UpperMs": 93.782011,
+        "samplesMs": [
+          93.466119,
+          93.601571,
+          93.581321,
+          93.56783,
+          93.53339,
+          93.55975,
+          93.635831,
+          94.070647,
+          93.914815,
+          93.721233
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 177.08148,
+        "medianMs": 175.621914,
+        "minMs": 173.686724,
+        "maxMs": 182.029164,
+        "p95Ms": 182.029164,
+        "stddevMs": 3.445981,
+        "ci95LowerMs": 174.945639,
+        "ci95UpperMs": 179.217321
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 97.756331,
+        "medianMs": 97.645484,
+        "minMs": 96.370968,
+        "maxMs": 100.370229,
+        "p95Ms": 100.370229,
+        "stddevMs": 1.002098,
+        "ci95LowerMs": 97.135224,
+        "ci95UpperMs": 98.377437,
+        "startupAdjustedMeanMs": 97.756331
+      }
+    },
+    {
+      "case": "combined-kernels-parallel-large",
+      "language": "vkf",
+      "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/combined-kernels-parallel-large/vkf.vkf",
+        "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+        "normalized_source_sha256": "ee456edb7010d3a95e3a89bf319961eaf004b1b1fc0175926a27921ecb305cdb",
+        "template_normalized_sha256": "d7ba2ecb9495d6ed5f6b61466cf83f79094c094aa5c93d7734c2df37580c6da1"
+      },
+      "compiled_kernel_sha256": "9c5cc82f32678a261662fec75e05e3559171d6a413aedb7d08df621c8fc26a16",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 286.947507,
+        "medianMs": 286.939663,
+        "minMs": 286.553539,
+        "maxMs": 287.538901,
+        "p95Ms": 287.538901,
+        "stddevMs": 0.258591,
+        "ci95LowerMs": 286.78723,
+        "ci95UpperMs": 287.107783,
+        "samplesMs": [
+          286.766711,
+          286.903893,
+          287.009415,
+          287.538901,
+          286.988254,
+          286.975434,
+          286.553539,
+          286.798171,
+          286.842592,
+          287.098156
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": {
+        "width": 2,
+        "threadsCreated": 1,
+        "threadsJoined": 1,
+        "threadHandlesClosed": 1
+      },
+      "compile_wall": {
+        "samples_retained": true,
+        "count": 10,
+        "meanMs": 5185.186677,
+        "medianMs": 5188.298277,
+        "minMs": 5147.351849,
+        "maxMs": 5214.545053,
+        "p95Ms": 5214.545053,
+        "stddevMs": 22.336061,
+        "ci95LowerMs": 5171.342643,
+        "ci95UpperMs": 5199.030712,
+        "samples_ms": [
+          5176.056006000028,
+          5189.134598000033,
+          5210.541480000073,
+          5201.050625000033,
+          5179.297858999926,
+          5152.277324000024,
+          5147.35184899997,
+          5187.461956000072,
+          5194.15002400009,
+          5214.545053000096
+        ]
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 291.318581,
+        "medianMs": 290.582896,
+        "minMs": 289.296005,
+        "maxMs": 294.874378,
+        "p95Ms": 294.874378,
+        "stddevMs": 1.868343,
+        "ci95LowerMs": 290.16057,
+        "ci95UpperMs": 292.476592,
+        "startupAdjustedMeanMs": 291.318581
+      },
+      "internal_compile": {
+        "count": 10,
+        "meanMs": 5070.956417,
+        "medianMs": 5073.461428,
+        "minMs": 5033.444011,
+        "maxMs": 5100.22116,
+        "p95Ms": 5100.22116,
+        "stddevMs": 22.285199,
+        "ci95LowerMs": 5057.143908,
+        "ci95UpperMs": 5084.768927,
+        "samples_retained": true,
+        "samples_ms": [
+          5062.842028,
+          5074.363479,
+          5096.246757,
+          5086.502479,
+          5064.479449,
+          5037.794678,
+          5033.444011,
+          5072.559376,
+          5081.110757,
+          5100.22116
+        ]
+      },
+      "optimizer": {
+        "requested": "auto",
+        "selected": "mask-0",
+        "measured_compile_receipts": [
+          {
+            "sample": 1,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 2,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 3,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 4,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 5,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 6,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 7,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 8,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 9,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          },
+          {
+            "sample": 10,
+            "cache_hit": true,
+            "composition_cache_hit": false,
+            "total_calibration_runs": 0
+          }
+        ]
+      }
+    },
+    {
+      "case": "combined-kernels-parallel-large",
+      "language": "cpp",
+      "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+      "source": {
+        "file": "sources/combined-kernels-parallel-large/cpp.cpp",
+        "sha256": "aabfd5115b84a61deb2c29cae1202975abe8e0439ea5c47923ae82eb3e7482e5",
+        "normalized_source_sha256": "decdfdf4bd5b32f7dd050d05b8d68dd61f99453a1cb91b6be613088b4853572b",
+        "template_normalized_sha256": "46880583626b585e176684c42a2a71cda0c4b634ee70c1bf833891b0099eefaf"
+      },
+      "compiled_kernel_sha256": "abb1d2870157ddf305a1043f50cde850c19545540732f1e15be26c8566fbe797",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 172.743741,
+        "medianMs": 172.736987,
+        "minMs": 172.65724,
+        "maxMs": 172.836843,
+        "p95Ms": 172.836843,
+        "stddevMs": 0.053766,
+        "ci95LowerMs": 172.710416,
+        "ci95UpperMs": 172.777065,
+        "samplesMs": [
+          172.738282,
+          172.65724,
+          172.735692,
+          172.766962,
+          172.681811,
+          172.731822,
+          172.740561,
+          172.836843,
+          172.815343,
+          172.732851
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 273.560609,
+        "medianMs": 273.476086,
+        "minMs": 271.889705,
+        "maxMs": 276.484776,
+        "p95Ms": 276.484776,
+        "stddevMs": 1.402746,
+        "ci95LowerMs": 272.691178,
+        "ci95UpperMs": 274.43004
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 81.609969,
+        "medianMs": 81.856276,
+        "minMs": 80.484798,
+        "maxMs": 82.946091,
+        "p95Ms": 82.946091,
+        "stddevMs": 0.837506,
+        "ci95LowerMs": 81.090877,
+        "ci95UpperMs": 82.129061,
+        "startupAdjustedMeanMs": 81.609969
+      }
+    },
+    {
+      "case": "combined-kernels-parallel-large",
+      "language": "rust",
+      "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "source": {
+        "file": "sources/combined-kernels-parallel-large/rust.rs",
+        "sha256": "2c1bf0eb7c93ae6b46449682b508eb634e6605a44fa2af47863904197770c0e6",
+        "normalized_source_sha256": "9938dc2bfc7e1b23f1989bc9c149e0af096c71657d22475f2445da442afdfba7",
+        "template_normalized_sha256": "9938dc2bfc7e1b23f1989bc9c149e0af096c71657d22475f2445da442afdfba7"
+      },
+      "compiled_kernel_sha256": "7905d94b3b67f3370b635b901e58bd6b6a45f1c4f0b6c8f617edc787eefaeb47",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 106.130896,
+        "medianMs": 106.117075,
+        "minMs": 105.931003,
+        "maxMs": 106.370489,
+        "p95Ms": 106.370489,
+        "stddevMs": 0.190227,
+        "ci95LowerMs": 106.012991,
+        "ci95UpperMs": 106.2488,
+        "samplesMs": [
+          105.931003,
+          105.965293,
+          105.948444,
+          105.941743,
+          105.979453,
+          106.335608,
+          106.278528,
+          106.303698,
+          106.370489,
+          106.254697
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 280.531134,
+        "medianMs": 279.942307,
+        "minMs": 276.325744,
+        "maxMs": 288.667786,
+        "p95Ms": 288.667786,
+        "stddevMs": 3.549801,
+        "ci95LowerMs": 278.330945,
+        "ci95UpperMs": 282.731324
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 111.159736,
+        "medianMs": 111.259008,
+        "minMs": 109.927505,
+        "maxMs": 113.180048,
+        "p95Ms": 113.180048,
+        "stddevMs": 1.085505,
+        "ci95LowerMs": 110.486934,
+        "ci95UpperMs": 111.832539,
+        "startupAdjustedMeanMs": 111.159736
+      }
+    },
+    {
+      "case": "combined-kernels-parallel-large",
+      "language": "zig",
+      "tool": "0.16.0",
+      "source": {
+        "file": "sources/combined-kernels-parallel-large/zig.zig",
+        "sha256": "5382e36eceb705deff842b2b10bb54f5c5fc8bfb34c52adf0dd0a31529e09cf9",
+        "normalized_source_sha256": "d41f7c1d332a383c70bc00751484bbb52106671c581e6a36f35c2066e27c9129",
+        "template_normalized_sha256": "d41f7c1d332a383c70bc00751484bbb52106671c581e6a36f35c2066e27c9129"
+      },
+      "compiled_kernel_sha256": "a2aa29da016f04688c2cd63ff9027b27bd79084177982d2005757148da2648d5",
+      "validation_value": 1725861.452170343,
+      "raw_kernel": {
+        "count": 10,
+        "meanMs": 93.36546,
+        "medianMs": 93.371183,
+        "minMs": 93.270996,
+        "maxMs": 93.454559,
+        "p95Ms": 93.454559,
+        "stddevMs": 0.057712,
+        "ci95LowerMs": 93.329689,
+        "ci95UpperMs": 93.40123,
+        "samplesMs": [
+          93.316948,
+          93.323357,
+          93.270996,
+          93.322908,
+          93.407998,
+          93.408218,
+          93.454559,
+          93.400578,
+          93.407249,
+          93.341787
+        ]
+      },
+      "affinity_logical_cpu": 0,
+      "parallel_runtime": null,
+      "compile_wall": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 178.455425,
+        "medianMs": 176.461821,
+        "minMs": 172.536559,
+        "maxMs": 186.131887,
+        "p95Ms": 186.131887,
+        "stddevMs": 5.382401,
+        "ci95LowerMs": 175.119378,
+        "ci95UpperMs": 181.791472
+      },
+      "process_runtime": {
+        "samples_retained": false,
+        "count": 10,
+        "meanMs": 97.641546,
+        "medianMs": 97.512033,
+        "minMs": 96.829663,
+        "maxMs": 98.582296,
+        "p95Ms": 98.582296,
+        "stddevMs": 0.702659,
+        "ci95LowerMs": 97.206034,
+        "ci95UpperMs": 98.077059,
+        "startupAdjustedMeanMs": 97.641546
+      }
+    }
+  ],
+  "source_hash_policy": {
+    "sha256": "Byte-exact published measured source file",
+    "normalized_source_sha256": "Original runner: CRLF to LF, then remove exactly one final LF",
+    "template_normalized_sha256": "Original frozen input template under the same normalization; C++ materialization adds extern-C linkage and parallel VKF materialization adds its roots/core limit"
+  },
+  "additional_default_policy": {
+    "source_hash_policy": {
+      "sha256": "Byte-exact published measured source file",
+      "normalized_source_sha256": "Original runner: CRLF to LF, then remove exactly one final LF",
+      "template_normalized_sha256": "Original frozen template under same normalization; materialization adds C++ linkage or parallel VKF roots/core limit"
+    },
+    "schema": "vektor-flow.public-linux-additional-default-benchmarks.v1",
+    "release": "0.7.1",
+    "generated_at": "2026-10-07T22:12:48.731Z",
+    "release_source": "5e1603e6c5ff764f16be42ec18e453f183e822d2",
+    "release_spec": "e0d2d18e8b77ccfd23bbfb0351c511cbe514c2d9",
+    "compiler_sha256": "994dc5b6b6805b7811dd0305754a797b3e4b46319e9ae45ecc8c89b26118ffc4",
+    "download_archive_sha256": "2b2a944064683a8acfb07d20faad88939bc0e531302078e3fd060a46a7bc25a1",
+    "host": {
+      "platform": "linux 7.0.0-38-generic",
+      "architecture": "x64",
+      "cpu": "AMD Ryzen 7 3700X 8-Core Processor",
+      "logicalCpuCount": 16,
+      "node": "v22.22.1"
+    },
+    "protocol": {
+      "samples": 10,
+      "raw_warmups_requested": 5,
+      "raw_warmups_actual": 5,
+      "rotation_batch_samples": 5,
+      "compile_warmups": 1,
+      "process_warmups": 1,
+      "metric": "raw kernel milliseconds",
+      "native_affinity_logical_cpus": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "parallel_physical_cores": 1,
+      "firefox_overlap": false,
+      "optimizer": "Current-release default CLI without optimizer flags or training; distinct from optimized primary five-row scope.",
+      "ancillary_retention": "Peer compile and all process timings retain count/aggregates only. Raw kernel timings retain every sample. VKF compile samples retain individual receipts."
+    },
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "rows": [
+      {
+        "case": "startup",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/startup/vkf.vkf",
+          "sha256": "32b122d793dffb92e8663f2253b8517bed22472022dceb4e8958bbe06e770230",
+          "normalized_source_sha256": "addd712b613dca12aa01830acabe0e18b601c5a593e34b01e59b3e0dc29aa544",
+          "template_normalized_sha256": "addd712b613dca12aa01830acabe0e18b601c5a593e34b01e59b3e0dc29aa544"
+        },
+        "compiled_kernel_sha256": "61ffb5d1e64ecdf8759a73ab86a68bdc3fee71d9c15c4e8c639caadeb5023dba",
+        "validation_value": 0,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 3.9e-05,
+          "medianMs": 3e-05,
+          "minMs": 3e-05,
+          "maxMs": 8e-05,
+          "p95Ms": 8e-05,
+          "stddevMs": 1.9e-05,
+          "ci95LowerMs": 2.7e-05,
+          "ci95UpperMs": 5.1e-05,
+          "samplesMs": [
+            8e-05,
+            3e-05,
+            3e-05,
+            3e-05,
+            3e-05,
+            7e-05,
+            3e-05,
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 100.757859,
+          "medianMs": 100.411624,
+          "minMs": 99.837352,
+          "maxMs": 101.824428,
+          "p95Ms": 101.824428,
+          "stddevMs": 0.699861,
+          "ci95LowerMs": 100.32408,
+          "ci95UpperMs": 101.191637,
+          "samples_ms": [
+            100.32058799999993,
+            100.38857900000005,
+            100.250088,
+            101.29630999999995,
+            101.582584,
+            100.43466999999987,
+            101.43647199999987,
+            100.20751700000005,
+            101.82442800000013,
+            99.83735200000001
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.162803,
+          "medianMs": 1.678622,
+          "minMs": 1.59058,
+          "maxMs": 5.558272,
+          "p95Ms": 5.558272,
+          "stddevMs": 1.212503,
+          "ci95LowerMs": 1.411286,
+          "ci95UpperMs": 2.91432,
+          "startupAdjustedMeanMs": 0
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 2.27687,
+          "medianMs": 2.277114,
+          "minMs": 2.257259,
+          "maxMs": 2.29957,
+          "p95Ms": 2.29957,
+          "stddevMs": 0.012494,
+          "ci95LowerMs": 2.269127,
+          "ci95UpperMs": 2.284614,
+          "samples_retained": true,
+          "samples_ms": [
+            2.257259,
+            2.259849,
+            2.286349,
+            2.28403,
+            2.29957,
+            2.282659,
+            2.27252,
+            2.277329,
+            2.272239,
+            2.276899
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "startup",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/startup/cpp.cpp",
+          "sha256": "9d3a039ebe76e2ee27e75b1610da09b95185c744ab36140a4da1c5b78d4548cf",
+          "normalized_source_sha256": "14986917c4f6cc3f757f37242bd82f6c386e753aebeaff7ee30454f961de9278",
+          "template_normalized_sha256": "94370925fc0c1f9eb8c7cab0e7bbbd766edc90401755abf5977ed38a1552933c"
+        },
+        "compiled_kernel_sha256": "c3ca21cf6f630fea913da6f68974d4e8863779f658ddcd5bb84a8433f82a901c",
+        "validation_value": 0,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 3.4e-05,
+          "medianMs": 3e-05,
+          "minMs": 2e-05,
+          "maxMs": 7e-05,
+          "p95Ms": 7e-05,
+          "stddevMs": 2e-05,
+          "ci95LowerMs": 2.2e-05,
+          "ci95UpperMs": 4.6e-05,
+          "samplesMs": [
+            7e-05,
+            2e-05,
+            3e-05,
+            2e-05,
+            3e-05,
+            7e-05,
+            2e-05,
+            3e-05,
+            2e-05,
+            3e-05
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 45.679623,
+          "medianMs": 45.674291,
+          "minMs": 45.241166,
+          "maxMs": 46.201888,
+          "p95Ms": 46.201888,
+          "stddevMs": 0.282554,
+          "ci95LowerMs": 45.504495,
+          "ci95UpperMs": 45.854752
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 1.845958,
+          "medianMs": 1.669607,
+          "minMs": 1.615811,
+          "maxMs": 2.312229,
+          "p95Ms": 2.312229,
+          "stddevMs": 0.269172,
+          "ci95LowerMs": 1.679123,
+          "ci95UpperMs": 2.012792,
+          "startupAdjustedMeanMs": 0
+        }
+      },
+      {
+        "case": "startup",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/startup/rust.rs",
+          "sha256": "2055ecbdcd7c3b147778424792b84f754b5cacfeb6bbbbcba5932f5e5993db10",
+          "normalized_source_sha256": "6a2ca8f8025e323c394a1d10dd9c0a14320eeb171cd05f2622b18c8815824de4",
+          "template_normalized_sha256": "6a2ca8f8025e323c394a1d10dd9c0a14320eeb171cd05f2622b18c8815824de4"
+        },
+        "compiled_kernel_sha256": "53cf9158ced4c50b0d9d08f36abc8285ab0d5648c6f7be9fd273deecca7796bd",
+        "validation_value": 0,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 3.6e-05,
+          "medianMs": 3e-05,
+          "minMs": 2e-05,
+          "maxMs": 7e-05,
+          "p95Ms": 7e-05,
+          "stddevMs": 1.8e-05,
+          "ci95LowerMs": 2.5e-05,
+          "ci95UpperMs": 4.7e-05,
+          "samplesMs": [
+            7e-05,
+            2e-05,
+            3e-05,
+            2e-05,
+            3e-05,
+            7e-05,
+            3e-05,
+            3e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 176.710334,
+          "medianMs": 176.713531,
+          "minMs": 174.265634,
+          "maxMs": 178.638051,
+          "p95Ms": 178.638051,
+          "stddevMs": 1.343024,
+          "ci95LowerMs": 175.877919,
+          "ci95UpperMs": 177.542749
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.05706,
+          "medianMs": 1.931951,
+          "minMs": 1.797643,
+          "maxMs": 2.576843,
+          "p95Ms": 2.576843,
+          "stddevMs": 0.276561,
+          "ci95LowerMs": 1.885645,
+          "ci95UpperMs": 2.228474,
+          "startupAdjustedMeanMs": 0
+        }
+      },
+      {
+        "case": "startup",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/startup/zig.zig",
+          "sha256": "7e707c43c065d88a4c5b6883e0ab3e6fbf807e325a9f401fb4fc68b4cee69f33",
+          "normalized_source_sha256": "5b69c67c4c59805a29d63de9b1fff68aa6084d177c18a12ea7234e9b80d01d8a",
+          "template_normalized_sha256": "5b69c67c4c59805a29d63de9b1fff68aa6084d177c18a12ea7234e9b80d01d8a"
+        },
+        "compiled_kernel_sha256": "31c6980537a2f832565f47f089ca73839b56f1ecbe497409703af21c08e8205a",
+        "validation_value": 0,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 3.5e-05,
+          "medianMs": 3e-05,
+          "minMs": 2e-05,
+          "maxMs": 7e-05,
+          "p95Ms": 7e-05,
+          "stddevMs": 1.9e-05,
+          "ci95LowerMs": 2.3e-05,
+          "ci95UpperMs": 4.7e-05,
+          "samplesMs": [
+            7e-05,
+            2e-05,
+            3e-05,
+            2e-05,
+            3e-05,
+            7e-05,
+            3e-05,
+            2e-05,
+            3e-05,
+            3e-05
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 133.116655,
+          "medianMs": 131.714494,
+          "minMs": 129.149231,
+          "maxMs": 142.549945,
+          "p95Ms": 142.549945,
+          "stddevMs": 4.416152,
+          "ci95LowerMs": 130.379496,
+          "ci95UpperMs": 135.853815
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 1.908885,
+          "medianMs": 1.768983,
+          "minMs": 1.722602,
+          "maxMs": 2.360981,
+          "p95Ms": 2.360981,
+          "stddevMs": 0.25376,
+          "ci95LowerMs": 1.751603,
+          "ci95UpperMs": 2.066167,
+          "startupAdjustedMeanMs": 0
+        }
+      },
+      {
+        "case": "scalar-control-small",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/scalar-control-small/vkf.vkf",
+          "sha256": "661b512b2c6322cee4447661dca15a67f283975a5b780508cd36da91c329f669",
+          "normalized_source_sha256": "f47939ef8c51eae3d88252e14e418de64a2c2a24a7351deebbe11c378a1a0008",
+          "template_normalized_sha256": "f47939ef8c51eae3d88252e14e418de64a2c2a24a7351deebbe11c378a1a0008"
+        },
+        "compiled_kernel_sha256": "dc4a024d863170265d7d8a9daf9b2cb79789a5bbde81a066bee91aa0ee3a075a",
+        "validation_value": 21.017288693559877,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.063678,
+          "medianMs": 0.063671,
+          "minMs": 0.06366,
+          "maxMs": 0.06372,
+          "p95Ms": 0.06372,
+          "stddevMs": 2e-05,
+          "ci95LowerMs": 0.063665,
+          "ci95UpperMs": 0.06369,
+          "samplesMs": [
+            0.063711,
+            0.06366,
+            0.063671,
+            0.063671,
+            0.063671,
+            0.06372,
+            0.063671,
+            0.063661,
+            0.063671,
+            0.063671
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 111.964782,
+          "medianMs": 111.72584,
+          "minMs": 111.441682,
+          "maxMs": 113.058562,
+          "p95Ms": 113.058562,
+          "stddevMs": 0.551269,
+          "ci95LowerMs": 111.623103,
+          "ci95UpperMs": 112.306462,
+          "samples_ms": [
+            112.67508799999996,
+            112.3900249999997,
+            111.58867299999929,
+            111.67814499999986,
+            111.60942299999988,
+            111.52952300000015,
+            113.05856199999926,
+            111.90316799999982,
+            111.44168199999967,
+            111.7735359999997
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.175911,
+          "medianMs": 2.37084,
+          "minMs": 1.675652,
+          "maxMs": 2.594794,
+          "p95Ms": 2.594794,
+          "stddevMs": 0.386382,
+          "ci95LowerMs": 1.936429,
+          "ci95UpperMs": 2.415393,
+          "startupAdjustedMeanMs": 0.013108
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 12.953071,
+          "medianMs": 12.954368,
+          "minMs": 12.893787,
+          "maxMs": 13.039228,
+          "p95Ms": 13.039228,
+          "stddevMs": 0.050599,
+          "ci95LowerMs": 12.921709,
+          "ci95UpperMs": 12.984432,
+          "samples_retained": true,
+          "samples_ms": [
+            13.039228,
+            12.988028,
+            12.905327,
+            12.970718,
+            12.909947,
+            12.901417,
+            12.947068,
+            12.961668,
+            12.893787,
+            13.013518
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": true,
+              "composition_cache_hit": true,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "spectral-norm-small",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/spectral-norm-small/vkf.vkf",
+          "sha256": "338af4f20c418b6030ca3a75c8cc27843a09bf171a488dad6faf40d7b7ef502c",
+          "normalized_source_sha256": "518f53cb4457dc70b8d1777db3381b6083f22dc9021d85229c44ecf91244bfcf",
+          "template_normalized_sha256": "518f53cb4457dc70b8d1777db3381b6083f22dc9021d85229c44ecf91244bfcf"
+        },
+        "compiled_kernel_sha256": "06df29d5f020c7dfa21f8b3481c2aeea432c362ae28137130256c60a01a3f556",
+        "validation_value": 1.2742199912349306,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 1.520277,
+          "medianMs": 1.517604,
+          "minMs": 1.5092,
+          "maxMs": 1.540199,
+          "p95Ms": 1.540199,
+          "stddevMs": 0.009939,
+          "ci95LowerMs": 1.514116,
+          "ci95UpperMs": 1.526437,
+          "samplesMs": [
+            1.5217,
+            1.514049,
+            1.52536,
+            1.51015,
+            1.540199,
+            1.51471,
+            1.515049,
+            1.5092,
+            1.53219,
+            1.520159
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 416.613793,
+          "medianMs": 416.051483,
+          "minMs": 415.07345,
+          "maxMs": 422.700258,
+          "p95Ms": 422.700258,
+          "stddevMs": 2.202571,
+          "ci95LowerMs": 415.248625,
+          "ci95UpperMs": 417.978961,
+          "samples_ms": [
+            416.2271849999988,
+            416.41643699999986,
+            415.9641019999999,
+            416.76415199999974,
+            415.095421,
+            415.89080000000104,
+            415.07344999999987,
+            422.70025799999894,
+            415.8672600000009,
+            416.13886400000047
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.849727,
+          "medianMs": 3.766444,
+          "minMs": 3.710458,
+          "maxMs": 4.133074,
+          "p95Ms": 4.133074,
+          "stddevMs": 0.151115,
+          "ci95LowerMs": 3.756065,
+          "ci95UpperMs": 3.943389,
+          "startupAdjustedMeanMs": 1.686924
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 311.944722,
+          "medianMs": 311.290212,
+          "minMs": 310.346975,
+          "maxMs": 318.060935,
+          "p95Ms": 318.060935,
+          "stddevMs": 2.222329,
+          "ci95LowerMs": 310.567308,
+          "ci95UpperMs": 313.322135,
+          "samples_retained": true,
+          "samples_ms": [
+            311.4857,
+            311.896815,
+            311.203266,
+            312.2348,
+            310.468697,
+            311.241636,
+            310.346975,
+            318.060935,
+            311.169606,
+            311.338788
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "spectral-norm-small",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/spectral-norm-small/cpp.cpp",
+          "sha256": "9f64c925480b77c7b17b4c132da736127800571b370e903232bf38ed52d7383b",
+          "normalized_source_sha256": "acb8a07e4f090863781d58bbfde9341fffd38d1fa0db55738d280a2d2f0d73eb",
+          "template_normalized_sha256": "a16e318d3838d5e0e8a9186a137179dd31f0b5d513fcdfe3ebd233301659b61c"
+        },
+        "compiled_kernel_sha256": "c82f7cb9d16a9545d5140d193dac69e5e47dfb6d68e5ac91e3c2d656b72f04d6",
+        "validation_value": 1.2742199912349306,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.314396,
+          "medianMs": 0.311664,
+          "minMs": 0.311364,
+          "maxMs": 0.320715,
+          "p95Ms": 0.320715,
+          "stddevMs": 0.003938,
+          "ci95LowerMs": 0.311955,
+          "ci95UpperMs": 0.316837,
+          "samplesMs": [
+            0.311434,
+            0.317444,
+            0.316524,
+            0.311634,
+            0.311694,
+            0.320324,
+            0.311364,
+            0.311464,
+            0.320715,
+            0.311364
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 277.90414,
+          "medianMs": 277.906495,
+          "minMs": 276.350115,
+          "maxMs": 278.769537,
+          "p95Ms": 278.769537,
+          "stddevMs": 0.647763,
+          "ci95LowerMs": 277.502653,
+          "ci95UpperMs": 278.305628
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.691263,
+          "medianMs": 2.70802,
+          "minMs": 2.570174,
+          "maxMs": 2.868327,
+          "p95Ms": 2.868327,
+          "stddevMs": 0.095088,
+          "ci95LowerMs": 2.632327,
+          "ci95UpperMs": 2.750199,
+          "startupAdjustedMeanMs": 0.845305
+        }
+      },
+      {
+        "case": "spectral-norm-small",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/spectral-norm-small/rust.rs",
+          "sha256": "a567fbc398ebbe63875580fc0c1af8552c7887002f36d5167c6375d4244846ad",
+          "normalized_source_sha256": "871ee47c1e8e2b2173aafdda20f9dc83c4932569a35d34dfd91f2b7820d84390",
+          "template_normalized_sha256": "871ee47c1e8e2b2173aafdda20f9dc83c4932569a35d34dfd91f2b7820d84390"
+        },
+        "compiled_kernel_sha256": "a620804ca90717009947546d72fbaa418e168ce57170df55dc20b7239d95d473",
+        "validation_value": 1.2742199912349306,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.459731,
+          "medianMs": 0.456661,
+          "minMs": 0.454756,
+          "maxMs": 0.476836,
+          "p95Ms": 0.476836,
+          "stddevMs": 0.007088,
+          "ci95LowerMs": 0.455338,
+          "ci95UpperMs": 0.464124,
+          "samplesMs": [
+            0.458506,
+            0.454766,
+            0.463886,
+            0.454766,
+            0.476836,
+            0.454816,
+            0.463936,
+            0.454766,
+            0.460276,
+            0.454756
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 206.859121,
+          "medianMs": 205.211385,
+          "minMs": 204.114681,
+          "maxMs": 216.366849,
+          "p95Ms": 216.366849,
+          "stddevMs": 3.822378,
+          "ci95LowerMs": 204.489987,
+          "ci95UpperMs": 209.228256
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.883065,
+          "medianMs": 2.853627,
+          "minMs": 2.791446,
+          "maxMs": 3.06553,
+          "p95Ms": 3.06553,
+          "stddevMs": 0.097136,
+          "ci95LowerMs": 2.82286,
+          "ci95UpperMs": 2.943271,
+          "startupAdjustedMeanMs": 0.826005
+        }
+      },
+      {
+        "case": "spectral-norm-small",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/spectral-norm-small/zig.zig",
+          "sha256": "e1fb7e8abc346e7e8dd71b284323d9fb1609a77bb3f82834b808f90dd7584df0",
+          "normalized_source_sha256": "c711668d4229ca8b355d8d8140ce21293544246b085d110b1bccdd2bf372d171",
+          "template_normalized_sha256": "c711668d4229ca8b355d8d8140ce21293544246b085d110b1bccdd2bf372d171"
+        },
+        "compiled_kernel_sha256": "3868de0dde17e1bb0b8e836b5dd90128f17325eeb43bf70c7ef37ee0ff92dcc2",
+        "validation_value": 1.2742199912349306,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.457527,
+          "medianMs": 0.456671,
+          "minMs": 0.454766,
+          "maxMs": 0.463896,
+          "p95Ms": 0.463896,
+          "stddevMs": 0.003221,
+          "ci95LowerMs": 0.455531,
+          "ci95UpperMs": 0.459523,
+          "samplesMs": [
+            0.454826,
+            0.458516,
+            0.460046,
+            0.454766,
+            0.458816,
+            0.454826,
+            0.463896,
+            0.454766,
+            0.460046,
+            0.454766
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 147.251636,
+          "medianMs": 146.273892,
+          "minMs": 142.871479,
+          "maxMs": 153.504646,
+          "p95Ms": 153.504646,
+          "stddevMs": 3.987402,
+          "ci95LowerMs": 144.780219,
+          "ci95UpperMs": 149.723053
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.812352,
+          "medianMs": 2.719951,
+          "minMs": 2.703165,
+          "maxMs": 3.441274,
+          "p95Ms": 3.441274,
+          "stddevMs": 0.232947,
+          "ci95LowerMs": 2.66797,
+          "ci95UpperMs": 2.956735,
+          "startupAdjustedMeanMs": 0.903467
+        }
+      },
+      {
+        "case": "spectral-norm-medium",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/spectral-norm-medium/vkf.vkf",
+          "sha256": "815524094abbc324e4b67c38866b58d8e253a8047db3d480e314ede47d7224c6",
+          "normalized_source_sha256": "27c3d4dcf02e1837fe4f3d0f4cd43475c68c28239dd169309942ab6ad21540f7",
+          "template_normalized_sha256": "27c3d4dcf02e1837fe4f3d0f4cd43475c68c28239dd169309942ab6ad21540f7"
+        },
+        "compiled_kernel_sha256": "524a927956cf75d35cc27476864a75bfcc5291fa8e3d9d76d7612d55c6b911af",
+        "validation_value": 1.2742238666431718,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 9.240049,
+          "medianMs": 9.231645,
+          "minMs": 9.226079,
+          "maxMs": 9.30016,
+          "p95Ms": 9.30016,
+          "stddevMs": 0.02281,
+          "ci95LowerMs": 9.225911,
+          "ci95UpperMs": 9.254186,
+          "samplesMs": [
+            9.2285,
+            9.226079,
+            9.233649,
+            9.25593,
+            9.30016,
+            9.22824,
+            9.237189,
+            9.23182,
+            9.227449,
+            9.231469
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 1414.108703,
+          "medianMs": 1412.287047,
+          "minMs": 1405.602985,
+          "maxMs": 1431.798173,
+          "p95Ms": 1431.798173,
+          "stddevMs": 6.913655,
+          "ci95LowerMs": 1409.823575,
+          "ci95UpperMs": 1418.393831,
+          "samples_ms": [
+            1411.5633019999987,
+            1431.7981729999992,
+            1411.2827090000028,
+            1414.1268759999984,
+            1410.2857360000016,
+            1414.7873529999997,
+            1412.2724910000034,
+            1405.602985000005,
+            1412.3016019999995,
+            1417.0658040000053
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 11.717974,
+          "medianMs": 11.64779,
+          "minMs": 11.55252,
+          "maxMs": 11.971965,
+          "p95Ms": 11.971965,
+          "stddevMs": 0.163916,
+          "ci95LowerMs": 11.616377,
+          "ci95UpperMs": 11.81957,
+          "startupAdjustedMeanMs": 9.555171
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 1307.886417,
+          "medianMs": 1306.454982,
+          "minMs": 1297.942972,
+          "maxMs": 1326.139817,
+          "p95Ms": 1326.139817,
+          "stddevMs": 7.260414,
+          "ci95LowerMs": 1303.386365,
+          "ci95UpperMs": 1312.386468,
+          "samples_retained": true,
+          "samples_ms": [
+            1305.760584,
+            1326.139817,
+            1305.45405,
+            1307.949832,
+            1303.790367,
+            1307.738179,
+            1306.147208,
+            1297.942972,
+            1306.762756,
+            1311.178403
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "spectral-norm-medium",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/spectral-norm-medium/cpp.cpp",
+          "sha256": "020aa3ee3a437bd0b0b32698a6928101e41175586f64fa52db6c938aef28f7bb",
+          "normalized_source_sha256": "c3572de56ba108426d585ba90786a5fd8b5dd84edb67aaaa2492b85c8561df59",
+          "template_normalized_sha256": "4fce5d6b80ad70ad8ce348174fd183722ad4fa85ea9e4457d4b12caf575e5c87"
+        },
+        "compiled_kernel_sha256": "c7f07880a321ad36fd73f35935091c442a8b34e61f70c4b9c473692e3cbb3302",
+        "validation_value": 1.2742238666431718,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 1.689096,
+          "medianMs": 1.688657,
+          "minMs": 1.681062,
+          "maxMs": 1.702232,
+          "p95Ms": 1.702232,
+          "stddevMs": 0.006499,
+          "ci95LowerMs": 1.685068,
+          "ci95UpperMs": 1.693124,
+          "samplesMs": [
+            1.690472,
+            1.681062,
+            1.684292,
+            1.696512,
+            1.686881,
+            1.702232,
+            1.690432,
+            1.685592,
+            1.682681,
+            1.690802
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 173.435541,
+          "medianMs": 172.953587,
+          "minMs": 171.079403,
+          "maxMs": 176.581294,
+          "p95Ms": 176.581294,
+          "stddevMs": 1.892931,
+          "ci95LowerMs": 172.26229,
+          "ci95UpperMs": 174.608791
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 4.344882,
+          "medianMs": 4.167839,
+          "minMs": 3.962111,
+          "maxMs": 6.20291,
+          "p95Ms": 6.20291,
+          "stddevMs": 0.656867,
+          "ci95LowerMs": 3.937752,
+          "ci95UpperMs": 4.752013,
+          "startupAdjustedMeanMs": 2.498924
+        }
+      },
+      {
+        "case": "spectral-norm-medium",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/spectral-norm-medium/rust.rs",
+          "sha256": "5d9e81d789c0d98b8d193b234c5361f75c7af88fcc95f556d51351553791e550",
+          "normalized_source_sha256": "d7a94df05e73c56ed32e1fe3253b04de1ffa862a47c549497e2aee02fd104204",
+          "template_normalized_sha256": "d7a94df05e73c56ed32e1fe3253b04de1ffa862a47c549497e2aee02fd104204"
+        },
+        "compiled_kernel_sha256": "e46f328c1ae2aabbabcfc65e7660d47bc2be6559ce72e69291d531d2f45680c5",
+        "validation_value": 1.2742238666431718,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 2.852233,
+          "medianMs": 2.851072,
+          "minMs": 2.846887,
+          "maxMs": 2.856857,
+          "p95Ms": 2.856857,
+          "stddevMs": 0.003805,
+          "ci95LowerMs": 2.849875,
+          "ci95UpperMs": 2.854591,
+          "samplesMs": [
+            2.851667,
+            2.856067,
+            2.850477,
+            2.855847,
+            2.846887,
+            2.856687,
+            2.847846,
+            2.850207,
+            2.856857,
+            2.849787
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 209.694906,
+          "medianMs": 209.529996,
+          "minMs": 205.60264,
+          "maxMs": 214.669888,
+          "p95Ms": 214.669888,
+          "stddevMs": 3.010149,
+          "ci95LowerMs": 207.829196,
+          "ci95UpperMs": 211.560616
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 5.507602,
+          "medianMs": 5.40829,
+          "minMs": 5.311139,
+          "maxMs": 6.322081,
+          "p95Ms": 6.322081,
+          "stddevMs": 0.299297,
+          "ci95LowerMs": 5.322096,
+          "ci95UpperMs": 5.693108,
+          "startupAdjustedMeanMs": 3.450542
+        }
+      },
+      {
+        "case": "spectral-norm-medium",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/spectral-norm-medium/zig.zig",
+          "sha256": "78001d137bc4c6fa12f216a03a7b54958678687e96292857797f1f6893338892",
+          "normalized_source_sha256": "9eb0908eec3ee004951d2a63c8e266158e8a0db4cf73c04d2121d0f7b440fe31",
+          "template_normalized_sha256": "9eb0908eec3ee004951d2a63c8e266158e8a0db4cf73c04d2121d0f7b440fe31"
+        },
+        "compiled_kernel_sha256": "63173f7f7ef52954981fab751d0be87f8a7f84e58cf82fc46c8881dd22e1f084",
+        "validation_value": 1.2742238666431718,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 2.854347,
+          "medianMs": 2.855267,
+          "minMs": 2.847406,
+          "maxMs": 2.858077,
+          "p95Ms": 2.858077,
+          "stddevMs": 0.003328,
+          "ci95LowerMs": 2.852284,
+          "ci95UpperMs": 2.85641,
+          "samplesMs": [
+            2.857077,
+            2.858077,
+            2.855407,
+            2.852467,
+            2.855587,
+            2.856907,
+            2.850317,
+            2.855097,
+            2.847406,
+            2.855127
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 145.682974,
+          "medianMs": 145.343885,
+          "minMs": 142.973,
+          "maxMs": 151.756634,
+          "p95Ms": 151.756634,
+          "stddevMs": 2.800598,
+          "ci95LowerMs": 143.947145,
+          "ci95UpperMs": 147.418802
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 5.39676,
+          "medianMs": 5.318328,
+          "minMs": 5.191387,
+          "maxMs": 6.285291,
+          "p95Ms": 6.285291,
+          "stddevMs": 0.319226,
+          "ci95LowerMs": 5.198901,
+          "ci95UpperMs": 5.594618,
+          "startupAdjustedMeanMs": 3.487875
+        }
+      },
+      {
+        "case": "fannkuch-redux-small",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fannkuch-redux-small/vkf.vkf",
+          "sha256": "f2c7b6e25634b856a7ab782cfd08f5d0ae0fbfc0e911d28d9110484e18e0b8c9",
+          "normalized_source_sha256": "417acd481deed73ab56efff46cc228ec7e2f4ec1a1056bfff6bb380b2a532d2c",
+          "template_normalized_sha256": "417acd481deed73ab56efff46cc228ec7e2f4ec1a1056bfff6bb380b2a532d2c"
+        },
+        "compiled_kernel_sha256": "820cd0d4e387cf6b961db006d4ff527e96bdb7f2378f97e2fb1ec573f7c8f78f",
+        "validation_value": 22816,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.854273,
+          "medianMs": 0.853066,
+          "minMs": 0.848811,
+          "maxMs": 0.861221,
+          "p95Ms": 0.861221,
+          "stddevMs": 0.00407,
+          "ci95LowerMs": 0.851751,
+          "ci95UpperMs": 0.856795,
+          "samplesMs": [
+            0.858291,
+            0.853161,
+            0.852971,
+            0.857471,
+            0.848811,
+            0.851891,
+            0.850471,
+            0.857501,
+            0.850941,
+            0.861221
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 166.718203,
+          "medianMs": 166.14143,
+          "minMs": 165.697044,
+          "maxMs": 172.240289,
+          "p95Ms": 172.240289,
+          "stddevMs": 1.947875,
+          "ci95LowerMs": 165.510898,
+          "ci95UpperMs": 167.925509,
+          "samples_ms": [
+            166.23805999999604,
+            166.07702900000004,
+            166.3338519999961,
+            166.16674999999668,
+            172.2402890000012,
+            166.1161099999954,
+            166.22793100000126,
+            166.075748999996,
+            166.0092169999989,
+            165.69704400000046
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.508866,
+          "medianMs": 3.144191,
+          "minMs": 3.054209,
+          "maxMs": 4.965144,
+          "p95Ms": 4.965144,
+          "stddevMs": 0.679546,
+          "ci95LowerMs": 3.087679,
+          "ci95UpperMs": 3.930053,
+          "startupAdjustedMeanMs": 1.346063
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 65.191843,
+          "medianMs": 64.714957,
+          "minMs": 64.084749,
+          "maxMs": 70.586103,
+          "p95Ms": 70.586103,
+          "stddevMs": 1.913799,
+          "ci95LowerMs": 64.005658,
+          "ci95UpperMs": 66.378028,
+          "samples_retained": true,
+          "samples_ms": [
+            64.786348,
+            64.710517,
+            64.862299,
+            64.532665,
+            70.586103,
+            64.719397,
+            64.862289,
+            64.578716,
+            64.19535,
+            64.084749
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "fannkuch-redux-small",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fannkuch-redux-small/cpp.cpp",
+          "sha256": "b7319382383071b97d9189d3589c58b43df36cfbbdbc5d00ecc079c45f7a1541",
+          "normalized_source_sha256": "2a5cb9be84e58fbb715d3d4bde48de4d1fff0bfb5d9a930946f6653d6d547c83",
+          "template_normalized_sha256": "e2cfe4cf965dd58a113a14961d9ba093f2745f08bb46ad03d61fadf73c62ea8c"
+        },
+        "compiled_kernel_sha256": "ea44ddeac00f9c151c9aa8d4194e74783bb2f39455a2b453090e9dbb2e5f6657",
+        "validation_value": 22816,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.143851,
+          "medianMs": 0.143042,
+          "minMs": 0.142492,
+          "maxMs": 0.147722,
+          "p95Ms": 0.147722,
+          "stddevMs": 0.001976,
+          "ci95LowerMs": 0.142626,
+          "ci95UpperMs": 0.145075,
+          "samplesMs": [
+            0.143402,
+            0.143421,
+            0.142792,
+            0.142972,
+            0.142492,
+            0.143112,
+            0.142612,
+            0.142611,
+            0.147722,
+            0.147372
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 69.558234,
+          "medianMs": 69.323822,
+          "minMs": 68.82208,
+          "maxMs": 70.529902,
+          "p95Ms": 70.529902,
+          "stddevMs": 0.631855,
+          "ci95LowerMs": 69.166606,
+          "ci95UpperMs": 69.949862
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.72944,
+          "medianMs": 2.436317,
+          "minMs": 2.26494,
+          "maxMs": 3.559606,
+          "p95Ms": 3.559606,
+          "stddevMs": 0.510587,
+          "ci95LowerMs": 2.412975,
+          "ci95UpperMs": 3.045906,
+          "startupAdjustedMeanMs": 0.883482
+        }
+      },
+      {
+        "case": "fannkuch-redux-small",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/fannkuch-redux-small/rust.rs",
+          "sha256": "957d757b85b5423aeb3b2b51e0621217a23f6ee677df71ca591ae35edba60c39",
+          "normalized_source_sha256": "390a56a0dd70dab974f35823c723bfe93c959f0c56bf24f4abf6da4edfdb3bda",
+          "template_normalized_sha256": "390a56a0dd70dab974f35823c723bfe93c959f0c56bf24f4abf6da4edfdb3bda"
+        },
+        "compiled_kernel_sha256": "a2ec95710bfcc1241f7a93ec642bdcf77451b3caba48866a4dcff51b3d91c255",
+        "validation_value": 22816,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.17381,
+          "medianMs": 0.172567,
+          "minMs": 0.171643,
+          "maxMs": 0.178233,
+          "p95Ms": 0.178233,
+          "stddevMs": 0.0024,
+          "ci95LowerMs": 0.172323,
+          "ci95UpperMs": 0.175298,
+          "samplesMs": [
+            0.172153,
+            0.172402,
+            0.172052,
+            0.175692,
+            0.171643,
+            0.173482,
+            0.178233,
+            0.177382,
+            0.172732,
+            0.172332
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 210.48952,
+          "medianMs": 209.952961,
+          "minMs": 207.455614,
+          "maxMs": 214.264752,
+          "p95Ms": 214.264752,
+          "stddevMs": 2.557258,
+          "ci95LowerMs": 208.904515,
+          "ci95UpperMs": 212.074525
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.974952,
+          "medianMs": 2.66116,
+          "minMs": 2.478102,
+          "maxMs": 4.049993,
+          "p95Ms": 4.049993,
+          "stddevMs": 0.599702,
+          "ci95LowerMs": 2.603252,
+          "ci95UpperMs": 3.346651,
+          "startupAdjustedMeanMs": 0.917892
+        }
+      },
+      {
+        "case": "fannkuch-redux-small",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/fannkuch-redux-small/zig.zig",
+          "sha256": "223dfbca06e1eebc164fcf6dc44f4aa108732bc1fb32654ddb34eae1133d660a",
+          "normalized_source_sha256": "ce17c726704a48ac35856d04e189bf9bc09eb70f5c31e532ae86ef363d8e7c22",
+          "template_normalized_sha256": "ce17c726704a48ac35856d04e189bf9bc09eb70f5c31e532ae86ef363d8e7c22"
+        },
+        "compiled_kernel_sha256": "ae1ef09de68496e7c955774448360b48477f167c9970719fd7154f15de8ae71a",
+        "validation_value": 22816,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.187181,
+          "medianMs": 0.186232,
+          "minMs": 0.185332,
+          "maxMs": 0.191802,
+          "p95Ms": 0.191802,
+          "stddevMs": 0.002205,
+          "ci95LowerMs": 0.185815,
+          "ci95UpperMs": 0.188548,
+          "samplesMs": [
+            0.191802,
+            0.187443,
+            0.186872,
+            0.186322,
+            0.186073,
+            0.186142,
+            0.185773,
+            0.185332,
+            0.190513,
+            0.185542
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 143.594929,
+          "medianMs": 141.812279,
+          "minMs": 140.091773,
+          "maxMs": 156.702478,
+          "p95Ms": 156.702478,
+          "stddevMs": 5.054418,
+          "ci95LowerMs": 140.462168,
+          "ci95UpperMs": 146.727689
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.836188,
+          "medianMs": 2.489332,
+          "minMs": 2.38964,
+          "maxMs": 3.673358,
+          "p95Ms": 3.673358,
+          "stddevMs": 0.556732,
+          "ci95LowerMs": 2.491122,
+          "ci95UpperMs": 3.181254,
+          "startupAdjustedMeanMs": 0.927303
+        }
+      },
+      {
+        "case": "fannkuch-redux-medium",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fannkuch-redux-medium/vkf.vkf",
+          "sha256": "6efc92be7929cb1245e910be96a5717a9ac089a63839f34d04f5d89b98195894",
+          "normalized_source_sha256": "25fb465d13a5ec2a2c227a68a737bbdb88495bcb850ecfe5eff22015a3efbaa4",
+          "template_normalized_sha256": "25fb465d13a5ec2a2c227a68a737bbdb88495bcb850ecfe5eff22015a3efbaa4"
+        },
+        "compiled_kernel_sha256": "778a5738e55c5ba490812c434cfb53d3586426fd93fa98e0d09d1c5ddafaec07",
+        "validation_value": 161622,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 7.89954,
+          "medianMs": 7.900302,
+          "minMs": 7.890003,
+          "maxMs": 7.906473,
+          "p95Ms": 7.906473,
+          "stddevMs": 0.005512,
+          "ci95LowerMs": 7.896124,
+          "ci95UpperMs": 7.902956,
+          "samplesMs": [
+            7.890003,
+            7.894892,
+            7.901282,
+            7.899322,
+            7.893572,
+            7.903242,
+            7.905582,
+            7.903832,
+            7.897202,
+            7.906473
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 165.790057,
+          "medianMs": 165.79414,
+          "minMs": 165.34064,
+          "maxMs": 166.18292,
+          "p95Ms": 166.18292,
+          "stddevMs": 0.286924,
+          "ci95LowerMs": 165.61222,
+          "ci95UpperMs": 165.967894,
+          "samples_ms": [
+            166.14948999999615,
+            165.73985399999947,
+            165.84842599999683,
+            165.94138699999894,
+            165.73940399999992,
+            165.3626890000014,
+            165.94150700000318,
+            166.18291999999929,
+            165.6542530000006,
+            165.3406399999949
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 10.49918,
+          "medianMs": 10.51257,
+          "minMs": 10.395815,
+          "maxMs": 10.624598,
+          "p95Ms": 10.624598,
+          "stddevMs": 0.073027,
+          "ci95LowerMs": 10.453917,
+          "ci95UpperMs": 10.544442,
+          "startupAdjustedMeanMs": 8.336377
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 64.361538,
+          "medianMs": 64.415603,
+          "minMs": 63.925447,
+          "maxMs": 64.579576,
+          "p95Ms": 64.579576,
+          "stddevMs": 0.180181,
+          "ci95LowerMs": 64.24986,
+          "ci95UpperMs": 64.473215,
+          "samples_retained": true,
+          "samples_ms": [
+            64.433364,
+            64.474444,
+            64.579576,
+            63.925447,
+            64.273632,
+            64.426283,
+            64.404923,
+            64.324202,
+            64.486994,
+            64.286511
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "fannkuch-redux-medium",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fannkuch-redux-medium/cpp.cpp",
+          "sha256": "9c3bfb52706e5741e499ae241a1f4e090c66fd787ff449fd179badac0a55f92b",
+          "normalized_source_sha256": "f03d25253d1176a9fcef78247d91ad32935b11afce1123ee933a40fd2c55c994",
+          "template_normalized_sha256": "5525c4bb6de114e7ba44f2a08befe828fc0a580bb6b278a9bd9afc5258388bcb"
+        },
+        "compiled_kernel_sha256": "eeee78b086e58b11ec1f1f39d16ddd3bfaf22198e75d148e0a42c662a611f7ca",
+        "validation_value": 161622,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 1.533031,
+          "medianMs": 1.533025,
+          "minMs": 1.52301,
+          "maxMs": 1.54431,
+          "p95Ms": 1.54431,
+          "stddevMs": 0.006072,
+          "ci95LowerMs": 1.529267,
+          "ci95UpperMs": 1.536794,
+          "samplesMs": [
+            1.53146,
+            1.529819,
+            1.52301,
+            1.53906,
+            1.52978,
+            1.53536,
+            1.54431,
+            1.534589,
+            1.53544,
+            1.52748
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 69.050181,
+          "medianMs": 68.891101,
+          "minMs": 68.366144,
+          "maxMs": 70.221988,
+          "p95Ms": 70.221988,
+          "stddevMs": 0.583662,
+          "ci95LowerMs": 68.688424,
+          "ci95UpperMs": 69.411939
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.976113,
+          "medianMs": 3.976196,
+          "minMs": 3.831139,
+          "maxMs": 4.168774,
+          "p95Ms": 4.168774,
+          "stddevMs": 0.113767,
+          "ci95LowerMs": 3.9056,
+          "ci95UpperMs": 4.046627,
+          "startupAdjustedMeanMs": 2.130155
+        }
+      },
+      {
+        "case": "fannkuch-redux-medium",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/fannkuch-redux-medium/rust.rs",
+          "sha256": "a1b3b8ba8ec7033b87f8cf92dc4c2558da8e646c8f4862b9e6a0abeb77fce16c",
+          "normalized_source_sha256": "b062110354e323351024d82b1ab14d7febdfa5ba18a5f6064e2aa94ee00f0c16",
+          "template_normalized_sha256": "b062110354e323351024d82b1ab14d7febdfa5ba18a5f6064e2aa94ee00f0c16"
+        },
+        "compiled_kernel_sha256": "5e6e8ef2e81a3c955ea2ee08c701a7ad222bbb88aaf7d1adaec615e49a222db4",
+        "validation_value": 161622,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 1.568429,
+          "medianMs": 1.5648,
+          "minMs": 1.55934,
+          "maxMs": 1.601191,
+          "p95Ms": 1.601191,
+          "stddevMs": 0.01233,
+          "ci95LowerMs": 1.560787,
+          "ci95UpperMs": 1.576072,
+          "samplesMs": [
+            1.56451,
+            1.568271,
+            1.56564,
+            1.55991,
+            1.601191,
+            1.574631,
+            1.56509,
+            1.56442,
+            1.55934,
+            1.56129
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 212.035253,
+          "medianMs": 211.967662,
+          "minMs": 207.93684,
+          "maxMs": 218.575428,
+          "p95Ms": 218.575428,
+          "stddevMs": 3.130174,
+          "ci95LowerMs": 210.095152,
+          "ci95UpperMs": 213.975355
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 4.22515,
+          "medianMs": 4.173334,
+          "minMs": 4.095463,
+          "maxMs": 4.486558,
+          "p95Ms": 4.486558,
+          "stddevMs": 0.120867,
+          "ci95LowerMs": 4.150236,
+          "ci95UpperMs": 4.300063,
+          "startupAdjustedMeanMs": 2.16809
+        }
+      },
+      {
+        "case": "fannkuch-redux-medium",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/fannkuch-redux-medium/zig.zig",
+          "sha256": "e99f9a7677ee7c4762873ba9922098cf4d767ceb0fec60f02fcf30f9ad269fa2",
+          "normalized_source_sha256": "dafe3a23a67685dec379fb03ff174f678151c15ec203e790d2382def362928b5",
+          "template_normalized_sha256": "dafe3a23a67685dec379fb03ff174f678151c15ec203e790d2382def362928b5"
+        },
+        "compiled_kernel_sha256": "2e2ec3caca2794d5790d9d7b0a1d7b5c95d764e41ba97e517278ccf31ef83a4a",
+        "validation_value": 161622,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 1.672481,
+          "medianMs": 1.670537,
+          "minMs": 1.664492,
+          "maxMs": 1.687592,
+          "p95Ms": 1.687592,
+          "stddevMs": 0.006803,
+          "ci95LowerMs": 1.668264,
+          "ci95UpperMs": 1.676697,
+          "samplesMs": [
+            1.667721,
+            1.669972,
+            1.687592,
+            1.667161,
+            1.671102,
+            1.679801,
+            1.669552,
+            1.673912,
+            1.673501,
+            1.664492
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 143.035418,
+          "medianMs": 141.470396,
+          "minMs": 139.12216,
+          "maxMs": 151.685892,
+          "p95Ms": 151.685892,
+          "stddevMs": 4.615882,
+          "ci95LowerMs": 140.174464,
+          "ci95UpperMs": 145.896371
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 4.210669,
+          "medianMs": 4.190429,
+          "minMs": 4.089853,
+          "maxMs": 4.441938,
+          "p95Ms": 4.441938,
+          "stddevMs": 0.098648,
+          "ci95LowerMs": 4.149526,
+          "ci95UpperMs": 4.271811,
+          "startupAdjustedMeanMs": 2.301784
+        }
+      },
+      {
+        "case": "n-body-small",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/n-body-small/vkf.vkf",
+          "sha256": "e28b4473ec233813825d06d546e162f242fc75928e2945ebebe302ff4ef7af00",
+          "normalized_source_sha256": "8503713288bf3943fab0f6574a85e5ab0ccb05b1a41679aaa24ef104bd803f57",
+          "template_normalized_sha256": "8503713288bf3943fab0f6574a85e5ab0ccb05b1a41679aaa24ef104bd803f57"
+        },
+        "compiled_kernel_sha256": "cca57aea6d6381979a97c043d6f1bda9817f1ffd71683584316dc0e80c731160",
+        "validation_value": 0.17058959158982642,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.23,
+          "medianMs": 0.226718,
+          "minMs": 0.225463,
+          "maxMs": 0.251293,
+          "p95Ms": 0.251293,
+          "stddevMs": 0.007742,
+          "ci95LowerMs": 0.225202,
+          "ci95UpperMs": 0.234798,
+          "samplesMs": [
+            0.226643,
+            0.251293,
+            0.226723,
+            0.226693,
+            0.226713,
+            0.229633,
+            0.230733,
+            0.225463,
+            0.225463,
+            0.230643
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 295.241562,
+          "medianMs": 295.443682,
+          "minMs": 293.318695,
+          "maxMs": 296.250933,
+          "p95Ms": 296.250933,
+          "stddevMs": 0.915207,
+          "ci95LowerMs": 294.674311,
+          "ci95UpperMs": 295.808813,
+          "samples_ms": [
+            296.250933000003,
+            294.381358000006,
+            295.75489599999855,
+            294.9359459999978,
+            294.83175499999925,
+            295.7904869999984,
+            293.31869500000175,
+            295.8298480000012,
+            295.1324689999965,
+            296.189231999997
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.556567,
+          "medianMs": 2.516068,
+          "minMs": 2.454572,
+          "maxMs": 2.776036,
+          "p95Ms": 2.776036,
+          "stddevMs": 0.111573,
+          "ci95LowerMs": 2.487413,
+          "ci95UpperMs": 2.625721,
+          "startupAdjustedMeanMs": 0.393764
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 188.538134,
+          "medianMs": 188.504109,
+          "minMs": 186.765826,
+          "maxMs": 189.371289,
+          "p95Ms": 189.371289,
+          "stddevMs": 0.808187,
+          "ci95LowerMs": 188.037215,
+          "ci95UpperMs": 189.039054,
+          "samples_retained": true,
+          "samples_ms": [
+            189.113767,
+            187.725579,
+            189.302239,
+            188.441128,
+            188.531579,
+            188.447108,
+            186.765826,
+            189.206188,
+            188.476639,
+            189.371289
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "n-body-small",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/n-body-small/cpp.cpp",
+          "sha256": "b1dbbf1de0d3863e712857fd1cad816c0b3c425658a261d815efc911217c9870",
+          "normalized_source_sha256": "f0f8f618fbfff721df2be3fcd19bb357632b7898a5a4d481b31cfe905373b604",
+          "template_normalized_sha256": "8e702e6fe4933ddf9d4b74bbb437a2750a030e7608b2336cd271a9895c21ace4"
+        },
+        "compiled_kernel_sha256": "52bfee97e0867b50e94c76b51e1eb3ec9fd958eb202ecd1d2dbdb5b6070f333d",
+        "validation_value": 0.17058959158982645,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.056199,
+          "medianMs": 0.055185,
+          "minMs": 0.055101,
+          "maxMs": 0.060171,
+          "p95Ms": 0.060171,
+          "stddevMs": 0.00207,
+          "ci95LowerMs": 0.054916,
+          "ci95UpperMs": 0.057482,
+          "samplesMs": [
+            0.055471,
+            0.05511,
+            0.055101,
+            0.055101,
+            0.055111,
+            0.060061,
+            0.05519,
+            0.055181,
+            0.055491,
+            0.060171
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 167.220761,
+          "medianMs": 167.108452,
+          "minMs": 165.307708,
+          "maxMs": 168.441459,
+          "p95Ms": 168.441459,
+          "stddevMs": 0.894004,
+          "ci95LowerMs": 166.666652,
+          "ci95UpperMs": 167.774871
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.305058,
+          "medianMs": 2.28341,
+          "minMs": 2.245509,
+          "maxMs": 2.545633,
+          "p95Ms": 2.545633,
+          "stddevMs": 0.087167,
+          "ci95LowerMs": 2.251031,
+          "ci95UpperMs": 2.359085,
+          "startupAdjustedMeanMs": 0.4591
+        }
+      },
+      {
+        "case": "n-body-small",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/n-body-small/rust.rs",
+          "sha256": "fe6a4c6493c80bb11b307ebaf0d67713b118e265bffa754d09fcb69b5ca10a2e",
+          "normalized_source_sha256": "f589aeb94d6a95d544328f99987430bcefa41feabf054af8b82e23a2c35a24ff",
+          "template_normalized_sha256": "f589aeb94d6a95d544328f99987430bcefa41feabf054af8b82e23a2c35a24ff"
+        },
+        "compiled_kernel_sha256": "1cf6cb5f0bde6a9a807423b7092765ec328fc8680a32480afc96a80ba331adb4",
+        "validation_value": 0.17058959158982645,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.039277,
+          "medianMs": 0.03879,
+          "minMs": 0.038231,
+          "maxMs": 0.044321,
+          "p95Ms": 0.044321,
+          "stddevMs": 0.001782,
+          "ci95LowerMs": 0.038173,
+          "ci95UpperMs": 0.040382,
+          "samplesMs": [
+            0.03864,
+            0.038841,
+            0.03884,
+            0.038841,
+            0.03884,
+            0.038231,
+            0.03874,
+            0.038741,
+            0.03874,
+            0.044321
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 229.066981,
+          "medianMs": 228.575542,
+          "minMs": 225.711041,
+          "maxMs": 234.510604,
+          "p95Ms": 234.510604,
+          "stddevMs": 2.526871,
+          "ci95LowerMs": 227.50081,
+          "ci95UpperMs": 230.633151
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.48755,
+          "medianMs": 2.453962,
+          "minMs": 2.392941,
+          "maxMs": 2.668294,
+          "p95Ms": 2.668294,
+          "stddevMs": 0.098542,
+          "ci95LowerMs": 2.426473,
+          "ci95UpperMs": 2.548627,
+          "startupAdjustedMeanMs": 0.43049
+        }
+      },
+      {
+        "case": "n-body-small",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/n-body-small/zig.zig",
+          "sha256": "a93834cbe85dde134ed2a25de9edae4709ab566baeb474a9284a349e0bb97055",
+          "normalized_source_sha256": "7113eb7aaa32c0a2d2c06b811f827267fe101c546fb32522ea038cb75840e2ae",
+          "template_normalized_sha256": "7113eb7aaa32c0a2d2c06b811f827267fe101c546fb32522ea038cb75840e2ae"
+        },
+        "compiled_kernel_sha256": "f53def3e640b25326f9dda5873ba9c6d0cf408ee441f64b452692b5ebbf6c86a",
+        "validation_value": 0.17058959158982645,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.078262,
+          "medianMs": 0.077181,
+          "minMs": 0.077171,
+          "maxMs": 0.083011,
+          "p95Ms": 0.083011,
+          "stddevMs": 0.002285,
+          "ci95LowerMs": 0.076846,
+          "ci95UpperMs": 0.079678,
+          "samplesMs": [
+            0.077231,
+            0.077171,
+            0.077181,
+            0.077181,
+            0.077171,
+            0.083011,
+            0.077171,
+            0.077171,
+            0.082151,
+            0.077181
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 146.688133,
+          "medianMs": 145.180458,
+          "minMs": 143.595178,
+          "maxMs": 151.425869,
+          "p95Ms": 151.425869,
+          "stddevMs": 3.156027,
+          "ci95LowerMs": 144.732007,
+          "ci95UpperMs": 148.644258
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.491358,
+          "medianMs": 2.399896,
+          "minMs": 2.355671,
+          "maxMs": 2.701395,
+          "p95Ms": 2.701395,
+          "stddevMs": 0.142939,
+          "ci95LowerMs": 2.402764,
+          "ci95UpperMs": 2.579953,
+          "startupAdjustedMeanMs": 0.582473
+        }
+      },
+      {
+        "case": "n-body-medium",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/n-body-medium/vkf.vkf",
+          "sha256": "6cf57bd078d671bd75782a5e2e2dd43fe9780fd0f6c29150ac8fcecb780cf883",
+          "normalized_source_sha256": "d83e65f5186e55e865111450a2edf28f6b3fec67fd278176fc3173446d96d0f3",
+          "template_normalized_sha256": "d83e65f5186e55e865111450a2edf28f6b3fec67fd278176fc3173446d96d0f3"
+        },
+        "compiled_kernel_sha256": "b0c063de80c77ba04b253854e213b15623b5bbaa8c9dc066df5ba372da03a2e7",
+        "validation_value": 0.1623610965407564,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 2.272937,
+          "medianMs": 2.269044,
+          "minMs": 2.25882,
+          "maxMs": 2.303,
+          "p95Ms": 2.303,
+          "stddevMs": 0.013248,
+          "ci95LowerMs": 2.264726,
+          "ci95UpperMs": 2.281148,
+          "samplesMs": [
+            2.303,
+            2.272699,
+            2.25882,
+            2.260559,
+            2.271049,
+            2.285339,
+            2.26643,
+            2.267039,
+            2.27884,
+            2.265599
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 294.66204,
+          "medianMs": 294.324072,
+          "minMs": 292.517865,
+          "maxMs": 299.625006,
+          "p95Ms": 299.625006,
+          "stddevMs": 1.950796,
+          "ci95LowerMs": 293.452924,
+          "ci95UpperMs": 295.871156,
+          "samples_ms": [
+            299.62500600000203,
+            294.13357499999984,
+            292.51786499998707,
+            293.75359000000753,
+            295.78569699999935,
+            294.6476720000064,
+            294.51456999999937,
+            294.5285500000027,
+            293.85061100000166,
+            293.2632639999938
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 5.172747,
+          "medianMs": 5.209803,
+          "minMs": 4.58808,
+          "maxMs": 5.721514,
+          "p95Ms": 5.721514,
+          "stddevMs": 0.551906,
+          "ci95LowerMs": 4.830672,
+          "ci95UpperMs": 5.514822,
+          "startupAdjustedMeanMs": 3.009944
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 188.116374,
+          "medianMs": 188.050193,
+          "minMs": 186.686325,
+          "maxMs": 191.176823,
+          "p95Ms": 191.176823,
+          "stddevMs": 1.271525,
+          "ci95LowerMs": 187.328274,
+          "ci95UpperMs": 188.904473,
+          "samples_retained": true,
+          "samples_ms": [
+            191.176823,
+            187.575677,
+            186.686325,
+            187.223603,
+            188.298306,
+            188.576229,
+            188.385837,
+            187.80208,
+            188.531559,
+            186.907298
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "n-body-medium",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/n-body-medium/cpp.cpp",
+          "sha256": "cade74c29774d8ba977614ee86b9babe1ca01c8c1ef1f3e235ddf8cdc0390050",
+          "normalized_source_sha256": "af99bf80b4d848e154588f94ef13d2533c57dc46a64808806a75cc4ed341366b",
+          "template_normalized_sha256": "362d22fee16219066f2b037eaa11060a0596f77053db7bc451d6ebb4851e8ef5"
+        },
+        "compiled_kernel_sha256": "ac7ee952c791bc0996f2ca825773136d12a8f06bc08f5fec58d28e49bef91d64",
+        "validation_value": 0.16236109654075642,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.55345,
+          "medianMs": 0.552972,
+          "minMs": 0.549197,
+          "maxMs": 0.558708,
+          "p95Ms": 0.558708,
+          "stddevMs": 0.003094,
+          "ci95LowerMs": 0.551533,
+          "ci95UpperMs": 0.555368,
+          "samplesMs": [
+            0.549247,
+            0.552258,
+            0.554497,
+            0.551947,
+            0.549197,
+            0.556027,
+            0.553447,
+            0.556677,
+            0.558708,
+            0.552497
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 166.554136,
+          "medianMs": 166.502509,
+          "minMs": 164.745302,
+          "maxMs": 168.444899,
+          "p95Ms": 168.444899,
+          "stddevMs": 1.454051,
+          "ci95LowerMs": 165.652906,
+          "ci95UpperMs": 167.455366
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.558792,
+          "medianMs": 3.469995,
+          "minMs": 2.772726,
+          "maxMs": 5.069446,
+          "p95Ms": 5.069446,
+          "stddevMs": 0.777686,
+          "ci95LowerMs": 3.076777,
+          "ci95UpperMs": 4.040807,
+          "startupAdjustedMeanMs": 1.712834
+        }
+      },
+      {
+        "case": "n-body-medium",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/n-body-medium/rust.rs",
+          "sha256": "401e79aefab0e12bf88a675889be49aa1489aa28049cf00627f888dbaa6ca9c8",
+          "normalized_source_sha256": "03e1331f234e7d10c9698b092c915f7ab3abf09b22b1d64d753beac29c53094f",
+          "template_normalized_sha256": "03e1331f234e7d10c9698b092c915f7ab3abf09b22b1d64d753beac29c53094f"
+        },
+        "compiled_kernel_sha256": "e362e336000cd0a8341e0b1deee1078297581b533a8c26fa3230e3a91107086f",
+        "validation_value": 0.16236109654075642,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.389902,
+          "medianMs": 0.39004,
+          "minMs": 0.383415,
+          "maxMs": 0.395235,
+          "p95Ms": 0.395235,
+          "stddevMs": 0.003874,
+          "ci95LowerMs": 0.387501,
+          "ci95UpperMs": 0.392303,
+          "samplesMs": [
+            0.395235,
+            0.389915,
+            0.393386,
+            0.391735,
+            0.393515,
+            0.383415,
+            0.390165,
+            0.389685,
+            0.384375,
+            0.387595
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 235.07549,
+          "medianMs": 230.445307,
+          "minMs": 225.69878,
+          "maxMs": 283.233215,
+          "p95Ms": 283.233215,
+          "stddevMs": 17.095641,
+          "ci95LowerMs": 224.479502,
+          "ci95UpperMs": 245.671478
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.360441,
+          "medianMs": 3.213706,
+          "minMs": 2.785696,
+          "maxMs": 4.005552,
+          "p95Ms": 4.005552,
+          "stddevMs": 0.545312,
+          "ci95LowerMs": 3.022453,
+          "ci95UpperMs": 3.698429,
+          "startupAdjustedMeanMs": 1.303381
+        }
+      },
+      {
+        "case": "n-body-medium",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/n-body-medium/zig.zig",
+          "sha256": "b30519e5714d376a6ce3d525150d60e1ba241a650c4af0d3bbe3dead0edde29c",
+          "normalized_source_sha256": "16632ce2c40a52843a1029a399bd2ea41fce3cf32fdf230e4e3952c955469fa7",
+          "template_normalized_sha256": "16632ce2c40a52843a1029a399bd2ea41fce3cf32fdf230e4e3952c955469fa7"
+        },
+        "compiled_kernel_sha256": "fad2763b045faf1448984566eee5056d43a9acdb299f643342a1cb2e92149544",
+        "validation_value": 0.16236109654075642,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.778096,
+          "medianMs": 0.775425,
+          "minMs": 0.76758,
+          "maxMs": 0.807491,
+          "p95Ms": 0.807491,
+          "stddevMs": 0.011841,
+          "ci95LowerMs": 0.770757,
+          "ci95UpperMs": 0.785435,
+          "samplesMs": [
+            0.77697,
+            0.77549,
+            0.77536,
+            0.77557,
+            0.78905,
+            0.7709,
+            0.770779,
+            0.76758,
+            0.77177,
+            0.807491
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 147.639127,
+          "medianMs": 145.545063,
+          "minMs": 142.774927,
+          "maxMs": 158.219467,
+          "p95Ms": 158.219467,
+          "stddevMs": 5.609619,
+          "ci95LowerMs": 144.162249,
+          "ci95UpperMs": 151.116005
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.772649,
+          "medianMs": 3.895875,
+          "minMs": 3.10088,
+          "maxMs": 4.343817,
+          "p95Ms": 4.343817,
+          "stddevMs": 0.551778,
+          "ci95LowerMs": 3.430654,
+          "ci95UpperMs": 4.114644,
+          "startupAdjustedMeanMs": 1.863764
+        }
+      },
+      {
+        "case": "fixed-vector-medium",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fixed-vector-medium/vkf.vkf",
+          "sha256": "378185b8fa4f94c9f957b7f417700635166ceb3fb75b725af78c66be6667c217",
+          "normalized_source_sha256": "c4044fd00a97fa1941c51c36ddf72c6f23f22953c93182f724a09c2078b81701",
+          "template_normalized_sha256": "c4044fd00a97fa1941c51c36ddf72c6f23f22953c93182f724a09c2078b81701"
+        },
+        "compiled_kernel_sha256": "289b1a31f12a9eab2c91026e570785f57345fec7fddaaed8a0b813c863ee697a",
+        "validation_value": 10.099567298080487,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.793749,
+          "medianMs": 0.78961,
+          "minMs": 0.77137,
+          "maxMs": 0.834731,
+          "p95Ms": 0.834731,
+          "stddevMs": 0.017425,
+          "ci95LowerMs": 0.782949,
+          "ci95UpperMs": 0.80455,
+          "samplesMs": [
+            0.78985,
+            0.834731,
+            0.80156,
+            0.78937,
+            0.78506,
+            0.806281,
+            0.79037,
+            0.78893,
+            0.77997,
+            0.77137
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 124.548414,
+          "medianMs": 123.207969,
+          "minMs": 122.991221,
+          "maxMs": 134.115975,
+          "p95Ms": 134.115975,
+          "stddevMs": 3.418256,
+          "ci95LowerMs": 122.429757,
+          "ci95UpperMs": 126.667071,
+          "samples_ms": [
+            123.53770799999995,
+            123.97643400000004,
+            123.22598499999992,
+            125.04594800000018,
+            122.991221,
+            123.18995300000006,
+            123.10596199999986,
+            123.16734299999985,
+            134.11597499999993,
+            123.12761300000011
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.478658,
+          "medianMs": 2.463071,
+          "minMs": 2.448272,
+          "maxMs": 2.550113,
+          "p95Ms": 2.550113,
+          "stddevMs": 0.033385,
+          "ci95LowerMs": 2.457966,
+          "ci95UpperMs": 2.49935,
+          "startupAdjustedMeanMs": 2.478658
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 24.019933,
+          "medianMs": 24.017026,
+          "minMs": 23.92035,
+          "maxMs": 24.156813,
+          "p95Ms": 24.156813,
+          "stddevMs": 0.074746,
+          "ci95LowerMs": 23.973605,
+          "ci95UpperMs": 24.066261,
+          "samples_retained": true,
+          "samples_ms": [
+            24.112672,
+            23.98162,
+            24.156813,
+            23.95204,
+            24.039141,
+            24.022541,
+            24.01151,
+            23.94741,
+            23.92035,
+            24.055231
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "fixed-vector-medium",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/fixed-vector-medium/cpp.cpp",
+          "sha256": "587e54f2ff408e653dc9c9c61ec7c48a19b33588c716c0b7a5ddc6ac5ddce906",
+          "normalized_source_sha256": "59e3211c5b22674bc50cbac289189572fee4de042181f3f544fb78bfa6a888d0",
+          "template_normalized_sha256": "42d48d30ae00ca1e46e6fa351d3e63d5e49bed8b5256dd6321b5ae4f06d02f8b",
+          "original_source_sha256": "7d41ec8879adff1f10ffe09346b508c98b593d4c123f734498f03c249bd209e8",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "6efa19361805bd52c8a1f36ea2a6425c2178bfb14f20e4a7dfe8b8681e7c0eb9",
+        "validation_value": 10.099567298080487,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.129545,
+          "medianMs": 0.128457,
+          "minMs": 0.127841,
+          "maxMs": 0.133132,
+          "p95Ms": 0.133132,
+          "stddevMs": 0.002302,
+          "ci95LowerMs": 0.128118,
+          "ci95UpperMs": 0.130972,
+          "samplesMs": [
+            0.127902,
+            0.132832,
+            0.128451,
+            0.128472,
+            0.133132,
+            0.127912,
+            0.128462,
+            0.127841,
+            0.127842,
+            0.132602
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 51.885582,
+          "medianMs": 51.905796,
+          "minMs": 51.349335,
+          "maxMs": 52.445829,
+          "p95Ms": 52.445829,
+          "stddevMs": 0.380841,
+          "ci95LowerMs": 51.649534,
+          "ci95UpperMs": 52.12163
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 1.926774,
+          "medianMs": 1.911695,
+          "minMs": 1.845914,
+          "maxMs": 2.039956,
+          "p95Ms": 2.039956,
+          "stddevMs": 0.076991,
+          "ci95LowerMs": 1.879054,
+          "ci95UpperMs": 1.974494,
+          "startupAdjustedMeanMs": 1.926774
+        }
+      },
+      {
+        "case": "fixed-vector-medium",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/fixed-vector-medium/rust.rs",
+          "sha256": "4bae053700860d9df2e34d0c1a26d351583f5de6ebc62a3635075b2a02493640",
+          "normalized_source_sha256": "11ac4245be24618a0c4ff5afabfbcf3f8851f5fba132e27a161840b953adfc9d",
+          "template_normalized_sha256": "f97630ed07c6ae5a865e53ab5badc05bbddb0bbdbd1485edb6fdf4e9fb6a7dba",
+          "original_source_sha256": "18b2d8a54c884bb98a950c02ee93dd48ab0d9cc017d30a45f10f05af12b908af",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "8b73e97e6e42aa1a2fff5735444ea763af02e065e7266b4e9775b64a8eb3128d",
+        "validation_value": 10.099567298080487,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.240695,
+          "medianMs": 0.240643,
+          "minMs": 0.237853,
+          "maxMs": 0.245633,
+          "p95Ms": 0.245633,
+          "stddevMs": 0.002984,
+          "ci95LowerMs": 0.238845,
+          "ci95UpperMs": 0.242545,
+          "samplesMs": [
+            0.245633,
+            0.240643,
+            0.240944,
+            0.240643,
+            0.245283,
+            0.237913,
+            0.242333,
+            0.237853,
+            0.237853,
+            0.237853
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 194.900958,
+          "medianMs": 194.906792,
+          "minMs": 191.371786,
+          "maxMs": 198.200184,
+          "p95Ms": 198.200184,
+          "stddevMs": 2.123561,
+          "ci95LowerMs": 193.584761,
+          "ci95UpperMs": 196.217154
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.155307,
+          "medianMs": 2.156318,
+          "minMs": 2.112758,
+          "maxMs": 2.190698,
+          "p95Ms": 2.190698,
+          "stddevMs": 0.027342,
+          "ci95LowerMs": 2.138361,
+          "ci95UpperMs": 2.172253,
+          "startupAdjustedMeanMs": 2.155307
+        }
+      },
+      {
+        "case": "fixed-vector-medium",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/fixed-vector-medium/zig.zig",
+          "sha256": "9b1681648afe9a9230987edd38ae89cff038b438dd89d6e9183f797a8a97219f",
+          "normalized_source_sha256": "2312a4395dc9a869b4a4c8f80e150e3f93e0dd05696b8e8f84ddb0b737e473f7",
+          "template_normalized_sha256": "6d8da5263626475e390aa96d187a7abf3f1c820048f2093f5a6e2c647096532d",
+          "original_source_sha256": "0f907858a4479c4035671e0a7978e370cebfe7c013a4798cbb709e5bc90786d8",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "dd2feb4f0881f66c569941e902ed5f6285a8616d98a07e821a9847cd242e52a9",
+        "validation_value": 10.099567298080487,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.240133,
+          "medianMs": 0.238488,
+          "minMs": 0.237853,
+          "maxMs": 0.243654,
+          "p95Ms": 0.243654,
+          "stddevMs": 0.002457,
+          "ci95LowerMs": 0.23861,
+          "ci95UpperMs": 0.241656,
+          "samplesMs": [
+            0.243233,
+            0.238453,
+            0.243654,
+            0.237853,
+            0.242833,
+            0.238513,
+            0.238453,
+            0.238463,
+            0.237853,
+            0.242023
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 140.765822,
+          "medianMs": 140.624249,
+          "minMs": 133.925902,
+          "maxMs": 149.312801,
+          "p95Ms": 149.312801,
+          "stddevMs": 6.575785,
+          "ci95LowerMs": 136.690108,
+          "ci95UpperMs": 144.841536
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.091495,
+          "medianMs": 2.062797,
+          "minMs": 2.032196,
+          "maxMs": 2.36449,
+          "p95Ms": 2.36449,
+          "stddevMs": 0.098351,
+          "ci95LowerMs": 2.030537,
+          "ci95UpperMs": 2.152453,
+          "startupAdjustedMeanMs": 2.091495
+        }
+      },
+      {
+        "case": "record-value-medium",
+        "language": "vkf",
+        "tool": "VKF 0.7.1; built with g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/record-value-medium/vkf.vkf",
+          "sha256": "9a81cf3126b9b00a494849eab884c8f4c394e0e89bf9b7be6414c1aff4074ec2",
+          "normalized_source_sha256": "029d722332c63fccf76c90aa875c2bbecd216f91b8d40cc47c895995904c1340",
+          "template_normalized_sha256": "029d722332c63fccf76c90aa875c2bbecd216f91b8d40cc47c895995904c1340"
+        },
+        "compiled_kernel_sha256": "5de82c260825c120b1cf60c6a72a20d2b8449b72133051c3e5dde4443c29c362",
+        "validation_value": -2.0473715203632542e+23,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.757728,
+          "medianMs": 0.757799,
+          "minMs": 0.752939,
+          "maxMs": 0.76215,
+          "p95Ms": 0.76215,
+          "stddevMs": 0.00316,
+          "ci95LowerMs": 0.755769,
+          "ci95UpperMs": 0.759686,
+          "samplesMs": [
+            0.752939,
+            0.76193,
+            0.75858,
+            0.75725,
+            0.75623,
+            0.75295,
+            0.757809,
+            0.75779,
+            0.76215,
+            0.75965
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": true,
+          "count": 10,
+          "meanMs": 119.852653,
+          "medianMs": 119.752919,
+          "minMs": 119.424225,
+          "maxMs": 120.708502,
+          "p95Ms": 120.708502,
+          "stddevMs": 0.406314,
+          "ci95LowerMs": 119.600817,
+          "ci95UpperMs": 120.104489,
+          "samples_ms": [
+            120.3415670000004,
+            119.86905099999967,
+            119.89974099999927,
+            119.6367879999998,
+            119.46870500000023,
+            119.61180800000056,
+            120.70850200000041,
+            119.96550200000001,
+            119.60063699999955,
+            119.42422499999884
+          ]
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 3.064483,
+          "medianMs": 3.005444,
+          "minMs": 2.955078,
+          "maxMs": 3.228272,
+          "p95Ms": 3.228272,
+          "stddevMs": 0.111349,
+          "ci95LowerMs": 2.995468,
+          "ci95UpperMs": 3.133497,
+          "startupAdjustedMeanMs": 3.064483
+        },
+        "internal_compile": {
+          "count": 10,
+          "meanMs": 20.288645,
+          "medianMs": 20.311208,
+          "minMs": 20.13461,
+          "maxMs": 20.400924,
+          "p95Ms": 20.400924,
+          "stddevMs": 0.094755,
+          "ci95LowerMs": 20.229916,
+          "ci95UpperMs": 20.347375,
+          "samples_retained": true,
+          "samples_ms": [
+            20.343333,
+            20.381603,
+            20.365964,
+            20.13461,
+            20.167361,
+            20.318143,
+            20.400924,
+            20.286643,
+            20.183601,
+            20.304273
+          ]
+        },
+        "optimizer": {
+          "requested": "default CLI (no policy flag)",
+          "selected": "mask-0",
+          "measured_compile_receipts": [
+            {
+              "sample": 1,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 2,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 3,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 4,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 5,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 6,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 7,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 8,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 9,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            },
+            {
+              "sample": 10,
+              "cache_hit": false,
+              "composition_cache_hit": false,
+              "total_calibration_runs": 0
+            }
+          ]
+        }
+      },
+      {
+        "case": "record-value-medium",
+        "language": "cpp",
+        "tool": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+        "source": {
+          "file": "sources/record-value-medium/cpp.cpp",
+          "sha256": "28fe97938f8c852ccaacd66ea1a9f311b32b4e4644374d4a844d90ae809039bf",
+          "normalized_source_sha256": "4fbe806a145e8794c353078111909e3835214eb8aa517de8464a952e5347e7d8",
+          "template_normalized_sha256": "87042f906cc9ccde2bc69309db2f00757b6f37bac836c92096863b2fd4017e0a",
+          "original_source_sha256": "d80f87f62a72a68e9dd4d76b9ee5a7c2396da22866da0ac98e07bcbd4602bf45",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "6df4b9a5e056cf563b747c7dbdc2a00eaedabddbeee987a7f983779cbef3698b",
+        "validation_value": -2.0473715203632542e+23,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.103237,
+          "medianMs": 0.102296,
+          "minMs": 0.102291,
+          "maxMs": 0.109311,
+          "p95Ms": 0.109311,
+          "stddevMs": 0.002255,
+          "ci95LowerMs": 0.10184,
+          "ci95UpperMs": 0.104635,
+          "samplesMs": [
+            0.104621,
+            0.102301,
+            0.102292,
+            0.109311,
+            0.102291,
+            0.102381,
+            0.102291,
+            0.102292,
+            0.102291,
+            0.102301
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 51.759988,
+          "medianMs": 51.514036,
+          "minMs": 50.731017,
+          "maxMs": 53.760205,
+          "p95Ms": 53.760205,
+          "stddevMs": 0.972001,
+          "ci95LowerMs": 51.157536,
+          "ci95UpperMs": 52.362441
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.508372,
+          "medianMs": 2.525658,
+          "minMs": 2.32636,
+          "maxMs": 2.612324,
+          "p95Ms": 2.612324,
+          "stddevMs": 0.075449,
+          "ci95LowerMs": 2.461609,
+          "ci95UpperMs": 2.555136,
+          "startupAdjustedMeanMs": 2.508372
+        }
+      },
+      {
+        "case": "record-value-medium",
+        "language": "rust",
+        "tool": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+        "source": {
+          "file": "sources/record-value-medium/rust.rs",
+          "sha256": "daa95a8ada143153970912f263f9ef30b4db63b11d7c4ed51a6a5489ebcb3019",
+          "normalized_source_sha256": "262102e4039d99c03e360277111b286afe469168b19b915951a4368c1b404dd9",
+          "template_normalized_sha256": "873322b9b48eebcd170bb14a29b908a7aabc7131e9c9af47faf90d6d07a889c5",
+          "original_source_sha256": "0959ae143c740ce5c5454649a84a2f0f444caa646127954fadc8603faf142f9e",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "22fd3c0c6f79c3781c6862076207107d75551faeca6e8e69219792a1f0e63d4e",
+        "validation_value": -2.0473715203632542e+23,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.104108,
+          "medianMs": 0.102302,
+          "minMs": 0.102291,
+          "maxMs": 0.109721,
+          "p95Ms": 0.109721,
+          "stddevMs": 0.002959,
+          "ci95LowerMs": 0.102274,
+          "ci95UpperMs": 0.105942,
+          "samplesMs": [
+            0.107641,
+            0.102301,
+            0.102302,
+            0.102301,
+            0.109721,
+            0.102361,
+            0.107581,
+            0.102292,
+            0.102291,
+            0.102291
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 193.109884,
+          "medianMs": 193.700611,
+          "minMs": 189.973478,
+          "maxMs": 194.621487,
+          "p95Ms": 194.621487,
+          "stddevMs": 1.687397,
+          "ci95LowerMs": 192.064025,
+          "ci95UpperMs": 194.155743
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.671567,
+          "medianMs": 2.542043,
+          "minMs": 2.512572,
+          "maxMs": 3.745038,
+          "p95Ms": 3.745038,
+          "stddevMs": 0.380254,
+          "ci95LowerMs": 2.435883,
+          "ci95UpperMs": 2.90725,
+          "startupAdjustedMeanMs": 2.671567
+        }
+      },
+      {
+        "case": "record-value-medium",
+        "language": "zig",
+        "tool": "0.16.0",
+        "source": {
+          "file": "sources/record-value-medium/zig.zig",
+          "sha256": "45cc0dbe348dc2411000057d4c9a9b87c9246f891df92e86b69a1599cdcec5f3",
+          "normalized_source_sha256": "f1714ef5515e2dfcd7fe5e24c36e4f0bc0e4ebbce6a67168d3891cb9f237ebc0",
+          "template_normalized_sha256": "7ac6e814d2c7beb9d08786ee07153ebc3534242e238bc0218daab42bc1bb24a4",
+          "original_source_sha256": "b782cfd7448fa2002ef8b9a72b3492023bcfa72b725b651a312dd1892da6adc8",
+          "instrumentation": "Append scalar C ABI entry calling unchanged original75000-step run; original main and algorithm untouched."
+        },
+        "compiled_kernel_sha256": "c492c0c3544df7eafc46c10608fbe97aab3592ba78e2e41d6884ac61f2b0277b",
+        "validation_value": -2.0473715203632542e+23,
+        "raw_kernel": {
+          "count": 10,
+          "meanMs": 0.102865,
+          "medianMs": 0.102326,
+          "minMs": 0.102291,
+          "maxMs": 0.105902,
+          "p95Ms": 0.105902,
+          "stddevMs": 0.001185,
+          "ci95LowerMs": 0.102131,
+          "ci95UpperMs": 0.1036,
+          "samplesMs": [
+            0.102352,
+            0.102291,
+            0.102301,
+            0.102612,
+            0.102291,
+            0.102351,
+            0.102291,
+            0.105902,
+            0.103961,
+            0.102301
+          ]
+        },
+        "affinity_logical_cpu": 0,
+        "parallel_runtime": null,
+        "compile_wall": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 141.149198,
+          "medianMs": 140.880923,
+          "minMs": 134.263287,
+          "maxMs": 153.334264,
+          "p95Ms": 153.334264,
+          "stddevMs": 6.077293,
+          "ci95LowerMs": 137.382453,
+          "ci95UpperMs": 144.915943
+        },
+        "process_runtime": {
+          "samples_retained": false,
+          "count": 10,
+          "meanMs": 2.501052,
+          "medianMs": 2.480302,
+          "minMs": 2.438442,
+          "maxMs": 2.644144,
+          "p95Ms": 2.644144,
+          "stddevMs": 0.07404,
+          "ci95LowerMs": 2.455161,
+          "ci95UpperMs": 2.546942,
+          "startupAdjustedMeanMs": 2.501052
+        }
+      }
+    ],
+    "measurement_scopes": [
+      {
+        "name": "additional-eight-default",
+        "rows": 29
+      },
+      {
+        "name": "additional-two-default",
+        "rows": 8
+      }
+    ]
+  }
+}

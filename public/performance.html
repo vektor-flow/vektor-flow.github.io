@@ -37,11 +37,18 @@
 <tr><td>Combined kernels</td><td>2.278×</td><td>3.708×</td><td>4.209×</td></tr>
 <tr><td>Combined kernels, independent tasks</td><td>1.661×</td><td>2.704×</td><td>3.073×</td></tr>
 </tbody></table></div>
+<h2 id="symbolic-operations">Symbolic operations</h2>
+<p>Original symbolic operations, ten runs each with default settings. Expression setup is excluded. Peer engines and browser timings are unmeasured.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Operation</th><th scope="col">Linux ms</th><th scope="col">Firefox ms</th></tr></thead><tbody>
+<tr><td>Expansion, 39,711 terms</td><td>44801.898 ± 70.529</td><td>-</td></tr>
+<tr><td>Expansion, 6,272 terms</td><td>316.447 ± 1.650</td><td>-</td></tr>
+<tr><td>Addition, 2,998 terms</td><td>0.462 ± 0.015</td><td>-</td></tr>
+<tr><td>Series, coefficient 999</td><td>3.053 ± 0.027</td><td>-</td></tr>
+</tbody></table></div>
 <h2 id="other-workloads">Other workloads</h2>
 <div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">Result</th></tr></thead><tbody>
 <tr><td>Linear algebra</td><td>-</td></tr>
 <tr><td>Lazy data</td><td>-</td></tr>
-<tr><td>Symbolic mathematics</td><td>-</td></tr>
 <tr><td>Physics state evolution</td><td>-</td></tr>
 </tbody></table></div>
 <p>A <code>-</code> means unsupported, failed or unmeasured. Compile and startup measurements are separate in the reports; native peer compile/process results retain aggregates, while all kernel samples are retained. Earlier-version results are not reused.</p>

@@ -9,6 +9,7 @@
 </style></head>
 <body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html" aria-current="page">Performance</a></nav><span class="release-version">0.7.1 · Preview</span></header>
 <main class="documentation"><article id="readme-documentation" class="readme"><h1 id="performance">Performance</h1>
+<p>Linux measurements below precede the native performance fix. Firefox measurements still match the browser compiler.</p>
 <p>Ten runs per measured workload. Times are mean ± sample standard deviation in milliseconds; compilation, process startup and output formatting are excluded.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">Linux ms</th><th scope="col">Firefox ms</th></tr></thead><tbody>
 <tr><td>Spectral norm, large</td><td>36.444 ± 0.020</td><td>966.720 ± 2.886</td></tr>
@@ -27,9 +28,9 @@
 <tr><td>Fixed-vector recurrence</td><td>0.794 ± 0.017</td><td>14.156 ± 2.123</td></tr>
 <tr><td>Record-value recurrence</td><td>0.758 ± 0.003</td><td>36.198 ± 0.588</td></tr>
 </tbody></table></div>
-<p>Linux uses tuned policies for the five large workloads and default settings for the other ten. The independent-task Linux case uses two physical cores; Firefox uses one execution thread. Three large browser programs exhaust the current 64 MiB arena; large N-body cannot yet emit WASM. Their <code>-</code> cells have no timing.</p>
+<p>Linux requests automatic optimization for the five large workloads and default settings for the other ten. The independent-task Linux case uses two physical cores; Firefox uses one execution thread. Three large browser programs exhaust the current 64 MiB arena; large N-body cannot yet emit WASM. Their <code>-</code> cells have no timing.</p>
 <h2 id="native-comparisons">Native comparisons</h2>
-<p>VKF time divided by peer time; below 1 means VKF is faster. These are the tuned large workloads. Peer implementations run serially, including the independent-task row.</p>
+<p>VKF time divided by peer time; below 1 means VKF is faster. These are the large workloads with automatic optimization requested. Peer implementations run serially, including the independent-task row.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">VKF/C++</th><th scope="col">VKF/Rust</th><th scope="col">VKF/Zig</th></tr></thead><tbody>
 <tr><td>Spectral norm, large</td><td>5.299×</td><td>3.191×</td><td>3.190×</td></tr>
 <tr><td>Fannkuch, large</td><td>5.523×</td><td>4.690×</td><td>4.299×</td></tr>

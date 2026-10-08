@@ -1,7 +1,7 @@
 {
   "schema": "vektor-flow.public-firefox-benchmarks.v1",
   "release": "0.7.1",
-  "generated_at": "2026-10-07T22:00:02.149005+00:00",
+  "generated_at": "2026-10-08T09:15:41.548503+00:00",
   "browser": {
     "user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:154.0) Gecko/20100101 Firefox/154.0",
     "cross_origin_isolated": true,
@@ -58,7 +58,7 @@
     "metric": "Canonical program entry invocation; VM reset, formatting and validation outside timing",
     "compile_metric": "Warm-loaded frontend compileSource after canonical compiler factory initialization; excludes download/factory startup",
     "browser_parallel_workers": 0,
-    "comparison": "Only exact source-matched warm raw kernel metrics are comparable; no parallel ratio or cold browser startup claim"
+    "host_note": "Shared workstation with other workers active; no exclusive-machine claim."
   },
   "attempted_maintained_cases": 15,
   "qualified_cases": 11,
@@ -76,89 +76,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 967.3000000000002,
+          "elapsed_ms": 983.1199999999999,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 969.1800000000003,
+          "elapsed_ms": 993.1799999999994,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 971.1200000000008,
+          "elapsed_ms": 996.5799999999999,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 966.6200000000008,
+          "elapsed_ms": 996.8999999999996,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 967.5199999999986,
+          "elapsed_ms": 981.7999999999993,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 965.7800000000007,
+          "elapsed_ms": 980.2400000000016,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 969.9400000000005,
+          "elapsed_ms": 985.9400000000005,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 963.6399999999994,
+          "elapsed_ms": 979.9200000000001,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 962.380000000001,
+          "elapsed_ms": 990.5400000000009,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         },
         {
-          "elapsed_ms": 963.7200000000012,
+          "elapsed_ms": 989.2600000000002,
           "stdout": "1.2742241159529055\n",
           "actual_value": 1.2742241159529055
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          967.3000000000002,
-          969.1800000000003,
-          971.1200000000008,
-          966.6200000000008,
-          967.5199999999986,
-          965.7800000000007,
-          969.9400000000005,
-          963.6399999999994,
-          962.380000000001,
-          963.7200000000012
+          983.1199999999999,
+          993.1799999999994,
+          996.5799999999999,
+          996.8999999999996,
+          981.7999999999993,
+          980.2400000000016,
+          985.9400000000005,
+          979.9200000000001,
+          990.5400000000009,
+          989.2600000000002
         ],
-        "median_ms": 966.9600000000005,
-        "mean_ms": 966.7200000000005,
-        "sample_standard_deviation_ms": 2.8862124353937966
+        "median_ms": 987.6000000000004,
+        "mean_ms": 987.7480000000002,
+        "sample_standard_deviation_ms": 6.489863549327207
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          2927.399999999998,
-          2918.0399999999972,
-          2910.7999999999993,
-          2916.8199999999997,
-          3266.540000000001,
-          2938.5600000000013,
-          2924.6399999999994,
-          2945.7000000000044,
-          2932.5800000000017,
-          2936.479999999996
+          2935.6800000000003,
+          2915.279999999999,
+          2917.5200000000004,
+          2917.5800000000017,
+          3259.4399999999987,
+          2973.0999999999985,
+          2920.0800000000017,
+          2925.3800000000047,
+          2932.1200000000026,
+          2928.6600000000035
         ],
-        "median_ms": 2929.99,
-        "mean_ms": 2961.756,
-        "sample_standard_deviation_ms": 107.63313731787714,
+        "median_ms": 2927.020000000004,
+        "mean_ms": 2962.4840000000013,
+        "sample_standard_deviation_ms": 105.68359982093206,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -179,15 +179,13 @@
       "program_wasm_sha256": "6164d7fbd4dc4fdc0551a96ea966d515231e711c53f3fecd3588a6bf67bcbcb0",
       "original_expected_value": 7319638,
       "status": "failed",
-      "reason": "Compiler-owned program allocation arena exhausted on the first invocation; 64 MiB capacity has no public configuration knob",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
       "error_name": "RuntimeError",
-      "error_message": "unreachable executed",
-      "failure_phase": "first warmup before any measured sample; reproduced with a fresh instance and no reset",
-      "heap_pointer": 76117776,
+      "measured_samples": 0,
       "heap_limit": 76117776,
-      "memory_bytes": 76152832,
+      "heap_pointer": 76117776,
       "allocation_miss": 1,
-      "measured_samples": 0
+      "failure_phase": "first warmup; no operation samples measured"
     },
     {
       "case": "n-body-large",
@@ -199,8 +197,9 @@
       },
       "program_wasm_sha256": null,
       "original_expected_value": 0.1779462269170188,
-      "status": "unsupported",
-      "reason": "Error: WASM norm requires a fixed numeric aggregate in function advance.body.body[1].expr.segments[0].body[1].expr.segments[0].body[2].value.right.left",
+      "status": "failed",
+      "reason": "WASM norm requires a fixed numeric aggregate in function advance.body.body[1].expr.segments[0].body[1].expr.segments[0].body[2].value.right.left",
+      "error_name": "Error",
       "measured_samples": 0
     },
     {
@@ -214,15 +213,13 @@
       "program_wasm_sha256": "5b17d38b6e215f52c6547ab94963f642775e2098476094e5f15e4d70d8e06889",
       "original_expected_value": 1725861.452170343,
       "status": "failed",
-      "reason": "Compiler-owned program allocation arena exhausted on the first invocation; 64 MiB capacity has no public configuration knob",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
       "error_name": "RuntimeError",
-      "error_message": "unreachable executed",
-      "failure_phase": "first warmup before any measured sample; reproduced with a fresh instance and no reset",
-      "heap_pointer": 76163440,
+      "measured_samples": 0,
       "heap_limit": 76163456,
-      "memory_bytes": 76218368,
+      "heap_pointer": 76163440,
       "allocation_miss": 1,
-      "measured_samples": 0
+      "failure_phase": "first warmup; no operation samples measured"
     },
     {
       "case": "combined-kernels-parallel-large",
@@ -235,15 +232,13 @@
       "program_wasm_sha256": "43b2e6d2dfde376d9cc4522fab7aed1c848af68ced56f55e72b73f0db9d1857f",
       "original_expected_value": 1725861.452170343,
       "status": "failed",
-      "reason": "Compiler-owned program allocation arena exhausted on the first invocation; 64 MiB capacity has no public configuration knob",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
       "error_name": "RuntimeError",
-      "error_message": "unreachable executed",
-      "failure_phase": "first warmup before any measured sample; reproduced with a fresh instance and no reset",
-      "heap_pointer": 76161824,
+      "measured_samples": 0,
       "heap_limit": 76163696,
-      "memory_bytes": 76218368,
+      "heap_pointer": 76161824,
       "allocation_miss": 1,
-      "measured_samples": 0
+      "failure_phase": "first warmup; no operation samples measured"
     },
     {
       "case": "startup",
@@ -263,7 +258,12 @@
           "actual_value": 0
         },
         {
-          "elapsed_ms": 0,
+          "elapsed_ms": 0.020000000004074536,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0.020000000004074536,
           "stdout": "0\n",
           "actual_value": 0
         },
@@ -273,12 +273,7 @@
           "actual_value": 0
         },
         {
-          "elapsed_ms": 0,
-          "stdout": "0\n",
-          "actual_value": 0
-        },
-        {
-          "elapsed_ms": 0,
+          "elapsed_ms": 0.020000000004074536,
           "stdout": "0\n",
           "actual_value": 0
         },
@@ -311,10 +306,10 @@
       "raw_operation": {
         "samples_ms": [
           0,
+          0.020000000004074536,
+          0.020000000004074536,
           0,
-          0,
-          0,
-          0,
+          0.020000000004074536,
           0,
           0,
           0,
@@ -322,25 +317,25 @@
           0
         ],
         "median_ms": 0,
-        "mean_ms": 0,
-        "sample_standard_deviation_ms": 0
+        "mean_ms": 0.006000000001222361,
+        "sample_standard_deviation_ms": 0.009660917832761146
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          13.379999999999995,
-          15.56000000000006,
-          11.519999999999982,
-          11.480000000000018,
-          11.120000000000005,
-          10.720000000000027,
-          10.879999999999995,
-          10.600000000000023,
-          11.339999999999918,
-          11.120000000000118
+          10.559999999997672,
+          10.119999999995343,
+          9.979999999995925,
+          9.89999999999418,
+          10.099999999991269,
+          9.960000000006403,
+          10.039999999993597,
+          10.419999999998254,
+          10.179999999993015,
+          10.080000000001746
         ],
-        "median_ms": 11.230000000000018,
-        "mean_ms": 11.772000000000014,
-        "sample_standard_deviation_ms": 1.5418661132248603,
+        "median_ms": 10.089999999996508,
+        "mean_ms": 10.13399999999674,
+        "sample_standard_deviation_ms": 0.20742870261044313,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -348,8 +343,7 @@
       "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
       "selected_workers": 0,
       "execution_mode": "single Firefox main thread",
-      "imports": [],
-      "resolution_note": "Below performance.now clock resolution; zero samples are retained without a fabricated timing or ratio."
+      "imports": []
     },
     {
       "case": "scalar-control-small",
@@ -364,89 +358,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 1.1400000000001,
+          "elapsed_ms": 1.1600000000034925,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.1399999999998727,
+          "elapsed_ms": 1.139999999999418,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.240000000000009,
+          "elapsed_ms": 1.3399999999965075,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.3200000000001637,
+          "elapsed_ms": 1.3799999999901047,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.259999999999991,
+          "elapsed_ms": 1.2399999999906868,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.3999999999998636,
+          "elapsed_ms": 1.3000000000029104,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.3999999999998636,
+          "elapsed_ms": 1.3000000000029104,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.4399999999998272,
+          "elapsed_ms": 1.4199999999982538,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.240000000000009,
+          "elapsed_ms": 1.2799999999988358,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         },
         {
-          "elapsed_ms": 1.3799999999998818,
+          "elapsed_ms": 1.2400000000052387,
           "stdout": "21.017288693559877\n",
           "actual_value": 21.017288693559877
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          1.1400000000001,
-          1.1399999999998727,
-          1.240000000000009,
-          1.3200000000001637,
-          1.259999999999991,
-          1.3999999999998636,
-          1.3999999999998636,
-          1.4399999999998272,
-          1.240000000000009,
-          1.3799999999998818
+          1.1600000000034925,
+          1.139999999999418,
+          1.3399999999965075,
+          1.3799999999901047,
+          1.2399999999906868,
+          1.3000000000029104,
+          1.3000000000029104,
+          1.4199999999982538,
+          1.2799999999988358,
+          1.2400000000052387
         ],
-        "median_ms": 1.2900000000000773,
-        "mean_ms": 1.295999999999958,
-        "sample_standard_deviation_ms": 0.10864826019974763
+        "median_ms": 1.2900000000008731,
+        "mean_ms": 1.2799999999988358,
+        "sample_standard_deviation_ms": 0.08894442709229954
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          130.57999999999993,
-          126.41999999999985,
-          124.55999999999995,
-          125.36000000000013,
-          123.07999999999993,
-          122.40000000000009,
-          121.96000000000004,
-          122.75999999999976,
-          123.46000000000004,
-          125.7199999999998
+          134.47999999999593,
+          132.40000000000873,
+          132.41999999999825,
+          131.6600000000035,
+          132.68000000000757,
+          132.6999999999971,
+          132.13999999999942,
+          131.72000000000116,
+          132.35999999998603,
+          132.68000000000757
         ],
-        "median_ms": 124.00999999999999,
-        "mean_ms": 124.62999999999995,
-        "sample_standard_deviation_ms": 2.575581919144115,
+        "median_ms": 132.4100000000035,
+        "mean_ms": 132.5240000000005,
+        "sample_standard_deviation_ms": 0.781667732762818,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -469,89 +463,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 39.73999999999978,
+          "elapsed_ms": 39.73999999999069,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 38.97999999999956,
+          "elapsed_ms": 41.94000000000233,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 40.11999999999989,
+          "elapsed_ms": 40.63999999999942,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 39.38000000000011,
+          "elapsed_ms": 40.80000000000291,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 39.399999999999636,
+          "elapsed_ms": 39.94000000000233,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 39.14000000000033,
+          "elapsed_ms": 39.86000000000058,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 40.600000000000364,
+          "elapsed_ms": 39.84000000001106,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 43.07999999999993,
+          "elapsed_ms": 39.76000000000931,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 39.88000000000011,
+          "elapsed_ms": 39.720000000001164,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         },
         {
-          "elapsed_ms": 39.69999999999982,
+          "elapsed_ms": 39.74000000000524,
           "stdout": "1.2742199912349306\n",
           "actual_value": 1.2742199912349306
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          39.73999999999978,
-          38.97999999999956,
-          40.11999999999989,
-          39.38000000000011,
-          39.399999999999636,
-          39.14000000000033,
-          40.600000000000364,
-          43.07999999999993,
-          39.88000000000011,
-          39.69999999999982
+          39.73999999999069,
+          41.94000000000233,
+          40.63999999999942,
+          40.80000000000291,
+          39.94000000000233,
+          39.86000000000058,
+          39.84000000001106,
+          39.76000000000931,
+          39.720000000001164,
+          39.74000000000524
         ],
-        "median_ms": 39.7199999999998,
-        "mean_ms": 40.00199999999995,
-        "sample_standard_deviation_ms": 1.181202776833888
+        "median_ms": 39.85000000000582,
+        "mean_ms": 40.1980000000025,
+        "sample_standard_deviation_ms": 0.7258068307443218
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          2120.16,
-          2122.4799999999996,
-          2351.5600000000013,
-          2157.58,
-          2119.16,
-          2087.6399999999994,
-          2090,
-          2090.5200000000004,
-          2085.420000000002,
-          2084.779999999999
+          2096.9400000000023,
+          2094.5,
+          2086.7599999999948,
+          2138.5399999999936,
+          2094.720000000001,
+          2118.6399999999994,
+          2118.5999999999913,
+          2094.979999999996,
+          2098.5199999999895,
+          2106.959999999992
         ],
-        "median_ms": 2104.84,
-        "mean_ms": 2130.93,
-        "sample_standard_deviation_ms": 81.03290648454733,
+        "median_ms": 2097.729999999996,
+        "mean_ms": 2104.915999999996,
+        "sample_standard_deviation_ms": 15.831377563418606,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -574,89 +568,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 270.0400000000009,
+          "elapsed_ms": 244.61999999999534,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 265.3600000000006,
+          "elapsed_ms": 247.11999999999534,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 263.09999999999854,
+          "elapsed_ms": 250.82000000000698,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 266.46000000000276,
+          "elapsed_ms": 248.09999999997672,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 241.02000000000044,
+          "elapsed_ms": 247.36000000001513,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 243.4399999999987,
+          "elapsed_ms": 247.55999999999767,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 240.59999999999854,
+          "elapsed_ms": 247.04000000000815,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 240.45999999999913,
+          "elapsed_ms": 246.46000000002095,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 240.38000000000102,
+          "elapsed_ms": 246.81999999997788,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         },
         {
-          "elapsed_ms": 240.8199999999997,
+          "elapsed_ms": 247.45999999999185,
           "stdout": "1.2742238666431718\n",
           "actual_value": 1.2742238666431718
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          270.0400000000009,
-          265.3600000000006,
-          263.09999999999854,
-          266.46000000000276,
-          241.02000000000044,
-          243.4399999999987,
-          240.59999999999854,
-          240.45999999999913,
-          240.38000000000102,
-          240.8199999999997
+          244.61999999999534,
+          247.11999999999534,
+          250.82000000000698,
+          248.09999999997672,
+          247.36000000001513,
+          247.55999999999767,
+          247.04000000000815,
+          246.46000000002095,
+          246.81999999997788,
+          247.45999999999185
         ],
-        "median_ms": 242.22999999999956,
-        "mean_ms": 251.16800000000003,
-        "sample_standard_deviation_ms": 13.107643910669259
+        "median_ms": 247.24000000000524,
+        "mean_ms": 247.3359999999986,
+        "sample_standard_deviation_ms": 1.539575699124757
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          2256.7800000000025,
-          2251.739999999998,
-          2242.239999999998,
-          2237.3600000000006,
-          2236.739999999998,
-          2240.800000000003,
-          2244.1200000000026,
-          2252.4200000000055,
-          2252.3600000000006,
-          2362.1399999999994
+          2380.3000000000175,
+          2378.359999999986,
+          2367.899999999994,
+          2363.399999999994,
+          2355.860000000015,
+          2373.9199999999837,
+          2391.779999999999,
+          2373.0999999999767,
+          2364.279999999999,
+          2372
         ],
-        "median_ms": 2247.9300000000003,
-        "mean_ms": 2257.670000000001,
-        "sample_standard_deviation_ms": 37.36091510894446,
+        "median_ms": 2372.5499999999884,
+        "mean_ms": 2372.0899999999965,
+        "sample_standard_deviation_ms": 10.089991740992302,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -679,89 +673,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 63.62000000000262,
+          "elapsed_ms": 63.85999999998603,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 76.31999999999971,
+          "elapsed_ms": 63.88000000000466,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 63.11999999999534,
+          "elapsed_ms": 62.9199999999837,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 63.68000000000029,
+          "elapsed_ms": 63.61999999999534,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 63.16000000000349,
+          "elapsed_ms": 63.83999999999651,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 62.61999999999534,
+          "elapsed_ms": 64.73999999999069,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 62.279999999998836,
+          "elapsed_ms": 63.26000000000931,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 62.69999999999709,
+          "elapsed_ms": 64.01999999998952,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 62.75999999999476,
+          "elapsed_ms": 63.52000000001863,
           "stdout": "22816\n",
           "actual_value": 22816
         },
         {
-          "elapsed_ms": 62.80000000000291,
+          "elapsed_ms": 64.73999999999069,
           "stdout": "22816\n",
           "actual_value": 22816
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          63.62000000000262,
-          76.31999999999971,
-          63.11999999999534,
-          63.68000000000029,
-          63.16000000000349,
-          62.61999999999534,
-          62.279999999998836,
-          62.69999999999709,
-          62.75999999999476,
-          62.80000000000291
+          63.85999999998603,
+          63.88000000000466,
+          62.9199999999837,
+          63.61999999999534,
+          63.83999999999651,
+          64.73999999999069,
+          63.26000000000931,
+          64.01999999998952,
+          63.52000000001863,
+          64.73999999999069
         ],
-        "median_ms": 62.95999999999913,
-        "mean_ms": 64.30599999999905,
-        "sample_standard_deviation_ms": 4.2439923552139405
+        "median_ms": 63.84999999999127,
+        "mean_ms": 63.83999999999651,
+        "sample_standard_deviation_ms": 0.576194411632801
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          778.0199999999968,
-          759.6200000000026,
-          775.1599999999962,
-          767.7400000000052,
-          770.6399999999994,
-          781.060000000005,
-          770,
-          768.8799999999974,
-          755.8600000000006,
-          776.5400000000009
+          770.5400000000081,
+          767.640000000014,
+          761.6999999999825,
+          760.2799999999988,
+          753.9199999999837,
+          757.2000000000116,
+          761.1999999999825,
+          761.4599999999919,
+          759,
+          763.0800000000163
         ],
-        "median_ms": 770.3199999999997,
-        "mean_ms": 770.3520000000004,
-        "sample_standard_deviation_ms": 7.953041067554937,
+        "median_ms": 761.3299999999872,
+        "mean_ms": 761.601999999999,
+        "sample_standard_deviation_ms": 4.779934448650089,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -784,89 +778,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 632.1600000000035,
+          "elapsed_ms": 626.7799999999988,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 636.9800000000105,
+          "elapsed_ms": 633.640000000014,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 632.1800000000076,
+          "elapsed_ms": 634.0800000000163,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 636.1600000000035,
+          "elapsed_ms": 634.8000000000175,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 625.1800000000076,
+          "elapsed_ms": 637.179999999993,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 623.2400000000052,
+          "elapsed_ms": 636.0799999999872,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 628.679999999993,
+          "elapsed_ms": 639.3800000000047,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 630.7200000000012,
+          "elapsed_ms": 639.2000000000116,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 632.2599999999948,
+          "elapsed_ms": 639.6600000000035,
           "stdout": "161622\n",
           "actual_value": 161622
         },
         {
-          "elapsed_ms": 632.4599999999919,
+          "elapsed_ms": 642.9000000000233,
           "stdout": "161622\n",
           "actual_value": 161622
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          632.1600000000035,
-          636.9800000000105,
-          632.1800000000076,
-          636.1600000000035,
-          625.1800000000076,
-          623.2400000000052,
-          628.679999999993,
-          630.7200000000012,
-          632.2599999999948,
-          632.4599999999919
+          626.7799999999988,
+          633.640000000014,
+          634.0800000000163,
+          634.8000000000175,
+          637.179999999993,
+          636.0799999999872,
+          639.3800000000047,
+          639.2000000000116,
+          639.6600000000035,
+          642.9000000000233
         ],
-        "median_ms": 632.1700000000055,
-        "mean_ms": 631.0020000000019,
-        "sample_standard_deviation_ms": 4.325556611582075
+        "median_ms": 636.6299999999901,
+        "mean_ms": 636.3700000000069,
+        "sample_standard_deviation_ms": 4.452267836610333
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          751.3399999999965,
-          751.4199999999983,
-          748.179999999993,
-          746.4799999999959,
-          751.9199999999983,
-          754.6999999999971,
-          751.5400000000081,
-          755.7599999999948,
-          750.0400000000081,
-          747.5600000000122
+          794.5799999999872,
+          758.1599999999744,
+          758.6199999999953,
+          761.5199999999895,
+          764.6800000000221,
+          763.0599999999977,
+          764.6600000000035,
+          771.2600000000093,
+          771.8800000000047,
+          783.0200000000186
         ],
-        "median_ms": 751.3799999999974,
-        "mean_ms": 750.8940000000002,
-        "sample_standard_deviation_ms": 2.959039633993647,
+        "median_ms": 764.6700000000128,
+        "mean_ms": 769.1440000000002,
+        "sample_standard_deviation_ms": 11.633636290231637,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -889,89 +883,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 16.76000000000022,
+          "elapsed_ms": 17.10000000000582,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.580000000000382,
+          "elapsed_ms": 17.119999999995343,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.740000000000236,
+          "elapsed_ms": 17.220000000001164,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.800000000000182,
+          "elapsed_ms": 17.14000000001397,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.66000000000031,
+          "elapsed_ms": 17.220000000001164,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.7800000000002,
+          "elapsed_ms": 17.160000000003492,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.559999999999945,
+          "elapsed_ms": 17.239999999990687,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.61999999999989,
+          "elapsed_ms": 18,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.639999999999873,
+          "elapsed_ms": 17.380000000004657,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         },
         {
-          "elapsed_ms": 16.699999999999818,
+          "elapsed_ms": 17.320000000006985,
           "stdout": "0.17058959158982623\n",
           "actual_value": 0.17058959158982623
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          16.76000000000022,
-          16.580000000000382,
-          16.740000000000236,
-          16.800000000000182,
-          16.66000000000031,
-          16.7800000000002,
-          16.559999999999945,
-          16.61999999999989,
-          16.639999999999873,
-          16.699999999999818
+          17.10000000000582,
+          17.119999999995343,
+          17.220000000001164,
+          17.14000000001397,
+          17.220000000001164,
+          17.160000000003492,
+          17.239999999990687,
+          18,
+          17.380000000004657,
+          17.320000000006985
         ],
-        "median_ms": 16.680000000000064,
-        "mean_ms": 16.684000000000104,
-        "sample_standard_deviation_ms": 0.08474799243776213
+        "median_ms": 17.220000000001164,
+        "mean_ms": 17.29000000000233,
+        "sample_standard_deviation_ms": 0.26453313171954157
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          2196.9799999999996,
-          2174.04,
-          2193.079999999999,
-          2174.1000000000004,
-          2175.84,
-          2158.42,
-          2162.459999999999,
-          2165.5399999999972,
-          2160.079999999998,
-          2161.2800000000025
+          2142,
+          2142,
+          2131.560000000027,
+          2112.399999999994,
+          2108.220000000001,
+          2106.2399999999907,
+          2110.540000000008,
+          2143.5599999999977,
+          2146.859999999986,
+          2099.459999999992
         ],
-        "median_ms": 2169.7899999999986,
-        "mean_ms": 2172.182,
-        "sample_standard_deviation_ms": 13.60358269803291,
+        "median_ms": 2121.9800000000105,
+        "mean_ms": 2124.2839999999997,
+        "sample_standard_deviation_ms": 18.534920315748405,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -994,89 +988,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 232.5799999999981,
+          "elapsed_ms": 230.6600000000035,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 223.90000000000146,
+          "elapsed_ms": 231.17999999999302,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 221.0600000000013,
+          "elapsed_ms": 233.44000000000233,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 232.47999999999956,
+          "elapsed_ms": 233.72000000000116,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 220.8199999999997,
+          "elapsed_ms": 233.5800000000163,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 215.15999999999985,
+          "elapsed_ms": 231.14000000001397,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 223.8199999999997,
+          "elapsed_ms": 225.0800000000163,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 218.05999999999767,
+          "elapsed_ms": 232.5,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 225.13999999999942,
+          "elapsed_ms": 231.01999999998952,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         },
         {
-          "elapsed_ms": 232.14000000000306,
+          "elapsed_ms": 227.52000000001863,
           "stdout": "0.16236109654075581\n",
           "actual_value": 0.1623610965407558
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          232.5799999999981,
-          223.90000000000146,
-          221.0600000000013,
-          232.47999999999956,
-          220.8199999999997,
-          215.15999999999985,
-          223.8199999999997,
-          218.05999999999767,
-          225.13999999999942,
-          232.14000000000306
+          230.6600000000035,
+          231.17999999999302,
+          233.44000000000233,
+          233.72000000000116,
+          233.5800000000163,
+          231.14000000001397,
+          225.0800000000163,
+          232.5,
+          231.01999999998952,
+          227.52000000001863
         ],
-        "median_ms": 223.86000000000058,
-        "mean_ms": 224.516,
-        "sample_standard_deviation_ms": 6.170278581861716
+        "median_ms": 231.1600000000035,
+        "mean_ms": 230.98400000000547,
+        "sample_standard_deviation_ms": 2.7805003546480127
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          2498.3399999999965,
-          2160.5999999999985,
-          2185.6200000000026,
-          2181.0599999999977,
-          2187.8399999999965,
-          2173.0800000000017,
-          2182.0799999999945,
-          2160.3600000000006,
-          2161.5999999999985,
-          2161.1800000000003
+          2117.7999999999884,
+          2125.359999999986,
+          2115.720000000001,
+          2122.9400000000023,
+          2136.2000000000116,
+          2117.7399999999907,
+          2143.4800000000105,
+          2112.9400000000023,
+          2121.960000000021,
+          2113.1600000000035
         ],
-        "median_ms": 2177.0699999999997,
-        "mean_ms": 2205.1759999999986,
-        "sample_standard_deviation_ms": 103.60355755367478,
+        "median_ms": 2119.8800000000047,
+        "mean_ms": 2122.730000000002,
+        "sample_standard_deviation_ms": 10.029575154405,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -1099,89 +1093,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 12.840000000000146,
+          "elapsed_ms": 12.779999999998836,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 12.600000000000136,
+          "elapsed_ms": 12.779999999998836,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 12.740000000000009,
+          "elapsed_ms": 13.10000000000582,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 12.819999999999936,
+          "elapsed_ms": 12.959999999991851,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 13.700000000000045,
+          "elapsed_ms": 12.89999999999418,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 13.259999999999991,
+          "elapsed_ms": 12.960000000020955,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 13.779999999999973,
+          "elapsed_ms": 13.059999999997672,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 14.440000000000055,
+          "elapsed_ms": 13.040000000008149,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 15.900000000000091,
+          "elapsed_ms": 12.800000000017462,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         },
         {
-          "elapsed_ms": 19.480000000000018,
+          "elapsed_ms": 13.299999999988358,
           "stdout": "10.099567298080487\n",
           "actual_value": 10.099567298080487
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          12.840000000000146,
-          12.600000000000136,
-          12.740000000000009,
-          12.819999999999936,
-          13.700000000000045,
-          13.259999999999991,
-          13.779999999999973,
-          14.440000000000055,
-          15.900000000000091,
-          19.480000000000018
+          12.779999999998836,
+          12.779999999998836,
+          13.10000000000582,
+          12.959999999991851,
+          12.89999999999418,
+          12.960000000020955,
+          13.059999999997672,
+          13.040000000008149,
+          12.800000000017462,
+          13.299999999988358
         ],
-        "median_ms": 13.480000000000018,
-        "mean_ms": 14.15600000000004,
-        "sample_standard_deviation_ms": 2.1229497298701023
+        "median_ms": 12.960000000006403,
+        "mean_ms": 12.968000000002212,
+        "sample_standard_deviation_ms": 0.1649781130231612
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          302.65999999999985,
-          280.48,
-          277.5999999999999,
-          286.3800000000001,
-          283.96000000000004,
-          283.65999999999985,
-          284.22000000000025,
-          284.96000000000004,
-          297.5999999999999,
-          286.1199999999999
+          288.6600000000035,
+          275.64000000001397,
+          275.9799999999814,
+          276.2600000000093,
+          277.2600000000093,
+          279.21999999997206,
+          278.27999999999884,
+          277.63999999998487,
+          277.5,
+          276.78000000002794
         ],
-        "median_ms": 284.59000000000015,
-        "mean_ms": 286.764,
-        "sample_standard_deviation_ms": 7.611066796302416,
+        "median_ms": 277.38000000000466,
+        "mean_ms": 278.3220000000001,
+        "sample_standard_deviation_ms": 3.789734086243324,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,
@@ -1204,89 +1198,89 @@
       "status": "passed",
       "samples": [
         {
-          "elapsed_ms": 36.5,
+          "elapsed_ms": 36.579999999987194,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 35.69999999999982,
+          "elapsed_ms": 36.01999999998952,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 37.460000000000036,
+          "elapsed_ms": 35.74000000001979,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 36.19999999999982,
+          "elapsed_ms": 36.94000000000233,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 35.659999999999854,
+          "elapsed_ms": 36.320000000006985,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 36.220000000000255,
+          "elapsed_ms": 37.39999999999418,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 35.85999999999967,
+          "elapsed_ms": 37.85999999998603,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 35.76000000000022,
+          "elapsed_ms": 37.34000000002561,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 36.839999999999236,
+          "elapsed_ms": 38.779999999998836,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         },
         {
-          "elapsed_ms": 35.780000000000655,
+          "elapsed_ms": 37.54000000000815,
           "stdout": "-2.0473715203632542e+23\n",
           "actual_value": -2.0473715203632542e+23
         }
       ],
       "raw_operation": {
         "samples_ms": [
-          36.5,
-          35.69999999999982,
-          37.460000000000036,
-          36.19999999999982,
-          35.659999999999854,
-          36.220000000000255,
-          35.85999999999967,
-          35.76000000000022,
-          36.839999999999236,
-          35.780000000000655
+          36.579999999987194,
+          36.01999999998952,
+          35.74000000001979,
+          36.94000000000233,
+          36.320000000006985,
+          37.39999999999418,
+          37.85999999998603,
+          37.34000000002561,
+          38.779999999998836,
+          37.54000000000815
         ],
-        "median_ms": 36.029999999999745,
-        "mean_ms": 36.19799999999996,
-        "sample_standard_deviation_ms": 0.588289422346116
+        "median_ms": 37.14000000001397,
+        "mean_ms": 37.05200000000186,
+        "sample_standard_deviation_ms": 0.9212648310256871
       },
       "warm_loaded_frontend_compile": {
         "samples_ms": [
-          233.63999999999942,
-          232.59999999999945,
-          232.65999999999985,
-          232.9399999999996,
-          236.67999999999938,
-          233.03999999999996,
-          234.5,
-          231.57999999999993,
-          232.64000000000033,
-          232.9400000000005
+          232.10000000000582,
+          233.36000000001513,
+          226.51999999998952,
+          227.11999999999534,
+          227.27999999999884,
+          227.22000000000116,
+          244.95999999999185,
+          238.5,
+          228.72000000000116,
+          226.55999999999767
         ],
-        "median_ms": 232.94000000000005,
-        "mean_ms": 233.32199999999983,
-        "sample_standard_deviation_ms": 1.3982353958550042,
+        "median_ms": 228,
+        "mean_ms": 231.23399999999964,
+        "sample_standard_deviation_ms": 6.196121008788963,
         "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
       },
       "warmups": 3,

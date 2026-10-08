@@ -9,51 +9,55 @@
 </style></head>
 <body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html" aria-current="page">Performance</a></nav><span class="release-version">0.7.1 · Preview</span></header>
 <main class="documentation"><article id="readme-documentation" class="readme"><h1 id="performance">Performance</h1>
-<p>Linux measurements below precede the native performance fix. Firefox measurements still match the browser compiler.</p>
-<p>Ten runs per measured workload. Times are mean ± sample standard deviation in milliseconds; compilation, process startup and output formatting are excluded.</p>
+<p>Measured from the current Linux download and browser compiler. Ten runs per measured workload. Times are mean ± sample standard deviation in milliseconds; compilation, process startup and output formatting are excluded.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">Linux ms</th><th scope="col">Firefox ms</th></tr></thead><tbody>
-<tr><td>Spectral norm, large</td><td>36.444 ± 0.020</td><td>966.720 ± 2.886</td></tr>
-<tr><td>Fannkuch, large</td><td>787.273 ± 1.116</td><td>-</td></tr>
-<tr><td>N-body, large</td><td>36.290 ± 0.023</td><td>-</td></tr>
-<tr><td>Combined kernels</td><td>394.252 ± 2.005</td><td>-</td></tr>
-<tr><td>Combined kernels, independent tasks</td><td>286.948 ± 0.259</td><td>-</td></tr>
-<tr><td>Empty program</td><td>&lt;0.001</td><td>Below timer resolution</td></tr>
-<tr><td>Scalar control</td><td>0.064 ± 0.000</td><td>1.296 ± 0.109</td></tr>
-<tr><td>Spectral norm, small</td><td>1.520 ± 0.010</td><td>40.002 ± 1.181</td></tr>
-<tr><td>Spectral norm, medium</td><td>9.240 ± 0.023</td><td>251.168 ± 13.108</td></tr>
-<tr><td>Fannkuch, small</td><td>0.854 ± 0.004</td><td>64.306 ± 4.244</td></tr>
-<tr><td>Fannkuch, medium</td><td>7.900 ± 0.006</td><td>631.002 ± 4.326</td></tr>
-<tr><td>N-body, small</td><td>0.230 ± 0.008</td><td>16.684 ± 0.085</td></tr>
-<tr><td>N-body, medium</td><td>2.273 ± 0.013</td><td>224.516 ± 6.170</td></tr>
-<tr><td>Fixed-vector recurrence</td><td>0.794 ± 0.017</td><td>14.156 ± 2.123</td></tr>
-<tr><td>Record-value recurrence</td><td>0.758 ± 0.003</td><td>36.198 ± 0.588</td></tr>
+<tr><td>Spectral norm, large</td><td>1.784 ± 0.013</td><td>987.748 ± 6.490</td></tr>
+<tr><td>Fannkuch, large</td><td>313.421 ± 6.687</td><td>-</td></tr>
+<tr><td>N-body, large</td><td>34.411 ± 0.119</td><td>-</td></tr>
+<tr><td>Combined kernels</td><td>113.240 ± 17.265</td><td>-</td></tr>
+<tr><td>Combined kernels, independent tasks</td><td>60.325 ± 2.363</td><td>-</td></tr>
+<tr><td>Empty program</td><td>&lt;0.001</td><td>0.006 ± 0.010</td></tr>
+<tr><td>Scalar control</td><td>0.066 ± 0.002</td><td>1.280 ± 0.089</td></tr>
+<tr><td>Spectral norm, small</td><td>1.487 ± 0.025</td><td>40.198 ± 0.726</td></tr>
+<tr><td>Spectral norm, medium</td><td>8.899 ± 0.025</td><td>247.336 ± 1.540</td></tr>
+<tr><td>Fannkuch, small</td><td>0.262 ± 0.008</td><td>63.840 ± 0.576</td></tr>
+<tr><td>Fannkuch, medium</td><td>2.486 ± 0.012</td><td>636.370 ± 4.452</td></tr>
+<tr><td>N-body, small</td><td>0.228 ± 0.020</td><td>17.290 ± 0.265</td></tr>
+<tr><td>N-body, medium</td><td>2.226 ± 0.006</td><td>230.984 ± 2.781</td></tr>
+<tr><td>Fixed-vector recurrence</td><td>0.811 ± 0.008</td><td>12.968 ± 0.165</td></tr>
+<tr><td>Record-value recurrence</td><td>0.791 ± 0.015</td><td>37.052 ± 0.921</td></tr>
 </tbody></table></div>
 <p>Linux requests automatic optimization for the five large workloads and default settings for the other ten. The independent-task Linux case uses two physical cores; Firefox uses one execution thread. Three large browser programs exhaust the current 64 MiB arena; large N-body cannot yet emit WASM. Their <code>-</code> cells have no timing.</p>
 <h2 id="native-comparisons">Native comparisons</h2>
-<p>VKF time divided by peer time; below 1 means VKF is faster. These are the large workloads with automatic optimization requested. Peer implementations run serially, including the independent-task row.</p>
+<p>VKF time divided by peer time; below 1 means VKF is faster. Both timings are from this run. Peer implementations run serially, including the independent-task row.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">VKF/C++</th><th scope="col">VKF/Rust</th><th scope="col">VKF/Zig</th></tr></thead><tbody>
-<tr><td>Spectral norm, large</td><td>5.299×</td><td>3.191×</td><td>3.190×</td></tr>
-<tr><td>Fannkuch, large</td><td>5.523×</td><td>4.690×</td><td>4.299×</td></tr>
-<tr><td>N-body, large</td><td>3.270×</td><td>4.649×</td><td>2.340×</td></tr>
-<tr><td>Combined kernels</td><td>2.278×</td><td>3.708×</td><td>4.209×</td></tr>
-<tr><td>Combined kernels, independent tasks</td><td>1.661×</td><td>2.704×</td><td>3.073×</td></tr>
+<tr><td>Spectral norm, large</td><td>0.253×</td><td>0.153×</td><td>0.153×</td></tr>
+<tr><td>Fannkuch, large</td><td>2.075×</td><td>1.795×</td><td>1.659×</td></tr>
+<tr><td>N-body, large</td><td>3.018×</td><td>4.291×</td><td>2.146×</td></tr>
+<tr><td>Combined kernels</td><td>0.572×</td><td>1.003×</td><td>0.943×</td></tr>
+<tr><td>Combined kernels, independent tasks</td><td>0.338×</td><td>0.549×</td><td>0.626×</td></tr>
 </tbody></table></div>
 <h2 id="symbolic-operations">Symbolic operations</h2>
-<p>Original symbolic operations, ten runs each with default settings. Expression setup is excluded. Peer engines and browser timings are unmeasured.</p>
+<p>Original symbolic operations, ten runs each with default settings. Expression setup is excluded. Peer engines are unavailable; browser symbolic timings are unmeasured.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Operation</th><th scope="col">Linux ms</th><th scope="col">Firefox ms</th></tr></thead><tbody>
-<tr><td>Expansion, 39,711 terms</td><td>44801.898 ± 70.529</td><td>-</td></tr>
-<tr><td>Expansion, 6,272 terms</td><td>316.447 ± 1.650</td><td>-</td></tr>
-<tr><td>Addition, 2,998 terms</td><td>0.462 ± 0.015</td><td>-</td></tr>
-<tr><td>Series, coefficient 999</td><td>3.053 ± 0.027</td><td>-</td></tr>
+<tr><td>Expansion, 39,711 terms</td><td>46676.718 ± 255.450</td><td>-</td></tr>
+<tr><td>Expansion, 6,272 terms</td><td>324.703 ± 1.089</td><td>-</td></tr>
+<tr><td>Addition, 2,998 terms</td><td>0.473 ± 0.022</td><td>-</td></tr>
+<tr><td>Series, coefficient 999</td><td>3.085 ± 0.018</td><td>-</td></tr>
 </tbody></table></div>
-<h2 id="other-workloads">Other workloads</h2>
-<div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">Result</th></tr></thead><tbody>
-<tr><td>Linear algebra</td><td>-</td></tr>
-<tr><td>Lazy data</td><td>-</td></tr>
-<tr><td>Physics state evolution</td><td>-</td></tr>
+<h2 id="linear-algebra">Linear algebra</h2>
+<p>All seven original workloads were rechecked with the current Linux download. They still fail to compile or exceed the compilation limit, so no valid performance ratio can be shown.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Workload</th><th scope="col">Linux ms</th><th scope="col">Firefox ms</th></tr></thead><tbody>
+<tr><td>Solve, 96×96</td><td>-</td><td>-</td></tr>
+<tr><td>Least squares, 96×48</td><td>-</td><td>-</td></tr>
+<tr><td>LU, 96×96</td><td>-</td><td>-</td></tr>
+<tr><td>QR, 96×48</td><td>-</td><td>-</td></tr>
+<tr><td>Cholesky, 96×96</td><td>-</td><td>-</td></tr>
+<tr><td>SVD, 96×48</td><td>-</td><td>-</td></tr>
+<tr><td>Symmetric eigen, 96×96</td><td>-</td><td>-</td></tr>
 </tbody></table></div>
-<p>A <code>-</code> means unsupported, failed or unmeasured. Compile and startup measurements are separate in the reports; native peer compile/process results retain aggregates, while all kernel samples are retained. Earlier-version results are not reused.</p>
+<p>Lazy data and end-to-end physics state evolution remain unmeasured. A <code>-</code> means unsupported, failed or unmeasured; the reports record the distinction. Compile and startup measurements are separate in the reports. All kernel samples are retained.</p>
 <h2 id="hardware">Hardware</h2>
 <p>AMD Ryzen 7 3700X, 8 cores / 16 threads; 32 GB RAM; NVIDIA GeForce GT 1030, 2 GB VRAM; Ubuntu 26.04.1 LTS, x86-64. Firefox 154.</p>
-<p>CPU measurements on a shared workstation; native and Firefox timings ran sequentially. No GPU performance is claimed.</p>
+<p>CPU measurements on a shared workstation with background worker activity; native and Firefox timings ran sequentially. No GPU performance is claimed.</p>
 <p><a href="benchmarks/current/linux-results.json">Linux samples</a> · <a href="benchmarks/current/firefox-results.json">Firefox samples</a> · <a href="benchmarks/current/benchmark-sources.zip">Sources and reproduction</a></p></article></main><footer class="site-footer">Incomplete compiler · Runnable examples</footer><script type="module" src="./current-documentation-examples.mjs?asset=3e65c70162739881"></script></body></html>

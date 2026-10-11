@@ -2351,6 +2351,271 @@ physics_stdlib_capability:
         "code changes define functions while running loops consume mutable state"
     ]
     :
+# Ordinary source preparation, not a backend resource or authorization token.
+# This numerical core accepts explicitly SI numeric coordinates and mass.
+# A public unit-aware wrapper must retain unit facts before converting inputs.
+# Source-level unit admission is not conferred by this numerical record.
+# Frozen physics mass-property operations are used without changed mathematics.
+physics:.physics
+preparation:.physics.preparation
+errors:.errors
+:.math
+
+vertex(points:[[num:3]:n],index:int):
+ row:points.(index)
+ [row.0,row.1,row.2]
+
+validate_vertex(points:[[num:3]:n],faces:[[int:3]:nf],i:int):
+ pi:vertex(points,i)
+ referenced:false
+ [..faces.length()*3-1] >>
+  face:faces.(int(($-($%3))/3))
+  face.(int($)%3)=i? .referenced:true
+ ~referenced? errors.ValueError("unreferenced convex vertex")!
+ [..points.length()-1] >>
+  j:int($)
+  pj:vertex(points,j)
+  (j<i /\ pi.0=pj.0 /\ pi.1=pj.1 /\ pi.2=pj.2)? errors.ValueError("duplicate convex vertex")!
+ 0
+
+validate_edge(faces:[[int:3]:nf],u:int,w:int):
+ matches:0
+ [..faces.length()*3-1] >>
+  other:faces.(int(($-($%3))/3))
+  k:int($)%3
+  x:other.(k)
+  y:other.((k+1)%3)
+  ((x=u /\ y=w) \/ (x=w /\ y=u))? .matches+:1
+ matches!=2? errors.ValueError("each convex edge must have exactly two incident faces")!
+ 0
+
+validate_face_indices(count:int,face:[int:3]):
+ [..2] >>
+  index:face.($)
+  (~preparation.finite(index) \/ index<0 \/ index>=count \/ index!=int(index))? errors.ValueError("convex face index outside vertex group")!
+ (face.0=face.1 \/ face.1=face.2 \/ face.2=face.0)? errors.ValueError("distinct face vertices required")!
+ 0
+
+validate_face(points:[[num:3]:n],faces:[[int:3]:nf],i:int,origin:[num:3]):
+ face:faces.(i)
+ a:vertex(points,int(face.0))
+ b:vertex(points,int(face.1))
+ c:vertex(points,int(face.2))
+ normal:physics.rb_cross3(physics.rb_sub3(b,a),physics.rb_sub3(c,a))
+ norm2:physics.rb_dot3(normal,normal)
+ side:physics.rb_dot3(normal,physics.rb_sub3(origin,a))
+ (~preparation.finite(norm2) \/ norm2<=0 \/ ~preparation.finite(side) \/ side=0)? errors.ValueError("nondegenerate closed convex volume required")!
+ [..points.length()-1] >>
+  v:vertex(points,int($))
+  distance:physics.rb_dot3(normal,physics.rb_sub3(v,a))
+  # Supporting planes allow only 128 binary64 epsilon relative to interior depth.
+  (~preparation.finite(distance) \/ distance/side<0-0.000000000000028421709430404)? errors.ValueError("face is not a convex supporting plane")!
+ validate_edge(faces,int(face.0),int(face.1))
+ validate_edge(faces,int(face.1),int(face.2))
+ validate_edge(faces,int(face.2),int(face.0))
+ 0
+
+part_for_face(points:[[num:3]:n],faces:[[int:3]:nf],origin:[num:3],i:int):
+ face:faces.(i)
+ properties:physics.tetra_mass_properties3(origin,vertex(points,int(face.0)),vertex(points,int(face.1)),vertex(points,int(face.2)),1)
+ (mass:num(properties.mass),center_of_mass:properties.center_of_mass,inertia_tensor:properties.inertia_tensor)
+
+prepare_convex_si(points:[[num:3]:n],faces:[[int:3]:nf],massvalue:num,mu_s:num,mu_d:num,restitution:num):
+ n:int(points.length())
+ nf:int(faces.length())
+ (n<4 \/ nf<4)? errors.ValueError("closed convex geometry requires at least four vertices and faces")!
+ (~preparation.finite(massvalue) \/ massvalue<=0)? errors.ValueError("finite positive mass required")!
+ (~preparation.finite(mu_s) \/ ~preparation.finite(mu_d) \/ ~preparation.finite(restitution) \/ mu_d<0 \/ mu_s<mu_d \/ restitution<0 \/ restitution>1)? errors.ValueError("invalid convex contact material")!
+ origin:[0.0,0.0,0.0]
+ [..n-1] >>
+  points.($).length()!=3? errors.ValueError("three coordinates per convex vertex required")!
+  v:vertex(points,$)
+  (~preparation.finite(v.0) \/ ~preparation.finite(v.1) \/ ~preparation.finite(v.2))? errors.ValueError("finite convex coordinates required")!
+  .origin:physics.rb_add3(origin,v)
+ .origin:physics.rb_scale3(1/n,origin)
+ [..nf-1] >>
+  validate_face_indices(int(n),faces.($))
+ [..n-1] >>
+  validate_vertex(points,faces,int($))
+ [..nf-1] >>
+  validate_face(points,faces,int($),origin)
+ first:faces.0
+ initial:physics.tetra_mass_properties3(origin,vertex(points,int(first.0)),vertex(points,int(first.1)),vertex(points,int(first.2)),1)
+ properties:(mass:num(initial.mass),center_of_mass:initial.center_of_mass,inertia_tensor:initial.inertia_tensor)
+ [..nf-1] >>
+  $>0?
+   .properties:physics.combine_mass_properties3(properties,part_for_face(points,faces,origin,int($)))
+ volumevalue:properties.mass
+ (~preparation.finite(volumevalue) \/ volumevalue<=0)? errors.RuntimeError("finite positive convex volume required")!
+ density:massvalue/volumevalue
+ (~preparation.finite(density) \/ density<=0)? errors.RuntimeError("finite positive convex density required")!
+ tensor:physics.rb_scale_mat3(density,properties.inertia_tensor)
+ center:physics.rb_scale3(1,properties.center_of_mass)
+ checks:[center.0,center.1,center.2,tensor.0.0,tensor.0.1,tensor.0.2,tensor.1.0,tensor.1.1,tensor.1.2,tensor.2.0,tensor.2.1,tensor.2.2]
+ [..11] >>
+  ~preparation.finite(checks.($))? errors.RuntimeError("nonfinite convex mass properties")!
+ determinant:tensor.0.0*(tensor.1.1*tensor.2.2-tensor.1.2*tensor.2.1)-tensor.0.1*(tensor.1.0*tensor.2.2-tensor.1.2*tensor.2.0)+tensor.0.2*(tensor.1.0*tensor.2.1-tensor.1.1*tensor.2.0)
+ minor:tensor.0.0*tensor.1.1-tensor.0.1*tensor.1.0
+ (~preparation.finite(determinant) \/ ~preparation.finite(minor) \/ tensor.0.0<=0 \/ minor<=0 \/ determinant<=0)? errors.RuntimeError("positive definite convex inertia required")!
+ (mass:massvalue,volume:volumevalue,center_of_mass:center,inertia_tensor:tensor,geometry:(vertices:points,faces:faces),material:(mu_s:mu_s,mu_d:mu_d,restitution:restitution))
+# Ordinary unit-aware tetrahedron mass-property preparation candidate.
+# Uses existing physics.tetra_mass_properties3 unchanged. This record is not a
+# backend world/state, and carries no backend lease or numeric resource handle.
+# All checks complete before a record is returned. Source errors belong to the
+# current program. General indexed convex topology/engine admission remain open.
+physics:.physics
+:.physics.units
+errors:.errors
+:.math
+finite(x:num): (x=x) /\ ((abs(x)-abs(x))=0) /\ ((x=abs(x)) \/ (x=0-abs(x)))
+prepare_tetrahedron(a:[quantity<1,0,0,0,0,0,0>:3],b:[quantity<1,0,0,0,0,0,0>:3],c:[quantity<1,0,0,0,0,0,0>:3],d:[quantity<1,0,0,0,0,0,0>:3],authoredmass:quantity<0,1,0,0,0,0,0>):
+ (a.length()!=3 \/ b.length()!=3 \/ c.length()!=3 \/ d.length()!=3)? errors.ValueError("three coordinates per tetrahedron vertex required")!
+ am:a+[0m,0m,0m]
+ pa:[num((am.0+0m)/m),num((am.1+0m)/m),num((am.2+0m)/m)]
+ bm:b+[0m,0m,0m]
+ pb:[num((bm.0+0m)/m),num((bm.1+0m)/m),num((bm.2+0m)/m)]
+ cm:c+[0m,0m,0m]
+ pc:[num((cm.0+0m)/m),num((cm.1+0m)/m),num((cm.2+0m)/m)]
+ dm:d+[0m,0m,0m]
+ pd:[num((dm.0+0m)/m),num((dm.1+0m)/m),num((dm.2+0m)/m)]
+ massvalue:num((authoredmass+0kg)/kg)
+ [..2] >>
+  (~finite(pa.($)) \/ ~finite(pb.($)) \/ ~finite(pc.($)) \/ ~finite(pd.($)))? errors.ValueError("finite tetrahedron coordinates required")!
+ (~finite(massvalue) \/ massvalue<=0)? errors.ValueError("finite positive mass required")!
+ signedsix:physics.rb_dot3(physics.rb_sub3(pb,pa),physics.rb_cross3(physics.rb_sub3(pc,pa),physics.rb_sub3(pd,pa)))
+ (~finite(signedsix) \/ signedsix=0)? errors.ValueError("nondegenerate finite tetrahedron required")!
+ volumevalue:abs(signedsix)/6
+ (~finite(volumevalue) \/ volumevalue<=0)? errors.ValueError("finite positive tetrahedron volume required")!
+ density:massvalue/volumevalue
+ (~finite(density) \/ density<=0)? errors.ValueError("finite positive tetrahedron density required")!
+ properties:physics.tetra_mass_properties3(pa,pb,pc,pd,density)
+ tensor:physics.rb_scale_mat3(1,properties.inertia_tensor)
+ center:physics.rb_scale3(1,properties.center_of_mass)
+ checks:[center.0,center.1,center.2,tensor.0.0,tensor.0.1,tensor.0.2,tensor.1.0,tensor.1.1,tensor.1.2,tensor.2.0,tensor.2.1,tensor.2.2]
+ [..11] >>
+  ~finite(checks.($))? errors.RuntimeError("nonfinite tetrahedron mass properties")!
+ determinant:tensor.0.0*(tensor.1.1*tensor.2.2-tensor.1.2*tensor.2.1)-tensor.0.1*(tensor.1.0*tensor.2.2-tensor.1.2*tensor.2.0)+tensor.0.2*(tensor.1.0*tensor.2.1-tensor.1.1*tensor.2.0)
+ minor:tensor.0.0*tensor.1.1-tensor.0.1*tensor.1.0
+ (~finite(determinant) \/ ~finite(minor) \/ tensor.0.0<=0 \/ minor<=0 \/ determinant<=0)? errors.RuntimeError("positive definite finite tetrahedron inertia required")!
+ (
+  mass:massvalue*kg,
+  volume:volumevalue*m^3,
+  center_of_mass:center*m,
+  inertia_tensor:tensor*kg*m^2
+ )
+# Ordinary-library wrapper for authenticated native replay.
+# This source alone cannot produce physics states: replay fails closed unless
+# the compiler and reviewed backend support its live source-owner definition.
+# prepare_si accepts explicitly SI numeric geometry; prepare checks physical
+# quantity dimensions before projecting individual coordinates into SI storage.
+runtime:.physics.runtime
+convex:.physics.convex_preparation
+validation:.physics.preparation
+errors:.errors
+:.physics.units
+:.math
+
+_publish_list(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,result:[num:15]):
+ result.0=1? errors.ValueError("invalid physics description or duration history")!
+ result.0!=0? errors.RuntimeError("physics backend failed before publication")!
+ (
+  backing:(definition:definition,history:history,snapshot:[result.1,result.2,result.3,result.4,result.5,result.6,result.7,result.8,result.9,result.10,result.11,result.12,result.13,result.14]),
+  time:result.1*s,
+  position:[result.2,result.3,result.4]*m,
+  orientation:[result.5,result.6,result.7,result.8],
+  velocity:[result.9,result.10,result.11]*m/s,
+  omega:[result.12,result.13,result.14]/s
+ )
+
+_history_list(values:[num:n]) -> list<num>:
+ result:[0.0:values.length()]
+ values.length()>0 ?
+  ..values.length()-1 >>
+   result.(int($)):num(values.(int($)))
+ result
+
+_publish(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:[num:n],result:[num:15]):
+ _publish_list(definition,_history_list(history),result)
+
+_canonical(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3])):
+ p:definition.geometry
+ g:p.geometry
+ (
+  geometry:(mass:num(p.mass),volume:num(p.volume),center_of_mass:[num(p.center_of_mass.0),num(p.center_of_mass.1),num(p.center_of_mass.2)],inertia_tensor:[[num(p.inertia_tensor.0.0),num(p.inertia_tensor.0.1),num(p.inertia_tensor.0.2)],[num(p.inertia_tensor.1.0),num(p.inertia_tensor.1.1),num(p.inertia_tensor.1.2)],[num(p.inertia_tensor.2.0),num(p.inertia_tensor.2.1),num(p.inertia_tensor.2.2)]],geometry:(vertices:g.vertices,faces:g.faces),material:(mu_s:num(p.material.mu_s),mu_d:num(p.material.mu_d),restitution:num(p.material.restitution))),
+  initial:(position:[num(definition.initial.position.0),num(definition.initial.position.1),num(definition.initial.position.2)],orientation:[num(definition.initial.orientation.0),num(definition.initial.orientation.1),num(definition.initial.orientation.2),num(definition.initial.orientation.3)],velocity:[num(definition.initial.velocity.0),num(definition.initial.velocity.1),num(definition.initial.velocity.2)],omega:[num(definition.initial.omega.0),num(definition.initial.omega.1),num(definition.initial.omega.2)]),
+  gravity:[num(definition.gravity.0),num(definition.gravity.1),num(definition.gravity.2)]
+ )
+
+# Keep caller domains until sealed replay admission; SI projection is explicit.
+prepare_si(points:[[P:3]:nv],faces:[[Q:3]:nf],massvalue:M,friction:Y,restitution:R,position:[X:3],orientation:[O:4],velocity:[D:3],omega:[U:3],gravity:[G:3]):
+ numericpoints:points >> [num($.0),num($.1),num($.2)]
+ numericfaces:faces >> [int($.0),int($.1),int($.2)]
+ numericposition:[num(position.0),num(position.1),num(position.2)]
+ numericorientation:[num(orientation.0),num(orientation.1),num(orientation.2),num(orientation.3)]
+ numericvelocity:[num(velocity.0),num(velocity.1),num(velocity.2)]
+ numericomega:[num(omega.0),num(omega.1),num(omega.2)]
+ numericgravity:[num(gravity.0),num(gravity.1),num(gravity.2)]
+ geometry:convex.prepare_convex_si(numericpoints,numericfaces,num(massvalue),num(friction),num(friction),num(restitution))
+ raw:(geometry:(mass:massvalue,volume:num(geometry.volume),center_of_mass:[num(geometry.center_of_mass.0),num(geometry.center_of_mass.1),num(geometry.center_of_mass.2)],inertia_tensor:[[num(geometry.inertia_tensor.0.0),num(geometry.inertia_tensor.0.1),num(geometry.inertia_tensor.0.2)],[num(geometry.inertia_tensor.1.0),num(geometry.inertia_tensor.1.1),num(geometry.inertia_tensor.1.2)],[num(geometry.inertia_tensor.2.0),num(geometry.inertia_tensor.2.1),num(geometry.inertia_tensor.2.2)]],geometry:(vertices:points,faces:faces),material:(mu_s:friction,mu_d:friction,restitution:restitution)),initial:(position:position,orientation:orientation,velocity:velocity,omega:omega),gravity:gravity)
+ history:_empty_history(0)
+ result:runtime._replay_si(raw,history)
+ publishraw:(geometry:geometry,initial:(position:numericposition,orientation:numericorientation,velocity:numericvelocity,omega:numericomega),gravity:numericgravity)
+ definition:_canonical(publishraw)
+ _publish_list(definition,history,result)
+
+_time_si(value:quantity<0,0,1,0,0,0,0>): num(value/s)
+_length_si(value:quantity<1,0,0,0,0,0,0>): num(value/m)
+_velocity_si(value:quantity<1,0,-1,0,0,0,0>): _length_si(value*s)
+_unitless_si(value:quantity<0,0,0,0,0,0,0>): num(value)
+_omega_si(value:quantity<0,0,-1,0,0,0,0>): _unitless_si(value*s)
+_gravity_si(value:quantity<1,0,-2,0,0,0,0>): _length_si(value*s*s)
+
+_coherent(state:(backing:(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,snapshot:[num:14]),time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3]),expected:[num:15]):
+ (state.time. == any \/ state.position. == any \/ state.position. == [any:3] \/ state.velocity. == any \/ state.velocity. == [any:3] \/ state.omega. == any \/ state.omega. == [any:3]) ? errors.ValueError("physics snapshot dimensions must remain known")!
+ original:[expected.1,expected.2,expected.3,expected.4,expected.5,expected.6,expected.7,expected.8,expected.9,expected.10,expected.11,expected.12,expected.13,expected.14]
+ views:[_time_si(state.time),_length_si(state.position.0),_length_si(state.position.1),_length_si(state.position.2),num(state.orientation.0),num(state.orientation.1),num(state.orientation.2),num(state.orientation.3),_velocity_si(state.velocity.0),_velocity_si(state.velocity.1),_velocity_si(state.velocity.2),_omega_si(state.omega.0),_omega_si(state.omega.1),_omega_si(state.omega.2)]
+ recorded:[num(state.backing.snapshot.0),num(state.backing.snapshot.1),num(state.backing.snapshot.2),num(state.backing.snapshot.3),num(state.backing.snapshot.4),num(state.backing.snapshot.5),num(state.backing.snapshot.6),num(state.backing.snapshot.7),num(state.backing.snapshot.8),num(state.backing.snapshot.9),num(state.backing.snapshot.10),num(state.backing.snapshot.11),num(state.backing.snapshot.12),num(state.backing.snapshot.13)]
+ coherent:true
+ [..13] >>
+  .coherent:coherent /\ (recorded.(int($))==original.(int($))) /\ (views.(int($))==original.(int($)))
+ coherent
+
+_empty_history(n:int) -> list<num>: [0.0:n]
+_history(values:list<num>) -> list<num>: values
+_append(history:list<num>,seconds:num) -> list<num>: history&[seconds]
+_next_history(history:list<num>,seconds:num) -> list<num>:
+ seconds=0 ? @:history
+ _append(history,seconds)
+
+step(state:(backing:(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,snapshot:[num:14]),time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3]),duration:quantity<0,0,1,0,0,0,0>):
+ seconds:num((duration+0s)/s)
+ (~validation.finite(seconds) \/ seconds<0)? errors.ValueError("finite nonnegative physics duration required")!
+ definition:_canonical(state.backing.definition)
+ expected:runtime._replay_si(definition,state.backing.history)
+ expected.0=1? errors.ValueError("invalid physics description or duration history")!
+ expected.0!=0? errors.RuntimeError("physics backend failed before publication")!
+ ~_coherent(state,expected)? errors.ValueError("physics snapshot differs from immutable replay history")!
+ history:_next_history(state.backing.history,seconds)
+ result:runtime._replay_si(definition,history)
+ _publish_list(definition,history,result)
+
+_mass_si(value:quantity<0,1,0,0,0,0,0>): num(value/kg)
+
+# Physical arguments retain known dimensions through ordinary source coercion.
+prepare(points:[[quantity<1,0,0,0,0,0,0>:3]:nv],faces:[[Q:3]:nf],massvalue:quantity<0,1,0,0,0,0,0>,friction:Y,restitution:R,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[O:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],gravity:[quantity<1,0,-2,0,0,0,0>:3]):
+ numericpoints:points >> [_length_si($.0),_length_si($.1),_length_si($.2)]
+ numericmass:_mass_si(massvalue)
+ numericposition:[_length_si(position.0),_length_si(position.1),_length_si(position.2)]
+ numericvelocity:[_velocity_si(velocity.0),_velocity_si(velocity.1),_velocity_si(velocity.2)]
+ numericomega:[_omega_si(omega.0),_omega_si(omega.1),_omega_si(omega.2)]
+ numericgravity:[_gravity_si(gravity.0),_gravity_si(gravity.1),_gravity_si(gravity.2)]
+ prepare_si(numericpoints,faces,numericmass,friction,restitution,numericposition,orientation,numericvelocity,numericomega,numericgravity)
+# Internal ordinary source owner for the checked immutable spatial replay binding.
+# Source copies remain ordinary source and fail closed; spelling grants no authority.
+errors:.errors
+_replay_si(desc:any,history:[num:n]) -> [num:15]:
+ errors.RuntimeError("native physics source owner context unavailable")!
+ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 # Supported scalar-inertia contact, constant support load and tangential drive.
 # Origin: svenviktorjonsson/rigid-body-collisions, research/adaptive-benchmark-validation.
 # Source commit: 1098616162342d894d9c0a098f8f5ad8af427d23; supported_backend/kernel.h.
@@ -2833,10 +3098,10 @@ _interp_coordinates(values:[num:n], coordinates:[num:l], targets:[num:m]) -> [nu
 
 # `interp_axis` is numerical only.  The typed compiler expands an indexed
 # value across the selected structural axes and calls these one-axis kernels.
-interp[axis:chr](values:[num:n], targets:[num:m]) -> [num:m]:
+interp(values:[num:n], targets:[num:m]) -> [num:m]:
     _interp_indices(values, targets)
 
-interp[axis:chr](values:[num:n], coordinates:[num:l], targets:[num:m]) -> [num:m]:
+interp(values:[num:n], coordinates:[num:l], targets:[num:m]) -> [num:m]:
     _interp_coordinates(values, coordinates, targets)
 
 _sum_coordinates(
@@ -3217,6 +3482,19 @@ katex(value:expression) -> str:
 same(left:expression, right:expression) -> bit:
     left_kind: _symbolic_storage_kind(_symbolic_clone(left))
     right_kind: _symbolic_storage_kind(_symbolic_clone(right))
+    left_kind = 1 /\ right_kind = 1?
+        @: _symbolic_catalog_identity_same(_symbolic_raw_catalog(left), _symbolic_raw_catalog(right))
+    left_kind = 3 /\ right_kind = 3?
+        _symbolic_root_operation(left) != _symbolic_root_operation(right)?
+            @: false
+        left_equal: same(_symbolic_left(left), _symbolic_left(right))
+        ~left_equal?
+            @: false
+        @: same(_symbolic_right(left), _symbolic_right(right))
+    left_kind = 7 /\ right_kind = 7?
+        _symbolic_root_operation(left) != _symbolic_root_operation(right)?
+            @: false
+        @: same(_symbolic_argument(left), _symbolic_argument(right))
     (left_kind = 4 \/ left_kind = 6) /\ (right_kind = 4 \/ right_kind = 6)?
         residual: _symbolic_polynomial_subtract(left, right)
         @: _symbolic_polynomial_term_count(residual) = 0
@@ -3286,6 +3564,11 @@ _symbolic_argument(value:symbolic) -> symbolic:
 _symbolic_clone(value:symbolic) -> symbolic:
     [..value.length() - 1 >> value.($)]
 
+# Reconstruct owned numeric cells through the established ordinary nominal
+# return issuer. A lowercase nominal is not a type-prefixed bind keyword.
+_symbolic_owned_cells(cells:[num]) -> symbolic:
+    [..cells.length() - 1 >> cells.($)]
+
 _symbolic_suffix_domain_variable(name:chr, domain:num) -> symbol:
     code: int(name)
     [num] result: [1, 9, domain, 1, 1, code, 1, code, 0, domain, 1, 1, 0, 14]
@@ -3347,24 +3630,28 @@ real_part(value:expression) -> expression:
 magnitude(value:expression) -> expression:
     _symbolic_dag_unary(value, 26)
 
-_symbolic_rebuild_function(value:symbolic, operation:num) -> expression:
+_symbolic_rebuild_inspection(value:symbolic, operation:num, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_unary_source(value, operation, ordinal)
     _symbolic_root_kind(value) = 2?
         numeric: _symbolic_number_value(value)
         operation = 1 /\ (numeric = 0 \/ numeric = 3.141592653589793 \/ numeric = -3.141592653589793)?
-            @: _symbolic_raw_number(0)
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "sine_exact_numeric", "applied", "known_elementary_literal", value, ordinal)
         operation = 2 /\ numeric = 0?
-            @: _symbolic_raw_number(1)
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(1), "cosine_zero", "applied", "known_elementary_literal", value, ordinal)
         operation = 3 /\ numeric = 1?
-            @: _symbolic_raw_number(0)
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "log_unit", "applied", "known_elementary_literal", value, ordinal)
         operation = 4 /\ (numeric = 0 \/ numeric = 1)?
-            @: _symbolic_raw_number(numeric)
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(numeric), "sqrt_zero_or_unit", "applied", "known_elementary_literal", value, ordinal)
         operation = 5 /\ numeric = 0?
-            @: _symbolic_raw_number(1)
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(1), "exp_zero", "applied", "known_elementary_literal", value, ordinal)
     operation <= 5?
-        @: _symbolic_function(value, operation)
+        @: _symbolic_inspection_rule(source, _symbolic_function(value, operation), "elementary_function_rebuild", "represented", "function_source_domain_retained", source, ordinal)
     operation = 6?
-        @: real_part(value)
-    magnitude(value)
+        @: _symbolic_inspection_rule(source, real_part(value), "real_part_rebuild", "represented", "function_source_domain_retained", source, ordinal)
+    _symbolic_inspection_rule(source, magnitude(value), "magnitude_rebuild", "represented", "function_source_domain_retained", source, ordinal)
+
+_symbolic_rebuild_function(value:symbolic, operation:num) -> expression:
+    _symbolic_rebuild_inspection(value, operation, -1).expression
 
 +(left:expression, right:expression) -> expression:
     _symbolic_storage_kind(left) = 4 \/ _symbolic_storage_kind(right) = 4?
@@ -3512,7 +3799,7 @@ conclusion(value:proposition) -> proposition:
 derivative(value:expression, variable:symbol) -> expression:
     _symbolic_dag_binary(value, variable, 14)
 
-derivative[variable_name:chr](value:expression) -> expression:
+derivative(variable_name:chr, value:expression) -> expression:
     derivative(value, _symbolic_suffix_variable(value, variable_name))
 
 prime(value:expression, order:num = 1) -> expression:
@@ -3530,7 +3817,7 @@ partial(value:expression, variable:symbol, order:num = 1) -> expression:
         .remaining -: 1
     result
 
-partial[variable_name:chr](value:expression, order:num = 1) -> expression:
+partial(variable_name:chr, value:expression, order:num = 1) -> expression:
     partial(value, _symbolic_suffix_variable(value, variable_name), order)
 
 at(value:expression, point:num) -> expression:
@@ -3543,7 +3830,7 @@ at(value:expression, variable:symbol, point:num) -> expression:
     location: _symbolic_dag_binary(value, variable, 16)
     _symbolic_dag_binary(location, _symbolic_raw_number(point), 17)
 
-at[variable_name:chr](value:expression, point:num) -> expression:
+at(variable_name:chr, value:expression, point:num) -> expression:
     at(value, _symbolic_suffix_variable(value, variable_name), point)
 
 at(value:expression, arguments:[expression:n]) -> expression:
@@ -6887,7 +7174,7 @@ asymptotic(value:symbolic, variable:symbolic) -> symbolic:
         leading_power
     )
 
-asymptotic[variable_name:chr](value:symbolic) -> symbolic:
+asymptotic(variable_name:chr, value:symbolic) -> symbolic:
     asymptotic(value, _symbolic_suffix_variable(value, variable_name))
 
 _symbolic_polynomial_asymptotic_facts(value:symbolic, variable:symbolic):
@@ -7136,7 +7423,7 @@ roots(equation_value:symbolic, variable:symbolic) -> {num}:
         "symbolic.roots currently requires a univariate linear or quadratic equation"
     )!
 
-roots[variable_name:chr](equation_value:symbolic) -> {num}:
+roots(variable_name:chr, equation_value:symbolic) -> {num}:
     roots(equation_value, _symbolic_suffix_variable(equation_value, variable_name))
 
 _symbolic_quadratic_solution_set(equation_value:symbolic, domain:num) -> symbolic:
@@ -8019,7 +8306,7 @@ solve(equations:[symbolic:e], variables:[symbolic:v]) -> symbolic:
             .declared: false
             .declared_variable: 0
             declared_variable < count?>
-                _symbolic_numeric_vector_same(_symbolic_clone_numeric_vector(catalog_entry), _symbolic_raw_catalog(variables.(declared_variable)))?
+                _symbolic_catalog_identity_same(_symbolic_clone_numeric_vector(catalog_entry), _symbolic_raw_catalog(variables.(declared_variable)))?
                     .declared: true
                 .declared_variable+: 1
             ~declared?
@@ -8327,6 +8614,77 @@ _symbolic_numeric_vector_same(left:[num], right:[num]) -> bit:
                 .equal: false
     equal
 
+# Catalog domain/kind/name/signature establish mathematical identity.
+# LaTeX is presentation carried by the immutable value snapshot, not a new
+# algebraic variable. This adapter validates entry framing and compared ranges;
+# domain/signature validity remains the responsibility of the existing issuers.
+# Change presentation on the actual symbol snapshot. Catalog identity fields
+# and the complete function-domain signature tail are copied without decoding.
+_symbolic_with_latex(value:symbolic, latex:[num]) -> symbol:
+    _symbolic_root_kind(value) != 1?
+        errors.TypeError("symbolic .latex expects a symbol, function, or constant")!
+    entry: _symbolic_raw_catalog(value)
+    ~_symbolic_catalog_identity_same(entry, entry)?
+        errors.TypeError("symbolic .latex received invalid catalog framing")!
+    name_length: entry.3
+    latex_index: 4 + name_length
+    old_latex_length: entry.(latex_index)
+    tail: latex_index + 1 + old_latex_length
+    tail >= entry.length()?
+        errors.TypeError("symbolic .latex received incomplete signature framing")!
+    arity: entry.(tail)
+    arity < 0 \/ arity % 1 != 0 \/ tail + 3 + 2*arity != entry.length()?
+        errors.TypeError("symbolic .latex received incomplete signature framing")!
+    [num] replacement: [0, entry.1, entry.2, name_length]
+    name_length > 0?
+        ..name_length - 1 >>
+            .replacement: replacement & [entry.(4 + $)]
+    .replacement: replacement & [latex.length()]
+    latex.length() > 0?
+        ..latex.length() - 1 >>
+            .replacement: replacement & [latex.($)]
+    tail < entry.length()?
+        tail..entry.length() - 1 >>
+            .replacement: replacement & [entry.($)]
+    replacement.0: replacement.length() - 1
+    [num] result: [1] & replacement & [1, 0, replacement.length() + 4]
+    result
+
+_symbolic_catalog_identity_same(left:[num], right:[num]) -> bit:
+    left.length() < 5 \/ right.length() < 5?
+        @: false
+    left.0 != left.length() - 1 \/ right.0 != right.length() - 1?
+        @: false
+    left.1 != right.1 \/ left.2 != right.2 \/ left.3 != right.3?
+        @: false
+    name_length: left.3
+    name_length < 0 \/ name_length % 1 != 0?
+        @: false
+    latex_index: 4 + name_length
+    latex_index >= left.length() \/ latex_index >= right.length()?
+        @: false
+    left_latex: left.(latex_index)
+    right_latex: right.(latex_index)
+    left_latex < 0 \/ right_latex < 0 \/ left_latex % 1 != 0 \/ right_latex % 1 != 0?
+        @: false
+    left_tail: latex_index + 1 + left_latex
+    right_tail: latex_index + 1 + right_latex
+    left_tail > left.length() \/ right_tail > right.length()?
+        @: false
+    left.length() - left_tail != right.length() - right_tail?
+        @: false
+    equal: true
+    name_length > 0?
+        ..name_length - 1 >>
+            left.(4 + $) != right.(4 + $)?
+                .equal: false
+    tail_length: left.length() - left_tail
+    tail_length > 0?
+        ..tail_length - 1 >>
+            left.(left_tail + $) != right.(right_tail + $)?
+                .equal: false
+    equal
+
 _symbolic_dag_catalog_length(value:symbolic) -> num:
     value.(1)
 
@@ -8444,7 +8802,7 @@ _symbolic_dag_same_nodes(left:symbolic, left_node:num, right:symbolic, right_nod
     left_operation = 1?
         left_entry: _symbolic_dag_catalog_entry(left, _symbolic_dag_node_left(left, left_node))
         right_entry: _symbolic_dag_catalog_entry(right, _symbolic_dag_node_left(right, right_node))
-        @: _symbolic_numeric_vector_same(left_entry, right_entry)
+        @: _symbolic_catalog_identity_same(left_entry, right_entry)
     left_operation = 2?
         @: _symbolic_dag_node_value(left, left_node) = _symbolic_dag_node_value(right, right_node)
     (left_operation >= 3 /\ left_operation <= 7) \/ (left_operation >= 13 /\ left_operation <= 24) \/ left_operation = 27?
@@ -8501,7 +8859,7 @@ _symbolic_dag_copy_nodes(
     source:symbolic,
     catalog_map:[num],
     target_node_offset:num
-):
+) -> [num]:
     count: _symbolic_dag_node_count(source)
     node: 0
     operation: 0
@@ -8526,6 +8884,7 @@ _symbolic_dag_copy_nodes(
         target.(output + 2): right
         target.(output + 3): data
         .node+: 1
+    target
 
 _symbolic_dag_binary_general(left:symbolic, right:symbolic, operation:num) -> symbolic:
     left_catalog: _symbolic_dag_catalog(left)
@@ -8536,8 +8895,8 @@ _symbolic_dag_binary_general(left:symbolic, right:symbolic, operation:num) -> sy
     left_count: _symbolic_dag_node_count(left)
     right_count: _symbolic_dag_node_count(right)
     nodes: [0:(left_count + right_count) * 4]
-    _symbolic_dag_copy_nodes(nodes, left, left_map, 0)
-    _symbolic_dag_copy_nodes(nodes, right, right_map, left_count)
+    .nodes: _symbolic_dag_copy_nodes(nodes, left, left_map, 0)
+    .nodes: _symbolic_dag_copy_nodes(nodes, right, right_map, left_count)
     merged: _symbolic_dag_make(catalog, nodes, _symbolic_dag_root(left))
     _symbolic_dag_append_node(
         merged,
@@ -8608,18 +8967,7 @@ _symbolic_raw_catalog(value:symbolic) -> [num]:
     _symbolic_empty_numeric_vector()
 
 _symbolic_catalog_has_entry(catalog:[num], entry:[num]) -> bit:
-    cursor: 0
-    cursor < catalog.length()?>
-        name_length: catalog.(cursor)
-        name_length = entry.(0)?
-            equal: true
-            ..name_length - 1 >>
-                catalog.(cursor + $ + 1) != entry.($ + 1)?
-                    .equal: false
-            equal?
-                @: true
-        .cursor+: name_length + 1
-    false
+    _symbolic_catalog_entry_index(catalog, entry) >= 0
 
 _symbolic_catalog(value:symbolic) -> [num]:
     raw: _symbolic_raw_catalog(value)
@@ -8694,7 +9042,7 @@ _symbolic_multinomial_coefficient(exponents:[num], factorials:[num], degree:num)
         .index+: 1
     result
 
-_symbolic_advance_composition(exponents:[num]):
+_symbolic_advance_composition(exponents:[num]) -> [num]:
     index: exponents.length() - 2
     index >= 0?>
         exponents.(index) > 0?
@@ -8706,9 +9054,9 @@ _symbolic_advance_composition(exponents:[num]):
             index + 2 <= exponents.length() - 1?
                 (index + 2)..exponents.length() - 1 >>
                     exponents.($): 0
-            @: null
+            @: exponents
         .index -: 1
-    null
+    exponents
 
 _symbolic_expand_distinct_sum_power(base:symbolic, degree:num) -> symbolic:
     catalog: _symbolic_catalog(base)
@@ -8734,7 +9082,7 @@ _symbolic_expand_distinct_sum_power(base:symbolic, degree:num) -> symbolic:
         result.(offset): _symbolic_multinomial_coefficient(exponents, factorials, degree)
         ..variable_count - 1 >>
             result.(offset + $ + 1): exponents.($)
-        _symbolic_advance_composition(exponents)
+        .exponents: _symbolic_advance_composition(exponents)
     result
 
 _symbolic_polynomial_term_count(value:symbolic) -> num:
@@ -8761,13 +9109,9 @@ _symbolic_catalog_entry_index(catalog:[num], entry:[num]) -> num:
     index: 0
     cursor < catalog.length()?>
         name_length: catalog.(cursor)
-        name_length = entry.(0)?
-            equal: true
-            ..name_length - 1 >>
-                ~(catalog.(cursor + $ + 1) = entry.($ + 1))?
-                    .equal: false
-            equal?
-                @: index
+        candidate: [cursor..cursor + name_length >> catalog.($)]
+        _symbolic_catalog_identity_same(candidate, entry)?
+            @: index
         .cursor+: name_length + 1
         .index+: 1
     -1
@@ -8826,7 +9170,7 @@ polynomial(variable:symbolic, requested_capacity:num = 4096) -> symbolic:
     result: header & catalog & metadata & coefficients & trailer
     result
 
-polynomial[variable_name:chr](requested_capacity:num = 4096) -> symbolic:
+polynomial(variable_name:chr, requested_capacity:num = 4096) -> symbolic:
     polynomial(_symbolic_suffix_domain_variable(variable_name, _symbolic_domain_real), requested_capacity)
 
 _symbolic_univariate_capacity(value:symbolic) -> num:
@@ -8934,7 +9278,7 @@ _symbolic_polynomial_accumulate(
     mapping:[num],
     strides:[num],
     scale:num
-):
+) -> [num]:
     keys: _symbolic_polynomial_term_keys(value, mapping, strides)
     term: 0
     key: 0
@@ -8942,6 +9286,7 @@ _symbolic_polynomial_accumulate(
         .key: keys.(term)
         coefficients.(key): coefficients.(key) + _symbolic_polynomial_term_coefficient(value, term) * scale
         .term+: 1
+    coefficients
 
 _symbolic_polynomial_from_dense(
     catalog:[num],
@@ -9028,11 +9373,11 @@ _symbolic_polynomial_combine(left:symbolic, right:symbolic, operation:num) -> sy
                 .right_term+: 1
             .left_term+: 1
     ~(operation = 3)?
-        _symbolic_polynomial_accumulate(coefficients, left_polynomial, left_mapping, strides, 1)
+        .coefficients: _symbolic_polynomial_accumulate(coefficients, left_polynomial, left_mapping, strides, 1)
         .scale: 1
         operation = 2?
             .scale: -1
-        _symbolic_polynomial_accumulate(coefficients, right_polynomial, right_mapping, strides, scale)
+        .coefficients: _symbolic_polynomial_accumulate(coefficients, right_polynomial, right_mapping, strides, scale)
     _symbolic_polynomial_from_dense(catalog, radices, strides, coefficients)
 
 _symbolic_polynomial_add(left:symbolic, right:symbolic) -> symbolic:
@@ -9092,68 +9437,188 @@ coefficient(value:symbolic, exponents:[num]) -> num:
 _symbolic_is_raw_number(value:symbolic, expected:num) -> bit:
     _symbolic_root_kind(value) = 2 /\ _symbolic_number_value(value) = expected
 
-_symbolic_add_simplified(left:symbolic, right:symbolic) -> symbolic:
-    _symbolic_root_kind(left) = 2 /\ _symbolic_root_kind(right) = 2?
-        @: _symbolic_raw_number(_symbolic_number_value(left) + _symbolic_number_value(right))
+# Mathematical totality is a conditional fact of the existing scalar domains.
+# It does not establish IEEE-equivalent executable replacement. Inspection
+# execution below retains the original source view and its binding catalog.
+_symbolic_is_finite_raw_number(value:symbolic) -> bit:
+    ~(_symbolic_root_kind(value) = 2)? @: false
+    numeric: _symbolic_number_value(value)
+    numeric - numeric = 0
+
+_symbolic_mathematical_total(value:symbolic) -> bit:
+    kind: _symbolic_root_kind(value)
+    kind = 2? @: _symbolic_is_finite_raw_number(value)
+    kind = 1?
+        entry: _symbolic_raw_catalog(value)
+        ~_symbolic_catalog_identity_same(entry, entry)? @: false
+        tail: _symbolic_function_signature_index(value)
+        # Scalar-variable framing, not just the base tag of a vector domain.
+        tail + 3 != entry.length()? @: false
+        entry.(tail) != 0? @: false
+        entry.(tail + 1) != entry.1 \/ entry.(tail + 2) != 1? @: false
+        @: entry.2 = 1 /\ entry.1 >= 1 /\ entry.1 <= 5
+    kind = 7?
+        operation: _symbolic_root_operation(value)
+        operation = 6 \/ operation = 7?
+            @: _symbolic_mathematical_total(_symbolic_argument(value))
+        @: false
+    kind = 3?
+        left: _symbolic_left(value)
+        right: _symbolic_right(value)
+        operation: _symbolic_root_operation(value)
+        operation >= 1 /\ operation <= 3?
+            @: _symbolic_mathematical_total(left) /\ _symbolic_mathematical_total(right)
+        operation = 4 /\ _symbolic_is_finite_raw_number(right)?
+            @: _symbolic_number_value(right) != 0 /\ _symbolic_mathematical_total(left)
+        operation = 5 /\ _symbolic_is_finite_raw_number(right)?
+            exponent: _symbolic_number_value(right)
+            exponent = m.abs(exponent)?
+                exponent % 1 = 0?
+                    @: _symbolic_mathematical_total(left)
+            _symbolic_is_finite_raw_number(left)?
+                @: _symbolic_number_value(left) != 0
+    kind = 7?
+        operation: _symbolic_root_operation(value)
+        argument: _symbolic_argument(value)
+        (operation = 1 \/ operation = 2 \/ operation = 5)?
+            @: _symbolic_mathematical_total(argument)
+        (operation = 3 \/ operation = 4) /\ _symbolic_is_finite_raw_number(argument)?
+            number: _symbolic_number_value(argument)
+            @: number = m.abs(number) /\ number > 0
+    # Expanded polynomial/univariate and opaque operation views remain outside
+    # this narrow totality proof. Their established leaf algorithms are retained.
+    false
+
+_symbolic_inspection_binary_source(left:symbolic, right:symbolic, operation:num, ordinal:num) -> symbolic:
+    ordinal < 0? @: _symbolic_raw_number(0)
+    [num] left_stream: [..left.length() - 1 >> left.($)]
+    [num] right_stream: [..right.length() - 1 >> right.($)]
+    [num] result: left_stream & right_stream & [3, operation, left.length() + right.length() + 3]
+    result
+
+_symbolic_inspection_unary_source(argument:symbolic, operation:num, ordinal:num) -> symbolic:
+    ordinal < 0? @: _symbolic_raw_number(0)
+    [num] argument_stream: [..argument.length() - 1 >> argument.($)]
+    [num] result: argument_stream & [7, operation, argument.length() + 3]
+    result
+
+_symbolic_inspection_step(source:symbolic, result:symbolic, rule_id:str, status:str,
+                          obligation_kind:str, obligation_operand:symbolic, ordinal:num) -> (ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit):
+    (ordinal:ordinal, rule_id:rule_id, status:status,
+     input:_symbolic_clone(source), output:_symbolic_clone(result),
+     assumption:(kind:obligation_kind, operand:_symbolic_clone(obligation_operand),
+                 scope:"conditional mathematical domain; no executable replacement proof"),
+     numerical_requirement:"exact_algebra", execution_authority:false)
+
+_symbolic_inspection_rule(source:symbolic, result:symbolic, rule_id:str, status:str,
+                          obligation_kind:str, obligation_operand:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    ordinal < 0? @: (expression:result, steps:[])
+    step: _symbolic_inspection_step(source, result, rule_id, status, obligation_kind, obligation_operand, ordinal)
+    (expression:_symbolic_clone(result), steps:[step])
+
+_symbolic_add_inspection(left:symbolic, right:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_binary_source(left, right, 1, ordinal)
+    _symbolic_is_finite_raw_number(left) /\ _symbolic_is_finite_raw_number(right)?
+        result: _symbolic_raw_number(_symbolic_number_value(left) + _symbolic_number_value(right))
+        _symbolic_is_finite_raw_number(result)?
+            @: _symbolic_inspection_rule(source, result, "known_numeric_add", "applied", "finite_literal_region", source, ordinal)
     _symbolic_is_raw_number(left, 0)?
-        @: _symbolic_clone(right)
+        @: _symbolic_inspection_rule(source, _symbolic_clone(right), "additive_left_identity", "applied", "operand_source_domain_retained", right, ordinal)
     _symbolic_is_raw_number(right, 0)?
-        @: _symbolic_clone(left)
-    left + right
+        @: _symbolic_inspection_rule(source, _symbolic_clone(left), "additive_right_identity", "applied", "operand_source_domain_retained", left, ordinal)
+    _symbolic_inspection_rule(source, left + right, "add_unchanged", "unchanged", "source_domain_retained", source, ordinal)
+
+_symbolic_add_simplified(left:symbolic, right:symbolic) -> symbolic:
+    _symbolic_add_inspection(left, right, -1).expression
+
+_symbolic_subtract_inspection(left:symbolic, right:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_binary_source(left, right, 2, ordinal)
+    _symbolic_is_finite_raw_number(left) /\ _symbolic_is_finite_raw_number(right)?
+        result: _symbolic_raw_number(_symbolic_number_value(left) - _symbolic_number_value(right))
+        _symbolic_is_finite_raw_number(result)?
+            @: _symbolic_inspection_rule(source, result, "known_numeric_subtract", "applied", "finite_literal_region", source, ordinal)
+    _symbolic_is_raw_number(right, 0)?
+        @: _symbolic_inspection_rule(source, _symbolic_clone(left), "subtractive_identity", "applied", "operand_source_domain_retained", left, ordinal)
+    same(left, right) /\ _symbolic_mathematical_total(left)?
+        @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "self_difference", "applied", "total_scalar_domain", left, ordinal)
+    _symbolic_inspection_rule(source, left - right, "subtract_unchanged", "unchanged", "source_domain_retained", source, ordinal)
 
 _symbolic_subtract_simplified(left:symbolic, right:symbolic) -> symbolic:
-    _symbolic_root_kind(left) = 2 /\ _symbolic_root_kind(right) = 2?
-        @: _symbolic_raw_number(_symbolic_number_value(left) - _symbolic_number_value(right))
-    _symbolic_is_raw_number(right, 0)?
-        @: _symbolic_clone(left)
-    same(left, right)?
-        @: _symbolic_raw_number(0)
-    left - right
+    _symbolic_subtract_inspection(left, right, -1).expression
+
+_symbolic_multiply_inspection(left:symbolic, right:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_binary_source(left, right, 3, ordinal)
+    _symbolic_is_finite_raw_number(left) /\ _symbolic_is_finite_raw_number(right)?
+        result: _symbolic_raw_number(_symbolic_number_value(left) * _symbolic_number_value(right))
+        _symbolic_is_finite_raw_number(result)?
+            @: _symbolic_inspection_rule(source, result, "known_numeric_multiply", "applied", "finite_literal_region", source, ordinal)
+    _symbolic_is_finite_raw_number(left) /\ _symbolic_root_kind(_symbolic_clone(right)) = 3 /\ _symbolic_root_operation(_symbolic_clone(right)) = 4?
+        denominator: _symbolic_right(_symbolic_clone(right))
+        _symbolic_is_finite_raw_number(denominator) /\ _symbolic_number_value(denominator) != 0?
+            numerator: _symbolic_left(right)
+            _symbolic_mathematical_total(numerator)?
+                scale: _symbolic_raw_number(_symbolic_number_value(left) / _symbolic_number_value(denominator))
+                _symbolic_is_finite_raw_number(scale)?
+                    nested: _symbolic_multiply_inspection(scale, numerator, ordinal)
+                    ordinal < 0? @: nested
+                    step: _symbolic_inspection_step(source, nested.expression, "constant_quotient_scale", "applied", "finite_nonzero_denominator_and_total_numerator", source, ordinal + nested.steps.length())
+                    @: (expression:nested.expression, steps:nested.steps & [step])
+    _symbolic_is_finite_raw_number(right) /\ _symbolic_root_kind(_symbolic_clone(left)) = 3 /\ _symbolic_root_operation(_symbolic_clone(left)) = 4?
+        denominator: _symbolic_right(_symbolic_clone(left))
+        _symbolic_is_finite_raw_number(denominator) /\ _symbolic_number_value(denominator) != 0?
+            numerator: _symbolic_left(left)
+            _symbolic_mathematical_total(numerator)?
+                scale: _symbolic_raw_number(_symbolic_number_value(right) / _symbolic_number_value(denominator))
+                _symbolic_is_finite_raw_number(scale)?
+                    nested: _symbolic_multiply_inspection(scale, numerator, ordinal)
+                    ordinal < 0? @: nested
+                    step: _symbolic_inspection_step(source, nested.expression, "constant_quotient_scale", "applied", "finite_nonzero_denominator_and_total_numerator", source, ordinal + nested.steps.length())
+                    @: (expression:nested.expression, steps:nested.steps & [step])
+    _symbolic_is_raw_number(_symbolic_clone(left), 0) /\ _symbolic_mathematical_total(right)?
+        @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "zero_product", "applied", "total_scalar_domain", right, ordinal)
+    _symbolic_is_raw_number(_symbolic_clone(right), 0) /\ _symbolic_mathematical_total(left)?
+        @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "zero_product", "applied", "total_scalar_domain", left, ordinal)
+    _symbolic_is_raw_number(left, 1)?
+        @: _symbolic_inspection_rule(source, _symbolic_clone(right), "multiplicative_left_identity", "applied", "operand_source_domain_retained", right, ordinal)
+    _symbolic_is_raw_number(right, 1)?
+        @: _symbolic_inspection_rule(source, _symbolic_clone(left), "multiplicative_right_identity", "applied", "operand_source_domain_retained", left, ordinal)
+    _symbolic_inspection_rule(source, left * right, "multiply_unchanged", "unchanged", "source_domain_retained", source, ordinal)
 
 _symbolic_multiply_simplified(left:symbolic, right:symbolic) -> symbolic:
-    left_is_number: _symbolic_root_kind(_symbolic_clone(left)) = 2
-    right_is_number: _symbolic_root_kind(_symbolic_clone(right)) = 2
-    left_is_number /\ right_is_number?
-        @: _symbolic_raw_number(_symbolic_number_value(left) * _symbolic_number_value(right))
-    left_is_number /\ _symbolic_root_kind(_symbolic_clone(right)) = 3 /\ _symbolic_root_operation(_symbolic_clone(right)) = 4?
-        denominator: _symbolic_right(_symbolic_clone(right))
-        _symbolic_root_kind(_symbolic_clone(denominator)) = 2 /\ ~(_symbolic_number_value(_symbolic_clone(denominator)) = 0)?
-            numerator: _symbolic_left(right)
-            scale: _symbolic_number_value(left) / _symbolic_number_value(denominator)
-            @: _symbolic_multiply_simplified(_symbolic_raw_number(scale), numerator)
-    right_is_number /\ _symbolic_root_kind(_symbolic_clone(left)) = 3 /\ _symbolic_root_operation(_symbolic_clone(left)) = 4?
-        denominator: _symbolic_right(_symbolic_clone(left))
-        _symbolic_root_kind(_symbolic_clone(denominator)) = 2 /\ ~(_symbolic_number_value(_symbolic_clone(denominator)) = 0)?
-            numerator: _symbolic_left(left)
-            scale: _symbolic_number_value(right) / _symbolic_number_value(denominator)
-            @: _symbolic_multiply_simplified(_symbolic_raw_number(scale), numerator)
-    _symbolic_is_raw_number(_symbolic_clone(left), 0) \/ _symbolic_is_raw_number(_symbolic_clone(right), 0)?
-        @: _symbolic_raw_number(0)
-    _symbolic_is_raw_number(_symbolic_clone(left), 1)?
-        @: _symbolic_clone(right)
-    _symbolic_is_raw_number(_symbolic_clone(right), 1)?
-        @: _symbolic_clone(left)
-    left * right
+    _symbolic_multiply_inspection(left, right, -1).expression
+
+_symbolic_divide_inspection(left:symbolic, right:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_binary_source(left, right, 4, ordinal)
+    _symbolic_is_finite_raw_number(left) /\ _symbolic_is_finite_raw_number(right)?
+        _symbolic_number_value(right) != 0?
+            result: _symbolic_raw_number(_symbolic_number_value(left) / _symbolic_number_value(right))
+            _symbolic_is_finite_raw_number(result)?
+                @: _symbolic_inspection_rule(source, result, "known_numeric_divide", "applied", "finite_nonzero_denominator", right, ordinal)
+    _symbolic_is_raw_number(left, 0) /\ _symbolic_is_finite_raw_number(right)?
+        _symbolic_number_value(right) != 0?
+            @: _symbolic_inspection_rule(source, _symbolic_raw_number(0), "zero_quotient", "applied", "finite_nonzero_denominator", right, ordinal)
+    _symbolic_is_raw_number(right, 1)?
+        @: _symbolic_inspection_rule(source, _symbolic_clone(left), "division_unit_identity", "applied", "operand_source_domain_retained", left, ordinal)
+    _symbolic_inspection_rule(source, left / right, "divide_unchanged", "unchanged", "nonzero_denominator_retained", source, ordinal)
 
 _symbolic_divide_simplified(left:symbolic, right:symbolic) -> symbolic:
-    _symbolic_root_kind(left) = 2 /\ _symbolic_root_kind(right) = 2?
-        ~(_symbolic_number_value(right) = 0)?
-            @: _symbolic_raw_number(_symbolic_number_value(left) / _symbolic_number_value(right))
-        @: left / right
-    _symbolic_is_raw_number(left, 0)?
-        @: _symbolic_raw_number(0)
-    _symbolic_is_raw_number(right, 1)?
-        @: _symbolic_clone(left)
-    left / right
+    _symbolic_divide_inspection(left, right, -1).expression
+
+_symbolic_power_inspection(base:symbolic, exponent:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    source: _symbolic_inspection_binary_source(base, exponent, 5, ordinal)
+    _symbolic_is_finite_raw_number(base) /\ _symbolic_is_finite_raw_number(exponent)?
+        _symbolic_number_value(base) != 0 \/ _symbolic_number_value(exponent) = 0 \/ (_symbolic_number_value(exponent) = m.abs(_symbolic_number_value(exponent)) /\ _symbolic_number_value(exponent) > 0)?
+            result: _symbolic_raw_number(_symbolic_number_value(base) ^ _symbolic_number_value(exponent))
+            _symbolic_is_finite_raw_number(result)?
+                @: _symbolic_inspection_rule(source, result, "known_numeric_power", "applied", "literal_power_domain", source, ordinal)
+    _symbolic_is_raw_number(exponent, 0) /\ _symbolic_mathematical_total(base)?
+        @: _symbolic_inspection_rule(source, _symbolic_raw_number(1), "zero_exponent", "applied", "total_scalar_domain", base, ordinal)
+    _symbolic_is_raw_number(exponent, 1)?
+        @: _symbolic_inspection_rule(source, _symbolic_clone(base), "power_unit_identity", "applied", "operand_source_domain_retained", base, ordinal)
+    _symbolic_inspection_rule(source, base ^ exponent, "power_unchanged", "unchanged", "power_domain_retained", source, ordinal)
 
 _symbolic_power_simplified(base:symbolic, exponent:symbolic) -> symbolic:
-    _symbolic_root_kind(base) = 2 /\ _symbolic_root_kind(exponent) = 2?
-        @: _symbolic_raw_number(_symbolic_number_value(base)^_symbolic_number_value(exponent))
-    _symbolic_is_raw_number(exponent, 0)?
-        @: _symbolic_raw_number(1)
-    _symbolic_is_raw_number(exponent, 1)?
-        @: _symbolic_clone(base)
-    base^exponent
+    _symbolic_power_inspection(base, exponent, -1).expression
 
 depends_on(value:symbolic, variable:symbolic) -> bit:
     ~(_symbolic_root_kind(variable) = 1)?
@@ -9161,7 +9626,7 @@ depends_on(value:symbolic, variable:symbolic) -> bit:
     catalog: _symbolic_catalog(value)
     _symbolic_catalog_entry_index(catalog, _symbolic_raw_catalog(variable)) >= 0
 
-depends_on[variable_name:chr](value:symbolic) -> bit:
+depends_on(variable_name:chr, value:symbolic) -> bit:
     depends_on(value, _symbolic_suffix_variable(value, variable_name))
 
 _symbolic_univariate_as_polynomial(value:symbolic) -> symbolic:
@@ -9185,13 +9650,67 @@ _symbolic_univariate_as_polynomial(value:symbolic) -> symbolic:
     result: header & catalog & count_header & terms & trailer
     result
 
-_symbolic_integrate_polynomial(value:symbolic, variable:symbolic) -> symbolic:
+# Real-part differentiation is a real-direction rule. A complex selected
+# formal cannot receive it merely because a numeric operand happens tobereal.
+_symbolic_differentiation_real_formal(variable:symbolic) -> bit:
+    domain:_symbolic_domain(variable)
+    domain=_symbolic_domain_natural \/ domain=_symbolic_domain_integer \/ domain=_symbolic_domain_rational \/ domain=_symbolic_domain_real
+
+# This bounded proof uses actual catalogue domains and finite real constants.
+# It establishes real values where the source is defined, never nonzero values
+# or permission to evaluate a partial expression. Existing source guards remain.
+_symbolic_magnitude_real_inner(value:symbolic) -> bit:
+    dag: _symbolic_as_dag(value)
+    count: _symbolic_dag_node_count(dag)
+    count < 1 \/ count > 4096? @: false
+    [num] real_nodes: [..count - 1 >> 0]
+    ..count - 1 >>
+        node: $
+        operation: _symbolic_dag_node_operation(dag,node)
+        operation = 1?
+            _symbolic_differentiation_real_formal(_symbolic_dag_with_root(dag,node))? real_nodes.(node):1
+        operation = 2?
+            constant:_symbolic_dag_with_root(dag,node)
+            numeric:_symbolic_number_value(constant)
+            _symbolic_is_finite_raw_number(constant) /\ m.real_part(numeric)=numeric? real_nodes.(node):1
+        operation >= 3 /\ operation <= 6?
+            left:_symbolic_dag_node_left(dag,node)
+            right:_symbolic_dag_node_right(dag,node)
+            left >= 0 /\ right >= 0 /\ left < node /\ right < node?
+                real_nodes.(left)=1 /\ real_nodes.(right)=1? real_nodes.(node):1
+    real_nodes.(_symbolic_dag_root(dag))=1
+
+# Executed calculus branch snapshots, not domain or execution proofs.
+_symbolic_calculus_next(ordinal:num, size:num) -> num:
+    ordinal < 0? @: -1
+    ordinal + size
+
+_symbolic_calculus_finish(source:symbolic, result:symbolic, rule:str, steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)], variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    ordinal < 0? @: (expression:result, steps:[])
+    receipt: _symbolic_inspection_rule(source, result, rule, "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+    (expression:receipt.expression, steps:steps & receipt.steps)
+
+_symbolic_calculus_polynomial_single_term(catalog:[num], variables:num, cells:[num]) -> symbolic:
+    [num] result: [4, catalog.length(), variables] & catalog & [1] & cells & [4, 0, catalog.length() + cells.length() + 7]
+    result
+
+_symbolic_calculus_polynomial_term_snapshot(value:symbolic, term:num) -> symbolic:
+    catalog: _symbolic_catalog(value)
+    variables: _symbolic_polynomial_variable_count(value)
+    start: 4 + value.1 + term * (variables + 1)
+    [num] cells: [..variables >> value.(start + $)]
+    _symbolic_calculus_polynomial_single_term(catalog, variables, cells)
+
+_symbolic_integrate_polynomial_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     catalog: _symbolic_catalog(value)
     target: _symbolic_catalog_entry_index(catalog, _symbolic_raw_catalog(variable))
     target < 0?
-        @: _symbolic_polynomial_multiply(value, _symbolic_pack_symbol(variable))
+        @: _symbolic_calculus_finish(value, _symbolic_polynomial_multiply(value, _symbolic_pack_symbol(variable)), "integrate_polynomial_variable_absent", steps, variable, ordinal)
     variable_count: _symbolic_polynomial_variable_count(value)
     source_terms: _symbolic_polynomial_term_count(value)
+    ordinal >= 0 /\ (source_terms + 1 > 4096 \/ (source_terms + 1) * (value.length() + variable.length() + catalog.length() + 2 * variable_count + 16) > 1048576)?
+        errors.ValueError("symbolic calculus inspection snapshot budget exceeded")!
     width: variable_count + 1
     terms: [0:source_terms * width]
     ..source_terms - 1 >>
@@ -9202,36 +9721,68 @@ _symbolic_integrate_polynomial(value:symbolic, variable:symbolic) -> symbolic:
         ..variable_count - 1 >>
             terms.(offset + $ + 1): _symbolic_polynomial_term_exponent(value, source, $)
         terms.(offset + target + 1): exponent + 1
+        ordinal >= 0?
+            source_snapshot: _symbolic_calculus_polynomial_term_snapshot(value, source)
+            term_cells: [..width - 1 >> terms.(offset + $)]
+            result_snapshot: _symbolic_calculus_polynomial_single_term(catalog, variable_count, term_cells)
+            receipt: _symbolic_inspection_rule(source_snapshot, result_snapshot, "integrate_polynomial_term_write", "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+            .steps: steps & receipt.steps
     total_length: 3 + catalog.length() + 1 + terms.length() + 3
     [num] header: [4, catalog.length(), variable_count]
     [num] count_header: [source_terms]
     [num] trailer: [4, 0, total_length]
-    result: header & catalog & count_header & terms & trailer
-    result
+    result: _symbolic_owned_cells(header & catalog & count_header & terms & trailer)
+    _symbolic_calculus_finish(value, result, "integrate_polynomial_result", steps, variable, ordinal)
 
-_symbolic_integrate_raw(value:symbolic, variable:symbolic) -> symbolic:
+_symbolic_integrate_polynomial(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_integrate_polynomial_inspection(value, variable, -1).expression
+
+_symbolic_integrate_raw_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     kind: _symbolic_root_kind(value)
     kind = 1?
         same(_symbolic_clone(value), _symbolic_clone(variable))?
-            square: _symbolic_power_simplified(variable, _symbolic_raw_number(2))
-            @: _symbolic_divide_simplified(square, _symbolic_raw_number(2))
-        @: _symbolic_multiply_simplified(value, variable)
+            arithmetic_view_0: _symbolic_power_inspection(variable, _symbolic_raw_number(2), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_0.steps
+            square: arithmetic_view_0.expression
+            arithmetic_view_1: _symbolic_divide_inspection(square, _symbolic_raw_number(2), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_1.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_1.expression, "integrate_symbol_self", steps, variable, ordinal)
+        arithmetic_view_2: _symbolic_multiply_inspection(value, variable, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_2.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_2.expression, "integrate_symbol_other", steps, variable, ordinal)
     kind = 2?
-        @: _symbolic_multiply_simplified(value, variable)
+        arithmetic_view_3: _symbolic_multiply_inspection(value, variable, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_3.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_3.expression, "integrate_constant", steps, variable, ordinal)
     kind = 7?
         operation: _symbolic_root_operation(_symbolic_clone(value))
         argument: _symbolic_argument(value)
         ~same(_symbolic_clone(argument), _symbolic_clone(variable))?
             errors.TypeError("symbolic.integrate does not support this function argument")!
         operation = 1?
-            @: _symbolic_multiply_simplified(_symbolic_raw_number(-1), cos(variable))
+            arithmetic_view_4: _symbolic_multiply_inspection(_symbolic_raw_number(-1), cos(variable), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_4.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_4.expression, "integrate_sine", steps, variable, ordinal)
         operation = 2?
-            @: sin(variable)
+            @: _symbolic_calculus_finish(value, sin(variable), "integrate_cosine", steps, variable, ordinal)
         operation = 3?
-            product: _symbolic_multiply_simplified(variable, log(variable))
-            @: _symbolic_subtract_simplified(product, variable)
+            arithmetic_view_5: _symbolic_multiply_inspection(variable, log(variable), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_5.steps
+            product: arithmetic_view_5.expression
+            arithmetic_view_6: _symbolic_subtract_inspection(product, variable, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_6.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_6.expression, "integrate_log", steps, variable, ordinal)
+        operation = 4 /\ _symbolic_differentiation_real_formal(variable)?
+            # Original sqrt source/role is retained by this invocation. The
+            # actual existing power integrator executes once on the scoped view.
+            power_view: _symbolic_power_inspection(variable, _symbolic_raw_number(0.5), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & power_view.steps
+            power_integral: _symbolic_integrate_raw_inspection(power_view.expression, variable, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & power_integral.steps
+            @: _symbolic_calculus_finish(value, power_integral.expression, "integrate_real_sqrt_power_bridge", steps, variable, ordinal)
         operation = 5?
-            @: exp(variable)
+            @: _symbolic_calculus_finish(value, exp(variable), "integrate_exp", steps, variable, ordinal)
         errors.TypeError("symbolic.integrate does not support this function")!
     ~(kind = 3)?
         errors.TypeError("symbolic.integrate received an unsupported expression kind")!
@@ -9239,47 +9790,88 @@ _symbolic_integrate_raw(value:symbolic, variable:symbolic) -> symbolic:
     left: _symbolic_left(_symbolic_clone(value))
     right: _symbolic_right(value)
     operation = 1?
-        @: _symbolic_add_simplified(_symbolic_integrate_raw(left, variable), _symbolic_integrate_raw(right, variable))
+        left_view: _symbolic_integrate_raw_inspection(left, variable, ordinal)
+        right_view: _symbolic_integrate_raw_inspection(right, variable, _symbolic_calculus_next(ordinal, left_view.steps.length()))
+        .steps: left_view.steps & right_view.steps
+        arithmetic_view_7: _symbolic_add_inspection(left_view.expression, right_view.expression, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_7.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_7.expression, "integrate_add", steps, variable, ordinal)
     operation = 2?
-        @: _symbolic_subtract_simplified(_symbolic_integrate_raw(left, variable), _symbolic_integrate_raw(right, variable))
+        left_view: _symbolic_integrate_raw_inspection(left, variable, ordinal)
+        right_view: _symbolic_integrate_raw_inspection(right, variable, _symbolic_calculus_next(ordinal, left_view.steps.length()))
+        .steps: left_view.steps & right_view.steps
+        arithmetic_view_8: _symbolic_subtract_inspection(left_view.expression, right_view.expression, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_8.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_8.expression, "integrate_subtract", steps, variable, ordinal)
     operation = 3?
         ~depends_on(_symbolic_clone(left), _symbolic_clone(variable))?
-            @: _symbolic_multiply_simplified(left, _symbolic_integrate_raw(right, variable))
+            child_view: _symbolic_integrate_raw_inspection(right, variable, ordinal)
+            .steps: child_view.steps
+            arithmetic_view_9: _symbolic_multiply_inspection(left, child_view.expression, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_9.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_9.expression, "integrate_left_constant_product", steps, variable, ordinal)
         ~depends_on(_symbolic_clone(right), _symbolic_clone(variable))?
-            @: _symbolic_multiply_simplified(right, _symbolic_integrate_raw(left, variable))
+            child_view: _symbolic_integrate_raw_inspection(left, variable, ordinal)
+            .steps: child_view.steps
+            arithmetic_view_10: _symbolic_multiply_inspection(right, child_view.expression, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_10.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_10.expression, "integrate_right_constant_product", steps, variable, ordinal)
         errors.TypeError("symbolic.integrate does not support products with two variable-dependent factors")!
     operation = 4?
         ~depends_on(_symbolic_clone(left), _symbolic_clone(variable)) /\ same(_symbolic_clone(right), _symbolic_clone(variable))?
-            @: _symbolic_multiply_simplified(left, log(variable))
+            arithmetic_view_11: _symbolic_multiply_inspection(left, log(variable), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_11.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_11.expression, "integrate_reciprocal_scale", steps, variable, ordinal)
         errors.TypeError("symbolic.integrate does not support this quotient")!
     operation = 5?
         same(_symbolic_clone(left), _symbolic_clone(variable)) /\ _symbolic_root_kind(_symbolic_clone(right)) = 2?
             exponent: _symbolic_number_value(_symbolic_clone(right))
             exponent = -1?
-                @: log(variable)
-            raised: _symbolic_power_simplified(variable, _symbolic_raw_number(exponent + 1))
-            @: _symbolic_divide_simplified(raised, _symbolic_raw_number(exponent + 1))
+                @: _symbolic_calculus_finish(value, log(variable), "integrate_negative_unit_power", steps, variable, ordinal)
+            arithmetic_view_12: _symbolic_power_inspection(variable, _symbolic_raw_number(exponent + 1), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_12.steps
+            raised: arithmetic_view_12.expression
+            arithmetic_view_13: _symbolic_divide_inspection(raised, _symbolic_raw_number(exponent + 1), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_13.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_13.expression, "integrate_numeric_power", steps, variable, ordinal)
         errors.TypeError("symbolic.integrate does not support this power")!
     errors.TypeError("symbolic.integrate received an unsupported operation")!
 
-integrate(value:symbolic, variable:symbolic) -> symbolic:
+_symbolic_integrate_raw(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_integrate_raw_inspection(value, variable, -1).expression
+
+_symbolic_integrate_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     ~(_symbolic_root_kind(variable) = 1)?
         errors.TypeError("symbolic.integrate variable must be a symbol")!
     kind: _symbolic_root_kind(value)
     kind = 4?
-        @: _symbolic_integrate_polynomial(value, variable)
+        @: _symbolic_integrate_polynomial_inspection(value, variable, ordinal)
     kind = 6?
         polynomial_value: _symbolic_univariate_as_polynomial(value)
-        @: _symbolic_integrate_polynomial(polynomial_value, variable)
-    _symbolic_integrate_raw(value, variable)
+        ordinal >= 0?
+            receipt: _symbolic_inspection_rule(value, polynomial_value, "integrate_univariate_to_polynomial", "represented", "original_source_domain_retained", variable, ordinal)
+            .steps: receipt.steps
+        child_view: _symbolic_integrate_polynomial_inspection(polynomial_value, variable, _symbolic_calculus_next(ordinal, steps.length()))
+        @: (expression:child_view.expression, steps:steps & child_view.steps)
+    _symbolic_integrate_raw_inspection(value, variable, ordinal)
 
-integrate[variable_name:chr](value:symbolic) -> symbolic:
+integrate(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_integrate_inspection(value, variable, -1).expression
+
+inspect_integrate(value:symbolic, variable:symbolic) -> (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+    view: _symbolic_integrate_inspection(value, variable, 0)
+    (source:_symbolic_clone(value), expression:view.expression, steps:view.steps,
+     domain:(scope:"original source obligations retained; calculus is conditional on declared domains and operator admissibility", execution_checked:false),
+     ordinal_scope:"local to this owned inspection invocation", numerical_requirement:"exact_algebra", execution_authority:false)
+
+integrate(variable_name:chr, value:symbolic) -> symbolic:
     integrate(value, _symbolic_suffix_variable(value, variable_name))
 
-integ[variable_name:chr](value:symbolic) -> symbolic:
+integ(variable_name:chr, value:symbolic) -> symbolic:
     integrate(value, _symbolic_suffix_variable(value, variable_name))
 
-integ[...variable_names:chr](value:symbolic) -> symbolic:
+integ(variable_names:[chr], value:symbolic) -> symbolic:
     result: _symbolic_clone(value)
     index: 0
     index < variable_names.length()?>
@@ -9290,7 +9882,7 @@ integ[...variable_names:chr](value:symbolic) -> symbolic:
         .index+: 1
     result
 
-_sum[variable_name:chr](
+_sum(variable_name:chr,
     value:symbolic,
     from:num,
     to:num,
@@ -9342,10 +9934,10 @@ _symbolic_numerical_integ_index_bounds(
         .index+: 1
     total * orientation
 
-integ[axis:chr](values:[num:n], spacing:num = 1) -> num:
+integ(axis:chr, values:[num:n], spacing:num = 1) -> num:
     _symbolic_numerical_integ_index_bounds(values, spacing)
 
-_symbolic_numerical_integ_indices[axis:chr](
+_symbolic_numerical_integ_indices(axis:chr,
     values:[num:n],
     spacing:num = 1,
     lower:num = 0,
@@ -9419,7 +10011,7 @@ _symbolic_numerical_integ_coordinate_bounds(
         .index+: 1
     total * orientation
 
-integ[axis:chr](values:[num:n], coordinates:[num:m]) -> num:
+integ(axis:chr, values:[num:n], coordinates:[num:m]) -> num:
     count: coordinates.length()
     count < 2? @: 0
     first: coordinates.0
@@ -9428,7 +10020,7 @@ integ[axis:chr](values:[num:n], coordinates:[num:m]) -> num:
         @: _symbolic_numerical_integ_coordinate_bounds(values, coordinates, first, last)
     _symbolic_numerical_integ_coordinate_bounds(values, coordinates, last, first)
 
-_symbolic_numerical_integ_coordinates_lower[axis:chr](
+_symbolic_numerical_integ_coordinates_lower(axis:chr,
     values:[num:n],
     coordinates:[num:m],
     lower:num
@@ -9440,7 +10032,7 @@ _symbolic_numerical_integ_coordinates_lower[axis:chr](
         .upper: coordinates.(count - 1)
     _symbolic_numerical_integ_coordinate_bounds(values, coordinates, lower, upper)
 
-_symbolic_numerical_integ_coordinates_upper[axis:chr](
+_symbolic_numerical_integ_coordinates_upper(axis:chr,
     values:[num:n],
     coordinates:[num:m],
     upper:num
@@ -9452,7 +10044,7 @@ _symbolic_numerical_integ_coordinates_upper[axis:chr](
         .lower: coordinates.(count - 1)
     _symbolic_numerical_integ_coordinate_bounds(values, coordinates, lower, upper)
 
-_symbolic_numerical_integ_coordinates_bounds[axis:chr](
+_symbolic_numerical_integ_coordinates_bounds(axis:chr,
     values:[num:n],
     coordinates:[num:m],
     lower:num,
@@ -9460,17 +10052,27 @@ _symbolic_numerical_integ_coordinates_bounds[axis:chr](
 ) -> num:
     _symbolic_numerical_integ_coordinate_bounds(values, coordinates, lower, upper)
 
-_symbolic_differentiate_polynomial(value:symbolic, variable:symbolic) -> symbolic:
+_symbolic_differentiate_polynomial_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     catalog: _symbolic_catalog(value)
     target_entry: _symbolic_raw_catalog(variable)
     target: _symbolic_catalog_entry_index(catalog, target_entry)
     variable_count: _symbolic_polynomial_variable_count(value)
     source_terms: _symbolic_polynomial_term_count(value)
+    ordinal >= 0 /\ (source_terms * 2 + 1 > 4096 \/ (source_terms * 2 + 1) * (value.length() + variable.length() + catalog.length() + 2 * variable_count + 16) > 1048576)?
+        errors.ValueError("symbolic calculus inspection snapshot budget exceeded")!
     kept: 0
     target >= 0?
         ..source_terms - 1 >>
             _symbolic_polynomial_term_exponent(value, $, target) > 0?
                 .kept+: 1
+            ordinal >= 0?
+                source_snapshot: _symbolic_calculus_polynomial_term_snapshot(value, $)
+                branch: "differentiate_polynomial_term_constant"
+                _symbolic_polynomial_term_exponent(value, $, target) > 0?
+                    .branch: "differentiate_polynomial_term_selected"
+                receipt: _symbolic_inspection_rule(source_snapshot, source_snapshot, branch, "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+                .steps: steps & receipt.steps
     width: variable_count + 1
     terms: [0:kept * width]
     output: 0
@@ -9487,15 +10089,27 @@ _symbolic_differentiate_polynomial(value:symbolic, variable:symbolic) -> symboli
                 ..variable_count - 1 >>
                     terms.(offset + $ + 1): _symbolic_polynomial_term_exponent(value, source, $)
                 terms.(offset + target + 1): exponent - 1
+                ordinal >= 0?
+                    source_snapshot: _symbolic_calculus_polynomial_term_snapshot(value, source)
+                    term_cells: [..width - 1 >> terms.(offset + $)]
+                    result_snapshot: _symbolic_calculus_polynomial_single_term(catalog, variable_count, term_cells)
+                    receipt: _symbolic_inspection_rule(source_snapshot, result_snapshot, "differentiate_polynomial_term_write", "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+                    .steps: steps & receipt.steps
                 .output+: 1
     total_length: 3 + catalog.length() + 1 + terms.length() + 3
     [num] header: [4, catalog.length(), variable_count]
     [num] count_header: [kept]
     [num] trailer: [4, 0, total_length]
-    result: header & catalog & count_header & terms & trailer
-    result
+    result: _symbolic_owned_cells(header & catalog & count_header & terms & trailer)
+    branch: "differentiate_polynomial_result"
+    target < 0? .branch: "differentiate_polynomial_variable_absent"
+    _symbolic_calculus_finish(value, result, branch, steps, variable, ordinal)
 
-_symbolic_differentiate_univariate(value:symbolic, variable:symbolic) -> symbolic:
+_symbolic_differentiate_polynomial(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_differentiate_polynomial_inspection(value, variable, -1).expression
+
+_symbolic_differentiate_univariate_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     result: _symbolic_clone(value)
     capacity: _symbolic_univariate_capacity(value)
     count_index: _symbolic_univariate_count_index(value)
@@ -9504,66 +10118,129 @@ _symbolic_differentiate_univariate(value:symbolic, variable:symbolic) -> symboli
     ..capacity - 1 >>
         result.(coefficient_start + $): 0
     target: _symbolic_catalog_entry_index(_symbolic_catalog(value), _symbolic_raw_catalog(variable))
+    ordinal >= 0 /\ (capacity > 4096 \/ capacity * (value.length() + variable.length() + 16) > 1048576)?
+        errors.ValueError("symbolic calculus inspection snapshot budget exceeded")!
     target < 0?
-        @: result
+        @: _symbolic_calculus_finish(value, result, "differentiate_univariate_variable_absent", steps, variable, ordinal)
     exponent: 1
     exponent < capacity?>
         differentiated: value.(coefficient_start + exponent) * exponent
         result.(coefficient_start + exponent - 1): differentiated
         ~(differentiated = 0)?
             result.(count_index): result.(count_index) + 1
+        ordinal >= 0?
+            source_snapshot: _symbolic_inspection_binary_source(_symbolic_raw_number(value.(coefficient_start + exponent)), _symbolic_raw_number(exponent), 3, ordinal)
+            receipt: _symbolic_inspection_rule(source_snapshot, _symbolic_raw_number(differentiated), "differentiate_univariate_coefficient_write", "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+            .steps: steps & receipt.steps
         .exponent+: 1
-    result
+    _symbolic_calculus_finish(value, result, "differentiate_univariate_result", steps, variable, ordinal)
 
-_symbolic_dag_emit_constant(nodes:[num], cursor:num, value:num):
+_symbolic_differentiate_univariate(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_differentiate_univariate_inspection(value, variable, -1).expression
+
+_symbolic_calculus_dag_emission_receipt(nodes:[num], catalog:[num], cursor:num, index:num, next:num, operation:num, left:num, right:num, rule:str, ordinal:num) -> (index:num,next:num,nodes:[num],steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    ordinal < 0? @: (index:index, next:next, nodes:nodes, steps:[])
+    [num] prefix: [..cursor * 4 - 1 >> nodes.($)]
+    source: _symbolic_raw_number(0)
+    operation = 2?
+        .source: _symbolic_raw_number(nodes.(cursor * 4 + 3))
+    operation >= 3 /\ operation <= 7?
+        left_source: _symbolic_dag_make(catalog, prefix, left)
+        right_source: _symbolic_dag_make(catalog, prefix, right)
+        .source: _symbolic_inspection_binary_source(left_source, right_source, operation - 2, ordinal)
+    operation >= 8?
+        argument: _symbolic_dag_make(catalog, prefix, left)
+        unary: operation - 7
+        operation = 25? .unary: 6
+        operation = 26? .unary: 7
+        .source: _symbolic_inspection_unary_source(argument, unary, ordinal)
+    [num] used: [..next * 4 - 1 >> nodes.($)]
+    result: _symbolic_dag_make(catalog, used, index)
+    receipt: _symbolic_inspection_rule(source, result, rule, "represented", "original_source_domain_retained", source, ordinal)
+    (index:index, next:next, nodes:nodes, steps:receipt.steps)
+
+_symbolic_dag_emit_constant_inspection(nodes:[num], cursor:num, value:num, catalog:[num], ordinal:num) -> (index:num,next:num,nodes:[num],steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
     offset: cursor * 4
     nodes.(offset): 2
     nodes.(offset + 1): 0
     nodes.(offset + 2): 0
     nodes.(offset + 3): value
-    (index: cursor, next: cursor + 1)
+    _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, cursor, cursor + 1, 2, 0, 0, "dag_constant_emit", ordinal)
 
-_symbolic_dag_emit_binary(
+_symbolic_dag_erasure_operand(nodes:[num],cursor:num,catalog:[num],index:num) -> symbolic:
+    # A proof view is allocated only for an actual candidate that would erase
+    # this operand. Ordinary addition/unit identity/emission needs no view.
+    [num] used: [..cursor * 4 - 1 >> nodes.($)]
+    _symbolic_dag_make(catalog,used,index)
+
+_symbolic_dag_emit_binary_inspection(
     nodes:[num],
     cursor:num,
     operation:num,
     left:num,
     right:num,
     zero:num,
-    one:num
-):
+    one:num,
+    catalog:[num],
+    ordinal:num
+) -> (index:num,next:num,nodes:[num],steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
     operation = 3?
-        left = zero? @: (index:right, next:cursor)
-        right = zero? @: (index:left, next:cursor)
+        left = zero? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, right, cursor, operation, left, right, "dag_additive_left_identity", ordinal)
+        right = zero? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, left, cursor, operation, left, right, "dag_additive_right_identity", ordinal)
     operation = 4?
-        right = zero? @: (index:left, next:cursor)
-        left = right? @: (index:zero, next:cursor)
+        right = zero? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, left, cursor, operation, left, right, "dag_subtractive_identity", ordinal)
+        left = right?
+            left_obligation: _symbolic_dag_erasure_operand(nodes,cursor,catalog,left)
+            _symbolic_mathematical_total(left_obligation)? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, zero, cursor, operation, left, right, "dag_self_difference", ordinal)
     operation = 5?
-        left = zero \/ right = zero? @: (index:zero, next:cursor)
-        left = one? @: (index:right, next:cursor)
-        right = one? @: (index:left, next:cursor)
+        left = zero?
+            right_obligation: _symbolic_dag_erasure_operand(nodes,cursor,catalog,right)
+            _symbolic_mathematical_total(right_obligation)? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, zero, cursor, operation, left, right, "dag_zero_product", ordinal)
+        right = zero?
+            left_obligation: _symbolic_dag_erasure_operand(nodes,cursor,catalog,left)
+            _symbolic_mathematical_total(left_obligation)? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, zero, cursor, operation, left, right, "dag_zero_product", ordinal)
+        left = one? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, right, cursor, operation, left, right, "dag_multiplicative_left_identity", ordinal)
+        right = one? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, left, cursor, operation, left, right, "dag_multiplicative_right_identity", ordinal)
     operation = 6?
-        left = zero? @: (index:zero, next:cursor)
-        right = one? @: (index:left, next:cursor)
+        left = zero?
+            right_obligation: _symbolic_dag_erasure_operand(nodes,cursor,catalog,right)
+            _symbolic_is_finite_raw_number(right_obligation)?
+                _symbolic_number_value(right_obligation) != 0? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, zero, cursor, operation, left, right, "dag_zero_quotient", ordinal)
+        right = one? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, left, cursor, operation, left, right, "dag_division_unit_identity", ordinal)
     operation = 7?
-        right = zero? @: (index:one, next:cursor)
-        right = one? @: (index:left, next:cursor)
+        right = zero?
+            left_obligation: _symbolic_dag_erasure_operand(nodes,cursor,catalog,left)
+            _symbolic_mathematical_total(left_obligation)? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, one, cursor, operation, left, right, "dag_zero_exponent", ordinal)
+        right = one? @: _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, left, cursor, operation, left, right, "dag_power_unit_identity", ordinal)
     offset: cursor * 4
     nodes.(offset): operation
     nodes.(offset + 1): left
     nodes.(offset + 2): right
     nodes.(offset + 3): 0
-    (index:cursor, next:cursor + 1)
+    _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, cursor, cursor + 1, operation, left, right, "dag_binary_emit", ordinal)
 
-_symbolic_dag_emit_unary(nodes:[num], cursor:num, operation:num, argument:num):
+_symbolic_dag_emit_unary_inspection(nodes:[num], cursor:num, operation:num, argument:num, catalog:[num], ordinal:num) -> (index:num,next:num,nodes:[num],steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
     offset: cursor * 4
     nodes.(offset): operation
     nodes.(offset + 1): argument
     nodes.(offset + 2): 0
     nodes.(offset + 3): 0
-    (index:cursor, next:cursor + 1)
+    _symbolic_calculus_dag_emission_receipt(nodes, catalog, cursor, cursor, cursor + 1, operation, argument, 0, "dag_unary_emit", ordinal)
 
-_symbolic_differentiate_dag(value:symbolic, variable:symbolic) -> symbolic:
+_symbolic_dag_emit_constant(nodes:[num], cursor:num, value:num):
+    result: _symbolic_dag_emit_constant_inspection(nodes, cursor, value, [], -1)
+    (index:result.index, next:result.next, nodes:result.nodes)
+
+_symbolic_dag_emit_binary(nodes:[num], cursor:num, operation:num, left:num, right:num, zero:num, one:num):
+    result: _symbolic_dag_emit_binary_inspection(nodes, cursor, operation, left, right, zero, one, [], -1)
+    (index:result.index, next:result.next, nodes:result.nodes)
+
+_symbolic_dag_emit_unary(nodes:[num], cursor:num, operation:num, argument:num):
+    result: _symbolic_dag_emit_unary_inspection(nodes, cursor, operation, argument, [], -1)
+    (index:result.index, next:result.next, nodes:result.nodes)
+
+_symbolic_differentiate_dag_inspection(value:symbolic, variable:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     catalog: _symbolic_dag_catalog(value)
     variable_count: _symbolic_catalog_variable_count(catalog)
     identity: [0:variable_count]
@@ -9577,16 +10254,26 @@ _symbolic_differentiate_dag(value:symbolic, variable:symbolic) -> symbolic:
     source_width > 0?
         ..source_width - 1 >> nodes.($): value.(source_start + $)
     cursor: source_count
-    emitted: _symbolic_dag_emit_constant(nodes, cursor, 0)
+    ordinal >= 0 /\ (8 * source_count + 5 > 4096 \/ (8 * source_count + 5) * (value.length() + variable.length() + 6 * (catalog.length() + capacity * 4 + 8)) > 1048576)?
+        errors.ValueError("symbolic calculus inspection snapshot budget exceeded")!
+    emitted: _symbolic_dag_emit_constant_inspection(nodes, cursor, 0, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+    .nodes: emitted.nodes
+    .steps: steps & emitted.steps
     zero: emitted.index
     .cursor: emitted.next
-    .emitted: _symbolic_dag_emit_constant(nodes, cursor, 1)
+    .emitted: _symbolic_dag_emit_constant_inspection(nodes, cursor, 1, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+    .nodes: emitted.nodes
+    .steps: steps & emitted.steps
     one: emitted.index
     .cursor: emitted.next
-    .emitted: _symbolic_dag_emit_constant(nodes, cursor, -1)
+    .emitted: _symbolic_dag_emit_constant_inspection(nodes, cursor, -1, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+    .nodes: emitted.nodes
+    .steps: steps & emitted.steps
     negative_one: emitted.index
     .cursor: emitted.next
-    .emitted: _symbolic_dag_emit_constant(nodes, cursor, 2)
+    .emitted: _symbolic_dag_emit_constant_inspection(nodes, cursor, 2, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+    .nodes: emitted.nodes
+    .steps: steps & emitted.steps
     two: emitted.index
     .cursor: emitted.next
     derivatives: [0:source_count]
@@ -9611,7 +10298,7 @@ _symbolic_differentiate_dag(value:symbolic, variable:symbolic) -> symbolic:
         operation = 1?
             symbol_entry: _symbolic_dag_catalog_entry(value, left)
             derivatives.(node): zero
-            _symbolic_numeric_vector_same(symbol_entry, target_entry)?
+            _symbolic_catalog_identity_same(symbol_entry, target_entry)?
                 derivatives.(node): one
         operation = 2?
             derivatives.(node): zero
@@ -9619,208 +10306,412 @@ _symbolic_differentiate_dag(value:symbolic, variable:symbolic) -> symbolic:
             .left_derivative: derivatives.(left)
             .right_derivative: derivatives.(right)
         operation = 3 \/ operation = 4?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, operation, left_derivative, right_derivative, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, operation, left_derivative, right_derivative, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 5?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, left_derivative, right, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, left_derivative, right, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .first: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, left, right_derivative, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, left, right_derivative, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .second: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 3, first, second, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 3, first, second, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 6?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, left_derivative, right, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, left_derivative, right, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .first: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, left, right_derivative, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, left, right_derivative, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .second: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 4, first, second, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 4, first, second, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .third: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 7, right, two, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 7, right, two, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .fourth: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 6, third, fourth, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 6, third, fourth, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 7?
             _symbolic_dag_node_operation(value, right) = 2?
                 .exponent_value: _symbolic_dag_node_value(value, right)
-                .emitted: _symbolic_dag_emit_constant(nodes, cursor, exponent_value - 1)
+                .emitted: _symbolic_dag_emit_constant_inspection(nodes, cursor, exponent_value - 1, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .first: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 7, left, first, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 7, left, first, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .second: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, right, second, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, right, second, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .third: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, third, left_derivative, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, third, left_derivative, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 derivatives.(node): emitted.index
                 .cursor: emitted.next
             ~(_symbolic_dag_node_operation(value, right) = 2)?
-                .emitted: _symbolic_dag_emit_unary(nodes, cursor, 10, left)
+                .emitted: _symbolic_dag_emit_unary_inspection(nodes, cursor, 10, left, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .first: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, right_derivative, first, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, right_derivative, first, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .second: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 6, left_derivative, left, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 6, left_derivative, left, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .third: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, right, third, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, right, third, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .fourth: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 3, second, fourth, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 3, second, fourth, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 .fifth: emitted.index
                 .cursor: emitted.next
-                .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, node, fifth, zero, one)
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, node, fifth, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
                 derivatives.(node): emitted.index
                 .cursor: emitted.next
         operation = 8?
-            .emitted: _symbolic_dag_emit_unary(nodes, cursor, 9, left)
+            .emitted: _symbolic_dag_emit_unary_inspection(nodes, cursor, 9, left, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .first: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, first, derivatives.(left), zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, first, derivatives.(left), zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 9?
-            .emitted: _symbolic_dag_emit_unary(nodes, cursor, 8, left)
+            .emitted: _symbolic_dag_emit_unary_inspection(nodes, cursor, 8, left, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .first: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, negative_one, first, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, negative_one, first, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .second: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, second, derivatives.(left), zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, second, derivatives.(left), zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 10?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 6, derivatives.(left), left, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 6, derivatives.(left), left, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 11?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, two, node, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, two, node, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             .first: emitted.index
             .cursor: emitted.next
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 6, derivatives.(left), first, zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 6, derivatives.(left), first, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 12?
-            .emitted: _symbolic_dag_emit_binary(nodes, cursor, 5, node, derivatives.(left), zero, one)
+            .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, node, derivatives.(left), zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 25?
-            .emitted: _symbolic_dag_emit_unary(nodes, cursor, 25, derivatives.(left))
+            ~_symbolic_differentiation_real_formal(variable) /\ derivatives.(left)!=zero?
+                errors.TypeError("symbolic real_part has no complex derivative on this selected formal; real-direction or constant-inner-derivative proof required")!
+            .emitted: _symbolic_dag_emit_unary_inspection(nodes, cursor, 25, derivatives.(left), catalog, _symbolic_calculus_next(ordinal, steps.length()))
+            .nodes: emitted.nodes
+            .steps: steps & emitted.steps
             derivatives.(node): emitted.index
             .cursor: emitted.next
         operation = 26?
-            errors.TypeError("symbolic magnitude is not differentiable without real/complex assumptions")!
+            derivatives.(left) = zero?
+                derivatives.(node): zero
+            derivatives.(left) != zero?
+                ~_symbolic_differentiation_real_formal(variable) \/ ~_symbolic_magnitude_real_inner(_symbolic_dag_with_root(value,left))?
+                    errors.TypeError("symbolic magnitude derivative requires this actual real selected symbol and nonzero result domain")!
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 6, left, node, zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
+                .first: emitted.index
+                .cursor: emitted.next
+                .emitted: _symbolic_dag_emit_binary_inspection(nodes, cursor, 5, first, derivatives.(left), zero, one, catalog, _symbolic_calculus_next(ordinal, steps.length()))
+                .nodes: emitted.nodes
+                .steps: steps & emitted.steps
+                derivatives.(node): emitted.index
+                .cursor: emitted.next
+        ordinal >= 0?
+            branch: "differentiate_dag_unhandled_operation"
+            operation = 1? .branch: "differentiate_dag_symbol"
+            operation = 2? .branch: "differentiate_dag_constant"
+            operation = 26?
+                .branch: "differentiate_dag_magnitude_real_selected"
+                derivatives.(left) = zero? .branch: "differentiate_dag_magnitude_constant_inner"
+            operation = 3? .branch: "differentiate_dag_add"
+            operation = 4? .branch: "differentiate_dag_subtract"
+            operation = 5? .branch: "differentiate_dag_product"
+            operation = 6? .branch: "differentiate_dag_quotient"
+            operation = 7?
+                .branch: "differentiate_dag_general_power"
+                _symbolic_dag_node_operation(value, right) = 2?
+                    .branch: "differentiate_dag_numeric_power"
+            operation = 8? .branch: "differentiate_dag_sine"
+            operation = 9? .branch: "differentiate_dag_cosine"
+            operation = 10? .branch: "differentiate_dag_log"
+            operation = 11? .branch: "differentiate_dag_sqrt"
+            operation = 12? .branch: "differentiate_dag_exp"
+            operation = 25? .branch: "differentiate_dag_real_part"
+            source_snapshot: _symbolic_dag_with_root(value, node)
+            used_snapshot_nodes: [..cursor * 4 - 1 >> nodes.($)]
+            result_snapshot: _symbolic_dag_make(catalog, used_snapshot_nodes, derivatives.(node))
+            receipt: _symbolic_inspection_rule(source_snapshot, result_snapshot, branch, "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+            .steps: steps & receipt.steps
         .node+: 1
     used_nodes: [..cursor * 4 - 1 >> nodes.($)]
-    _symbolic_dag_make(catalog, used_nodes, derivatives.(_symbolic_dag_root(value)))
+    result: _symbolic_dag_make(catalog, used_nodes, derivatives.(_symbolic_dag_root(value)))
+    _symbolic_calculus_finish(value, result, "differentiate_dag_result", steps, variable, ordinal)
 
-_symbolic_differentiate_raw(value:symbolic, variable:symbolic, cache:bit) -> symbolic:
+_symbolic_differentiate_dag(value:symbolic, variable:symbolic) -> symbolic:
+    _symbolic_differentiate_dag_inspection(value, variable, -1).expression
+
+_symbolic_differentiate_raw_inspection(value:symbolic, variable:symbolic, cache:bit, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     kind: _symbolic_root_kind(value)
     kind = 1?
         same(value, variable)?
-            @: _symbolic_raw_number(1)
-        @: _symbolic_raw_number(0)
+            @: _symbolic_calculus_finish(value, _symbolic_raw_number(1), "differentiate_symbol_self", steps, variable, ordinal)
+        @: _symbolic_calculus_finish(value, _symbolic_raw_number(0), "differentiate_symbol_other", steps, variable, ordinal)
     kind = 2?
-        @: _symbolic_raw_number(0)
+        @: _symbolic_calculus_finish(value, _symbolic_raw_number(0), "differentiate_constant", steps, variable, ordinal)
     kind = 7?
         argument: _symbolic_argument(value)
-        derivative: _symbolic_differentiate_raw(argument, variable, cache)
+        child: _symbolic_differentiate_raw_inspection(argument, variable, cache, ordinal)
+        derivative: child.expression
+        .steps: child.steps
         operation: _symbolic_root_operation(value)
         operation = 1?
-            @: _symbolic_multiply_simplified(cos(argument), derivative)
+            arithmetic_view_0: _symbolic_multiply_inspection(cos(argument), derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_0.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_0.expression, "differentiate_sine", steps, variable, ordinal)
         operation = 2?
-            negative_sine: _symbolic_multiply_simplified(_symbolic_raw_number(-1), sin(argument))
-            @: _symbolic_multiply_simplified(negative_sine, derivative)
+            arithmetic_view_1: _symbolic_multiply_inspection(_symbolic_raw_number(-1), sin(argument), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_1.steps
+            negative_sine: arithmetic_view_1.expression
+            arithmetic_view_2: _symbolic_multiply_inspection(negative_sine, derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_2.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_2.expression, "differentiate_cosine", steps, variable, ordinal)
         operation = 3?
-            @: _symbolic_divide_simplified(derivative, argument)
+            arithmetic_view_3: _symbolic_divide_inspection(derivative, argument, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_3.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_3.expression, "differentiate_log", steps, variable, ordinal)
         operation = 4?
-            denominator: _symbolic_multiply_simplified(_symbolic_raw_number(2), sqrt(argument))
-            @: _symbolic_divide_simplified(derivative, denominator)
+            arithmetic_view_4: _symbolic_multiply_inspection(_symbolic_raw_number(2), sqrt(argument), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_4.steps
+            denominator: arithmetic_view_4.expression
+            arithmetic_view_5: _symbolic_divide_inspection(derivative, denominator, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_5.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_5.expression, "differentiate_sqrt", steps, variable, ordinal)
         operation = 5?
-            @: _symbolic_multiply_simplified(exp(argument), derivative)
+            arithmetic_view_6: _symbolic_multiply_inspection(exp(argument), derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_6.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_6.expression, "differentiate_exp", steps, variable, ordinal)
         operation = 6?
-            @: real_part(derivative)
+            ~_symbolic_differentiation_real_formal(variable) /\ ~_symbolic_is_raw_number(derivative,0)?
+                errors.TypeError("symbolic real_part has no complex derivative on this selected formal; real-direction or constant-inner-derivative proof required")!
+            @: _symbolic_calculus_finish(value, real_part(derivative), "differentiate_real_part", steps, variable, ordinal)
+        operation = 7 /\ _symbolic_is_raw_number(derivative,0)?
+            @: _symbolic_calculus_finish(value, derivative, "differentiate_magnitude_constant_inner", steps, variable, ordinal)
+        operation = 7 /\ _symbolic_differentiation_real_formal(variable) /\ _symbolic_magnitude_real_inner(argument)?
+            magnitude_view: _symbolic_divide_inspection(argument, magnitude(argument), _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & magnitude_view.steps
+            chain_view: _symbolic_multiply_inspection(magnitude_view.expression, derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & chain_view.steps
+            @: _symbolic_calculus_finish(value, chain_view.expression, "differentiate_magnitude_real_selected", steps, variable, ordinal)
         errors.TypeError("symbolic magnitude is not differentiable without real/complex assumptions")!
     ~(kind = 3)?
-        @: _symbolic_raw_number(0)
+        errors.TypeError("symbolic.differentiate source is not an established numeric expression")!
     left: _symbolic_left(value)
     right: _symbolic_right(value)
-    left_derivative: _symbolic_differentiate_raw(left, variable, cache)
+    left_view: _symbolic_differentiate_raw_inspection(left, variable, cache, ordinal)
+    left_derivative: left_view.expression
+    .steps: left_view.steps
     right_derivative: _symbolic_raw_number(0)
     reused: false
     cache /\ same(left, right)?
         .right_derivative: _symbolic_clone(left_derivative)
+        ordinal >= 0?
+            reuse: _symbolic_inspection_rule(right, right_derivative, "differentiate_cache_equal_reuse", "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+            .steps: steps & reuse.steps
         .reused: true
     cache /\ ~reused /\ _symbolic_root_kind(right) = 3 /\ _symbolic_root_operation(right) = 1?
         common: _symbolic_right(right)
         same(left, common)?
             other: _symbolic_left(right)
-            other_derivative: _symbolic_differentiate_raw(other, variable, cache)
-            .right_derivative: _symbolic_add_simplified(other_derivative, left_derivative)
+            other_view: _symbolic_differentiate_raw_inspection(other, variable, cache, _symbolic_calculus_next(ordinal, steps.length()))
+            other_derivative: other_view.expression
+            .steps: steps & other_view.steps
+            arithmetic_view_7: _symbolic_add_inspection(other_derivative, left_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_7.steps
+            .right_derivative: arithmetic_view_7.expression
+            ordinal >= 0?
+                reuse: _symbolic_inspection_rule(right, right_derivative, "differentiate_cache_common_reuse", "represented", "original_source_domain_retained", variable, ordinal + steps.length())
+                .steps: steps & reuse.steps
             .reused: true
     ~reused?
-        .right_derivative: _symbolic_differentiate_raw(right, variable, cache)
+        right_view: _symbolic_differentiate_raw_inspection(right, variable, cache, _symbolic_calculus_next(ordinal, steps.length()))
+        .right_derivative: right_view.expression
+        .steps: steps & right_view.steps
     operation: _symbolic_root_operation(value)
     operation = 1?
-        @: _symbolic_add_simplified(left_derivative, right_derivative)
+        arithmetic_view_8: _symbolic_add_inspection(left_derivative, right_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_8.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_8.expression, "differentiate_add", steps, variable, ordinal)
     operation = 2?
-        @: _symbolic_subtract_simplified(left_derivative, right_derivative)
+        arithmetic_view_9: _symbolic_subtract_inspection(left_derivative, right_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_9.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_9.expression, "differentiate_subtract", steps, variable, ordinal)
     operation = 3?
-        first: _symbolic_multiply_simplified(left_derivative, right)
-        second: _symbolic_multiply_simplified(left, right_derivative)
-        @: _symbolic_add_simplified(first, second)
+        arithmetic_view_10: _symbolic_multiply_inspection(left_derivative, right, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_10.steps
+        first: arithmetic_view_10.expression
+        arithmetic_view_11: _symbolic_multiply_inspection(left, right_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_11.steps
+        second: arithmetic_view_11.expression
+        arithmetic_view_12: _symbolic_add_inspection(first, second, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_12.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_12.expression, "differentiate_product", steps, variable, ordinal)
     operation = 4?
-        first: _symbolic_multiply_simplified(left_derivative, right)
-        second: _symbolic_multiply_simplified(left, right_derivative)
-        numerator: _symbolic_subtract_simplified(first, second)
-        denominator: _symbolic_power_simplified(right, _symbolic_raw_number(2))
-        @: _symbolic_divide_simplified(numerator, denominator)
+        arithmetic_view_13: _symbolic_multiply_inspection(left_derivative, right, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_13.steps
+        first: arithmetic_view_13.expression
+        arithmetic_view_14: _symbolic_multiply_inspection(left, right_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_14.steps
+        second: arithmetic_view_14.expression
+        arithmetic_view_15: _symbolic_subtract_inspection(first, second, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_15.steps
+        numerator: arithmetic_view_15.expression
+        arithmetic_view_16: _symbolic_power_inspection(right, _symbolic_raw_number(2), _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_16.steps
+        denominator: arithmetic_view_16.expression
+        arithmetic_view_17: _symbolic_divide_inspection(numerator, denominator, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_17.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_17.expression, "differentiate_quotient", steps, variable, ordinal)
     operation = 5?
         _symbolic_root_kind(right) = 2?
             lowered_exponent: _symbolic_raw_number(_symbolic_number_value(right) - 1)
-            power: _symbolic_power_simplified(left, lowered_exponent)
-            scale: _symbolic_multiply_simplified(right, power)
-            @: _symbolic_multiply_simplified(scale, left_derivative)
-        log_term: _symbolic_multiply_simplified(right_derivative, log(left))
-        quotient: _symbolic_divide_simplified(left_derivative, left)
-        exponent_term: _symbolic_multiply_simplified(right, quotient)
-        sum: _symbolic_add_simplified(log_term, exponent_term)
-        @: _symbolic_multiply_simplified(value, sum)
+            arithmetic_view_18: _symbolic_power_inspection(left, lowered_exponent, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_18.steps
+            power: arithmetic_view_18.expression
+            arithmetic_view_19: _symbolic_multiply_inspection(right, power, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_19.steps
+            scale: arithmetic_view_19.expression
+            arithmetic_view_20: _symbolic_multiply_inspection(scale, left_derivative, _symbolic_calculus_next(ordinal, steps.length()))
+            .steps: steps & arithmetic_view_20.steps
+            @: _symbolic_calculus_finish(value, arithmetic_view_20.expression, "differentiate_numeric_power", steps, variable, ordinal)
+        arithmetic_view_21: _symbolic_multiply_inspection(right_derivative, log(left), _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_21.steps
+        log_term: arithmetic_view_21.expression
+        arithmetic_view_22: _symbolic_divide_inspection(left_derivative, left, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_22.steps
+        quotient: arithmetic_view_22.expression
+        arithmetic_view_23: _symbolic_multiply_inspection(right, quotient, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_23.steps
+        exponent_term: arithmetic_view_23.expression
+        arithmetic_view_24: _symbolic_add_inspection(log_term, exponent_term, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_24.steps
+        sum: arithmetic_view_24.expression
+        arithmetic_view_25: _symbolic_multiply_inspection(value, sum, _symbolic_calculus_next(ordinal, steps.length()))
+        .steps: steps & arithmetic_view_25.steps
+        @: _symbolic_calculus_finish(value, arithmetic_view_25.expression, "differentiate_general_power", steps, variable, ordinal)
     operation = 14 \/ operation = 18 \/ operation = 24?
-        @: derivative(value, variable)
-    _symbolic_raw_number(0)
+        @: _symbolic_calculus_finish(value, derivative(value, variable), "differentiate_formal_operator", steps, variable, ordinal)
+    errors.TypeError("symbolic.differentiate operation has no established numeric rule or formal operator representation")!
 
-differentiate(value:symbolic, variable:symbolic, cache:bit = true) -> symbolic:
+_symbolic_differentiate_raw(value:symbolic, variable:symbolic, cache:bit) -> symbolic:
+    _symbolic_differentiate_raw_inspection(value, variable, cache, -1).expression
+
+_symbolic_differentiate_inspection(value:symbolic, variable:symbolic, cache:bit, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     ~(_symbolic_root_kind(variable) = 1)?
         errors.TypeError("symbolic.differentiate variable must be a symbol")!
     symbol_is_constant(_symbolic_clone(variable))?
-        @: _symbolic_raw_number(0)
+        @: _symbolic_calculus_finish(value, _symbolic_raw_number(0), "differentiate_constant_variable", steps, variable, ordinal)
     _symbolic_storage_kind(value) = 10?
         operation: _symbolic_dag_operation(value)
         operation = 14 \/ operation = 18 \/ operation = 24?
-            @: derivative(value, variable)
+            @: _symbolic_calculus_finish(value, derivative(value, variable), "differentiate_formal_operator", steps, variable, ordinal)
     kind: _symbolic_root_kind(value)
     kind = 4?
-        @: _symbolic_differentiate_polynomial(value, variable)
+        @: _symbolic_differentiate_polynomial_inspection(value, variable, ordinal)
     kind = 6?
-        @: _symbolic_differentiate_univariate(value, variable)
+        @: _symbolic_differentiate_univariate_inspection(value, variable, ordinal)
     kind = 3?
         operation: _symbolic_root_operation(value)
+        operation = 3?
+            source_left: _symbolic_left(value)
+            source_right: _symbolic_right(value)
+            (_symbolic_is_raw_number(source_left,0) /\ _symbolic_mathematical_total(source_right)) \/ (_symbolic_is_raw_number(source_right,0) /\ _symbolic_mathematical_total(source_left))?
+                # Establish the actual existing total-source zero identity
+                # before entering any derivative primitive of the other side.
+                identity: _symbolic_multiply_inspection(source_left,source_right,ordinal)
+                constant_derivative: _symbolic_differentiate_raw_inspection(identity.expression,variable,cache,_symbolic_calculus_next(ordinal,identity.steps.length()))
+                .steps: identity.steps & constant_derivative.steps
+                @: _symbolic_calculus_finish(value,constant_derivative.expression,"differentiate_total_zero_product_source",steps,variable,ordinal)
         operation = 14 \/ operation = 18 \/ operation = 24?
-            @: derivative(value, variable)
+            @: _symbolic_calculus_finish(value, derivative(value, variable), "differentiate_formal_operator", steps, variable, ordinal)
     _symbolic_storage_kind(value) = 10 /\ cache?
-        @: _symbolic_differentiate_dag(value, variable)
-    _symbolic_differentiate_raw(value, variable, cache)
+        @: _symbolic_differentiate_dag_inspection(value, variable, ordinal)
+    _symbolic_differentiate_raw_inspection(value, variable, cache, ordinal)
+
+differentiate(value:symbolic, variable:symbolic, cache:bit = true) -> symbolic:
+    _symbolic_differentiate_inspection(value, variable, cache, -1).expression
+
+inspect_differentiate(value:symbolic, variable:symbolic, cache:bit = true) -> (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+    view: _symbolic_differentiate_inspection(value, variable, cache, 0)
+    (source:_symbolic_clone(value), expression:view.expression, steps:view.steps,
+     domain:(scope:"original source obligations retained; calculus is conditional on declared domains and operator admissibility", execution_checked:false),
+     ordinal_scope:"local to this owned inspection invocation", numerical_requirement:"exact_algebra", execution_authority:false)
 
 _symbolic_differentiate_suffix_entry(value:symbolic, variable_name:chr, cache:bit) -> symbolic:
     variable: _symbolic_suffix_variable(value, variable_name)
@@ -9845,13 +10736,13 @@ _symbolic_differentiate_suffix_entry(value:symbolic, variable_name:chr, cache:bi
         @: _symbolic_differentiate_dag(value, variable)
     _symbolic_differentiate_raw(value, variable, cache)
 
-differentiate[variable_name:chr](value:symbolic, cache:bit = true) -> symbolic:
+differentiate(variable_name:chr, value:symbolic, cache:bit = true) -> symbolic:
     _symbolic_differentiate_suffix_entry(value, variable_name, cache)
 
-deriv[variable_name:chr](value:symbolic, cache:bit = true) -> symbolic:
+deriv(variable_name:chr, value:symbolic, cache:bit = true) -> symbolic:
     _symbolic_differentiate_suffix_entry(value, variable_name, cache)
 
-deriv[axis:chr](values:[num:n], spacing:num = 1) -> [num:n]:
+deriv(axis:chr, values:[num:n], spacing:num = 1) -> [num:n]:
     count: values.length()
     spacing != 0?! "symbolic.deriv spacing must be nonzero"
     result: values >> 0
@@ -9864,7 +10755,7 @@ deriv[axis:chr](values:[num:n], spacing:num = 1) -> [num:n]:
     result.(count - 1): (values.(count - 1) - values.(count - 2)) / spacing
     result
 
-_symbolic_deriv_coordinates[axis:chr](values:[num:n], coordinates:[num:m]) -> [num:n]:
+_symbolic_deriv_coordinates(axis:chr, values:[num:n], coordinates:[num:m]) -> [num:n]:
     count: values.length()
     (count = coordinates.length())?! "symbolic.deriv coordinate count must match values"
     result: values >> 0
@@ -9893,7 +10784,7 @@ _symbolic_deriv_coordinates[axis:chr](values:[num:n], coordinates:[num:m]) -> [n
 diff(value:symbolic, variable:symbolic, cache:bit = true) -> symbolic:
     differentiate(value, variable, cache)
 
-diff[variable_name:chr](value:symbolic, cache:bit = true) -> symbolic:
+diff(variable_name:chr, value:symbolic, cache:bit = true) -> symbolic:
     _symbolic_differentiate_suffix_entry(value, variable_name, cache)
 
 _symbolic_univariate_basis_invalid() -> [num]:
@@ -10930,13 +11821,13 @@ limit(value:symbolic, variable:symbolic, point:num, side:str) -> symbolic:
         @: _symbolic_finite_quotient_limit(value, variable, point, side)
     _symbolic_raw_number(evaluate(value, [point]))
 
-limit[variable_name:chr](value:symbolic, point:num, side:str) -> symbolic:
+limit(variable_name:chr, value:symbolic, point:num, side:str) -> symbolic:
     limit(value, _symbolic_suffix_variable(value, variable_name), point, side)
 
 limit(value:symbolic, variable:symbolic, point:num) -> symbolic:
     limit(value, variable, point, "both")
 
-limit[variable_name:chr](value:symbolic, point:num) -> symbolic:
+limit(variable_name:chr, value:symbolic, point:num) -> symbolic:
     limit(value, _symbolic_suffix_variable(value, variable_name), point)
 
 _symbolic_limit_at_infinity(value:symbolic, variable:symbolic, direction:num) -> symbolic:
@@ -10989,7 +11880,7 @@ limit(value:symbolic, variable:symbolic, point:symbolic) -> symbolic:
         .direction: -1
     _symbolic_limit_at_infinity(value, variable, direction)
 
-limit[variable_name:chr](value:symbolic, point:symbolic) -> symbolic:
+limit(variable_name:chr, value:symbolic, point:symbolic) -> symbolic:
     limit(value, _symbolic_suffix_variable(value, variable_name), point)
 
 _symbolic_integral_endpoint(
@@ -10999,7 +11890,7 @@ _symbolic_integral_endpoint(
 ) -> symbolic:
     simplify(substitute(antiderivative, variable, bound))
 
-integ[variable_name:chr](
+integ(variable_name:chr,
     value:symbolic,
     lower:symbolic,
     upper:symbolic
@@ -11012,7 +11903,7 @@ integ[variable_name:chr](
         antiderivative, variable, lower)
     simplify(upper_value - lower_value)
 
-_symbolic_integ_upper[variable_name:chr](
+_symbolic_integ_upper(variable_name:chr,
     value:symbolic,
     lower:symbolic
 ) -> symbolic:
@@ -11023,7 +11914,7 @@ _symbolic_integ_upper[variable_name:chr](
     upper_value: _symbolic_limit_at_infinity(antiderivative, variable, 1)
     simplify(upper_value - lower_value)
 
-_symbolic_integ_lower[variable_name:chr](
+_symbolic_integ_lower(variable_name:chr,
     value:symbolic,
     upper:symbolic
 ) -> symbolic:
@@ -11162,39 +12053,788 @@ verify_limit(
         .direction: -1
     _symbolic_verify_infinite_limit(candidate, value, variable, direction)
 
-_symbolic_evaluate_raw(value:symbolic, catalog:[num], variables:[num]) -> num:
+_symbolic_compile_evaluation_finish(source:symbolic, result:num, steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)], rule:str, ordinal:num) -> (value:num,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    ordinal < 0? @: (value:result,steps:[])
+    [symbolic] output:[source]
+    _symbolic_compile_numeric_finite(result) /\ _symbolic_compile_numeric_real(result)?
+        output.0:_symbolic_raw_number(result)
+    receipt: (ordinal:ordinal+steps.length(),rule_id:rule,status:"observed_evaluator_branch",input:_symbolic_clone(source),output:_symbolic_clone(output.0),assumption:(kind:"actual_guarded_operand",operand:_symbolic_clone(source),scope:"actual evaluator branch; original source obligations checked only when guard_exact is enabled"),numerical_requirement:"exact_algebra",execution_authority:false)
+    (value:result,steps:steps & [receipt])
+
+_symbolic_evaluate_raw_inspection(value:symbolic, catalog:[num], variables:[num], guard_exact:bit, ordinal:num) -> (value:num,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
     kind: _symbolic_root_kind(value)
     kind = 1?
         index: _symbolic_catalog_entry_index(catalog, _symbolic_raw_catalog(value))
         index < 0 \/ index >= variables.length()?
-            @: 0
-        @: variables.(index)
+            errors.ValueError("symbolic.evaluate has no actual numeric binding for this catalog identity")!
+        guard_exact?
+            @: _symbolic_compile_evaluation_finish(value,_symbolic_compile_guard_catalog_operand(value,variables.(index)),steps,"evaluate_actual_branch",ordinal)
+        @: _symbolic_compile_evaluation_finish(value,variables.(index),steps,"evaluate_actual_branch",ordinal)
     kind = 2?
-        @: _symbolic_number_value(value)
+        operand: _symbolic_number_value(value)
+        guard_exact /\ ~_symbolic_compile_numeric_finite(operand)?
+            errors.ValueError("compiled exact source literal is a nonfinite numeric carrier")!
+        @: _symbolic_compile_evaluation_finish(value,operand,steps,"evaluate_actual_branch",ordinal)
     kind = 7?
-        argument: _symbolic_evaluate_raw(_symbolic_argument(value), catalog, variables)
+        argument_view: _symbolic_evaluate_raw_inspection(_symbolic_argument(value),catalog,variables,guard_exact,_symbolic_calculus_next(ordinal,steps.length()))
+        .steps: steps & argument_view.steps
+        argument: argument_view.value
         operation: _symbolic_root_operation(value)
-        operation = 1? @: m.sin(argument)
-        operation = 2? @: m.cos(argument)
-        operation = 3? @: m.ln(argument)
-        operation = 4? @: m.sqrt(argument)
-        operation = 5? @: m.exp(argument)
-        operation = 6? @: argument
-        operation = 7? @: m.abs(argument)
-        @: 0
+        operation = 1? @: _symbolic_compile_evaluation_finish(value,m.sin(argument),steps,"evaluate_actual_branch",ordinal)
+        operation = 2? @: _symbolic_compile_evaluation_finish(value,m.cos(argument),steps,"evaluate_actual_branch",ordinal)
+        operation = 3?
+            guard_exact?
+                ~_symbolic_compile_numeric_finite(argument)?
+                    errors.ValueError("compiled exact log domain cannot be established from this numeric operand")!
+                argument = 0 \/ (_symbolic_compile_numeric_real(argument) /\ argument != 0 /\ argument = 0-m.abs(argument))?
+                    errors.ValueError("compiled exact log requires a positive real operand or an established complex branch away from its cut")!
+            @: _symbolic_compile_evaluation_finish(value,m.ln(argument),steps,"evaluate_actual_branch",ordinal)
+        operation = 4?
+            guard_exact?
+                ~_symbolic_compile_numeric_finite(argument)?
+                    errors.ValueError("compiled exact root domain cannot be established from this numeric operand")!
+                _symbolic_compile_numeric_real(argument) /\ argument != 0 /\ argument = 0-m.abs(argument)?
+                    errors.ValueError("compiled exact root requires a nonnegative real operand or an established complex branch away from its cut")!
+                argument = 0 /\ ~_symbolic_compile_point_root_zero_admitted(_symbolic_argument(value),catalog,variables)?
+                    errors.ValueError("compiled root roundedzero has no original nonnegative-source proof")!
+            @: _symbolic_compile_evaluation_finish(value,m.sqrt(argument),steps,"evaluate_actual_branch",ordinal)
+        operation = 5? @: _symbolic_compile_evaluation_finish(value,m.exp(argument),steps,"evaluate_actual_branch",ordinal)
+        operation = 6? @: _symbolic_compile_evaluation_finish(value,argument,steps,"evaluate_actual_branch",ordinal)
+        operation = 7? @: _symbolic_compile_evaluation_finish(value,m.abs(argument),steps,"evaluate_actual_branch",ordinal)
+        errors.TypeError("symbolic.evaluate has no executable unary primitive for this source")!
     ~(kind = 3)?
-        @: 0
-    left: _symbolic_evaluate_raw(_symbolic_left(value), catalog, variables)
-    right: _symbolic_evaluate_raw(_symbolic_right(value), catalog, variables)
+        errors.TypeError("symbolic.evaluate source kind has no numeric execution rule")!
+    left_view: _symbolic_evaluate_raw_inspection(_symbolic_left(value),catalog,variables,guard_exact,_symbolic_calculus_next(ordinal,steps.length()))
+    .steps: steps & left_view.steps
+    left: left_view.value
+    right_view: _symbolic_evaluate_raw_inspection(_symbolic_right(value),catalog,variables,guard_exact,_symbolic_calculus_next(ordinal,steps.length()))
+    .steps: steps & right_view.steps
+    right: right_view.value
     operation: _symbolic_root_operation(value)
-    operation = 1? @: left + right
-    operation = 2? @: left - right
-    operation = 3? @: left * right
-    operation = 4? @: left / right
-    operation = 5? @: left^right
-    0
+    operation = 1? @: _symbolic_compile_evaluation_finish(value,left + right,steps,"evaluate_actual_branch",ordinal)
+    operation = 2? @: _symbolic_compile_evaluation_finish(value,left - right,steps,"evaluate_actual_branch",ordinal)
+    operation = 3? @: _symbolic_compile_evaluation_finish(value,left * right,steps,"evaluate_actual_branch",ordinal)
+    operation = 4?
+        guard_exact?
+            ~_symbolic_compile_numeric_finite(right)?
+                errors.ValueError("compiled exact denominator nonzero obligation cannot be established from this numeric operand")!
+            right = 0?
+                errors.ValueError("compiled exact source denominator must be nonzero")!
+        @: _symbolic_compile_evaluation_finish(value,left / right,steps,"evaluate_actual_branch",ordinal)
+    operation = 5?
+        guard_exact?
+            left = 0 /\ (~_symbolic_compile_numeric_real(right) \/ right != 0 /\ right = 0-m.abs(right))?
+                errors.ValueError("compiled exact zero base requires a nonnegative real exponent")!
+            _symbolic_compile_numeric_real(left) /\ left != 0 /\ left = 0-m.abs(left) /\ (~_symbolic_compile_numeric_real(right) \/ m.abs(right) % 1 != 0)?
+                errors.ValueError("compiled exact power branch is not established on the negative real cut")!
+        @: _symbolic_compile_evaluation_finish(value,left^right,steps,"evaluate_actual_branch",ordinal)
+    errors.TypeError("symbolic.evaluate operator has no executable numeric rule")!
+
+
+_symbolic_evaluate_raw(value:symbolic, catalog:[num], variables:[num], guard_exact:bit=false) -> num:
+    _symbolic_evaluate_raw_inspection(value,catalog,variables,guard_exact,-1).value
+
+# Cache prototype: representation adapters only. Existing differentiate,
+# integrate and evaluate remain the exact rule executors. Frontend issuance
+# must bind role_scope to an owned recipe and exact completed generation.
+# Scope names use the actual compiler-issued UTF8 bytes; numeric role indices
+# have a bounded deterministic ASCII hex suffix, with no runtime string ABI.
+_symbolic_compile_role_name(scope:[num], index:num) -> [num]:
+    index < 0 \/ index >= 65536 \/ index % 1 != 0?
+        errors.ValueError("compiled formal role index is outside the issued budget")!
+    [num] suffix: []
+    remaining: index
+    ..7 >>
+        digit: remaining % 16
+        code: digit+48
+        digit >= 10?
+            .code: digit+87
+        .suffix: [code] & suffix
+        .remaining: (remaining-digit)/16
+    scope & [58] & suffix
+
+_symbolic_compile_formal_symbol(value:symbolic, name:[num]) -> symbol:
+    _symbolic_root_kind(value) != 1?
+        errors.TypeError("compiled formal role requires an actual symbol")!
+    entry: _symbolic_raw_catalog(value)
+    ~_symbolic_catalog_identity_same(entry, entry) \/ entry.2 = 2?
+        errors.TypeError("compiled formal role requires a numeric catalog identity")!
+    tail: 4 + entry.3
+    [num] replacement: [0, entry.1, 1, name.length()]
+    name.length() > 0?
+        ..name.length()-1 >>
+            .replacement: replacement & [name.($)]
+    tail..entry.length()-1 >>
+        .replacement: replacement & [entry.($)]
+    replacement.0: replacement.length()-1
+    [num] result: [1] & replacement & [1, 0, replacement.length()+4]
+    result
+
+_symbolic_compile_catalog_role_view(value:symbolic, selected:[symbolic], roles:[symbolic]) -> symbolic:
+    selected.length() != roles.length()?
+        errors.ValueError("compiled formal role layout changed")!
+    kind: _symbolic_root_kind(value)
+    storage: _symbolic_storage_kind(value)
+    storage = 10 \/ kind = 4 \/ kind = 6?
+        [num] catalog: []
+        storage = 10?
+            .catalog: _symbolic_dag_catalog(value)
+        ~(storage = 10)?
+            .catalog: _symbolic_raw_catalog(value)
+        count: _symbolic_catalog_variable_count(catalog)
+        [num] replacement: []
+        count > 0?
+            ..count-1 >>
+                [num] entry: _symbolic_catalog_entry(catalog, $)
+                selected.length() > 0?
+                    ..selected.length()-1 >>
+                        _symbolic_catalog_identity_same(entry, _symbolic_raw_catalog(selected.($)))?
+                            .entry: _symbolic_raw_catalog(roles.($))
+                .replacement: replacement & entry
+        storage = 10?
+            start: _symbolic_dag_node_start(value)
+            length: _symbolic_dag_node_count(value)*4
+            [num] nodes: []
+            length > 0?
+                .nodes: [start..start+length-1 >> value.($)]
+            @: _symbolic_dag_make(replacement, nodes, _symbolic_dag_root(value))
+        old_start: 3 + catalog.length()
+        [num] payload: [old_start..value.length()-4 >> value.($)]
+        [num] header: [kind, replacement.length(), value.2]
+        total: 3 + replacement.length() + payload.length() + 3
+        [num] result: header & replacement & payload & [kind, 0, total]
+        @: result
+    dag: _symbolic_as_dag(value)
+    _symbolic_compile_catalog_role_view(dag,selected,roles)
+
+_symbolic_compile_formal_view(value:symbolic, selected:[symbolic], scope:[num]) -> [symbolic]:
+    ~_symbolic_compile_numeric_payload(value)?
+        errors.TypeError("compiled transform source has an unresolved exact numeric rule")!
+    catalog: _symbolic_catalog(value)
+    count: _symbolic_catalog_variable_count(catalog)
+    count > 0?
+        ..count-1 >>
+            entry: _symbolic_catalog_entry(catalog, $)
+            matched: false
+            selected.length() > 0?
+                ..selected.length()-1 >>
+                    _symbolic_catalog_identity_same(entry, _symbolic_raw_catalog(selected.($)))?
+                        .matched: true
+            ~matched?
+                errors.ValueError("compiled transform source has an unmatched dependency")!
+    [symbolic] roles: []
+    selected.length() > 0?
+        ..selected.length()-1 >>
+            position: $
+            position > 0?
+                ..position-1 >>
+                    _symbolic_catalog_identity_same(_symbolic_raw_catalog(selected.(position)), _symbolic_raw_catalog(selected.($)))?
+                        errors.ValueError("compiled transform selected identities repeat")!
+            name: _symbolic_compile_role_name(scope,position)
+            [symbolic] candidate: [_symbolic_compile_formal_symbol(selected.(position), name)]
+            # Scoped view cannot merge with an existing variable identity.
+            # The source catalog, including constants, remains immutable.
+            _symbolic_catalog_has_entry(catalog, _symbolic_raw_catalog(candidate.0))?>
+                .name: name & [58]
+                candidate.0: _symbolic_compile_formal_symbol(selected.(position), name)
+            .roles: roles & [candidate.0]
+    [_symbolic_compile_catalog_role_view(value, selected, roles)] & roles
+
+_symbolic_compile_derivative_payload(value:symbolic, selected:[symbolic], groups:[num]) -> symbolic:
+    [symbolic] current: [value]
+    [symbolic] sum: [_symbolic_raw_number(0)]
+    group_has_formal: false
+    groups.length() > 0?
+        ..groups.length()-1 >>
+            index: groups.($)
+            index = -2?
+                current.0: sum.0
+                sum.0: _symbolic_raw_number(0)
+                .group_has_formal: false
+            ~(index = -2)?
+                index < 0 \/ index >= selected.length() \/ index % 1 != 0?
+                    errors.ValueError("compiled derivative formal index is not owned")!
+                derivative: differentiate(current.0, selected.(index))
+                sum.0: _symbolic_add_simplified(sum.0, derivative)
+                .group_has_formal: true
+    group_has_formal?
+        errors.ValueError("compiled derivative group lacks a completed selector boundary")!
+    current.0
+
+_symbolic_compile_derivative_evaluate(value:symbolic, selected:[symbolic], arguments:[num], groups:[num], scope:[num]) -> num:
+    view: _symbolic_compile_formal_view(value, selected, scope)
+    [symbolic] roles: []
+    selected.length() > 0?
+        .roles: [1..selected.length() >> view.($)]
+    derivative: _symbolic_compile_derivative_payload(view.0, roles, groups)
+    _symbolic_compile_evaluate_payload(derivative, roles, arguments)
+
+_symbolic_compile_integral_evaluate(value:symbolic, selected:[symbolic], arguments:[num], groups:[num], indices:[num], lower:[num], upper:[num], scope:[num]) -> num:
+    indices.length() != lower.length() \/ indices.length() != upper.length()?
+        errors.ValueError("compiled integral bound layout changed")!
+    view: _symbolic_compile_formal_view(value, selected, scope)
+    [symbolic] roles: []
+    selected.length() > 0?
+        .roles: [1..selected.length() >> view.($)]
+    [symbolic] primitive: [_symbolic_compile_derivative_payload(view.0, roles, groups)]
+    [num] active: []
+    volume: 1
+    indices.length() > 0?
+        ..indices.length()-1 >>
+            position: $
+            index: indices.(position)
+            index = -1?
+                .volume *: upper.(position)-lower.(position)
+            ~(index = -1)?
+                index < 0 \/ index >= roles.length() \/ index % 1 != 0?
+                    errors.ValueError("compiled integral formal index is not owned")!
+                primitive.0: integrate(primitive.0, roles.(index))
+                .active: active & [position]
+    active.length() > 16?
+        errors.ValueError("compiled exact integral endpoint budget exceeded")!
+    endpoints: 2^active.length()
+    total: 0
+    ..endpoints-1 >>
+        mask: $
+        [num] values: []
+        arguments.length() > 0?
+            .values: [..arguments.length()-1 >> arguments.($)]
+        sign: 1
+        active.length() > 0?
+            ..active.length()-1 >>
+                bit_position: $
+                bound_position: active.(bit_position)
+                formal_index: indices.(bound_position)
+                int(mask / 2^bit_position) % 2 = 1?
+                    values.(formal_index): upper.(bound_position)
+                ~(int(mask / 2^bit_position) % 2 = 1)?
+                    values.(formal_index): lower.(bound_position)
+                    .sign *: -1
+        .total +: sign * _symbolic_compile_evaluate_payload(primitive.0, roles, values)
+    volume * total
+
+# Generated endpoint roles retain unknown mathematical domain. Their ordinary
+# num type and actual bound Graph roots are separate invocation obligations.
+_symbolic_compile_unknown_formal(name:[num]) -> symbol:
+    [num] entry: [0, 0, 1, name.length()]
+    name.length() > 0?
+        ..name.length()-1 >>
+            .entry: entry & [name.($)]
+    .entry: entry & [0, 0, 0, 0]
+    entry.0: entry.length()-1
+    [num] result: [1] & entry & [1, 0, entry.length()+4]
+    result
+
+_symbolic_compile_catalog_symbol(entry:[num]) -> symbol:
+    ~_symbolic_catalog_identity_same(entry,entry)?
+        errors.TypeError("compiled symbolic catalog framing changed")!
+    [num] stream: [1] & entry & [1, 0, entry.length()+4]
+    stream
+
+# Exact source-domain admission uses actual catalog identities and numeric
+# operands. It does not infer a mathematical domain from the public num type.
+_symbolic_compile_numeric_finite(value:num) -> bit:
+    value-value = 0
+
+_symbolic_compile_numeric_real(value:num) -> bit:
+    magnitude: m.abs(value)
+    value = magnitude \/ value = 0-magnitude
+
+_symbolic_compile_guard_catalog_operand(value:symbolic, operand:num) -> num:
+    ~_symbolic_compile_numeric_finite(operand)?
+        errors.ValueError("compiled exact source has a nonfinite numeric carrier")!
+    domain: _symbolic_domain(value)
+    domain = _symbolic_domain_natural \/ domain = _symbolic_domain_integer \/ domain = _symbolic_domain_rational \/ domain = _symbolic_domain_real?
+        ~_symbolic_compile_numeric_real(operand)?
+            errors.ValueError("compiled exact operand violates its actual selected real catalog domain")!
+    domain = _symbolic_domain_natural \/ domain = _symbolic_domain_integer?
+        m.abs(operand) % 1 != 0?
+            errors.ValueError("compiled exact operand violates its actual selected discrete catalog domain")!
+    domain = _symbolic_domain_natural /\ operand != m.abs(operand)?
+        errors.ValueError("compiled exact operand violates its actual selected natural catalog domain")!
+    operand
+
+# This predicate mirrors the existing polynomial constructor admission. It
+# issues no algebra/calculus result and evaluates no source computation.
+_symbolic_compile_polynomial_admitted(value:symbolic, depth:num=0) -> bit:
+    depth > 128?
+        errors.ValueError("compiled interval polynomial admission budget exceeded")!
+    kind: _symbolic_root_kind(value)
+    kind = 1 \/ kind = 2 \/ kind = 4 \/ kind = 6?
+        @: true
+    ~(kind = 3)?
+        @: false
+    operation: _symbolic_root_operation(value)
+    operation = 1 \/ operation = 2 \/ operation = 3?
+        @: _symbolic_compile_polynomial_admitted(_symbolic_left(value),depth+1) /\ _symbolic_compile_polynomial_admitted(_symbolic_right(value),depth+1)
+    operation = 5?
+        exponent: _symbolic_right(value)
+        _symbolic_root_kind(exponent) = 2?
+            power: _symbolic_number_value(exponent)
+            @: _symbolic_compile_numeric_real(power) /\ power = m.abs(power) /\ m.abs(power) % 1 = 0 /\ _symbolic_compile_polynomial_admitted(_symbolic_left(value),depth+1)
+    false
+
+# Whole-interval affine facts retain original syntax. No expanded numeric
+# coefficient fold may certify an exact interval. Coefficients/offsets below
+# are direct actual carriers; only exact sign/copy operations are performed.
+_symbolic_compile_affine_scalar(value:symbolic, variable:symbolic, roles:[symbolic], arguments:[num], availability:[bit]=[]):
+    kind: _symbolic_root_kind(value)
+    ~(kind = 1 \/ kind = 2) \/ depends_on(value,variable)?
+        @: (valid:false,value:0)
+    ~_symbolic_compile_inputs_available(value,roles,availability)?
+        @: (valid:false,value:0)
+    operand: _symbolic_compile_evaluate_payload(value,roles,arguments,true)
+    ~_symbolic_compile_numeric_finite(operand) \/ ~_symbolic_compile_numeric_real(operand)?
+        @: (valid:false,value:0)
+    (valid:true,value:operand)
+
+_symbolic_compile_interval_affine_facts(value:symbolic, variable:symbolic, roles:[symbolic], arguments:[num], depth:num=0, availability:[bit]=[]):
+    depth > 128?
+        errors.ValueError("compiled interval affine syntax admission budget exceeded")!
+    kind: _symbolic_root_kind(value)
+    kind = 1 /\ same(value,variable)?
+        @: (valid:true,rate:1,offset:0)
+    kind = 1 \/ kind = 2?
+        scalar: _symbolic_compile_affine_scalar(value,variable,roles,arguments,availability)
+        @: (valid:scalar.valid,rate:0,offset:scalar.value)
+    ~(kind = 3)?
+        @: (valid:false,rate:0,offset:0)
+    left: _symbolic_left(value)
+    right: _symbolic_right(value)
+    operation: _symbolic_root_operation(value)
+    operation = 3?
+        _symbolic_root_kind(right) = 1 /\ same(right,variable)?
+            scalar: _symbolic_compile_affine_scalar(left,variable,roles,arguments,availability)
+            @: (valid:scalar.valid,rate:scalar.value,offset:0)
+        _symbolic_root_kind(left) = 1 /\ same(left,variable)?
+            scalar: _symbolic_compile_affine_scalar(right,variable,roles,arguments,availability)
+            @: (valid:scalar.valid,rate:scalar.value,offset:0)
+        @: (valid:false,rate:0,offset:0)
+    ~(operation = 1 \/ operation = 2)?
+        @: (valid:false,rate:0,offset:0)
+    a: _symbolic_compile_interval_affine_facts(left,variable,roles,arguments,depth+1,availability)
+    b: _symbolic_compile_interval_affine_facts(right,variable,roles,arguments,depth+1,availability)
+    ~a.valid \/ ~b.valid \/ (a.rate != 0 /\ b.rate != 0) \/ (a.offset != 0 /\ b.offset != 0)?
+        @: (valid:false,rate:0,offset:0)
+    rate: a.rate
+    offset: a.offset
+    rate = 0?
+        .rate: b.rate
+        operation = 2?
+            .rate: 0-b.rate
+    offset = 0?
+        .offset: b.offset
+        operation = 2?
+            .offset: 0-b.offset
+    (valid:true,rate:rate,offset:offset)
+
+_symbolic_compile_interval_affine_nonzero(value:symbolic, variable:symbolic, roles:[symbolic], arguments:[num], lower:num, upper:num, availability:[bit]=[]) -> bit:
+    ~_symbolic_compile_numeric_real(lower) \/ ~_symbolic_compile_numeric_real(upper)?
+        @: false
+    facts: _symbolic_compile_interval_affine_facts(value,variable,roles,arguments,0,availability)
+    ~facts.valid?
+        @: false
+    left: facts.rate*lower+facts.offset
+    right: facts.rate*upper+facts.offset
+    ~_symbolic_compile_numeric_finite(left) \/ ~_symbolic_compile_numeric_finite(right)?
+        @: false
+    # A proved real affine map takes its whole real interval between endpoints.
+    (left != 0 /\ right != 0) /\ ((left = m.abs(left) /\ right = m.abs(right)) \/ (left = 0-m.abs(left) /\ right = 0-m.abs(right)))
+
+_symbolic_compile_interval_affine_positive(value:symbolic, variable:symbolic, roles:[symbolic], arguments:[num], lower:num, upper:num, zero_allowed:bit=false, availability:[bit]=[]) -> bit:
+    ~_symbolic_compile_numeric_real(lower) \/ ~_symbolic_compile_numeric_real(upper)?
+        @: false
+    facts: _symbolic_compile_interval_affine_facts(value,variable,roles,arguments,0,availability)
+    ~facts.valid?
+        @: false
+    left: facts.rate*lower+facts.offset
+    right: facts.rate*upper+facts.offset
+    ~_symbolic_compile_numeric_finite(left) \/ ~_symbolic_compile_numeric_finite(right)?
+        @: false
+    zero_allowed?
+        # Rounded zero is not an exact nonnegative endpoint proof. A single
+        # product can underflow, or a product/offset cancellation can round a
+        # negative exact affine value to zero. Only exact copy/sign products
+        # may establish a zero endpoint without an existing exact receipt.
+        left = 0 /\ ~(facts.rate = 0 \/ facts.rate = 1 \/ facts.rate = -1 \/ lower = 0 \/ lower = 1 \/ lower = -1)?
+            @: false
+        right = 0 /\ ~(facts.rate = 0 \/ facts.rate = 1 \/ facts.rate = -1 \/ upper = 0 \/ upper = 1 \/ upper = -1)?
+            @: false
+        @: left = m.abs(left) /\ right = m.abs(right)
+    left != 0 /\ right != 0 /\ left = m.abs(left) /\ right = m.abs(right)
+
+_symbolic_compile_interval_admitted(value:symbolic, variable:symbolic, roles:[symbolic], arguments:[num], lower:num, upper:num, depth:num=0, availability:[bit]=[]) -> bit:
+    depth > 128?
+        errors.ValueError("compiled integral interval admission budget exceeded")!
+    ~depends_on(value,variable)?
+        # This is a conditional factor scope only; the caller must discharge
+        # every missing dependency against its own actualfuture integral.
+        ~_symbolic_compile_inputs_available(value,roles,availability)?
+            @: true
+        checked: _symbolic_compile_evaluate_payload(value,roles,arguments,true)
+        @: _symbolic_compile_numeric_finite(checked)
+    kind: _symbolic_root_kind(value)
+    kind = 1 \/ kind = 2 \/ kind = 4 \/ kind = 6?
+        @: true
+    kind = 7?
+        operation: _symbolic_root_operation(value)
+        argument: _symbolic_argument(value)
+        operation = 1 \/ operation = 2 \/ operation = 5 \/ operation = 6?
+            @: _symbolic_compile_interval_admitted(argument,variable,roles,arguments,lower,upper,depth+1,availability)
+        operation = 3?
+            @: _symbolic_compile_interval_affine_positive(argument,variable,roles,arguments,lower,upper,false,availability)
+        operation = 4?
+            @: _symbolic_compile_interval_affine_positive(argument,variable,roles,arguments,lower,upper,true,availability)
+        @: false
+    ~(kind = 3)?
+        @: false
+    operation: _symbolic_root_operation(value)
+    left: _symbolic_left(value)
+    right: _symbolic_right(value)
+    operation = 1 \/ operation = 2 \/ operation = 3?
+        @: _symbolic_compile_interval_admitted(left,variable,roles,arguments,lower,upper,depth+1,availability) /\ _symbolic_compile_interval_admitted(right,variable,roles,arguments,lower,upper,depth+1,availability)
+    operation = 4?
+        ~_symbolic_compile_interval_admitted(left,variable,roles,arguments,lower,upper,depth+1,availability)?
+            @: false
+        ~depends_on(right,variable)?
+            ~_symbolic_compile_inputs_available(right,roles,availability)?
+                @: true
+            denominator: _symbolic_compile_evaluate_payload(right,roles,arguments,true)
+            @: denominator != 0
+        # A nonlinear rational denominator is NOT proved by two valid endpoints.
+        @: _symbolic_compile_interval_affine_nonzero(right,variable,roles,arguments,lower,upper,availability)
+    operation = 5 /\ _symbolic_root_kind(right) = 2?
+        exponent: _symbolic_number_value(right)
+        ~_symbolic_compile_numeric_real(exponent)?
+            @: false
+        m.abs(exponent) % 1 = 0 /\ exponent = m.abs(exponent)?
+            @: _symbolic_compile_interval_admitted(left,variable,roles,arguments,lower,upper,depth+1,availability)
+        m.abs(exponent) % 1 = 0?
+            @: _symbolic_compile_interval_affine_nonzero(left,variable,roles,arguments,lower,upper,availability)
+        @: _symbolic_compile_interval_affine_positive(left,variable,roles,arguments,lower,upper,exponent > 0,availability)
+    false
+
+# Existing-format representation view for exact symbolic endpoint substitution.
+# No coefficients/exponents are changed and no calculus rule is implemented.
+_symbolic_compile_unexpanded(value:symbolic) -> symbolic:
+    kind: _symbolic_root_kind(value)
+    ~(kind = 4 \/ kind = 6)?
+        @: _symbolic_clone(value)
+    polynomial: _symbolic_as_polynomial(value)
+    catalog: _symbolic_catalog(polynomial)
+    variables: _symbolic_catalog_variable_count(catalog)
+    [symbolic] symbols: []
+    variables > 0?
+        ..variables-1 >>
+            entry: _symbolic_catalog_entry(catalog, $)
+            .symbols: symbols & [_symbolic_compile_catalog_symbol(entry)]
+    [symbolic] result: [_symbolic_raw_number(0)]
+    terms: _symbolic_polynomial_term_count(polynomial)
+    terms > 0?
+        ..terms-1 >>
+            term_index: $
+            [symbolic] term: [_symbolic_raw_number(_symbolic_polynomial_term_coefficient(polynomial, term_index))]
+            variables > 0?
+                ..variables-1 >>
+                    exponent: _symbolic_polynomial_term_exponent(polynomial, term_index, $)
+                    exponent > 0?
+                        power: _symbolic_power_simplified(symbols.($), _symbolic_raw_number(exponent))
+                        term.0: _symbolic_multiply_simplified(term.0, power)
+            result.0: _symbolic_add_simplified(result.0, term.0)
+    result.0
+
+_symbolic_compile_inputs_available(value:symbolic, roles:[symbolic], availability:[bit]) -> bit:
+    availability.length() = 0? @: true
+    availability.length() != roles.length()?
+        errors.ValueError("compiled operand availability layout changed")!
+    available:true
+    roles.length() > 0?
+        ..roles.length()-1 >>
+            ~availability.($) /\ depends_on(value,roles.($))?
+                .available:false
+    available
+
+# Locate an actual later integral over this role, following only issued
+# substitution role indexes. No public name or guessedzero is a binding.
+_symbolic_compile_future_interval(role:num, plan:[num], first:num):
+    current:role
+    found:false
+    owner:-1
+    lower:-1
+    upper:-1
+    count:plan.length()/4
+    first < count?
+        first..count-1 >>
+            offset:$*4
+            ~found /\ plan.(offset)=3 /\ plan.(offset+1)=current?
+                .current:plan.(offset+2)
+            ~found /\ plan.(offset)=2 /\ plan.(offset+1)=current?
+                .found:true
+                .owner:$
+                .upper:plan.(offset+2)
+                .lower:plan.(offset+3)
+    (found:found,owner:owner,lower:lower,upper:upper)
+
+_symbolic_compile_endpoint_candidates(index:num, arguments:[num], availability:[bit], plan:[num], first:num, depth:num=0) -> [num]:
+    depth > 32 \/ index < 0 \/ index >= arguments.length() \/ index % 1 != 0?
+        errors.ValueError("compiled endpoint role has no owned available operand")!
+    availability.(index)?
+        @: [arguments.(index)]
+    future:_symbolic_compile_future_interval(index,plan,first)
+    ~future.found?
+        errors.ValueError("compiled endpoint role has no actual future integral bounds")!
+    lower:_symbolic_compile_endpoint_candidates(future.lower,arguments,availability,plan,future.owner+1,depth+1)
+    upper:_symbolic_compile_endpoint_candidates(future.upper,arguments,availability,plan,future.owner+1,depth+1)
+    lower & upper
+
+# Domain guard facts are linked to actual plan indexes and retained original
+# input snapshots. Conditional factors are checked for EVERY missing role.
+_symbolic_compile_source_guard(value:symbolic, roles:[symbolic], arguments:[num], availability:[bit], plan:[num], first:num, ordinal:num) -> (steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],facts:[(role:num,integral_ordinal:num,lower_role:num,upper_role:num,source:symbolic,status:str)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps:[]
+    [(role:num,integral_ordinal:num,lower_role:num,upper_role:num,source:symbolic,status:str)] facts:[]
+    _symbolic_compile_inputs_available(value,roles,availability)?
+        checked:_symbolic_compile_evaluate_payload_inspection(value,roles,arguments,true,ordinal)
+        .steps:checked.steps
+        ordinal >= 0?
+            receipt:(ordinal:ordinal+steps.length(),rule_id:"compiled_original_source_point_checked",status:"checked",input:_symbolic_clone(value),output:_symbolic_clone(value),assumption:(kind:"actual_available_source_operands",operand:_symbolic_clone(value),scope:"actual original-source point obligations checked before erasure"),numerical_requirement:"exact_algebra",execution_authority:false)
+            .steps:steps & [receipt]
+        @: (steps:steps,facts:facts)
+    roles.length()>0?
+        ..roles.length()-1 >>
+            role:$
+            ~availability.(role) /\ depends_on(value,roles.(role))?
+                future:_symbolic_compile_future_interval(role,plan,first)
+                ~future.found?
+                    errors.ValueError("compiled original source obligation lacks an actual operand or future integral scope")!
+                lower:_symbolic_compile_endpoint_candidates(future.lower,arguments,availability,plan,future.owner+1)
+                upper:_symbolic_compile_endpoint_candidates(future.upper,arguments,availability,plan,future.owner+1)
+                ..lower.length()-1 >>
+                    l:$
+                    ..upper.length()-1 >>
+                        _symbolic_compile_guard_catalog_operand(roles.(role),lower.(l))
+                        _symbolic_compile_guard_catalog_operand(roles.(role),upper.($))
+                        ~_symbolic_compile_interval_admitted(value,roles.(role),roles,arguments,lower.(l),upper.($),0,availability)?
+                            errors.ValueError("compiled retained original source interval proof is not established")!
+                .facts:facts & [(role:role,integral_ordinal:future.owner,lower_role:future.lower,upper_role:future.upper,source:_symbolic_clone(value),status:"checked_original_source_interval")]
+                ordinal >= 0?
+                    receipt:(ordinal:ordinal+steps.length(),rule_id:"compiled_original_source_future_interval_checked",status:"checked",input:_symbolic_clone(value),output:_symbolic_clone(value),assumption:(kind:"actual_issued_future_bounds",operand:_symbolic_clone(roles.(role)),scope:"all conditional missing dependencies checked against their own actual issued future integral bounds"),numerical_requirement:"exact_algebra",execution_authority:false)
+                    .steps:steps & [receipt]
+    (steps:steps,facts:facts)
+
+# Only original syntax can prove nonnegative source when its numeric carrier
+# rounded tozero. Direct factor signs and exact copy/sign zero cases suffice.
+_symbolic_compile_point_root_zero_admitted(argument:symbolic, catalog:[num], values:[num]) -> bit:
+    _symbolic_root_kind(argument)=2?
+        @: _symbolic_number_value(argument)=0
+    _symbolic_root_kind(argument)=3 /\ _symbolic_root_operation(argument)=2?
+        same(_symbolic_left(argument),_symbolic_right(argument))?
+            @: true
+    [symbolic] roles:[]
+    count:_symbolic_catalog_variable_count(catalog)
+    count>0?
+        ..count-1 >>
+            .roles:roles & [_symbolic_compile_catalog_symbol(_symbolic_catalog_entry(catalog,$))]
+    admitted:false
+    count>0?
+        ..count-1 >>
+            facts:_symbolic_compile_interval_affine_facts(argument,roles.($),roles,values)
+            facts.valid?
+                operand:values.($)
+                facts.offset=0?
+                    same_sign:(facts.rate=m.abs(facts.rate) /\ operand=m.abs(operand)) \/ (facts.rate=0-m.abs(facts.rate) /\ operand=0-m.abs(operand))
+                    (facts.rate=0 \/ operand=0 \/ same_sign)?
+                        .admitted:true
+                facts.offset!=0 /\ (facts.rate=0 \/ facts.rate=1 \/ facts.rate=-1 \/ operand=0 \/ operand=1 \/ operand=-1)?
+                    facts.rate*operand+facts.offset=0?
+                        .admitted:true
+    admitted
+
+_symbolic_compile_operator_plan_inspection(value:symbolic, selected:[symbolic], arguments:[num], templates:[num], plan:[num], role_scope:[num], availability:[bit], ordinal:num=-1) -> (value:num,source:symbolic,expression:symbolic,selected:[symbolic],roles:[symbolic],steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],guards:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],operators:[(ordinal:num,operation:num,variable:num,upper:num,lower:num,input:symbolic,output:symbolic,status:str)],facts:[(role:num,integral_ordinal:num,lower_role:num,upper_role:num,source:symbolic,status:str)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+    plan.length()%4!=0 \/ arguments.length()!=templates.length() \/ arguments.length()!=availability.length() \/ selected.length()>templates.length()?
+        errors.ValueError("compiled operator plan or actual availability framing changed")!
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps:[]
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] guards:[]
+    [(ordinal:num,operation:num,variable:num,upper:num,lower:num,input:symbolic,output:symbolic,status:str)] operators:[]
+    [(role:num,integral_ordinal:num,lower_role:num,upper_role:num,source:symbolic,status:str)] facts:[]
+    [symbolic] current:[value]
+    [symbolic] roles:selected
+    instructions:plan.length()/4
+    instructions>0?
+        view:_symbolic_compile_formal_view(value,selected,role_scope)
+        current.0:view.0
+        .roles:[]
+        selected.length()>0?
+            .roles:[1..selected.length() >> view.($)]
+        templates.length()>selected.length()?
+            selected.length()..templates.length()-1 >>
+                position:$
+                template:templates.(position)
+                template < -1 \/ template >= roles.length() \/ template%1!=0?
+                    errors.ValueError("compiled role has no actual catalog domain issuer")!
+                name:_symbolic_compile_role_name(role_scope & [58,98,111,117,110,100],position)
+                [symbolic] role:[_symbolic_compile_unknown_formal(name)]
+                template>=0?
+                    role.0:_symbolic_compile_formal_symbol(roles.(template),name)
+                _symbolic_catalog_has_entry(_symbolic_catalog(value),_symbolic_raw_catalog(role.0))?>
+                    .name:name & [58]
+                    role.0:_symbolic_compile_unknown_formal(name)
+                    template>=0?
+                        role.0:_symbolic_compile_formal_symbol(roles.(template),name)
+                .roles:roles & [role.0]
+        ..instructions-1 >>
+            instruction:$
+            offset:instruction*4
+            operation:plan.(offset)
+            variable:plan.(offset+1)
+            upper:plan.(offset+2)
+            lower:plan.(offset+3)
+            ~(operation=1 \/ operation=2 \/ operation=3 \/ operation=4 \/ operation=5)?
+                errors.ValueError("compiled operator is not issued")!
+            operation!=4 /\ operation!=5 /\ (variable<0 \/ variable>=roles.length() \/ variable%1!=0)?
+                errors.ValueError("compiled selected role is not issued")!
+            # A compiled interval cannot claim every original catalog-domain
+            # obligation checked from discrete endpoint samples. Formal symbolic
+            # antiderivatives and ordinary int-formal extensions are separate.
+            operation=2?
+                ~_symbolic_is_continuous_domain(_symbolic_domain(_symbolic_clone(roles.(variable))))?
+                    errors.ValueError("compiled integral selected catalog domain requires an explicit continuous extension")!
+            before:_symbolic_clone(current.0)
+            checked:_symbolic_compile_source_guard(current.0,roles,arguments,availability,plan,instruction,_symbolic_calculus_next(ordinal,steps.length()))
+            .steps:steps & checked.steps
+            .guards:guards & checked.steps
+            .facts:facts & checked.facts
+            operation=1?
+                math:_symbolic_differentiate_inspection(current.0,roles.(variable),true,_symbolic_calculus_next(ordinal,steps.length()))
+                current.0:math.expression
+                .steps:steps & math.steps
+            operation=2?
+                lower<0 \/ upper<0 \/ lower>=roles.length() \/ upper>=roles.length()?
+                    errors.ValueError("compiled integral bound role is not issued")!
+                lower_values:_symbolic_compile_endpoint_candidates(lower,arguments,availability,plan,instruction+1)
+                upper_values:_symbolic_compile_endpoint_candidates(upper,arguments,availability,plan,instruction+1)
+                ..lower_values.length()-1 >>
+                    l:$
+                    ..upper_values.length()-1 >>
+                        _symbolic_compile_guard_catalog_operand(roles.(variable),lower_values.(l))
+                        _symbolic_compile_guard_catalog_operand(roles.(variable),upper_values.($))
+                        ~_symbolic_compile_interval_admitted(current.0,roles.(variable),roles,arguments,lower_values.(l),upper_values.($),0,availability)?
+                            errors.ValueError("compiled integral source interval is not established")!
+                [symbolic] source:[current.0]
+                _symbolic_compile_polynomial_admitted(current.0)?
+                    source.0:_symbolic_as_polynomial(expand(current.0))
+                math:_symbolic_integrate_inspection(source.0,roles.(variable),_symbolic_calculus_next(ordinal,steps.length()))
+                .steps:steps & math.steps
+                primitive:_symbolic_compile_unexpanded(math.expression)
+                upper_value:substitute(primitive,roles.(variable),roles.(upper))
+                lower_value:substitute(primitive,roles.(variable),roles.(lower))
+                current.0:_symbolic_subtract_simplified(upper_value,lower_value)
+            operation=3?
+                upper<0 \/ upper>=roles.length()?
+                    errors.ValueError("compiled forwarding target role is not issued")!
+                current.0:substitute(_symbolic_compile_unexpanded(current.0),roles.(variable),roles.(upper))
+            operation=4?
+                current.0:_symbolic_raw_number(0)
+            operation=5?
+                upper<0 \/ lower<0 \/ upper>=roles.length() \/ lower>=roles.length()?
+                    errors.ValueError("compiled absent integral endpoint role is not issued")!
+                width:_symbolic_subtract_simplified(roles.(upper),roles.(lower))
+                current.0:_symbolic_multiply_simplified(current.0,width)
+            ordinal>=0?
+                receipt:(ordinal:ordinal+steps.length(),rule_id:"compiled_operator_invocation_completed",status:"observed_operator_invocation",input:before,output:_symbolic_clone(current.0),assumption:(kind:"original_source_checked_before_erasure",operand:before,scope:"actual ordered compiler-issued operator invocation"),numerical_requirement:"exact_algebra",execution_authority:false)
+                .operators:operators & [(ordinal:receipt.ordinal,operation:operation,variable:variable,upper:upper,lower:lower,input:before,output:_symbolic_clone(current.0),status:"observed_operator_invocation")]
+                .steps:steps & [receipt]
+    ~_symbolic_compile_inputs_available(current.0,roles,availability)?
+        errors.ValueError("compiled final payload has an unresolved removed source operand")!
+    result:_symbolic_compile_evaluate_payload_inspection(current.0,roles,arguments,instructions>0,_symbolic_calculus_next(ordinal,steps.length()))
+    .steps:steps & result.steps
+    ordinal>=0?
+        receipt:(ordinal:ordinal+steps.length(),rule_id:"compiled_evaluate_completed",status:"observed_operator_invocation",input:_symbolic_clone(current.0),output:_symbolic_clone(current.0),assumption:(kind:"actual_value_retained_separately",operand:_symbolic_clone(current.0),scope:"this single owned compiled execution; value grants no Graph known-value authority"),numerical_requirement:"exact_algebra",execution_authority:false)
+        .steps:steps & [receipt]
+    (value:result.value,source:_symbolic_clone(value),expression:_symbolic_clone(current.0),selected:selected,roles:roles,steps:steps,guards:guards,operators:operators,facts:facts,domain:(scope:"actual original source point and issued future interval scopes",execution_checked:instructions>0),ordinal_scope:"local to this owned compiled invocation",numerical_requirement:"exact_algebra",execution_authority:false)
+
+# Private adapter plan consists of ordered calls to EXISTING exact primitives.
+# Each instruction is [operation, actual-role-index, upper-role, lower-role].
+# 1=differentiate, 2=integrate+symbolic endpoint subtraction, 3=substitute,
+# 4=the exact absent-public-formal derivative zero, 5=absent interval width.
+_symbolic_compile_operator_plan_evaluate(value:symbolic, selected:[symbolic], arguments:[num], templates:[num], plan:[num], scope:[num], availability:[bit]) -> num:
+    _symbolic_compile_operator_plan_inspection(value,selected,arguments,templates,plan,scope,availability,-1).value
+
+# Admission adapter for actual immutable symbolic payload compilation. The
+# existing evaluate implementation remains the only numeric rule executor.
+_symbolic_compile_numeric_payload(value:symbolic, depth:num = 0) -> bit:
+    depth > 128?
+        errors.ValueError("symbolic compile payload depth budget exceeded")!
+    kind: _symbolic_root_kind(value)
+    kind = 4 \/ kind = 6?
+        @: true
+    kind = 1?
+        entry: _symbolic_raw_catalog(value)
+        @: _symbolic_catalog_identity_same(entry, entry) /\ entry.2 != 2
+    kind = 2?
+        @: true
+    kind = 3?
+        operation: _symbolic_root_operation(value)
+        operation < 1 \/ operation > 5?
+            @: false
+        @: _symbolic_compile_numeric_payload(_symbolic_left(value), depth+1) /\ _symbolic_compile_numeric_payload(_symbolic_right(value), depth+1)
+    kind = 7?
+        operation: _symbolic_root_operation(value)
+        operation < 1 \/ operation > 7?
+            @: false
+        @: _symbolic_compile_numeric_payload(_symbolic_argument(value), depth+1)
+    false
+
+_symbolic_compile_evaluate_payload_inspection(value:symbolic, selected:[symbolic], arguments:[num], guard_exact:bit, ordinal:num) -> (value:num,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
+    [(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)] steps: []
+    selected.length() != arguments.length()?
+        errors.ValueError("symbolic compile argument count does not match selected symbols")!
+    ~_symbolic_compile_numeric_payload(value)?
+        errors.TypeError("symbolic compile payload has an unresolved numeric rule or function dependency")!
+    catalog: _symbolic_catalog(value)
+    count: _symbolic_catalog_variable_count(catalog)
+    values: [0:count]
+    matched: [false:count]
+    selected.length() > 0?
+        ..selected.length() - 1 >>
+            position: $
+            symbol_value: selected.(position)
+            _symbolic_root_kind(symbol_value) != 1?
+                errors.TypeError("symbolic compile selected value must be an actual symbol")!
+            entry: _symbolic_raw_catalog(symbol_value)
+            ~_symbolic_catalog_identity_same(entry, entry) \/ entry.2 = 2?
+                errors.TypeError("symbolic compile selected symbol has an unresolved function dependency")!
+            guard_exact?
+                _symbolic_compile_guard_catalog_operand(symbol_value,arguments.(position))
+            target: _symbolic_catalog_entry_index(catalog, entry)
+            position > 0?
+                ..position - 1 >>
+                    _symbolic_catalog_identity_same(entry, _symbolic_raw_catalog(selected.($)))?
+                        errors.ValueError("symbolic compile selected symbols repeat mathematical identity")!
+            # An absent selected formal is allowed; every actual dependency
+            # must still be matched below before invoking evaluate.
+            target >= 0 /\ target < count?
+                matched.(target)?
+                    errors.ValueError("symbolic compile selected symbols repeat mathematical identity")!
+                values.(target): arguments.(position)
+                matched.(target): true
+    count > 0?
+        ..count - 1 >>
+            ~matched.($)?
+                errors.ValueError("symbolic compile payload contains an unmatched variable, constant, or function dependency")!
+    guard_exact /\ ~(_symbolic_root_kind(value) = 4 \/ _symbolic_root_kind(value) = 6)?
+        @: _symbolic_evaluate_raw_inspection(value,catalog,values,true,ordinal)
+    ~(_symbolic_root_kind(value) = 4 \/ _symbolic_root_kind(value) = 6)?
+        @: _symbolic_evaluate_raw_inspection(value,catalog,values,guard_exact,ordinal)
+    result: evaluate(value,values)
+    _symbolic_compile_evaluation_finish(value,result,steps,"evaluate_existing_polynomial_or_ordinary_catalog",ordinal)
+
+_symbolic_compile_evaluate_payload(value:symbolic, selected:[symbolic], arguments:[num], guard_exact:bit=false) -> num:
+    _symbolic_compile_evaluate_payload_inspection(value,selected,arguments,guard_exact,-1).value
 
 evaluate(value:symbolic, variables:[num]) -> num:
+    ~_symbolic_compile_numeric_payload(value)?
+        errors.TypeError("symbolic.evaluate requires a closed numeric expression; unresolved function or operator has no executable binding")!
     index: 0
     univariate_result: 0
     _symbolic_root_kind(value) = 6?
@@ -11782,24 +13422,52 @@ expand(value:symbolic) -> symbolic:
 collect(value:symbolic) -> symbolic:
     expand(value)
 
-simplify(value:symbolic) -> symbolic:
+_symbolic_simplify_inspection(value:symbolic, ordinal:num) -> (expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)]):
     kind: _symbolic_root_kind(value)
     kind = 1 \/ kind = 2 \/ kind = 4 \/ kind = 6?
-        @: _symbolic_clone(value)
+        @: _symbolic_inspection_rule(value, _symbolic_clone(value), "leaf_unchanged", "unchanged", "issued_leaf_domain_retained", value, ordinal)
     kind = 7?
-        argument: simplify(_symbolic_argument(value))
-        @: _symbolic_rebuild_function(argument, _symbolic_root_operation(value))
+        argument: _symbolic_simplify_inspection(_symbolic_argument(value), ordinal)
+        rebuilt: _symbolic_rebuild_inspection(argument.expression, _symbolic_root_operation(value), ordinal + argument.steps.length())
+        @: (expression:rebuilt.expression, steps:argument.steps & rebuilt.steps)
     ~(kind = 3)?
         errors.TypeError("symbolic.simplify received an unsupported expression kind")!
-    left: simplify(_symbolic_left(value))
-    right: simplify(_symbolic_right(value))
+    left: _symbolic_simplify_inspection(_symbolic_left(value), ordinal)
+    right: _symbolic_simplify_inspection(_symbolic_right(value), ordinal + left.steps.length())
+    next: ordinal + left.steps.length() + right.steps.length()
     _symbolic_root_operation(value)??
-        1 => @: _symbolic_add_simplified(left, right)
-        2 => @: _symbolic_subtract_simplified(left, right)
-        3 => @: _symbolic_multiply_simplified(left, right)
-        4 => @: _symbolic_divide_simplified(left, right)
-        5 => @: _symbolic_power_simplified(left, right)
+        1 =>
+            operation: _symbolic_add_inspection(left.expression, right.expression, next)
+            @: (expression:operation.expression, steps:left.steps & right.steps & operation.steps)
+        2 =>
+            operation: _symbolic_subtract_inspection(left.expression, right.expression, next)
+            @: (expression:operation.expression, steps:left.steps & right.steps & operation.steps)
+        3 =>
+            operation: _symbolic_multiply_inspection(left.expression, right.expression, next)
+            @: (expression:operation.expression, steps:left.steps & right.steps & operation.steps)
+        4 =>
+            operation: _symbolic_divide_inspection(left.expression, right.expression, next)
+            @: (expression:operation.expression, steps:left.steps & right.steps & operation.steps)
+        5 =>
+            operation: _symbolic_power_inspection(left.expression, right.expression, next)
+            @: (expression:operation.expression, steps:left.steps & right.steps & operation.steps)
         errors.TypeError("symbolic.simplify received an unsupported operation")!
+
+inspect_simplify(value:symbolic) -> (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+    result: _symbolic_simplify_inspection(value, 0)
+    (source:_symbolic_clone(value), expression:_symbolic_clone(result.expression),
+     steps:result.steps,
+     domain:(scope:"original source obligations retained; mathematical identities are conditional on declared scalar domains", execution_checked:false),
+     ordinal_scope:"local to this owned inspection invocation",
+     numerical_requirement:"exact_algebra", execution_authority:false)
+
+# Executing an inspection retains the exact original expression and its catalog.
+# This does not impose a new finite-input policy or select reordered arithmetic.
+evaluate_inspection(view:(source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit), variables:[num]) -> num:
+    evaluate(_symbolic_clone(view.source), variables)
+
+simplify(value:symbolic) -> symbolic:
+    _symbolic_simplify_inspection(value, -1).expression
 
 substitute(value:symbolic, variable:symbolic, replacement:symbolic) -> symbolic:
     ~(_symbolic_root_kind(variable) = 1)?
@@ -11834,10 +13502,10 @@ substitute(value:symbolic, variable:symbolic, replacement:symbolic) -> symbolic:
 substitute(value:symbolic, variable:symbolic, replacement:num) -> symbolic:
     substitute(value, variable, constant(replacement))
 
-substitute[variable_name:chr](value:symbolic, replacement:symbolic) -> symbolic:
+substitute(variable_name:chr, value:symbolic, replacement:symbolic) -> symbolic:
     substitute(value, _symbolic_suffix_variable(value, variable_name), replacement)
 
-substitute[variable_name:chr](value:symbolic, replacement:num) -> symbolic:
+substitute(variable_name:chr, value:symbolic, replacement:num) -> symbolic:
     substitute(value, _symbolic_suffix_variable(value, variable_name), replacement)
 
 term_count(value:symbolic) -> num:

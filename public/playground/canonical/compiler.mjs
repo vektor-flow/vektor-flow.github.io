@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmp8k7l54db.js
+// include: /dev/shm/vkf-architecture-0136/tmp/tmpjszn9q2k.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -247,11 +247,11 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 2682, "end": 3225}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 3225, "end": 3511}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 3511, "end": 47535}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 47535, "end": 51490}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 51490, "end": 80346}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 80346, "end": 87570}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 87570, "end": 87784}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 87784, "end": 88074}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 88074, "end": 88398}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 88398, "end": 89046}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 89046, "end": 89625}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 89625, "end": 91920}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 91920, "end": 92380}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 92380, "end": 101984}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 101984, "end": 477864}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 477864, "end": 478239}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 478239, "end": 482225}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 482225, "end": 482251}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 482251, "end": 483647}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 483647, "end": 483798}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 483798, "end": 484084}], "remote_package_size": 484084});
+    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 2682, "end": 3225}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 3225, "end": 3511}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 3511, "end": 47535}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 47535, "end": 51490}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 51490, "end": 80346}, {"filename": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf", "start": 80346, "end": 85952}, {"filename": "/compiler/self_hosted/stdlib/physics/preparation.vkf", "start": 85952, "end": 88782}, {"filename": "/compiler/self_hosted/stdlib/physics/rigid.vkf", "start": 88782, "end": 98828}, {"filename": "/compiler/self_hosted/stdlib/physics/runtime.vkf", "start": 98828, "end": 99168}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 99168, "end": 106392}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 106392, "end": 106606}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 106606, "end": 106896}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 106896, "end": 107220}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 107220, "end": 107868}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 107868, "end": 108447}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 108447, "end": 110742}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 110742, "end": 111202}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 111202, "end": 120786}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 120786, "end": 603780}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 603780, "end": 604155}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 604155, "end": 608141}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 608141, "end": 608167}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 608167, "end": 609563}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 609563, "end": 609714}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 609714, "end": 610000}], "remote_package_size": 610000});
 
   })();
 
-// end include: /tmp/tmp8k7l54db.js
+// end include: /dev/shm/vkf-architecture-0136/tmp/tmpjszn9q2k.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -4311,7 +4311,7 @@ var wasmImports = {
   /** @export */
   invoke_diii,
   /** @export */
-  invoke_diiii,
+  invoke_diiiii,
   /** @export */
   invoke_fiii,
   /** @export */
@@ -4343,6 +4343,8 @@ var wasmImports = {
   /** @export */
   invoke_iiiiiiiiiiiii,
   /** @export */
+  invoke_ji,
+  /** @export */
   invoke_jii,
   /** @export */
   invoke_jiii,
@@ -4369,6 +4371,8 @@ var wasmImports = {
   /** @export */
   invoke_viiii,
   /** @export */
+  invoke_viiiid,
+  /** @export */
   invoke_viiiii,
   /** @export */
   invoke_viiiiii,
@@ -4381,7 +4385,19 @@ var wasmImports = {
   /** @export */
   invoke_viiiiiiiiii,
   /** @export */
+  invoke_viiiiiiiiiii,
+  /** @export */
+  invoke_viiiiiiiiiiii,
+  /** @export */
+  invoke_viiiiiiiiiiiii,
+  /** @export */
+  invoke_viiiiiiiiiiiiii,
+  /** @export */
   invoke_viiiiiiiiiiiiiii,
+  /** @export */
+  invoke_viiiiiiiiiiiiiiii,
+  /** @export */
+  invoke_viiiiiiiiiiiiiiiiiiiiiiiiii,
   /** @export */
   invoke_viiij,
   /** @export */
@@ -4399,8 +4415,9 @@ var wasmImports = {
 };
 var wasmExports = createWasm();
 var ___wasm_call_ctors = () => (___wasm_call_ctors = wasmExports['__wasm_call_ctors'])();
-var _vkf_browser_compile = Module['_vkf_browser_compile'] = (a0, a1, a2) => (_vkf_browser_compile = Module['_vkf_browser_compile'] = wasmExports['vkf_browser_compile'])(a0, a1, a2);
 var ___cxa_free_exception = (a0) => (___cxa_free_exception = wasmExports['__cxa_free_exception'])(a0);
+var _vkf_browser_compile = Module['_vkf_browser_compile'] = (a0, a1, a2) => (_vkf_browser_compile = Module['_vkf_browser_compile'] = wasmExports['vkf_browser_compile'])(a0, a1, a2);
+var _vkf_browser_compile_host_documents = Module['_vkf_browser_compile_host_documents'] = (a0, a1, a2) => (_vkf_browser_compile_host_documents = Module['_vkf_browser_compile_host_documents'] = wasmExports['vkf_browser_compile_host_documents'])(a0, a1, a2);
 var _vkf_browser_format_stdout = Module['_vkf_browser_format_stdout'] = (a0, a1, a2) => (_vkf_browser_format_stdout = Module['_vkf_browser_format_stdout'] = wasmExports['vkf_browser_format_stdout'])(a0, a1, a2);
 var _vkf_browser_stdout = Module['_vkf_browser_stdout'] = () => (_vkf_browser_stdout = Module['_vkf_browser_stdout'] = wasmExports['vkf_browser_stdout'])();
 var _vkf_browser_format_retained_ui_packets = Module['_vkf_browser_format_retained_ui_packets'] = (a0, a1, a2) => (_vkf_browser_format_retained_ui_packets = Module['_vkf_browser_format_retained_ui_packets'] = wasmExports['vkf_browser_format_retained_ui_packets'])(a0, a1, a2);
@@ -4425,10 +4442,11 @@ var ___cxa_get_exception_ptr = (a0) => (___cxa_get_exception_ptr = wasmExports['
 var dynCall_jii = Module['dynCall_jii'] = (a0, a1, a2) => (dynCall_jii = Module['dynCall_jii'] = wasmExports['dynCall_jii'])(a0, a1, a2);
 var dynCall_vij = Module['dynCall_vij'] = (a0, a1, a2, a3) => (dynCall_vij = Module['dynCall_vij'] = wasmExports['dynCall_vij'])(a0, a1, a2, a3);
 var dynCall_viiiji = Module['dynCall_viiiji'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viiiji = Module['dynCall_viiiji'] = wasmExports['dynCall_viiiji'])(a0, a1, a2, a3, a4, a5, a6);
-var dynCall_jiii = Module['dynCall_jiii'] = (a0, a1, a2, a3) => (dynCall_jiii = Module['dynCall_jiii'] = wasmExports['dynCall_jiii'])(a0, a1, a2, a3);
+var dynCall_ji = Module['dynCall_ji'] = (a0, a1) => (dynCall_ji = Module['dynCall_ji'] = wasmExports['dynCall_ji'])(a0, a1);
 var dynCall_viiji = Module['dynCall_viiji'] = (a0, a1, a2, a3, a4, a5) => (dynCall_viiji = Module['dynCall_viiji'] = wasmExports['dynCall_viiji'])(a0, a1, a2, a3, a4, a5);
 var dynCall_viij = Module['dynCall_viij'] = (a0, a1, a2, a3, a4) => (dynCall_viij = Module['dynCall_viij'] = wasmExports['dynCall_viij'])(a0, a1, a2, a3, a4);
 var dynCall_viiij = Module['dynCall_viiij'] = (a0, a1, a2, a3, a4, a5) => (dynCall_viiij = Module['dynCall_viiij'] = wasmExports['dynCall_viiij'])(a0, a1, a2, a3, a4, a5);
+var dynCall_jiii = Module['dynCall_jiii'] = (a0, a1, a2, a3) => (dynCall_jiii = Module['dynCall_jiii'] = wasmExports['dynCall_jiii'])(a0, a1, a2, a3);
 var dynCall_jiji = Module['dynCall_jiji'] = (a0, a1, a2, a3, a4) => (dynCall_jiji = Module['dynCall_jiji'] = wasmExports['dynCall_jiji'])(a0, a1, a2, a3, a4);
 var dynCall_viijii = Module['dynCall_viijii'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viijii = Module['dynCall_viijii'] = wasmExports['dynCall_viijii'])(a0, a1, a2, a3, a4, a5, a6);
 var dynCall_jiiii = Module['dynCall_jiiii'] = (a0, a1, a2, a3, a4) => (dynCall_jiiii = Module['dynCall_jiiii'] = wasmExports['dynCall_jiiii'])(a0, a1, a2, a3, a4);
@@ -4546,28 +4564,6 @@ function invoke_iiiiii(index,a1,a2,a3,a4,a5) {
   }
 }
 
-function invoke_viiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 function invoke_iid(index,a1,a2) {
   var sp = stackSave();
   try {
@@ -4612,50 +4608,6 @@ function invoke_di(index,a1) {
   }
 }
 
-function invoke_viid(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_vid(index,a1,a2) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 function invoke_dii(index,a1,a2) {
   var sp = stackSave();
   try {
@@ -4671,6 +4623,17 @@ function invoke_viidi(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
     getWasmTableEntry(index)(a1,a2,a3,a4);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viid(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4700,10 +4663,10 @@ function invoke_iiiiiii(index,a1,a2,a3,a4,a5,a6) {
   }
 }
 
-function invoke_vidd(index,a1,a2,a3) {
+function invoke_i(index) {
   var sp = stackSave();
   try {
-    getWasmTableEntry(index)(a1,a2,a3);
+    return getWasmTableEntry(index)();
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4711,10 +4674,21 @@ function invoke_vidd(index,a1,a2,a3) {
   }
 }
 
-function invoke_diiii(index,a1,a2,a3,a4) {
+function invoke_vid(index,a1,a2) {
   var sp = stackSave();
   try {
-    return getWasmTableEntry(index)(a1,a2,a3,a4);
+    getWasmTableEntry(index)(a1,a2);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_diiiii(index,a1,a2,a3,a4,a5) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3,a4,a5);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4723,17 +4697,6 @@ function invoke_diiii(index,a1,a2,a3,a4) {
 }
 
 function invoke_diii(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)(a1,a2,a3);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iiid(index,a1,a2,a3) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2,a3);
@@ -4755,10 +4718,153 @@ function invoke_iiiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
   }
 }
 
-function invoke_i(index) {
+function invoke_viiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
   var sp = stackSave();
   try {
-    return getWasmTableEntry(index)();
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiid(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiid(index,a1,a2,a3,a4,a5) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_vidd(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiiiiiiiiiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4821,21 +4927,10 @@ function invoke_iiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
   }
 }
 
-function invoke_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15) {
+function invoke_ji(index,a1) {
   var sp = stackSave();
   try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_jiii(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    return dynCall_jiii(index,a1,a2,a3);
+    return dynCall_ji(index,a1);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4902,6 +4997,17 @@ function invoke_viiij(index,a1,a2,a3,a4,a5) {
   var sp = stackSave();
   try {
     dynCall_viiij(index,a1,a2,a3,a4,a5);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_jiii(index,a1,a2,a3) {
+  var sp = stackSave();
+  try {
+    return dynCall_jiii(index,a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

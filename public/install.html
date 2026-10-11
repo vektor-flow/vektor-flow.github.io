@@ -7,16 +7,15 @@
 .readme-example-play:disabled{color:var(--muted);background:transparent;border-color:var(--rule);cursor:not-allowed;opacity:.65}
 .readme-example-output{min-height:1.5em}
 </style></head>
-<body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html" aria-current="page">Download</a><a href="performance.html">Performance</a></nav><a class="release-version" href="/staging/0.7.2/" title="Open the 0.7.2 staging preview">0.7.2 staging preview</a></header>
+<body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html" aria-current="page">Download</a><a href="performance.html">Performance</a></nav><span class="release-version">0.7.2 · Preview</span></header>
 <main class="documentation"><article id="readme-documentation" class="readme"><h1 id="download">Download</h1>
-<p>The Linux download includes a native loop-performance fix.</p>
-<h2 id="vektor-flow-0-7-1">Vektor Flow 0.7.1</h2>
-<p>An incomplete compiler, verified for the editable examples on this site.</p>
+<h2 id="vektor-flow-0-7-2-preview">Vektor Flow 0.7.2 preview</h2>
+<p>An incomplete browser compiler. The exact Source983 recipe11 input and portable browser artifact are recorded in the downloadable package and preview manifest.</p>
 <div class="table-scroll"><table><thead><tr><th scope="col">Target</th><th scope="col">Availability</th></tr></thead><tbody>
-<tr><td>Linux x86-64</td><td>Available; glibc 2.38 or newer</td></tr>
-<tr><td>Browser WebAssembly</td><td>Available; runs the site examples</td></tr>
-<tr><td>Windows x64</td><td>Unavailable</td></tr>
-<tr><td>macOS</td><td>Unavailable</td></tr>
+<tr><td>Browser WebAssembly</td><td>Portable 0.7.2 package; 51 displayed examples verified in the website Web Worker</td></tr>
+<tr><td>Linux x86-64</td><td>Native benchmark compiler measured; preview installer not published here</td></tr>
+<tr><td>Windows x64</td><td>Native benchmark compiler measured; preview installer not published here</td></tr>
+<tr><td>macOS ARM and Intel</td><td>Native benchmark compilers measured; preview installers not published here</td></tr>
 </tbody></table></div>
-<p>Extract the Linux package and run <code>bin/vkf --version</code>. Run a source file with <code>bin/vkf example.vkf</code>, or evaluate an expression with <code>bin/vkf -e &#39;::1+2&#39;</code>. The package includes its standard library and an optional per-user installer.</p>
-<p>Only the current compiler is supported before 1.0.0. The full language and physics integration are still incomplete. Linux GUI programs are not included in this package; use the browser for the drawing examples.</p><div class="downloads" aria-label="Compiler downloads"><a href="./downloads/current/vkf-linux-x86_64.tar.gz" download>Linux x86-64 compiler</a><a href="./downloads/current/vkf-linux-x86_64.tar.gz.sha256">Checksum</a><button disabled>Windows — unavailable</button><button disabled>macOS — unavailable</button><a href="./downloads/current/vkf-browser-compiler.zip" download>WebAssembly compiler</a><a href="./downloads/current/vkf-browser-compiler.zip.sha256">Checksum</a></div></article></main><footer class="site-footer">Incomplete compiler · Runnable examples</footer><script type="module" src="./current-documentation-examples.mjs?asset=3e65c70162739881"></script></body></html>
+<p>Extract the portable archive and serve its files over HTTP or HTTPS. The package contains the canonical browser compiler, its standard library, UI modules and third-party notices. Its SHA256 checksum pins the exact published bytes.</p>
+<p>This preview is not a stable release or full language/physical GPU acceptance. Benchmark failures and remaining compiler bugs are disclosed on Performance.</p><div class="downloads" aria-label="Compiler downloads"><button disabled>Linux — pending</button><button disabled>Windows — unavailable</button><button disabled>macOS — unavailable</button><a href="./downloads/vkf-browser-preview-0.7.2.tar.gz" download>WebAssembly compiler</a><a href="./downloads/vkf-browser-preview-0.7.2.tar.gz.sha256">Checksum</a></div></article></main><footer class="site-footer">Incomplete compiler · Runnable examples</footer><script type="module" src="./current-documentation-examples.mjs?asset=3e65c70162739881"></script></body></html>

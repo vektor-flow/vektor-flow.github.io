@@ -2,36 +2,37 @@
   "schema": 1,
   "status": "verified-examples",
   "complete": false,
+  "release_version": "0.7.2",
+  "preview": true,
+  "compiler_source": "fb41913c619e0dac6c66b08ee44e1ee18ce67aa8",
+  "release_source": "fb41913c619e0dac6c66b08ee44e1ee18ce67aa8",
+  "recipe_sha256": "3c4e14a9df56328078ad79bd56e13003af8cbd01c504192737fe27b41642aaa7",
+  "library_source": "31b92edf66a7a1570ab7196563f09a7df78f7f20",
+  "consumer_source": "2a74c235c0d2a9c5ec4e2ab95ef18df42a9ee3a0",
+  "portable_archive_sha256": "9011f6cfd67a925043cbdb33cbc3d55553db7d5a4470949c4d838cf37534629b",
+  "public_benchmark_commit": "6c2256fd463b0b416359c563343cbd7bddebece8",
   "package": {
     "module": "./playground/canonical/compiler.mjs",
     "wasm": "./playground/canonical/compiler.wasm",
     "data": "./playground/canonical/compiler.data"
   },
-  "compiler_source": "d36715d61d549bbddd6fff00d626a77f1c72523d",
-  "spec_source": "1d36e80654a4156835eb517a8936d6039037e021",
   "sha256": {
-    "compiler.mjs": "c991dd7794bd9e695e81df4a2e62919e4d59dc8a5d50d36ee805aa4c3969b2b7",
-    "compiler.wasm": "e4cb7a80c04ee7ee0a8c86c4cc255bf8b0dcb40b6584da2eb605491e170f28a0",
-    "compiler.data": "266e78929be870859c65e16f4ecbeba2681d60e10dd280a60904c86374f830ce"
+    "compiler.wasm": "2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5",
+    "compiler.mjs": "42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4",
+    "compiler.data": "4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995"
   },
+  "browser_archive": "./downloads/vkf-browser-preview-0.7.2.tar.gz",
+  "browser_archive_checksum": "./downloads/vkf-browser-preview-0.7.2.tar.gz.sha256",
   "verification": {
     "displayed_examples": 51,
+    "passed_examples": 51,
     "status": "passed",
-    "full_language_complete": false,
-    "scope": "51 displayed examples; desktop/mobile editing, output, drawings and concurrent workers"
+    "browser_ui_checks": 65,
+    "proof": "./verification/website-examples.json",
+    "proof_sha256": "84ddef4c7b51efa999eb3ebc5d0fb21f28580b763317f481dffeeceb429f49aa",
+    "full_language_complete": false
   },
-  "release_version": "0.7.1",
-  "release_source": "5e1603e6c5ff764f16be42ec18e453f183e822d2",
-  "release_spec": "e0d2d18e8b77ccfd23bbfb0351c511cbe514c2d9",
-  "linux": {
-    "archive": "./downloads/current/vkf-linux-x86_64.tar.gz",
-    "sha256": "10e457e76917c109aee39ba6c5efc86186f949bef59205f6d92a2014565e5def",
-    "compiler_sha256": "e9d6a85ee00fc65df9c93f69476c9a4f5e53beaacb95d2288830f42fca6fa304",
-    "architecture": "x86-64",
-    "minimum_glibc": "2.38",
-    "scope": "48 preserved console examples;79 coordinate fixtures; native GUI excluded",
-    "native_source": "b83263fb3aa59ae1869e8b3d318589e9e2f7ef67",
-    "revision": "unread-coordinates-1",
-    "hotfix_patch_sha256": "858bafb916ee41f06ea2c8c5df6861a768db077c8e87ca46cc5cd118c65e5554"
-  }
+  "physical_gpu_tested": false,
+  "stable_release": false,
+  "website_default": true
 }

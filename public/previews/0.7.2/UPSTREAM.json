@@ -1,0 +1,607 @@
+{
+  "version": "0.7.2",
+  "status": "isolated-preview",
+  "release_source": "fb41913c619e0dac6c66b08ee44e1ee18ce67aa8",
+  "compiler_source": "fb41913c619e0dac6c66b08ee44e1ee18ce67aa8",
+  "runtime_provenance": "modules.vektor-flow/client/UPSTREAM.json; native-ui.js is its existing renderer bundle",
+  "files": [
+    {
+      "path": "PREVIEW.md",
+      "sha256": "0ec077408ab30f212bbd89e9ff5ace3ec7f3a0860d9fb26b4503a3df0d2a2efd"
+    },
+    {
+      "path": "canonical-inline-worker.mjs",
+      "sha256": "bbf09a17b9efbc73356508981e13d9495fa36b66049cdd3eb36db4419be55ee9"
+    },
+    {
+      "path": "inline-retained-scene-view.mjs",
+      "sha256": "a4d810e83a2d465112f4a009f5ef31b09f2c0454405b2c5a7e402b5efed1fcbd"
+    },
+    {
+      "path": "native-ui.js",
+      "sha256": "3429f9307dd9a42831e9dbc6eb7b74ae8851029c2ee1c1403b29a8a0783e543d"
+    },
+    {
+      "path": "physics-update-runtime.mjs",
+      "sha256": "15b32a1739523ce48b0ca13719e9febd131cc441421e4ea6412476c63a886b0c"
+    },
+    {
+      "path": "physics-update-worker.mjs",
+      "sha256": "c0a8daa32b1419d53360056511b2bffb1402b3804d31bfa2101524eeb4977367"
+    },
+    {
+      "path": "playground/canonical/README.txt",
+      "sha256": "c37fd73fd95fe3da5bba8496097ac31205abb968554768e645a748dc9d280db9"
+    },
+    {
+      "path": "playground/canonical/compiler.data",
+      "sha256": "4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995"
+    },
+    {
+      "path": "playground/canonical/compiler.mjs",
+      "sha256": "42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4"
+    },
+    {
+      "path": "playground/canonical/compiler.wasm",
+      "sha256": "2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5"
+    },
+    {
+      "path": "playground/canonical/package.json",
+      "sha256": "8378ec86f325481cd77301c5f798db755c7050492f8c1e2c576b22213aecdc9e"
+    },
+    {
+      "path": "playground/canonical/third-party/emscripten-musl-copyright.txt",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    {
+      "path": "playground/canonical/third-party/emscripten-toolchain-copyright.txt",
+      "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+    },
+    {
+      "path": "playground/canonical/third-party/trigonometric-source-notices.txt",
+      "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+    },
+    {
+      "path": "playground/canonical/third-party/vkf-runtime-musl-license.txt",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    {
+      "path": "playground/vkf-canonical-browser-compiler.mjs",
+      "sha256": "37fc99f92e39f07cbf234a5beb750c6f0054a362cc53c19886bceae588fa3ff7"
+    },
+    {
+      "path": "playground/vkf-canonical-execution.mjs",
+      "sha256": "a03b12a0ff78f032b2bf4ea6500b1efc4131f5de0dfc3d226412446b66295db9"
+    },
+    {
+      "path": "program-view.html",
+      "sha256": "97859e24e0a88d76af4251aa5873adc3f6732c3b049fdc9b607a29ea5655a106"
+    },
+    {
+      "path": "program-view.mjs",
+      "sha256": "ba2bae028ca64e2fb055c10fb7a02637bf668ff2085e173a401bc9dd65917186"
+    },
+    {
+      "path": "ui/plot.mjs",
+      "sha256": "dc7a960983c5caf287a69130276817fba57ea43366b17c2d89b33caaf38ce4a0"
+    },
+    {
+      "path": "vf-ui/.gitignore",
+      "sha256": "ee94efcf7baedb3f6e8262c6e6f13fc340a24810491339c75fed1d8ca6cebe13"
+    },
+    {
+      "path": "vf-ui/README.md",
+      "sha256": "ce4b3309c99e4254d1fa8367703fba6e28e23f822931f7f63bb9145ae0471fdb"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.json",
+      "sha256": "159cde98e88c43f9073823bbb0cd14c388470d814fb5f6fba1b4ca228f3e70fb"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.wasm",
+      "sha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+      "sha256": "00c7570e7e85359f5cfbbddb110d0ee15c906944cfebd3ed56d1e5dce10b00be"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular.ttf",
+      "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
+    },
+    {
+      "path": "vf-ui/demo.html",
+      "sha256": "de72adf3df35a38af76d3d0958aa23ffb40db7a03437d9c6d21c873bf5224749"
+    },
+    {
+      "path": "vf-ui/display-only-star-test.html",
+      "sha256": "6135fea6d48e0b7b69d59d8bb6a55c4e8c2cfdc763affdba059e8eb3912a0ec6"
+    },
+    {
+      "path": "vf-ui/donut-hit-test.html",
+      "sha256": "47e4f3506cd0f94dc9a65813990b6ebec18f979ee288137b75ef33c73250d6df"
+    },
+    {
+      "path": "vf-ui/example-gui.html",
+      "sha256": "fdf34049d182b09e08fcef5407b4e29590cefe5815e6cf8eae31409de7340914"
+    },
+    {
+      "path": "vf-ui/geom/internal/vf-retained-point-cloud-camera.mjs",
+      "sha256": "6cbb8045fc4d08f5b05b94c235baa4a4c2713818749c7385af646100940c9773"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-plan.mjs",
+      "sha256": "ee99f468b0c41513a4486c9af6e82125ee20494f3f148a39056df9d437503110"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-shading-oracle.mjs",
+      "sha256": "a5ad43f16aea25a23f28f8ee4971c389ad2e4b84503a52da6c0fa404db78f655"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-core.js",
+      "sha256": "2c414dedd1dc10da8f553e04ce3fd2de020e7acf00eb48f976d058a5411ab693"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-demo.html",
+      "sha256": "524286fabf9ef6bd224531683f8ffb9e0f30e73742004014da95f2d89d592e65"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-dual.html",
+      "sha256": "dc71f3154af79a92da5a5db454628e510f0fffe79dbeff507fab52f52c9e01af"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-frame-adapter.js",
+      "sha256": "db179b3ad2885fe3187735f5e07175a8888e6ecf7263e2a9ed8436404299e459"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-layout.js",
+      "sha256": "17468a185566d6e3b0bc5c8eff749482cb9399e84c97a01c0caeaac59e2c0f2f"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-transport.js",
+      "sha256": "04298dc65b9f691676b3908c400ba45d82800e80d0129bb0fa3831175b62d093"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger.js",
+      "sha256": "89126424637eacc41cecdce57c17ad2326b2e7772dc2978e94948464966b0ef0"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-material-arena.js",
+      "sha256": "5b1441aff2b84fffb1e02eb3d4f4b4dc81ebeaa155519fb7e852db9c22427365"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-math.js",
+      "sha256": "3b91b0d3140162e9579a48f907cc703b77817b9e610ed076483f9375d2ea4023"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-mount.js",
+      "sha256": "908f49e7b6db930056967ed6e190cf76f2a06bfc99ace0691d1e5ec8c148a019"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-parametric-surface.js",
+      "sha256": "06ba6aabdccc3ee1ead00225394f83b79667045de2e8b167ec9657805836e6a7"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-shapes.html",
+      "sha256": "86815cd6904c0919fcee0789af69d97ffa7f9fa34bf39ac09431baf8ea4f6c1b"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-smoke.html",
+      "sha256": "b9babca8e06f44cd45628cf0f21b613d8ac870802fc09dc2c07feecadb98cc46"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-solo.html",
+      "sha256": "7ae4cafeb3f9bd5365c332b424552d8154072d0d04c09d5db4fa1189bcb2bfac"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-wgpu.js",
+      "sha256": "c7dffbdccfddd15a79bcc92ca2496da36b9635ebc083fdc1b6ec67972209ab0a"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.mjs",
+      "sha256": "c6dc27265c8aebf5c7ba1cd8fecd51693835a53aa9bb54002d78f65f3511f0ca"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.test.mjs",
+      "sha256": "69eb8124fa9d0e9b59fdd2648b5df7a78b625301a813a57d3434a1f595744b1d"
+    },
+    {
+      "path": "vf-ui/geom/vf-light-view-bounds.mjs",
+      "sha256": "6b4f4bef16dc6f18c7811eee3d00a7b502ade6d5e95f26111f73f50d8f869fc9"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-atlas.mjs",
+      "sha256": "1f0742279d8ed29fbfcce78a003d350287596236b3695ca59b8b1b1c92634fdc"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-planner.mjs",
+      "sha256": "7640ea1281b93d6d69713ba9e5d0d72612557d28b8bc7349b9f72ba605f37715"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-point-cloud-renderer.mjs",
+      "sha256": "d6345908a21d41d7c75dfafd3a94d482bcb6713e7a262eb80b50a02d7d0aed1c"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-simplex-renderer.mjs",
+      "sha256": "8070698efea89a6ca4fc46071ef05f2bf87113691bcf95892001ef9d21c55fde"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.mjs",
+      "sha256": "fa12c47214c64795ddda09514e3f500c27ccba2a800a84de7524dd28793036b4"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.test.mjs",
+      "sha256": "0890fb51ffb84c127c50018c9d5caa753864952579615b67309b4ff67a22381c"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-relation-shader.mjs",
+      "sha256": "71fd03199cfa14e08f0064f6f085ab8b0ed5bff2192c51836846ab8da0b6b848"
+    },
+    {
+      "path": "vf-ui/index.html",
+      "sha256": "e6c50b31a42b227cee7e54535fe7067987eab2070613a48883ac16046b63e4f8"
+    },
+    {
+      "path": "vf-ui/katex/LICENSE",
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_AMS-Regular.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Main-Regular.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Math-Italic.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Script-Regular.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size1-Regular.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size2-Regular.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size3-Regular.woff2",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size4-Regular.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.css",
+      "sha256": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.js",
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+    },
+    {
+      "path": "vf-ui/shaders/vf-rigid-polygons-2d.wgsl",
+      "sha256": "ded234f8bf841125f5ecb97407ce643fbe55f9ea7b9be1b1d9fceb56a7ddd222"
+    },
+    {
+      "path": "vf-ui/vf-alpha-hit-mask.js",
+      "sha256": "154ab4417876bdcb1c5ff47761f0bcc9f8f3def105c1bea0cada4750b12deba8"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-label-layout.mjs",
+      "sha256": "338858b9d54f30ed1be9da98cc638b02539ea18c2998398e7db0c637ef51a8cb"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.js",
+      "sha256": "64960b6d2be29343e7a64d0bf209d4c26ae5d305320a0dc347c7c12dcf7dac75"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.mjs",
+      "sha256": "9525dab3af29d8a01a38b875fd1cc7e56c43d4f92584d91c55ec57a8d2938221"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.js",
+      "sha256": "e0404f60f661239f453793964273daae100ecfbab7c0658e459146ded7901b22"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.mjs",
+      "sha256": "ee40ec5a0a037768b408822db7e521da897813581885deeb4dff00c665b2e6f1"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel.js",
+      "sha256": "ce9309e37d39a8d1bd326af34d43c92b335b0d12945c1896622940ff6b95d911"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "sha256": "547e8ed0bb74760cec9bac2ecd8e2b9d2123dd67f423cb6b999d8eb5027ad199"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel.js",
+      "sha256": "72eb524cc308507a63aebb01915bc75d8f968e2763b7c8967ad3996f347c47b7"
+    },
+    {
+      "path": "vf-ui/vf-chess-piece-animation.js",
+      "sha256": "e6436cf60bef583f2c5a1d8a44cbe93c72d78d9eb29c88d00545592314fd7802"
+    },
+    {
+      "path": "vf-ui/vf-chess.css",
+      "sha256": "265f24326adb9186398cd2cc21d85fa5843b04ec57b72665b9e168ed0e0daca4"
+    },
+    {
+      "path": "vf-ui/vf-color-field.mjs",
+      "sha256": "7e7aa95a0f590c89f96a8701f9632d9f4c437eac3b19945b6b33626a58d5b6e8"
+    },
+    {
+      "path": "vf-ui/vf-color-scale.mjs",
+      "sha256": "48063bae9c140fccc852e5979649a761a631282ba43d23259c1469988e271c42"
+    },
+    {
+      "path": "vf-ui/vf-colorbar-view.mjs",
+      "sha256": "eae52a6ed633fd8d8dc867b7b34b95db1fe976dd1106ab8182e0fea8cf05fdcf"
+    },
+    {
+      "path": "vf-ui/vf-compiled-runtime-bridge.js",
+      "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
+    },
+    {
+      "path": "vf-ui/vf-compiled-ui-module-registry.js",
+      "sha256": "b964c28eb7191e3b39f9681629ecaa65ad31c72373c1eb0631686f254eb33a78"
+    },
+    {
+      "path": "vf-ui/vf-compiled-webgpu-adapter.js",
+      "sha256": "1486c62fdf3f975a9d95df508de1c129d517413f47caa14b222dde0007b0e606"
+    },
+    {
+      "path": "vf-ui/vf-coordinate-grid.mjs",
+      "sha256": "8120049d76d9be2b527360f3c332d63bd9b3c6e56f7832cf92f23edcce01b839"
+    },
+    {
+      "path": "vf-ui/vf-display.js",
+      "sha256": "0fc0915755e4816e78a614cf68557480d0fcc55930432b58f0ad726dba359095"
+    },
+    {
+      "path": "vf-ui/vf-frame.css",
+      "sha256": "ea8e9f3cd0fcc7e3cec2b4fc6e2dff394badc0a14d366767c3cdfc0ab92e0690"
+    },
+    {
+      "path": "vf-ui/vf-frame.js",
+      "sha256": "865f43b7cc537de826c3c6dca7114c93f371c6e6d031be725344b197ad8db353"
+    },
+    {
+      "path": "vf-ui/vf-glb-import.mjs",
+      "sha256": "6ffa605bca1a6bffe3b9ea5584be9b03a043692bf2b0152243c3cabf542a2cdd"
+    },
+    {
+      "path": "vf-ui/vf-gpu-runtime.js",
+      "sha256": "9a323546d8e46cce824aac5e999a05c8953e5bf56c77a6a30f8db447793f6508"
+    },
+    {
+      "path": "vf-ui/vf-html-components.js",
+      "sha256": "89886957ab22dd0f061da6ced23614fd8cd2007e33f8a806280698e418e29188"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.css",
+      "sha256": "f7a862786f6985305d0a839fcc4c7b7abe2a70cd04434907bfcb2d5e4820936f"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.mjs",
+      "sha256": "e028e22734c1dce2193f59cec75384c1de1e00b635c109a02dc01c611f3ce96b"
+    },
+    {
+      "path": "vf-ui/vf-interpolation.mjs",
+      "sha256": "c6871183cef5f09aad0586892c05ba432653b6354e5e2ea1546c4c4316d7a12f"
+    },
+    {
+      "path": "vf-ui/vf-layered-screen-scene.mjs",
+      "sha256": "31c9934ec69e292004cd9e2ab1e51cfd159b6e6f5a854abf65078e2cce2ef9cb"
+    },
+    {
+      "path": "vf-ui/vf-log.js",
+      "sha256": "9cc6f6792cd60a20065df4f56d53a42b2d849b14dafec24d312d409ebcb9cd99"
+    },
+    {
+      "path": "vf-ui/vf-media-capture.mjs",
+      "sha256": "2eab7c3aab0b4f77ff3b601a11a846882c9c5bada7708030ccb27752354f5704"
+    },
+    {
+      "path": "vf-ui/vf-native-scene.js",
+      "sha256": "2d876e263e27a1eb5abcb94031057ac5a64ff511bf5f6d4f58dba234f1bbd213"
+    },
+    {
+      "path": "vf-ui/vf-physics-engine.mjs",
+      "sha256": "526b318080c6ba9ec1a115a8e364188b41bab1918db1bbb867443805120f1620"
+    },
+    {
+      "path": "vf-ui/vf-property-program.mjs",
+      "sha256": "dd9169864be924411e70e9c9645f9d3e66712c97e766e28e21ab55b6963aaa35"
+    },
+    {
+      "path": "vf-ui/vf-render-clock.js",
+      "sha256": "c2250bef93b3de6afdff83aa09d1d0e144dc46251db8440a92b4e5660db93b54"
+    },
+    {
+      "path": "vf-ui/vf-retained-event-adapter.js",
+      "sha256": "b7082ab7a277ece450781deb5e4a56f8e3dd33ef5f78c4a921fc47dfae2f001b"
+    },
+    {
+      "path": "vf-ui/vf-runtime-flow.js",
+      "sha256": "b7a464edd0e88206d079a19a47259af9a22c9841cac6fdb58e39ca7ed262061f"
+    },
+    {
+      "path": "vf-ui/vf-runtime-packet-contract.js",
+      "sha256": "15072337a9d12f6901593a73e989133387fb182970c8fbc847d585163ab0e7e6"
+    },
+    {
+      "path": "vf-ui/vf-runtime-scene.js",
+      "sha256": "9eff54bc4f0c16a1c618043cfdd996e3052d12865577de0304ac57abcc2e582b"
+    },
+    {
+      "path": "vf-ui/vf-runtime-shell.js",
+      "sha256": "c02f5e46835484f2a9f5aa7c01bfbb9cf2509f457beb4b622739e61b08930411"
+    },
+    {
+      "path": "vf-ui/vf-runtime-source.js",
+      "sha256": "bb9c3a5a256f8e294e4fd5b5bc4c65c548b6b717f8c23c03c74e5fba44913feb"
+    },
+    {
+      "path": "vf-ui/vf-selection-interaction.mjs",
+      "sha256": "00f43d50749538e2739357d103f75101a425c743e68c89716ed0002a5b8509fd"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.html",
+      "sha256": "c508f0378335a3e31ae30417a9bd488ab6ae3a434d83fb2e29ffdcdf7569ce97"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.js",
+      "sha256": "c5c7154ccfd8e03b88b26ce3b316f6e9baaf43f265b0e78e239f0b2e73754250"
+    },
+    {
+      "path": "vf-ui/vf-shared-runtime.js",
+      "sha256": "1725ee7329ac829e922efc8a5b47df433ff7341485a3fca37112f0cebd732ab6"
+    },
+    {
+      "path": "vf-ui/vf-spatial-geometry.mjs",
+      "sha256": "28370cadca8b8bc9c75e3ae3b3971a157a19690d813f3e90a0c5201da9ea9ea0"
+    },
+    {
+      "path": "vf-ui/vf-startup-gate.js",
+      "sha256": "ec551b48249bf6cd10ff9224750e31bd9ea88fb4da99f789f64d2b55d51dc78d"
+    },
+    {
+      "path": "vf-ui/vf-static-html-loader.js",
+      "sha256": "71bd12c268b023dab13be48d05caa6ee03048f0cddc761ddfc67c11390340775"
+    },
+    {
+      "path": "vf-ui/vf-surface-context.mjs",
+      "sha256": "35f48c155414e39bb8c18d99714646b0d4a52e92ee9018dba813069a92162c72"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-constraints.mjs",
+      "sha256": "56ed3ece2af43c204c9a44bb77b6c956a25c1ad1cff01966d77a205ba46204bc"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-document-runtime.mjs",
+      "sha256": "cd729666d69a70ef8afe05db8ced15318efa7aa1289abb6cca80433920d74618"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-plot-controller.mjs",
+      "sha256": "f7c82b8d2aaa99438b21c99cb6228045fd6990d2fe39428f4c069c31f7ac5ee2"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-surface-constraints.mjs",
+      "sha256": "dbe49f8b7998c9c65c4d57ea0fffb53fc4d37cec42fe0659cd4e38c25aa60095"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-wasm-runtime.mjs",
+      "sha256": "bb7868e5a23421e15d10b1306bf21e03044c56e3c5e744eee68b2a1f0f2d40d0"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.js",
+      "sha256": "2d69ddc63829a1b40418b21661a276077dbd005ef4f61b69279cde89a84cfe2b"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.mjs",
+      "sha256": "5ff141d41611185309914558d2ef178f1358ba7ed51e374634048e715f3d2a6d"
+    },
+    {
+      "path": "vf-ui/vf-ui-scene-fps-benchmark.js",
+      "sha256": "c257ea11817b8cdca1a3f645bf5af7123cb9dc47dab01868ae8cf592446dcf81"
+    },
+    {
+      "path": "vf-ui/vf-ui-theme.mjs",
+      "sha256": "8a6435cc4792114ce2667d32f849c262d48dfd72a7d5b6757e156b87de7b2bcd"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel-adapter.js",
+      "sha256": "82db346b4d8d985c7e200bdf0426b6738351cf0ce3884e89ffe8ec39fba461a8"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel.js",
+      "sha256": "0ff1228da41aee81cfbcd4acfe990c63a7f6c9d4be561cfa3487bd9e6e8c3c92"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.js",
+      "sha256": "f2585d1ab1ea9741703b7adae989ac5bbf424f2895b7ea78a1a24934924cfe40"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.mjs",
+      "sha256": "5e972b517437e7f5acb941d6d4194d741b9b5fb60b749799f84a76c91f579b9b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-runtime.js",
+      "sha256": "799a2b0bed9bb1af511650bf4ffcf3b4f8eda8b7727a3a10d275afc409b0b142"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-kernel-adapter.js",
+      "sha256": "e09a8e646926c2ca82edbbc204f1c3328759d15716195122180ae19b242e3f6b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-module-factory.js",
+      "sha256": "c97df4998d6eac6fe769ef15cac3164e15d1c1823adcc43fa61ceb5c711613ff"
+    },
+    {
+      "path": "vf-ui/vf-wasm-demo-contract.js",
+      "sha256": "4fa4d0c6bcdaf2804f372ec4f29ed3406e13880ee96c1119acc2ca16fa1a7a43"
+    },
+    {
+      "path": "vf-ui/vf-widgets.js",
+      "sha256": "00251dc4541eabeb2d75b4b2b8eea34061335314d46ca29e849fafafee4715cb"
+    },
+    {
+      "path": "vf-ui/vf-world-exchange.mjs",
+      "sha256": "8876d388e5e06981f231ae23ed248ec3c5b304c1c20c860d45df70ef2264130f"
+    },
+    {
+      "path": "vf-ui/vf-world-step.mjs",
+      "sha256": "35015f129c95dc6c261c740d8e648702bc91f68f977aaa7be7d71754e7181965"
+    },
+    {
+      "path": "vf-ui/vf-world-svg.mjs",
+      "sha256": "bbdc928ddd2c77cb5ea467a30cc5ce790d0614662e5231132d609192c9a63604"
+    },
+    {
+      "path": "vf-ui/vkf-scene.html",
+      "sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e"
+    }
+  ],
+  "source_marker_sha256": "8d79c9fda0d53be5ac1d5e02f2c1c952a85251902b2a169583777b5e00e435d1",
+  "source_recipe_sha256": "3c4e14a9df56328078ad79bd56e13003af8cbd01c504192737fe27b41642aaa7",
+  "stable_release": false,
+  "P0": false,
+  "C0": false,
+  "physical_gpu_verified": false,
+  "library_source": "31b92edf66a7a1570ab7196563f09a7df78f7f20",
+  "source_count": 983,
+  "preview_recipe_sha256": "3c4e14a9df56328078ad79bd56e13003af8cbd01c504192737fe27b41642aaa7",
+  "physical_gpu_tested": false
+}

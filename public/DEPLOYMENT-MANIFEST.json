@@ -278,8 +278,8 @@
     },
     {
       "path": "coming-soon.html",
-      "sha256": "22a337c7c94297b94d146203cc42f208605da15f2d3deb47fccf603ff94f738b",
-      "bytes": 10119
+      "sha256": "461a3ef40aa45b014cc42fc5c06f7314d01035157f3a49f718dd69194baebb8d",
+      "bytes": 10296
     },
     {
       "path": "coming-soon.mjs",
@@ -397,6 +397,11 @@
       "bytes": 8908288
     },
     {
+      "path": "editor.html",
+      "sha256": "5111a5494a201c4f79a2bdd072fbfd5785b8e2dff016ee8d513d8a22e7081c49",
+      "bytes": 306
+    },
+    {
       "path": "editor/prism-vektorflow.mjs",
       "sha256": "db8f809335ed8743ae6833cf8142e4237d039e1da48c83a3002f3d9efac54495",
       "bytes": 3651
@@ -405,11 +410,6 @@
       "path": "editor/vkf-highlighter.mjs",
       "sha256": "9a71063d8cf6357faa7494fb65a59d1294e91f40f5c62fccac1cf267d1f2e1d5",
       "bytes": 7977
-    },
-    {
-      "path": "editor.html",
-      "sha256": "5111a5494a201c4f79a2bdd072fbfd5785b8e2dff016ee8d513d8a22e7081c49",
-      "bytes": 306
     },
     {
       "path": "execution.html",
@@ -547,6 +547,11 @@
       "bytes": 5766
     },
     {
+      "path": "generated/reference.json",
+      "sha256": "95e71515a8fd618a84d983163ad18b975839b132cc35b2955aa3a083de6f8774",
+      "bytes": 116596
+    },
+    {
       "path": "generated/reference/benchmarks/core-comparison/README.json",
       "sha256": "ba7b277675fa93d09bd2b642ae9ad10f3fcfba30246796cc8bc4a50a0d396611",
       "bytes": 14329
@@ -657,19 +662,14 @@
       "bytes": 10223
     },
     {
-      "path": "generated/reference.json",
-      "sha256": "95e71515a8fd618a84d983163ad18b975839b132cc35b2955aa3a083de6f8774",
-      "bytes": 116596
+      "path": "generated/releases.json",
+      "sha256": "d09149fb53d10b29f9ef426514d55971565f4c4fdae32ebbd8a2c68da25bec07",
+      "bytes": 24212
     },
     {
       "path": "generated/releases/0.4.7.json",
       "sha256": "f7a26eb6f4005fb89a2b380911a67734910dc9d7f6ebba72397854c4e185bc69",
       "bytes": 13015
-    },
-    {
-      "path": "generated/releases.json",
-      "sha256": "d09149fb53d10b29f9ef426514d55971565f4c4fdae32ebbd8a2c68da25bec07",
-      "bytes": 24212
     },
     {
       "path": "generated/results.json",
@@ -945,86 +945,6 @@
       "path": "previews/0.6.0/compiled/bundle.json",
       "sha256": "689a6b2a39cbe1554069ea7d86607a4e30223324a0ea937290579c7eff3d357d",
       "bytes": 15258
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-compiled-runtime-bridge.js",
-      "sha256": "e6162844a05ba46f3b414c918d9a9aad93a49c370d293fac321ac43d5ea91db3",
-      "bytes": 21404
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-contained-boundary-embedding-gpu.mjs",
-      "sha256": "b654b2a619c30b1dc60e2fb1d6b9c4287c718b3eb7677e0a45eafa56ad63f332",
-      "bytes": 5579
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-granular-particle-embedding-gpu.mjs",
-      "sha256": "5a1fb853f1a09ca2aed9885e1d779787dda74cd1845d93945020b629814a74de",
-      "bytes": 31672
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-granular-particle-world-gpu.mjs",
-      "sha256": "646e79ba65f7ac9ec5c9771b18bec9a0ce9c7a20889a2641f150d30d310790a0",
-      "bytes": 51491
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-liquid-contained-world-gpu.mjs",
-      "sha256": "72c59baf3f90f6506a25d93fe37b0ce9b13e2ec38fc62943bfcf5863be9e51ef",
-      "bytes": 90959
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-liquid-particle-embedding-gpu.mjs",
-      "sha256": "cd880beaabd7185e1af576e44159e4a188d45f23e60ebd4848e4e909311a9ce9",
-      "bytes": 26267
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-physics-granular-core-reference.mjs",
-      "sha256": "4597ab9dd37878dc3c3170e30fc290d7658bc1a70cac11e8df673f4fe4530076",
-      "bytes": 20573
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-physics-liquid-local-particle-reference.mjs",
-      "sha256": "5c3b6eb7c566b9c7b1c99188f21d2e9df7c7d05b850157c4b963bb1d1028c49e",
-      "bytes": 87762
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-physics-regime-verifier-reference.mjs",
-      "sha256": "685f907b07789aca0c800358fba5c3da6a62b3178a2694af035fd7a587e6eda0",
-      "bytes": 9318
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-physics-transport-core-reference.mjs",
-      "sha256": "db84032db06e0f3404676589aa0d632a9f0e6a29af8db71895d0117c448df1b6",
-      "bytes": 51026
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-water-2d-stone-channel-reference.mjs",
-      "sha256": "02d04c933720e27baa711509761838ae5546e352e4d755b38499c9c74310b1c5",
-      "bytes": 9853
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-world-layer-runtime.js",
-      "sha256": "c429e70bad42dc58bbaf2720fe0753b9f3063afa7ad1dc5715c39c6912c211b9",
-      "bytes": 5622
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-world-material-runtime.mjs",
-      "sha256": "f53ca017e264e5a6b97ff92a9d5dbd66d3842df6ad4309db38a0ad37d28118b7",
-      "bytes": 14274
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-world-mechanical-gpu.mjs",
-      "sha256": "3b0ed067970112955edc50daa5c9aa6a78a940e1a5649945ace3f7279ddbc875",
-      "bytes": 15514
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-world-mechanical-runtime.mjs",
-      "sha256": "6203a3702cdef4110899e578b2df1d44bf97dc09f1440d07da1da816643e4e85",
-      "bytes": 16502
-    },
-    {
-      "path": "previews/0.6.0/compiled/runtime/vf-world-scene-embedding-gpu.mjs",
-      "sha256": "04b93c27bbc66b156ece8e78cd27e7256efe5b19a65a55c9df92a34c967388b1",
-      "bytes": 12787
     },
     {
       "path": "previews/0.6.0/compiled/runtime-feedback-3/vf-compiled-runtime-bridge.js",
@@ -6002,14 +5922,84 @@
       "bytes": 36975
     },
     {
-      "path": "previews/0.6.0/compiled/stones/main.wasm",
-      "sha256": "7e0acd9ea25fbc114aeb4d7aedcc331fa6672ea0aa804ce25d26659e3c2709f8",
-      "bytes": 20672
+      "path": "previews/0.6.0/compiled/runtime/vf-compiled-runtime-bridge.js",
+      "sha256": "e6162844a05ba46f3b414c918d9a9aad93a49c370d293fac321ac43d5ea91db3",
+      "bytes": 21404
     },
     {
-      "path": "previews/0.6.0/compiled/stones/manifest.json",
-      "sha256": "8f1c91164d586b2206da2138fc79e1cc4383eb2037a950bf023a5b7761343f96",
-      "bytes": 4371
+      "path": "previews/0.6.0/compiled/runtime/vf-contained-boundary-embedding-gpu.mjs",
+      "sha256": "b654b2a619c30b1dc60e2fb1d6b9c4287c718b3eb7677e0a45eafa56ad63f332",
+      "bytes": 5579
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-granular-particle-embedding-gpu.mjs",
+      "sha256": "5a1fb853f1a09ca2aed9885e1d779787dda74cd1845d93945020b629814a74de",
+      "bytes": 31672
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-granular-particle-world-gpu.mjs",
+      "sha256": "646e79ba65f7ac9ec5c9771b18bec9a0ce9c7a20889a2641f150d30d310790a0",
+      "bytes": 51491
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-liquid-contained-world-gpu.mjs",
+      "sha256": "72c59baf3f90f6506a25d93fe37b0ce9b13e2ec38fc62943bfcf5863be9e51ef",
+      "bytes": 90959
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-liquid-particle-embedding-gpu.mjs",
+      "sha256": "cd880beaabd7185e1af576e44159e4a188d45f23e60ebd4848e4e909311a9ce9",
+      "bytes": 26267
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-physics-granular-core-reference.mjs",
+      "sha256": "4597ab9dd37878dc3c3170e30fc290d7658bc1a70cac11e8df673f4fe4530076",
+      "bytes": 20573
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-physics-liquid-local-particle-reference.mjs",
+      "sha256": "5c3b6eb7c566b9c7b1c99188f21d2e9df7c7d05b850157c4b963bb1d1028c49e",
+      "bytes": 87762
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-physics-regime-verifier-reference.mjs",
+      "sha256": "685f907b07789aca0c800358fba5c3da6a62b3178a2694af035fd7a587e6eda0",
+      "bytes": 9318
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-physics-transport-core-reference.mjs",
+      "sha256": "db84032db06e0f3404676589aa0d632a9f0e6a29af8db71895d0117c448df1b6",
+      "bytes": 51026
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-water-2d-stone-channel-reference.mjs",
+      "sha256": "02d04c933720e27baa711509761838ae5546e352e4d755b38499c9c74310b1c5",
+      "bytes": 9853
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-world-layer-runtime.js",
+      "sha256": "c429e70bad42dc58bbaf2720fe0753b9f3063afa7ad1dc5715c39c6912c211b9",
+      "bytes": 5622
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-world-material-runtime.mjs",
+      "sha256": "f53ca017e264e5a6b97ff92a9d5dbd66d3842df6ad4309db38a0ad37d28118b7",
+      "bytes": 14274
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-world-mechanical-gpu.mjs",
+      "sha256": "3b0ed067970112955edc50daa5c9aa6a78a940e1a5649945ace3f7279ddbc875",
+      "bytes": 15514
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-world-mechanical-runtime.mjs",
+      "sha256": "6203a3702cdef4110899e578b2df1d44bf97dc09f1440d07da1da816643e4e85",
+      "bytes": 16502
+    },
+    {
+      "path": "previews/0.6.0/compiled/runtime/vf-world-scene-embedding-gpu.mjs",
+      "sha256": "04b93c27bbc66b156ece8e78cd27e7256efe5b19a65a55c9df92a34c967388b1",
+      "bytes": 12787
     },
     {
       "path": "previews/0.6.0/compiled/stones-feedback-3/main.wasm",
@@ -6182,14 +6172,14 @@
       "bytes": 4404
     },
     {
-      "path": "previews/0.6.0/compiled/tree/main.wasm",
-      "sha256": "2775b73ae50f2121f8616b405ab85574fe81a744a54e27c48e928a5d49dc86db",
-      "bytes": 5918279
+      "path": "previews/0.6.0/compiled/stones/main.wasm",
+      "sha256": "7e0acd9ea25fbc114aeb4d7aedcc331fa6672ea0aa804ce25d26659e3c2709f8",
+      "bytes": 20672
     },
     {
-      "path": "previews/0.6.0/compiled/tree/manifest.json",
-      "sha256": "25576e48c93aedddac3c09e611481db94f148fe2b0477387a21d23aab713ac36",
-      "bytes": 8105
+      "path": "previews/0.6.0/compiled/stones/manifest.json",
+      "sha256": "8f1c91164d586b2206da2138fc79e1cc4383eb2037a950bf023a5b7761343f96",
+      "bytes": 4371
     },
     {
       "path": "previews/0.6.0/compiled/tree-air-10/main.wasm",
@@ -6302,14 +6292,14 @@
       "bytes": 9384
     },
     {
-      "path": "previews/0.6.0/compiled/wheel/main.wasm",
-      "sha256": "41c136694a928a718ab1504d4da2d129d804cd501153abae792259072e0cde91",
-      "bytes": 1966624
+      "path": "previews/0.6.0/compiled/tree/main.wasm",
+      "sha256": "2775b73ae50f2121f8616b405ab85574fe81a744a54e27c48e928a5d49dc86db",
+      "bytes": 5918279
     },
     {
-      "path": "previews/0.6.0/compiled/wheel/manifest.json",
-      "sha256": "6c1121f7804ecda2ba0b731182a898e9df15888285a6f3b8c8e680be912413be",
-      "bytes": 11191
+      "path": "previews/0.6.0/compiled/tree/manifest.json",
+      "sha256": "25576e48c93aedddac3c09e611481db94f148fe2b0477387a21d23aab713ac36",
+      "bytes": 8105
     },
     {
       "path": "previews/0.6.0/compiled/wheel-feedback-3/main.wasm",
@@ -6612,6 +6602,16 @@
       "bytes": 8864
     },
     {
+      "path": "previews/0.6.0/compiled/wheel/main.wasm",
+      "sha256": "41c136694a928a718ab1504d4da2d129d804cd501153abae792259072e0cde91",
+      "bytes": 1966624
+    },
+    {
+      "path": "previews/0.6.0/compiled/wheel/manifest.json",
+      "sha256": "6c1121f7804ecda2ba0b731182a898e9df15888285a6f3b8c8e680be912413be",
+      "bytes": 11191
+    },
+    {
       "path": "previews/0.6.0/contact-core-1/index.html",
       "sha256": "7cd365496af23dbdf0f44b5ea0a8f0ac435fdf7afc80b5ced85a683df4697fd2",
       "bytes": 2543
@@ -6650,6 +6650,46 @@
       "path": "previews/0.6.0/contact-core-1/runtime/vf-contact-velocity-audit-gpu.mjs",
       "sha256": "06420687243fa02b047446af492687e92e2a08d92e08390dc9e0ffa830eb8a92",
       "bytes": 6457
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/index.html",
+      "sha256": "be40105e30dc43acd97dd044500fc98cbc912ce58c80475714f650bd80dfeab4",
+      "bytes": 3673
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/fixed-step-realtime-clock.mjs",
+      "sha256": "6226411fa762f7b7c9b8c87fadbf9b442975012d3ae023e6a31ab85f16a71024",
+      "bytes": 4531
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/vf-liquid-particle-embedding-gpu.mjs",
+      "sha256": "1b917192e325861a97278a99be451ab1e94ea53a0d37fa3ebda487f36854968a",
+      "bytes": 25373
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/vf-liquid-particle-world-gpu.mjs",
+      "sha256": "d4cd7c72ac69b878518126d18f0dae2745fa5056e977d2a8a4e3356e439ed309",
+      "bytes": 79055
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/vf-physics-liquid-local-particle-reference.mjs",
+      "sha256": "e34686da19cfa1d372192918791a3b2ad2aa06cb25d1ff1f897c9e3dea4c3569",
+      "bytes": 86051
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/vf-physics-transport-core-reference.mjs",
+      "sha256": "dd2aaf05b51588346bb07d10f9756bea21b9c247987667b93f24cd000e71b50b",
+      "bytes": 47937
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/runtime/vf-water-2d-stone-channel-reference.mjs",
+      "sha256": "1e71f6f1e6c13304d215f6489ed2db26180f9bf33709c8dad5d1dfc97de67ce4",
+      "bytes": 9650
+    },
+    {
+      "path": "previews/0.6.0/live-gpu/water/scene.mjs",
+      "sha256": "3c47087193925dc1f6fd8bff6b997e0db714e77009c6a813d2e239debb4a9f7d",
+      "bytes": 5856
     },
     {
       "path": "previews/0.6.0/live/material-wheel/index.html",
@@ -7107,46 +7147,6 @@
       "bytes": 2816
     },
     {
-      "path": "previews/0.6.0/live-gpu/water/index.html",
-      "sha256": "be40105e30dc43acd97dd044500fc98cbc912ce58c80475714f650bd80dfeab4",
-      "bytes": 3673
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/fixed-step-realtime-clock.mjs",
-      "sha256": "6226411fa762f7b7c9b8c87fadbf9b442975012d3ae023e6a31ab85f16a71024",
-      "bytes": 4531
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/vf-liquid-particle-embedding-gpu.mjs",
-      "sha256": "1b917192e325861a97278a99be451ab1e94ea53a0d37fa3ebda487f36854968a",
-      "bytes": 25373
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/vf-liquid-particle-world-gpu.mjs",
-      "sha256": "d4cd7c72ac69b878518126d18f0dae2745fa5056e977d2a8a4e3356e439ed309",
-      "bytes": 79055
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/vf-physics-liquid-local-particle-reference.mjs",
-      "sha256": "e34686da19cfa1d372192918791a3b2ad2aa06cb25d1ff1f897c9e3dea4c3569",
-      "bytes": 86051
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/vf-physics-transport-core-reference.mjs",
-      "sha256": "dd2aaf05b51588346bb07d10f9756bea21b9c247987667b93f24cd000e71b50b",
-      "bytes": 47937
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/runtime/vf-water-2d-stone-channel-reference.mjs",
-      "sha256": "1e71f6f1e6c13304d215f6489ed2db26180f9bf33709c8dad5d1dfc97de67ce4",
-      "bytes": 9650
-    },
-    {
-      "path": "previews/0.6.0/live-gpu/water/scene.mjs",
-      "sha256": "3c47087193925dc1f6fd8bff6b997e0db714e77009c6a813d2e239debb4a9f7d",
-      "bytes": 5856
-    },
-    {
       "path": "previews/0.6.0/test-generated-images/stones/latest.png",
       "sha256": "eb9acb5ed81f847ecccdee10498410d06a7fb47a358cb14c981e91981d6fb395",
       "bytes": 138103
@@ -7177,21 +7177,6 @@
       "bytes": 166757
     },
     {
-      "path": "previews/0.6.0/test-generated-videos/water/index.html",
-      "sha256": "a29bd19ad86b9e16c4c8cf4d1620baefa2707b61e9e7e12e998cd40f651fdb36",
-      "bytes": 2057
-    },
-    {
-      "path": "previews/0.6.0/test-generated-videos/water/latest.mp4",
-      "sha256": "15bf25c293d204e6c2455c37cec583f36d0f3f4e072036cb1af1dddefc6cbb4c",
-      "bytes": 112823
-    },
-    {
-      "path": "previews/0.6.0/test-generated-videos/water/latest.png",
-      "sha256": "2548a045a16938957982649f1942035bee954adb5f61e3219ebf4f46785e3274",
-      "bytes": 316421
-    },
-    {
       "path": "previews/0.6.0/test-generated-videos/water-surface/index.html",
       "sha256": "289a1f998a8bf1cf77af863ae0a2e42c9c32c800b9990f3c9f099e3d45978aa0",
       "bytes": 2680
@@ -7207,14 +7192,39 @@
       "bytes": 186888
     },
     {
+      "path": "previews/0.6.0/test-generated-videos/water/index.html",
+      "sha256": "a29bd19ad86b9e16c4c8cf4d1620baefa2707b61e9e7e12e998cd40f651fdb36",
+      "bytes": 2057
+    },
+    {
+      "path": "previews/0.6.0/test-generated-videos/water/latest.mp4",
+      "sha256": "15bf25c293d204e6c2455c37cec583f36d0f3f4e072036cb1af1dddefc6cbb4c",
+      "bytes": 112823
+    },
+    {
+      "path": "previews/0.6.0/test-generated-videos/water/latest.png",
+      "sha256": "2548a045a16938957982649f1942035bee954adb5f61e3219ebf4f46785e3274",
+      "bytes": 316421
+    },
+    {
       "path": "previews/gpu-math-typing/AMS-FONTS-NOTICES.txt",
-      "sha256": "cb11cd39e4f4232cd7e1605eacb388c21bd09f5db08101c3ad3939158f6c1af2",
-      "bytes": 3095
+      "sha256": "39f61afeba25d870d3b46911f7a7d58b2e689845f6c9346cb63a26ecefaf0928",
+      "bytes": 5015
     },
     {
       "path": "previews/gpu-math-typing/AMS-FONTS-OFL.txt",
       "sha256": "36beff9ee87fa1efe2bc1cb33e9a332f05a16703261f909d4d531e8114afe652",
       "bytes": 12519
+    },
+    {
+      "path": "previews/gpu-math-typing/ESINT-LPPL.txt",
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66",
+      "bytes": 19102
+    },
+    {
+      "path": "previews/gpu-math-typing/ESINT-NOTICES.txt",
+      "sha256": "d3ed70204c8d131f5caab4b03113775c6d24a2fb2e29f6f294ad495462ff0fea",
+      "bytes": 788
     },
     {
       "path": "previews/gpu-math-typing/LICENSE.txt",
@@ -7228,43 +7238,63 @@
     },
     {
       "path": "previews/gpu-math-typing/README.md",
-      "sha256": "6d1b200182b04af10e9149f37fe2ec8b56e884d62a63c85ed7fd9b08e2f484b2",
-      "bytes": 2152
+      "sha256": "6801fddf275b9703f2081d7a41b0e02773823aae6d40cd2c5a14b9be8e4d7b9d",
+      "bytes": 3431
     },
     {
       "path": "previews/gpu-math-typing/atlas.rgba.gz",
-      "sha256": "0faaf7775ce367019a446a51405ca7910c59bd13ae9c109ddb2e27558ae14d9c",
-      "bytes": 1355901
+      "sha256": "d6c78a5223064ae8e3bcd75398d075563e7e71801e4990be6993c315369a6bd3",
+      "bytes": 5280531
     },
     {
       "path": "previews/gpu-math-typing/demo.mjs",
-      "sha256": "58f9878904fd740093e3498a6ee8797dfee395ad5c209cdf7ccad9e00af6e858",
-      "bytes": 7139
+      "sha256": "e9b58d33a392d4d79618a6f688c9fff10c7a82859c9e969a2522b4bc464fc12d",
+      "bytes": 8993
+    },
+    {
+      "path": "previews/gpu-math-typing/draft-parser.mjs",
+      "sha256": "82d1fd6411c74eb5508b0103e9f24a8d108b69e7be7b214f51745955eba1a3a0",
+      "bytes": 7584
     },
     {
       "path": "previews/gpu-math-typing/draw.wgsl",
-      "sha256": "ac6982f8693488c014444f07537caad2b6ff4a226cee0aff8ccf67ea568c108c",
-      "bytes": 1325
+      "sha256": "16bcc5bd6be81c7bc333517be253697ce0f1fde123e0232169df2845c6a5a6a9",
+      "bytes": 1350
+    },
+    {
+      "path": "previews/gpu-math-typing/esint-source.zip",
+      "sha256": "cdfbd7f49abad2531a34b9b9fe8b22823836df75cd465b9c51daf30225ddf391",
+      "bytes": 65196
+    },
+    {
+      "path": "previews/gpu-math-typing/esint-type1-source.zip",
+      "sha256": "0f8bfb2994618f5d878e983d41502b212d41ea8f6a95761538a4ae550fc73911",
+      "bytes": 73821
     },
     {
       "path": "previews/gpu-math-typing/index.html",
-      "sha256": "3f6ed546a594366c3deaec3a37cfed8118a1d182a3bbe2c790ebed6dadbadb03",
-      "bytes": 3747
+      "sha256": "ff5a1bd1a805455e6c94f17c68c9f86720e32d8a5718e2a32504dd1d264bbf10",
+      "bytes": 4904
     },
     {
       "path": "previews/gpu-math-typing/provenance.json",
-      "sha256": "0e61f248e9b84d52859e75770f22c02d2283e0f84c109abcaeef2ff7ed216bcf",
-      "bytes": 1321
+      "sha256": "e546c10cdc8bbc792abb579e10f7d750447e0a3ca72bd00aa584f20dc8054113",
+      "bytes": 1883
     },
     {
       "path": "previews/gpu-math-typing/typing-data.json",
-      "sha256": "58782ec7dfc94d6d4cc578552bcc3d40c7d8cea733e6036db6fa0173147e1d39",
-      "bytes": 70933
+      "sha256": "82d6bab01ba2a0a8a746be3974e14cb2cf450f81fe91eb01417f018fcdad6e8a",
+      "bytes": 498069
     },
     {
       "path": "previews/gpu-math-typing/typing-layout.mjs",
-      "sha256": "cf2d1bfb28ff998c505261ef19b2d42cc2789c74e3e168593ef27233978375bd",
-      "bytes": 5359
+      "sha256": "0e79679769a706644eae54d7f3932c6eeba21b770c3146c78a49c43cb167c82d",
+      "bytes": 10453
+    },
+    {
+      "path": "reference.html",
+      "sha256": "5111a5494a201c4f79a2bdd072fbfd5785b8e2dff016ee8d513d8a22e7081c49",
+      "bytes": 306
     },
     {
       "path": "reference/benchmarks/core-comparison/README.html",
@@ -7377,24 +7407,19 @@
       "bytes": 9135
     },
     {
-      "path": "reference.html",
-      "sha256": "5111a5494a201c4f79a2bdd072fbfd5785b8e2dff016ee8d513d8a22e7081c49",
-      "bytes": 306
-    },
-    {
       "path": "release-selector.mjs",
       "sha256": "0dddf5ccaeac2be31ff8f1bc7e0462e705a0cd9ef49b1ad21e1bc3530cab8417",
       "bytes": 379
     },
     {
-      "path": "releases/0.4.7.html",
-      "sha256": "1bb135ad3fe6795ac4b863af5ca1648340f4976dcbe10cfb6cffe234ce1ab30e",
-      "bytes": 12641
-    },
-    {
       "path": "releases.html",
       "sha256": "7fca8683ae3c4c0f0322ce2abc1936f9aed5415f1a0e4a8cf9be3489b18db0d3",
       "bytes": 308
+    },
+    {
+      "path": "releases/0.4.7.html",
+      "sha256": "1bb135ad3fe6795ac4b863af5ca1648340f4976dcbe10cfb6cffe234ce1ab30e",
+      "bytes": 12641
     },
     {
       "path": "results.html",
@@ -8302,5 +8327,5 @@
       "bytes": 660
     }
   ],
-  "totalBytes": 530460374
+  "totalBytes": 536456993
 }

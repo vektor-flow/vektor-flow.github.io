@@ -8,6 +8,8 @@ spatial accuracy report and 1–64x distance-field zoom from source9b44ef8;
 full-document acceptance remains failing. Phone editor/preview controls use
 source bb60444; Render collapses controls and fits content width on phones.
 Document cameras support pinch/wheel zoom and direct touch/mouse dragging.
+Rule shader ccaeb08 keeps radical/fraction/table edges sharp under zoom; the
+comparison report retains its original pre-correction captures and pixel scores.
 
 Legacy0.4.7 pages, runtimes and downloads,0.6 previews and superseded0.7.1
 packages are retired from the deployment tree. Git history retains them; do not

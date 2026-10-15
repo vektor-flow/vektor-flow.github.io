@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content"><title>Morph · Vektor Flow</title><link rel="stylesheet" href="./app.css"><script type="module" src="./app.mjs"></script></head>
+<body><main id="app">
+<header><a href="../document.html" target="_top">GPU math</a><span>Math in motion</span><button id="paste" disabled>Write steps</button></header>
+<div class="toolbar"><label for="examples">Example</label><select id="examples" disabled></select></div>
+<div class="context"><span id="step-label">Getting ready</span><a id="source" target="_blank" rel="noopener noreferrer" hidden>Source ↗</a></div>
+<section id="stage" tabindex="0" aria-label="Rendered calculation. Double-click or double-tap to edit the current step."><canvas id="canvas" aria-label="GPU-rendered calculation"></canvas><div id="loading" role="status">Loading math fields…</div></section>
+<p id="note" class="note"></p>
+<section class="timeline" aria-label="Playback controls">
+<label class="sr-only" for="timeline">Calculation timeline</label><input id="timeline" type="range" min="0" max="1" step="0.001" value="0" disabled>
+<div class="buttons"><button id="previous" aria-label="Previous step" disabled>‹</button><button id="play" class="primary" disabled>Play</button><button id="next" aria-label="Next step" disabled>›</button><button id="edit" disabled>Edit step</button></div>
+<div class="secondary"><button id="download" disabled>Download video</button><a id="save-video" hidden>Save video</a><span id="counter"></span></div>
+</section>
+<section id="editor" hidden aria-label="Math editor"><label id="editor-label" for="input">Edit this step</label><textarea id="input" rows="3" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea><p id="edit-error" role="status"></p><div class="edit-actions"><button id="cancel">Cancel</button><button id="apply" class="primary">Apply</button></div></section>
+<footer><span id="status" role="status">One step at a time · double-tap to edit</span><details><summary>About</summary><p>Live GPU matching, morphing and drawing. Experimental: overlaps and rough intermediate shapes can occur. No silent CPU fallback. Editing accepts supported math syntax; it is not a symbolic solver. Paste worked steps, one per line.</p><p><a href="./ATTRIBUTION.txt">Sources and font notices</a> · <a href="../document.html" target="_top">Document renderer</a></p></details></footer>
+</main></body></html>

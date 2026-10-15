@@ -108,8 +108,8 @@
     },
     {
       "path": "coming-soon.html",
-      "bytes": 1616,
-      "sha256": "b3eb48973236ad69143bf5e476211dab5d51b2b898920a52bfd7ba779ca90aaf"
+      "bytes": 1718,
+      "sha256": "c880ecf71ad51d43460b464e82480f22570e5024e597db269b9b51cf2b52373f"
     },
     {
       "path": "concepts.html",
@@ -4730,6 +4730,11 @@
       "path": "previews/gpu-math-typing/document-text.mjs",
       "bytes": 14002,
       "sha256": "f9cdc6a64904f77dd42114b3b9f6d4e59c0310f735203a8c739ab414ea8a0b72"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-view.html",
+      "bytes": 5482,
+      "sha256": "bf39e012136c330b1e8c9c8d01218ea8d675b4f3007a71c2af9044e18114eb61"
     },
     {
       "path": "previews/gpu-math-typing/document-zoom-checks/DOCUMENT-SOURCE-NOTICES.txt",
@@ -17648,8 +17653,8 @@
     },
     {
       "path": "previews/gpu-math-typing/document.html",
-      "bytes": 5366,
-      "sha256": "618289610da0e693f47aec68cd0ce0842d341d652de6c3594aa0bc88627ec3f6"
+      "bytes": 772,
+      "sha256": "1ec8e33634b3e7b5d88ba47d79ff3f0663d054a602dda33d8d97ab7df9e58659"
     },
     {
       "path": "previews/gpu-math-typing/draft-parser.mjs",
@@ -17762,6 +17767,721 @@
       "sha256": "6691f6964c916798f25e17061870cd9e8a9baeda4183e26d62c9c45086d28702"
     },
     {
+      "path": "previews/gpu-math-typing/motion/ATTRIBUTION.txt",
+      "bytes": 855,
+      "sha256": "67a3612bf3944dfd289daf94e84317439c1638337c737ea5b1ec2de6924e23ba"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/SOLVER-LICENSE.txt",
+      "bytes": 1071,
+      "sha256": "6cd2adfa839b3c3e1e96635d81e89fff3658b21b073f1bb85e8db45d96ebc01d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/app.css",
+      "bytes": 3340,
+      "sha256": "9f5c8ed8892efc3a639dca2721f4ec32e76ac2d0d6574ccbbce855aa24437b71"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/app.mjs",
+      "bytes": 12981,
+      "sha256": "09516cd27e19c0b74a1aa1393957b9bf14892597ac1d0d069b205d69f3e6f5cf"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/engine.mjs",
+      "bytes": 11919,
+      "sha256": "45fcc5de28a6d8117492914fc1bac02b0d2b43bd68f4b71705d07f30913fd4bf"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/examples.mjs",
+      "bytes": 8163,
+      "sha256": "93950365aca4310b7482c18f87780d7c170c26b2dbd37d11c22e82c1eecabc5c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/field-assets.mjs",
+      "bytes": 1800,
+      "sha256": "78870ae94812527eb386a7833b0b39017ea910e1649f3e7621fd01f1358ec2fd"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-0.rgba.gz",
+      "bytes": 28106,
+      "sha256": "51838da3f2eb384ac3d5d7b9f4b0692be802a0445665745db44b47bd229eaa39"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-1.rgba.gz",
+      "bytes": 80742,
+      "sha256": "fd783927ff4043947c0606f3869b1628bfb6cf32658bdd1de645fec4f69357f0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-10.rgba.gz",
+      "bytes": 327522,
+      "sha256": "789a14af04a9072502cb03f946e2a932e50d1c491e3a9563eaf5c870ead33b5d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-11.rgba.gz",
+      "bytes": 214641,
+      "sha256": "36f941a5dd7d2ba7a9247df0d04c8dc8e8fb81b95701412a65428a99d00239e1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-12.rgba.gz",
+      "bytes": 202844,
+      "sha256": "b39bb35aa89dd331fc4ed0efd8267458a1ef2a67b7e645b36109de21b3d085bc"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-13.rgba.gz",
+      "bytes": 200357,
+      "sha256": "10dd2760e9eb882393f394065e326d4aba563895ee38bc8a39626902a3bea94f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-14.rgba.gz",
+      "bytes": 92983,
+      "sha256": "3639ec2d6a2d9323c8ee14e48a04d5b92e0abb72b913f221590bf5f6974bbf70"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-15.rgba.gz",
+      "bytes": 86990,
+      "sha256": "a9ea646b643a680389415e741ba78e60a1af2ab59af44f2d845708dcfd29b8cc"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-2.rgba.gz",
+      "bytes": 153933,
+      "sha256": "73af2e5258c7451f94d41a14b0a3a4d74354c1fbdcd1821e01e088e52405ff53"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-3.rgba.gz",
+      "bytes": 225798,
+      "sha256": "2e38019dd90f1b5acef49ef62a11eb35986f8e8dbbb9551e8b948c44a0121b62"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-4.rgba.gz",
+      "bytes": 231804,
+      "sha256": "08f34705c05b3159dd8ec5e789240ce188c44c6b526fd3d30473561bf7b64ac1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-5.rgba.gz",
+      "bytes": 192247,
+      "sha256": "52ce9944a257f28cfae6a2f0fcee925deda914177a47e1f037e8526fc2ffa84a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-6.rgba.gz",
+      "bytes": 248941,
+      "sha256": "62b6bbea2a25b8d781cc7b478cd2caa918e90a5ea9f5ab64785a3d95db9cbb4e"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-7.rgba.gz",
+      "bytes": 278893,
+      "sha256": "398ce98237bb9165502390f3c7cd4c0c240f8d488d072e9f51fc97d1e4da2cea"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-8.rgba.gz",
+      "bytes": 291631,
+      "sha256": "588b2a4df02bcb43a9289410af055d01394dd46bbac1edb91b29ed0afa714e34"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/0-9.rgba.gz",
+      "bytes": 288455,
+      "sha256": "580059072203607eccc44c43b6ed68599d42058ceb8b7b42ac8df566c11a9d7c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-0.rgba.gz",
+      "bytes": 99916,
+      "sha256": "3ba0c01b5ddc99b5dd14772f609e722c883f1564d778999e073821b8de16fb7d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-1.rgba.gz",
+      "bytes": 115022,
+      "sha256": "98fd51a169a8ef2cea12ec6851c1d2daac98be47b9fae2d560e4281f58cdc314"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-10.rgba.gz",
+      "bytes": 306680,
+      "sha256": "7e5024de702f7c9c0b5eccc0bb0c61349aa9cb4cd94477313bc2ad8b3c3e0a83"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-11.rgba.gz",
+      "bytes": 252641,
+      "sha256": "55a6e4ba6ae23aac8eec783c249aec8a03965432d0e293d46e1d274b60f8746c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-12.rgba.gz",
+      "bytes": 203153,
+      "sha256": "889e586188d9a17626bde9bc80c43e29d63cecd87fb81fc8f9d8d2de4e081adb"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-13.rgba.gz",
+      "bytes": 180145,
+      "sha256": "f012e5cde50dc04317411c76383283fd5bf2304baab1d2a7009a2abc4b0512d3"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-14.rgba.gz",
+      "bytes": 99440,
+      "sha256": "4485e918c6e1fac7afebc4f85a194812c9d86b04bdbb2ff24610695b07205066"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-15.rgba.gz",
+      "bytes": 28202,
+      "sha256": "75413af76d3b83f95cc33ffcbd208fcefdbb743e62a623e8c76464801b8be922"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-2.rgba.gz",
+      "bytes": 129946,
+      "sha256": "092675470957fc6afb15799ed1b2e8d8a6c46a7537c7bd5a34156331bc1090c1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-3.rgba.gz",
+      "bytes": 208290,
+      "sha256": "051dd1cc42ca67d52094942eabb362990eab066fa7f0735928f7292efce24cf1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-4.rgba.gz",
+      "bytes": 221917,
+      "sha256": "a59b76a89b39f7804f6a7fe3f97ab40f519a792d0128baabda27523ce66dffdd"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-5.rgba.gz",
+      "bytes": 232496,
+      "sha256": "15d52ea1127ebcb3028204e8e08490416f6a86c1eec4c0ffc50b064cc432672a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-6.rgba.gz",
+      "bytes": 270465,
+      "sha256": "5589a9cbc6c44ab39927ee28577b3f917d4c654f1938d39b37fb2b9f4880d2e0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-7.rgba.gz",
+      "bytes": 301379,
+      "sha256": "e04ac5c5296465ccde11e5fd521763e8a08e4873c298a5a58afdfef995d0bc65"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-8.rgba.gz",
+      "bytes": 296145,
+      "sha256": "8a21c400fd08a12d90ecf67d065faa1b3ca84954420b44e09704b3904e90d2f5"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/1-9.rgba.gz",
+      "bytes": 307431,
+      "sha256": "f55564cfff3144c20a3a7145a6122204c7574f2f8fbab45b76274cc0089b88a4"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-0.rgba.gz",
+      "bytes": 113219,
+      "sha256": "f0ec5cb02e4e82bbd3567f0739551f25fde4407e6ee7322a51689eda92c5eb68"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-1.rgba.gz",
+      "bytes": 116042,
+      "sha256": "d7c0e77bdb881760a7bb1ab22245d95137a82ee01cfc126aeb5192411c8b0301"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-10.rgba.gz",
+      "bytes": 314316,
+      "sha256": "39998d79147071d7cba066f643ae97c4559ae557dc0a36828709c4297a73a827"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-11.rgba.gz",
+      "bytes": 267372,
+      "sha256": "965c4222a8676648ea5a82042fa28af194952bf4924b80ff4f1d3041fb8b6415"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-12.rgba.gz",
+      "bytes": 194348,
+      "sha256": "da0c6c43e0c81763201ea3d5308f6e2f7563fd3ac3c58f7df2a50220c4a89182"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-13.rgba.gz",
+      "bytes": 196955,
+      "sha256": "7c9c9c6b49c8d305435763b50d6a249268a841cc9c88559e7d1c251c569738a6"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-14.rgba.gz",
+      "bytes": 98716,
+      "sha256": "7e560abff6cab73ac4f45bc986a7ff6f028d337274404314576efb13275cc10c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-15.rgba.gz",
+      "bytes": 35382,
+      "sha256": "b8549b3f2e68249a21704af36a57d605a7acd82fdaa6c0afdd5e4f8f1ae5c1f8"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-2.rgba.gz",
+      "bytes": 124150,
+      "sha256": "e2bb4b2e52fc5a71d374bfb63c4197a4737a4523ca89dc4213af62b50c7cb15d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-3.rgba.gz",
+      "bytes": 241297,
+      "sha256": "df34ace603e520664eec55a2b10f1f6c23f4956807884109fd13b6ab007d4197"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-4.rgba.gz",
+      "bytes": 249354,
+      "sha256": "0663b727301c6c0a4c4be0864d10d617f674d84c111807e12120d4e392d822c2"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-5.rgba.gz",
+      "bytes": 218940,
+      "sha256": "90c61070837fafa5ae9faf28d2567b73299d6f382b341878ea358a0d5bf4fb98"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-6.rgba.gz",
+      "bytes": 269017,
+      "sha256": "48fe5ed006aa2d6ba3752928906a9299fd79f91565d7f3bf4312a65a7b039b38"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-7.rgba.gz",
+      "bytes": 255954,
+      "sha256": "780cd2fd47c6768c2b35e272a55a727d0ada9932239582dfe64e2eff415ed6c0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-8.rgba.gz",
+      "bytes": 301475,
+      "sha256": "69934694c5b62545afac23e32eb03940f81f7fd1113ac566aecbb697f71024b9"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/2-9.rgba.gz",
+      "bytes": 300780,
+      "sha256": "211ef6f08a139d847b7a6d4651357934f3df78bebb84661ca5d9e8e69c9c88f1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-0.rgba.gz",
+      "bytes": 76994,
+      "sha256": "b112c25ff3bd496b009e86eb8eb536b379370eaba439c1fd65cec3b30c19c1ad"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-1.rgba.gz",
+      "bytes": 59887,
+      "sha256": "8f9e97cb07d4c973033d5e449a3f778ff56ed2d611c8996bb4e8d1343aaebad7"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-10.rgba.gz",
+      "bytes": 326117,
+      "sha256": "31f25140665b72dba7dce315f510e4a8f1bfba557c939d2502d884333420d543"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-11.rgba.gz",
+      "bytes": 235788,
+      "sha256": "6ce105b545b0b37cc274c749750209b9677caa44ffefb6aff06bf314695b0203"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-12.rgba.gz",
+      "bytes": 198744,
+      "sha256": "3f333e1337b855110ee9840792eabe3fe2b1a5653e0a53407e5b039721eed357"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-13.rgba.gz",
+      "bytes": 172440,
+      "sha256": "8262063987566aaf03c821cfee844f8a1036575f3502c25158addc0b489ffc53"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-14.rgba.gz",
+      "bytes": 98291,
+      "sha256": "a983eefe6b47a8b5d61de6b4f2610d1664d210f64f1d3ecc28b200eee68f088a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-15.rgba.gz",
+      "bytes": 28765,
+      "sha256": "fdbcf28e5673285ff1a6315d886398bda3d54ae8ad488c26b4c475ee5cbcb29f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-2.rgba.gz",
+      "bytes": 129466,
+      "sha256": "bd063d2ca546b91c541ca2ea7ebc7c98f1dae139375e3c77d84f42d7772663d9"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-3.rgba.gz",
+      "bytes": 229819,
+      "sha256": "67c70dbd3fcb0f139d55c38a4d55dca785e48d92df34e7e43e9c0db0b3d7e51f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-4.rgba.gz",
+      "bytes": 233660,
+      "sha256": "1fa5d2b0b0cb4278ab74f87f0fb1ec0543859d3888cca1275666081115e1737d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-5.rgba.gz",
+      "bytes": 224329,
+      "sha256": "46cb35d5c67ea6494bb5515b2f995a9717cab4898023d7697a27c89520d3923b"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-6.rgba.gz",
+      "bytes": 215680,
+      "sha256": "8ce6fdc5b63479f7a12f5f0547d2e3d2b6030e3507b024c341d50c399cbaed63"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-7.rgba.gz",
+      "bytes": 247234,
+      "sha256": "d4b0aa978b860ba865211590f98125dcb927ce3e6119d2b11f935e7391960673"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-8.rgba.gz",
+      "bytes": 319523,
+      "sha256": "896df780533b82f9231d2a30dded41178801f7601d01886ad7fc198a065759d0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/3-9.rgba.gz",
+      "bytes": 305038,
+      "sha256": "e8407264780841e2e8a1ff76721b66c09277be13972598be04a005bcd9c2d14a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-0.rgba.gz",
+      "bytes": 63076,
+      "sha256": "c2b63c1da49229d9c9407724323007fc45a1a9c5eb8ec2e217c99c6da31151c0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-1.rgba.gz",
+      "bytes": 105323,
+      "sha256": "1688004b9da0ab57562de14d780e71e3f437367dc945dade6bdc300a6188ccb0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-10.rgba.gz",
+      "bytes": 308250,
+      "sha256": "3ff0d0e5ec06cece549506786cf272a0b83cad66bcad0fe7cecf6d3253f73a97"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-11.rgba.gz",
+      "bytes": 233864,
+      "sha256": "be4f889e9c69782e88d74fb7212a3d3b7de7475db1cdd74929bcb538279d1910"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-12.rgba.gz",
+      "bytes": 216467,
+      "sha256": "dcca3130a4ce005ca48c9d2425a8194a85522135f59d03fb0da08173ab4099fd"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-13.rgba.gz",
+      "bytes": 190927,
+      "sha256": "e13083b84f61ab50b4bdab18e9a910c5f5f7c693b5845c00dfbc07eed8a51349"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-14.rgba.gz",
+      "bytes": 103760,
+      "sha256": "706c08993f98076b10f09739701bd04df0c90563ec5b03660d31de1df73a3e64"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-15.rgba.gz",
+      "bytes": 32028,
+      "sha256": "613e61d4e1c4fe99f746d76f9f8c4505dd0022b374a18e902fbf90534fd5d787"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-2.rgba.gz",
+      "bytes": 100689,
+      "sha256": "33ef2c5eac1a1d88823bc69044fc9da6c7305e965813738b3a28bfbe6eb6de15"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-3.rgba.gz",
+      "bytes": 236026,
+      "sha256": "7409e505dbbeb493f9c6b18f983aa6069fce377b701c7f005b2174314a9a9280"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-4.rgba.gz",
+      "bytes": 194703,
+      "sha256": "7d85db1b95e1ff63ed0287a71184a17e7b0c0ca019b5e8598a484e256972b01b"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-5.rgba.gz",
+      "bytes": 245682,
+      "sha256": "65354d1b59508aca9219fa021bc615ef2af1913382b0017ed73e530cf8d23e67"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-6.rgba.gz",
+      "bytes": 202743,
+      "sha256": "831ae566578ae0830acee34c4587d18e8fcca9d7765e14c5b97a343f3884addf"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-7.rgba.gz",
+      "bytes": 250820,
+      "sha256": "7592b809a300177c827833b04707bbb3b270ea2949adf6b560d282d58a60bd6f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-8.rgba.gz",
+      "bytes": 276089,
+      "sha256": "339b8c918a5f2c595860f679377eafe5a990c74e9f4c97487520c740ef061ff8"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/4-9.rgba.gz",
+      "bytes": 312194,
+      "sha256": "fb06fefffd55129494b5fd98e3fffd8be551579edcccaf219cfeb91115b09959"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-0.rgba.gz",
+      "bytes": 60384,
+      "sha256": "5787ed1b1b7bca93e13fa81a0516cf53635892fa633da1b6f21ee81681aefb85"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-1.rgba.gz",
+      "bytes": 75445,
+      "sha256": "fbe986a2994c92692b7c3f091f3065a90968e9ee61e7212d0800d245cc13fd2d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-10.rgba.gz",
+      "bytes": 323912,
+      "sha256": "09a8f76a13db8e91d774fbec31d8cdcb70f74cbe5b695dadc2e2fc3975c383d4"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-11.rgba.gz",
+      "bytes": 246966,
+      "sha256": "09d7436e7e017e9aee3b89cfe474b5ddecb683c8a0fc305d2981b3b7a97731c8"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-12.rgba.gz",
+      "bytes": 198307,
+      "sha256": "8ebb7b521675b65c5158f97708911f9faca0813d81bcc5570a3f1e3a2b31a3bb"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-13.rgba.gz",
+      "bytes": 169799,
+      "sha256": "3d85c8983c57fb171f96c67a87b0bba032164bec355b1c0058fd324628d2176d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-14.rgba.gz",
+      "bytes": 99375,
+      "sha256": "7993b6b2d45d164f81c9d42e075904b6c822ae850314f48b7cd7907d67c28625"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-15.rgba.gz",
+      "bytes": 33626,
+      "sha256": "11a4b731d1da271b546755e2ae7e511df60d96a8be238be360c55e567774c857"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-2.rgba.gz",
+      "bytes": 96100,
+      "sha256": "3dabdbb10a9bb70ce8e7419285c08fafd53de66d07dc03793beeaf7ec4ef5d0f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-3.rgba.gz",
+      "bytes": 232057,
+      "sha256": "99030e83c8acf8d0d1a162e45edc0d11f09bea5229353a12fbe016659b87d0fe"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-4.rgba.gz",
+      "bytes": 267016,
+      "sha256": "ce3dc7f9de7e18844825efee415784c2a3e18a79457562d9c6bb540d151e4344"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-5.rgba.gz",
+      "bytes": 210004,
+      "sha256": "9ad543f3c0cdfe97d3f2dd8a7df20bc8d8d2fb2888ce87cdc6e3f020ed510c0d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-6.rgba.gz",
+      "bytes": 236577,
+      "sha256": "e9fc8c26b5202675fc53b9ca74f48f31335f05a8e9ffca7e250992e82d2ff235"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-7.rgba.gz",
+      "bytes": 308016,
+      "sha256": "56bd1110576be304a01273fec4a7462a371f9a1b215bfdbc57b0bea26f7f5dcf"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-8.rgba.gz",
+      "bytes": 274610,
+      "sha256": "993d7a0be2333e2b29c37cc3f0097db275d0c5ada4a122bb1bc24cad630f3025"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/5-9.rgba.gz",
+      "bytes": 318815,
+      "sha256": "b3462d7b0bcfbd217ada6883f7b380d6161b5c939e02ff4b4b4890f163692f40"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-0.rgba.gz",
+      "bytes": 76213,
+      "sha256": "e39d5531b381c9872729cf2a9aa780ac0a279c15319a4859970cbc88b4498d87"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-1.rgba.gz",
+      "bytes": 105350,
+      "sha256": "2ac09ffc5e28d2b1c28b34c21dffbf2337931491abf847d759a6abc702be6271"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-10.rgba.gz",
+      "bytes": 325183,
+      "sha256": "cb6ffaeb1739cd8d8c13e58a21496968a925a0a63c2a7b0be829e38a1f54d02b"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-11.rgba.gz",
+      "bytes": 261070,
+      "sha256": "ceac0f68f1876da9a2a8d7b55ea5e3ee2575769909b4009ded53abe6b2374367"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-12.rgba.gz",
+      "bytes": 217854,
+      "sha256": "2fc12b714956e616e068c2fb186df4c072964781b255e996707b018a15914e4c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-13.rgba.gz",
+      "bytes": 191454,
+      "sha256": "7e791bd1f7df29f5f4c83332626b391637028376efa90a998e7ad24a4d7aeb21"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-14.rgba.gz",
+      "bytes": 92678,
+      "sha256": "313b82d6442b1efc8bdaa03a289b993a0fe6707c4b283953357b8d74c8c645a4"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-15.rgba.gz",
+      "bytes": 33076,
+      "sha256": "69a01c3a5921aa63c1b9b03e52f0f23640d79647445fb85be1bab5c94747279f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-2.rgba.gz",
+      "bytes": 172578,
+      "sha256": "4b2764610145e10bfebdfa9d9a091e19a0dabbcff39bbc76b9793b52ec8995ec"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-3.rgba.gz",
+      "bytes": 240824,
+      "sha256": "36b1363a76fc90126dda0e436bbe4ea65a139bfe64beb35146d783e37308ee3c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-4.rgba.gz",
+      "bytes": 238195,
+      "sha256": "3547e8737ce76ede6b780cc1bea5be77b87ee24d2cd4d1abeca6a9be409158dd"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-5.rgba.gz",
+      "bytes": 216156,
+      "sha256": "38bcb7b76f0699cdd4853c566048f4c0b4295a877b49fd83d8849fa1849e71e1"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-6.rgba.gz",
+      "bytes": 217867,
+      "sha256": "a674748ea0ba991156552aaeb03362af3e433bb5685dc90511336f5e7d75ec9f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-7.rgba.gz",
+      "bytes": 273593,
+      "sha256": "b867e3b96825a3ae2815cedfdf8c887989d786385699aaf32fcdbb9cf698e0f4"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-8.rgba.gz",
+      "bytes": 269547,
+      "sha256": "35cd24005d9c522469a419c75027d8852a54efcd2e4c5a23008bbc506753ccaf"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/6-9.rgba.gz",
+      "bytes": 332326,
+      "sha256": "47b3c70b9041d59a20b343084489e433cac80a729df19db995e63aa809a8b7a5"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-0.rgba.gz",
+      "bytes": 83133,
+      "sha256": "c4f2f72719736664c01de68e56d0ce3951eaf41bc0a91327f7c8fa12dc6e7e74"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-1.rgba.gz",
+      "bytes": 97914,
+      "sha256": "83b7414caef10e5af514a61edb7969292601e14da77c35f55f74d8240f7ef47d"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-10.rgba.gz",
+      "bytes": 310554,
+      "sha256": "4029243421c12bd717bde62cf68320992fc5dec9f14884b19d6416cad2f68454"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-11.rgba.gz",
+      "bytes": 228909,
+      "sha256": "338db3b826162d061a1d577b5b74360be0d067672de805ced04f785246397a1a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-12.rgba.gz",
+      "bytes": 180778,
+      "sha256": "63fab03979967fd8e54cbd815e3ad38ad8d4ca99f84708af299e35c63a6ea454"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-13.rgba.gz",
+      "bytes": 141374,
+      "sha256": "032083130ebbee0fdf53da6ff879b42fb9b359e3f7a68f2249b5ab4d9f01b242"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-14.rgba.gz",
+      "bytes": 91951,
+      "sha256": "a09b82460ddd261e3c780733945d2a890303c282a53402488ce7f9c318bd4c17"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-15.rgba.gz",
+      "bytes": 29114,
+      "sha256": "6f9329a0427fe9219d7f75384b42b7aae58577c2cae2f6144df1f49857152f5a"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-2.rgba.gz",
+      "bytes": 171010,
+      "sha256": "9db5ab152131582ad71beb40c1f962b686d5d423a064f64af8e1d6367ce1d5df"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-3.rgba.gz",
+      "bytes": 260208,
+      "sha256": "d64fe2b04978b931e1fcc3e21390a50878162cd6b06f4ff5a631f75a6299e5f0"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-4.rgba.gz",
+      "bytes": 234450,
+      "sha256": "333fc653c06132ee28d416f794a01d6986a087ba73ae54befa71c67423b99793"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-5.rgba.gz",
+      "bytes": 226952,
+      "sha256": "485ae1822381990d01ca2b61ab0db9ca1eb9ed8832dafc72c03ece159c609481"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-6.rgba.gz",
+      "bytes": 253041,
+      "sha256": "ca5761a77220b59d3fa15e2d563321c999f6700d7f8ed760f56517825cb5e01f"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-7.rgba.gz",
+      "bytes": 299165,
+      "sha256": "7b19a571aa6325f6580de75df0cb2713b4022650337a5b4bae47b5f33a75e32b"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-8.rgba.gz",
+      "bytes": 294941,
+      "sha256": "3609a4c31111699ff6265ee921483f800fd61431aa9ab323fd2947fa51840c72"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/7-9.rgba.gz",
+      "bytes": 307584,
+      "sha256": "e14bbaff63dde9a1a90ee867844a82d335ed832fb6dda2132844d5f924b83f0c"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/fields/manifest.json",
+      "bytes": 19229,
+      "sha256": "1d30893fa76d636001a6ec088087aa19fe2ef5d0c50ce9e48ba10e3ca70ec799"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/geometry.mjs",
+      "bytes": 2984,
+      "sha256": "4f4245cca8638afcd69f4c915355b7732a34504e0702cdc07bee586277b18525"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/import.mjs",
+      "bytes": 1769,
+      "sha256": "6103824f2b6a14a7510360e4b7352530227c566973ec4c512b4109502c70ac62"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/index.html",
+      "bytes": 2553,
+      "sha256": "023aed32c1db2f97f605377f091e837fd14cc3faac81d709bc5daf6548eb1a54"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/math-data.json.gz",
+      "bytes": 454510,
+      "sha256": "6bfd2f7e419536c3facbc339ee2a36f0f1b8e0512847c129694e9e2aa264a284"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/morph.wgsl",
+      "bytes": 10604,
+      "sha256": "48a096339601940808379b08de5f72fbfc4369720a08be1aa9974824f0b6e851"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/provenance.json",
+      "bytes": 1024,
+      "sha256": "5c248b1961fcd41e11c3c1e51922353c28a10dc5ddf124ad106019e83a477c10"
+    },
+    {
+      "path": "previews/gpu-math-typing/motion/scene.mjs",
+      "bytes": 2970,
+      "sha256": "386d9e96a9ca85bf5cefc6c29d210d852248946215d1cad1527ca6d63a06f4d7"
+    },
+    {
       "path": "previews/gpu-math-typing/pdf-text-positions.mjs",
       "bytes": 1124,
       "sha256": "3d16dd8819903bb8e3153f0571cfe40de89401d071113da66e6c75a371493eb5"
@@ -17805,6 +18525,21 @@
       "path": "previews/gpu-math-typing/units.mjs",
       "bytes": 6401,
       "sha256": "78054248f3a80adaf4b2cf8ae5fbab0d6acf10b34ccd9eb9d012e0bdb7bc1777"
+    },
+    {
+      "path": "previews/gpu-math-typing/workbench-document.mjs",
+      "bytes": 1143,
+      "sha256": "b4f123146284f98d6f9a1020a86d79b89d6b7197f15732d7f326fcfe3650056f"
+    },
+    {
+      "path": "previews/gpu-math-typing/workbench.css",
+      "bytes": 1039,
+      "sha256": "a71ba30c9d09c6c293d3b7e52291944100155b10983078e5e4c95abfe8c7cc82"
+    },
+    {
+      "path": "previews/gpu-math-typing/workbench.mjs",
+      "bytes": 1866,
+      "sha256": "d0a901ee22450f96a63bc45c276b6db004cfede29d2c2fd6d79c48e6d7aa05ce"
     },
     {
       "path": "previews/gpu-morph/README.md",
@@ -18557,5 +19292,5 @@
       "sha256": "2b4cced92cb9595df9609d86293059e5dfc2957a658df66d44d406585f5d8737"
     }
   ],
-  "totalBytes": 215043557
+  "totalBytes": 241081306
 }

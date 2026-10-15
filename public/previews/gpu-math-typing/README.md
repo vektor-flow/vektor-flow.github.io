@@ -116,3 +116,17 @@ package selection and every possible alphabet/glyph combination remain outside s
 Prepared assets include new AMS/Euler notices and the unmodified RSFS/BBOLD source
 archives. The GPL mathrsfs adapter is used only by the development oracle; its
 source and GPLv2 text are supplied separately. It does not execute in the browser.
+
+
+## Modular LaTeX rendering on 2026-10-15
+
+The math preview adds roots, binomials/generalized fractions, notation/box helpers,
+native extension pieces, formatted text, equation/align variants and array rules.
+The independent document preview is document.html; its class/package modules live
+in latex-modules/. A4 article flow, basic h figures, local GPU image textures and
+simple references are experimental. Full-document pixel acceptance is failing.
+See document-checks/ for original sources, reference PDFs, GPU pages, differences
+and separately measured timings. This is not a release of the VKF compiler.
+
+Source checkpoint: eefd317 in vektor-flow/vektor-flow, branch codex/gpu-math-20261014.
+The report covers all46 reference pages; the independent renderer produces45.

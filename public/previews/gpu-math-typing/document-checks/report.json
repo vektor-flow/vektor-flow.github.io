@@ -1,0 +1,1293 @@
+{
+  "accepted": false,
+  "documents": [
+    {
+      "name": "small2e",
+      "referencePages": 1,
+      "nativePages": 1,
+      "allPagesPassed": false,
+      "diagnostics": [],
+      "pages": [
+        {
+          "page": 1,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.00973450284357728,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.3692423942395126,
+          "pixelsDifferingOver8Codes": 27396,
+          "inkIoU": 0.37240616992413206,
+          "maxBoundaryDistancePixels": 13.341664064126334,
+          "passed": false
+        }
+      ],
+      "source": {
+        "name": "small2e",
+        "url": "https://raw.githubusercontent.com/latex3/latex2e/main/base/small2e.tex",
+        "sha256": "6995024e85f537d32eef704a81d7f53b84aa06cb23361559d3fea3b6c5653627",
+        "bytes": 1694
+      },
+      "modules": {
+        "class": "article",
+        "packages": []
+      },
+      "gpuTimings": [
+        {
+          "layoutMs": 8.600000023841858,
+          "gpuCompleteMs": 63.10000002384186
+        },
+        {
+          "layoutMs": 4,
+          "gpuCompleteMs": 35.89999997615814
+        },
+        {
+          "layoutMs": 3.399999976158142,
+          "gpuCompleteMs": 32.60000002384186
+        }
+      ],
+      "latexTimings": [
+        {
+          "trial": 0,
+          "compileMs": 61.02068000473082,
+          "rasterizeAndEncodeMs": 81.4673580462113,
+          "sourceToPNGMs": 142.48803805094212,
+          "exitCode": 0
+        },
+        {
+          "trial": 1,
+          "compileMs": 58.2499080337584,
+          "rasterizeAndEncodeMs": 81.48707903455943,
+          "sourceToPNGMs": 139.73698706831783,
+          "exitCode": 0
+        },
+        {
+          "trial": 2,
+          "compileMs": 59.02481998782605,
+          "rasterizeAndEncodeMs": 82.16174901463091,
+          "sourceToPNGMs": 141.18656900245696,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "sample2e",
+      "referencePages": 3,
+      "nativePages": 3,
+      "allPagesPassed": false,
+      "diagnostics": [
+        "Unsupported document command: \\,",
+        "Unsupported document command: \\@",
+        "Unsupported document command: \\ldots",
+        "Unsupported document environment: em",
+        "Unsupported document command: \\mbox",
+        "Unsupported document command: \\footnote",
+        "Unsupported document environment: quote",
+        "Unsupported document environment: quotation",
+        "Unsupported document environment: itemize",
+        "Unsupported document environment: verse",
+        "Unsupported text character: \u25a1",
+        "Unsupported symbol: '",
+        "Unfinished or unsupported command: \\ip"
+      ],
+      "pages": [
+        {
+          "page": 1,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.03954864898468297,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5433936854498224,
+          "pixelsDifferingOver8Codes": 83525,
+          "inkIoU": 0.09128726191319125,
+          "maxBoundaryDistancePixels": 57.87054518492115,
+          "passed": false
+        },
+        {
+          "page": 2,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.03654826384797792,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5301777058232877,
+          "pixelsDifferingOver8Codes": 78375,
+          "inkIoU": 0.10468314404924504,
+          "maxBoundaryDistancePixels": 73.66138744281159,
+          "passed": false
+        },
+        {
+          "page": 3,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.005735370313757772,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5684625037864036,
+          "pixelsDifferingOver8Codes": 12015,
+          "inkIoU": 0.02129040633519408,
+          "maxBoundaryDistancePixels": 188.06647760831805,
+          "passed": false
+        }
+      ],
+      "source": {
+        "name": "sample2e",
+        "url": "https://raw.githubusercontent.com/latex3/latex2e/main/base/sample2e.tex",
+        "sha256": "f135855f870c31f1101001bdb75b11e94a23c2605f7ab5dffa1299d53b1977cc",
+        "bytes": 7200
+      },
+      "modules": {
+        "class": "article",
+        "packages": []
+      },
+      "gpuTimings": [
+        {
+          "layoutMs": 8.300000071525574,
+          "gpuCompleteMs": 149.10000002384186
+        },
+        {
+          "layoutMs": 15.600000023841858,
+          "gpuCompleteMs": 141.20000004768372
+        },
+        {
+          "layoutMs": 7.100000023841858,
+          "gpuCompleteMs": 148.70000004768372
+        }
+      ],
+      "latexTimings": [
+        {
+          "trial": 0,
+          "compileMs": 66.85352802742273,
+          "rasterizeAndEncodeMs": 284.78767396882176,
+          "sourceToPNGMs": 351.6412019962445,
+          "exitCode": 0
+        },
+        {
+          "trial": 1,
+          "compileMs": 66.80056697223336,
+          "rasterizeAndEncodeMs": 276.4667880255729,
+          "sourceToPNGMs": 343.26735499780625,
+          "exitCode": 0
+        },
+        {
+          "trial": 2,
+          "compileMs": 67.59101897478104,
+          "rasterizeAndEncodeMs": 278.2612049486488,
+          "sourceToPNGMs": 345.85222392342985,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "testmath",
+      "referencePages": 41,
+      "nativePages": 40,
+      "allPagesPassed": false,
+      "diagnostics": [
+        "Unsupported package: amsthm",
+        "Unsupported document command: \\markboth",
+        "Unsupported document command: \\protect",
+        "Unsupported document command: \\ntt",
+        "Unsupported document command: \\lowercase",
+        "Unsupported document command: \\renewcommand",
+        "Unsupported document command: \\sectionmark",
+        "Unsupported document command: \\AmS",
+        "Unsupported document environment: verbatim",
+        "Unsupported document command: \\cite",
+        "Unsupported document environment: notation",
+        "Unsupported document command: \\end",
+        "Unsupported document environment: lem",
+        "Unsupported document environment: thm",
+        "Unsupported document environment: rem",
+        "Unsupported document command: \\thmref",
+        "Unsupported document environment: cor",
+        "Unsupported document environment: prop",
+        "Unsupported document environment: defn",
+        "Unsupported document environment: proof",
+        "Unsupported document command: \\\"",
+        "Unsupported document command: \\lemref",
+        "Unsupported document command: \\'",
+        "Figure requires graphicx for images",
+        "Deferred figure float placement is not implemented; figure remains in source order",
+        "Figure contains no supported includegraphics",
+        "Unsupported document command: \\footnote",
+        "Unsupported document command: \\setlength",
+        "Unsupported document command: \\multlinegap",
+        "Unsupported document command: \\qed",
+        "Unsupported document command: \\pkg",
+        "Unsupported document command: \\cn",
+        "Unsupported document command: \\fn",
+        "Unsupported document environment: quotation",
+        "Unsupported document command: \\@",
+        "Unsupported document command: \\verb",
+        "Unsupported document command: \\log",
+        "Unsupported document command: \\sin",
+        "Unsupported document command: \\lim",
+        "Unsupported document command: \\env",
+        "Unsupported document environment: math",
+        "Unsupported document command: \\hdotsfor",
+        "Unsupported document command: \\Large",
+        "Unsupported document command: \\makeatletter",
+        "Unsupported document command: \\def",
+        "Unsupported document command: \\ifvoid",
+        "Unsupported document command: \\footins",
+        "Unsupported document command: \\setbox",
+        "Unsupported document command: \\box",
+        "Unsupported document command: \\else",
+        "Unsupported document command: \\vbox",
+        "Unsupported document command: \\boxmaxdepth",
+        "Unsupported document command: \\maxdepth",
+        "Unsupported document command: \\unvbox",
+        "Unsupported document command: \\vskip",
+        "Unsupported document command: \\skip",
+        "Unsupported document command: \\footnoterule",
+        "Unsupported document command: \\fi",
+        "Unsupported document command: \\xdef",
+        "Unsupported document command: \\gdef",
+        "Unsupported document command: \\hbox",
+        "Unsupported document command: \\vrule",
+        "Unsupported document command: \\marginrulewidth",
+        "Unsupported document command: \\dimen",
+        "Unsupported document command: \\dp",
+        "Unsupported document command: \\global",
+        "Unsupported document command: \\newdimen",
+        "Unsupported document command: \\makeatother",
+        "Unsupported document command: \\appendix",
+        "Unsupported document command: \\ctagsplit",
+        "Unsupported document command: \\delimiterfactor",
+        "Unsupported document command: \\iffalse",
+        "Unsupported document command: \\notag",
+        "Unsupported document environment: alignat",
+        "Unsupported document environment: alignat*",
+        "Unsupported document environment: thebibliography",
+        "Unsupported text character: \u25a1",
+        "Unfinished or unsupported command: \\dots",
+        "Unfinished or unsupported command: \\wh",
+        "Unfinished or unsupported command: \\per",
+        "Undefined reference: lem-det",
+        "Undefined reference: detprod",
+        "Unfinished or unsupported command: \\hdotsfor",
+        "Unfinished or unsupported command: \\eval",
+        "Undefined reference: thm-main",
+        "Unfinished or unsupported command: \\envert",
+        "Undefined reference: lem-per",
+        "Undefined reference: th-info-ow-ow",
+        "Undefined reference: th-weak-ske-owf",
+        "Undefined reference: thm-H-param",
+        "Undefined reference: thm-asym",
+        "Unfinished or unsupported command: \\dotsm",
+        "Empty operand placeholder",
+        "Unsupported symbol: !",
+        "Unfinished or unsupported command: \\colon",
+        "Unfinished or unsupported command: \\enVert",
+        "Unsupported symbol: '",
+        "Unfinished or unsupported command: \\abs",
+        "Unfinished or unsupported command: \\mid",
+        "Undefined reference: prop:eg",
+        "Undefined reference: boundab",
+        "Unfinished or unsupported command: \\dim",
+        "Unsupported text command: \\in",
+        "Unsupported text command: \\Lambda",
+        "Unfinished or unsupported command: \\A",
+        "Unfinished or unsupported command: \\B",
+        "Unfinished or unsupported command: \\Cham",
+        "Unfinished or unsupported command: \\XcY",
+        "Unfinished or unsupported command: \\st",
+        "Unfinished or unsupported command: \\SXY",
+        "Unfinished or unsupported command: \\X",
+        "Unfinished or unsupported command: \\PY",
+        "Unfinished or unsupported command: \\SXgYy",
+        "Unfinished or unsupported command: \\SY",
+        "Unfinished or unsupported command: \\Cw",
+        "Unfinished or unsupported command: \\G",
+        "Unfinished or unsupported command: \\SX",
+        "Unfinished or unsupported command: \\wt",
+        "Unfinished or unsupported command: \\IM",
+        "Unfinished or unsupported command: \\liminf",
+        "Undefined reference: e:SS",
+        "Unfinished or unsupported command: \\interval",
+        "Undefined reference: e:bomb",
+        "Undefined reference: r:omb",
+        "Undefined reference: delta-l",
+        "Undefined reference: r:dif",
+        "Undefined reference: r:dif0",
+        "Undefined reference: quts",
+        "Undefined reference: A-l-lambda",
+        "Undefined reference: bl-sum",
+        "Undefined reference: H-param",
+        "Unfinished or unsupported command: \\pmb",
+        "Unsupported text command: \\TeX",
+        "Unfinished or unsupported command: \\substack",
+        "Inferred a closing brace",
+        "Ignored an unmatched closing brace",
+        "Unfinished or unsupported command: \\mathop",
+        "Unfinished or unsupported command: \\idotsint",
+        "Unfinished or unsupported command: \\dotsc",
+        "Unfinished or unsupported command: \\dotsb",
+        "Unfinished or unsupported command: \\dotsi",
+        "Unfinished or unsupported command: \\Hat",
+        "Unfinished or unsupported command: \\Check",
+        "Unfinished or unsupported command: \\Tilde",
+        "Unfinished or unsupported command: \\Acute",
+        "Unfinished or unsupported command: \\Grave",
+        "Unfinished or unsupported command: \\Dot",
+        "Unfinished or unsupported command: \\Ddot",
+        "Unfinished or unsupported command: \\Breve",
+        "Unfinished or unsupported command: \\Bar",
+        "Unfinished or unsupported command: \\Vec",
+        "Unfinished or unsupported command: \\leftroot",
+        "Unfinished or unsupported command: \\uproot",
+        "Unfinished or unsupported command: \\triangle",
+        "Unsupported symbol: *",
+        "Unfinished or unsupported command: \\sideset",
+        "Empty base placeholder",
+        "Unfinished or unsupported command: \\norm",
+        "Unfinished or unsupported command: \\esssup",
+        "Unfinished or unsupported command: \\meas",
+        "Unfinished or unsupported command: \\varlimsup",
+        "Unfinished or unsupported command: \\#",
+        "Unfinished or unsupported command: \\varliminf",
+        "Unfinished or unsupported command: \\varinjlim",
+        "Unfinished or unsupported command: \\varprojlim",
+        "Unsupported symbol: &",
+        "Unmatched environment end",
+        "Inferred an invisible closing scope",
+        "Inferred \\end{split}",
+        "Inferred \\end{equation}",
+        "Unsupported text command: \\cn",
+        "Unfinished or unsupported command: \\cfrac",
+        "Unknown environment subarray",
+        "Matched the unfinished environment",
+        "Unsupported text command: \\large",
+        "Unfinished or unsupported command: \\circ",
+        "Unsupported text command: \\theequation",
+        "Unfinished or unsupported command: \\seg",
+        "Unsupported text command: \\ref"
+      ],
+      "pages": [
+        {
+          "page": 1,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.032469843382577794,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5985455335449904,
+          "pixelsDifferingOver8Codes": 62959,
+          "inkIoU": 0.04249550033893551,
+          "maxBoundaryDistancePixels": 102.59142264341595,
+          "passed": false
+        },
+        {
+          "page": 2,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.0405440846507344,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5649898434951007,
+          "pixelsDifferingOver8Codes": 83316,
+          "inkIoU": 0.06383968509572374,
+          "maxBoundaryDistancePixels": 133.6600164596728,
+          "passed": false
+        },
+        {
+          "page": 3,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.024887576102102526,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5892746939968116,
+          "pixelsDifferingOver8Codes": 50609,
+          "inkIoU": 0.02221474251093908,
+          "maxBoundaryDistancePixels": 93.96275858019496,
+          "passed": false
+        },
+        {
+          "page": 4,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.02386019304510049,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6087604491542679,
+          "pixelsDifferingOver8Codes": 46303,
+          "inkIoU": 0.03196066379840197,
+          "maxBoundaryDistancePixels": 115.12167476196652,
+          "passed": false
+        },
+        {
+          "page": 5,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.023468595613540536,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5955644649927997,
+          "pixelsDifferingOver8Codes": 47387,
+          "inkIoU": 0.013559210742309334,
+          "maxBoundaryDistancePixels": 238.43657437566074,
+          "passed": false
+        },
+        {
+          "page": 6,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.044314329781429095,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5585252803547487,
+          "pixelsDifferingOver8Codes": 91912,
+          "inkIoU": 0.06220645871797363,
+          "maxBoundaryDistancePixels": 110.00454536063498,
+          "passed": false
+        },
+        {
+          "page": 7,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.030421854654236566,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5714568847612261,
+          "pixelsDifferingOver8Codes": 63939,
+          "inkIoU": 0.018279649148669565,
+          "maxBoundaryDistancePixels": 300.0266654815868,
+          "passed": false
+        },
+        {
+          "page": 8,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.034132682211728785,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5828093536164192,
+          "pixelsDifferingOver8Codes": 68953,
+          "inkIoU": 0.027703443737661766,
+          "maxBoundaryDistancePixels": 115.03912377969506,
+          "passed": false
+        },
+        {
+          "page": 9,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.025353350942221534,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5915513901127102,
+          "pixelsDifferingOver8Codes": 51523,
+          "inkIoU": 0.015615070358601907,
+          "maxBoundaryDistancePixels": 163.88410539158457,
+          "passed": false
+        },
+        {
+          "page": 10,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.01903707379491068,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5995080498041767,
+          "pixelsDifferingOver8Codes": 38099,
+          "inkIoU": 0.004757644762524398,
+          "maxBoundaryDistancePixels": 191.09421759959145,
+          "passed": false
+        },
+        {
+          "page": 11,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.04046961257323348,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5573472360567745,
+          "pixelsDifferingOver8Codes": 84848,
+          "inkIoU": 0.06442900549050268,
+          "maxBoundaryDistancePixels": 151.64761785138597,
+          "passed": false
+        },
+        {
+          "page": 12,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.027716767379673143,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5739307374011368,
+          "pixelsDifferingOver8Codes": 57849,
+          "inkIoU": 0.026227031110871265,
+          "maxBoundaryDistancePixels": 257.07780923292466,
+          "passed": false
+        },
+        {
+          "page": 13,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.033805889957159094,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5752457809447249,
+          "pixelsDifferingOver8Codes": 70269,
+          "inkIoU": 0.03299279111936668,
+          "maxBoundaryDistancePixels": 78.5175139698144,
+          "passed": false
+        },
+        {
+          "page": 14,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.030045364503501964,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5772828821527382,
+          "pixelsDifferingOver8Codes": 61766,
+          "inkIoU": 0.038159675236806495,
+          "maxBoundaryDistancePixels": 85.56284240252891,
+          "passed": false
+        },
+        {
+          "page": 15,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.026858832158373914,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5759721133869077,
+          "pixelsDifferingOver8Codes": 56037,
+          "inkIoU": 0.044618471657098265,
+          "maxBoundaryDistancePixels": 55.362442142665635,
+          "passed": false
+        },
+        {
+          "page": 16,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.024565309434714574,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5932191447252532,
+          "pixelsDifferingOver8Codes": 49873,
+          "inkIoU": 0.02266156859087942,
+          "maxBoundaryDistancePixels": 86.12200647918046,
+          "passed": false
+        },
+        {
+          "page": 17,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.0263835751355884,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5796917767763816,
+          "pixelsDifferingOver8Codes": 54602,
+          "inkIoU": 0.028666876052879535,
+          "maxBoundaryDistancePixels": 136.61991070118586,
+          "passed": false
+        },
+        {
+          "page": 18,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.03304293929014955,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6062434471454052,
+          "pixelsDifferingOver8Codes": 64531,
+          "inkIoU": 0.029398653246052415,
+          "maxBoundaryDistancePixels": 95.00526301210897,
+          "passed": false
+        },
+        {
+          "page": 19,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.027286352812577668,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6108170074237869,
+          "pixelsDifferingOver8Codes": 52844,
+          "inkIoU": 0.03935640039869002,
+          "maxBoundaryDistancePixels": 158.4455742518547,
+          "passed": false
+        },
+        {
+          "page": 20,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.030665365549356803,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6091476444659031,
+          "pixelsDifferingOver8Codes": 59664,
+          "inkIoU": 0.02705578355373157,
+          "maxBoundaryDistancePixels": 123.76186811776881,
+          "passed": false
+        },
+        {
+          "page": 21,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.027014223845745467,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6079282845658797,
+          "pixelsDifferingOver8Codes": 52035,
+          "inkIoU": 0.04513030380538267,
+          "maxBoundaryDistancePixels": 104.48444860360799,
+          "passed": false
+        },
+        {
+          "page": 22,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.0317759332088423,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.597811707793457,
+          "pixelsDifferingOver8Codes": 62960,
+          "inkIoU": 0.031002145560618113,
+          "maxBoundaryDistancePixels": 165.14841809717706,
+          "passed": false
+        },
+        {
+          "page": 23,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.027291529310257856,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5933965243325431,
+          "pixelsDifferingOver8Codes": 53797,
+          "inkIoU": 0.036934721953645125,
+          "maxBoundaryDistancePixels": 110.22250223978767,
+          "passed": false
+        },
+        {
+          "page": 24,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.03228821736329263,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5972169186861076,
+          "pixelsDifferingOver8Codes": 62898,
+          "inkIoU": 0.03712122987509081,
+          "maxBoundaryDistancePixels": 175.38529014715002,
+          "passed": false
+        },
+        {
+          "page": 25,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.03057884722959078,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.5962300368926353,
+          "pixelsDifferingOver8Codes": 60449,
+          "inkIoU": 0.02994355926277409,
+          "maxBoundaryDistancePixels": 100.04498987955368,
+          "passed": false
+        },
+        {
+          "page": 26,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.018690217664030874,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6168344579441394,
+          "pixelsDifferingOver8Codes": 35978,
+          "inkIoU": 0.02041242277508766,
+          "maxBoundaryDistancePixels": 257.76927667974707,
+          "passed": false
+        },
+        {
+          "page": 27,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.030772691014853467,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6098472939370924,
+          "pixelsDifferingOver8Codes": 58979,
+          "inkIoU": 0.03868481633470123,
+          "maxBoundaryDistancePixels": 211.7663807123312,
+          "passed": false
+        },
+        {
+          "page": 28,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.010489075236941318,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.614019527584793,
+          "pixelsDifferingOver8Codes": 20214,
+          "inkIoU": 0.01719133735208752,
+          "maxBoundaryDistancePixels": 454.92526858814955,
+          "passed": false
+        },
+        {
+          "page": 29,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.0276040059319057,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6476072777915667,
+          "pixelsDifferingOver8Codes": 50151,
+          "inkIoU": 0.01819620253164557,
+          "maxBoundaryDistancePixels": 355.8791929854849,
+          "passed": false
+        },
+        {
+          "page": 30,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.02159823508257173,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6266044693614077,
+          "pixelsDifferingOver8Codes": 40317,
+          "inkIoU": 0.03441251364132412,
+          "maxBoundaryDistancePixels": 233.2402195162747,
+          "passed": false
+        },
+        {
+          "page": 31,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.01439266905893867,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.624843633451624,
+          "pixelsDifferingOver8Codes": 27245,
+          "inkIoU": 0.02300049404402481,
+          "maxBoundaryDistancePixels": 233.2402195162747,
+          "passed": false
+        },
+        {
+          "page": 32,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.027445913845574387,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6310947684084905,
+          "pixelsDifferingOver8Codes": 51803,
+          "inkIoU": 0.022917750419050923,
+          "maxBoundaryDistancePixels": 244.2642012248213,
+          "passed": false
+        },
+        {
+          "page": 33,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.030296576373505815,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.627778498698018,
+          "pixelsDifferingOver8Codes": 56718,
+          "inkIoU": 0.02387687835768602,
+          "maxBoundaryDistancePixels": 250.43961347997646,
+          "passed": false
+        },
+        {
+          "page": 34,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.019753106129505416,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6189864448981933,
+          "pixelsDifferingOver8Codes": 37411,
+          "inkIoU": 0.02941409029809441,
+          "maxBoundaryDistancePixels": 252.7152547829276,
+          "passed": false
+        },
+        {
+          "page": 35,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.021513972959330715,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6117710960398064,
+          "pixelsDifferingOver8Codes": 41757,
+          "inkIoU": 0.03139484356894554,
+          "maxBoundaryDistancePixels": 203.4158302591025,
+          "passed": false
+        },
+        {
+          "page": 36,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.023899269665226614,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6120393942722717,
+          "pixelsDifferingOver8Codes": 46503,
+          "inkIoU": 0.02604593257543492,
+          "maxBoundaryDistancePixels": 190.16308790088576,
+          "passed": false
+        },
+        {
+          "page": 37,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.02414129402150582,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6063005870499647,
+          "pixelsDifferingOver8Codes": 46644,
+          "inkIoU": 0.041011772192173085,
+          "maxBoundaryDistancePixels": 275.27440854536405,
+          "passed": false
+        },
+        {
+          "page": 38,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.008052642474522462,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6468718389890264,
+          "pixelsDifferingOver8Codes": 14349,
+          "inkIoU": 0.02283882600420715,
+          "maxBoundaryDistancePixels": 355.38429903415823,
+          "passed": false
+        },
+        {
+          "page": 39,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.010764062932313972,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6630777581679129,
+          "pixelsDifferingOver8Codes": 19336,
+          "inkIoU": 0.0037890504175688215,
+          "maxBoundaryDistancePixels": 494.6473491286494,
+          "passed": false
+        },
+        {
+          "page": 40,
+          "sameDimensions": true,
+          "referenceSize": [
+            794,
+            1123
+          ],
+          "actualSize": [
+            794,
+            1123
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.037122340519341254,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.6000251037036411,
+          "pixelsDifferingOver8Codes": 72215,
+          "inkIoU": 0.02094831654322001,
+          "maxBoundaryDistancePixels": 232.29722340140012,
+          "passed": false
+        },
+        {
+          "page": 41,
+          "missing": "actual",
+          "passed": false
+        }
+      ],
+      "source": {
+        "name": "testmath",
+        "url": "https://raw.githubusercontent.com/latex3/latex2e/main/required/amsmath/testmath.tex",
+        "sha256": "9b311f1835266833ad40130e7a7a6361a950c965d308c02d567361e72ce74aa5",
+        "bytes": 81184
+      },
+      "modules": {
+        "class": "article",
+        "packages": [
+          "amsmath"
+        ]
+      },
+      "gpuTimings": [
+        {
+          "layoutMs": 156.79999995231628,
+          "gpuCompleteMs": 1232.6000000238419
+        },
+        {
+          "layoutMs": 148.10000002384186,
+          "gpuCompleteMs": 1657.2999999523163
+        },
+        {
+          "layoutMs": 111.80000007152557,
+          "gpuCompleteMs": 1738.6000000238419
+        }
+      ],
+      "latexTimings": [
+        {
+          "trial": 0,
+          "compileMs": 197.70257093477994,
+          "rasterizeAndEncodeMs": 3847.5903479848057,
+          "sourceToPNGMs": 4045.2929189195856,
+          "exitCode": 0
+        },
+        {
+          "trial": 1,
+          "compileMs": 182.42717103566974,
+          "rasterizeAndEncodeMs": 3971.650358987972,
+          "sourceToPNGMs": 4154.077530023642,
+          "exitCode": 0
+        },
+        {
+          "trial": 2,
+          "compileMs": 183.30592405982316,
+          "rasterizeAndEncodeMs": 3873.439227929339,
+          "sourceToPNGMs": 4056.745151989162,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "figure-fixture",
+      "referencePages": 1,
+      "nativePages": 1,
+      "allPagesPassed": false,
+      "diagnostics": [],
+      "pages": [
+        {
+          "page": 1,
+          "sameDimensions": true,
+          "referenceSize": [
+            816,
+            1056
+          ],
+          "actualSize": [
+            816,
+            1056
+          ],
+          "exactlyEqual": false,
+          "meanAbsoluteRGBError": 0.0028621606904298655,
+          "meanAbsoluteRGBErrorOnInkUnion": 0.3371050652082287,
+          "pixelsDifferingOver8Codes": 6098,
+          "inkIoU": 0.4708423326133909,
+          "maxBoundaryDistancePixels": 16.0312195418814,
+          "passed": false
+        }
+      ],
+      "source": {
+        "name": "figure-fixture",
+        "origin": "Controlled integration fixture; the other three entries are unmodified upstream documents.",
+        "sha256": "44f66097c1b98def2e23f825fce6533f262d2be06a6a79d0cc822c0d02624456"
+      },
+      "modules": {
+        "class": "article",
+        "packages": [
+          "amsmath",
+          "graphicx"
+        ]
+      },
+      "gpuTimings": [
+        {
+          "layoutMs": 3.899999976158142,
+          "gpuCompleteMs": 627.8999999761581
+        },
+        {
+          "layoutMs": 2.100000023841858,
+          "gpuCompleteMs": 65.29999995231628
+        },
+        {
+          "layoutMs": 1.5,
+          "gpuCompleteMs": 46.199999928474426
+        }
+      ],
+      "latexTimings": [
+        {
+          "trial": 0,
+          "compileMs": 78.6538760876283,
+          "rasterizeAndEncodeMs": 51.87071196269244,
+          "sourceToPNGMs": 130.52458805032074,
+          "exitCode": 0
+        },
+        {
+          "trial": 1,
+          "compileMs": 80.31587093137205,
+          "rasterizeAndEncodeMs": 54.17095706798136,
+          "sourceToPNGMs": 134.4868279993534,
+          "exitCode": 0
+        },
+        {
+          "trial": 2,
+          "compileMs": 79.33996606152505,
+          "rasterizeAndEncodeMs": 51.19511194061488,
+          "sourceToPNGMs": 130.53507800213993,
+          "exitCode": 0
+        }
+      ]
+    }
+  ],
+  "policy": "Same page count/dimensions, ink IoU >= .99, max boundary displacement <= 1 pixel at 96dpi. Exact RGB equality and unregistered differences are recorded separately. No alignment, crop or page exclusions.",
+  "backend": "swiftshader",
+  "coldBrowserReadyMs": 1924.5083329999998,
+  "scope": "Forced software WebGPU. Independent layout from original TeX; reference PDFs are comparison targets and never runtime inputs. CPU PDF compile and GPU render timings measure different output stages. Pixel comparisons use a separate untimed GPU readback, without CSS screenshot resampling.",
+  "engine": "pdfTeX 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian)",
+  "rasterizer": "pdftoppm version 26.01.0"
+}

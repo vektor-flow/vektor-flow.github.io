@@ -373,8 +373,8 @@
     },
     {
       "path": "previews/gpu-math-typing/README.md",
-      "bytes": 8043,
-      "sha256": "939bd5dcdafd2c0943945a77c832aeaaba9968d40a856ccf6985422142421ee0"
+      "bytes": 8820,
+      "sha256": "627c91890f6134a043a1323aa87b36e5fd2b3157f3387afcbb7f18a08f8b7436"
     },
     {
       "path": "previews/gpu-math-typing/SIUNITX-NOTICES.txt",
@@ -383,8 +383,8 @@
     },
     {
       "path": "previews/gpu-math-typing/atlas.rgba.gz",
-      "bytes": 19104869,
-      "sha256": "a4ee09b88a164100e9c6e9aae98b878515f906fc2aa49c33cb463e6027b8be4a"
+      "bytes": 20426169,
+      "sha256": "b001a6bee13af33789335d34269c9206faf1d6b3ae83a546fcb094261508ff95"
     },
     {
       "path": "previews/gpu-math-typing/bbold-source.zip",
@@ -403,18 +403,778 @@
     },
     {
       "path": "previews/gpu-math-typing/demo.mjs",
-      "bytes": 17594,
-      "sha256": "6e25c8b53074f29e13ae03fd5e01acd08b76adee13fd84df7c17dad3125c9955"
+      "bytes": 17907,
+      "sha256": "af72608ed3315c415eabf2a82465d7ec0c92e2344fb8b017887046b904a34d64"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/DOCUMENT-SOURCE-NOTICES.txt",
+      "bytes": 787,
+      "sha256": "58b755d710adb6aa074b6ebf8422896643a1db589093d09d14179dffb172430d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/LPPL-1.3c.txt",
+      "bytes": 19102,
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/difference-01.png",
+      "bytes": 10483,
+      "sha256": "09952be70e86609ca1b4df8acac4ba503ed639210146ed1cc02f9515b0cb2b15"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/native-01.png",
+      "bytes": 21217,
+      "sha256": "d06ced63a53515db1904c686069f56a655a20187b162a58bd44ad379366e2b6b"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/plot.png",
+      "bytes": 1512,
+      "sha256": "b2ea42cd4b8d92d31787fe0c4258360fc1aa2c0fc755dcea5f57654fc558a03f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/reference-01.png",
+      "bytes": 17975,
+      "sha256": "ec1008b35a67a67d74804ca0ec0e8580afe7c280b8cf44087673cbea32334dd5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/reference.pdf",
+      "bytes": 43609,
+      "sha256": "7e8ac027f754629bf9ef1b03d63814d885975582ca17b13da3512802c09ac551"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/figure-fixture/source.tex",
+      "bytes": 387,
+      "sha256": "44f66097c1b98def2e23f825fce6533f262d2be06a6a79d0cc822c0d02624456"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/index.html",
+      "bytes": 4454,
+      "sha256": "b5badc654663aeec421876e4834efae2c65faec4d196d7f896be19a6887ec520"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/report.json",
+      "bytes": 41184,
+      "sha256": "cec7cf42c4131886982337da74dd96d60519af5632f323192e0dfe36d7e77d88"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/difference-01.png",
+      "bytes": 58692,
+      "sha256": "55d88d020831f1237c0c338165a0e01ffda14149cba194d33c185be015b1f65b"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/difference-02.png",
+      "bytes": 54840,
+      "sha256": "5a511002342db9544d88dc5fce3477a8b55b4a16605d74ccc965582929b7fa8f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/difference-03.png",
+      "bytes": 12068,
+      "sha256": "87e1b2a8dc313faccca5bcb0bdc165142ef84e423e6827b17ea06e0f90c9e494"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/native-01.png",
+      "bytes": 168458,
+      "sha256": "236d7d141afa00bff96b6d87bfa6a7d0588456a7f3c7cd5a1439d16ecfc04c83"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/native-02.png",
+      "bytes": 179356,
+      "sha256": "d9fa5bca346e96e022dc9bc759b3dc44490b74e82bb6465499fa9b3db48df597"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/native-03.png",
+      "bytes": 13284,
+      "sha256": "30231109a7678ecf1e6fbe96778000b9f514771f5e3eddc7dc9f2832e8dcab21"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/reference-01.png",
+      "bytes": 145909,
+      "sha256": "d928747f6d0640576f664b0359f51721308f14ca7c5eb1ca48b9cde97d93d5f9"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/reference-02.png",
+      "bytes": 127769,
+      "sha256": "451054933cc32cd6fa5326295c47e2aace0730ca4925105f986aae40030febe3"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/reference-03.png",
+      "bytes": 37845,
+      "sha256": "18ab05b22af14955e43e2087b18ef3a7eeb2f37517521fb149c56417f4c47eb7"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/reference.pdf",
+      "bytes": 147650,
+      "sha256": "c9eceb8072de55e70906b8955d4629b4fd26b8d856d39049cd51a89ab04db09f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/sample2e/source.tex",
+      "bytes": 7200,
+      "sha256": "f135855f870c31f1101001bdb75b11e94a23c2605f7ab5dffa1299d53b1977cc"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/small2e/difference-01.png",
+      "bytes": 26826,
+      "sha256": "026f4c0ef6bda01e479c9d9733acbfaae7c61f60d4f403746665daa3fc43bffe"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/small2e/native-01.png",
+      "bytes": 77878,
+      "sha256": "14f5c30c7b915fd41027f6bcd3d551c2708bafd4f1978cfddbb2f0df4c9921db"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/small2e/reference-01.png",
+      "bytes": 69425,
+      "sha256": "4813c3cf8d1af2067055008c352040d3a63afb08e5be98d721e7d69bf24f54a4"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/small2e/reference.pdf",
+      "bytes": 65079,
+      "sha256": "6b6c8ec427239f0091383f1019afd15f224ccc69e99e6af811413b5b188d8a5a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/small2e/source.tex",
+      "bytes": 1694,
+      "sha256": "6995024e85f537d32eef704a81d7f53b84aa06cb23361559d3fea3b6c5653627"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-01.png",
+      "bytes": 44337,
+      "sha256": "5f2d0c98622e461458fc9800aa7675e8e8c08666674229413ace4ddb1a8d65a8"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-02.png",
+      "bytes": 58532,
+      "sha256": "9adc1532aaf7b56bfdad4bcac7065afaa4f5b202d085d03685543d29272c6b72"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-03.png",
+      "bytes": 39450,
+      "sha256": "58c6af0df1e5a9d29f882205cca4de692759eb67393f593959d3cc03ec4035a5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-04.png",
+      "bytes": 38985,
+      "sha256": "1d7838b14b49a9b0967e988a3c4de2ed50f12d1e650a6b462834fcc83f036de5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-05.png",
+      "bytes": 35665,
+      "sha256": "418ab28598598abc2e15b34e312abae0e6250809b480c77ce10b292b907bc41e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-06.png",
+      "bytes": 58715,
+      "sha256": "7547e90bf6364ff78df313d45c89f673a5a0c44136250902b6dc52da83101640"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-07.png",
+      "bytes": 44388,
+      "sha256": "0aa4026b9b52e156a9ebeb177d77658348a16eb2d8ecc9b7de4f909d593c9bac"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-08.png",
+      "bytes": 51570,
+      "sha256": "8081be0c02a9ea932d6c79a237e07e362a9ac43e81b0e04f42b646f180ae9973"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-09.png",
+      "bytes": 37040,
+      "sha256": "ddb4d395e4095f3a4c1808c3724590f36634b66e38b45900511dcafd66f69209"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-10.png",
+      "bytes": 25574,
+      "sha256": "d87582fb9c7f19c16cca3382fedbf2c7c5fb06f7137d897b32198d5226fc551f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-11.png",
+      "bytes": 60001,
+      "sha256": "ae6642d049b13d288f33c111a6efe5ee24e0187323e17d8c61c0351f80623a7e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-12.png",
+      "bytes": 42458,
+      "sha256": "104b8e7664475637a09c9d88e97c471c959749d9a1074c27081b88aa41901dd0"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-13.png",
+      "bytes": 50963,
+      "sha256": "db040d46a8df42b0db058aa73e19fbe7b1a0f0c51652c10d95e877a6ed47272a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-14.png",
+      "bytes": 44755,
+      "sha256": "4693f46096e9b89ecdcc6140fee0fc88d3e6a7fa998c9899cc7ddbfaec12b797"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-15.png",
+      "bytes": 44182,
+      "sha256": "eaffb37119cfc9f58184db6e235a433aff93788c1d458284429c690e0a14cf45"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-16.png",
+      "bytes": 38134,
+      "sha256": "d095f0f2f247e840a1a54f0dbf5fa736d5e2674e4fc1f0ede03e3f5f5843c49e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-17.png",
+      "bytes": 41340,
+      "sha256": "484c2cdcceb599b621a4e62fcbb3b5bafaa34d2b55a3efa99192db8ee3841868"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-18.png",
+      "bytes": 43986,
+      "sha256": "01df36595e9126894875993997fc6b3bbc7da380d0cde4cd5c844110e237dcbb"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-19.png",
+      "bytes": 39245,
+      "sha256": "ca342b062866e46fe8efcf3623c951819bdde501238a447d2e4b6d641fa60cda"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-20.png",
+      "bytes": 40230,
+      "sha256": "7b4926a9fcd215dbd1484032068758f7a6f5797efbf91c163210480433a9779d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-21.png",
+      "bytes": 37473,
+      "sha256": "63117d0e37437d33e37864b83f4aa79cfd40dffaff31d64a61baaf28a2d5f584"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-22.png",
+      "bytes": 44224,
+      "sha256": "0430fdd9678dae560acfac0ddb2be8d35a78896e4624a186d64048886fd93696"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-23.png",
+      "bytes": 42090,
+      "sha256": "094dd35f4cf61fa843b63e9c94b92ffc42da516b6471ed170b81378f9a0b9320"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-24.png",
+      "bytes": 45875,
+      "sha256": "73d3b7f518df501b45ce4ed8384a65a7673a86165089f23b54107352d2083bc2"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-25.png",
+      "bytes": 42870,
+      "sha256": "c40f184b75383841c3b3d105fbe1bd9bfc4452c181cdbad2a925611480075a19"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-26.png",
+      "bytes": 28427,
+      "sha256": "d21dfdab4e6d0c45fa6edfdebf7a5a4670c8261850d0bffbaa5960239f0e4472"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-27.png",
+      "bytes": 43430,
+      "sha256": "0b8d13d1884fca4492fcb4a836e1cbdd61d113b739d5fb91c915c9ec07979584"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-28.png",
+      "bytes": 20980,
+      "sha256": "8f61fe68bd3163e0b25cc81b71ebff17c8e8a6e8a3f8b3819a180b8979e9465c"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-29.png",
+      "bytes": 34174,
+      "sha256": "0c6295d698a607a3de8cc2bd28291727a402d1aaae2a86d446f7b6bb1ca32135"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-30.png",
+      "bytes": 35763,
+      "sha256": "6232edb0861d74732e8aab0e3e4c83d5c90fe13cda38428963f3ce40071316ac"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-31.png",
+      "bytes": 23445,
+      "sha256": "60bf33d9b027dc05ec044b4af8203016dba424bfac9aa07c3c6f30ba33a787a0"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-32.png",
+      "bytes": 40818,
+      "sha256": "0590f9abb3bd15427b8b66f1a5caf4981f7dcd604498ba807bd44185bd5e85e5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-33.png",
+      "bytes": 43462,
+      "sha256": "550489c9fa4de1032cf840134efa2657883e6c6d393664e6b6087ff2d6b3cba6"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-34.png",
+      "bytes": 32545,
+      "sha256": "3a0dd7f332376d67309266866cceca43e187ecab73c5a3791987bbbde789755f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-35.png",
+      "bytes": 36859,
+      "sha256": "0fd52b649ddf5c822326ddd90362ac840ab34a571a91ae8d2ec2be4a51fc864e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-36.png",
+      "bytes": 37469,
+      "sha256": "0a5539e7ec91fe28f263d6313204c9f57258a1c2de60a1c2bfdafbc3336806f4"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-37.png",
+      "bytes": 37353,
+      "sha256": "a6ac5a095ffcb3eedaa41fd7c05d15bd3d22ffe8c7627097e527115eccc8b126"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-38.png",
+      "bytes": 14748,
+      "sha256": "6c38a6c8fce45b1ec210804ca8a758a4ab186bdb773c9d589e2c64b6f64a9d41"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-39.png",
+      "bytes": 17421,
+      "sha256": "4ffe92074e8c94210f2f89afc8c4290683710b8cc5b073f696c51a799ee06f5d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/difference-40.png",
+      "bytes": 46404,
+      "sha256": "473a695c846a0857f2b7a8bdbcf852988334a2d5644ff68c112aeabe39896d3f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-01.png",
+      "bytes": 123587,
+      "sha256": "d3b2d04f3471e5bdfb402a90896cc930b1900c2fefe6effa0ef6fffe9b41149d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-02.png",
+      "bytes": 168949,
+      "sha256": "31f2592aa8bc36fe391cc7f0549ec8b3c8b6415e9f2528566baa25ca3bf7d3f8"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-03.png",
+      "bytes": 98252,
+      "sha256": "2d16ff068978644eeaf50c2238e7ea7ab6f80e34c8bb8efb9852a3a290afc1d2"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-04.png",
+      "bytes": 86009,
+      "sha256": "6e919cf18e632749ce4226b3b2dc43e72a16f6b14fc15168e5614c24ec0509bd"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-05.png",
+      "bytes": 67483,
+      "sha256": "7adbcddcb72975c6598f4ba63c06764d4a7ab8972ef3fc451ffdef8abbd86a33"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-06.png",
+      "bytes": 183646,
+      "sha256": "98c770bb35e758dc402cdaa131f9755481b17a02a52764519a063e721aed060f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-07.png",
+      "bytes": 77237,
+      "sha256": "3c07c6dd1d3606ee79d96cf9659f4235663e7d6676ad86bd87ae668bff87ff88"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-08.png",
+      "bytes": 176778,
+      "sha256": "2a46e528e48950ff9582c35c46a2a1a69b3a0880f8ff6f2f4730c91e728e2120"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-09.png",
+      "bytes": 76340,
+      "sha256": "244802e37866828e9d625676d99d66f846420e523af66c739c9e6f748f54a455"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-10.png",
+      "bytes": 123871,
+      "sha256": "1a06d53fbc94584adb16323f9921ab153c26ec09d979957c71e63e659b80c981"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-11.png",
+      "bytes": 152868,
+      "sha256": "cf4252589e432258c3e33b0ce3b0b3c216fabd664f328f38e5d7206533705af8"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-12.png",
+      "bytes": 99515,
+      "sha256": "96126abd90f06e28d74f66b031a445b4b9e9f1f5879d1dc06b7e839a54a5c969"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-13.png",
+      "bytes": 152543,
+      "sha256": "3460c8acf59d2dd0bfd05cbe31e72b51d6f426adae71e45d20e51ca90a03602e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-14.png",
+      "bytes": 123284,
+      "sha256": "71cb76594c6e5be825a079e9bd664e020518bf169f6035e8be8b547f2e5981a5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-15.png",
+      "bytes": 113755,
+      "sha256": "cbf683c8b9e30cd0058bec969142f216f0809462b8b917073c3f2ba81f55c15d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-16.png",
+      "bytes": 102661,
+      "sha256": "a883f07060ea76a3ccae27b7bd83f26b08bda997578d38c3cbeae7e12ccc8538"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-17.png",
+      "bytes": 98207,
+      "sha256": "a10efa4f4f68c92f35b8baaa0d54bec7356d01a7d9d958e671a389f6efc2a7b2"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-18.png",
+      "bytes": 118389,
+      "sha256": "2541a183f86420cff56a6496a90e884f5f4c02e73ead7cf0627fbedd6b8dcccf"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-19.png",
+      "bytes": 84889,
+      "sha256": "09f73d33a46b2302a38cb7001f17ea168fdd7aa48d85e3c936b08ae26373c2c0"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-20.png",
+      "bytes": 107058,
+      "sha256": "70f32b28540358e0f46a25d3842715c0f6b0654530992cbf659a3810b656564b"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-21.png",
+      "bytes": 96808,
+      "sha256": "f4e535948eca9667a98505c6a97f8e6d3da4c0d4584695e0d992c3b5a76b10ad"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-22.png",
+      "bytes": 116899,
+      "sha256": "fb5a72c95b9f81aa0332539c19fa2f3ef3ccc7a1a8ef8a576edcbcaf639ffa65"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-23.png",
+      "bytes": 115527,
+      "sha256": "718680a5b2bc3159e7f2d267fae679c16b80d04da7017794cd04566d2558bdc7"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-24.png",
+      "bytes": 145020,
+      "sha256": "fc450b73af7d83359ffe3ab13a0e2de50a7068ae13b47c6b68e58d1980938132"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-25.png",
+      "bytes": 119495,
+      "sha256": "e67bc7393108f92989b26c327332a52b26908c40f90efd6e1097f787804b12e3"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-26.png",
+      "bytes": 39122,
+      "sha256": "5b877ba5f57d476713951bfc96b6537723b2819c6691ab8058eb8ca6251e93a0"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-27.png",
+      "bytes": 111944,
+      "sha256": "ba17016e62f2d6c13c53e05cc0e73b50f1eac869786418ee5d8790373e0f982c"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-28.png",
+      "bytes": 52797,
+      "sha256": "a77513c80620eb3c4ea709ec9f3c297a366c69cd1d0411085563a131332bad95"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-29.png",
+      "bytes": 39239,
+      "sha256": "9f6505cf16c35426430c3720e5c29f41f866c606b73926c9ba5b2c710a0bf00a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-30.png",
+      "bytes": 71392,
+      "sha256": "106c9867dcee83b8a6f82d685dd177bfebc58c59381a24aac20c80274518df20"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-31.png",
+      "bytes": 72188,
+      "sha256": "4844177163e5be9101ab6359a34e2f3c53aae746ebaf530b04a172524ea7d469"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-32.png",
+      "bytes": 74887,
+      "sha256": "ef162c5798186c7cd424220da9374724d8b9a8e61be53a1540f26adc0b5d8cee"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-33.png",
+      "bytes": 86446,
+      "sha256": "4106e2dadb0dad74879852d718def23a6461e5803764483f6e427c9ce2eb115b"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-34.png",
+      "bytes": 66563,
+      "sha256": "dfc48b913b087eb81792f8ee3730bec46902c707f044e0905022817a647c490b"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-35.png",
+      "bytes": 76788,
+      "sha256": "e1b3f6613a2db7dde6efd837c2497a24c1417921c80f6146c02c1366fa11cd0c"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-36.png",
+      "bytes": 88336,
+      "sha256": "05f15ff3fef0abfef46a98f840d26419cb85c26d56ed0f770adb6f9793dd765d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-37.png",
+      "bytes": 79423,
+      "sha256": "666c54438c5f5056728f0bfcd2ad1feb4b0df09d298529848f75c7c55a5c7181"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-38.png",
+      "bytes": 43728,
+      "sha256": "434225e4f103474072d7e478562c90fcf1e1697d90500187c3c59208fa5b0e74"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-39.png",
+      "bytes": 6631,
+      "sha256": "1350c809cd04e547a91a0a339e97fe4ece498b89b3278d783efe76a1196c312f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/native-40.png",
+      "bytes": 217301,
+      "sha256": "b1a24273cc134c8be3fa3846617389559c0e4d91cbc00e1234a22da2c1e45792"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-01.png",
+      "bytes": 106706,
+      "sha256": "95833a06baa646d9748b8b53cca989602c37847588e695688118522152eedbe5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-02.png",
+      "bytes": 138760,
+      "sha256": "ead79cd2fa1d2a67a394cdca0cd427721638fd36f3eaecabe45f39ed8b19ffda"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-03.png",
+      "bytes": 100267,
+      "sha256": "e11f4fac6b2303058ebd3479efe64082ee34eeede1adf9a805e787e69cf76f50"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-04.png",
+      "bytes": 99364,
+      "sha256": "c4cfbc8fe27378e69ef555f29daa3617515fcc84dfa09d18bb15c1fe92106550"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-05.png",
+      "bytes": 106491,
+      "sha256": "b37324b0c1c5f5f6d82ffd70cb551f7cd9da5672741e2fe0e3dfe7c4b693c609"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-06.png",
+      "bytes": 149964,
+      "sha256": "8530085df157c52ebac12831390064fa956d3cb4bd9b1a384ba47bb653c6aec9"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-07.png",
+      "bytes": 157103,
+      "sha256": "efb06239458906e25239deaf68e659453614648b8eae6955dcbe14c454953d8a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-08.png",
+      "bytes": 93034,
+      "sha256": "985ad953361cf3b3a88319aaefe6700863816af2aeb350cb6f8f6dbc9be0e943"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-09.png",
+      "bytes": 112528,
+      "sha256": "0f0b7442a3d8d0257d203ac52596bf7c072f9abf295b56ffe76511b4fd71c72f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-10.png",
+      "bytes": 15963,
+      "sha256": "0a9a45af5d55b7899df2b0c6e923c65f90271405fe34d6bc8dc363cc80321c5e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-11.png",
+      "bytes": 168293,
+      "sha256": "40b4f2caab20f3cc0c303ce539823fc4fc33fc962e4286c89d8980efd480a709"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-12.png",
+      "bytes": 119263,
+      "sha256": "d864be7844e6cbe57485235e32ff550d06c623378dfa3e2476de4cdffec1b09d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-13.png",
+      "bytes": 115364,
+      "sha256": "6d5bc6726d6fe6a3c42e39b73b31b678bfa3773a321ee2393feca5343f45fc9c"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-14.png",
+      "bytes": 100036,
+      "sha256": "04f971f0c6a79851f6eed933b6d65225d287858394f4000dce17405aa9ad3853"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-15.png",
+      "bytes": 98608,
+      "sha256": "ede427138b805d0a7f884d852c79c4ff3da3aee644f1923434e76949edea2073"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-16.png",
+      "bytes": 78718,
+      "sha256": "f58fe71090bf4cfe7dc57a5d89e6bb454550b4af1dc4a8c8b39dfb3aa4be440a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-17.png",
+      "bytes": 113765,
+      "sha256": "4095410cdad8016573ec46dfc71fe32095e484d25614a66cdcf43daa06e11adf"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-18.png",
+      "bytes": 117759,
+      "sha256": "c2f894b482a7018a23fd072d706b9f3213e4299529ab62c004ada5515857b2f8"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-19.png",
+      "bytes": 111857,
+      "sha256": "93a5444e65598dbc15fc1996103e57ae078e67fcd872be3d97cf90cf52e251f2"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-20.png",
+      "bytes": 110778,
+      "sha256": "b085fd602dd0a307ba17c9080854413baec384a7404bede9531725cbd6e8f29d"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-21.png",
+      "bytes": 100410,
+      "sha256": "270f6b748d852f505f3b5613a3395260a6a2f9846418eb5d8ce6378dbb803c19"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-22.png",
+      "bytes": 116281,
+      "sha256": "07f30cef8eb1859494ec275bed9f8c51240ebe9b8603c3e69c24a39015620cb3"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-23.png",
+      "bytes": 94349,
+      "sha256": "74162b2ce481954bc1b66c38c67a36a576291614ba3a5007cc68e67c4ccc4e0f"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-24.png",
+      "bytes": 94484,
+      "sha256": "d850bd985dcf131ef32716c2886c4559c283735ddb7b1ddaed2038aadf44f018"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-25.png",
+      "bytes": 101731,
+      "sha256": "807eec8f96e5f496f9166600f2f1b5f8d7e19e040469ae6c0a56dcf18d277a26"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-26.png",
+      "bytes": 103241,
+      "sha256": "e5a05c55604ae12c884f739bd27c5c264a573bbd7cc1232eb9cca325142e7149"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-27.png",
+      "bytes": 110927,
+      "sha256": "4f9e5a5d5771dbe92b8d9ab537e9358274c37b3262ed623fc856c21b22869dcc"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-28.png",
+      "bytes": 41967,
+      "sha256": "404732aa5ea12e636baab743fb7c401027b87c1c02dca98dc922976ca41bdbf1"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-29.png",
+      "bytes": 136740,
+      "sha256": "a1dbeb2ec3eb2b9f4a23ff5788bfc0f58f7682474d6558548221c59446768524"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-30.png",
+      "bytes": 92731,
+      "sha256": "72844fbcda29c19ee55c89b17e08a35e47341b5d20d7e9353709fb9b6c28c230"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-31.png",
+      "bytes": 37481,
+      "sha256": "98da34083124e41fe6fd2a86503bc330a89865f86f9f3daf8edfbbd276f84819"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-32.png",
+      "bytes": 121750,
+      "sha256": "b0855f22ddb03033f7ab681ad3d45ccdd558e9427cea710e9a1176e5c2b71765"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-33.png",
+      "bytes": 124198,
+      "sha256": "0ef7f6fc1c8e83e1e53025f4ed483345127ccb2abedf25c86f7b59f75308fe7a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-34.png",
+      "bytes": 81872,
+      "sha256": "e392ee7d78593190f172887b086ffa26b660910460b8333784ef8c06fae50510"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-35.png",
+      "bytes": 94318,
+      "sha256": "d81d19780f17193d8ef20a62bfc22edda75eb6a5ace0b070646584fd1a548633"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-36.png",
+      "bytes": 97942,
+      "sha256": "a2c846412e7c53f026e7323333f40586d8bce2f5db4702fc804fca6855b51d14"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-37.png",
+      "bytes": 105560,
+      "sha256": "bd4dc422d6db06cd6af3bbbc3c37ae00b2ae1c20a940cdd4588027adb43d2a22"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-38.png",
+      "bytes": 15715,
+      "sha256": "b6b33c7bc87a81e6826ba22d99a5376b85bff11b085daa9406c4ee9d7d564de3"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-39.png",
+      "bytes": 71960,
+      "sha256": "2045673e15d6cd7d9e55946775bcc300a0a0971c3f1b83c44c158f081a800876"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-40.png",
+      "bytes": 39679,
+      "sha256": "02f279d99a95fa06d8f6ac7f68d18534d9998afff57c1beacba3838a721d737a"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference-41.png",
+      "bytes": 178127,
+      "sha256": "1c3122edcd6a1a19f95ee6045f31618b6f4e14262c1a428e2371e2bb5d9ac83e"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/reference.pdf",
+      "bytes": 445296,
+      "sha256": "cce273bdbd8b984837be85444b361dd03b2ea39209c55820e3cbefb57a18a0ca"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-checks/testmath/source.tex",
+      "bytes": 81184,
+      "sha256": "9b311f1835266833ad40130e7a7a6361a950c965d308c02d567361e72ce74aa5"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-demo.mjs",
+      "bytes": 8488,
+      "sha256": "cde8300f6b19db3e45de75d8528d068f3ea7adbabf1de5458df1ed8d0f4358bd"
+    },
+    {
+      "path": "previews/gpu-math-typing/document-layout.mjs",
+      "bytes": 15694,
+      "sha256": "ea95a2b0dd2593dc1ab7971a29c2926d49ac3e05c11d8bd5488ba03f1c450625"
+    },
+    {
+      "path": "previews/gpu-math-typing/document.html",
+      "bytes": 2488,
+      "sha256": "af64890d9d998b486d19373f1a1087bb96bf51ab70fd7e36ebf7d519ed4abd76"
     },
     {
       "path": "previews/gpu-math-typing/draft-parser.mjs",
-      "bytes": 10398,
-      "sha256": "63fdccd0382b50086b67a2cb9a2e2840d5c495bb46881c0a29f8943587678cb7"
+      "bytes": 14590,
+      "sha256": "9a02e44e985784ddb12914d5bd06ca08d9034d9cb34ba908290170230d2e7e3b"
     },
     {
       "path": "previews/gpu-math-typing/draw.wgsl",
-      "bytes": 1350,
-      "sha256": "16bcc5bd6be81c7bc333517be253697ce0f1fde123e0232169df2845c6a5a6a9"
+      "bytes": 1472,
+      "sha256": "22c4d2ba8c04aeb2a55653744cad3ed69ab3d6d97981f2e6e6c5072b5e0e24fd"
     },
     {
       "path": "previews/gpu-math-typing/ec-source.zip",
@@ -433,8 +1193,63 @@
     },
     {
       "path": "previews/gpu-math-typing/index.html",
-      "bytes": 9793,
-      "sha256": "0962aef1ee0ddf7996874b80353f651eb2d17f8c74197868339384ad1f836ce6"
+      "bytes": 10007,
+      "sha256": "f2662268e15f7b2ffd66f46f658cbcb00ee21be226436593d19a54d52b14caeb"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/README.md",
+      "bytes": 2624,
+      "sha256": "bbb0ff9c02752c51a63044b4bd844fe73a7b2de38259bc518ccfa1c819050c4e"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/classes/article.mjs",
+      "bytes": 748,
+      "sha256": "4e49cc2048a098fe7e816208fa6c83baa604c00e768eb3813d51380500892115"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/amsfonts.mjs",
+      "bytes": 107,
+      "sha256": "cd1961cfb423a13672fc869e374fd446633981db0c61a527c7d03637ece0e485"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/amsmath.mjs",
+      "bytes": 1844,
+      "sha256": "87fb96305d55442c559dc28a3f2255d2409c9396aa7ca56cafa5c69479281774"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/amssymb.mjs",
+      "bytes": 85,
+      "sha256": "77423d80f53718e806cbd01fcbc48e2e08f9cc7887788e94194317ce9a5d0622"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/geometry.mjs",
+      "bytes": 271,
+      "sha256": "f9707caf45573da96b6659dbccdc195fafbc93a42f2f078ece9b226e93d75457"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/graphicx.mjs",
+      "bytes": 613,
+      "sha256": "0566109f0a46f77d9f813a221bd88906ab2edd585e77a52fe8790c470e73468f"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/mathrsfs.mjs",
+      "bytes": 97,
+      "sha256": "d5821c2bee0d7d246746caa6145fd2ee00921337bc2a29ef0ea66735e880fe51"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/siunitx.mjs",
+      "bytes": 121,
+      "sha256": "3c7a726bb3c0a76dd9ab0a1b19e74e860360cf2b4885a434f498b9df69a1a587"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/packages/xcolor.mjs",
+      "bytes": 105,
+      "sha256": "744fe700eb322306c57e28630d21547b5f3ef5cb9f9dabbef4ce6e8f79b3daef"
+    },
+    {
+      "path": "previews/gpu-math-typing/latex-modules/registry.mjs",
+      "bytes": 2706,
+      "sha256": "c3e2524e3fcf360530dedda707e57cfc61a0abdd3031ed251a5aecc249bb72b8"
     },
     {
       "path": "previews/gpu-math-typing/mathrsfs-source.zip",
@@ -458,8 +1273,8 @@
     },
     {
       "path": "previews/gpu-math-typing/text-flow.mjs",
-      "bytes": 4970,
-      "sha256": "48048f9e1719de9f39dfa0fca75e02ee9cb4b48d06f1cf73fc6cb7d397cfef01"
+      "bytes": 6484,
+      "sha256": "c8fb1c7d2dde0a9ad3306e2de4eed8ff4e9210ce6b1e358ea0bf6cc909b781c7"
     },
     {
       "path": "previews/gpu-math-typing/transitions.mjs",
@@ -468,13 +1283,13 @@
     },
     {
       "path": "previews/gpu-math-typing/typing-data.json",
-      "bytes": 2820765,
-      "sha256": "b5781cc6797202ef287e45acb25b912a209db811049a52c928b8b6433d6461f7"
+      "bytes": 3263140,
+      "sha256": "948009dcf4fea95f3906ec4c51128c9cd55ae60240114c843f8a2a3a4dfe08ba"
     },
     {
       "path": "previews/gpu-math-typing/typing-layout.mjs",
-      "bytes": 18213,
-      "sha256": "03c7ff03ff544672fd4273a200775c75e335229ec83789c13f045ea95365eaf1"
+      "bytes": 29337,
+      "sha256": "b7943952890b55505f3c6ed40a27d2cafbde25bc9400d3ce357566fab7f6da02"
     },
     {
       "path": "previews/gpu-math-typing/units.mjs",
@@ -1232,5 +2047,5 @@
       "sha256": "2b4cced92cb9595df9609d86293059e5dfc2957a658df66d44d406585f5d8737"
     }
   ],
-  "totalBytes": 57119337
+  "totalBytes": 70635741
 }

@@ -1,0 +1,13 @@
+\documentclass{article}
+\usepackage{amsmath,graphicx}
+\begin{document}
+A figure and an equation use the same document flow.
+\begin{equation}\sqrt{x}+\binom{n}{k}=1\label{eq:one}\end{equation}
+\begin{figure}[h]
+\centering
+\includegraphics[width=180bp]{plot.png}
+\caption{An embedded image}
+\label{fig:one}
+\end{figure}
+See Figure \ref{fig:one} and Equation \eqref{eq:one}.
+\end{document}

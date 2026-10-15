@@ -37,11 +37,11 @@ locale profiles, lists/ranges, custom unit declarations and the full siunitx
 option surface are not implemented. units.mjs is independent of the package.
 The development oracle uses unmodified siunitx 3.6.4 (2026-10-12).
 
-Array rules/options, optional row spacing, arbitrary packages/macros, radicals,
-general document layout and full TeX compatibility are not implemented.
+Arbitrary packages/macros and full TeX document compatibility are not implemented.
+See the extended math/document notes below for newly supported roots and arrays.
 
-Real LaTeX is used only during development. The browser loads 1,411 mapped symbols
-in display/text/script/scriptscript styles (5,644 keys, 3,315 distinct outlines),
+Real LaTeX is used only during development. The browser loads 1,541 mapped symbols
+in display/text/script/scriptscript styles (6,164 keys, 3,675 distinct outlines),
 using a 4096×8192 MTSDF atlas and one batched draw per edit. No LaTeX, KaTeX,
 font loading, DOM math or Canvas2D text runtime is used. Native VKF compiler
 integration is pending. Source is never evaluated as JavaScript or inserted as HTML.
@@ -117,16 +117,145 @@ Prepared assets include new AMS/Euler notices and the unmodified RSFS/BBOLD sour
 archives. The GPL mathrsfs adapter is used only by the development oracle; its
 source and GPLv2 text are supplied separately. It does not execute in the browser.
 
+## Equation transitions
 
-## Modular LaTeX rendering on 2026-10-15
+The owner rejected the following backend for the requested general visual
+morphology. Its compact UI can be retained, but symbol pairing/crossfades must be
+replaced with the shared solver. See
+[the VKF implementation handover](../VKF_MORPHOLOGY_HANDOVER.md).
 
-The math preview adds roots, binomials/generalized fractions, notation/box helpers,
-native extension pieces, formatted text, equation/align variants and array rules.
-The independent document preview is document.html; its class/package modules live
-in latex-modules/. A4 article flow, basic h figures, local GPU image textures and
-simple references are experimental. Full-document pixel acceptance is failing.
-See document-checks/ for original sources, reference PDFs, GPU pages, differences
-and separately measured timings. This is not a release of the VKF compiler.
 
-Source checkpoint: eefd317 in vektor-flow/libraries, branch codex/gpu-math-20261014.
-The report covers all46 reference pages; the independent renderer produces45.
+Use the **Equations** tab, type or select examples independently for
+A and B, and press **Transform A → B**. Duration, swap and a scrub slider are
+provided. Matching atlas glyph regions are paired once by nearest position,
+then their rectangles and ink interpolate with quintic easing. Different outlines
+crossfade, retaining their own atlas coordinates. This is visual matching rather
+than semantic algebra, contour morphing, or the other chat's merge/split solver.
+Layouts are prepared once per transition; each animation frame uploads a bounded
+instance packet and draws it on the existing WebGPU canvas. The CPU computes
+correspondence/interpolation; native VKF compiler integration remains pending.
+Editing either source or appearance cancels playback. Resizing preserves the
+paused progress, and reduced-motion users get an immediate endpoint transition.
+The combined packet is bounded by the existing 12,000-instance limit.
+
+Phone widths stack editors and controls, retain 16px editor text and at least44px
+button/swatch targets. Compact **Equations**, **Style** and **Examples** tabs keep controls near the
+canvas; notes are reduced to a closed help section. Phone viewport/software-browser checks do not certify
+physical iOS/Android WebGPU support or actual device latency.
+
+## Extended math and modular documents
+
+The 2026-10-15 renderer adds square/indexed roots, nested radicals, binom/dbinom/
+tbinom, genfrac with numeric rule dimensions, not overlays, pmod/pod/mod/bmod,
+operatorname*, boxed/fbox, phantom variants, smash options, mathstrut and numeric
+hspace/kern/mkern spacing. Text arguments support nested textbf/textit/textsf/
+texttt/emph, escaped characters, native kerning/ligatures and italic correction.
+Roots and tall delimiters use native font next-larger chains and extension pieces;
+the old cropped/stretch approximation has been replaced for supported delimiters.
+
+Equation/equation*, align/align*, split, gather/gather*, multline/multline* and
+gathered are recognized, alongside prior matrices/arrays. Numbered variants add
+tags, starred variants omit them; tag/tag*, notag/nonumber and optional row gaps
+are supported. Array clr specifications include vertical bars, hline and cline.
+Middle delimiters inherit their left/right scope size. Full TeX display layout
+and line placement remain subject to the independent document comparison.
+
+`document.html` accepts a whole .tex source and local image assets. It uses
+`document-layout.mjs` and separate class/package modules in `latex-modules/`.
+Article flow, basic section headings, inline/display math, page breaks, simple
+section/equation/figure references and includegraphics image boxes are available.
+PNG/JPEG/browser-decodable images draw as GPU textures in the same page pass as
+distance-field text. Upload assets with the names used in the source. PDF image
+assets, general float placement and complete document classes are not supported.
+Missing assets/imports emit diagnostics. Multi-row/custom-tag reference binding
+is explicitly incomplete. This is an experimental document preview, not a
+pixel-equivalent replacement for TeX document layout.
+
+Prepared fields now contain1541 symbols in four styles:6164 keys/3675 outlines.
+Height-sorted atlas packing retains4096×8192 RGBA8 (128MiB decoded); glyph roles
+include raw CM extension pieces. All existing font notices/source archives apply.
+Font space metrics and style-dependent rule thickness come from native TFM data.
+
+`fetch_document_corpus.py` downloads unmodified LaTeX project small2e/sample2e
+and AMS testmath sources with reviewed hashes. `benchmark_latex_documents.py`
+measures fresh-process PDF compilation and96dpi page rasterization separately.
+`benchmark_documents.mjs` renders original source independently in WebGPU and
+measures layout/queue completion. A separate untimed framebuffer readback supplies
+pixels without CSS screenshot scaling. `compare_document_pixels.py` compares all
+pages without registration/cropping and returns failure for incompatible output.
+`build_document_report.py` creates the source/PDF/GPU/difference browser report.
+Full-document acceptance is failing; successful formula fixtures do not override
+those page-level failures. Timing stages and actual software backend are explicit.
+
+## Accuracy and practical zoom — 2026-10-15
+
+The document renderer defaults to MTSDF at every zoom. Zoom1–64× and drag-to-pan
+use a fixed backing viewport and a camera, rather than enlarging a canvas bitmap.
+Fragment derivatives keep the antialias transition in device pixels. UI backing
+resolution follows CSS width and device pixel ratio; comparison captures explicitly
+request96dpi. DPR3 phone simulation verifies1098 backing pixels for366 CSS pixels,
+and a one-pixel transition on the tested H stems at1/4/16/64×. Curved g, Greek,
+integral and dollar fields have separate zoom captures. This is bounded software
+browser evidence, not infinite-resolution curve or physical-phone qualification.
+A finite atlas can eventually show contour approximation; analytic outline
+rendering remains the route to stronger unbounded-zoom guarantees.
+
+Two text-companion symbols previously inherited PK bitmap outlines. Their eight
+style keys now use six CM-Super vector outlines with the original TFM box/advance
+metrics. Original PDF references remain unchanged. The exact unmodified Type1
+programs, TS1 encoding, copyright, license and hashes are in `cm-super-source/`.
+Those font-data terms apply independently of the repository's code license.
+No global TeX font maps were changed during this work.
+
+Document text now has native optical fonts for article headings/titles/authors
+and footnotes, standard English TeX hyphenation data, paragraph demerits with
+stretch/shrink, and reconstruction of unbroken ligatures across discretionary
+hyphen positions. Explicit control-space handling, escaped-symbol space factors,
+italic corrections around font changes and text ellipsis kerns are corrected.
+Simple orphan/widow protection, theorem/proof flow, lists, quotations, verse,
+references/citations, bibliography entries and footnotes are experimental subsets.
+Author newcommand/renewcommand, aliases, optional arguments and simple conditionals
+expand within resource limits. Verbatim examples retain their literal contents.
+These additions do not establish full TeX page-building or arbitrary macro parity.
+
+Accuracy is reported without moving or registering pages:
+
+- Raw ink IoU and RGB errors remain visible. White background cannot inflate ink
+  overlap; ink is defined as mean RGB below178/255 for these black/blue fixtures.
+- A second measure reports ink within a one-pixel x/y neighbourhood. A99.5%
+  aggregate threshold is combined with local connected-component checks.
+- Native PDF font/glyph identities and baseline positions are matched one-to-one
+  on each original page. Missing, extra, unmeasured, moved and wrong-size glyphs
+  are counted separately. A good page average cannot hide a missing symbol.
+- Local-error maps and PDF/GPU/error close-ups show where the remaining error lies.
+  Connected components are glyph parts, not necessarily whole characters.
+
+`compare_document_pixels.py` now accepts `--mapping typing-demo/typing-data.json`
+and `--oracle-extras PATH`. `mutool` supplies independent PDF vector traces for
+`compare_document_geometry.py`; it is never a runtime dependency. The metadata's
+`glyphParts` come from the development DVI files, including composite symbols.
+All original reference pages and extra/missing GPU pages remain in the report.
+Full-document acceptance still fails, especially the AMS testmath source.
+
+`pdfPixels:true` is a separate96dpi calibration diagnostic: reusable Type1 glyph
+coverage masks, generated without any document/PDF input, approximate the native
+PDF rasterizer. It is opt-in, never the interactive zoom default, and automatically
+falls back to MTSDF beyond1×. It must not be used to claim distance-field pixel
+parity. The report provides separate views for both rendering paths.
+
+The development preparation sequence is `prepare_typing.py`, then
+`prepare_document_fonts.py`, `prepare_document_coverage.py`,
+`prepare_glyph_provenance.py` and `prepare_vector_textcomp.py`. Each stage takes a
+fresh output directory. The optional coverage stage requires freetype-py; glyph
+provenance consumes the existing oracle DVI files. Vector text-companion generation
+uses the supplied CM-Super Type1 programs and original native TFM files.
+
+`window.renderDocument(source,{zoom:16,pan:[x,y]})` uses DPR-aware MTSDF rendering.
+For reproducible comparisons use
+`{scale:96/72,black:true,capture:true,forceLayout:true}`. Timed corpus runs force a
+fresh layout on every trial; zoom/pan can reuse layout. GPU-completion times include
+layout and are measured separately from the untimed readback. Software timings do
+not establish the10ms target on a physical device.
+
+Published from libraries source9b44ef8. Frozen runtime hashes are recorded in
+document-checks/report.json. Full-document acceptance remains failing.

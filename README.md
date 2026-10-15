@@ -31,3 +31,6 @@ and crossfades; they are not a GPU morphology solver or performance benchmark.
 Full-document zoom grids cover all49 GPU/46 reference pages at1/2/4x
 (source a396b39). Original failures and affected-case image rescans remain
 separate; overall document acceptance still fails.
+
+Renderer UI source c0be0ab keeps pan/pinch/wheel inside a fixed document
+viewport, switches pages in place and removes report links from its controls.

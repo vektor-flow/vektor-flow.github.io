@@ -259,3 +259,21 @@ not establish the10ms target on a physical device.
 
 Published from libraries source9b44ef8. Frozen runtime hashes are recorded in
 document-checks/report.json. Full-document acceptance remains failing.
+
+## Phone document controls — 2026-10-15
+
+Render folds the source editor, uploads, zoom and diagnostic panels, dismisses
+text-field focus and returns the viewport to the preview. Edit reopens the
+preserved source; Cmd/Ctrl+Enter renders it too. On screens up to600px wide,
+Render fits the native content bounds into the canvas camera, removing wide
+paper margins from the initial view. The collapsed Zoom panel exposes Fit text,
+Fit page and the continuous zoom slider. No document reflow or glyph scaling
+metrics are changed; this is camera framing. File selection renders into the
+same preview. Failed initialization/rendering remains visible outside panels.
+
+verify_document_phone.mjs exercises320/390/430px portrait and844px landscape,
+preview placement, source reopening, uploads panel, zoom/reset and navigation
+on explicit software WebGPU. Simulated touch/DPR coverage does not qualify a
+physical phone browser or its on-screen keyboard.
+
+Phone UI source c5d64d5. The frozen document accuracy report retains its original runtime hashes.

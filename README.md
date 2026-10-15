@@ -27,3 +27,7 @@ makes no physical GPU performance claim. Do not reset or bypass GPU stop markers
 
 The existing GPU math typing transitions use CPU glyph matching/interpolation
 and crossfades; they are not a GPU morphology solver or performance benchmark.
+
+Full-document zoom grids cover all49 GPU/46 reference pages at1/2/4x
+(source a396b39). Original failures and affected-case image rescans remain
+separate; overall document acceptance still fails.

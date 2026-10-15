@@ -128,5 +128,5 @@ simple references are experimental. Full-document pixel acceptance is failing.
 See document-checks/ for original sources, reference PDFs, GPU pages, differences
 and separately measured timings. This is not a release of the VKF compiler.
 
-Source checkpoint: eefd317 in vektor-flow/vektor-flow, branch codex/gpu-math-20261014.
+Source checkpoint: eefd317 in vektor-flow/libraries, branch codex/gpu-math-20261014.
 The report covers all46 reference pages; the independent renderer produces45.

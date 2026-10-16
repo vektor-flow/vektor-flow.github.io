@@ -11,7 +11,7 @@ entries=[
 # Check inputs before changing the current publication.
 for _,_,_,relative,_,_ in entries:
  if not (a.artifacts/relative).is_file(): raise FileNotFoundError(relative)
-for relative in ['video/report.json','video/split-report.json']:
+for relative in ['video/split-report.json','endpoints/source.png','endpoints/target.png']:
  if not (a.artifacts/'morphology-object-images-20261016'/relative).is_file(): raise FileNotFoundError(relative)
 # Publication contains only current selected examples; stale media must disappear.
 keep={ident+suffix for ident,*_ in entries for suffix in ['.mp4','.jpg']}
@@ -42,17 +42,16 @@ with zipfile.ZipFile(root/'downloads/native-vkf-source.zip','w',zipfile.ZIP_DEFL
  z.writestr('README.txt','Experimental CPU-native VKF morphology sources. Qualified with native compiler 0.7.2. Image modules are previous qualified numerical references. The current material-image experiments use the separate Python source download; their experimental native port is not included here. Includes state interpolation, solid primitives and indexed scan mesh extraction.\n')
 experiment=a.artifacts/'morphology-object-images-20261016'
 quality=dict(status='Research review, not a completed general split/merge solver',
- controlled_split=json.loads((experiment/'video/split-report.json').read_text()),
- perception=json.loads((experiment/'perception.json').read_text()))
+ controlled_split=json.loads((experiment/'video/split-report.json').read_text()))
 (root/'downloads/material-experiments.json').write_text(json.dumps(quality,indent=2)+'\n')
 stale_report=root/'downloads/image-benchmark.json'
 if stale_report.exists():stale_report.unlink()
 with zipfile.ZipFile(root/'downloads/material-image-source.zip','w',zipfile.ZIP_DEFLATED) as z:
- for name in ['material_morph.py','object_morph.py','prepare_object_features.py','photo_mesh.py','photo_transport.py','image_transport.py','pixel_transport.py','render_material_review.py','render_material_split.py','test_material_morph.py','endpoint_transport.py','make_endpoint_fixture.py','test_endpoint_transport.py']:
+ for name in ['endpoint_transport.py','make_endpoint_fixture.py','render_material_split.py','test_endpoint_transport.py','image_transport.py','pixel_transport.py']:
   z.write(a.native_source.parent/name,name)
  z.write(a.native_source.parents[2]/'LICENSE','LICENSE')
  z.write(a.native_source/'THIRD_PARTY.txt','THIRD_PARTY.txt')
- z.writestr('README.txt','Experimental CPU image material transport. Object perception uses torchvision Mask R-CNN COCO_V1 and Meta DINOv2 ViT-S/14 on CPU; model weights are not bundled. DINOv2: https://github.com/facebookresearch/dinov2 (Apache-2.0 for standard DINOv2). Torchvision: https://github.com/pytorch/vision (BSD-3-Clause). Cat/dog automatic correspondence remains imperfect. The split/merge movie uses global balanced assignment between two supplied RGBA images. Masks are supplied; automatic photo segmentation and constant visible area are not established. Native VKF material rendering is still under qualification.\n')
+ z.writestr('README.txt','Endpoint transport r4 CPU reference. Requires Python, NumPy, SciPy, Pillow and ffmpeg. Run: python make_endpoint_fixture.py inputs, then python render_material_split.py inputs/source.png inputs/target.png output. Or supply two same-size uint8 RGBA PNGs with binary alpha. The solver infers global balanced assignment; it does not segment photographs. image_transport.py and pixel_transport.py supply colour conversion and timing helpers only; their older rendering classes are not used. Tests: python -m unittest test_endpoint_transport.py. Input sample limit 12000; memory is quadratic. No constant-area or native-VKF claim.\n')
 for r in records:
  if r['category']=='Images':
   r['algorithm']='endpoint-r4-experimental'

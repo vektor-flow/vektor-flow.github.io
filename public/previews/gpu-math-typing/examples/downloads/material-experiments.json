@@ -1946,48 +1946,5 @@
         "occupied_pixels": 4548
       }
     ]
-  },
-  "perception": {
-    "device": "cpu",
-    "torch": "2.14.1+cpu",
-    "dino_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
-    "detector": "torchvision Mask R-CNN ResNet50 FPN COCO_V1",
-    "descriptor": "DINOv2 ViT-S/14 LVD142M",
-    "weight_sha256": {
-      "dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
-      "maskrcnn_resnet50_fpn_coco-bf2d0c1e.pth": "bf2d0c1efbc936eeee2bc95a48e80ebc86b891f61b0106485937fc29f9315fc0"
-    },
-    "images": [
-      {
-        "image": "cat",
-        "objects": [
-          {
-            "label": "cat",
-            "score": 0.9953128099441528,
-            "box": [
-              1.4754180908203125,
-              0.3729972839355469,
-              384.0,
-              368.48736572265625
-            ]
-          }
-        ]
-      },
-      {
-        "image": "dog",
-        "objects": [
-          {
-            "label": "dog",
-            "score": 0.9984153509140015,
-            "box": [
-              10.342941284179688,
-              21.08884048461914,
-              374.9990234375,
-              382.4451904296875
-            ]
-          }
-        ]
-      }
-    ]
   }
 }

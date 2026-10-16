@@ -87,8 +87,10 @@ is recorded for later; it is not implemented or claimed by this publication.
 
 The owner rejected r4's literal cut into halves. That clip and its endpoint PNGs
 are removed. The gallery opens on the earlier native rounded lava-like two→five
-separation. The previous cat/dog experiment is restored and explicitly labelled
-as the previous version; its texture blending is not fixed by this rollback.
-The scan and three-state examples remain. New image work stays local until it
-passes visual review in motion; numerical tests alone are not acceptance.
-The rejected r4 preparation recipe is disabled to prevent accidental republication.
+separation. The cat/dog experiment now refines coarse semantic alignment with local optical
+flow and broader feature coverage. A before/after MP4 is downloadable. Fine-detail
+appearance still interpolates along material paths; complete automatic photo
+merge/separation is not claimed.
+The scan and three-state examples remain. Rejected blotchy contour and ink-density candidates remain local. The published
+image update preserves photographic detail; numerical tests alone are not acceptance.
+The preparation recipe now contains only the restored photo and existing 3D clips.

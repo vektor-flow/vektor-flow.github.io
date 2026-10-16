@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Logistic growth by separation of variables
+% Assumptions: r,K > 0 and 0 < P₀ < K; equilibrium solutions P = 0 and P = K are separate.
+% Start with logistic growth.
+\[
+P^{\prime}=rP\left(1-\frac{P}{K}\right)
+\]
+% Separate variables away from the equilibria.
+\[
+\frac{K\,dP}{P(K-P)}=r\,dt
+\]
+% Decompose into partial fractions.
+\[
+\left(\frac{1}{P}+\frac{1}{K-P}\right)dP=r\,dt
+\]
+% Integrate on 0 < P < K.
+\[
+\ln P-\ln(K-P)=rt+C
+\]
+% Exponentiate.
+\[
+\frac{P}{K-P}=Ae^{rt}
+\]
+% Solve for P and impose P(0) = P₀.
+\[
+P(t)=\frac{K}{1+\left(\frac{K-P_0}{P_0}\right)e^{-rt}}
+\]
+\end{document}

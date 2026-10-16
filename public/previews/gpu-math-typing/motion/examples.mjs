@@ -75,3 +75,6 @@ examples.push(
  geo('\\alpha=\\pi(3-\\sqrt{5}),\\quad N=450','450 points plus the formula.','packing',{n:450,angle:.6}),
  geo('r_n=c\\sqrt{n},\\quad N=240','Shrink back to 240 points.','packing',{n:240,angle:.2})])
 );
+
+import {derivations} from './derivations.mjs';
+examples.push(...derivations);

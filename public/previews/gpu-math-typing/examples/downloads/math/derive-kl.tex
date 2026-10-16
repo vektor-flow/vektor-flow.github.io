@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Gibbs’ inequality and KL nonnegativity
+% Assumptions: Finite probability vectors p,q with pᵢ,qᵢ > 0; natural logarithms.
+% Define relative entropy.
+\[
+D(p\|q)=\sum_i p_i\ln\frac{p_i}{q_i}
+\]
+% Use the tangent-line bound for the logarithm.
+\[
+\ln z\leq z-1,\quad z>0
+\]
+% Apply the bound to qᵢ/pᵢ.
+\[
+-\ln\frac{q_i}{p_i}\geq1-\frac{q_i}{p_i}
+\]
+% Multiply by positive pᵢ.
+\[
+p_i\ln\frac{p_i}{q_i}\geq p_i-q_i
+\]
+% Sum and use normalization.
+\[
+D(p\|q)\geq\sum_i p_i-\sum_i q_i=0
+\]
+% Equality requires every ratio to equal one.
+\[
+D(p\|q)=0\quad\Longleftrightarrow\quad p=q
+\]
+\end{document}

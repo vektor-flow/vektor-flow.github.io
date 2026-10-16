@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Newton–Schulz matrix inverse iteration
+% Assumptions: A is square; a submultiplicative norm satisfies ‖I−AX₀‖ < 1.
+% Define the inverse iteration.
+\[
+X_{k+1}=X_k(2I-AX_k)
+\]
+% Track the right residual.
+\[
+E_k=I-AX_k
+\]
+% Multiply the update by A.
+\[
+AX_{k+1}=AX_k(2I-AX_k)
+\]
+% Substitute AXₖ = I−Eₖ.
+\[
+E_{k+1}=I-(I-E_k)(I+E_k)
+\]
+% The matrix residual squares at each step.
+\[
+E_{k+1}=E_k^2
+\]
+% Submultiplicativity yields quadratic convergence to the inverse.
+\[
+\|E_k\|\leq\|E_0\|^{2^k}\to0
+\]
+\end{document}

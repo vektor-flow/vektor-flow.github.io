@@ -94,3 +94,15 @@ merge/separation is not claimed.
 The scan and three-state examples remain. Rejected blotchy contour and ink-density candidates remain local. The published
 image update preserves photographic detail; numerical tests alone are not acceptance.
 The preparation recipe now contains only the restored photo and existing 3D clips.
+
+## Worked derivation library — 2026-10-16
+
+Examples → Math derivations adds24 original multi-step derivations,146 states,
+search, assumptions, annotated steps, individual LaTeX and combined JSON downloads.
+Every entry deep-links into the existing live math morph player. The full player
+catalog now has50 examples and254 states. Canonical shared data lives in the
+libraries repository at examples/math-derivations/derivations.mjs; run
+scripts/prepare-math-derivations.mjs to sync it and generate downloads.
+Renderer checks cover all states; explicit SwiftShader browser checks cover the
+new endpoints/midpoints and phone layout. These are worked inputs, not a symbolic
+solver or a new physical GPU qualification. Existing photo/3D recordings remain.

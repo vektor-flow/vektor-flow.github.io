@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Block elimination and the Schur complement
+% Assumptions: A and S = D − CA⁻¹B are invertible; block sizes are compatible.
+% Write the block system.
+\[
+Ax+By=f,\quad Cx+Dy=g
+\]
+% Eliminate x using the first block equation.
+\[
+x=A^{-1}(f-By)
+\]
+% Substitute into the second equation.
+\[
+CA^{-1}(f-By)+Dy=g
+\]
+% Collect terms multiplying y.
+\[
+(D-CA^{-1}B)y=g-CA^{-1}f
+\]
+% Solve the Schur-complement system.
+\[
+S=D-CA^{-1}B,\quad y=S^{-1}(g-CA^{-1}f)
+\]
+% Back-substitute to recover x.
+\[
+x=A^{-1}f-A^{-1}BS^{-1}(g-CA^{-1}f)
+\]
+\end{document}

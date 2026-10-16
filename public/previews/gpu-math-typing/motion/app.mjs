@@ -1,11 +1,12 @@
 import {bytes,residentFields} from './field-assets.mjs';
 import {MorphEngine} from './engine.mjs';
-import {examples,splitSteps} from './examples.mjs';
+import {examples,splitSteps} from './examples.mjs?v=derivations-24';
 import {buildScene,pair} from './scene.mjs';
 const $=id=>document.getElementById(id),canvas=$('canvas'),local=['localhost','127.0.0.1'].includes(location.hostname);
 const validation=local&&new URLSearchParams(location.search).has('validation');
 const startup=performance.now();let fields;
-let engine,data,selected=examples[0],position=0,revision=0,prepared='',pending=null,pumping=null,playing=false,raf=0,playStart=0,playOrigin=0,editing=null,draft=null,debounce=0,recording=null,downloadURL=null,dead=false;
+const requested=new URLSearchParams(location.search).get('example');
+let engine,data,selected=examples.find(e=>e.id===requested)??examples[0],position=0,revision=0,prepared='',pending=null,pumping=null,playing=false,raf=0,playStart=0,playOrigin=0,editing=null,draft=null,debounce=0,recording=null,downloadURL=null,dead=false;
 const stats={frames:0,errors:[],software:false,ready:false,recordings:0};
 window.mathMotion={stats,get engine(){return engine},get selected(){return selected},get position(){return position},seek:value=>seek(value),examples};
 const say=s=>$('status').textContent=s;
@@ -23,14 +24,14 @@ async function render(intent){
  const key=rev+':'+at+':'+(preview?'draft':'main');
  if(prepared!==key){const a=buildScene(preview??steps[at],data),b=preview?a:buildScene(steps[next],data),packet=pair(a,b);await fields.ensure(packet.a,packet.b);await engine.generate(packet.a,packet.b,{grid:32,iterations:12});if(rev!==revision)return;prepared=key;stats.objects=[a.count,b.count];}
  await engine.draw(preview?0:phase,{measure:false});if(engine.errors.length)throw Error(engine.errors.at(-1));if(rev!==revision)return;
- stats.frames++;position=pos;$('timeline').value=pos;$('step-label').textContent=`Step ${at+1} of ${n}`;$('note').textContent=steps[at].note||'Double-tap the expression to edit this step.';$('counter').textContent=stats.objects.join(' → ')+' objects';controls();
+ stats.frames++;position=pos;$('timeline').value=pos;$('step-label').textContent=`Step ${at+1} of ${n}`;$('note').textContent=[selected.assumptions,steps[at].note||'Double-tap the expression to edit this step.'].filter(Boolean).join(' — ');$('counter').textContent=stats.objects.join(' → ')+' objects';controls();
 }
 function seek(pos,preview=null){if(!engine||dead)return Promise.resolve();const max=selected.steps.length-1;pending={pos:Math.max(0,Math.min(max,Number(pos)||0)),rev:revision,example:selected,preview};
  if(!pumping)pumping=(async()=>{try{while(pending){const intent=pending;pending=null;await render(intent);}}catch(e){fatal(e);}finally{pumping=null;}})();return pumping;
 }
 async function tick(now){if(!playing)return;const p=Math.min(selected.steps.length-1,playOrigin+(now-playStart)/1500);await seek(p);if(!playing)return;if(p>=selected.steps.length-1){stop();if(recording){await new Promise(r=>setTimeout(r,500));finishRecording(false);}return;}raf=requestAnimationFrame(tick);}
 async function play(){if(playing){stop();return;}if(dead||editing||!engine)return;if(position>=selected.steps.length-1)await seek(0);if(selected.steps.length<2)return;playing=true;playOrigin=position;playStart=performance.now();controls();raf=requestAnimationFrame(tick);}
-async function choose(id){stop();selected=examples.find(e=>e.id===id)??examples[0];revision++;prepared='';position=0;const source=selected.source;$('source').hidden=!source;if(source){$('source').href=source.url;$('source').textContent=source.title;$('source').title=source.note;}await seek(0);say(validation?'Software validation · not hardware performance':'Live GPU · double-tap to edit');controls();}
+async function choose(id){stop();selected=examples.find(e=>e.id===id)??examples[0];revision++;prepared='';position=0;$('examples').value=selected.id;const source=selected.source;$('source').hidden=!source;if(source){$('source').href=source.url;$('source').textContent=source.title;$('source').title=source.note;}await seek(0);say(validation?'Software validation · not hardware performance':'Live GPU · double-tap to edit');controls();}
 function openEditor(mode='step'){
  if(!stats.ready||dead||recording)return;stop();const at=Math.min(selected.steps.length-1,Math.round(position));editing={mode,at};draft=null;document.body.classList.add('editing');$('editor').hidden=false;$('editor-label').textContent=mode==='paste'?'Paste a calculation · one step per line':'Edit step '+(at+1)+' · rendered preview above';$('input').value=mode==='paste'?'':selected.steps[at].math;$('edit-error').textContent='';$('apply').disabled=mode==='paste';$('input').focus();parent.postMessage({type:'math-editing',editing:true},location.origin);controls();revision++;prepared='';seek(at);viewport();
 }

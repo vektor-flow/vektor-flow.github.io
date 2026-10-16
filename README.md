@@ -222,8 +222,25 @@ are retained in Cuvami staging/artifacts/morphing-compiled-gpu-20261016. No phys
 GPU or phone performance is certified. This qualifies the current2D split/merge
 cohort; the full equation,3D and image adapters are still unfinished. The deployment contains only this current pipeline.
 
-Matched warm software benchmark (35samples after5warmups,24² calibration,
-129² contour,512² canvas): scalar-output geometry took62.1ms median versus17.0ms
-for whole-cell packets. Including drawing and waiting for GPU completion, the
-median fell from77.9ms to33.0ms. Five sampled states have identical rendered pixels.
-These measurements do not establish the requested sub10ms hardware frame target.
+The current pipeline compacts active contour cells on the GPU, merges filled
+row interiors into rectangles and generates integer indirect-dispatch arguments.
+Boundary triangles remain unchanged. Six secant calibration rounds replace the
+unconditional40-round schedule; a42-round bracketed fallback retains difficult
+case handling. Final boundary checks and the1e-4 area tolerance remain enforced.
+The host reads180bytes of error summaries/controls/count per batch and publishes
+only successfully checked geometry. Shader generation remains compiler-owned.
+
+Matched warm SwiftShader benchmark (300samples after20warmups,32² calibration,
+129² contour,512² canvas,4x MSAA): the previous packet pipeline took34.8ms median
+and38.2ms p95 for complete frames. The current path takes10.2ms median and11.6ms
+p95 (compute/validation alone6.55ms median). An independent preceding run was
+10.35/11.8ms. Full frames include drawing and waiting for GPU completion. Cold
+preparation and shader initialization are excluded; these are software timings,
+not hardware or phone results, and consistent sub10ms remains unproven.
+
+All520 mode/easing trajectory samples pass the unchanged area tolerance. Native
+and GPU tests cover sparse/empty/full contours, holes, row runs, invalid inputs,
+solver fallback, final boundary rejection and2D/3D field specialization. The
+optimized player passes the full193-frame1080p48fps capture, cancellation and
+slider recovery. Only this pipeline and current source archive are deployed;
+older benchmark artifacts remain local evidence. No videos are uploaded.

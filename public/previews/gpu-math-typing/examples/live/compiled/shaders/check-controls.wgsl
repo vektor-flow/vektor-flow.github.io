@@ -12,7 +12,12 @@ fn fn1(v3:i32)->f32 {
 let v4 = v3;
 let v5 = 19i;
 if ((v4==v5)) {
+let v6 = read_params(30i);
+let v7 = 1i;
+if ((v6==f32(v7))) {
 return 2.0f;
+}
+return 0.0f;
 }
 return read_params(v3);
 }

@@ -4,7 +4,7 @@ export async function createGPUView(canvas){
  if(!adapter)throw Error('This player requires WebGPU');
  const device=await adapter.requestDevice();
  const size=Math.max(1,Math.ceil(canvas.clientWidth*(globalThis.devicePixelRatio||1)));
- const renderer=createScreenSpaceSimplexRenderer(canvas,{device,pixelRatio:()=>1,backend:'webgpu',clearColor:{r:9/255,g:17/255,b:22/255,a:1}});
+ const renderer=createScreenSpaceSimplexRenderer(canvas,{device,alphaMode:'opaque',opaqueGeometry:true,pixelRatio:()=>1,backend:'webgpu',clearColor:{r:9/255,g:17/255,b:22/255,a:1}});
  try{await renderer.initialize();renderer.resize(size,size);}catch(error){device.destroy();throw error;}
  return {
   device,get size(){return canvas.width;},

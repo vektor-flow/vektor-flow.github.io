@@ -17,7 +17,7 @@ application=root/'previews/gpu-math-typing/examples/live/compiled'
 assert hashlib.sha256((application/'scene.wasm').read_bytes()).hexdigest()=='cd9d610595c824228a1c90b7817746bc956fcbd1a09e2c4e91a3b0bb146be614'
 proof=json.loads((application/'provenance.json').read_text())
 assert proof['passed'] and proof['canonicalWASM'] and proof['compiledGPU'] and not proof['hostInterpolation']
-assert proof['compilerCandidate']=='43bbff65349c16bb80b92da54798096ab05fb467a273fbf2bc205566e6c33114'
+assert proof['compilerCandidate']=='a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f'
 assert not (application.parent/'worker.mjs').exists()
 assert not (application.parent/'runtime').exists()
 for name,digest in proof['artifacts'].items():

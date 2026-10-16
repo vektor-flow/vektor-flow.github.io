@@ -5,6 +5,8 @@ export async function createCompiledFieldKernel(device, code, manifest) {
       manifest.workgroup_size !== 64 ||
       manifest.schema !== 'vektor-flow/compiled-wgsl-field-candidate/1' ||
       manifest.error_summary_clear_before_dispatch !== true) throw new Error('Unsupported compiled field ABI');
+  const outputStorage=manifest.output_storage||'f32';
+  if(!['f32','u32'].includes(outputStorage)||manifest.bindings?.[2]!==`results:write-${outputStorage}`)throw Error('Unsupported compiled output storage');
   const outputWidth=manifest.output_width;
   if(!Number.isInteger(outputWidth)||outputWidth<1||outputWidth>256)throw new Error('Invalid compiled field output packet');
   const dynamic = manifest.dispatch_count_mode === 'result-buffer-length';
@@ -47,11 +49,16 @@ export async function createCompiledFieldKernel(device, code, manifest) {
       }
       const group = device.createBindGroup({layout:groupLayout,entries:
         [params,values,result,errors].map((buffer,binding)=>({binding,resource:{buffer}}))});
-      const dispatch=pass=>{
+      const dispatch=(pass,invocations=count)=>{
+        if(!Number.isInteger(invocations)||invocations<0||invocations>count)throw new RangeError('Invalid active invocation count');
         pass.setPipeline(pipeline);pass.setBindGroup(0,group);
-        pass.dispatchWorkgroups(groups);
+        pass.dispatchWorkgroups(Math.ceil(invocations/64));
       };
-      return Object.freeze({count,summaryOffset:count*4,dispatch,encode(encoder, timestampWrites) {
+      const dispatchIndirect=(pass,buffer,offset=0)=>{
+        if(!buffer||!(buffer.usage&GPUBufferUsage.INDIRECT)||!Number.isSafeInteger(offset)||offset<0||offset%4||buffer.size<offset+12)throw new RangeError('Invalid indirect dispatch buffer');
+        pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.dispatchWorkgroupsIndirect(buffer,offset);
+      };
+      return Object.freeze({count,summaryOffset:count*4,dispatch,dispatchIndirect,encode(encoder, timestampWrites) {
         const pass = encoder.beginComputePass(timestampWrites ? {timestampWrites} : {});
         dispatch(pass);pass.end();
       }});

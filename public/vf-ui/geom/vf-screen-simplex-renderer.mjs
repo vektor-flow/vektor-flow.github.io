@@ -445,7 +445,7 @@ async function createWebGpuBackend(canvas, options = {}) {
       entryPoint: 'fragmentMain',
       targets: [{
         format,
-        blend: {
+        blend: options.opaqueGeometry ? undefined : {
           color: { srcFactor: 'src-alpha', dstFactor: 'one-minus-src-alpha' },
           alpha: { srcFactor: 'one', dstFactor: 'one-minus-src-alpha' }
         }
@@ -514,7 +514,7 @@ async function createWebGpuBackend(canvas, options = {}) {
     },
     kind: 'webgpu',
     resize(width, height) {
-      context.configure({ device, format, alphaMode: 'premultiplied',
+      context.configure({ device, format, alphaMode: options.alphaMode || 'premultiplied',
         usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC });
       if (textureWidth !== canvas.width || textureHeight !== canvas.height) {
         multisampleTexture?.destroy();

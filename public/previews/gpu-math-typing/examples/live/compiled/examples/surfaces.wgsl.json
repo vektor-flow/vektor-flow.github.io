@@ -1,0 +1,26 @@
+{
+  "artifact_hash": "fbe996ba8ea97b77",
+  "backend": "compiler-owned-canonical-typed-ir-wgsl-real-f32",
+  "bindings": [
+    "params:readonly-f32",
+    "values:readonly-f32",
+    "results:write-f32",
+    "errors:write-u32"
+  ],
+  "candidate_only": true,
+  "dispatch_count": 0,
+  "dispatch_count_mode": "result-buffer-length",
+  "entry": "kernel",
+  "error_summary_clear_before_dispatch": true,
+  "error_summary_offset": "invocation-count*4",
+  "errors_required_elements": "invocation-count+1",
+  "loop_iteration_budget": 65536,
+  "numeric_contract": "explicit real-f32 visualization; not Float64 parity; errors in separate u32 buffer",
+  "output_storage": "f32",
+  "output_width": 21,
+  "schema": "vektor-flow/compiled-wgsl-field-candidate/1",
+  "source_hash": "abaa5dfa298dd4d2",
+  "source_interpolation_owner": "compiled-vkf",
+  "typed_ir_hash": "670b8b5727c21ced",
+  "workgroup_size": 64
+}

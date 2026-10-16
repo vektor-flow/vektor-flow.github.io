@@ -6,18 +6,22 @@ import json,hashlib,re
 root=Path(__file__).resolve().parents[1]/'public'
 for retired in ['previews/gpu-math-typing/examples/media/native-cell-division.mp4','previews/gpu-morph','previews/gpu-math-typing/motion','previews/gpu-math-typing/examples/downloads/math/quadratic-structure.mp4','previews/gpu-math-typing/examples/downloads/cat-dog-comparison.mp4','previews/gpu-math-typing/examples/media/cat-dog.mp4']:
  assert not (root/retired).exists(), 'Retired morphology must not be republished: '+retired
+assert not (root/'previews/gpu-math-typing/examples/media/three-states.mp4').exists()
 catalog=json.loads((root/'previews/gpu-math-typing/examples/catalog.json').read_text())
-assert all(e['backend']=='Native VKF' for e in catalog), 'Only current native morphology examples may be published'
+assert all(e['backend']=='Native VKF' and 'video' not in e and e['id']!='three-states' for e in catalog), 'Only current live VKF examples may be published'
 
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
 # Reviewed compiled library application, not another compiler release.
 application=root/'previews/gpu-math-typing/examples/live/compiled'
-assert hashlib.sha256((application/'scene.wasm').read_bytes()).hexdigest()=='cd9d610595c824228a1c90b7817746bc956fcbd1a09e2c4e91a3b0bb146be614'
+assert hashlib.sha256((application/'scene.wasm').read_bytes()).hexdigest()=='23465a4bf09fff2354c7dbf35078297a9748e75684230f770cad0814c32d2e36'
 proof=json.loads((application/'provenance.json').read_text())
 assert proof['passed'] and proof['canonicalWASM'] and proof['compiledGPU'] and not proof['hostInterpolation']
 assert proof['compilerCandidate']=='a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f'
+assert proof['exampleCount']==len(catalog)==23
+assert hashlib.sha256((root/'previews/gpu-math-typing/draw.wgsl').read_bytes()).hexdigest()==proof['latex']['drawShaderSHA256']
+assert all(e['kernel']=='latex' for e in catalog if 'sources' in e)
 assert not (application.parent/'worker.mjs').exists()
 assert not (application.parent/'runtime').exists()
 for name,digest in proof['artifacts'].items():

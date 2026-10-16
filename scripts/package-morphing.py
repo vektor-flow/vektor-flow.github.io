@@ -7,9 +7,11 @@ for name,digest in r['sources'].items():
  assert hashlib.sha256((a.library/name).read_bytes()).hexdigest()==digest, 'Requalify changed source: '+name
 out=Path(__file__).resolve().parents[1]/'public/previews/gpu-math-typing/examples/downloads/Morphing-source.zip'
 receipt={k:v for k,v in r.items() if k!='compiler'}
-receipt['scope']='Native state/embedding interpolation, material lineage and connected signed-field split/merge geometry; canonical WASM execution. General correspondence/thickness/hole constraints and live Linux native Layer/View handles remain unfinished.'
+receipt['scope']='Native state/embedding interpolation, connected biological cohorts, parametric surfaces, diagrams and motion of existing LaTeX instances. LaTeX layout remains in the existing site engine. Arbitrary glyph/image/mesh correspondence and native View handles remain unfinished.'
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
- for name in [*r['sources'],'morphing/README.md','LICENSE','tests/morphing/biological.vkf','tests/morphing/presentation.vkf','tests/morphing/build_wasm.py','tests/morphing/wasm-demo.vkf','tests/morphing/core.vkf','tests/morphing/material.vkf','tests/morphing/verify.py','tests/morphing/benchmark.py','tests/morphing/compare_benchmarks.py']:
+ names=set(r['sources'])|{'morphing/README.md','LICENSE'}
+ names.update(str(f.relative_to(a.library)) for f in (a.library/'tests/morphing').rglob('*') if f.is_file() and f.suffix in {'.vkf','.py','.md'} and not any(part.startswith('.') for part in f.relative_to(a.library).parts))
+ for name in sorted(names):
   info=zipfile.ZipInfo(name,date_time=(2026,10,16,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,(a.library/name).read_bytes())
  info=zipfile.ZipInfo('qualification.json',date_time=(2026,10,16,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,json.dumps(receipt,indent=2)+'\n')
 print('Packaged qualified VKF sources:',out.name)

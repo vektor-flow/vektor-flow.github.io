@@ -1,28 +1,38 @@
 {
   "functions": {
     "__vkf_module_b__maximum": {
-      "index": 6,
+      "index": 7,
       "parameters": 2,
       "resultType": 2
     },
     "__vkf_module_b__minimum": {
-      "index": 5,
+      "index": 6,
       "parameters": 2,
       "resultType": 2
     },
     "__vkf_module_b__prepare": {
-      "index": 7,
+      "index": 8,
       "parameters": 13,
       "resultType": 6
     },
+    "__vkf_module_cohorts__prepare": {
+      "index": 9,
+      "parameters": 5,
+      "resultType": 6
+    },
     "__vkf_module_s__clock": {
-      "index": 3,
+      "index": 4,
       "parameters": 4,
       "resultType": 6
     },
     "__vkf_module_s__component": {
-      "index": 4,
+      "index": 5,
       "parameters": 5,
+      "resultType": 2
+    },
+    "__vkf_module_s__coordinate_map": {
+      "index": 3,
+      "parameters": 4,
       "resultType": 2
     },
     "__vkf_module_s__interval": {
@@ -41,43 +51,48 @@
       "resultType": 2
     },
     "gpu_control_scene": {
-      "index": 10,
+      "index": 13,
       "parameters": 1,
       "resultType": 6
     },
     "gpu_controls": {
-      "index": 12,
+      "index": 15,
       "parameters": 4,
       "resultType": 5
     },
     "gpu_entry": {
-      "index": 13,
+      "index": 16,
       "parameters": 1,
       "resultType": 5
     },
     "gpu_measures": {
-      "index": 11,
+      "index": 14,
       "parameters": 2,
       "resultType": 6
     },
     "gpu_prepare": {
-      "index": 9,
+      "index": 12,
       "parameters": 4,
       "resultType": 6
     },
-    "make": {
-      "index": 8,
-      "parameters": 4,
+    "gpu_prepare_example": {
+      "index": 11,
+      "parameters": 5,
+      "resultType": 6
+    },
+    "make_example": {
+      "index": 10,
+      "parameters": 5,
       "resultType": 6
     }
   },
   "memory": {
     "argumentsCapacity": 16,
-    "argumentsPointer": 92896,
-    "bytecodeLength": 92895,
+    "argumentsPointer": 97192,
+    "bytecodeLength": 97191,
     "bytecodePointer": 0,
     "resultsCapacity": 1,
-    "resultsPointer": 93280
+    "resultsPointer": 97576
   },
   "schema": "vektor-flow.symbolic-kernel",
   "version": 1,

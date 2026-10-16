@@ -1,74 +1,309 @@
 [
   {
-    "id": "lava",
-    "title": "Rounded two \u2192 five split",
-    "category": "3D",
-    "description": "Current rounded separating necks with one spherical light and reflections. Volume preservation remains unfinished.",
+    "id": "cells",
+    "title": "Perforated cells \u00b7 split and recombine",
+    "category": "2D \u00b7 split / merge",
+    "description": "A lobed shape separates into three perforated objects and rejoins. Sampled area follows the endpoint measure curve.",
     "backend": "Native VKF",
-    "video": "media/lava.mp4?v=ffe7cdd620a3",
-    "poster": "media/lava.jpg?v=ae4b99bd7f60",
-    "duration": 7.5,
-    "width": 720,
-    "height": 500,
-    "fps": "24/1",
-    "bytes": 166361,
-    "sha256": "ffe7cdd620a3d91ae86b0f2d9172efceb4f5cf208fafced4cf0ba3ec903e087c",
-    "downloads": [
-      {
-        "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip?v=f267e5f3f781"
-      }
+    "kernel": "biological",
+    "variant": 0,
+    "flat": true,
+    "url": "live/index.html?example=cells"
+  },
+  {
+    "id": "rings",
+    "title": "Rings \u00b7 one to three",
+    "category": "2D \u00b7 split / merge",
+    "description": "A ring separates into three rings and recombines. Holes are part of the signed fields, with checked area calibration.",
+    "backend": "Native VKF",
+    "kernel": "biological",
+    "variant": 1,
+    "flat": true,
+    "url": "live/index.html?example=rings"
+  },
+  {
+    "id": "lobes",
+    "title": "Soft lobes \u00b7 one to three",
+    "category": "2D \u00b7 split / merge",
+    "description": "Filled lobed geometry separates and merges through smooth contact necks.",
+    "backend": "Native VKF",
+    "kernel": "biological",
+    "variant": 2,
+    "flat": true,
+    "url": "live/index.html?example=lobes"
+  },
+  {
+    "id": "crosses",
+    "title": "Crosses \u00b7 contact and separation",
+    "category": "2D \u00b7 split / merge",
+    "description": "Cross-shaped material separates into three objects and reconnects. This tests narrow branches and contact geometry.",
+    "backend": "Native VKF",
+    "kernel": "biological",
+    "variant": 3,
+    "flat": true,
+    "url": "live/index.html?example=crosses"
+  },
+  {
+    "id": "frames",
+    "title": "Square frames \u00b7 separation and reunion",
+    "category": "2D \u00b7 split / merge",
+    "description": "Hollow planar frames move apart and reconnect, retaining a field representation of their interiors.",
+    "backend": "Native VKF",
+    "kernel": "biological",
+    "variant": 4,
+    "flat": true,
+    "url": "live/index.html?example=frames"
+  },
+  {
+    "id": "saddle",
+    "title": "Plane \u2192 saddle \u2192 wave",
+    "category": "3D \u00b7 surfaces",
+    "description": "An actual zero-thickness sheet bends through three height fields. It has surface area but no occupied solid volume.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 0,
+    "flat": false,
+    "url": "live/index.html?example=saddle"
+  },
+  {
+    "id": "rolled-sheet",
+    "title": "Flat sheet \u2192 rolled sheet",
+    "category": "3D \u00b7 surfaces",
+    "description": "A planar sheet bends into an open cylindrical surface. No artificial thickness or solid-volume calibration is introduced.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 1,
+    "flat": false,
+    "url": "live/index.html?example=rolled-sheet"
+  },
+  {
+    "id": "torus",
+    "title": "Torus \u00b7 changing proportions",
+    "category": "3D \u00b7 solids",
+    "description": "A closed toroidal mesh changes its embedding. This example tests surface correspondence, not volume preservation.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 2,
+    "flat": false,
+    "url": "live/index.html?example=torus"
+  },
+  {
+    "id": "ellipsoid",
+    "title": "Ellipsoid \u00b7 changing axes",
+    "category": "3D \u00b7 solids",
+    "description": "A closed smooth surface moves through distinct ellipsoidal states. There is no cube-to-sphere transition.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 3,
+    "flat": false,
+    "url": "live/index.html?example=ellipsoid"
+  },
+  {
+    "id": "helicoid",
+    "title": "Sheet \u2192 helicoid",
+    "category": "3D \u00b7 surfaces",
+    "description": "A flat sheet twists into a helicoid. Drag to inspect its zero-thickness geometry from different depths.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 4,
+    "flat": false,
+    "url": "live/index.html?example=helicoid"
+  },
+  {
+    "id": "dome",
+    "title": "Disk \u2192 dome \u2192 disk",
+    "category": "3D \u00b7 surfaces",
+    "description": "A two-dimensional disk lifts into an open dome and flattens again. Surface deformation does not require creating solid volume.",
+    "backend": "Native VKF",
+    "kernel": "surfaces",
+    "variant": 5,
+    "flat": false,
+    "url": "live/index.html?example=dome"
+  },
+  {
+    "id": "functions",
+    "title": "Function graphs",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "Persistent sampled graph strokes interpolate between three function states.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 0,
+    "flat": true,
+    "url": "live/index.html?example=functions",
+    "triangleCount": {
+      "resolutionMultiplier": 2,
+      "constant": 0
+    }
+  },
+  {
+    "id": "lattice",
+    "title": "Deforming coordinate lattice",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "A Cartesian lattice deforms while each line retains its identity and stroke width.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 1,
+    "flat": true,
+    "url": "live/index.html?example=lattice",
+    "triangleCount": {
+      "resolutionMultiplier": 36,
+      "constant": 0
+    }
+  },
+  {
+    "id": "operators",
+    "title": "Plus \u2194 times",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "The same two strokes rotate between mathematical operators, without fading or replacement.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 2,
+    "flat": true,
+    "url": "live/index.html?example=operators",
+    "triangleCount": {
+      "resolutionMultiplier": 4,
+      "constant": 0
+    }
+  },
+  {
+    "id": "symbol-loop",
+    "title": "Circle \u2194 figure-eight",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "One continuous stroke changes its embedding. Crossing strokes may overlap; they are not solid volumes.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 3,
+    "flat": true,
+    "url": "live/index.html?example=symbol-loop",
+    "triangleCount": {
+      "resolutionMultiplier": 2,
+      "constant": 0
+    }
+  },
+  {
+    "id": "graph",
+    "title": "Node-link graph layouts",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "Graph nodes and their persistent edges move between layouts with explicit correspondence.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 4,
+    "flat": true,
+    "url": "live/index.html?example=graph",
+    "triangleCount": {
+      "resolutionMultiplier": 16,
+      "constant": 24
+    }
+  },
+  {
+    "id": "blocks",
+    "title": "Block hierarchy",
+    "category": "2D \u00b7 functions and diagrams",
+    "description": "Persistent blocks reorganize across layouts using the same VKF state interpolation.",
+    "backend": "Native VKF",
+    "kernel": "diagrams",
+    "variant": 5,
+    "flat": true,
+    "url": "live/index.html?example=blocks",
+    "triangleCount": {
+      "resolutionMultiplier": 0,
+      "constant": 64
+    }
+  },
+  {
+    "id": "discriminant",
+    "title": "Discriminant \u00b7 preserve 4ac",
+    "description": "The LaTeX engine supplies the actual glyphs and layout. VKF moves persistent groups between layouts without fading; 4ac remains one unit.",
+    "category": "LaTeX \u00b7 shared engine",
+    "backend": "Native VKF",
+    "kernel": "latex",
+    "variant": 0,
+    "flat": true,
+    "url": "live/index.html?example=discriminant",
+    "sources": [
+      "b^2-{4ac}",
+      "\\begin{gathered}b^2\\\\-{4ac}\\end{gathered}",
+      "b^2-\\qquad{4ac}"
     ]
   },
   {
-    "id": "scans",
-    "title": "Bunny \u2192 armadillo",
-    "category": "3D",
-    "description": "Current indexed scan morph. Grid resolution reduces fine detail; this is a field morph, not semantic feature matching.",
+    "id": "distribute",
+    "title": "Distribution \u00b7 preserve term groups",
+    "description": "Actual LaTeX glyphs and term groups move between one-line and multiline layouts through compiled VKF interpolation.",
+    "category": "LaTeX \u00b7 shared engine",
     "backend": "Native VKF",
-    "video": "media/scans.mp4?v=c631e77add1e",
-    "poster": "media/scans.jpg?v=aa64a3b5e921",
-    "duration": 7.5,
-    "width": 720,
-    "height": 500,
-    "fps": "24/1",
-    "bytes": 317626,
-    "sha256": "c631e77add1ef0f95bdf921308e3c8c8971cdd1413ce58c6f8d6a552e67c040a",
-    "downloads": [
-      {
-        "label": "Indexed OBJ meshes",
-        "url": "downloads/indexed-scan-meshes.zip?v=8c00191ea247"
-      },
-      {
-        "label": "Original PLY scans",
-        "url": "downloads/original-scans.zip?v=05006e60002e"
-      },
-      {
-        "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip?v=f267e5f3f781"
-      }
+    "kernel": "latex",
+    "variant": 1,
+    "flat": true,
+    "url": "live/index.html?example=distribute",
+    "sources": [
+      "{ab}+{ac}+{ad}",
+      "\\begin{gathered}{ab}+{ac}\\\\+{ad}\\end{gathered}",
+      "\\begin{gathered}{ab}\\\\+{ac}\\\\+{ad}\\end{gathered}"
+    ]
+  },
+  {
+    "id": "latex-fractions",
+    "title": "Fractions \u00b7 grouped layout",
+    "category": "LaTeX \u00b7 shared engine",
+    "description": "The existing LaTeX engine supplies glyphs, scripts and rules. VKF interpolates their persistent groups; no replacement fonts or crossfades.",
+    "backend": "Native VKF",
+    "kernel": "latex",
+    "variant": 2,
+    "flat": true,
+    "sources": [
+      "{\\frac{a}{b}}+{\\frac{c}{d}}",
+      "\\begin{gathered}{\\frac{a}{b}}\\\\+{\\frac{c}{d}}\\end{gathered}",
+      "{\\frac{a}{b}}+\\qquad{\\frac{c}{d}}"
     ],
-    "credits": "Stanford University Computer Graphics Laboratory. Research and free redistribution with attribution; commercial use requires permission. https://graphics.stanford.edu/data/3Dscanrep/"
+    "url": "live/index.html?example=latex-fractions"
   },
   {
-    "id": "three-states",
-    "title": "Three-state cubic morph",
-    "category": "3D",
-    "description": "Current sphere \u2192 rounded cube \u2192 ellipsoid using cubic state interpolation with smooth start and end.",
+    "id": "latex-matrix",
+    "title": "Matrix \u00b7 rearrange entries",
+    "category": "LaTeX \u00b7 shared engine",
+    "description": "The existing LaTeX engine supplies glyphs, scripts and rules. VKF interpolates their persistent groups; no replacement fonts or crossfades.",
     "backend": "Native VKF",
-    "video": "media/three-states.mp4?v=0a7aa53ea042",
-    "poster": "media/three-states.jpg?v=613aeb9191d0",
-    "duration": 6.541667,
-    "width": 960,
-    "height": 660,
-    "fps": "24/1",
-    "bytes": 501042,
-    "sha256": "0a7aa53ea042bb7e300c8562ef411b90813d3939e035005acc2088f826a2aaef",
-    "downloads": [
-      {
-        "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip?v=f267e5f3f781"
-      }
-    ]
+    "kernel": "latex",
+    "variant": 3,
+    "flat": true,
+    "sources": [
+      "\\begin{matrix}{a}&{b}\\\\{c}&{d}\\end{matrix}",
+      "\\begin{matrix}{c}&{a}\\\\{d}&{b}\\end{matrix}",
+      "\\begin{matrix}{d}&{c}\\\\{b}&{a}\\end{matrix}"
+    ],
+    "url": "live/index.html?example=latex-matrix"
+  },
+  {
+    "id": "latex-integrals",
+    "title": "Integrals \u00b7 multiline layout",
+    "category": "LaTeX \u00b7 shared engine",
+    "description": "The existing LaTeX engine supplies glyphs, scripts and rules. VKF interpolates their persistent groups; no replacement fonts or crossfades.",
+    "backend": "Native VKF",
+    "kernel": "latex",
+    "variant": 4,
+    "flat": true,
+    "sources": [
+      "\\int_0^1 {f(x)}\\,dx+\\int_0^1 {g(x)}\\,dx",
+      "\\begin{gathered}\\int_0^1 {f(x)}\\,dx\\\\+\\int_0^1 {g(x)}\\,dx\\end{gathered}",
+      "\\int_0^1 {f(x)}\\,dx+\\qquad\\int_0^1 {g(x)}\\,dx"
+    ],
+    "url": "live/index.html?example=latex-integrals"
+  },
+  {
+    "id": "latex-quadratic",
+    "title": "Quadratic formula \u00b7 retained layout",
+    "category": "LaTeX \u00b7 shared engine",
+    "description": "The existing LaTeX engine supplies glyphs, scripts and rules. VKF interpolates their persistent groups; no replacement fonts or crossfades.",
+    "backend": "Native VKF",
+    "kernel": "latex",
+    "variant": 5,
+    "flat": true,
+    "sources": [
+      "x={\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}}",
+      "x=\\quad{\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}}",
+      "x=\\qquad{\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}}"
+    ],
+    "url": "live/index.html?example=latex-quadratic"
   }
 ]

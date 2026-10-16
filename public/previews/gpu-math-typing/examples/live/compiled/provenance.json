@@ -18,9 +18,15 @@
     "optimized-qualification.json"
   ],
   "artifacts": {
+    "examples/diagrams.wgsl": "7b22e3fde175e8a799306bf0681bbbf48b19a75d0a05f8a16f6b56413a33a582",
+    "examples/diagrams.wgsl.json": "11153b1a7e7931cf64a57be8d32a02f7fc04c35fb993ae99c8fddc9455d809e0",
+    "examples/latex-motion.wgsl": "13d99415c2f03f86b9488d2364794ec4daefeaf5d856fedec9fcb81a3e04ce19",
+    "examples/latex-motion.wgsl.json": "56cfb0d72692637c4b8947b1bd0504a7a0b799693a0daca17b839b1ba9762036",
+    "examples/surfaces.wgsl": "b2394762a64d25b56c86374871e996b6fe4645e3593be683eb4194bc4493cf51",
+    "examples/surfaces.wgsl.json": "4f42a2f728a085ebb00fa6286fd6a6c2a78cfb5aba8dfa15ee70d40b0725b35a",
     "playground/vkf-concurrent-values.mjs": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679",
-    "scene.json": "8878f03b3ca1299590455ae756b2e5205cefacc15f2a02af35bb19ddfb22e900",
-    "scene.wasm": "cd9d610595c824228a1c90b7817746bc956fcbd1a09e2c4e91a3b0bb146be614",
+    "scene.json": "f8e03da471336febce70cd9499af24983aa451a3c8cbca0949f3231678910741",
+    "scene.wasm": "23465a4bf09fff2354c7dbf35078297a9748e75684230f770cad0814c32d2e36",
     "shaders/active-prefix.wgsl": "4f7984b27d69d20b9276547ea132b1d6c2a7c285e2441dd2e87f862d3d2219e8",
     "shaders/active-prefix.wgsl.json": "6e8c16e248a3748d104f51c4674de93c5904b254e85fa2bbbcd7b83f3cd59db5",
     "shaders/active-tags.wgsl": "60f473a060ff151b8ac4b0abd599e92eb9273ee9afd87ba126550864eccf661c",
@@ -49,5 +55,26 @@
     "shaders/triangle-dispatch.wgsl.json": "558438d9b5ef6f13d2b3a75d769d40751ebfa313e548eefa1eb506605da90218",
     "vf-ui/vf-symbolic-kernel-runtime.mjs": "69e80bffc12d7c020fc94c0af480ccf05912cf534f1aa6e9aaf80c68e7971fae"
   },
-  "libraryCommit": "cc11b7e6d1dac0ca02847190d59382c345b48ec5"
+  "libraryCommit": "9bdee82535659b5836293e88b3096a015e223d12",
+  "currentExampleEvidence": {
+    "morphing-examples-20261016/review.json": "103fab266f3fe003ff75a99c682ada8c632c0add9cf325a1f60746d2f1337c82",
+    "morphing-examples-20261016/latex-motion/invariants.json": "91222dee2c9aaee0d768ad2d47a52c5a33a7fabd6f4185852ff79b01b9a58b88",
+    "morphing-examples-20261016/surface-capture-01/verification.json": "a8f708b5dc5e70f5b19f2cccb557d2a239bc400fce5d6be6bcf534dbe476c497",
+    "morphing-latex-20261016/all-browser-final/verification.json": "49c1057a46aeb0d88783f4e272da0252177efb4b34a3924d521807c545138592",
+    "morphing-latex-20261016/capture-01/verification.json": "5f502d7ad53115170433d5a498a1f7105c9fd75e5d2602cb4df0b057d1521545",
+    "morphing-latex-20261016/document-smoke/verification.json": "2e5ee3bbeecd3413b752647fd096194ba01ede98fdb33ea288fbedc908399ba5",
+    "morphing-latex-20261016/layout-repository-test.json": "f4e970c014f5b42e1eb53ad69fdb5127af45b4deb7e37136ac38aac01ba41869",
+    "morphing-latex-20261016/packer-parity.json": "756a845b9502ddb8268d587c91ce7b02bc3979057e982d524452dbdeca4604cc",
+    "morphing-examples-20261016/diagrams/packet-software-verification.json": "a1af7dde5841fb67231272edcb4e2fc6e73d27ff5ebaee0c0982fde4294fdfec"
+  },
+  "exampleCount": 23,
+  "latex": {
+    "layout": "existing JavaScript LaTeX engine, prepared once",
+    "motion": "compiled VKF",
+    "frameUploadBytes": 32,
+    "frameReadbackBytes": 4,
+    "geometryReadbackBytes": 0,
+    "drawShaderSHA256": "76193f1f885a73d8c90feb2018c5ad295b3d709682683a0e6c3f3b235e0338dd",
+    "arbitraryGlyphCorrespondence": false
+  }
 }

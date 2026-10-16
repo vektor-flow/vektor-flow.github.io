@@ -1,7 +1,7 @@
 import {createCompiledFieldKernel,createFieldBuffer} from '/vf-ui/vf-compiled-field-runtime.mjs';
 
 export async function prepareMorphingGPU(device, {sceneURL,shaderURL,resolution=32,lattice=129,
-  mode=1,smoothStart=true,smoothEnd=true,extent=1024,profile=false}={}) {
+  mode=1,smoothStart=true,smoothEnd=true,extent=1024,profile=false,example=0}={}) {
   if(!Number.isInteger(resolution)||resolution<8||resolution>256||
      !Number.isInteger(lattice)||lattice<3||lattice>241)throw Error('Invalid morphing resolution');
   const sceneBase=new URL(sceneURL,location.href),shaderBase=new URL(shaderURL,location.href);
@@ -11,7 +11,7 @@ export async function prepareMorphingGPU(device, {sceneURL,shaderURL,resolution=
   const wasm=await fetch(new URL('scene.wasm',sceneBase));if(!wasm.ok)throw Error('Morphing artifact unavailable');
   const {instance}=await WebAssembly.instantiate(await wasm.arrayBuffer());
   let native=createSymbolicKernel({instance,manifest});
-  let scene=native.invokeValue('gpu_prepare',[resolution,mode,smoothStart,smoothEnd]);
+  let scene=native.invokeValue('gpu_prepare_example',[resolution,mode,smoothStart,smoothEnd,example]);
   let controls=native.invokeValue('gpu_control_scene',[scene]);
   const names=['check-boundary','state','field','reduce','measure','calibrate','check-controls','render-controls','cell-class','active-tags','active-prefix','compact-triangle','triangle-dispatch'];
   const kernels=Object.fromEntries(await Promise.all(names.map(async name=>{

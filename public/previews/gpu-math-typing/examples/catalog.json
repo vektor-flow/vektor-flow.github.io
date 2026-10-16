@@ -1,38 +1,51 @@
 [
   {
-    "id": "material-split",
-    "title": "Two image states \u00b7 inferred split / merge",
+    "id": "lava",
+    "title": "Rounded two \u2192 five split",
+    "category": "3D",
+    "description": "Current rounded separating necks with one spherical light and reflections. Volume preservation remains unfinished.",
+    "backend": "Native VKF",
+    "video": "media/lava.mp4?v=ffe7cdd620a3",
+    "poster": "media/lava.jpg?v=ae4b99bd7f60",
+    "duration": 7.5,
+    "width": 720,
+    "height": 500,
+    "fps": "24/1",
+    "bytes": 166361,
+    "sha256": "ffe7cdd620a3d91ae86b0f2d9172efceb4f5cf208fafced4cf0ba3ec903e087c",
+    "downloads": [
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip?v=7aaae41e8f0d"
+      }
+    ]
+  },
+  {
+    "id": "cat-dog",
+    "title": "Cat \u2192 dog \u00b7 previous image version",
     "category": "Images",
-    "description": "Revision r4: correspondence computed from two independently supplied masked images. Both endpoints stay visible. No angular wrapping or whole-image crossfade. Local RGB changes along moving paths; visible area preservation remains unfinished.",
+    "description": "Restored earlier image experiment. Object matching guides the deformation, but texture blending remains unresolved. This is the previous version, not a new result.",
     "backend": "CPU research prototype",
-    "video": "media/material-split.mp4?v=7534b40b6a7d",
-    "poster": "media/material-split.jpg?v=5768589edd82",
-    "duration": 10.666667,
-    "width": 768,
-    "height": 560,
+    "video": "media/cat-dog.mp4?v=b6f7078bb31b",
+    "poster": "media/cat-dog.jpg?v=358751f6d970",
+    "duration": 5.433333,
+    "width": 384,
+    "height": 448,
     "fps": "30/1",
-    "bytes": 244784,
-    "sha256": "7534b40b6a7de776e3a2f4a295891fc1f954d4b49d1f23adb612ca9fef1e9e40",
+    "bytes": 731704,
+    "sha256": "b6f7078bb31bee22d1783f19d649fe75a7457a11e523cb17a67d8ea46affcd2f",
     "downloads": [
       {
         "label": "Experiment notes",
-        "url": "downloads/material-experiments.json?v=828df4b9db1b"
+        "url": "downloads/material-experiments.json?v=b636841b93ec"
       },
       {
         "label": "Image source",
-        "url": "downloads/material-image-source.zip?v=7e58e6c65a9e"
-      },
-      {
-        "label": "Source state PNG",
-        "url": "downloads/endpoint-source.png?v=90d6c3125509"
-      },
-      {
-        "label": "Target state PNG",
-        "url": "downloads/endpoint-target.png?v=17946b1844b3"
+        "url": "downloads/material-image-source.zip?v=52774a1d1620"
       }
     ],
-    "algorithm": "endpoint-r4-experimental",
-    "credits": "Procedural Cartesian-band endpoint fixtures; supplied masks, inferred correspondence."
+    "algorithm": "material-v3-experimental",
+    "credits": "Cat photo: Anton Petrov (CC0). Dog photo: Karen Arnold (CC0)."
   },
   {
     "id": "scans",
@@ -63,27 +76,6 @@
       }
     ],
     "credits": "Stanford University Computer Graphics Laboratory. Research and free redistribution with attribution; commercial use requires permission. https://graphics.stanford.edu/data/3Dscanrep/"
-  },
-  {
-    "id": "lava",
-    "title": "Rounded two \u2192 five split",
-    "category": "3D",
-    "description": "Current rounded separating necks with one spherical light and reflections. Volume preservation remains unfinished.",
-    "backend": "Native VKF",
-    "video": "media/lava.mp4?v=ffe7cdd620a3",
-    "poster": "media/lava.jpg?v=ae4b99bd7f60",
-    "duration": 7.5,
-    "width": 720,
-    "height": 500,
-    "fps": "24/1",
-    "bytes": 166361,
-    "sha256": "ffe7cdd620a3d91ae86b0f2d9172efceb4f5cf208fafced4cf0ba3ec903e087c",
-    "downloads": [
-      {
-        "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip?v=7aaae41e8f0d"
-      }
-    ]
   },
   {
     "id": "three-states",

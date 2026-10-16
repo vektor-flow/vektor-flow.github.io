@@ -2,6 +2,7 @@
 from pathlib import Path
 import json,hashlib,subprocess,shutil,zipfile,argparse
 p=argparse.ArgumentParser();p.add_argument('--artifacts',type=Path,required=True);p.add_argument('--native-source',type=Path,required=True);a=p.parse_args()
+raise SystemExit("The r4 half-cut recipe is retired. Preserve the restored gallery; replacement image rendering is under visual review.")
 root=Path(__file__).resolve().parents[1]/'public/previews/gpu-math-typing/examples'
 entries=[
 ('material-split','Two image states · inferred split / merge','Images','morphology-object-images-20261016/video/material-split-merge.mp4','Revision r4: correspondence computed from two independently supplied masked images. Both endpoints stay visible. No angular wrapping or whole-image crossfade. Local RGB changes along moving paths; visible area preservation remains unfinished.','CPU research prototype'),

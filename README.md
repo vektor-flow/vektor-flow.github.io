@@ -83,28 +83,12 @@ precomputed output is a different preparation boundary; report its preparation
 cost separately. Reference timings are not our measurements. This comparison
 is recorded for later; it is not implemented or claimed by this publication.
 
-## Current morphology video review — endpoint revision r4, 2026-10-16
+## Morphology review restoration — 2026-10-16
 
-The Examples tab contains four recordings: the two-input masked-image transport
-review and the three existing 3D examples. The previous prescribed polar split
-and unchanged cat/dog experiment are removed from publication. Historical
-benchmarks remain offline. No change is claimed to automatic photographic
-object recognition or the native VKF image implementation.
-
-`examples/index.html#material-split` displays independently supplied source and
-target images beside the animation. A global balanced pixel assignment supplies
-material paths; local surface reconstruction avoids pixel-splat speckling.
-There is no polar wrapping or whole-image crossfade. Local RGB changes along
-paths to reach the supplied target. Both input PNGs, Python source and numerical
-notes are downloadable. The reference requires supplied binary masks and small
-images; constant visible area and general photographic split/merge remain open.
-
-Videos, posters and downloads carry content-hash query strings. The catalog is
-fetched without a browser cache; the recording itself displays endpoint r4.
-The image recording is a CPU research prototype. The three existing 3D clips
-retain their qualified native source download. No physical GPU is used.
-
-Run `scripts/prepare-morphology-examples.py`, update the manifest, and run
-`scripts/verify-current-site.py` before publication. The gallery Playwright test
-checks four videos, catalog durations and versioned URLs, seeking, play/pause,
-downloads, mobile layout and renderer integration.
+The owner rejected r4's literal cut into halves. That clip and its endpoint PNGs
+are removed. The gallery opens on the earlier native rounded lava-like two→five
+separation. The previous cat/dog experiment is restored and explicitly labelled
+as the previous version; its texture blending is not fixed by this rollback.
+The scan and three-state examples remain. New image work stays local until it
+passes visual review in motion; numerical tests alone are not acceptance.
+The rejected r4 preparation recipe is disabled to prevent accidental republication.

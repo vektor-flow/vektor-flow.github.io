@@ -139,3 +139,17 @@ core handles multiple states, linear/cubic interpolation, independent endpoint
 easing, state/embedding derivatives, retained identity channel bindings and
 conserved material lineage. General biological boundaries and direct native
 Layer/View integration remain unfinished; no legacy runtime substitutes for them.
+
+## Native Morphing geometry checkpoint — 2026-10-16
+
+examples/live/index.html executes the current VKF library through canonical WASM
+in a worker, retaining a prepared scene and forwarding arbitrary coordinates.
+Linear/cubic and independent smooth endpoints execute in VKF. Browser code only
+transports values and presents coverage; no old matcher or interpolation fallback.
+Phone controls, mode-dependent native output, latest-request handling and video
+metadata pass. The browser geometry path is explicitly slow, not realtime.
+
+The 97-frame native split/recombine recording uses geometric area calibration.
+Sampled topology is 1→2→1 with no holes or reversals; native area error <1e-5.
+Generic matching, thin strokes, hole scheduling, cohort routing and live Linux
+View handles remain unfinished. The page and source README retain these limits.

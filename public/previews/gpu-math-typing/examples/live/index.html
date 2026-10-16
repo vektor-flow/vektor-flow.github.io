@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Morphing · native VKF</title><style>
+:root{color-scheme:dark;font-family:system-ui;background:#091116;color:#dcecf0}body{max-width:780px;margin:0 auto;padding:24px}a{color:#81d9e3}h1{font-size:1.6rem}canvas,video{width:100%;background:#091116;border:1px solid #2b424c;border-radius:14px}canvas{aspect-ratio:1}fieldset{border:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:16px}label{display:flex;align-items:center;gap:8px}select,button{font:inherit;padding:8px;background:#152b34;color:inherit;border:1px solid #42616d;border-radius:8px}input[type=range]{width:100%;accent-color:#53d5e1}p{line-height:1.5}.muted{color:#9ab4bf}#status{min-height:3em}video{aspect-ratio:1}nav{display:flex;gap:20px;flex-wrap:wrap}</style>
+<nav><a href="../index.html">Examples</a><a href="../downloads/Morphing-source.zip">Library source</a></nav>
+<h1>Morphing · split and recombine</h1>
+<p>One connected shape separates into two and rejoins. Geometry moves and changes shape; material does not fade in or out.</p>
+<video controls playsinline preload="metadata" src="../media/native-cell-division.mp4"></video>
+<p><a href="../media/native-cell-division.mp4" download>Download video</a></p>
+<h2>Choose a state</h2>
+<p class="muted">This preview calculates the requested state on your device. It uses a coarse grid and can take several seconds. The video above is a separately calculated, higher-resolution recording.</p>
+<fieldset><label>Interpolation <select id="mode"><option value="1">Cubic</option><option value="0">Linear</option></select></label><label><input id="start" type="checkbox" checked>Smooth start</label><label><input id="end" type="checkbox" checked>Smooth end</label></fieldset>
+<canvas id="view" width="384" height="384" aria-label="Morphing geometry"></canvas>
+<label for="coordinate">State coordinate <output id="position">0.00</output></label><input id="coordinate" type="range" min="0" max="2" value="0" step="0.01">
+<p id="status" role="status">Loading Morphing…</p>
+<p class="muted">Current scope: compiled VKF state interpolation and connected geometric split/merge. General object matching, thin-stroke constraints and live native desktop View handles are still unfinished.</p>
+<script type="module" src="app.mjs"></script></html>

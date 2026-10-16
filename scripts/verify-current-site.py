@@ -12,11 +12,18 @@ assert all(e['backend']=='Native VKF' for e in catalog), 'Only current native mo
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
+# Reviewed compiled library application, not another compiler release.
+application=root/'previews/gpu-math-typing/examples/live/runtime'
+assert hashlib.sha256((application/'biological.wasm').read_bytes()).hexdigest()=='e2aa1c1416f9090c1618959714c2a396302a9a802e2e32a8ee07d01180efdb85'
+proof=json.loads((application/'provenance.json').read_text())
+assert proof['passed'] and proof['canonicalWASM'] and not proof['hostInterpolation']
+for name,digest in proof['artifacts'].items():
+ assert hashlib.sha256((application/name).read_bytes()).hexdigest()==digest,name
 for p in root.rglob('*'):
  if not p.is_file():continue
  rel=str(p.relative_to(root))
  assert not rel.startswith(('runtimes/','previews/0.','releases/','generated/','reference/','downloads/current/','playground/artifacts/')),rel
- if p.suffix=='.wasm':assert rel in {'playground/canonical/compiler.wasm','vf-ui/artifacts/vkf-symbolic-kernel.wasm'},rel
+ if p.suffix=='.wasm':assert rel in {'playground/canonical/compiler.wasm','vf-ui/artifacts/vkf-symbolic-kernel.wasm','previews/gpu-math-typing/examples/live/runtime/biological.wasm'},rel
  if p.suffix=='.html':
   s=p.read_text();assert not re.search(r'(?:Version |data-release-version=")[0-9]+\.[0-9]+\.[0-9]+',s),rel
 class Links(HTMLParser):

@@ -4,7 +4,7 @@ from urllib.parse import urlsplit,unquote
 from html.parser import HTMLParser
 import json,hashlib,re
 root=Path(__file__).resolve().parents[1]/'public'
-for retired in ['previews/gpu-morph','previews/gpu-math-typing/motion','previews/gpu-math-typing/examples/downloads/math/quadratic-structure.mp4','previews/gpu-math-typing/examples/downloads/cat-dog-comparison.mp4','previews/gpu-math-typing/examples/media/cat-dog.mp4']:
+for retired in ['previews/gpu-math-typing/examples/media/native-cell-division.mp4','previews/gpu-morph','previews/gpu-math-typing/motion','previews/gpu-math-typing/examples/downloads/math/quadratic-structure.mp4','previews/gpu-math-typing/examples/downloads/cat-dog-comparison.mp4','previews/gpu-math-typing/examples/media/cat-dog.mp4']:
  assert not (root/retired).exists(), 'Retired morphology must not be republished: '+retired
 catalog=json.loads((root/'previews/gpu-math-typing/examples/catalog.json').read_text())
 assert all(e['backend']=='Native VKF' for e in catalog), 'Only current native morphology examples may be published'

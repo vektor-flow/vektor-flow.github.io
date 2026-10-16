@@ -153,3 +153,25 @@ The 97-frame native split/recombine recording uses geometric area calibration.
 Sampled topology is 1→2→1 with no holes or reversals; native area error <1e-5.
 Generic matching, thin strokes, hole scheduling, cohort routing and live Linux
 View handles remain unfinished. The page and source README retain these limits.
+
+## GPU player and local VKF video export — 2026-10-16
+
+The owner requested GPU players instead of uploaded recordings where a player is
+available. The current Morphing page now presents native coverage through WebGL2,
+with cached native playback, slider and cancellable local export. Its uploaded
+native-cell-division.mp4 is removed and guarded against republication. Workbench
+Morph mode opens this player; existing unrelated 3D recordings are unchanged.
+
+Download uses the existing createSceneMediaCapture startMovie/stopMovie API and
+downloadCapturedMedia. Native geometry is prepared before capture: 192² samples
+for1080²/48fps target and128² for720²/30fps target; preview uses32². The recorder
+requests20/12Mbps, chooses a browser-supported format, and never uploads the blob.
+Frame-rate settings are capture targets, not a physical GPU performance result.
+
+SwiftShader checks pass interpolation/easing, latest-request selection and phone
+layout. A real high-detail192² geometry /1080² capture using three key states
+passes, along with cancellation/recovery. ffprobe independently confirmsVP9 and
+1080×1080. A full193-state high-quality export is not a measured performance run.
+The first too-short capture produced an empty blob; retained evidence led to
+waiting for canvas presentation and adding beginning/end holds. Empty blobs now
+fail instead of downloading. No physical GPU was exercised.

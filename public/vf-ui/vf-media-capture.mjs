@@ -9,9 +9,10 @@ export function createSceneMediaCapture(options = {}) {
   const wait = options.wait || delay;
   const setClean = options.setClean || (() => {});
   let movie = null;
+  let frameMovie = null;
 
   async function screenshot({ delayMs = 0 } = {}) {
-    if (movie) throw new Error('A movie capture is already active');
+    if (movie || frameMovie) throw new Error('A movie capture is already active');
     const stream = await requestStream({ kind: 'image' });
     setClean(true, 'image');
     try {
@@ -24,7 +25,7 @@ export function createSceneMediaCapture(options = {}) {
   }
 
   async function startMovie({ delayMs = 0 } = {}) {
-    if (movie) return false;
+    if (movie || frameMovie) return false;
     const stream = await requestStream({ kind: 'video' });
     setClean(true, 'video');
     try {
@@ -40,7 +41,30 @@ export function createSceneMediaCapture(options = {}) {
     }
   }
 
+  async function startFrameMovie(settings = {}) {
+    if (movie || frameMovie) throw new Error('A movie capture is already active');
+    const token = { canceled: false, encoder: null, done: null, resolve: null };
+    token.done = new Promise(resolve => { token.resolve = resolve; });
+    frameMovie = token;
+    setClean(true, 'video');
+    const release = () => {
+      if (frameMovie === token) { frameMovie = null; setClean(false, 'video'); }
+      token.resolve();
+    };
+    try {
+      const { createFrameMovieCapture } = await import('./vf-frame-movie-capture.mjs');
+      if (token.canceled) throw new DOMException('Capture canceled', 'AbortError');
+      token.encoder = await createFrameMovieCapture({ ...settings, onClose: release });
+      if (token.canceled) { await token.encoder.cancel(); throw new DOMException('Capture canceled', 'AbortError'); }
+      return token.encoder;
+    } catch (error) { release(); throw error; }
+  }
+
   async function stopMovie() {
+    if (frameMovie) {
+      if (!frameMovie.encoder) throw new Error('Frame movie is still starting');
+      return frameMovie.encoder.finish();
+    }
     if (!movie) return null;
     const active = movie;
     movie = null;
@@ -53,6 +77,11 @@ export function createSceneMediaCapture(options = {}) {
   }
 
   function cancel() {
+    if (frameMovie) {
+      const active = frameMovie;
+      active.canceled = true;
+      return active.encoder ? active.encoder.cancel() : active.done.then(() => true);
+    }
     if (!movie) return false;
     const active = movie;
     movie = null;
@@ -65,9 +94,10 @@ export function createSceneMediaCapture(options = {}) {
   return Object.freeze({
     screenshot,
     startMovie,
+    startFrameMovie,
     stopMovie,
     cancel,
-    get recording() { return movie != null; }
+    get recording() { return movie != null || frameMovie != null; }
   });
 }
 

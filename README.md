@@ -199,3 +199,31 @@ runtime experiments remain in artifacts, not deployment assets. Evidence lives
 in Cuvami staging/artifacts/morphing-retained-20261016; current build17 and native
 qualification03. The complete equation/2D/3D/image acceptance suite is unfinished:
 equation, indexed3D and image adapters are not connected to this new path.
+
+
+## Compiled Morphing GPU pipeline — 2026-10-16
+
+The local live player now uses compiler-generated VKF state, field, calibration
+and triangle kernels. Geometry remains in GPU buffers and the existing VKF
+renderer draws those buffers directly with4x MSAA. Playback samples current time
+without preparing or caching97 CPU geometry frames. The old worker/WASM geometry
+package is removed; the compiled preparation/clock package is under live/compiled.
+The public0.7.2 compiler remains byte-identical. The real-f32 WGSL compiler is an
+isolated tested candidate, not an installed compiler upgrade.
+
+VKF capture now supports offline fixed-frame-rate WebM encoding. A full193-frame
+1080×1080/48fps export passes browser checks and independent ffprobe inspection;
+its duration is4.021seconds. Cancellation and subsequent slider recovery pass.
+Only compressed video accumulates for download; raw frame/geometry arrays are
+not cached. GPU pixels are read back for video encoding, but geometry is not.
+
+Software-only SwiftShader benchmarks and exact scalar/packet pixel comparisons
+are retained in Cuvami staging/artifacts/morphing-compiled-gpu-20261016. No physical
+GPU or phone performance is certified. This qualifies the current2D split/merge
+cohort; the full equation,3D and image adapters are still unfinished. The deployment contains only this current pipeline.
+
+Matched warm software benchmark (35samples after5warmups,24² calibration,
+129² contour,512² canvas): scalar-output geometry took62.1ms median versus17.0ms
+for whole-cell packets. Including drawing and waiting for GPU completion, the
+median fell from77.9ms to33.0ms. Five sampled states have identical rendered pixels.
+These measurements do not establish the requested sub10ms hardware frame target.

@@ -17703,8 +17703,8 @@
     },
     {
       "path": "previews/gpu-math-typing/examples/downloads/Morphing-source.zip",
-      "bytes": 30203,
-      "sha256": "8a87ca8dcdd877aad55d8fc570defa2500ac0ba491f9b6a2df95463780716188"
+      "bytes": 45242,
+      "sha256": "7cf14a8462426bb6000a29af85b9f821aa65880c49cd8a12eb9833f5a3902b1c"
     },
     {
       "path": "previews/gpu-math-typing/examples/downloads/indexed-scan-meshes.zip",
@@ -17858,58 +17858,128 @@
     },
     {
       "path": "previews/gpu-math-typing/examples/live/app.mjs",
-      "bytes": 7344,
-      "sha256": "3b8a6f67cfae47539d4242fb245098741f30ff78dd6ad3ae7477befa46c8deea"
+      "bytes": 6161,
+      "sha256": "8e7f19ce3b5cb030f0e19ed38bd29e7083e60e5374b8918452fe6746335ce43e"
     },
     {
-      "path": "previews/gpu-math-typing/examples/live/gpu-view.mjs",
-      "bytes": 1315,
-      "sha256": "4bbbb7b164ff2c7742d77b2004d53cfe8d1cf1369ed6b8b6a5ae094310d0a30b"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/index.html",
-      "bytes": 2683,
-      "sha256": "8f514e1e0b9d4841db5654091ce8129be48b6a03204a25b9d436dee195775026"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/runtime/biological-wasm.json",
-      "bytes": 2835,
-      "sha256": "07c8391152619261824e16c7a33625455cf6a218e650436680a987c8d6d9a3e1"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/runtime/biological.wasm",
-      "bytes": 1757268,
-      "sha256": "8d989bd42d732b762c1fe87792f47568aa752a0d906e59a04205dab0871c069a"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/runtime/index.html",
-      "bytes": 162,
-      "sha256": "4037eeb896387db57428c05918582084f0bbcd13438aaeb931936931358bef58"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/runtime/morphing-demo.mjs",
-      "bytes": 1239,
-      "sha256": "87f33b4ab6e1db066cf7443dc0f85d390eb3f0fc78122356a6bce5e5d3828765"
-    },
-    {
-      "path": "previews/gpu-math-typing/examples/live/runtime/playground/vkf-concurrent-values.mjs",
+      "path": "previews/gpu-math-typing/examples/live/compiled/playground/vkf-concurrent-values.mjs",
       "bytes": 7622,
       "sha256": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679"
     },
     {
-      "path": "previews/gpu-math-typing/examples/live/runtime/provenance.json",
-      "bytes": 3435,
-      "sha256": "ff3e15a37a8e7598f9f1e7e8ea0926c078a82bfa756d21eb92ecc18f517125e6"
+      "path": "previews/gpu-math-typing/examples/live/compiled/provenance.json",
+      "bytes": 2484,
+      "sha256": "8fa2fc4eea0796c581a69be1675eb317f56f30321c9195236c06e3e42a0b837c"
     },
     {
-      "path": "previews/gpu-math-typing/examples/live/runtime/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "path": "previews/gpu-math-typing/examples/live/compiled/scene.json",
+      "bytes": 1674,
+      "sha256": "8878f03b3ca1299590455ae756b2e5205cefacc15f2a02af35bb19ddfb22e900"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/scene.wasm",
+      "bytes": 1297285,
+      "sha256": "cd9d610595c824228a1c90b7817746bc956fcbd1a09e2c4e91a3b0bb146be614"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/calibrate.wgsl",
+      "bytes": 4028,
+      "sha256": "10c475adf52422d321a27ff9b5d85cc1f859be48b7437e5233cedaf35a6c765d"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/calibrate.wgsl.json",
+      "bytes": 865,
+      "sha256": "443c8120b52d71795f9e971f41c7025046ff5b674b856b3d58eea74ab66bc166"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/check-controls.wgsl",
+      "bytes": 1394,
+      "sha256": "25ba987443b6b2942237f53f99b5793444d2955635727235cf0912f7f95b2d85"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/check-controls.wgsl.json",
+      "bytes": 865,
+      "sha256": "93bdec9589fcb17136293f96925f35444f3e8676721d0827f37f268a086b8825"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/field.wgsl",
+      "bytes": 13499,
+      "sha256": "2b5a37df8f5513b89792a522de34bca0f1df5f2c915f78f840f87bf4a148a470"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/field.wgsl.json",
+      "bytes": 865,
+      "sha256": "60610973defb24ec267062c43abdecfaf45f75530bf0cd52b9de1a0657bb9633"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/measure.wgsl",
+      "bytes": 1667,
+      "sha256": "f93329679464bb820942f377d1c7ce2d1420c580ad3990c0c32a24aa5d8e60c4"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/measure.wgsl.json",
+      "bytes": 865,
+      "sha256": "d6aaf281ae9bb708f383f0ff520a1c78451c969fdc10a2856fa26817b0529cec"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/reduce.wgsl",
+      "bytes": 1770,
+      "sha256": "5bb63ca7e85f8e429cbe54711b4d828d26b5860afe87072e2487aead53b59176"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/reduce.wgsl.json",
+      "bytes": 865,
+      "sha256": "44d3919434df324272ab16bb8fca7203aad4dff669cc9caf0c47285bfbc4652f"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/render-controls.wgsl",
+      "bytes": 1463,
+      "sha256": "91758eb4b6a78f71f91ceeb4c012b28765b0714fc81a907f0c7546906c24e108"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/render-controls.wgsl.json",
+      "bytes": 865,
+      "sha256": "53b2a6c846060a00664935f52f3ef6e4a7ce27ec97e5a5ffeef1c6f1e1d45816"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/state.wgsl",
+      "bytes": 3030,
+      "sha256": "0319b5db2686507f4068d770514473337e9cddcb6d592b247b36e0a4726659e8"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/state.wgsl.json",
+      "bytes": 865,
+      "sha256": "11461c816e436180c26e5f1c356e6657100765a2092d93401becdf0d4acb0bee"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/triangle-packet.wgsl",
+      "bytes": 10475,
+      "sha256": "a34fdd7337eaae359f68b73f045a496f3e847b18e75fe3bc58a7425e763e97f9"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/shaders/triangle-packet.wgsl.json",
+      "bytes": 866,
+      "sha256": "8b84a139e4b36f451197caedd94db5c5d7f71ec01587673493b2951aa2b8ed18"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/compiled/vf-ui/vf-symbolic-kernel-runtime.mjs",
       "bytes": 23188,
       "sha256": "69e80bffc12d7c020fc94c0af480ccf05912cf534f1aa6e9aaf80c68e7971fae"
     },
     {
-      "path": "previews/gpu-math-typing/examples/live/worker.mjs",
-      "bytes": 1021,
-      "sha256": "d3a49859233d583e5ed8629677d66d93fe007935f84624ce81639a83a5e57b39"
+      "path": "previews/gpu-math-typing/examples/live/gpu-morphing.mjs",
+      "bytes": 8487,
+      "sha256": "5a06083ef2bad9081518616850f8c9b1546425a626956d1ab8b71c26fb55897a"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/gpu-view.mjs",
+      "bytes": 991,
+      "sha256": "7bc3a8203ca286ec36c3d2ac1c39f39b26fd438a293f2d8122eba3a12a7894a5"
+    },
+    {
+      "path": "previews/gpu-math-typing/examples/live/index.html",
+      "bytes": 2661,
+      "sha256": "5f87e6d512d8f2b016f0433e580464b47adad488e78aaaa8fb2176de54d4656e"
     },
     {
       "path": "previews/gpu-math-typing/examples/math-import.mjs",
@@ -18343,8 +18413,8 @@
     },
     {
       "path": "vf-ui/geom/vf-screen-simplex-renderer.mjs",
-      "bytes": 19615,
-      "sha256": "00e2f2af978bf68d31f3258eab9c761fff1bd0eeb2b249abd411406c33792490"
+      "bytes": 22914,
+      "sha256": "07bad63e331e3e37b83978c144cb8df450e6aaa6576f8c7683f419eed36bb82f"
     },
     {
       "path": "vf-ui/geom/vf-symbolic-plot-renderer.mjs",
@@ -18452,6 +18522,21 @@
       "sha256": "ded234f8bf841125f5ecb97407ce643fbe55f9ea7b9be1b1d9fceb56a7ddd222"
     },
     {
+      "path": "vf-ui/vendor/mediabunny-1.61.6.min.mjs",
+      "bytes": 693871,
+      "sha256": "cc6f1f3d5e09758eafc15f7c2712439be3f2e25c301d096b11405a2f78a96e8f"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-LICENSE",
+      "bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-NOTICE.txt",
+      "bytes": 487,
+      "sha256": "21fadee3b5815df1ba1e08f77394248688204d2b5a2dee884d939b7dd4565ba1"
+    },
+    {
       "path": "vf-ui/vf-alpha-hit-mask.js",
       "bytes": 3220,
       "sha256": "154ab4417876bdcb1c5ff47761f0bcc9f8f3def105c1bea0cada4750b12deba8"
@@ -18522,6 +18607,11 @@
       "sha256": "eae52a6ed633fd8d8dc867b7b34b95db1fe976dd1106ab8182e0fea8cf05fdcf"
     },
     {
+      "path": "vf-ui/vf-compiled-field-runtime.mjs",
+      "bytes": 3931,
+      "sha256": "e00a5408c00a4aa2e12d82b7df1b952d6767616e3c4f654bfea68e2894ade936"
+    },
+    {
       "path": "vf-ui/vf-compiled-runtime-bridge.js",
       "bytes": 19214,
       "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
@@ -18545,6 +18635,11 @@
       "path": "vf-ui/vf-display.js",
       "bytes": 591717,
       "sha256": "0fc0915755e4816e78a614cf68557480d0fcc55930432b58f0ad726dba359095"
+    },
+    {
+      "path": "vf-ui/vf-frame-movie-capture.mjs",
+      "bytes": 3874,
+      "sha256": "a244d3729ceb3bead11b46050245147aab5df35b2025ecaaa5f3067c6f39d95e"
     },
     {
       "path": "vf-ui/vf-frame.css",
@@ -18598,8 +18693,8 @@
     },
     {
       "path": "vf-ui/vf-media-capture.mjs",
-      "bytes": 8229,
-      "sha256": "2eab7c3aab0b4f77ff3b601a11a846882c9c5bada7708030ccb27752354f5704"
+      "bytes": 9599,
+      "sha256": "feb2a71774258f1b7a89d4f9870f0b2ed44d8ac0f9f68487ba78819fd763e23a"
     },
     {
       "path": "vf-ui/vf-native-scene.js",
@@ -18817,5 +18912,5 @@
       "sha256": "2b4cced92cb9595df9609d86293059e5dfc2957a658df66d44d406585f5d8737"
     }
   ],
-  "totalBytes": 226638895
+  "totalBytes": 226964180
 }

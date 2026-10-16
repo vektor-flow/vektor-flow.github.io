@@ -82,3 +82,30 @@ device/backend, actual rendered coverage and cached/uncached runs. SVGMath's
 precomputed output is a different preparation boundary; report its preparation
 cost separately. Reference timings are not our measurements. This comparison
 is recorded for later; it is not implemented or claimed by this publication.
+
+## Recorded morphology examples — 2026-10-16
+
+Owner requested uploading the reviewed examples to the online renderer with play,
+a slider and downloads. `/previews/gpu-math-typing/document.html#examples` opens the
+new Examples tab; the standalone gallery is `examples/index.html` beside the shell.
+Thirteen recordings cover scan meshes, rounded/earlier two-to-five solids, cubic
+3D states, photo motion/rotation, walking-cat interpolation and geometry reviews.
+They are explicitly labeled recordings; this publication is not a live GPU port
+of the native or Python solvers. Existing Document/Morph engines and compiler pins
+are unchanged. Only the active clip loads; thumbnails are lazy and videos use
+metadata preload. Phone layouts, playback, seeking and downloads are supported.
+
+Each clip has an MP4 download. Native examples include a VKF source archive with
+MIT and third-party notices. Scans include original PLY and native remeshed OBJ
+archives, credited to the Stanford Computer Graphics Laboratory, with research
+and noncommercial-use terms. CC0 photo/video authors are credited. Known ghosting,
+resolution and volume-preservation limitations are visible per example.
+
+`python scripts/prepare-morphology-examples.py --artifacts PATH --native-source PATH`
+recreates the catalog/assets from review evidence. No machine-local verification
+receipts or credentials are published. `node tests/morphology-gallery.cjs` checks
+all thirteen clips, mid-clip seeking, play/pause, actual MP4/ZIP downloads, phone
+layout and shell integration using headless Chromium with GPU disabled. Set
+VKF_SITE_URL for hosted replay and VKF_GALLERY_EVIDENCE for output artifacts.
+Publishing these examples was explicitly requested; unrelated Cuvami deployment
+and physical GPU restrictions remain unchanged.

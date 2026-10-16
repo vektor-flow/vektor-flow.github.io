@@ -1,0 +1,249 @@
+[
+  {
+    "id": "scans",
+    "title": "Bunny \u2192 armadillo",
+    "category": "3D",
+    "description": "Downloaded research scans rebuilt as shared-index triangle meshes. Grid resolution reduces fine detail; this is a field morph, not semantic feature matching.",
+    "backend": "Native VKF",
+    "video": "media/scans.mp4",
+    "poster": "media/scans.jpg",
+    "duration": 7.5,
+    "width": 720,
+    "height": 500,
+    "fps": "24/1",
+    "bytes": 317626,
+    "sha256": "c631e77add1ef0f95bdf921308e3c8c8971cdd1413ce58c6f8d6a552e67c040a",
+    "downloads": [
+      {
+        "label": "Indexed OBJ meshes",
+        "url": "downloads/indexed-scan-meshes.zip"
+      },
+      {
+        "label": "Original PLY scans",
+        "url": "downloads/original-scans.zip"
+      },
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip"
+      }
+    ],
+    "credits": "Stanford University Computer Graphics Laboratory. Research and free redistribution with attribution; commercial use requires permission. https://graphics.stanford.edu/data/3Dscanrep/"
+  },
+  {
+    "id": "lava",
+    "title": "Rounded two \u2192 five split",
+    "category": "3D",
+    "description": "Rounded separating necks with one spherical light and reflections. Final shapes include two tori and a tetrahedron. Volume preservation remains unfinished.",
+    "backend": "Native VKF",
+    "video": "media/lava.mp4",
+    "poster": "media/lava.jpg",
+    "duration": 7.5,
+    "width": 720,
+    "height": 500,
+    "fps": "24/1",
+    "bytes": 166361,
+    "sha256": "ffe7cdd620a3d91ae86b0f2d9172efceb4f5cf208fafced4cf0ba3ec903e087c",
+    "downloads": [
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip"
+      }
+    ]
+  },
+  {
+    "id": "spherical",
+    "title": "Two \u2192 five \u00b7 earlier split",
+    "category": "3D",
+    "description": "Earlier version for comparison: sharper split borders, spherical lighting and floor reflections.",
+    "backend": "Native VKF",
+    "video": "media/spherical.mp4",
+    "poster": "media/spherical.jpg",
+    "duration": 7.5,
+    "width": 720,
+    "height": 500,
+    "fps": "24/1",
+    "bytes": 201000,
+    "sha256": "a32030d129f7e0489991ae01edb10b99f613a9f908bff9c94230520c07b1e915",
+    "downloads": [
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip"
+      }
+    ]
+  },
+  {
+    "id": "three-states",
+    "title": "Three-state cubic morph",
+    "category": "3D",
+    "description": "Sphere \u2192 rounded cube \u2192 ellipsoid, using cubic state interpolation with smooth start and end.",
+    "backend": "Native VKF",
+    "video": "media/three-states.mp4",
+    "poster": "media/three-states.jpg",
+    "duration": 6.541667,
+    "width": 960,
+    "height": 660,
+    "fps": "24/1",
+    "bytes": 501042,
+    "sha256": "0a7aa53ea042bb7e300c8562ef411b90813d3939e035005acc2088f826a2aaef",
+    "downloads": [
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip"
+      }
+    ]
+  },
+  {
+    "id": "cat-walk",
+    "title": "Walking cat \u00b7 48 fps",
+    "category": "Images",
+    "description": "Every second source frame retained; native VKF generates the intermediate frames. Fast-motion ghosting remains.",
+    "backend": "Native VKF",
+    "video": "media/cat-walk.mp4",
+    "poster": "media/cat-walk.jpg",
+    "duration": 8.0,
+    "width": 512,
+    "height": 288,
+    "fps": "48/1",
+    "bytes": 5216428,
+    "sha256": "1952eee8cc86538e8b29a0b35ce7b485855ddcd32762610e3de219d8c067865c",
+    "downloads": [
+      {
+        "label": "VKF source",
+        "url": "downloads/native-vkf-source.zip"
+      }
+    ],
+    "credits": "Cat photo: Anton Petrov; dog photo: Karen Arnold; walking-cat video: Dzkouslavia. CC0."
+  },
+  {
+    "id": "cat-comparison",
+    "title": "Walking cat \u00b7 comparison",
+    "category": "Images",
+    "description": "Original 24 fps, retained 12 fps, and reconstructed 48 fps. New timestamps are inferred, not recovered ground truth.",
+    "backend": "Python reference",
+    "video": "media/cat-comparison.mp4",
+    "poster": "media/cat-comparison.jpg",
+    "duration": 8.0,
+    "width": 512,
+    "height": 936,
+    "fps": "48/1",
+    "bytes": 13269271,
+    "sha256": "285158320902ef69126ee005e59d5b0d6e08b61aadf7eefde747f214255c7e01",
+    "downloads": [],
+    "credits": "Cat photo: Anton Petrov; dog photo: Karen Arnold; walking-cat video: Dzkouslavia. CC0."
+  },
+  {
+    "id": "small-motion",
+    "title": "Cat \u00b7 small internal motion",
+    "category": "Images",
+    "description": "Known small synthetic motion tests whether local image structure follows the deformation.",
+    "backend": "Python reference",
+    "video": "media/small-motion.mp4",
+    "poster": "media/small-motion.jpg",
+    "duration": 5.233333,
+    "width": 384,
+    "height": 384,
+    "fps": "30/1",
+    "bytes": 739384,
+    "sha256": "c9173e1ea63fb909b1dd223ca97b3ab5a7317be1545a81118a29fb7a9ca4dea8",
+    "downloads": [],
+    "credits": "Cat photo: Anton Petrov; dog photo: Karen Arnold; walking-cat video: Dzkouslavia. CC0."
+  },
+  {
+    "id": "cat-dog",
+    "title": "Cat \u2192 dog",
+    "category": "Images",
+    "description": "A connected texture mesh transforms one photo into another. Eye and muzzle correspondence remains imperfect.",
+    "backend": "Python reference",
+    "video": "media/cat-dog.mp4",
+    "poster": "media/cat-dog.jpg",
+    "duration": 4.033333,
+    "width": 384,
+    "height": 384,
+    "fps": "30/1",
+    "bytes": 786801,
+    "sha256": "cda491cdd6e3d8fc5c5ab4d4495d20247600694a7aadcffda0ca4fa9863e7a74",
+    "downloads": [],
+    "credits": "Cat photo: Anton Petrov; dog photo: Karen Arnold; walking-cat video: Dzkouslavia. CC0."
+  },
+  {
+    "id": "rotation",
+    "title": "Rotation and photo morph",
+    "category": "Images",
+    "description": "The photo morph combines with a prescribed 25\u00b0 rotation. Semantic correspondence limitations remain.",
+    "backend": "Python reference",
+    "video": "media/rotation.mp4",
+    "poster": "media/rotation.jpg",
+    "duration": 5.233333,
+    "width": 544,
+    "height": 544,
+    "fps": "30/1",
+    "bytes": 987630,
+    "sha256": "b05ae22f4da8beec79b2c949cc304e1c188c9398f36d877dd23cea1a07631f82",
+    "downloads": [],
+    "credits": "Cat photo: Anton Petrov; dog photo: Karen Arnold; walking-cat video: Dzkouslavia. CC0."
+  },
+  {
+    "id": "area",
+    "title": "Area and thin geometry",
+    "category": "Geometry",
+    "description": "Comparison from the thin-stroke and cavity-timing review. This is recorded benchmark evidence.",
+    "backend": "CPU reference",
+    "video": "media/area.mp4",
+    "poster": "media/area.jpg",
+    "duration": 5.0,
+    "width": 1280,
+    "height": 1600,
+    "fps": "60/1",
+    "bytes": 5716509,
+    "sha256": "2bf2bebe144c8181d9f2910b903aa190f6684b3c0d916fee79f6e75ef56df0c6",
+    "downloads": []
+  },
+  {
+    "id": "replicas",
+    "title": "Morphology regression review",
+    "category": "Geometry",
+    "description": "Review of the corrected morphology corpus, including changing object counts and routing.",
+    "backend": "CPU reference",
+    "video": "media/replicas.mp4",
+    "poster": "media/replicas.jpg",
+    "duration": 15.0,
+    "width": 1280,
+    "height": 1600,
+    "fps": "60/1",
+    "bytes": 7346370,
+    "sha256": "cc984bdb219348b79cf1689c44a0833eefd8bf0cf8003287569c9976ed6945c5",
+    "downloads": []
+  },
+  {
+    "id": "branches",
+    "title": "Branching objects",
+    "category": "Geometry",
+    "description": "Branching and changing-cohort motion from the earlier geometry experiments.",
+    "backend": "CPU reference",
+    "video": "media/branches.mp4",
+    "poster": "media/branches.jpg",
+    "duration": 9.0,
+    "width": 720,
+    "height": 1280,
+    "fps": "60/1",
+    "bytes": 5104134,
+    "sha256": "4415cc23824606f7226c2874472b67618522d3dfb7031baa380f1b567006b4bd",
+    "downloads": []
+  },
+  {
+    "id": "before-after",
+    "title": "Geometry \u00b7 before and after",
+    "category": "Geometry",
+    "description": "Earlier before/after comparison of shape transport and hole handling.",
+    "backend": "CPU reference",
+    "video": "media/before-after.mp4",
+    "poster": "media/before-after.jpg",
+    "duration": 12.0,
+    "width": 720,
+    "height": 1280,
+    "fps": "60/1",
+    "bytes": 665453,
+    "sha256": "d7345db82ad8deca80615aec44031ec9153f67b9b810faae60a4856c5afc1570",
+    "downloads": []
+  }
+]

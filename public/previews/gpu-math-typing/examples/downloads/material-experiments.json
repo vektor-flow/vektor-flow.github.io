@@ -1,2120 +1,1949 @@
 {
   "status": "Research review, not a completed general split/merge solver",
-  "automatic_cat_dog": {
-    "status": "work in progress; object split/merge acceptance remains open",
-    "backend": "Python CPU reference",
-    "appearance": "RGB changes along material paths; no endpoint image opacity envelopes",
-    "samples": [
-      {
-        "t": 0.0,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.008333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.016666666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.025,
-        "material_mass": 147455.99999999997,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.03333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.041666666666666664,
-        "material_mass": 147455.99999999997,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.05,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.058333333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.06666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.075,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.08333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.09166666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.1,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.10833333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.11666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.125,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.13333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.14166666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.15,
-        "material_mass": 147455.99999999997,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.15833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.16666666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.175,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.18333333333333332,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.19166666666666665,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.2,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.20833333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.21666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.225,
-        "material_mass": 147456.00000000003,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.23333333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.24166666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.25,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.2583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.26666666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.275,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.2833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.2916666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.3,
-        "material_mass": 147455.99999999994,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.30833333333333335,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.31666666666666665,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.325,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.3333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.3416666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.35,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.35833333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.36666666666666664,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.375,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.3833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.39166666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.4,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.4083333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.4166666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.425,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.43333333333333335,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.44166666666666665,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.45,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.4583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.4666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.475,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.48333333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.49166666666666664,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5083333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5166666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.525,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5416666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.55,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.575,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5833333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.5916666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6083333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6166666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.625,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6416666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.65,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6666666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.675,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.6916666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7083333333333334,
-        "material_mass": 147456.00000000003,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7166666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.725,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7416666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.75,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7666666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.775,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.7916666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8083333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8166666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.825,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8333333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8416666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.85,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8583333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.875,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.8916666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9083333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9166666666666666,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9249999999999999,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9333333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9416666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.95,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9583333333333334,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9666666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.975,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9833333333333333,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 0.9916666666666667,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      },
-      {
-        "t": 1.0,
-        "material_mass": 147456.0,
-        "material_branches": 777317,
-        "splitting_samples": 147201,
-        "combining_destinations": 145739,
-        "missing_fraction": 0.0
-      }
-    ]
-  },
   "controlled_split": {
-    "automatic_correspondence": false,
-    "appearance_changes": false,
-    "analytic_cohort_area_constant": true,
-    "material_samples": 135948,
+    "revision": "endpoint-r4",
+    "automatic_correspondence": true,
+    "automatic_segmentation": false,
+    "appearance_changes": true,
+    "whole_image_crossfade": false,
+    "angular_wrapping": false,
+    "area_preservation": false,
+    "method": "Global balanced assignment of foreground pixels, squared spatial distance; continuous local surface reconstruction",
+    "endpoint_areas": [
+      4548,
+      4540
+    ],
+    "endpoint_exact": true,
+    "inputs": {
+      "source": {
+        "file": "source.png",
+        "sha256": "90d6c31255091901b412f546c423adbd91a6ddbfae71851e40f1b87bb3f6b218"
+      },
+      "target": {
+        "file": "target.png",
+        "sha256": "17946b1844b3ee93b5aac139c9d13e18d6ccf608fa367f22220e3ef5aff65163"
+      }
+    },
     "samples": [
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
-        "progress": 0.011111111111111112,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
-        "progress": 0.022222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.008333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.016666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.025,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
         "progress": 0.03333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
-        "progress": 0.044444444444444446,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.041666666666666664,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
-        "progress": 0.05555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.05,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.058333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
         "progress": 0.06666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34532
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
-        "progress": 0.07777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34520
+        "progress": 0.075,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
-        "progress": 0.08888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34568
+        "progress": 0.08333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4412.470588235294,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.09166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4418.447058823529,
+        "occupied_pixels": 4576
       },
       {
         "progress": 0.1,
-        "mass": 33987.0,
-        "visible_pixels": 34592
+        "mass": 4548.0,
+        "visible_area": 4422.431372549019,
+        "occupied_pixels": 4576
       },
       {
-        "progress": 0.11111111111111112,
-        "mass": 33987.0,
-        "visible_pixels": 34656
+        "progress": 0.10833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4423.419607843137,
+        "occupied_pixels": 4576
       },
       {
-        "progress": 0.12222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34688
+        "progress": 0.11666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4439.356862745098,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.125,
+        "mass": 4548.0,
+        "visible_area": 4439.858823529412,
+        "occupied_pixels": 4578
       },
       {
         "progress": 0.13333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34680
+        "mass": 4548.0,
+        "visible_area": 4434.839215686274,
+        "occupied_pixels": 4553
       },
       {
-        "progress": 0.14444444444444446,
-        "mass": 33987.0,
-        "visible_pixels": 34680
+        "progress": 0.14166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4421.019607843137,
+        "occupied_pixels": 4522
       },
       {
-        "progress": 0.15555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34736
+        "progress": 0.15,
+        "mass": 4548.0,
+        "visible_area": 4414.462745098039,
+        "occupied_pixels": 4504
       },
       {
-        "progress": 0.16666666666666669,
-        "mass": 33987.0,
-        "visible_pixels": 34688
+        "progress": 0.15833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4414.964705882352,
+        "occupied_pixels": 4504
       },
       {
-        "progress": 0.17777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "progress": 0.16666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4432.235294117647,
+        "occupied_pixels": 4539
       },
       {
-        "progress": 0.18888888888888888,
-        "mass": 33987.0,
-        "visible_pixels": 34704
+        "progress": 0.175,
+        "mass": 4548.0,
+        "visible_area": 4422.682352941177,
+        "occupied_pixels": 4521
+      },
+      {
+        "progress": 0.18333333333333332,
+        "mass": 4548.0,
+        "visible_area": 4421.415686274509,
+        "occupied_pixels": 4500
+      },
+      {
+        "progress": 0.19166666666666665,
+        "mass": 4548.0,
+        "visible_area": 4422.941176470588,
+        "occupied_pixels": 4514
       },
       {
         "progress": 0.2,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "mass": 4548.0,
+        "visible_area": 4430.176470588236,
+        "occupied_pixels": 4530
       },
       {
-        "progress": 0.2111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34712
+        "progress": 0.20833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4447.619607843137,
+        "occupied_pixels": 4536
       },
       {
-        "progress": 0.22222222222222224,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.21666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4454.172549019608,
+        "occupied_pixels": 4541
+      },
+      {
+        "progress": 0.225,
+        "mass": 4548.000000000001,
+        "visible_area": 4448.690196078432,
+        "occupied_pixels": 4538
       },
       {
         "progress": 0.23333333333333334,
-        "mass": 33987.0,
-        "visible_pixels": 34740
+        "mass": 4548.0,
+        "visible_area": 4463.458823529412,
+        "occupied_pixels": 4578
       },
       {
-        "progress": 0.24444444444444446,
-        "mass": 33987.0,
-        "visible_pixels": 34712
+        "progress": 0.24166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4471.035294117647,
+        "occupied_pixels": 4596
       },
       {
-        "progress": 0.2555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.25,
+        "mass": 4548.0,
+        "visible_area": 4471.019607843137,
+        "occupied_pixels": 4592
+      },
+      {
+        "progress": 0.2583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4472.2156862745105,
+        "occupied_pixels": 4588
       },
       {
         "progress": 0.26666666666666666,
-        "mass": 33987.0,
-        "visible_pixels": 34764
+        "mass": 4548.0,
+        "visible_area": 4474.250980392157,
+        "occupied_pixels": 4593
       },
       {
-        "progress": 0.2777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34756
+        "progress": 0.275,
+        "mass": 4548.0,
+        "visible_area": 4486.568627450981,
+        "occupied_pixels": 4624
       },
       {
-        "progress": 0.2888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34776
+        "progress": 0.2833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4478.788235294118,
+        "occupied_pixels": 4608
+      },
+      {
+        "progress": 0.2916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4493.564705882352,
+        "occupied_pixels": 4614
       },
       {
         "progress": 0.3,
-        "mass": 33987.0,
-        "visible_pixels": 34756
+        "mass": 4548.0,
+        "visible_area": 4502.027450980393,
+        "occupied_pixels": 4622
       },
       {
-        "progress": 0.3111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "progress": 0.30833333333333335,
+        "mass": 4547.999999999999,
+        "visible_area": 4509.545098039216,
+        "occupied_pixels": 4623
       },
       {
-        "progress": 0.32222222222222224,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.31666666666666665,
+        "mass": 4548.0,
+        "visible_area": 4513.003921568627,
+        "occupied_pixels": 4633
       },
       {
-        "progress": 0.33333333333333337,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.325,
+        "mass": 4548.0,
+        "visible_area": 4514.945098039216,
+        "occupied_pixels": 4617
       },
       {
-        "progress": 0.34444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34716
+        "progress": 0.3333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4517.4078431372545,
+        "occupied_pixels": 4608
       },
       {
-        "progress": 0.35555555555555557,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.3416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4527.992156862745,
+        "occupied_pixels": 4634
       },
       {
-        "progress": 0.3666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.35,
+        "mass": 4548.0,
+        "visible_area": 4527.027450980392,
+        "occupied_pixels": 4647
       },
       {
-        "progress": 0.37777777777777777,
-        "mass": 33987.0,
-        "visible_pixels": 34752
+        "progress": 0.35833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4547.709803921569,
+        "occupied_pixels": 4642
       },
       {
-        "progress": 0.3888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "progress": 0.36666666666666664,
+        "mass": 4548.0,
+        "visible_area": 4545.929411764706,
+        "occupied_pixels": 4655
+      },
+      {
+        "progress": 0.375,
+        "mass": 4548.0,
+        "visible_area": 4557.270588235294,
+        "occupied_pixels": 4677
+      },
+      {
+        "progress": 0.3833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4565.733333333334,
+        "occupied_pixels": 4680
+      },
+      {
+        "progress": 0.39166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4561.019607843137,
+        "occupied_pixels": 4677
       },
       {
         "progress": 0.4,
-        "mass": 33987.0,
-        "visible_pixels": 34720
+        "mass": 4548.0,
+        "visible_area": 4565.76862745098,
+        "occupied_pixels": 4684
       },
       {
-        "progress": 0.41111111111111115,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "progress": 0.4083333333333333,
+        "mass": 4548.000000000001,
+        "visible_area": 4572.023529411765,
+        "occupied_pixels": 4688
       },
       {
-        "progress": 0.4222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.4166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4578.505882352942,
+        "occupied_pixels": 4696
+      },
+      {
+        "progress": 0.425,
+        "mass": 4548.0,
+        "visible_area": 4584.972549019607,
+        "occupied_pixels": 4693
       },
       {
         "progress": 0.43333333333333335,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "mass": 4548.0,
+        "visible_area": 4579.196078431372,
+        "occupied_pixels": 4671
       },
       {
-        "progress": 0.4444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34752
+        "progress": 0.44166666666666665,
+        "mass": 4548.0,
+        "visible_area": 4582.678431372549,
+        "occupied_pixels": 4684
       },
       {
-        "progress": 0.45555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34800
+        "progress": 0.45,
+        "mass": 4548.0,
+        "visible_area": 4582.482352941177,
+        "occupied_pixels": 4698
+      },
+      {
+        "progress": 0.4583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4600.73725490196,
+        "occupied_pixels": 4708
       },
       {
         "progress": 0.4666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34796
+        "mass": 4548.0,
+        "visible_area": 4591.4,
+        "occupied_pixels": 4677
       },
       {
-        "progress": 0.4777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "progress": 0.475,
+        "mass": 4548.0,
+        "visible_area": 4607.1882352941175,
+        "occupied_pixels": 4701
       },
       {
-        "progress": 0.48888888888888893,
-        "mass": 33987.0,
-        "visible_pixels": 34772
+        "progress": 0.48333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4594.513725490196,
+        "occupied_pixels": 4706
+      },
+      {
+        "progress": 0.49166666666666664,
+        "mass": 4548.0,
+        "visible_area": 4588.776470588235,
+        "occupied_pixels": 4709
       },
       {
         "progress": 0.5,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "mass": 4548.0,
+        "visible_area": 4605.5137254901965,
+        "occupied_pixels": 4725
       },
       {
-        "progress": 0.5111111111111112,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "progress": 0.5083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4612.996078431372,
+        "occupied_pixels": 4741
       },
       {
-        "progress": 0.5222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34804
+        "progress": 0.5166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4602.4431372549025,
+        "occupied_pixels": 4694
+      },
+      {
+        "progress": 0.525,
+        "mass": 4548.0,
+        "visible_area": 4594.654901960785,
+        "occupied_pixels": 4690
       },
       {
         "progress": 0.5333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "mass": 4548.0,
+        "visible_area": 4604.690196078431,
+        "occupied_pixels": 4708
       },
       {
-        "progress": 0.5444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "progress": 0.5416666666666666,
+        "mass": 4548.0,
+        "visible_area": 4593.262745098039,
+        "occupied_pixels": 4695
       },
       {
-        "progress": 0.5555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34820
+        "progress": 0.55,
+        "mass": 4548.0,
+        "visible_area": 4602.4431372549025,
+        "occupied_pixels": 4711
+      },
+      {
+        "progress": 0.5583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4603.650980392156,
+        "occupied_pixels": 4704
       },
       {
         "progress": 0.5666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34824
+        "mass": 4548.0,
+        "visible_area": 4596.670588235294,
+        "occupied_pixels": 4686
       },
       {
-        "progress": 0.5777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34824
+        "progress": 0.575,
+        "mass": 4548.0,
+        "visible_area": 4586.423529411764,
+        "occupied_pixels": 4699
       },
       {
-        "progress": 0.5888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34848
+        "progress": 0.5833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4588.686274509803,
+        "occupied_pixels": 4692
+      },
+      {
+        "progress": 0.5916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4586.709803921569,
+        "occupied_pixels": 4703
       },
       {
         "progress": 0.6,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "mass": 4548.0,
+        "visible_area": 4587.274509803921,
+        "occupied_pixels": 4709
       },
       {
-        "progress": 0.6111111111111112,
-        "mass": 33987.0,
-        "visible_pixels": 34836
+        "progress": 0.6083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4585.75294117647,
+        "occupied_pixels": 4702
       },
       {
-        "progress": 0.6222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "progress": 0.6166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4573.64705882353,
+        "occupied_pixels": 4675
+      },
+      {
+        "progress": 0.625,
+        "mass": 4548.0,
+        "visible_area": 4567.909803921569,
+        "occupied_pixels": 4663
       },
       {
         "progress": 0.6333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "mass": 4548.0,
+        "visible_area": 4566.403921568628,
+        "occupied_pixels": 4674
       },
       {
-        "progress": 0.6444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34848
+        "progress": 0.6416666666666666,
+        "mass": 4548.0,
+        "visible_area": 4566.690196078431,
+        "occupied_pixels": 4668
       },
       {
-        "progress": 0.6555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34804
+        "progress": 0.65,
+        "mass": 4548.0,
+        "visible_area": 4563.701960784314,
+        "occupied_pixels": 4675
       },
       {
-        "progress": 0.6666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34824
-      },
-      {
-        "progress": 0.6777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.6888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34804
-      },
-      {
-        "progress": 0.7000000000000001,
-        "mass": 33987.0,
-        "visible_pixels": 34852
-      },
-      {
-        "progress": 0.7111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34872
-      },
-      {
-        "progress": 0.7222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34840
-      },
-      {
-        "progress": 0.7333333333333334,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.7444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.7555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34824
-      },
-      {
-        "progress": 0.7666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.7777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.788888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34852
-      },
-      {
-        "progress": 0.8,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.8111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34844
-      },
-      {
-        "progress": 0.8222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34840
-      },
-      {
-        "progress": 0.8333333333333334,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.8444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34848
-      },
-      {
-        "progress": 0.8555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34848
-      },
-      {
-        "progress": 0.8666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.8777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34856
-      },
-      {
-        "progress": 0.9,
-        "mass": 33987.0,
-        "visible_pixels": 34856
-      },
-      {
-        "progress": 0.9111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34808
-      },
-      {
-        "progress": 0.9222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34764
-      },
-      {
-        "progress": 0.9333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34732
-      },
-      {
-        "progress": 0.9444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34716
-      },
-      {
-        "progress": 0.9555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34704
-      },
-      {
-        "progress": 0.9666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34700
-      },
-      {
-        "progress": 0.9777777777777779,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 0.9888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 1.0,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 0.9888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 0.9777777777777777,
-        "mass": 33987.0,
-        "visible_pixels": 34696
-      },
-      {
-        "progress": 0.9666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34700
-      },
-      {
-        "progress": 0.9555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34704
-      },
-      {
-        "progress": 0.9444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34716
-      },
-      {
-        "progress": 0.9333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34732
-      },
-      {
-        "progress": 0.9222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34764
-      },
-      {
-        "progress": 0.9111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34808
-      },
-      {
-        "progress": 0.9,
-        "mass": 33987.0,
-        "visible_pixels": 34856
-      },
-      {
-        "progress": 0.8888888888888888,
-        "mass": 33987.0,
-        "visible_pixels": 34856
-      },
-      {
-        "progress": 0.8777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.8666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.8555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34848
-      },
-      {
-        "progress": 0.8444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34848
-      },
-      {
-        "progress": 0.8333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.8222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34840
-      },
-      {
-        "progress": 0.8111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34844
-      },
-      {
-        "progress": 0.8,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.7888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34852
-      },
-      {
-        "progress": 0.7777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.7666666666666666,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.7555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34824
-      },
-      {
-        "progress": 0.7444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34836
-      },
-      {
-        "progress": 0.7333333333333334,
-        "mass": 33987.0,
-        "visible_pixels": 34828
-      },
-      {
-        "progress": 0.7222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34840
-      },
-      {
-        "progress": 0.711111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34872
-      },
-      {
-        "progress": 0.7,
-        "mass": 33987.0,
-        "visible_pixels": 34852
-      },
-      {
-        "progress": 0.6888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34804
-      },
-      {
-        "progress": 0.6777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34836
+        "progress": 0.6583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4556.713725490195,
+        "occupied_pixels": 4656
       },
       {
         "progress": 0.6666666666666666,
-        "mass": 33987.0,
-        "visible_pixels": 34824
+        "mass": 4548.0,
+        "visible_area": 4552.125490196078,
+        "occupied_pixels": 4645
       },
       {
-        "progress": 0.6555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34804
+        "progress": 0.675,
+        "mass": 4548.0,
+        "visible_area": 4541.741176470588,
+        "occupied_pixels": 4656
       },
       {
-        "progress": 0.6444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34848
+        "progress": 0.6833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4536.227450980392,
+        "occupied_pixels": 4661
+      },
+      {
+        "progress": 0.6916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4532.219607843137,
+        "occupied_pixels": 4634
+      },
+      {
+        "progress": 0.7,
+        "mass": 4548.0,
+        "visible_area": 4529.882352941177,
+        "occupied_pixels": 4632
+      },
+      {
+        "progress": 0.7083333333333334,
+        "mass": 4548.0,
+        "visible_area": 4528.941176470588,
+        "occupied_pixels": 4629
+      },
+      {
+        "progress": 0.7166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4527.7058823529405,
+        "occupied_pixels": 4646
+      },
+      {
+        "progress": 0.725,
+        "mass": 4548.0,
+        "visible_area": 4516.737254901961,
+        "occupied_pixels": 4651
+      },
+      {
+        "progress": 0.7333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4500.709803921568,
+        "occupied_pixels": 4613
+      },
+      {
+        "progress": 0.7416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4500.917647058824,
+        "occupied_pixels": 4598
+      },
+      {
+        "progress": 0.75,
+        "mass": 4548.0,
+        "visible_area": 4501.447058823529,
+        "occupied_pixels": 4605
+      },
+      {
+        "progress": 0.7583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4491.431372549019,
+        "occupied_pixels": 4591
+      },
+      {
+        "progress": 0.7666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4493.427450980393,
+        "occupied_pixels": 4598
+      },
+      {
+        "progress": 0.775,
+        "mass": 4548.0,
+        "visible_area": 4493.156862745098,
+        "occupied_pixels": 4592
+      },
+      {
+        "progress": 0.7833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4477.145098039216,
+        "occupied_pixels": 4566
+      },
+      {
+        "progress": 0.7916666666666666,
+        "mass": 4548.0,
+        "visible_area": 4473.623529411765,
+        "occupied_pixels": 4568
+      },
+      {
+        "progress": 0.8,
+        "mass": 4548.0,
+        "visible_area": 4477.345098039215,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.8083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4484.819607843137,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.8166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4475.121568627451,
+        "occupied_pixels": 4559
+      },
+      {
+        "progress": 0.825,
+        "mass": 4548.0,
+        "visible_area": 4463.654901960785,
+        "occupied_pixels": 4567
+      },
+      {
+        "progress": 0.8333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4452.3725490196075,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.8416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4457.137254901961,
+        "occupied_pixels": 4562
+      },
+      {
+        "progress": 0.85,
+        "mass": 4548.0,
+        "visible_area": 4452.254901960784,
+        "occupied_pixels": 4577
+      },
+      {
+        "progress": 0.8583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4446.529411764706,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.8666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4441.270588235294,
+        "occupied_pixels": 4562
+      },
+      {
+        "progress": 0.875,
+        "mass": 4548.0,
+        "visible_area": 4435.717647058824,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.8833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.478431372549,
+        "occupied_pixels": 4565
+      },
+      {
+        "progress": 0.8916666666666666,
+        "mass": 4548.0,
+        "visible_area": 4441.505882352942,
+        "occupied_pixels": 4581
+      },
+      {
+        "progress": 0.9,
+        "mass": 4548.0,
+        "visible_area": 4434.517647058823,
+        "occupied_pixels": 4571
+      },
+      {
+        "progress": 0.9083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4437.505882352942,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.9166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4437.552941176471,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9249999999999999,
+        "mass": 4548.0,
+        "visible_area": 4436.5568627450975,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.95,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9583333333333334,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.975,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 1.0,
+        "mass": 4548.0,
+        "visible_area": 4540.0,
+        "occupied_pixels": 4540
+      },
+      {
+        "progress": 0.9916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.975,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9583333333333334,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.95,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.564705882352,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9249999999999999,
+        "mass": 4548.0,
+        "visible_area": 4436.5568627450975,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4437.552941176471,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.9083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4437.505882352942,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.9,
+        "mass": 4548.0,
+        "visible_area": 4434.517647058823,
+        "occupied_pixels": 4571
+      },
+      {
+        "progress": 0.8916666666666666,
+        "mass": 4548.0,
+        "visible_area": 4441.505882352942,
+        "occupied_pixels": 4581
+      },
+      {
+        "progress": 0.8833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.478431372549,
+        "occupied_pixels": 4565
+      },
+      {
+        "progress": 0.875,
+        "mass": 4548.0,
+        "visible_area": 4435.717647058824,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.8666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4441.270588235294,
+        "occupied_pixels": 4562
+      },
+      {
+        "progress": 0.8583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4446.529411764706,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.85,
+        "mass": 4548.0,
+        "visible_area": 4452.254901960784,
+        "occupied_pixels": 4577
+      },
+      {
+        "progress": 0.8416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4457.137254901961,
+        "occupied_pixels": 4562
+      },
+      {
+        "progress": 0.8333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4452.3725490196075,
+        "occupied_pixels": 4557
+      },
+      {
+        "progress": 0.825,
+        "mass": 4548.0,
+        "visible_area": 4463.654901960785,
+        "occupied_pixels": 4567
+      },
+      {
+        "progress": 0.8166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4475.121568627451,
+        "occupied_pixels": 4559
+      },
+      {
+        "progress": 0.8083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4484.819607843137,
+        "occupied_pixels": 4569
+      },
+      {
+        "progress": 0.8,
+        "mass": 4548.0,
+        "visible_area": 4477.345098039215,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.7916666666666666,
+        "mass": 4548.0,
+        "visible_area": 4473.623529411765,
+        "occupied_pixels": 4568
+      },
+      {
+        "progress": 0.7833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4477.145098039216,
+        "occupied_pixels": 4566
+      },
+      {
+        "progress": 0.775,
+        "mass": 4548.0,
+        "visible_area": 4493.156862745098,
+        "occupied_pixels": 4592
+      },
+      {
+        "progress": 0.7666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4493.427450980393,
+        "occupied_pixels": 4598
+      },
+      {
+        "progress": 0.7583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4491.431372549019,
+        "occupied_pixels": 4591
+      },
+      {
+        "progress": 0.75,
+        "mass": 4548.0,
+        "visible_area": 4501.447058823529,
+        "occupied_pixels": 4605
+      },
+      {
+        "progress": 0.7416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4500.917647058824,
+        "occupied_pixels": 4598
+      },
+      {
+        "progress": 0.7333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4500.709803921568,
+        "occupied_pixels": 4613
+      },
+      {
+        "progress": 0.725,
+        "mass": 4548.0,
+        "visible_area": 4516.737254901961,
+        "occupied_pixels": 4651
+      },
+      {
+        "progress": 0.7166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4527.7058823529405,
+        "occupied_pixels": 4646
+      },
+      {
+        "progress": 0.7083333333333334,
+        "mass": 4548.0,
+        "visible_area": 4528.941176470588,
+        "occupied_pixels": 4629
+      },
+      {
+        "progress": 0.7,
+        "mass": 4548.0,
+        "visible_area": 4529.882352941177,
+        "occupied_pixels": 4632
+      },
+      {
+        "progress": 0.6916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4532.219607843137,
+        "occupied_pixels": 4634
+      },
+      {
+        "progress": 0.6833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4536.227450980392,
+        "occupied_pixels": 4661
+      },
+      {
+        "progress": 0.675,
+        "mass": 4548.0,
+        "visible_area": 4541.741176470588,
+        "occupied_pixels": 4656
+      },
+      {
+        "progress": 0.6666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4552.125490196078,
+        "occupied_pixels": 4645
+      },
+      {
+        "progress": 0.6583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4556.713725490195,
+        "occupied_pixels": 4656
+      },
+      {
+        "progress": 0.65,
+        "mass": 4548.0,
+        "visible_area": 4563.701960784314,
+        "occupied_pixels": 4675
+      },
+      {
+        "progress": 0.6416666666666666,
+        "mass": 4548.0,
+        "visible_area": 4566.690196078431,
+        "occupied_pixels": 4668
       },
       {
         "progress": 0.6333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "mass": 4548.0,
+        "visible_area": 4566.403921568628,
+        "occupied_pixels": 4674
       },
       {
-        "progress": 0.6222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "progress": 0.625,
+        "mass": 4548.0,
+        "visible_area": 4567.909803921569,
+        "occupied_pixels": 4663
       },
       {
-        "progress": 0.6111111111111112,
-        "mass": 33987.0,
-        "visible_pixels": 34836
+        "progress": 0.6166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4573.64705882353,
+        "occupied_pixels": 4675
+      },
+      {
+        "progress": 0.6083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4585.75294117647,
+        "occupied_pixels": 4702
       },
       {
         "progress": 0.6,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "mass": 4548.0,
+        "visible_area": 4587.274509803921,
+        "occupied_pixels": 4709
       },
       {
-        "progress": 0.5888888888888888,
-        "mass": 33987.0,
-        "visible_pixels": 34848
+        "progress": 0.5916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4586.709803921569,
+        "occupied_pixels": 4703
       },
       {
-        "progress": 0.5777777777777777,
-        "mass": 33987.0,
-        "visible_pixels": 34824
+        "progress": 0.5833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4588.686274509803,
+        "occupied_pixels": 4692
+      },
+      {
+        "progress": 0.575,
+        "mass": 4548.0,
+        "visible_area": 4586.423529411764,
+        "occupied_pixels": 4699
       },
       {
         "progress": 0.5666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34824
+        "mass": 4548.0,
+        "visible_area": 4596.670588235294,
+        "occupied_pixels": 4686
       },
       {
-        "progress": 0.5555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34820
+        "progress": 0.5583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4603.650980392156,
+        "occupied_pixels": 4704
       },
       {
-        "progress": 0.5444444444444445,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "progress": 0.55,
+        "mass": 4548.0,
+        "visible_area": 4602.4431372549025,
+        "occupied_pixels": 4711
+      },
+      {
+        "progress": 0.5416666666666666,
+        "mass": 4548.0,
+        "visible_area": 4593.262745098039,
+        "occupied_pixels": 4695
       },
       {
         "progress": 0.5333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "mass": 4548.0,
+        "visible_area": 4604.690196078431,
+        "occupied_pixels": 4708
       },
       {
-        "progress": 0.5222222222222221,
-        "mass": 33987.0,
-        "visible_pixels": 34804
+        "progress": 0.525,
+        "mass": 4548.0,
+        "visible_area": 4594.654901960785,
+        "occupied_pixels": 4690
       },
       {
-        "progress": 0.5111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34816
+        "progress": 0.5166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4602.4431372549025,
+        "occupied_pixels": 4694
+      },
+      {
+        "progress": 0.5083333333333333,
+        "mass": 4548.0,
+        "visible_area": 4612.996078431372,
+        "occupied_pixels": 4741
       },
       {
         "progress": 0.5,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "mass": 4548.0,
+        "visible_area": 4605.5137254901965,
+        "occupied_pixels": 4725
       },
       {
-        "progress": 0.4888888888888888,
-        "mass": 33987.0,
-        "visible_pixels": 34772
+        "progress": 0.49166666666666664,
+        "mass": 4548.0,
+        "visible_area": 4588.776470588235,
+        "occupied_pixels": 4709
       },
       {
-        "progress": 0.47777777777777775,
-        "mass": 33987.0,
-        "visible_pixels": 34788
+        "progress": 0.48333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4594.513725490196,
+        "occupied_pixels": 4706
+      },
+      {
+        "progress": 0.475,
+        "mass": 4548.0,
+        "visible_area": 4607.1882352941175,
+        "occupied_pixels": 4701
       },
       {
         "progress": 0.4666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34796
+        "mass": 4548.0,
+        "visible_area": 4591.4,
+        "occupied_pixels": 4677
       },
       {
-        "progress": 0.4555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34800
+        "progress": 0.4583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4600.73725490196,
+        "occupied_pixels": 4708
       },
       {
-        "progress": 0.4444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34752
+        "progress": 0.45,
+        "mass": 4548.0,
+        "visible_area": 4582.482352941177,
+        "occupied_pixels": 4698
+      },
+      {
+        "progress": 0.44166666666666665,
+        "mass": 4548.0,
+        "visible_area": 4582.678431372549,
+        "occupied_pixels": 4684
       },
       {
         "progress": 0.43333333333333335,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "mass": 4548.0,
+        "visible_area": 4579.196078431372,
+        "occupied_pixels": 4671
       },
       {
-        "progress": 0.42222222222222217,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.425,
+        "mass": 4548.0,
+        "visible_area": 4584.972549019607,
+        "occupied_pixels": 4693
       },
       {
-        "progress": 0.4111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "progress": 0.4166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4578.505882352942,
+        "occupied_pixels": 4696
+      },
+      {
+        "progress": 0.4083333333333333,
+        "mass": 4548.000000000001,
+        "visible_area": 4572.023529411765,
+        "occupied_pixels": 4688
       },
       {
         "progress": 0.4,
-        "mass": 33987.0,
-        "visible_pixels": 34720
+        "mass": 4548.0,
+        "visible_area": 4565.76862745098,
+        "occupied_pixels": 4684
       },
       {
-        "progress": 0.38888888888888884,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "progress": 0.39166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4561.019607843137,
+        "occupied_pixels": 4677
       },
       {
-        "progress": 0.37777777777777777,
-        "mass": 33987.0,
-        "visible_pixels": 34752
+        "progress": 0.3833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4565.733333333334,
+        "occupied_pixels": 4680
       },
       {
-        "progress": 0.3666666666666667,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.375,
+        "mass": 4548.0,
+        "visible_area": 4557.270588235294,
+        "occupied_pixels": 4677
       },
       {
-        "progress": 0.3555555555555555,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.36666666666666664,
+        "mass": 4548.0,
+        "visible_area": 4545.929411764706,
+        "occupied_pixels": 4655
       },
       {
-        "progress": 0.34444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34716
+        "progress": 0.35833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4547.709803921569,
+        "occupied_pixels": 4642
       },
       {
-        "progress": 0.33333333333333326,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.35,
+        "mass": 4548.0,
+        "visible_area": 4527.027450980392,
+        "occupied_pixels": 4647
       },
       {
-        "progress": 0.3222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.3416666666666667,
+        "mass": 4548.0,
+        "visible_area": 4527.992156862745,
+        "occupied_pixels": 4634
       },
       {
-        "progress": 0.3111111111111111,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "progress": 0.3333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4517.4078431372545,
+        "occupied_pixels": 4608
       },
       {
-        "progress": 0.29999999999999993,
-        "mass": 33987.0,
-        "visible_pixels": 34756
+        "progress": 0.325,
+        "mass": 4548.0,
+        "visible_area": 4514.945098039216,
+        "occupied_pixels": 4617
       },
       {
-        "progress": 0.28888888888888886,
-        "mass": 33987.0,
-        "visible_pixels": 34776
+        "progress": 0.31666666666666665,
+        "mass": 4548.0,
+        "visible_area": 4513.003921568627,
+        "occupied_pixels": 4633
       },
       {
-        "progress": 0.2777777777777778,
-        "mass": 33987.0,
-        "visible_pixels": 34756
+        "progress": 0.30833333333333335,
+        "mass": 4547.999999999999,
+        "visible_area": 4509.545098039216,
+        "occupied_pixels": 4623
       },
       {
-        "progress": 0.2666666666666666,
-        "mass": 33987.0,
-        "visible_pixels": 34764
+        "progress": 0.3,
+        "mass": 4548.0,
+        "visible_area": 4502.027450980393,
+        "occupied_pixels": 4622
       },
       {
-        "progress": 0.25555555555555554,
-        "mass": 33987.0,
-        "visible_pixels": 34768
+        "progress": 0.2916666666666667,
+        "mass": 4548.0,
+        "visible_area": 4493.564705882352,
+        "occupied_pixels": 4614
       },
       {
-        "progress": 0.24444444444444446,
-        "mass": 33987.0,
-        "visible_pixels": 34712
+        "progress": 0.2833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4478.788235294118,
+        "occupied_pixels": 4608
       },
       {
-        "progress": 0.23333333333333328,
-        "mass": 33987.0,
-        "visible_pixels": 34740
+        "progress": 0.275,
+        "mass": 4548.0,
+        "visible_area": 4486.568627450981,
+        "occupied_pixels": 4624
       },
       {
-        "progress": 0.2222222222222222,
-        "mass": 33987.0,
-        "visible_pixels": 34744
+        "progress": 0.26666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4474.250980392157,
+        "occupied_pixels": 4593
       },
       {
-        "progress": 0.21111111111111103,
-        "mass": 33987.0,
-        "visible_pixels": 34712
+        "progress": 0.2583333333333333,
+        "mass": 4548.0,
+        "visible_area": 4472.2156862745105,
+        "occupied_pixels": 4588
       },
       {
-        "progress": 0.19999999999999996,
-        "mass": 33987.0,
-        "visible_pixels": 34748
+        "progress": 0.25,
+        "mass": 4548.0,
+        "visible_area": 4471.019607843137,
+        "occupied_pixels": 4592
       },
       {
-        "progress": 0.18888888888888888,
-        "mass": 33987.0,
-        "visible_pixels": 34704
+        "progress": 0.24166666666666667,
+        "mass": 4548.0,
+        "visible_area": 4471.035294117647,
+        "occupied_pixels": 4596
       },
       {
-        "progress": 0.1777777777777777,
-        "mass": 33987.0,
-        "visible_pixels": 34760
+        "progress": 0.23333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4463.458823529412,
+        "occupied_pixels": 4578
       },
       {
-        "progress": 0.16666666666666663,
-        "mass": 33987.0,
-        "visible_pixels": 34688
+        "progress": 0.225,
+        "mass": 4548.000000000001,
+        "visible_area": 4448.690196078432,
+        "occupied_pixels": 4538
       },
       {
-        "progress": 0.15555555555555556,
-        "mass": 33987.0,
-        "visible_pixels": 34736
+        "progress": 0.21666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4454.172549019608,
+        "occupied_pixels": 4541
       },
       {
-        "progress": 0.14444444444444438,
-        "mass": 33987.0,
-        "visible_pixels": 34680
+        "progress": 0.20833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4447.619607843137,
+        "occupied_pixels": 4536
       },
       {
-        "progress": 0.1333333333333333,
-        "mass": 33987.0,
-        "visible_pixels": 34680
+        "progress": 0.2,
+        "mass": 4548.0,
+        "visible_area": 4430.176470588236,
+        "occupied_pixels": 4530
       },
       {
-        "progress": 0.12222222222222223,
-        "mass": 33987.0,
-        "visible_pixels": 34688
+        "progress": 0.19166666666666665,
+        "mass": 4548.0,
+        "visible_area": 4422.941176470588,
+        "occupied_pixels": 4514
       },
       {
-        "progress": 0.11111111111111105,
-        "mass": 33987.0,
-        "visible_pixels": 34656
+        "progress": 0.18333333333333332,
+        "mass": 4548.0,
+        "visible_area": 4421.415686274509,
+        "occupied_pixels": 4500
       },
       {
-        "progress": 0.09999999999999998,
-        "mass": 33987.0,
-        "visible_pixels": 34592
+        "progress": 0.175,
+        "mass": 4548.0,
+        "visible_area": 4422.682352941177,
+        "occupied_pixels": 4521
       },
       {
-        "progress": 0.0888888888888889,
-        "mass": 33987.0,
-        "visible_pixels": 34568
+        "progress": 0.16666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4432.235294117647,
+        "occupied_pixels": 4539
       },
       {
-        "progress": 0.07777777777777772,
-        "mass": 33987.0,
-        "visible_pixels": 34520
+        "progress": 0.15833333333333333,
+        "mass": 4548.0,
+        "visible_area": 4414.964705882352,
+        "occupied_pixels": 4504
       },
       {
-        "progress": 0.06666666666666665,
-        "mass": 33987.0,
-        "visible_pixels": 34532
+        "progress": 0.15,
+        "mass": 4548.0,
+        "visible_area": 4414.462745098039,
+        "occupied_pixels": 4504
       },
       {
-        "progress": 0.05555555555555547,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.14166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4421.019607843137,
+        "occupied_pixels": 4522
       },
       {
-        "progress": 0.0444444444444444,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.13333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4434.839215686274,
+        "occupied_pixels": 4553
       },
       {
-        "progress": 0.033333333333333326,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.125,
+        "mass": 4548.0,
+        "visible_area": 4439.858823529412,
+        "occupied_pixels": 4578
       },
       {
-        "progress": 0.022222222222222143,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.11666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4439.356862745098,
+        "occupied_pixels": 4576
       },
       {
-        "progress": 0.011111111111111072,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "progress": 0.10833333333333334,
+        "mass": 4548.0,
+        "visible_area": 4423.419607843137,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.1,
+        "mass": 4548.0,
+        "visible_area": 4422.431372549019,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.09166666666666666,
+        "mass": 4548.0,
+        "visible_area": 4418.447058823529,
+        "occupied_pixels": 4576
+      },
+      {
+        "progress": 0.08333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4412.470588235294,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.075,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.06666666666666667,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.058333333333333334,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.05,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.041666666666666664,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.03333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.025,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.016666666666666666,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
+      },
+      {
+        "progress": 0.008333333333333333,
+        "mass": 4548.0,
+        "visible_area": 4410.478431372549,
+        "occupied_pixels": 4564
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       },
       {
         "progress": 0.0,
-        "mass": 33987.0,
-        "visible_pixels": 34496
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
+      },
+      {
+        "progress": 0.0,
+        "mass": 4548.0,
+        "visible_area": 4548.0,
+        "occupied_pixels": 4548
       }
     ]
   },

@@ -1,57 +1,38 @@
 [
   {
     "id": "material-split",
-    "title": "One form \u2192 two \u2192 one",
+    "title": "Two image states \u00b7 inferred split / merge",
     "category": "Images",
-    "description": "Controlled split/merge test: fixed texture material moves and deforms without recoloring. This uses a prescribed map, not automatically inferred photo correspondence.",
+    "description": "Revision r4: correspondence computed from two independently supplied masked images. Both endpoints stay visible. No angular wrapping or whole-image crossfade. Local RGB changes along moving paths; visible area preservation remains unfinished.",
     "backend": "CPU research prototype",
-    "video": "media/material-split.mp4",
-    "poster": "media/material-split.jpg",
-    "duration": 7.566667,
-    "width": 384,
-    "height": 448,
+    "video": "media/material-split.mp4?v=7534b40b6a7d",
+    "poster": "media/material-split.jpg?v=5768589edd82",
+    "duration": 10.666667,
+    "width": 768,
+    "height": 560,
     "fps": "30/1",
-    "bytes": 354532,
-    "sha256": "e8459e188c88f5dd743e015f677d93653fd6211ab457bac32988b0947454914d",
+    "bytes": 244784,
+    "sha256": "7534b40b6a7de776e3a2f4a295891fc1f954d4b49d1f23adb612ca9fef1e9e40",
     "downloads": [
       {
         "label": "Experiment notes",
-        "url": "downloads/material-experiments.json"
+        "url": "downloads/material-experiments.json?v=440d0a65dd3c"
       },
       {
         "label": "Image source",
-        "url": "downloads/material-image-source.zip"
-      }
-    ],
-    "algorithm": "material-v3-experimental",
-    "credits": "Cat photo: Anton Petrov (CC0)."
-  },
-  {
-    "id": "cat-dog",
-    "title": "Cat \u2192 dog \u00b7 material experiment",
-    "category": "Images",
-    "description": "Work in progress: automatic object detection and semantic feature matching guide a fixed-mass material transport. RGB changes along material paths. Correspondence remains imperfect; automatic object split/merge is not yet established.",
-    "backend": "CPU research prototype",
-    "video": "media/cat-dog.mp4",
-    "poster": "media/cat-dog.jpg",
-    "duration": 5.433333,
-    "width": 384,
-    "height": 448,
-    "fps": "30/1",
-    "bytes": 731704,
-    "sha256": "b6f7078bb31bee22d1783f19d649fe75a7457a11e523cb17a67d8ea46affcd2f",
-    "downloads": [
-      {
-        "label": "Experiment notes",
-        "url": "downloads/material-experiments.json"
+        "url": "downloads/material-image-source.zip?v=1373d53438d7"
       },
       {
-        "label": "Image source",
-        "url": "downloads/material-image-source.zip"
+        "label": "Source state PNG",
+        "url": "downloads/endpoint-source.png?v=90d6c3125509"
+      },
+      {
+        "label": "Target state PNG",
+        "url": "downloads/endpoint-target.png?v=17946b1844b3"
       }
     ],
-    "algorithm": "material-v3-experimental",
-    "credits": "Cat photo: Anton Petrov (CC0). Dog photo: Karen Arnold (CC0)."
+    "algorithm": "endpoint-r4-experimental",
+    "credits": "Procedural Cartesian-band endpoint fixtures; supplied masks, inferred correspondence."
   },
   {
     "id": "scans",
@@ -59,8 +40,8 @@
     "category": "3D",
     "description": "Current indexed scan morph. Grid resolution reduces fine detail; this is a field morph, not semantic feature matching.",
     "backend": "Native VKF",
-    "video": "media/scans.mp4",
-    "poster": "media/scans.jpg",
+    "video": "media/scans.mp4?v=c631e77add1e",
+    "poster": "media/scans.jpg?v=aa64a3b5e921",
     "duration": 7.5,
     "width": 720,
     "height": 500,
@@ -70,15 +51,15 @@
     "downloads": [
       {
         "label": "Indexed OBJ meshes",
-        "url": "downloads/indexed-scan-meshes.zip"
+        "url": "downloads/indexed-scan-meshes.zip?v=1dff0c595a18"
       },
       {
         "label": "Original PLY scans",
-        "url": "downloads/original-scans.zip"
+        "url": "downloads/original-scans.zip?v=3599aacfeca4"
       },
       {
         "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip"
+        "url": "downloads/native-vkf-source.zip?v=7aaae41e8f0d"
       }
     ],
     "credits": "Stanford University Computer Graphics Laboratory. Research and free redistribution with attribution; commercial use requires permission. https://graphics.stanford.edu/data/3Dscanrep/"
@@ -89,8 +70,8 @@
     "category": "3D",
     "description": "Current rounded separating necks with one spherical light and reflections. Volume preservation remains unfinished.",
     "backend": "Native VKF",
-    "video": "media/lava.mp4",
-    "poster": "media/lava.jpg",
+    "video": "media/lava.mp4?v=ffe7cdd620a3",
+    "poster": "media/lava.jpg?v=ae4b99bd7f60",
     "duration": 7.5,
     "width": 720,
     "height": 500,
@@ -100,7 +81,7 @@
     "downloads": [
       {
         "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip"
+        "url": "downloads/native-vkf-source.zip?v=7aaae41e8f0d"
       }
     ]
   },
@@ -110,8 +91,8 @@
     "category": "3D",
     "description": "Current sphere \u2192 rounded cube \u2192 ellipsoid using cubic state interpolation with smooth start and end.",
     "backend": "Native VKF",
-    "video": "media/three-states.mp4",
-    "poster": "media/three-states.jpg",
+    "video": "media/three-states.mp4?v=0a7aa53ea042",
+    "poster": "media/three-states.jpg?v=613aeb9191d0",
     "duration": 6.541667,
     "width": 960,
     "height": 660,
@@ -121,7 +102,7 @@
     "downloads": [
       {
         "label": "VKF source",
-        "url": "downloads/native-vkf-source.zip"
+        "url": "downloads/native-vkf-source.zip?v=7aaae41e8f0d"
       }
     ]
   }

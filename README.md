@@ -83,31 +83,28 @@ precomputed output is a different preparation boundary; report its preparation
 cost separately. Reference timings are not our measurements. This comparison
 is recorded for later; it is not implemented or claimed by this publication.
 
-## Current morphology video review — 2026-10-16
+## Current morphology video review — endpoint revision r4, 2026-10-16
 
-The Examples tab at `/previews/gpu-math-typing/document.html#examples` now contains
-five recordings: two material-image experiments and the current three 3D examples.
-The owner rejected aligned-texture crossfading as the solution for images. The
-old walking, small-motion, rotation, geometry-review and sharp-split recordings
-are removed from publication. They remain local historical benchmark evidence.
+The Examples tab contains four recordings: the two-input masked-image transport
+review and the three existing 3D examples. The previous prescribed polar split
+and unchanged cat/dog experiment are removed from publication. Historical
+benchmarks remain offline. No change is claimed to automatic photographic
+object recognition or the native VKF image implementation.
 
-`examples/index.html#material-split` shows one textured form splitting into two
-and recombining, with unchanged material colours. This is a prescribed-map test,
-not automatically inferred photo correspondence. `#cat-dog` shows the current
-CPU experiment using Mask R-CNN object masks, DINOv2 semantic correspondences,
-and many-to-many material transport. It remains imperfect; general automatic
-object split/merge is not accepted. There are no opacity envelopes for complete
-endpoint images, but each material branch can change RGB along its path.
+`examples/index.html#material-split` displays independently supplied source and
+target images beside the animation. A global balanced pixel assignment supplies
+material paths; local surface reconstruction avoids pixel-splat speckling.
+There is no polar wrapping or whole-image crossfade. Local RGB changes along
+paths to reach the supplied target. Both input PNGs, Python source and numerical
+notes are downloadable. The reference requires supplied binary masks and small
+images; constant visible area and general photographic split/merge remain open.
 
-The two image videos are explicitly labelled CPU research prototypes. Their
-Python source and experiment notes can be downloaded. The experimental native
-material renderer is not included in the qualified VKF source archive; that
-archive accompanies the unchanged 3D examples. Existing Document/Morph engines
-and compiler pins are unchanged. No physical GPU is used.
+Videos, posters and downloads carry content-hash query strings. The catalog is
+fetched without a browser cache; the recording itself displays endpoint r4.
+The image recording is a CPU research prototype. The three existing 3D clips
+retain their qualified native source download. No physical GPU is used.
 
-`python scripts/prepare-morphology-examples.py --artifacts PATH --native-source PATH`
-recreates this curated publication and removes superseded media. Update the site
-manifest and run `scripts/verify-current-site.py` afterwards. The Playwright test
-`tests/morphology-gallery.cjs` checks all five clips, seeking, playback, source,
-experiment-note and MP4/mesh downloads, mobile layout, and renderer integration.
-Set VKF_SITE_URL and VKF_GALLERY_EVIDENCE for local or hosted verification.
+Run `scripts/prepare-morphology-examples.py`, update the manifest, and run
+`scripts/verify-current-site.py` before publication. The gallery Playwright test
+checks four videos, catalog durations and versioned URLs, seeking, play/pause,
+downloads, mobile layout and renderer integration.

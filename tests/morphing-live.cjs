@@ -4,7 +4,7 @@ await page.locator('#coordinate').evaluate(el=>{el.value='.5';el.dispatchEvent(n
 await page.selectOption('#mode','0');await page.waitForFunction(()=>window.morphingVerification?.mode===0,{},{timeout:45000});const linear=await page.locator('canvas').screenshot();assert(!cubic.equals(linear),'mode must change native geometry');
 await page.locator('#start').uncheck();await page.waitForFunction(()=>window.morphingVerification?.smoothStart===false,{},{timeout:45000});
 await page.locator('#coordinate').evaluate(el=>{for(const q of [.1,.2,1.4]){el.value=String(q);el.dispatchEvent(new Event('input'));}});await page.waitForFunction(()=>window.morphingVerification?.coordinate===1.4,{},{timeout:45000});
-await page.evaluate(()=>window.morphingTest.play({duration:500}));assert.equal(await page.evaluate(()=>window.morphingPlaybackVerification?.backend),'WebGPU');
+await page.click('#play');await page.waitForFunction(()=>window.morphingPlaybackVerification?.backend==='WebGPU',{},{timeout:20000});assert.equal(await page.evaluate(()=>window.morphingPlaybackVerification?.backend),'WebGPU');
 assert.equal(await page.locator('video').count(),0);assert.equal(await page.evaluate(()=>window.morphingVerification.backend),'WebGPU');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
 const report={passed:true,compiledVKFGPU:true,modeChangesNativeOutput:true,smoothOptionApplied:true,latestRequestWins:true,phoneLayout:true,gpuPresentation:true,noUploadedVideo:true,errors};if(process.env.VKF_LIVE_EVIDENCE)fs.writeFileSync(process.env.VKF_LIVE_EVIDENCE,JSON.stringify(report,null,2));console.log(report);
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

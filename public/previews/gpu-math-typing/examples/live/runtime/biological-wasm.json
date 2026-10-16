@@ -55,6 +55,21 @@
       "parameters": 3,
       "resultType": 2
     },
+    "__vkf_module_p__prepare_surface": {
+      "index": 17,
+      "parameters": 3,
+      "resultType": 6
+    },
+    "__vkf_module_p__surface_row": {
+      "index": 18,
+      "parameters": 7,
+      "resultType": 5
+    },
+    "__vkf_module_p__triangles": {
+      "index": 16,
+      "parameters": 4,
+      "resultType": 5
+    },
     "__vkf_module_s__clock": {
       "index": 2,
       "parameters": 4,
@@ -81,33 +96,43 @@
       "resultType": 6
     },
     "demo_entry": {
-      "index": 19,
+      "index": 24,
       "parameters": 1,
       "resultType": 6
     },
     "demo_prepare": {
-      "index": 17,
+      "index": 20,
       "parameters": 4,
       "resultType": 6
     },
+    "demo_row": {
+      "index": 23,
+      "parameters": 2,
+      "resultType": 5
+    },
     "demo_sample": {
-      "index": 18,
+      "index": 21,
       "parameters": 2,
       "resultType": 6
     },
+    "demo_surface": {
+      "index": 22,
+      "parameters": 3,
+      "resultType": 6
+    },
     "make": {
-      "index": 16,
+      "index": 19,
       "parameters": 4,
       "resultType": 6
     }
   },
   "memory": {
     "argumentsCapacity": 16,
-    "argumentsPointer": 121400,
-    "bytecodeLength": 121398,
+    "argumentsPointer": 156248,
+    "bytecodeLength": 156243,
     "bytecodePointer": 0,
     "resultsCapacity": 1,
-    "resultsPointer": 121784
+    "resultsPointer": 156632
   },
   "schema": "vektor-flow.symbolic-kernel",
   "version": 1,

@@ -9,8 +9,8 @@ self.onmessage=async({data})=>{
   }else if(data.type==='sample'){
    const start=performance.now(),value=scene.sample(data.coordinate);
    if(value.coverage.length!==scene.resolution*scene.resolution)throw Error('Invalid native frame dimensions');
-   const frame={...value,coverage:Float32Array.from(value.coverage)};
-   self.postMessage({id:data.id,type:'frame',coordinate:data.coordinate,frame,resolution:scene.resolution,milliseconds:performance.now()-start},[frame.coverage.buffer]);
+   const frame={...value,coverage:Float32Array.from(value.coverage),vertices:Float32Array.from(value.vertices)};
+   self.postMessage({id:data.id,type:'frame',coordinate:data.coordinate,frame,resolution:scene.resolution,milliseconds:performance.now()-start},[frame.coverage.buffer,frame.vertices.buffer]);
   }
  }catch(error){self.postMessage({id:data.id,type:'error',message:error.message});}
 };

@@ -14,7 +14,7 @@ expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe16
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
 # Reviewed compiled library application, not another compiler release.
 application=root/'previews/gpu-math-typing/examples/live/runtime'
-assert hashlib.sha256((application/'biological.wasm').read_bytes()).hexdigest()=='e2aa1c1416f9090c1618959714c2a396302a9a802e2e32a8ee07d01180efdb85'
+assert hashlib.sha256((application/'biological.wasm').read_bytes()).hexdigest()=='8d989bd42d732b762c1fe87792f47568aa752a0d906e59a04205dab0871c069a'
 proof=json.loads((application/'provenance.json').read_text())
 assert proof['passed'] and proof['canonicalWASM'] and not proof['hostInterpolation']
 for name,digest in proof['artifacts'].items():

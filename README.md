@@ -175,3 +175,27 @@ passes, along with cancellation/recovery. ffprobe independently confirmsVP9 and
 The first too-short capture produced an empty blob; retained evidence led to
 waiting for canvas presentation and adding beginning/end holds. Empty blobs now
 fail instead of downloading. No physical GPU was exercised.
+
+## Morphing geometry presentation — 2026-10-16
+
+The live Morphing player now passes native VKF triangles to the existing
+screen-space simplex renderer. It selects the renderer's antialiased WebGL2
+backend and scales its viewport to actual display/capture pixels; it no longer
+magnifies a clipped 32×32 coverage texture. Native contour extraction preserves
+empty holes and batches filled horizontal runs. The current geometry case uses
+three carriers, lobed outlines, holes, separation and reunion. Native field and
+contour sampling still bound shape accuracy; area calibration remains sampled.
+
+Native qualification, all eight WASM mode/easing combinations, phone controls,
+error/cancellation recovery and a real three-state 1080p VKF capture pass. Decoded
+video contains 1→3→1 components and 1→3→1 holes. The 720px same-state comparison
+reduces partially covered pixels from39,940 to822; that measures edge softness,
+not accuracy or the complete morph trajectory. Full193-state export performance
+is not qualified. Current state preparation is not realtime.
+
+The builder pins the previously qualified canonical ABI modules and rejects
+stale runtime copies; public compiler0.7.2 bytes are unchanged. Failed local
+runtime experiments remain in artifacts, not deployment assets. Evidence lives
+in Cuvami staging/artifacts/morphing-retained-20261016; current build17 and native
+qualification03. The complete equation/2D/3D/image acceptance suite is unfinished:
+equation, indexed3D and image adapters are not connected to this new path.

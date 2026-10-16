@@ -195,7 +195,9 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
   async function initialize() {
     assertAlive();
     resize();
-    backend = await createWebGpuBackend(canvas).catch(() => null);
+    if (options.backend !== 'webgl2') {
+      backend = await createWebGpuBackend(canvas).catch(() => null);
+    }
     if (!backend) backend = createWebGl2Backend(canvas);
     if (!backend) throw new Error('A WebGPU or WebGL2 GPU backend is required');
     backend.resize(cssWidth, cssHeight);

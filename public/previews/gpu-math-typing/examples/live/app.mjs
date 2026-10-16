@@ -15,7 +15,7 @@ function nativeScene(resolution,options){
 }
 function show(data){
  renderer.draw(data.frame,data.resolution);last=data;$('position').value=data.coordinate.toFixed(2);$('coordinate').value=data.coordinate;
- window.morphingVerification={coordinate:data.coordinate,measure:data.frame.measure,resolution:data.resolution,...settings(),backend:renderer.backend};
+ window.morphingVerification={coordinate:data.coordinate,measure:data.frame.measure,resolution:data.resolution,...settings(),backend:renderer.backend,presentation:renderer.presentation,triangles:data.frame.vertices.length/18};
 }
 async function pump(){
  if(pumping||job)return;pumping=true;const version=epoch;
@@ -68,5 +68,5 @@ for(const id of ['mode','start','end'])$(id).onchange=prepare;
 $('play').onclick=play;$('download').onclick=()=>exportMovie();$('cancel').onclick=()=>{stop();$('status').textContent='Cancelled';};
 window.addEventListener('pagehide',()=>{stop();scene?.dispose();renderer?.destroy();if(url)URL.revokeObjectURL(url);});
 // Local verification uses a short real capture; never enabled on the public site.
-if(['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).has('validation'))window.morphingTest={exportMovie,play,previewConfig:()=>({resolution:32}),exportConfig:()=>({resolution:192,size:1080,fps:48,frames:193})};
-try{renderer=createGPUView(canvas);prepare();}catch(e){$('status').textContent=e.message;for(const id of ['play','download','coordinate'])$(id).disabled=true;}
+if(['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).has('validation'))window.morphingTest={exportMovie,play,sampleFrame:()=>last,previewConfig:()=>({resolution:32}),exportConfig:()=>({resolution:192,size:1080,fps:48,frames:193})};
+try{renderer=await createGPUView(canvas);prepare();}catch(e){$('status').textContent=e.message;for(const id of ['play','download','coordinate'])$(id).disabled=true;}

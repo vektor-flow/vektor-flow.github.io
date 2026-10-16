@@ -9,7 +9,7 @@ out=Path(__file__).resolve().parents[1]/'public/previews/gpu-math-typing/example
 receipt={k:v for k,v in r.items() if k!='compiler'}
 receipt['scope']='Native state/embedding interpolation, material lineage and connected signed-field split/merge geometry; canonical WASM execution. General correspondence/thickness/hole constraints and live Linux native Layer/View handles remain unfinished.'
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
- for name in [*r['sources'],'morphing/README.md','LICENSE','tests/morphing/biological.vkf','tests/morphing/build_wasm.py','tests/morphing/wasm-demo.vkf','tests/morphing/core.vkf','tests/morphing/material.vkf','tests/morphing/verify.py','tests/morphing/benchmark.py','tests/morphing/compare_benchmarks.py']:
+ for name in [*r['sources'],'morphing/README.md','LICENSE','tests/morphing/biological.vkf','tests/morphing/presentation.vkf','tests/morphing/build_wasm.py','tests/morphing/wasm-demo.vkf','tests/morphing/core.vkf','tests/morphing/material.vkf','tests/morphing/verify.py','tests/morphing/benchmark.py','tests/morphing/compare_benchmarks.py']:
   info=zipfile.ZipInfo(name,date_time=(2026,10,16,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,(a.library/name).read_bytes())
  info=zipfile.ZipInfo('qualification.json',date_time=(2026,10,16,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,json.dumps(receipt,indent=2)+'\n')
 print('Packaged qualified VKF sources:',out.name)

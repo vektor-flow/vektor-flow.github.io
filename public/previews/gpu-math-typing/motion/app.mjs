@@ -1,7 +1,7 @@
 import {bytes,residentFields} from './field-assets.mjs';
-import {MorphEngine} from './engine.mjs';
+import {MorphEngine} from './engine.mjs?v=structure-1';
 import {examples,splitSteps} from './examples.mjs?v=derivations-24';
-import {buildScene,pair} from './scene.mjs';
+import {buildScene,pair} from './scene.mjs?v=structure-1';
 const $=id=>document.getElementById(id),canvas=$('canvas'),local=['localhost','127.0.0.1'].includes(location.hostname);
 const validation=local&&new URLSearchParams(location.search).has('validation');
 const startup=performance.now();let fields;
@@ -22,7 +22,7 @@ async function render(intent){
  const {pos,rev,example,preview}=intent;if(rev!==revision)return;
  resize();const steps=example.steps,n=steps.length,at=Math.min(n-1,Math.floor(pos)),next=Math.min(n-1,at+1),phase=pos-at;
  const key=rev+':'+at+':'+(preview?'draft':'main');
- if(prepared!==key){const a=buildScene(preview??steps[at],data),b=preview?a:buildScene(steps[next],data),packet=pair(a,b);await fields.ensure(packet.a,packet.b);await engine.generate(packet.a,packet.b,{grid:32,iterations:12});if(rev!==revision)return;prepared=key;stats.objects=[a.count,b.count];}
+ if(prepared!==key){const a=buildScene(preview??steps[at],data),b=preview?a:buildScene(steps[next],data),packet=pair(a,b);await fields.ensure(packet.a,packet.b);await engine.generate(packet.a,packet.b,{grid:32,iterations:12,groups:packet.groups});if(rev!==revision)return;prepared=key;stats.objects=[a.count,b.count];}
  await engine.draw(preview?0:phase,{measure:false});if(engine.errors.length)throw Error(engine.errors.at(-1));if(rev!==revision)return;
  stats.frames++;position=pos;$('timeline').value=pos;$('step-label').textContent=`Step ${at+1} of ${n}`;$('note').textContent=[selected.assumptions,steps[at].note||'Double-tap the expression to edit this step.'].filter(Boolean).join(' — ');$('counter').textContent=stats.objects.join(' → ')+' objects';controls();
 }
@@ -59,7 +59,7 @@ viewport();persisted();options();
 try{
  if(!navigator.gpu)throw Error('This browser does not provide WebGPU. Try a browser/device with WebGPU support.');
  const base=new URL('.',import.meta.url);
- const [mapping,shader]=await Promise.all([bytes(new URL('math-data.json.gz',base)).then(raw=>JSON.parse(new TextDecoder().decode(raw))),fetch(new URL('morph.wgsl',base)).then(r=>{if(!r.ok)throw Error('Shader could not load.');return r.text();})]);data=mapping;stats.assetReadyMs=performance.now()-startup;
+ const [mapping,shader]=await Promise.all([bytes(new URL('math-data.json.gz',base)).then(raw=>JSON.parse(new TextDecoder().decode(raw))),fetch(new URL('morph.wgsl?v=structure-1',base)).then(r=>{if(!r.ok)throw Error('Shader could not load.');return r.text();})]);data=mapping;stats.assetReadyMs=performance.now()-startup;
  resize();engine=await MorphEngine.create(canvas,data,null,shader,{validation,timing:false});stats.software=engine.software;engine.onError=fatal;stats.gpuReadyMs=performance.now()-startup;fields=residentFields(engine.device,engine.atlas,data.atlasSize,base);stats.fields=fields.stats;
 
  for(const example of examples)for(const step of example.steps)buildScene(step,data);

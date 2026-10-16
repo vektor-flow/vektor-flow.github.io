@@ -3,7 +3,7 @@ const pt=72/72.27;
 const limitOperators=new Set('sum prod coprod bigcup bigcap bigvee bigwedge bigsqcup bigoplus bigotimes bigodot lim max min sup inf'.split(' ').map(t=>'\\'+t));
 const matrixDelimiters={pmatrix:['(',')'],bmatrix:['[',']'],Bmatrix:['\\lbrace','\\rbrace'],vmatrix:['|','|'],Vmatrix:['\\Vert','\\Vert'],cases:['\\lbrace','.']};
 /** Current-source visual draft; recovery never supplies an old operand. */
-export function typeset(source,maps,{mode='display',equationStart=1,packages=null,extensions=[],displayEnvironment=false}={}){
+export function typeset(source,maps,{mode='display',equationStart=1,packages=null,extensions=[],displayEnvironment=false,onStructure=null}={}){
  if(!['display','inline'].includes(mode))throw Error('Unknown math mode');
  const displayContext=displayEnvironment||/\\begin\{(?:align|equation|gather|multline)\*?\}/.test(source);
  const draft=parseDraft(source,maps.display,{packages,extensions});let activeFont='',activeColor=null,middleRequired=0,equationNumber=equationStart;
@@ -24,7 +24,11 @@ export function typeset(source,maps,{mode='display',equationStart=1,packages=nul
  function layout(nodes,style,cramped=false){
   if(nodes.some(n=>n.type==='break'))return multiline(nodes,style,cramped);
   const restoreColor=activeColor;
-  const boxes=[],tags=[];for(const node of nodes){if(node.type==='style'){style=node.style;continue;}if(node.type==='color'){activeColor=node.color;continue;}const box={...atom(node,style,cramped),style};if(box.tag)tags.push(box);else boxes.push(box);}
+  const boxes=[],tags=[];for(const node of nodes){if(node.type==='style'){style=node.style;continue;}if(node.type==='color'){activeColor=node.color;continue;}const box={...atom(node,style,cramped),style,structureNode:node};if(box.tag)tags.push(box);else boxes.push(box);}
+  // Optional metadata only: preserve native layout and fields byte-for-byte.
+  // Products are implicit sibling runs between additive/relation boundaries.
+  if(onStructure){let run=[];const flush=()=>{if(run.length>1)onStructure({items:run.flatMap(b=>b.items)},run.map(b=>b.structureNode));run=[];};
+   for(const b of boxes){if(['rel','punct','open','close'].includes(b.class)||['+','-','\\pm','\\mp'].includes(b.token)){flush();}else run.push(b);}flush();}
   const significant=boxes.filter(b=>!b.space);
   for(let i=0;i<significant.length;i++){
    if(significant[i].class==='bin'&&(i===0||['bin','op','rel','open','punct'].includes(significant[i-1].endClass??significant[i-1].class)))significant[i].class='ord';
@@ -37,7 +41,7 @@ export function typeset(source,maps,{mode='display',equationStart=1,packages=nul
    const before=out.items.length;add(out.items,b,out.width,0);
    for(let j=before;j<out.items.length;j++){out.items[j].flowX=out.width;out.items[j].flowWidth=b.width;}
    out.width+=b.width;out.height=Math.max(out.height,b.height);out.depth=Math.max(out.depth,b.depth);if(!b.space)prior=b;
-  }for(const tag of tags){add(out.items,tag,out.width+10*pt,0);out.width+=10*pt+tag.width;out.height=Math.max(out.height,tag.height);out.depth=Math.max(out.depth,tag.depth);}if(boxes.length===1)out.nucleus=boxes[0].nucleus;out.finalStyle=style;out.finalColor=activeColor;activeColor=restoreColor;return out;
+  }for(const tag of tags){add(out.items,tag,out.width+10*pt,0);out.width+=10*pt+tag.width;out.height=Math.max(out.height,tag.height);out.depth=Math.max(out.depth,tag.depth);}if(boxes.length===1)out.nucleus=boxes[0].nucleus;out.finalStyle=style;out.finalColor=activeColor;activeColor=restoreColor;if(onStructure)onStructure(out,nodes);return out;
  }
  function multiline(nodes,style,cramped){
   const restoreColor=activeColor,rows=[[]],gaps=[];for(const node of nodes){if(node.type==='break'){gaps.push(node.gap?dimension(node.gap,style):0);rows.push([]);}else rows.at(-1).push(node);}
@@ -249,7 +253,7 @@ export function typeset(source,maps,{mode='display',equationStart=1,packages=nul
     if(sup){add(b.items,sup,width,-up);b.width=Math.max(b.width,width+sup.width+space);b.height=Math.max(b.height,up+sup.height);}
     if(sub){add(b.items,sub,width-b.italic,down);b.width=Math.max(b.width,width-b.italic+sub.width+space);b.depth=Math.max(b.depth,down+sub.depth);}
    }
-  }if(node.sup||node.sub)b.nucleus=null;return b;
+  }if(node.sup||node.sub)b.nucleus=null;if(onStructure)onStructure(b,[node]);return b;
  }
  const out=source.trim()?layout(draft.nodes,mode==='inline'?1:0):empty();
  return{...out,source,mode,atoms:draft.atoms,diagnostics:draft.diagnostics,complete:draft.diagnostics.length===0,nextEquationNumber:equationNumber};

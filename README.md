@@ -106,3 +106,21 @@ scripts/prepare-math-derivations.mjs to sync it and generate downloads.
 Renderer checks cover all states; explicit SwiftShader browser checks cover the
 new endpoints/midpoints and phone layout. These are worked inputs, not a symbolic
 solver or a new physical GPU qualification. Existing photo/3D recordings remain.
+
+## Unchanged expression preservation — 2026-10-16
+
+The quadratic completing-square transition previously reassigned `4ac` character
+by character, allowing other copies of `4` and `a` to steal its target glyphs.
+The math renderer now emits optional nested syntax/product groups; native glyph
+placement and atlas bytes are unchanged. A GPU pass reserves maximal unchanged
+groups before residual matching, keeping the whole unchanged fraction together
+and preserving `4ac` through the radical steps. Repeated occurrences use whole
+group cost. This applies to edited math as well as examples; it does not infer
+algebraic equivalence between differently written expressions.
+
+`node tests/math-structure-browser.cjs` reproduces eight old-matcher failures and
+checks32 grouped matching cases at five phases, forward/reverse and both GPU
+reduction variants, then records the actual quadratic player. Use VKF_CHROMIUM
+for the explicit SwiftShader executable. The broader browser test now visits all
+50 examples/254 endpoints and their midpoints. Physical GPU STOP is unchanged;
+this update has software correctness evidence, not new hardware timings.

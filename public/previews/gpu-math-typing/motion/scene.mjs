@@ -1,8 +1,12 @@
 import {geometry} from './geometry.mjs';
-import {typeset} from '../typing-layout.mjs';
+import {typeset} from '../typing-layout.mjs?v=structure-1';
 export function buildScene(step,data){
  if(typeof step.math!=='string'||step.math.length>12000)throw Error('This step is too long.');
- const b=typeset(step.math,data.maps);if(!b.complete||b.diagnostics.length)throw Error(b.diagnostics[0]||'Finish the expression to preview it.');
+ const b=typeset(step.math,data.maps,{onStructure(box,nodes){
+  if(!box.items.length)return;
+  const group={key:JSON.stringify(nodes)};
+  for(const item of box.items)item.structures=[...(item.structures??[]),group];
+ }});if(!b.complete||b.diagnostics.length)throw Error(b.diagnostics[0]||'Finish the expression to preview it.');
  const items=[],hasGeometry=!!step.geometry;
  const scale=Math.min(1050/Math.max(1,b.width),(hasGeometry?180:400)/Math.max(1,b.height+b.depth),26);
  const x=(1200-b.width*scale)/2,y=(hasGeometry?160:380)+(b.height-b.depth)*scale/2;
@@ -17,6 +21,13 @@ export function buildScene(step,data){
    items.push(x+(item.x+l*sx)*scale,y+(item.y+lo*sy)*scale,(r-l)*sx*scale,(hi-lo)*sy*scale,...uv,...col,0,0,0,0);
   }else if(item.kind!=='placeholder')shape(x+item.x*scale,y+item.y*scale,item.width*scale,item.height*scale,col,item.kind==='root'?6:1);
  }
+ const structural=new Map();
+ for(let i=0;i<b.items.length;i++)for(const group of b.items[i].structures??[]){if(!structural.has(group))structural.set(group,[]);structural.get(group).push(i);}
+ const seen=new Set(),groups=[];
+ for(const [group,indices]of structural){const start=indices[0],count=indices.length,key=group.key;
+  const signature=JSON.stringify([key,start,count]);
+  if(count>=1&&indices.every((v,i)=>v===start+i)&&!seen.has(signature)){seen.add(signature);groups.push({key,start,count});}}
+ groups.sort((a,b)=>b.count-a.count||a.start-b.start);
  const mathCount=items.length/16,g=step.geometry,palette=[[.43,.82,.96,1],[.99,.64,.39,1],[.70,.58,.96,1]];
  if(g?.kind==='tiles')for(let room=0;room<3;room++)for(let iy=0;iy<g.rows;iy++)for(let ix=0;ix<g.cols;ix++){const cell=300/g.cols;shape(90+room*350+ix*cell,370+iy*cell,cell-2,cell-2,palette[room]);}
  if(g?.kind==='power'||g?.kind==='rational'){
@@ -33,6 +44,9 @@ export function buildScene(step,data){
  if(g?.kind==='ring')shape(410,310,380,380,palette[1],4);
  geometry(g,shape);
  if(!items.length)throw Error('Enter an expression.');if(items.length/16>512)throw Error('This step exceeds the 512-object preview limit.');
- return {items:new Float32Array(items),count:items.length/16,mathCount,geometryCount:items.length/16-mathCount};
+ return {groups,items:new Float32Array(items),count:items.length/16,mathCount,geometryCount:items.length/16-mathCount};
 }
-export function pair(a,b){const n=Math.max(a.count,b.count),pad=s=>{const out=new Float32Array(n*16);out.set(s.items);for(let i=s.count;i<n;i++)out.set([600,380,12,12,0,0,0,0,0,0,0,0,2,0,0,0],i*16);return out;};return {a:pad(a),b:pad(b),n};}
+export function pair(a,b){const n=Math.max(a.count,b.count),pad=s=>{const out=new Float32Array(n*16);out.set(s.items);for(let i=s.count;i<n;i++)out.set([600,380,12,12,0,0,0,0,0,0,0,0,2,0,0,0],i*16);return out;};// Intern endpoint syntax, without selecting any correspondence on the CPU.
+ const keys=new Map(),encode=s=>(s.groups??[]).flatMap(g=>{if(!keys.has(g.key))keys.set(g.key,keys.size+1);return[keys.get(g.key),g.start,g.count];});
+ const ga=encode(a),gb=encode(b),groups=new Uint32Array([ga.length/3,gb.length/3,...ga,...gb]);
+ return {a:pad(a),b:pad(b),n,groups};}

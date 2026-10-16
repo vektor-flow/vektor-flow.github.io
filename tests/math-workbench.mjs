@@ -1,8 +1,11 @@
 import fs from 'node:fs';import zlib from 'node:zlib';import assert from 'node:assert/strict';
 import {examples,splitSteps} from '../public/previews/gpu-math-typing/motion/examples.mjs';
+import {typeset} from '../public/previews/gpu-math-typing/typing-layout.mjs';
 import {buildScene,pair} from '../public/previews/gpu-math-typing/motion/scene.mjs';
 const base=new URL('../public/previews/gpu-math-typing/',import.meta.url),data=JSON.parse(zlib.gunzipSync(fs.readFileSync(new URL('motion/math-data.json.gz',base))));let steps=0,max=0;
-for(const e of examples)for(let i=0;i<e.steps.length;i++){const a=buildScene(e.steps[i],data),b=buildScene(e.steps[Math.min(i+1,e.steps.length-1)],data);assert(a.items.every(Number.isFinite));assert(a.count<=512);const p=pair(a,b);assert.equal(p.a.length,p.b.length);max=Math.max(max,a.count);steps++;}
+for(const e of examples)for(let i=0;i<e.steps.length;i++){const plain=typeset(e.steps[i].math,data.maps),annotated=typeset(e.steps[i].math,data.maps,{onStructure(box,nodes){for(const item of box.items)item.testStructure=nodes;}});
+assert.deepEqual(annotated.items.map(({testStructure,...item})=>item),plain.items,'Structural metadata must not change native layout');
+const a=buildScene(e.steps[i],data),b=buildScene(e.steps[Math.min(i+1,e.steps.length-1)],data);assert(a.items.every(Number.isFinite));assert(a.count<=512);const p=pair(a,b);assert.equal(p.a.length,p.b.length);max=Math.max(max,a.count);steps++;}
 assert.equal(new Set(examples.map(e=>e.id)).size,examples.length);for(const e of examples.filter(e=>e.id.startsWith('derive-'))){assert.ok(e.assumptions);assert.ok(e.steps.length>=5);assert.ok(e.steps.every(s=>s.note));}
 assert.equal(examples.length,50);assert.equal(steps,254);
 assert.deepEqual(splitSteps('x+2=5\nx=3'),['x+2=5','x=3']);

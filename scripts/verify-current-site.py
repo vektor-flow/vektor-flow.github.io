@@ -4,6 +4,11 @@ from urllib.parse import urlsplit,unquote
 from html.parser import HTMLParser
 import json,hashlib,re
 root=Path(__file__).resolve().parents[1]/'public'
+for retired in ['previews/gpu-morph','previews/gpu-math-typing/motion','previews/gpu-math-typing/examples/downloads/math/quadratic-structure.mp4','previews/gpu-math-typing/examples/downloads/cat-dog-comparison.mp4','previews/gpu-math-typing/examples/media/cat-dog.mp4']:
+ assert not (root/retired).exists(), 'Retired morphology must not be republished: '+retired
+catalog=json.loads((root/'previews/gpu-math-typing/examples/catalog.json').read_text())
+assert all(e['backend']=='Native VKF' for e in catalog), 'Only current native morphology examples may be published'
+
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name

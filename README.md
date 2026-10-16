@@ -124,3 +124,18 @@ reduction variants, then records the actual quadratic player. Use VKF_CHROMIUM
 for the explicit SwiftShader executable. The broader browser test now visits all
 50 examples/254 endpoints and their midpoints. Physical GPU STOP is unchanged;
 this update has software correctness evidence, not new hardware timings.
+
+## Current Morphing library — supersedes earlier player checkpoints
+
+The owner rejected the JS/WGSL glyph player because it bypassed the biological
+split/merge solver. Both standalone GPU-morph and math-motion implementations,
+the quadratic movie, photo fade example and before/after downloads are removed.
+The build gate rejects their reintroduction. The gallery retains the three
+current native 3D examples. All50 authored math examples/254 states are retained
+as inputs, with24 derivation downloads; they no longer link to obsolete playback.
+
+Morphing is now an optional VKF library in the libraries repository. Its compiled
+core handles multiple states, linear/cubic interpolation, independent endpoint
+easing, state/embedding derivatives, retained identity channel bindings and
+conserved material lineage. General biological boundaries and direct native
+Layer/View integration remain unfinished; no legacy runtime substitutes for them.

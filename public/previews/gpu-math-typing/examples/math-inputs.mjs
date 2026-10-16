@@ -26,7 +26,7 @@ export const examples=[
  ex('growth','Compound growth','Everyday',['A=1000(1+0.05)^3','A=1000(1.05)^3','A=1000\\times1.157625','A=1157.625']),
  ex('binomial','Evaluate a probability','Statistics',['P=\\binom{5}{2}(0.4)^2(0.6)^3','P=10\\times0.16\\times0.216','P=0.3456'])
 ];
-export {splitSteps} from './import.mjs';
+export {splitSteps} from './math-import.mjs';
 
 const geo=(math,note,kind,parameters)=>step(math,note,{kind,...parameters});
 examples.push(
@@ -76,5 +76,5 @@ examples.push(
  geo('r_n=c\\sqrt{n},\\quad N=240','Shrink back to 240 points.','packing',{n:240,angle:.2})])
 );
 
-import {derivations} from './derivations.mjs';
+import {derivations} from './derivation-data.mjs';
 examples.push(...derivations);

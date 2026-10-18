@@ -1,16 +1,1 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Morphing · GPU player</title><style>
-*{box-sizing:border-box}:root{color-scheme:dark;font-family:system-ui;background:#091116;color:#dcecf0}body{max-width:780px;margin:0 auto;padding:24px}a{color:#81d9e3}h1{font-size:1.6rem}canvas{width:100%;aspect-ratio:1;background:#091116;border:1px solid #2b424c;border-radius:14px}fieldset,.controls{border:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:16px}label{display:flex;align-items:center;gap:8px;min-width:0;max-width:100%}#example{width:100%;min-width:0;flex:1}select{max-width:100%}select,button{font:inherit;padding:8px;background:#152b34;color:inherit;border:1px solid #42616d;border-radius:8px}button:disabled{opacity:.5}input[type=range]{width:100%;accent-color:#53d5e1}p{line-height:1.5}.muted{color:#9ab4bf}#status{min-height:3em}nav{display:flex;gap:20px;flex-wrap:wrap}</style>
-<nav><a href="../index.html">Examples</a><a href="../downloads/Morphing-source.zip">Library source</a></nav>
-<h1>Morphing · GPU player</h1>
-<label>Example <select id="example" aria-label="Example"></select></label>
-<p id="description"></p><p id="interaction" class="muted"></p>
-<fieldset><label>Interpolation <select id="mode"><option value="1">Cubic</option><option value="0">Linear</option></select></label><label><input id="start" type="checkbox" checked>Smooth start</label><label><input id="end" type="checkbox" checked>Smooth end</label></fieldset>
-<canvas id="view" width="768" height="768" aria-label="Morphing GPU view"></canvas>
-<div class="controls"><button id="play">Play</button><output id="position">0.00</output></div>
-<label for="coordinate">State coordinate</label><input id="coordinate" type="range" min="0" max="2" value="0" step="0.01">
-<div class="controls"><label>Export <select id="quality"><option value="1080">1080 × 1080 · 48 fps</option><option value="720">720 × 720 · 30 fps</option></select></label><button id="download">Download video</button><button id="cancel" hidden>Cancel</button></div>
-<p id="status" role="status">Loading Morphing…</p>
-<p class="muted">Playback computes each state on your GPU. VKF capture exports each high-quality frame at the selected frame rate, independently of rendering speed. You can cancel it at any time.</p>
-<p class="muted">Surface examples use actual sheets with zero thickness. Solid examples use closed surfaces. Each example states which geometric constraints it enforces. Downloads use WebM.</p>
-<p class="muted">Compiled VKF scripts define the states and interpolation. The VKF renderer presents their geometry on the GPU. Examples use explicit correspondence; general automatic matching and live desktop View handles remain unfinished.</p>
-<script type="module" src="app.mjs"></script></html>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=/previews/morphing-current/"><title>Morphing · Vektor Flow</title><a href="/previews/morphing-current/">Open current Morphing</a></html>

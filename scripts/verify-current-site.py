@@ -8,29 +8,26 @@ for retired in ['previews/gpu-math-typing/examples/media/native-cell-division.mp
  assert not (root/retired).exists(), 'Retired morphology must not be republished: '+retired
 assert not (root/'previews/gpu-math-typing/examples/media/three-states.mp4').exists()
 catalog=json.loads((root/'previews/gpu-math-typing/examples/catalog.json').read_text())
-assert all(e['backend']=='Native VKF' and 'video' not in e and e['id']!='three-states' for e in catalog), 'Only current live VKF examples may be published'
+assert len(catalog)==1 and catalog[0]['id']=='current'
+assert not (root/'previews/text-unfold').exists()
+assert not (root/'previews/gpu-math-typing/examples/live/app.mjs').exists()
+assert not (root/'previews/gpu-math-typing/examples/live/compiled').exists()
+current=json.loads((root/'previews/morphing-current/SOURCE.json').read_text())
+assert current['sourceCommit']=='d1e031d491307ec734f8a1174393ea703fd74fbd'
+assert current['entryPoint']=='validated_transport.ValidatedCombinedScene'
+import zipfile
+with zipfile.ZipFile(root/'previews/gpu-math-typing/examples/downloads/Morphing-source.zip') as archive:
+ for name,digest in current['sourceFiles'].items():
+  assert hashlib.sha256(archive.read('morphing/'+name)).hexdigest()==digest,name
 
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
-# Reviewed compiled library application, not another compiler release.
-application=root/'previews/gpu-math-typing/examples/live/compiled'
-assert hashlib.sha256((application/'scene.wasm').read_bytes()).hexdigest()=='23465a4bf09fff2354c7dbf35078297a9748e75684230f770cad0814c32d2e36'
-proof=json.loads((application/'provenance.json').read_text())
-assert proof['passed'] and proof['canonicalWASM'] and proof['compiledGPU'] and not proof['hostInterpolation']
-assert proof['compilerCandidate']=='a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f'
-assert proof['exampleCount']==len(catalog)==23
-assert hashlib.sha256((root/'previews/gpu-math-typing/draw.wgsl').read_bytes()).hexdigest()==proof['latex']['drawShaderSHA256']
-assert all(e['kernel']=='latex' for e in catalog if 'sources' in e)
-assert not (application.parent/'worker.mjs').exists()
-assert not (application.parent/'runtime').exists()
-for name,digest in proof['artifacts'].items():
- assert hashlib.sha256((application/name).read_bytes()).hexdigest()==digest,name
 for p in root.rglob('*'):
  if not p.is_file():continue
  rel=str(p.relative_to(root))
  assert not rel.startswith(('runtimes/','previews/0.','releases/','generated/','reference/','downloads/current/','playground/artifacts/')),rel
- if p.suffix=='.wasm':assert rel in {'playground/canonical/compiler.wasm','vf-ui/artifacts/vkf-symbolic-kernel.wasm','previews/gpu-math-typing/examples/live/compiled/scene.wasm'},rel
+ if p.suffix=='.wasm':assert rel in {'playground/canonical/compiler.wasm','vf-ui/artifacts/vkf-symbolic-kernel.wasm'},rel
  if p.suffix=='.html':
   s=p.read_text();assert not re.search(r'(?:Version |data-release-version=")[0-9]+\.[0-9]+\.[0-9]+',s),rel
 class Links(HTMLParser):

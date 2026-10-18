@@ -244,3 +244,25 @@ solver fallback, final boundary rejection and2D/3D field specialization. The
 optimized player passes the full193-frame1080p48fps capture, cancellation and
 slider recovery. Only this pipeline and current source archive are deployed;
 older benchmark artifacts remain local evidence. No videos are uploaded.
+
+
+## Text unfolds — 2026-10-18
+
+Coming soon now contains two short-named, twelve-second text entrance videos:
+Letters (127 rendered glyph groups) and Words (21 word groups). Both use the same
+five-line passage, exact final layout, 1920×1080 resolution and 60fps timeline.
+The installed native VKF0.7.3 compiler executes the existing Morphing natural
+cubic library; the existing LaTeX engine supplies layout, atlas and unchanged
+GPU shader. These are intentional zero-area growth effects with explicit
+visibility/size constraints, not handwriting or conserved-material morphs.
+Motion is sampled offline natively; browser code only presents the transforms.
+
+Independent SciPy checks cover426,240 scalar values (max error3.95e-14).
+Both720-frame WebM and H.264 exports have twelve-second duration. Software-only
+capture verifies blank starts, intermediate coverage, no viewport clipping,
+identical final pixels and no browser/GPU errors. Chromium desktop and WebKit
+390px phone layouts decode and play both movies without overflow. No physical
+GPU or phone performance is claimed. Existing public0.7.2compiler bytes and
+23live examples are unchanged. Videos do not autoplay; transcripts, downloads,
+reproduction sources and provenance accompany them. Build/capture scripts live
+in scripts/text-unfold; page verification is tests/text-unfold.cjs.

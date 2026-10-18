@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {typesetText} from '/home/viktor/Projects/Vektor Flow/.worktrees/text-unfold-site-20261018/public/previews/gpu-math-typing/text-flow.mjs';
+import {packLatexItem} from '/home/viktor/Projects/Vektor Flow/.worktrees/text-unfold-site-20261018/public/previews/gpu-math-typing/latex-instances.mjs';
+const base='/home/viktor/Projects/Vektor Flow/.worktrees/text-unfold-site-20261018/public/previews/gpu-math-typing';
+const data=JSON.parse(fs.readFileSync(base+'/typing-data.json'));
+const text=process.argv[2]||'Cu';
+const box=typesetText(text,data.maps,{width:2000,font:'mathbf'});
+if(!box.complete)throw Error(box.diagnostics.join('; '));
+const packets=box.items.map(i=>packLatexItem(i,data,{pixelAlign:false}));
+fs.writeFileSync('/tmp/vkf-word-mitosis-check-20261018/layout.json',JSON.stringify({text,packets,range:data.range,atlasSize:data.atlasSize,firstWordGlyphs:box.items.filter(i=>i.flowX===box.items[0].flowX).length}));

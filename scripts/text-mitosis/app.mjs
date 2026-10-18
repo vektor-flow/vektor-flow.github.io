@@ -1,0 +1,13 @@
+import {createGPUView} from '/previews/gpu-math-typing/examples/live/gpu-view.mjs';
+import {prepareMorphingGPU} from '/previews/gpu-math-typing/examples/live/gpu-morphing.mjs';
+import {createSceneMediaCapture} from '/vf-ui/vf-media-capture.mjs';
+const canvas=document.querySelector('canvas');
+const original=navigator.gpu.requestAdapter.bind(navigator.gpu);
+navigator.gpu.requestAdapter=async()=>{const adapter=await original({forceFallbackAdapter:true});if(adapter.info.architecture!=='swiftshader'||!adapter.info.isFallbackAdapter)throw Error('Software adapter required');return adapter;};
+const renderer=await createGPUView(canvas);renderer.resize(1080);const gpuErrors=[];renderer.device.addEventListener('uncapturederror',e=>gpuErrors.push(e.error.message));
+const scene=await prepareMorphingGPU(renderer.device,{sceneURL:new URLSearchParams(location.search).has('words')?'/word-mitosis/package/':'/mitosis/package/',shaderURL:'/previews/gpu-math-typing/examples/live/compiled/shaders/',resolution:96,lattice:241,extent:1080,mode:1,smoothStart:true,smoothEnd:true});
+window.reports=[];
+window.sample=async q=>{const report=await scene.sample(q);renderer.draw(scene);window.reports.push(report);return report;};
+window.snapshot=async()=>{renderer.draw(scene);const frame=await renderer.captureFrame({timestamp:0,duration:1});try{const bitmap=await createImageBitmap(frame),out=document.createElement('canvas');out.width=out.height=1080;out.getContext('2d').drawImage(bitmap,0,0);bitmap.close();return out.toDataURL();}finally{frame.close();}};
+window.movie=async()=>{const capture=createSceneMediaCapture({fallbackCanvas:canvas});try{const movie=await capture.startFrameMovie({width:1080,height:1080,frameRate:48,bitrate:16000000,hardwareAcceleration:'prefer-software'});for(let i=0;i<193;i++){await window.sample(i/192);const frame=await renderer.captureFrame({timestamp:Math.round(i*1e6/48),duration:Math.round(1e6/48)});try{await movie.addFrame(frame,i);}finally{frame.close();}if(i%48===0)console.log('capture',i);}const blob=await movie.finish(),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mitosis.webm';a.click();if(gpuErrors.length)throw Error(gpuErrors.join('; '));return {frames:193,bytes:blob.size,gpuErrors,libraryUnchanged:true,shaderUnchanged:true};}finally{await capture.cancel();}};
+await window.sample(0);window.ready=true;

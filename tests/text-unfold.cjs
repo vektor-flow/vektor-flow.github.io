@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium,webkit}=require(process.env.VKF_PLAYWRIGHT||'/tmp/memuli-ux-review/node_modules/playwright');
 const base=process.env.VKF_SITE_URL||'http://127.0.0.1:8886';
-const evidence=process.env.VKF_TEXT_EVIDENCE||'/tmp/vkf-text-unfold-20261018/site';fs.mkdirSync(evidence,{recursive:true});
+const evidence=process.env.VKF_TEXT_EVIDENCE||'/tmp/vkf-mitosis-check-20261018/site';fs.mkdirSync(evidence,{recursive:true});
 (async()=>{
  const report={passed:false,url:base,views:[]};
  for(const [name,engine,options,viewport]of [
@@ -20,16 +20,16 @@ const evidence=process.env.VKF_TEXT_EVIDENCE||'/tmp/vkf-text-unfold-20261018/sit
     assert.equal(await video.getAttribute('autoplay'),null);assert.equal(await video.getAttribute('preload'),'none');
     await video.evaluate(async el=>{el.load();await new Promise((resolve,reject)=>{if(el.readyState>=1)return resolve();el.addEventListener('loadedmetadata',resolve,{once:true});el.addEventListener('error',()=>reject(Error('Video failed: '+el.error?.message)),{once:true});});});
     const metadata=await video.evaluate(el=>({width:el.videoWidth,height:el.videoHeight,duration:el.duration,source:el.currentSrc}));
-    assert.equal(metadata.width,1920);assert.equal(metadata.height,1080);assert(Math.abs(metadata.duration-12)<.05);
+    assert.equal(metadata.width,1080);assert.equal(metadata.height,1080);assert(Math.abs(metadata.duration-193/48)<.05);assert(metadata.source.includes("-mitosis."));
     await video.evaluate(async el=>{el.muted=true;await el.play();});
     await page.waitForFunction(i=>document.querySelectorAll('video')[i].currentTime>.15,i);
     await video.evaluate(el=>el.pause());
-    await video.evaluate(el=>new Promise(resolve=>{el.addEventListener('seeked',resolve,{once:true});el.currentTime=6;}));
+    await video.evaluate(el=>new Promise(resolve=>{el.addEventListener('seeked',resolve,{once:true});el.currentTime=2;}));
     await video.screenshot({path:path.join(evidence,name+'-'+i+'.png')});
     videos.push(metadata);
    }
-   const archive=await page.request.get(base+'/previews/text-unfold/source.zip');assert.equal(archive.status(),200);assert((await archive.body()).length>10000);
-   const proof=await page.request.get(base+'/previews/text-unfold/provenance.json');assert((await proof.json()).verification.passed);
+   const archive=await page.request.get(base+'/previews/text-unfold/mitosis-source.zip');assert.equal(archive.status(),200);assert((await archive.body()).length>10000);
+   const proof=await page.request.get(base+'/previews/text-unfold/morphing-provenance.json');assert((await proof.json()).libraryUnmodified);
    await page.screenshot({path:path.join(evidence,name+'.png'),fullPage:true});assert.deepEqual(errors,[]);
    report.views.push({name,viewport,videos,errors,noHorizontalOverflow:true});
   }finally{await browser.close();}

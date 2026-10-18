@@ -246,7 +246,13 @@ slider recovery. Only this pipeline and current source archive are deployed;
 older benchmark artifacts remain local evidence. No videos are uploaded.
 
 
-## Text unfolds — 2026-10-18
+## Rejected text entrances — 2026-10-18
+
+Superseded by the biological split/merge checks below. The owner rejected these
+entrance animations because they bypassed geometric mitosis. Retained here as
+historical evidence, not current page behavior.
+
+### Original entrance checkpoint
 
 Coming soon now contains two short-named, twelve-second text entrance videos:
 Letters (127 rendered glyph groups) and Words (21 word groups). Both use the same
@@ -266,3 +272,26 @@ GPU or phone performance is claimed. Existing public0.7.2compiler bytes and
 23live examples are unchanged. Videos do not autoplay; transcripts, downloads,
 reproduction sources and provenance accompany them. Build/capture scripts live
 in scripts/text-unfold; page verification is tests/text-unfold.cjs.
+
+
+## Text split/merge checks — 2026-10-18
+
+The owner requires the existing Morphing solver unchanged, without substitute
+entrance motion. Coming soon now shows two adjacent-state geometry checks,
+Letters and Words. Both use the real LaTeX glyph atlas as input to the existing
+biological prepare API with explicit one-to-two lineage. The original compiled
+GPU state/field/union/calibration/contour pipeline and browser player are unchanged.
+Only input preparation and capture fixtures are added; no interpolation, neck,
+solver, shader, opacity or entrance-motion replacement is introduced.
+
+These are short diagnostics, not an accepted full prose animation. Intermediate
+fragmentation and finite-grid thin-stroke limitations remain visible. The first
+glyph or word supplies the nonempty seed. Full-passage text and caption tracks
+were removed from the page. Superseded entrance media are retained in Git history.
+
+Each software-only capture contains193 frames at1080×1080/48fps. All201 sampled
+coordinates per clip passed existing checks, including grid-area tolerance1e-4.
+Hash receipts bind all11 unchanged Morphing source modules and the existing
+browser/compiled shader files. Exact fixture source, inputs, WASM hashes, reports
+and reproduction scripts are in the new source download. No compiler release,
+physical GPU run or Cuvami implementation is included.

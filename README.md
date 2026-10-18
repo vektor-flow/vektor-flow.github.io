@@ -1,35 +1,34 @@
 # Vektor Flow public site
 
-The public compiler is the reviewed0.7.2 package. `public/current-compiler-release.json`
-pins the exact module, WASM and data hashes. Do not promote compiler candidates
-through a website change. Preserve the physical GPU stop; browser checks use
-software rendering only.
+The public compiler remains the reviewed 0.7.2 package, pinned byte for byte in
+`public/current-compiler-release.json`. Do not promote compiler candidates through
+website changes. Browser checks use explicit software rendering; preserve the
+physical GPU stop.
 
-## Morphing: one authoritative source
+## Current text examples
 
-The current morphology is the shared field-transport reference pinned by
-`public/previews/morphing-current/SOURCE.json`, entry point
-`state_sequence.StateSequence`, source receipt commit
-`436b6eb542f04740ec0b77119138305d57e2aea7`. All51 source files are hash-checked in
-one source archive. All text states use the same geometry-only correspondence, body transport and
-replica policy. The public players expose the current output with time and speed
-sliders. The algorithm remains experimental: monotone replica topology, arbitrary
-text counters and the compiled VKF port are unfinished. Playback is a CPU reference
-capture using the existing text engine; no GPU integration is claimed.
+`public/previews/morphing-current/` now contains real-time LaTeX wave rendering.
+The existing text-flow/LaTeX typesetter, instance packer and native MSDF glyph
+atlas provide the text and equations. One shared WebGL2 shader reveals contours
+and fills ink behind a travelling front. Glyphs remain at their typeset positions.
+Letter and word modes change the grouping only. Time, speed and spread are live
+uniforms; geometry uploads occur on layout changes, not animation frames.
 
-The examples unfold full sentences, adding ONE letter or ONE word per state.
-Do not substitute custom entrance/fade effects or per-example methods. Validate
-the shared algorithm with regression/property tests; do not gate these examples
-on separate case approval. Export checks compare every decoded frame to the render.
-Do not display the full sentence separately from the evolving scene.
+The compact atlas copies existing glyph tiles without resampling. Its build
+receipt is ASSETS.json; original engine/atlas hashes and current source hashes
+are in SOURCE.json. Extra glyphs can load the existing full LaTeX resources.
+The old sentence recordings and CPU morphology archive are removed from public
+assets. There is one active example implementation. Do not restore stale clips
+or imply that playback controls are real-time rendering.
+
+Run `node tests/current-morphing.cjs` against the local range server or set
+VKF_SITE_URL to the deployed site. Tests use Chromium SwiftShader and software
+WebKit, check actual GPU pixels, live controls, editable LaTeX, stable geometry
+buffers and the absence of video requests. No hardware performance is claimed.
 
 ## Publication
 
-Run `python3 scripts/verify-current-site.py`, then
-`python3 scripts/update-manifest.py` and review all asset changes. CI verifies
-retired paths, the single source identity, current compiler bytes, local page
-links and every manifest file before GitHub Pages deployment.
-
-The GPU math lab and existing LaTeX document renderer remain separate from the
-morphology planner. Their source, font assets, notices and current compiler pins
-are retained. Superseded compiler/runtime assets stay absent.
+Run `python3 scripts/verify-current-site.py`,
+`python3 scripts/package-morphing.py`, then `python3 scripts/update-manifest.py`.
+CI checks exact compiler/source bytes, retired paths, local links and the complete
+deployment manifest before GitHub Pages publication.

@@ -1,52 +1,26 @@
-for (const section of document.querySelectorAll('.demo')) {
-  const video = section.querySelector('video');
-  const time = section.querySelector('[data-time]');
-  const play = section.querySelector('[data-play]');
-  const position = section.querySelector('[data-position]');
-  const speed = section.querySelector('[data-speed]');
-  const speedValue = section.querySelector('[data-speed-value]');
-  const mode = section.dataset.mode;
-  const meta = await fetch(`${mode}-verification.json`).then(response => {
-    if (!response.ok) throw Error('Playback metadata unavailable');
-    return response.json();
-  });
-  const maximum = meta.states.length - 1;
-  time.max = maximum;
-  video.muted = true;
-  function show(value) {
-    position.value = `State ${Math.min(maximum + 1, Math.floor(value + 1e-6) + 1)} / ${maximum + 1}`;
-  }
-  function update() {
-    const value = Math.max(0, Math.min(maximum, (video.currentTime - meta.motionStart) / meta.secondsPerState));
-    time.value = value;
-    show(value);
-  }
-  time.addEventListener('input', () => {
-    video.pause();
-    const value = Number(time.value);
-    show(value);
-    video.currentTime = meta.motionStart + value * meta.secondsPerState;
-  });
-  speed.addEventListener('input', () => {
-    video.playbackRate = Number(speed.value);
-    speedValue.value = `${speed.value}×`;
-  });
-  play.addEventListener('click', async () => {
-    if (!video.paused) {video.pause(); return;}
-    if (video.ended || Number(time.value) >= maximum) video.currentTime = meta.motionStart;
-    try {await video.play();} catch {play.textContent = 'Retry';}
-  });
-  video.addEventListener('play', () => {
-    play.textContent = 'Pause';
-    function tick() {
-      if (video.paused) return;
-      update();
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  });
-  video.addEventListener('pause', () => {play.textContent = video.ended ? 'Replay' : 'Play';});
-  video.addEventListener('ended', () => {update();play.textContent = 'Replay';});
-  show(0);
-  section.dataset.ready = 'true';
-}
+import {TextWave,loadWaveAssets} from './wave-renderer.mjs';
+const status=document.querySelector('#status');
+const source=document.querySelector('#source');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const players=[];let revision=0;
+try{
+ const assets=await loadWaveAssets();
+ for(const section of document.querySelectorAll('.demo')){
+  const renderer=new TextWave(section.querySelector('canvas'),assets,section.dataset.mode);
+  const player={section,renderer,time:section.querySelector('[data-time]'),speed:section.querySelector('[data-speed]'),spread:section.querySelector('[data-spread]'),play:section.querySelector('[data-play]'),loop:section.querySelector('[data-loop]'),position:reduced?1:0,running:!reduced,hold:0};players.push(player);
+  player.draw=()=>{const timing=renderer.draw(player.position,Number(player.speed.value),Number(player.spread.value));section.dataset.progress=player.position.toFixed(4);section.dataset.duration=timing.total;section.dataset.glyphs=renderer.count;section.querySelector('[data-duration]').value=`${timing.total.toFixed(2)} s`;section.querySelector('[data-rate]').value=`${Math.round(timing.rate)} ${renderer.mode==='letters'?'glyphs':'words'}/s`;player.time.value=player.position;player.play.textContent=player.running?'Pause':'Play';};
+  player.time.addEventListener('input',()=>{player.position=Number(player.time.value);player.running=false;player.hold=0;player.draw();});
+  player.speed.addEventListener('input',player.draw);player.spread.addEventListener('input',player.draw);
+  player.play.addEventListener('click',()=>{if(!player.running&&player.position>=1)player.position=0;player.running=!player.running;player.hold=0;player.draw();});
+  section.querySelector('[data-replay]').addEventListener('click',()=>{player.position=0;player.running=true;player.hold=0;player.draw();});
+ }
+ async function apply(){const token=++revision;status.textContent='Typesetting LaTeX…';status.dataset.error='false';try{await Promise.all(players.map(p=>p.renderer.layout(source.value)));if(token!==revision)return;for(const p of players){p.position=reduced?1:0;p.running=!reduced;p.hold=0;p.section.dataset.ready='true';p.draw();}status.textContent='';}catch(error){if(token!==revision)return;for(const p of players){p.position=0;p.running=false;p.draw();}status.textContent=error.message;status.dataset.error='true';}}
+ document.querySelector('#apply').addEventListener('click',apply);
+ await apply();
+ window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='math-import'||typeof event.data.source!=='string')return;source.value=event.data.source;apply();});
+ if(parent!==window)parent.postMessage({type:'math-ready'},location.origin);
+ let last=performance.now();
+ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;for(const p of players){if(!p.running)continue;const timing=p.renderer.timing(Number(p.speed.value),Number(p.spread.value));if(p.position<1){p.position=Math.min(1,p.position+dt/timing.total);p.draw();}else if(p.loop.checked){p.hold+=dt;if(p.hold>1.1){p.position=0;p.hold=0;p.draw();}}else{p.running=false;p.draw();}}requestAnimationFrame(frame);}requestAnimationFrame(frame);
+ let resizeTimer,lastWidth=0;new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(!lastWidth){lastWidth=width;return;}if(Math.abs(width-lastWidth)<.5)return;lastWidth=width;clearTimeout(resizeTimer);resizeTimer=setTimeout(apply,100);}).observe(document.querySelector('main'));
+ document.addEventListener('visibilitychange',()=>{last=performance.now();});
+}catch(error){status.textContent=error.message;status.dataset.error='true';}

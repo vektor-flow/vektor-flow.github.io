@@ -13,12 +13,13 @@ assert not (root/'previews/text-unfold').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/app.mjs').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/compiled').exists()
 current=json.loads((root/'previews/morphing-current/SOURCE.json').read_text())
-assert current['sourceCommit']=='436b6eb542f04740ec0b77119138305d57e2aea7'
-assert current['entryPoint']=='state_sequence.StateSequence'
-import zipfile
-with zipfile.ZipFile(root/'previews/gpu-math-typing/examples/downloads/Morphing-source.zip') as archive:
- for name,digest in current['sourceFiles'].items():
-  assert hashlib.sha256(archive.read('morphing/'+name)).hexdigest()==digest,name
+assert current['entryPoint']=='wave-renderer.mjs:TextWave'
+assert current['execution']=='real-time WebGL2' and current['videoPlayback'] is False
+for name,digest in {**current['sourceFiles'],**current['latexEngineFiles']}.items():
+ assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+assert not list((root/'previews/morphing-current').glob('*.mp4'))
+assert not list((root/'previews/morphing-current').glob('*.webm'))
+assert not (root/'previews/gpu-math-typing/examples/downloads/Morphing-source.zip').exists()
 
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}

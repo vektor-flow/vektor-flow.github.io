@@ -7,7 +7,7 @@ software rendering only.
 
 ## Morphing: one authoritative source
 
-The current morphology is the verified field-transport reference pinned by
+The current morphology is the shared field-transport reference pinned by
 `public/previews/morphing-current/SOURCE.json`, entry point
 `state_sequence.StateSequence`, source receipt commit
 `436b6eb542f04740ec0b77119138305d57e2aea7`. All51 source files are hash-checked in

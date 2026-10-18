@@ -13,8 +13,8 @@ assert not (root/'previews/text-unfold').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/app.mjs').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/compiled').exists()
 current=json.loads((root/'previews/morphing-current/SOURCE.json').read_text())
-assert current['sourceCommit']=='d1e031d491307ec734f8a1174393ea703fd74fbd'
-assert current['entryPoint']=='validated_transport.ValidatedCombinedScene'
+assert current['sourceCommit']=='436b6eb542f04740ec0b77119138305d57e2aea7'
+assert current['entryPoint']=='state_sequence.StateSequence'
 import zipfile
 with zipfile.ZipFile(root/'previews/gpu-math-typing/examples/downloads/Morphing-source.zip') as archive:
  for name,digest in current['sourceFiles'].items():

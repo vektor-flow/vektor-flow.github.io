@@ -9,22 +9,19 @@ software rendering only.
 
 The current morphology is the verified field-transport reference pinned by
 `public/previews/morphing-current/SOURCE.json`, entry point
-`validated_transport.ValidatedCombinedScene`, source receipt commit
-`d1e031d491307ec734f8a1174393ea703fd74fbd`. All46 source files are hash-checked in
-one source archive. It retains collision routing, visible component checks,
-replica handling and the latest thin-geometry corrections.
+`state_sequence.StateSequence`, source receipt commit
+`436b6eb542f04740ec0b77119138305d57e2aea7`. All51 source files are hash-checked in
+one source archive. All text states use the same geometry-only correspondence, body transport and
+replica policy. The public players expose the current output with time and speed
+sliders. The algorithm remains experimental: monotone replica topology, arbitrary
+text counters and the compiled VKF port are unfinished. Playback is a CPU reference
+capture using the existing text engine; no GPU integration is claimed.
 
-It is an offline CPU reference. Full integration of that behavior into compiled
-VKF is incomplete. The numeric entrance effects and the incomplete biological
-GPU helper are removed from public assets and source downloads. Do not restore
-them as substitutes or label their output as the current morphology. Existing
-Morphing entry URLs lead to the same current reference page.
-
-The requested text examples are full sentences, with successive states every
-one letter or every one word, continuing to the entire sentence. A short
-pair of glyphs or words is not the requested deliverable. Use the reference
-unchanged and reject unsupported inputs; no custom entrance/fade or overlapping
-fallback is authorized. Do not display the complete passage separately.
+The examples unfold full sentences, adding ONE letter or ONE word per state.
+Do not substitute custom entrance/fade effects or per-example methods. Validate
+the shared algorithm with regression/property tests; do not gate these examples
+on separate case approval. Export checks compare every decoded frame to the render.
+Do not display the full sentence separately from the evolving scene.
 
 ## Publication
 

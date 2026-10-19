@@ -20,20 +20,26 @@ const output=process.env.VKF_TEST_OUTPUT||'/tmp/text-wave-review';fs.mkdirSync(o
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    assert.equal(await page.locator('#status').innerText(),'');
    const baseline=await page.evaluate(()=>window.bufferUploads),samples=[];
-   for(const[i,mode]of[[0,'letters'],[1,'words']]){
+   for(const[i,mode]of[[0,'grow'],[1,'overshoot']]){
     const section=page.locator('.demo').nth(i),time=section.locator('[data-time]');await section.scrollIntoViewIfNeeded();
     assert(Number(await section.getAttribute('data-duration'))<2);
-    const pixels=()=>section.locator('canvas').evaluate(canvas=>{const gl=canvas.getContext('webgl2');const a=new Uint8Array(canvas.width*canvas.height*4);gl.readPixels(0,0,canvas.width,canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,a);let ink=0,sum=0,hash=2166136261;for(let i=0;i<a.length;i+=4){if(a[i]>20)ink++;sum+=a[i];hash=Math.imul(hash^a[i],16777619)}return{ink,sum,hash:hash>>>0,error:gl.getError()}});
+    const pixels=()=>section.locator('canvas').evaluate(canvas=>{const gl=canvas.getContext('webgl2');const a=new Uint8Array(canvas.width*canvas.height*4);gl.readPixels(0,0,canvas.width,canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,a);let ink=0,sum=0,hash=2166136261,colored=0; for(let i=0;i<a.length;i+=4){if(a[i]>20)ink++;if(a[i]===255&&(a[i]!==a[i+1]||a[i]!==a[i+2]))colored++;sum+=a[i];hash=Math.imul(hash^a[i],16777619)}return{ink,sum,colored,hash:hash>>>0,error:gl.getError()}});
     await time.fill('0');await time.dispatchEvent('input');const empty=await pixels();assert.equal(empty.ink,0);
     await time.fill('0.35');await time.dispatchEvent('input');const partial=await pixels();assert(partial.ink>0);assert.equal(partial.error,0);
     await page.screenshot({path:`${output}/${name}-${mode}-wave.png`,fullPage:true});
     await time.fill('1');await time.dispatchEvent('input');const full=await pixels();assert(full.ink>partial.ink);assert.notEqual(full.hash,partial.hash);
     const originalDuration=Number(await section.getAttribute('data-duration'));
-    await section.locator('[data-speed]').fill('6');await section.locator('[data-speed]').dispatchEvent('input');assert(Number(await section.getAttribute('data-duration'))<originalDuration);
-    await time.fill('0.35');await time.dispatchEvent('input');const before=await pixels();await section.locator('[data-spread]').fill('0.6');await section.locator('[data-spread]').dispatchEvent('input');const spread=await pixels();assert.notEqual(spread.hash,before.hash);
+    assert.equal(full.colored,0,'Settled ink must be white');
+    await section.locator('[data-velocity]').fill('6');await section.locator('[data-velocity]').dispatchEvent('input');assert(Number(await section.getAttribute('data-duration'))<originalDuration);
+    await time.fill('0.35');await time.dispatchEvent('input');const before=await pixels();
+    await section.locator('[data-k]').fill('4');await section.locator('[data-k]').dispatchEvent('input');const wider=await pixels();assert.notEqual(wider.hash,before.hash);assert(Math.abs(Number(await section.getAttribute('data-ramp-width'))-Math.PI/8)<1e-9);
+    await section.locator('[data-grow]').uncheck();const noGrowth=await pixels();assert.notEqual(noGrowth.hash,wider.hash);
+    await section.locator('[data-grow]').check();await section.locator('[data-k]').fill('12');await section.locator('[data-k]').dispatchEvent('input');
     await section.locator('[data-loop]').uncheck();await section.locator('[data-replay]').click();await page.waitForFunction(i=>Number(document.querySelectorAll('.demo')[i].dataset.progress)>.02&&Number(document.querySelectorAll('.demo')[i].dataset.progress)<1,i);await page.waitForFunction(i=>Number(document.querySelectorAll('.demo')[i].dataset.progress)===1,i);
     samples.push({mode,empty,partial,full,defaultDuration:originalDuration});
    }
+   assert.equal(samples[0].full.hash,samples[1].full.hash,'Both size modes must settle to identical text');
+   assert.notEqual(samples[0].partial.hash,samples[1].partial.hash,'Size modes must differ during reveal');
    assert.equal(await page.evaluate(()=>window.bufferUploads),baseline,'Time and shader controls must not reupload geometry');
    await page.locator('details').evaluate(e=>e.open=true);
    const oldCount=Number(await page.locator('.demo').first().getAttribute('data-glyphs'));

@@ -9,10 +9,12 @@ physical GPU stop.
 
 `public/previews/morphing-current/` now contains real-time LaTeX wave rendering.
 The existing text-flow/LaTeX typesetter, instance packer and native MSDF glyph
-atlas provide the text and equations. One shared WebGL2 shader reveals contours
-and fills ink behind a travelling front. Glyphs remain at their typeset positions.
-Letter and word modes change the grouping only. Time, speed and spread are live
-uniforms; geometry uploads occur on layout changes, not animation frames.
+atlas provide the text and equations. One shared WebGL2 shader uses a clamped
+quarter-period sin² alpha ramp along reading order. Lines finish sequentially;
+there is no repeating per-glyph wave or contour stage. A faint near-white gradient
+settles to white. Compare smooth growth with a 10% size overshoot that settles to
+the same typeset geometry. Time, k, v and the growth toggle are live uniforms;
+geometry uploads occur on layout changes, not animation frames.
 
 The compact atlas copies existing glyph tiles without resampling. Its build
 receipt is ASSETS.json; original engine/atlas hashes and current source hashes

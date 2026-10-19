@@ -4,3 +4,12 @@
 .palette button:disabled{opacity:.4;cursor:wait}
 
 details a{color:#85afa6;text-underline-offset:3px}
+
+html,body{height:100%;overflow:hidden;overscroll-behavior:none;touch-action:none}
+body{position:fixed;inset:0;-webkit-user-select:none;user-select:none}
+main{height:var(--app-height,100dvh);display:flex;flex-direction:column;overflow:hidden;padding-top:18px;padding-bottom:max(12px,env(safe-area-inset-bottom));}
+header,.intro,footer,.help{flex-shrink:0}.intro{margin:24px 0 18px}#world{height:auto;flex:1;min-height:180px;touch-action:none;overscroll-behavior:none}
+.help{align-self:flex-start;background:none;border:0;padding:10px 0 0;color:#77959e;font-size:11px}dialog{background:#101a24;color:#c5d9df;border:1px solid #42616b;border-radius:18px;padding:24px;max-width:420px;font-size:14px;line-height:1.7}dialog::backdrop{background:#000a}dialog a{color:#90cbb9}dialog button{background:#223b40;border:1px solid #537875;border-radius:12px;padding:8px 15px;float:right;margin:0 0 12px 15px}
+@media(max-width:600px){main{padding-top:max(12px,env(safe-area-inset-top));padding-bottom:max(10px,env(safe-area-inset-bottom))}.intro{margin:19px 0 14px;gap:12px}h1{font-size:30px}.eyebrow{margin-bottom:9px}.guide{margin-top:8px}.quest small{display:none}footer{margin-top:12px}.palette button{min-height:34px}#message{margin-top:10px;min-height:32px}.help{padding-top:4px}}
+
+#message{height:36px;min-height:36px;max-height:36px;overflow:hidden;line-height:16px}

@@ -43,29 +43,37 @@ deployment manifest before GitHub Pages publication.
 ## Living mathematics demo
 
 `public/previews/math-life/` is the Cuvami drag-to-merge game preview. Start with
-zero and reach twelve. Values add; operations apply to values; like operations
-compose and inverse pairs cancel. Invalid fractional/non-real results preserve
-both objects and repel them. This first round uses exact whole-number arithmetic.
-The existing packaged VKF symbolic WASM kernel parses and evaluates expressions;
-the game supplies compatibility policy. It does not use JavaScript eval.
+zero and reach twelve. An operation applies to an expression if the result is a
+whole number. Two expressions always bounce. Operations compose only into a
+supported simple operation (including exact multiply/divide reduction) or cancel.
+The existing packaged VKF symbolic WASM kernel evaluates the arithmetic; the game
+supplies compatibility policy, including native inverse checks for roots/division.
 
-Native LaTeX glyphs/rules use a 15-tile atlas copied without resampling from the
-existing font atlas. A single WebGL2 canvas presents objects and glyph instances.
-Cached glyph layouts and object-ID maps are reused; a spatial grid finds nearby
-contact pairs. Every contact resolves before rendering, including during a held
-drag and passive drift. Compatible pairs are replaced with one body and one label;
-incompatible pairs separate and receive a bounce impulse. There is no overlapping
-two-body merge animation. Pointer paths are substepped to avoid tunneling.
-Pointer dragging, touch pairing and keyboard pairing share the same
-merge function. Reduced motion stops drift. The operation tray replenishes the
-world; reset cancels unfinished transitions. SOURCE.json pins implementation,
-native symbol kernel and font dependencies.
+The page is a fixed visual-viewport shell. Touch/pointer panning is suppressed on
+the surface. Controls and messages have stable layout; rules open in a dialog.
+Pointer contact is swept and resolved before rendering. An indexed broad phase
+separates unrelated objects; a merging pair becomes one reserved collision cohort.
 
-Run `node tests/math-life-rules.mjs`, `node tests/math-life-contacts.mjs` and
-`node tests/math-life-browser.cjs`. The
-first checks 250 native arithmetic compatibility cases plus composition and
-cancellation. Contact tests cover coincident and wall separation, swept dragging
-and 1,800 crowded frames. Browser tests check rejection and merging before
-pointer release, independent rendered-circle separation, repeated spawning,
-touch pairing, keyboard cancellation, tray spawning, the complete quest and
-native LaTeX pixels on desktop SwiftShader and phone software WebKit.
+The body and native LaTeX strokes deform through a shared compiler-emitted native
+Morphing `field.union` / `segment.value` kernel. The operation's stroke geometry
+shrinks into the expression while the expression changes into the result. This
+is signed-field interpolation, not a label crossfade or instant replacement.
+Glyph packets are prepared once per merge and stay resident on the GPU. Sources,
+compiler/library pins and source hashes are in MORPHING.json. This does not claim
+semantic glyph matching, exact volume conservation or physical GPU performance.
+
+A 15-tile native atlas is copied without resampling. Glyph layouts, object IDs and
+contact-grid buckets are cached/indexed. Tap/keyboard pairing routes the operation
+around other compatible objects when space permits; otherwise move them closer.
+Reduced motion stops drift and shortens the geometric merge. Reset disposes active
+morph packets. The pinned public compiler and selected text-wave demo are unchanged.
+
+Run `node tests/math-life-rules.mjs`, `node tests/math-life-contacts.mjs`,
+`node tests/math-life-browser.cjs` and `node tests/math-life-morph-browser.cjs`.
+Checks include 250 numeric compatibility cases, expression-pair rejection, simple
+operation composition, 1,800 crowded contact frames, page position while dragging,
+held-pointer merge/bounce, touch and keyboard input, native LaTeX pixels and the
+complete quest. Morph checks sample five actual GPU geometry states and compare
+64 shared kernel values against compiled native VKF, on desktop SwiftShader and
+software WebKit. `scripts/math-life/build-merge.py` reproduces the native kernel
+and oracle; `compile-merge.py` mechanically translates its scalar WGSL to GLSL.

@@ -1,3 +1,4 @@
+import {mass} from './motion.mjs?v=45ae2d4b84c7';
 // Indexed broad phase. All contacts resolve before a frame is presented.
 export class Contacts {
  constructor(objects,{combine,merge,bounce}){this.objects=objects;this.combine=combine;this.merge=merge;this.bounce=bounce;this.cells=new Map();this.cellSize=96;this.width=1;this.height=1;this.gap=4;}
@@ -7,7 +8,7 @@ export class Contacts {
  *near(o){const x=Math.floor(o.x/96),y=Math.floor(o.y/96),range=Math.ceil((o.r+this.maxRadius+this.gap)/96);for(let yy=y-range;yy<=y+range;yy++)for(let xx=x-range;xx<=x+range;xx++)for(const other of this.cells.get(`${xx},${yy}`)??[])if(other.id!==o.id)yield other;}
  separate(a,b){let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);if(d<1e-8){const angle=((a.id*137+b.id*71)%360)*Math.PI/180;dx=Math.cos(angle);dy=Math.sin(angle);d=1;}const nx=dx/d,ny=dy/d,penetration=a.r+b.r+this.gap-Math.hypot(b.x-a.x,b.y-a.y);
  if(penetration>0){const shift=penetration*.5+.002;a.x-=nx*shift;a.y-=ny*shift;b.x+=nx*shift;b.y+=ny*shift;this.constrain(a);this.constrain(b);}
- const relative=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(relative<0){const impulse=-(1+.82)*relative/2;a.vx-=impulse*nx;a.vy-=impulse*ny;b.vx+=impulse*nx;b.vy+=impulse*ny;}
+ const relative=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(relative<0){const ma=mass(a),mb=mass(b),impulse=-2*relative/(1/ma+1/mb);a.vx-=impulse/ma*nx;a.vy-=impulse/ma*ny;b.vx+=impulse/mb*nx;b.vy+=impulse/mb*ny;}
  }
  resolve(now){for(const o of this.objects.values())this.constrain(o);let passes=0;
  for(;passes<96;passes++){this.index();let changed=false,merged=false;

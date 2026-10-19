@@ -44,10 +44,11 @@ deployment manifest before GitHub Pages publication.
 
 `public/previews/math-life/` is the Cuvami drag-to-merge game preview. Start with
 zero and reach twelve. An operation applies to an expression if the result is a
-whole number. Two expressions always bounce. Operations compose only into a
+Gaussian integer (a + bi, with integer a and b). The chosen root of −1 is +i.
+Two expressions always bounce. Operations compose only into a
 supported simple operation (including exact multiply/divide reduction) or cancel.
 The existing packaged VKF symbolic WASM kernel evaluates the arithmetic; the game
-supplies compatibility policy, including native inverse checks for roots/division.
+supplies compatibility policy, with exact BigInt witnesses guarding floating-point arithmetic and Gaussian roots.
 
 The page is a fixed visual-viewport shell. Touch/pointer panning is suppressed on
 the surface. Controls and messages have stable layout; rules open in a dialog.
@@ -62,14 +63,28 @@ Glyph packets are prepared once per merge and stay resident on the GPU. Sources,
 compiler/library pins and source hashes are in MORPHING.json. This does not claim
 semantic glyph matching, exact volume conservation or physical GPU performance.
 
-A 15-tile native atlas is copied without resampling. Glyph layouts, object IDs and
+The game calls the shared `createLatexRenderer`: WebGPU uses the original unchanged
+`draw.wgsl`, with a transparent label surface over the morphing bodies. Browsers
+without a usable WebGPU device use the shared renderer's WebGL2 material adapter.
+Both consume the native 16-float (64-byte) glyph/rule ABI; TextWave is no longer
+part of the game. Atlas resources can be shared per device and compact atlas.
+The document renderer's full-atlas default remains supported.
+
+Balls retain release velocity and free motion has no drag. Unequal-size contacts
+use elastic area-weighted impulses; merges retain area-weighted incoming velocity.
+Expression radii grow with magnitude, capped to keep the world usable. Native
+body morphology changes smoothly to that radius. The palette includes +i, ×i
+and a −1 expression so the imaginary direction can be explored directly.
+
+An 18-tile native atlas is copied without resampling. Glyph layouts, object IDs and
 contact-grid buckets are cached/indexed. Tap/keyboard pairing routes the operation
 around other compatible objects when space permits; otherwise move them closer.
 Reduced motion stops drift and shortens the geometric merge. Reset disposes active
 morph packets. The pinned public compiler and selected text-wave demo are unchanged.
 
 Run `node tests/math-life-rules.mjs`, `node tests/math-life-contacts.mjs`,
-`node tests/math-life-browser.cjs` and `node tests/math-life-morph-browser.cjs`.
+`node tests/math-life-motion.mjs`, `node tests/math-life-browser.cjs`,
+`node tests/math-life-latex-browser.cjs` and `node tests/math-life-morph-browser.cjs`.
 Checks include 250 numeric compatibility cases, expression-pair rejection, simple
 operation composition, 1,800 crowded contact frames, page position while dragging,
 held-pointer merge/bounce, touch and keyboard input, native LaTeX pixels and the
@@ -77,3 +92,10 @@ complete quest. Morph checks sample five actual GPU geometry states and compare
 64 shared kernel values against compiled native VKF, on desktop SwiftShader and
 software WebKit. `scripts/math-life/build-merge.py` reproduces the native kernel
 and oracle; `compile-merge.py` mechanically translates its scalar WGSL to GLSL.
+
+The LaTeX browser check uses explicit SwiftShader for ANGLE and Vulkan (physical
+GPU stop preserved). It verifies the original WebGPU shader, pixel parity with
+its WebGL2 adapter, the −1 → i → −1 interaction and changing sizes. Rules tests
+include 961 independent Gaussian root cases. Browser release checks cover
+persistent velocity on desktop and phone. Existing numerical merge-kernel
+qualification is reused; that native source and generated shader are unchanged.

@@ -1,16 +1,18 @@
+import {createWebGLLatexRenderer} from './latex-webgl-renderer.mjs?v=153f3d554f83';
 // Shared presentation of the LaTeX engine's existing 16-float glyph/rule ABI.
 // Layout, matching and motion remain upstream; instance buffers are borrowed.
 const resourceCache=new WeakMap();
 const assetURL=name=>new URL(name,import.meta.url);
 async function response(name){const r=await fetch(assetURL(name));if(!r.ok)throw Error(`LaTeX asset unavailable: ${name}`);return r;}
 
-export async function loadLatexResources(device){
+export async function loadLatexResources(device,{assets}={}){
  if(!device)throw Error('A shared WebGPU device is required');
- let entry=resourceCache.get(device);
+ let variants=resourceCache.get(device);if(!variants){variants=new Map();resourceCache.set(device,variants);}
+ const key=assets??null;let entry=variants.get(key);
  if(!entry){
-  entry={references:0,promise:null};resourceCache.set(device,entry);
+  entry={references:0,promise:null};variants.set(key,entry);
   entry.promise=(async()=>{
-   const [data,packed,shader]=await Promise.all([response('typing-data.json').then(r=>r.json()),response('atlas.rgba.gz').then(r=>r.arrayBuffer()),response('draw.wgsl').then(r=>r.text())]);
+   const [data,packed,shader]=await Promise.all([assets?Promise.resolve(assets.data):response('typing-data.json').then(r=>r.json()),assets?Promise.resolve(assets.pixels):response('atlas.rgba.gz').then(r=>r.arrayBuffer()),response('draw.wgsl').then(r=>r.text())]);
    const header=new Uint8Array(packed),pixels=header[0]===31&&header[1]===139?await new Response(new Blob([packed]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer():packed;
    const [width,height]=data.atlasSize||[];
    if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||pixels.byteLength!==width*height*4)throw Error('LaTeX atlas dimensions do not match its pixels');
@@ -24,14 +26,15 @@ export async function loadLatexResources(device){
   })();
  }
  let shared;
- try{shared=await entry.promise;}catch(error){if(resourceCache.get(device)===entry)resourceCache.delete(device);throw error;}
+ try{shared=await entry.promise;}catch(error){if(variants.get(key)===entry)variants.delete(key);throw error;}
  entry.references++;
  let released=false;
- const release=()=>{if(released)return;released=true;if(--entry.references===0){shared.atlas.destroy();if(resourceCache.get(device)===entry)resourceCache.delete(device);}};
+ const release=()=>{if(released)return;released=true;if(--entry.references===0){shared.atlas.destroy();if(variants.get(key)===entry)variants.delete(key);}};
  return Object.freeze({...shared,get released(){return released;},release,destroy:release});
 }
 
-export async function createLatexRenderer(canvas,{device,resources}={}){
+export async function createLatexRenderer(canvas,{device,resources,gl,assets,texture,composite=false,transparent=false}={}){
+ if(gl)return createWebGLLatexRenderer(canvas,{gl,assets,texture,composite});
  if(!device||resources?.device!==device||resources.released)throw Error('Live LaTeX resources on the renderer device are required');
  const context=canvas.getContext('webgpu');if(!context)throw Error('WebGPU canvas unavailable');
  const format=navigator.gpu.getPreferredCanvasFormat();
@@ -46,17 +49,17 @@ export async function createLatexRenderer(canvas,{device,resources}={}){
  function resize(w,h=w){
   alive();if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1)throw Error('Invalid LaTeX viewport');
   width=w;height=h;canvas.width=w;canvas.height=h;
-  context.configure({device,format,alphaMode:'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
+  context.configure({device,format,alphaMode:transparent?'premultiplied':'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
   device.queue.writeBuffer(uniform,0,new Float32Array([w,h,0,0]));
  }
  function draw(){
   alive();if(!width||!height)throw Error('Resize the LaTeX renderer before drawing');
-  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:context.getCurrentTexture().createView(),clearValue:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'store'}]});
+  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:context.getCurrentTexture().createView(),clearValue:transparent?{r:0,g:0,b:0,a:0}:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'store'}]});
   if(buffer&&count){pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.setVertexBuffer(0,buffer);pass.draw(6,count);}
   pass.end();device.queue.submit([encoder.finish()]);
  }
  return {
-  resize,draw,
+  backend:'webgpu',shaderIdentity:'draw.wgsl',instanceStride:64,resize,draw,
   clear(){alive();buffer=null;count=0;},
   setResidentInstances(next,n){alive();if(!next||!Number.isInteger(n)||n<0||next.size<n*64)throw Error('Invalid resident LaTeX instances');buffer=next;count=n;draw();},
   async captureFrame({timestamp,duration}){
@@ -72,6 +75,6 @@ export async function createLatexRenderer(canvas,{device,resources}={}){
     readback.unmap();return frame;
    }finally{readback.destroy();}
   },
-  destroy(){if(dead)return;dead=true;buffer=null;count=0;uniform.destroy();}
+  destroy(){if(dead)return;dead=true;buffer=null;count=0;uniform.destroy();context.unconfigure();}
  };
 }

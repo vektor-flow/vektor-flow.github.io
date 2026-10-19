@@ -53,7 +53,7 @@ supplies compatibility policy, with exact BigInt witnesses guarding floating-poi
 The page is a fixed visual-viewport shell. Touch/pointer panning is suppressed on
 the surface. Controls and messages have stable layout; rules open in a dialog.
 Pointer contact is swept and resolved before rendering. An indexed broad phase
-separates unrelated objects; a merging pair becomes one reserved collision cohort.
+selects mathematical contacts; VKF separates unrelated objects; a merging pair becomes one reserved collision cohort.
 
 The body and native LaTeX strokes deform through a shared compiler-emitted native
 Morphing `field.union` / `segment.value` kernel. The operation's stroke geometry
@@ -108,3 +108,18 @@ throws still merge or bounce without tunneling. `node tests/math-life-toss-brows
 checks slow/fast flicks and hold-to-stop with desktop mouse, native browser touch
 input and software WebKit. `math-life-motion.mjs` checks timing/event-rate parity,
 speed bounds and fast compatible/incompatible contacts independently.
+
+The physics integration now calls the packaged VKF browser reference
+`stepRigidPolygonWorld2D` for both time advancement and collision response.
+`physics.mjs` maps stable IDs, analytic circles, area masses, authored walls and
+kinematic grabs; it contains no impulse solver. `contacts.mjs` retains the indexed
+compatibility/merge policy. PHYSICS.json pins exact runtime bytes, independently
+matched to the canonical bootstrap and public-site copies. Tests include direct
+runtime delegation, glancing impacts, walls, kinetic energy/momentum, kinematic
+grabs and crowded no-overlap frames. The browser's actual engine identities and
+native16 GPU label ABI are checked; object buttons contain no visible DOM math.
+
+This uses the existing JavaScript browser physics reference. It does not complete
+the native VKF physics/compiler port. LaTeX glyph drawing uses the GPU; its
+existing layout/typesetting remains JavaScript. The native symbolic WASM and
+compiled Morphing field kernels remain separate, unchanged components.

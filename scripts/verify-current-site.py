@@ -23,6 +23,10 @@ assert not list((root/'previews/morphing-current').glob('*.mp4'))
 assert not list((root/'previews/morphing-current').glob('*.webm'))
 assert not (root/'previews/gpu-math-typing/examples/downloads/Morphing-source.zip').exists()
 
+game=json.loads((root/'previews/math-life/SOURCE.json').read_text())
+for name,digest in {**game['sourceFiles'],**game['dependencies']}.items():
+ assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+
 release=json.loads((root/'current-compiler-release.json').read_text());assert release['release_version']=='0.7.2'
 expected={'compiler.mjs':'42764129b194a05c08300cf0c464cab0e1e3bb449b8d297021fe164b828dc8b4','compiler.wasm':'2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5','compiler.data':'4eb831acbca4482cfce252d5a846c6de83bd322fd1c5b9b2a7206fbbff0ca995'}
 for name,digest in expected.items():assert hashlib.sha256((root/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name

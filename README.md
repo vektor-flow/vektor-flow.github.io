@@ -39,3 +39,26 @@ Run `python3 scripts/verify-current-site.py`,
 `python3 scripts/package-morphing.py`, then `python3 scripts/update-manifest.py`.
 CI checks exact compiler/source bytes, retired paths, local links and the complete
 deployment manifest before GitHub Pages publication.
+
+## Living mathematics demo
+
+`public/previews/math-life/` is the Cuvami drag-to-merge game preview. Start with
+zero and reach twelve. Values add; operations apply to values; like operations
+compose and inverse pairs cancel. Invalid fractional/non-real results preserve
+both objects and repel them. This first round uses exact whole-number arithmetic.
+The existing packaged VKF symbolic WASM kernel parses and evaluates expressions;
+the game supplies compatibility policy. It does not use JavaScript eval.
+
+Native LaTeX glyphs/rules use a 15-tile atlas copied without resampling from the
+existing font atlas. A single WebGL2 canvas presents objects and glyph instances.
+Cached glyph layouts and object-ID maps are reused; a spatial grid finds nearby
+drop targets. Pointer dragging, touch pairing and keyboard pairing share the same
+merge function. Reduced motion stops drift. The operation tray replenishes the
+world; reset cancels unfinished transitions. SOURCE.json pins implementation,
+native symbol kernel and font dependencies.
+
+Run `node tests/math-life-rules.mjs` and `node tests/math-life-browser.cjs`. The
+first checks 250 native arithmetic compatibility cases plus composition and
+cancellation. The second checks actual drag rejection, successful drag merges,
+touch pairing, keyboard cancellation, tray spawning, the complete quest and
+native LaTeX pixels on desktop SwiftShader and phone software WebKit.

@@ -1,5 +1,5 @@
 import {loadPackagedSymbolicKernel} from '../../vf-ui/vf-symbolic-kernel-runtime.mjs';
-import {createRules} from './rules.mjs?v=d06af5d2143c';
+import {createRules} from './rules.mjs?v=560ae2d667d2';
 import {WorldRenderer,loadAssets} from './renderer.mjs?v=f1a9b3c604f1';
 const world=document.querySelector('#world'),objectsElement=document.querySelector('#objects'),message=document.querySelector('#message'),loading=document.querySelector('#loading'),celebration=document.querySelector('#celebration');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;

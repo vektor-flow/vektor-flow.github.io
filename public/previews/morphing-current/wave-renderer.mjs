@@ -10,8 +10,7 @@ out vec2 uv;out vec2 local;out float readingX;flat out vec4 material;
 ${ramp}
 void main(){
  vec2 corners[6]=vec2[6](vec2(0,0),vec2(1,0),vec2(0,1),vec2(0,1),vec2(1,0),vec2(1,1));vec2 c=corners[gl_VertexID];
- float gap=1.5707963267948966/k;float a=alphaWave(wave.w+wave.y*gap);float size=a;
- if(overshoot>.5){float z=a-1.0;size=1.0+2.70158*z*z*z+1.70158*z*z;}
+ float gap=1.5707963267948966/k;float a=alphaWave(wave.w+wave.y*gap);float z=a-1.0;float size=1.0+(overshoot+1.0)*z*z*z+overshoot*z*z;
  if(grow<.5)size=1.0;
  vec2 center=rect.xy+rect.zw*.5;vec2 p=center+(c-.5)*rect.zw*max(0.0,size);
  readingX=wave.x+wave.y*gap+(p.x-rect.x)*wave.z;
@@ -29,8 +28,10 @@ void main(){
  float coverage=clamp((m-.5)*range+.5,0.0,1.0);
  if(material.x>.5){vec2 halfSize=material.yz*.5;vec2 q=local-(halfSize+1.0);vec2 pixel=max(fwidth(local),vec2(1e-8));vec2 lo=max(q-pixel*.5,-halfSize);vec2 hi=min(q+pixel*.5,halfSize);vec2 area=clamp((hi-lo)/pixel,vec2(0),vec2(1));coverage=area.x*area.y;}
  float a=alphaWave(readingX);float alpha=coverage*a;
- vec3 tint=vec3(.94)+.035*cos(6.28318530718*(vec3(0.0,.333333,.666667)+a));
- vec3 color=mix(tint,vec3(1),a);
+ // Red -> yellow -> green -> cyan -> blue -> violet, then white.
+ float hue=.75*clamp(a/.8,0.0,1.0);
+ vec3 spectral=clamp(abs(mod(hue*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0,0.0,1.0);
+ vec3 color=mix(spectral,vec3(1),smoothstep(.8,1.0,a));
  outputColor=vec4(color*alpha,alpha);
 }`;
 async function unpack(url,json=false){const r=await fetch(new URL(url,import.meta.url));if(!r.ok)throw Error('LaTeX resource unavailable');const raw=await r.arrayBuffer();const bytes=new Uint8Array(raw);const content=bytes[0]===31&&bytes[1]===139?await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer():raw;return json?JSON.parse(new TextDecoder().decode(content)):new Uint8Array(content);}
@@ -64,7 +65,9 @@ export class TextWave {
   const values=[];box.items.forEach(item=>{const line=lineInfo.get(item.flowLine??0);const bounds=lines.get(item.flowLine??0);const moved={...item,color:[1,1,1,1],x:origin[0]+(item.x-(bounds[0]+bounds[1])/2)*scale,y:origin[1]+item.y*scale,sx:(item.sx??1)*scale,sy:(item.sy??1)*scale};if(item.kind==='rule'){moved.width=item.width*scale;moved.height=item.height*scale;}const packed=packLatexItem(moved,this.assets.data,{pixelAlign:false,ink:[1,1,1,1]});const start=line.offset+(packed[0]-line.left)*unitsPerPixel;values.push(...packed,start,line.index,unitsPerPixel,start+packed[2]*.5*unitsPerPixel);});
   this.count=box.items.length;const gl=this.gl;gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);this.source=source;this.layoutBox=box;
  }
- timing(k,v){const width=Math.PI/(2*k);const travel=this.pathLength+Math.max(1,this.lineCount)*width;return{width,travel,total:travel/v};}
- draw(progress,k,v,grow=true){const gl=this.gl;const timing=this.timing(k,v);gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(.025,.035,.055,1);gl.clear(gl.COLOR_BUFFER_BIT);gl.useProgram(this.program);gl.bindVertexArray(this.vao);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,this.texture);gl.uniform1i(this.locations.atlas,0);gl.uniform2f(this.locations.viewport,this.canvas.width,this.canvas.height);gl.uniform2f(this.locations.atlasSize,...this.assets.data.atlasSize);gl.uniform1f(this.locations.front,progress*timing.travel);gl.uniform1f(this.locations.k,k);gl.uniform1f(this.locations.grow,grow?1:0);gl.uniform1f(this.locations.overshoot,this.mode==='overshoot'?1:0);gl.drawArraysInstanced(gl.TRIANGLES,0,6,this.count);return timing;}
+ timing(k,v){const width=Math.PI/(2*k);const travel=this.pathLength+Math.max(1,this.lineCount)*width;return{width,travel,total:v>0?travel/v:Infinity};}
+ draw(progress,k,v,grow=true,amount=0){const gl=this.gl;const timing=this.timing(k,v);
+  if(this.lastAmount!==amount){let lo=0,hi=16;for(let i=0;i<32;i++){const s=(lo+hi)/2;if(4*s*s*s/(27*(s+1)*(s+1))<amount)lo=s;else hi=s;}this.back=amount>0?(lo+hi)/2:0;this.lastAmount=amount;}
+  gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(.025,.035,.055,1);gl.clear(gl.COLOR_BUFFER_BIT);gl.useProgram(this.program);gl.bindVertexArray(this.vao);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,this.texture);gl.uniform1i(this.locations.atlas,0);gl.uniform2f(this.locations.viewport,this.canvas.width,this.canvas.height);gl.uniform2f(this.locations.atlasSize,...this.assets.data.atlasSize);gl.uniform1f(this.locations.front,progress*timing.travel);gl.uniform1f(this.locations.k,k);gl.uniform1f(this.locations.grow,grow?1:0);gl.uniform1f(this.locations.overshoot,this.back);gl.drawArraysInstanced(gl.TRIANGLES,0,6,this.count);return timing;}
  destroy(){if(this.dead)return;this.dead=true;const gl=this.gl;gl.deleteTexture(this.texture);gl.deleteBuffer(this.buffer);gl.deleteVertexArray(this.vao);gl.deleteProgram(this.program);}
 }

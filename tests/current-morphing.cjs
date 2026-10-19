@@ -22,19 +22,23 @@ const output=process.env.VKF_TEST_OUTPUT||'/tmp/text-wave-review';fs.mkdirSync(o
    const baseline=await page.evaluate(()=>window.bufferUploads),samples=[];
    for(const[i,mode]of[[0,'grow'],[1,'overshoot']]){
     const section=page.locator('.demo').nth(i),time=section.locator('[data-time]');await section.scrollIntoViewIfNeeded();
-    assert(Number(await section.getAttribute('data-duration'))<2);
-    const pixels=()=>section.locator('canvas').evaluate(canvas=>{const gl=canvas.getContext('webgl2');const a=new Uint8Array(canvas.width*canvas.height*4);gl.readPixels(0,0,canvas.width,canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,a);let ink=0,sum=0,hash=2166136261,colored=0; for(let i=0;i<a.length;i+=4){if(a[i]>20)ink++;if(a[i]===255&&(a[i]!==a[i+1]||a[i]!==a[i+2]))colored++;sum+=a[i];hash=Math.imul(hash^a[i],16777619)}return{ink,sum,colored,hash:hash>>>0,error:gl.getError()}});
+    assert(Number(await section.getAttribute('data-duration'))>5);
+    const pixels=()=>section.locator('canvas').evaluate(canvas=>{const gl=canvas.getContext('webgl2');const a=new Uint8Array(canvas.width*canvas.height*4);gl.readPixels(0,0,canvas.width,canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,a);let ink=0,sum=0,hash=2166136261,colored=0,chroma=0; for(let i=0;i<a.length;i+=4){if(a[i]>20)ink++;if(Math.max(a[i],a[i+1],a[i+2])>30&&Math.max(a[i],a[i+1],a[i+2])-Math.min(a[i],a[i+1],a[i+2])>25)chroma++;if(a[i]===255&&(a[i]!==a[i+1]||a[i]!==a[i+2]))colored++;sum+=a[i];hash=Math.imul(hash^a[i],16777619)}return{ink,sum,colored,chroma,hash:hash>>>0,error:gl.getError()}});
     await time.fill('0');await time.dispatchEvent('input');const empty=await pixels();assert.equal(empty.ink,0);
-    await time.fill('0.35');await time.dispatchEvent('input');const partial=await pixels();assert(partial.ink>0);assert.equal(partial.error,0);
+    await time.fill('0.35');await time.dispatchEvent('input');const partial=await pixels();assert(partial.ink>0);assert(partial.chroma>0,'Reveal must contain spectral color');assert.equal(partial.error,0);
     await page.screenshot({path:`${output}/${name}-${mode}-wave.png`,fullPage:true});
     await time.fill('1');await time.dispatchEvent('input');const full=await pixels();assert(full.ink>partial.ink);assert.notEqual(full.hash,partial.hash);
     const originalDuration=Number(await section.getAttribute('data-duration'));
     assert.equal(full.colored,0,'Settled ink must be white');
-    await section.locator('[data-velocity]').fill('6');await section.locator('[data-velocity]').dispatchEvent('input');assert(Number(await section.getAttribute('data-duration'))<originalDuration);
+    await section.locator('[data-velocity]').fill('1');await section.locator('[data-velocity]').dispatchEvent('input');assert(Number(await section.getAttribute('data-duration'))<originalDuration);
     await time.fill('0.35');await time.dispatchEvent('input');const before=await pixels();
-    await section.locator('[data-k]').fill('4');await section.locator('[data-k]').dispatchEvent('input');const wider=await pixels();assert.notEqual(wider.hash,before.hash);assert(Math.abs(Number(await section.getAttribute('data-ramp-width'))-Math.PI/8)<1e-9);
+    await section.locator('[data-k]').fill('1');await section.locator('[data-k]').dispatchEvent('input');await time.fill('0.15');await time.dispatchEvent('input');const wider=await pixels();assert.notEqual(wider.hash,before.hash);assert(Math.abs(Number(await section.getAttribute('data-ramp-width'))-Math.PI/2)<1e-9);
     await section.locator('[data-grow]').uncheck();const noGrowth=await pixels();assert.notEqual(noGrowth.hash,wider.hash);
-    await section.locator('[data-grow]').check();await section.locator('[data-k]').fill('12');await section.locator('[data-k]').dispatchEvent('input');
+    await section.locator('[data-grow]').check();await section.locator('[data-k]').fill('10');await section.locator('[data-k]').dispatchEvent('input');
+    await section.locator('[data-overshoot]').fill('50');await section.locator('[data-overshoot]').dispatchEvent('input');const bigger=await pixels();assert.notEqual(bigger.hash,noGrowth.hash);
+    await section.locator('[data-velocity]').fill('0');await section.locator('[data-velocity]').dispatchEvent('input');
+    await section.locator('[data-play]').click();const held=await section.getAttribute('data-progress');await page.waitForTimeout(200);assert.equal(await section.getAttribute('data-progress'),held,'v=0 holds the front');
+    await section.locator('[data-velocity]').fill('1');await section.locator('[data-velocity]').dispatchEvent('input');
     await section.locator('[data-loop]').uncheck();await section.locator('[data-replay]').click();await page.waitForFunction(i=>Number(document.querySelectorAll('.demo')[i].dataset.progress)>.02&&Number(document.querySelectorAll('.demo')[i].dataset.progress)<1,i);await page.waitForFunction(i=>Number(document.querySelectorAll('.demo')[i].dataset.progress)===1,i);
     samples.push({mode,empty,partial,full,defaultDuration:originalDuration});
    }

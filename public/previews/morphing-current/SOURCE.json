@@ -5,10 +5,10 @@
   "videoPlayback": false,
   "latexEngine": "existing LaTeX typesetter, instance packer and native atlas",
   "sourceFiles": {
-    "previews/morphing-current/index.html": "be17b2142d48a71dde897e48f90b52c3b5caea9667e21e8ada670cbf8d870315",
+    "previews/morphing-current/index.html": "9d2e6251afe7c66b6787830fb057b9247965df0b22aea61a72b9aac9cb9a7379",
     "previews/morphing-current/wave.css": "ee0eb802d4d0b85f3d2d355ea86cbd0c1a2a714fb048f536de06d472c8f7928a",
-    "previews/morphing-current/wave.mjs": "4140ab83dcab7316818d98f63263460bc056971f6c07ea217c7a6ec1d4cc4bdd",
-    "previews/morphing-current/wave-renderer.mjs": "a60846b0b8db30c93ba54d723a526745911c2fe8ab15b9559cfb4eea8ec89be6",
+    "previews/morphing-current/wave.mjs": "28bb45a1e9b9a8e11db007736413c0c110eff18491b5d172c18d4cb43fd6af45",
+    "previews/morphing-current/wave-renderer.mjs": "83e04fc6df3b789a517bc8d1366f9cbdbcf2e1c3d8f42b8529e37d66f79b44ea",
     "previews/morphing-current/wave-data.json.gz": "f08d73dfa283c7f93d1209b8403d6db1cdcf254361aad8776f8a278d08cebdf6",
     "previews/morphing-current/wave-atlas.rgba.gz": "52f14179a021aff8a00ae0e51c74005cc0f884bc86a30b906ea42db0dc615463",
     "previews/morphing-current/ASSETS.json": "a5d197e815a007110048ffee89e5661ca905014543557c0b033a0b7e21bf0371",
@@ -30,15 +30,27 @@
     "alpha": "sin(clamp(k*(front-x),0,pi/2))^2",
     "rowSeparation": "one ramp width; preceding row settles before next row begins",
     "sharedShader": true,
-    "defaultK": 12,
-    "defaultVelocity": 3,
+    "defaultK": 4,
+    "defaultVelocity": 0.25,
     "velocityUnits": "longest line widths per second",
-    "color": "faint near-white gradient in alpha space, continuously settling to pure white",
+    "color": "red through violet at alpha 0\u20130.8, smooth fade to white at 0.8\u20131",
     "growth": [
-      "alpha-scaled size",
-      "back ease with 10% overshoot, settling to final size"
+      "back-ease growth with adjustable peak overshoot 0\u201350%"
     ],
-    "contour": false
+    "contour": false,
+    "kRange": [
+      1,
+      10
+    ],
+    "velocityRange": [
+      0,
+      1
+    ],
+    "zeroVelocity": "hold current front",
+    "defaultOvershoot": [
+      0,
+      0.1
+    ]
   },
   "fontNotices": [
     "../gpu-math-typing/ALPHABET-FONT-NOTICES.txt",

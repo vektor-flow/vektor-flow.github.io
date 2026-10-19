@@ -11,9 +11,10 @@ physical GPU stop.
 The existing text-flow/LaTeX typesetter, instance packer and native MSDF glyph
 atlas provide the text and equations. One shared WebGL2 shader uses a clamped
 quarter-period sin² alpha ramp along reading order. Lines finish sequentially;
-there is no repeating per-glyph wave or contour stage. A faint near-white gradient
-settles to white. Compare smooth growth with a 10% size overshoot that settles to
-the same typeset geometry. Time, k, v and the growth toggle are live uniforms;
+there is no repeating per-glyph wave or contour stage. Color travels from red through violet across alpha 0–0.8, then fades to white
+across 0.8–1. Compare growth with adjustable 0–50% size overshoot; both settle to
+the same typeset geometry. k ranges from 1–10 and v from 0–1 (zero holds the front).
+The slower defaults are k=4 and v=0.25. Time, k, v, overshoot and growth are live uniforms;
 geometry uploads occur on layout changes, not animation frames.
 
 The compact atlas copies existing glyph tiles without resampling. Its build

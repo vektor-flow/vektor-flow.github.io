@@ -9,13 +9,14 @@
   "sourceFiles": {
     "previews/math-life/ASSETS.json": "c59b9ecdb6289c3f71d52b7aa32ea4d54ea77f14e5301d21a68ce89a7f54a20c",
     "previews/math-life/game.css": "d330ff09defce208f1e224bb6b67e039d71c7a8bee2acdee9ba71ac264e59c53",
-    "previews/math-life/game.mjs": "60192cce2bc6698efb3babaf50276aac1ab981dc494a7a2a0d80fecb014dd383",
-    "previews/math-life/index.html": "69569797112e3dc160f25cfe90432c9b5d8c234b23f7e7aa8d74f307bc23bdc0",
+    "previews/math-life/game.mjs": "ac21a331e843b80a389348545087f2d2a70bbb27ff2c4a4e0bc18cd6d0f5857f",
+    "previews/math-life/index.html": "0e5a79f9005050806b95e30f9291c1887e3ef0d32c99c89ff8370e49aafc2746",
     "previews/math-life/palette-keys.json": "30dc50355d65e3d9781dfb1d96e6e6d29af9393a904f830cfb65c482155b4cce",
     "previews/math-life/renderer.mjs": "f1a9b3c604f1ba01d1db7cdb367eda0189a774d6548e1a7eefa53b39d9fbc381",
     "previews/math-life/rules.mjs": "560ae2d667d2469e2f395e3e240df19497fdc9e8fc1beb43707e283004bbcf7c",
     "previews/math-life/wave-atlas.rgba.gz": "e8a612f0909360dbfa2df2c6a0a88c999924ae8e951794fefb64a81d113982e5",
-    "previews/math-life/wave-data.json.gz": "3f32fae63617478e0e1e637c2799902e9590b3af141dae95b40880de57ae2879"
+    "previews/math-life/wave-data.json.gz": "3f32fae63617478e0e1e637c2799902e9590b3af141dae95b40880de57ae2879",
+    "previews/math-life/contacts.mjs": "c4651764fc547dfdcf6a734bf8abfb05db1f13716862e2c544b5596ba6c0cc5b"
   },
   "dependencies": {
     "vf-ui/artifacts/vkf-symbolic-kernel.wasm": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd",
@@ -26,5 +27,6 @@
     "previews/gpu-math-typing/text-flow.mjs": "c8fb1c7d2dde0a9ad3306e2de4eed8ff4e9210ce6b1e358ea0bf6cc909b781c7",
     "previews/gpu-math-typing/latex-instances.mjs": "99aa4686cd1093be82416b65428809407a510c9227e064625692a9b9a0ab9495"
   },
-  "exactness": "roots and divisions are checked by multiplying the result back through the native kernel"
+  "exactness": "roots and divisions are checked by multiplying the result back through the native kernel",
+  "contacts": "Continuous contact resolution before rendering: compatible pairs become one body and label; incompatible pairs separate and exchange a bounce impulse. Pointer moves are substepped to prevent tunneling."
 }

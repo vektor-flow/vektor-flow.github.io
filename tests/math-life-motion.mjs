@@ -1,7 +1,17 @@
 import assert from 'node:assert/strict';
-import{expressionRadius,mergedVelocity,advance,mass}from'../public/previews/math-life/motion.mjs';
+import{expressionRadius,mergedVelocity,advance,mass,DragVelocity,motionSteps}from'../public/previews/math-life/motion.mjs';
 import{Contacts}from'../public/previews/math-life/contacts.mjs';
 const n=value=>({kind:'number',value});assert(expressionRadius(n(12),31)>expressionRadius(n(2),31));assert(expressionRadius(n(2),31)>expressionRadius(n(0),31));assert.equal(expressionRadius({...n(0),imag:1},31),expressionRadius(n(-1),31));
 const o={x:100,y:100,r:20,vx:80,vy:-30};for(let i=0;i<100;i++)advance(o,.01,1000,1000);assert.equal(o.vx,80);assert.equal(o.vy,-30);assert(Math.abs(o.x-180)<1e-10);o.x=979;advance(o,.1,1000,1000);assert.equal(o.vx,-80);assert.equal(o.vy,-30);
 const a={id:1,x:100,y:100,r:20,vx:60,vy:4},b={id:2,x:152,y:100,r:30,vx:-20,vy:4};const c=new Contacts(new Map([[1,a],[2,b]]),{});c.resize(1000,1000);const momentum=mass(a)*a.vx+mass(b)*b.vx,energy=mass(a)*a.vx*a.vx+mass(b)*b.vx*b.vx;c.separate(a,b);assert(Math.abs(momentum-mass(a)*a.vx-mass(b)*b.vx)<1e-8);assert(Math.abs(energy-mass(a)*a.vx*a.vx-mass(b)*b.vx*b.vx)<1e-6);assert.equal(a.vy,4);assert.equal(b.vy,4);assert.deepEqual(mergedVelocity(a,b),{vx:momentum/(mass(a)+mass(b)),vy:4});
 console.log('PASS persistent free velocity, elastic unequal-size bounce, merge velocity and magnitude-driven radius');
+
+const fast=new DragVelocity(0,0,0);fast.sample(20,-10,20);fast.sample(40,-20,40);assert.deepEqual(fast.velocity(40),{vx:1000,vy:-500});const slow=new DragVelocity(0,0,0);slow.sample(20,-10,200);slow.sample(40,-20,400);assert.deepEqual(slow.velocity(400),{vx:100,vy:-50});assert.deepEqual(fast.velocity(200),{vx:0,vy:0});
+const sparse=new DragVelocity(0,0,0),dense=new DragVelocity(0,0,0);sparse.sample(40,20,100);for(let i=1;i<=100;i++)dense.sample(.4*i,.2*i,i);for(const component of['vx','vy'])assert(Math.abs(sparse.velocity(100)[component]-dense.velocity(100)[component])<1e-9);assert.deepEqual(sparse.velocity(100),{vx:400,vy:200});
+const extreme=new DragVelocity(0,0,0);extreme.sample(100,100,1);assert(Math.abs(Math.hypot(...Object.values(extreme.velocity(1)))-1600)<1e-9);
+// A 1600 px/s throw must bounce rather than skip a nearby incompatible ball.
+const missile={id:1,x:100,y:100,r:10,vx:1600,vy:0},obstacle={id:2,x:150,y:100,r:10,vx:0,vy:0},world=new Map([[1,missile],[2,obstacle]]),contacts=new Contacts(world,{combine:()=>({ok:false}),bounce:()=>{},merge:()=>{throw Error('Incompatible merge')}});contacts.resize(1000,300);const steps=motionSteps(world,.04);for(let i=0;i<steps;i++){for(const o of world.values())advance(o,.04/steps,1000,300);contacts.resolve(0);assert.equal(contacts.overlaps().length,0);}assert(obstacle.vx>1500);assert(Math.abs(missile.vx)<1e-8);
+console.log('PASS timed flick speed/direction, event-rate independence, hold-to-stop, speed bound and fast non-tunneling bounce');
+
+const thrown={id:1,x:100,y:100,r:10,vx:1600,vy:0},food={id:2,x:150,y:100,r:10,vx:0,vy:0},compatible=new Map([[1,thrown],[2,food]]);let absorbed=false;const mergeContacts=new Contacts(compatible,{combine:()=>({ok:true}),bounce:()=>{},merge:(a,b)=>{absorbed=true;compatible.delete(a.id);compatible.delete(b.id);compatible.set(3,{id:3,x:(a.x+b.x)/2,y:100,r:20,...mergedVelocity(a,b)});}});mergeContacts.resize(1000,300);const subdivisions=motionSteps(compatible,.04);for(let i=0;i<subdivisions;i++){for(const o of compatible.values())advance(o,.04/subdivisions,1000,300);mergeContacts.resolve(0);}assert(absorbed);assert.equal(compatible.size,1);assert.equal(compatible.get(3).vx,800);
+console.log('PASS fast compatible contact merges and retains incoming motion');

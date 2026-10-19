@@ -99,3 +99,12 @@ its WebGL2 adapter, the −1 → i → −1 interaction and changing sizes. Rule
 include 961 independent Gaussian root cases. Browser release checks cover
 persistent velocity on desktop and phone. Existing numerical merge-kernel
 qualification is reused; that native source and generated shader are unchanged.
+
+Throws use an indexed 32-sample pointer ring and the last 100 ms of real pointer
+time, including coalesced touch samples. Release speed follows gesture speed;
+holding before release stops the ball. Explicit throws also run with reduced
+motion enabled. Free motion subdivides travel before contact resolution so fast
+throws still merge or bounce without tunneling. `node tests/math-life-toss-browser.cjs`
+checks slow/fast flicks and hold-to-stop with desktop mouse, native browser touch
+input and software WebKit. `math-life-motion.mjs` checks timing/event-rate parity,
+speed bounds and fast compatible/incompatible contacts independently.

@@ -10,15 +10,15 @@
     "previews/math-life/ASSETS.json": "b715e4bdef01d37bbbaf78488d2062d786ed9f0baaf0b4238a33272b379253f9",
     "previews/math-life/MORPHING-LICENSE.txt": "6cd2adfa839b3c3e1e96635d81e89fff3658b21b073f1bb85e8db45d96ebc01d",
     "previews/math-life/MORPHING.json": "88392b16dfba7d4000678584a5df9a7699c2f6352c1b36ccbe9959e89f0b56f2",
-    "previews/math-life/contacts.mjs": "8a61179cd2d9b4cb301bde9608bd2283f3a4d741b16684857a820bcf6837036a",
+    "previews/math-life/contacts.mjs": "f5b65e786447385e3abaf459b2cc57733041a61c585fb74e802b917b96f2ef5f",
     "previews/math-life/game.css": "20e7336e95be1d9cf837684ab16da2553f05c058220bcb9a660eede6b1636074",
-    "previews/math-life/game.mjs": "3367c0a8882f9b7e133c012d273563edbc2cab785b2ca33db76ed0b225a0c441",
-    "previews/math-life/index.html": "2d30e3f615fd40fc2122be244d6bf4a06306515e517fc5490aa02fb64c2d07cd",
+    "previews/math-life/game.mjs": "acce792b901a89f64d53eeba364c6a833fd1f22861fe11406b03e02d5595e914",
+    "previews/math-life/index.html": "e79a1051e8056d78ea8cc6999f41b67fc638caf27b385d2259f8de498c2395c1",
     "previews/math-life/merge-kernel.glsl": "210e239e90316ecd8559b51c1c755c5e2af2b166a6fdcd9f3ac1ccde3ba4ade9",
     "previews/math-life/merge-kernel.wgsl": "6270aaa825f30b0f093d430767a2c692125313e1acc768392d315dacfd1cfbe1",
     "previews/math-life/merge.vkf": "188a887d1f3e32550e583be34946ffd16c25145b2f4da8a7541f010476913989",
     "previews/math-life/morph-renderer.mjs": "d17558fec42e814915eca33686236ecc0a9ead1941c0d77d9fd891a4334dfe8c",
-    "previews/math-life/motion.mjs": "45ae2d4b84c70895d11552ec4f511995865ab583ebc8ebb2308ccc8d8328a70e",
+    "previews/math-life/motion.mjs": "1bec15fd2d5f10665a91613df146f1f764eea85c41573c334a3c9691a8e6142e",
     "previews/math-life/palette-keys.json": "ad6fd5b4d943e04081273894a8ea1e887da12434728de07c35999969c31354e4",
     "previews/math-life/renderer.mjs": "91f403a0b579363bc86540f1466a91e80ef735fa77d1e762b5cbbcaff2e1a676",
     "previews/math-life/route.mjs": "2dd8db785a345faab4350725e83a7341279447c655aa2b91eec9123aa8cecb2f",
@@ -40,5 +40,5 @@
   "contacts": "One reserved collision cohort during native signed-field body and stroke morphology; unrelated objects remain separated; swept pointer contact handling retained.",
   "viewport": "fixed visual-viewport shell, no document scrolling or surface touch panning",
   "morphology": "native Morphing field.union and segment.value; immutable native LaTeX glyph packets resident on GPU; geometric operation absorption and expression-to-result stroke deformation",
-  "motion": "Persistent release velocity; no free-motion damping; elastic area-weighted bounces; area-weighted merge velocity; magnitude-dependent expression radii."
+  "motion": "Timed 32-sample pointer ring; recent 100 ms release velocity including hold-to-stop; throws capped at 1600 CSS pixels/second; no free damping; adaptive contact substeps; elastic area-weighted bounces; area-weighted merge velocity; explicit throws work in reduced motion."
 }

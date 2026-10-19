@@ -1,4 +1,4 @@
-import {mass} from './motion.mjs?v=45ae2d4b84c7';
+import {mass} from './motion.mjs?v=1bec15fd2d5f';
 // Indexed broad phase. All contacts resolve before a frame is presented.
 export class Contacts {
  constructor(objects,{combine,merge,bounce}){this.objects=objects;this.combine=combine;this.merge=merge;this.bounce=bounce;this.cells=new Map();this.cellSize=96;this.width=1;this.height=1;this.gap=4;}
@@ -20,5 +20,5 @@ export class Contacts {
  }
  overlaps(tolerance=.05){const pairs=[];for(const a of this.objects.values())for(const b of this.near(a))if(b.id>a.id&&Math.hypot(a.x-b.x,a.y-b.y)<a.r+b.r-tolerance)pairs.push([a.id,b.id]);return pairs;}
  // A pointer cannot tunnel through intervening objects between browser events.
- move(id,x,y,now){let o=this.objects.get(id);if(!o)return;const steps=Math.max(1,Math.ceil(Math.hypot(x-o.x,y-o.y)/Math.max(4,o.r*.2))),dx=(x-o.x)/steps,dy=(y-o.y)/steps;for(let i=0;i<steps;i++){o=this.objects.get(id);if(!o)break;o.x+=dx;o.y+=dy;o.vx=dx*24;o.vy=dy*24;this.resolve(now);} }
+ move(id,x,y,now,velocity){let o=this.objects.get(id);if(!o)return;const steps=Math.max(1,Math.ceil(Math.hypot(x-o.x,y-o.y)/Math.max(4,o.r*.2))),dx=(x-o.x)/steps,dy=(y-o.y)/steps;for(let i=0;i<steps;i++){o=this.objects.get(id);if(!o)break;o.x+=dx;o.y+=dy;o.vx=velocity?.vx??dx*24;o.vy=velocity?.vy??dy*24;this.resolve(now);} }
 }

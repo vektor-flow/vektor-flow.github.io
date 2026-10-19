@@ -10,3 +10,7 @@ const moving={id:4,x:200,y:100,r:20,vx:300,vy:0};stepPhysics(new Map([[4,moving]
 // Contacts.step must use the engine for integration and rejected contacts.
 const a={id:1,x:200,y:100,r:20,vx:1000,vy:0},b={id:2,x:250,y:100,r:20,vx:0,vy:0},world=new Map([[1,a],[2,b]]);const contacts=new Contacts(world,{combine:()=>({ok:false}),bounce:()=>{},merge:()=>{throw Error('Bad merge')}});contacts.resize(600,400);for(let i=0;i<20;i++)contacts.step(.001,i);assert(Math.abs(a.vx)<1e-8);assert(Math.abs(b.vx-1000)<1e-8);assert.equal(contacts.overlaps().length,0);
 console.log('PASS canonical VKF runtime delegation, exact-circle impacts, wall reflections, kinematic grab and integrated momentum transfer');
+
+// A pointer cannot force an immutable collider through a wall-bound row.
+const row=new Map([40,135,230,315].map((x,i)=>[i+1,{id:i+1,x,y:180,r:31,vx:0,vy:0}]));const grab=new Contacts(row,{combine:()=>({ok:false}),merge:()=>{},bounce:()=>{}});grab.resize(358,440);grab.heldId=1;for(let x=40;x<=315;x+=3){grab.move(1,x,180,x);assert.equal(grab.overlaps().length,0,'Grab target must yield to VKF contact constraints');}
+console.log('PASS held-pointer sweep through a wall-bound row without overlap');

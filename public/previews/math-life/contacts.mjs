@@ -6,13 +6,14 @@ export class Contacts {
  constrain(o){o.x=Math.max(o.r+8,Math.min(this.width-o.r-8,o.x));o.y=Math.max(o.r+8,Math.min(this.height-o.r-30,o.y));}
  index(){this.cells.clear();this.maxRadius=0;for(const o of this.objects.values()){this.maxRadius=Math.max(this.maxRadius,o.r);const key=`${Math.floor(o.x/96)},${Math.floor(o.y/96)}`;if(!this.cells.has(key))this.cells.set(key,[]);this.cells.get(key).push(o);}}
  *near(o){const x=Math.floor(o.x/96),y=Math.floor(o.y/96),range=Math.ceil((o.r+this.maxRadius+this.gap)/96);for(let yy=y-range;yy<=y+range;yy++)for(let xx=x-range;xx<=x+range;xx++)for(const other of this.cells.get(`${xx},${yy}`)??[])if(other.id!==o.id)yield other;}
- separate(a,b){stepPhysics(new Map([[a.id,a],[b.id,b]]),this.width,this.height,0,{gap:this.gap,heldId:this.heldId});}
+ separate(a,b){stepPhysics(new Map([[a.id,a],[b.id,b]]),this.width,this.height,0,{gap:this.gap});}
  step(dt,now,{heldId=null,reduced=false}={}){this.heldId=heldId;stepPhysics(this.objects,this.width,this.height,dt,{gap:this.gap,heldId,reduced});this.resolve(now);}
  resolve(now){for(const o of this.objects.values())this.constrain(o);
  for(let pass=0;pass<96;pass++){this.index();let merged=false,needsResolution=false;
  outer:for(const a of this.objects.values())for(const b of this.near(a)){if(b.id<=a.id||!this.objects.has(a.id)||!this.objects.has(b.id))continue;const distance=Math.hypot(a.x-b.x,a.y-b.y),contact=a.r+b.r+this.gap;if(distance>contact+.01)continue;const result=this.combine(a,b);if(result.ok){this.merge(a,b,result,now);merged=true;break outer;}if(distance<contact-.001){this.bounce(a,b,result,now);needsResolution=true;}}
  if(merged)continue;if(!needsResolution)break;
- stepPhysics(this.objects,this.width,this.height,0,{gap:this.gap,heldId:this.heldId});this.index();if(!this.overlaps().length)break;
+ // A grab target yields to impossible packing; VKF projects all finite masses.
+ stepPhysics(this.objects,this.width,this.height,0,{gap:this.gap});this.index();if(!this.overlaps().length)break;
  }
  this.index();return this.overlaps().length===0;
  }

@@ -4,7 +4,7 @@ import {pairRoute} from './route.mjs?v=2dd8db785a34';
 import {loadPackagedSymbolicKernel} from '../../vf-ui/vf-symbolic-kernel-runtime.mjs';
 import {createRules} from './rules.mjs?v=664e0fe2b436';
 import {WorldRenderer,loadAssets} from './renderer.mjs?v=91f403a0b579';
-import {Contacts} from './contacts.mjs?v=1002978e369f';
+import {Contacts} from './contacts.mjs?v=f53b5758822d';
 const world=document.querySelector('#world'),objectsElement=document.querySelector('#objects'),message=document.querySelector('#message'),loading=document.querySelector('#loading'),celebration=document.querySelector('#celebration');
 const spawnButtons=[...document.querySelectorAll('[data-spawn]')],again=document.querySelector('#again');
 function fitViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height??innerHeight)+'px');}fitViewport();window.visualViewport?.addEventListener('resize',fitViewport);

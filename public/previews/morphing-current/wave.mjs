@@ -1,5 +1,4 @@
-import {MitosisWave} from './mitosis-renderer.mjs?v=9b1a74eead02';
-import {TextWave,loadWaveAssets} from './wave-renderer.mjs?v=ea2e9eaf6419';
+import {TextWave,loadWaveAssets} from './wave-renderer.mjs?v=6baef05c415d';
 const status=document.querySelector('#status');
 const source=document.querySelector('#source');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -7,9 +6,10 @@ const players=[];let revision=0;
 try{
  const assets=await loadWaveAssets();
  for(const section of document.querySelectorAll('.demo')){
-  const renderer=section.dataset.mode==='mitosis'?new MitosisWave(section.querySelector('canvas'),assets):new TextWave(section.querySelector('canvas'),assets,section.dataset.mode);
-  const player={section,renderer,time:section.querySelector('[data-time]'),k:section.querySelector('[data-k]'),velocity:section.querySelector('[data-velocity]'),overshoot:section.querySelector('[data-overshoot]'),growth:section.querySelector('[data-grow]'),play:section.querySelector('[data-play]'),loop:section.querySelector('[data-loop]'),position:reduced?1:0,running:!reduced,hold:0};players.push(player);
-  player.draw=()=>{const timing=renderer.draw(player.position,Number(player.k.value),Number(player.velocity.value),player.growth.checked,Number(player.overshoot.value)/100);section.dataset.progress=player.position.toFixed(4);section.dataset.duration=timing.total;section.dataset.glyphs=renderer.count;section.querySelector('[data-duration]').value=Number.isFinite(timing.total)?`${timing.total.toFixed(2)} s`:'Held · v = 0';section.querySelector('[data-k-value]').value=Number(player.k.value).toFixed(1);section.querySelector('[data-velocity-value]').value=Number(player.velocity.value).toFixed(2);section.querySelector('[data-overshoot-value]').value=`${player.overshoot.value}%`;section.dataset.rampWidth=timing.width;section.dataset.front=player.position*timing.travel;section.dataset.lines=renderer.lineCount;player.time.value=player.position;player.play.textContent=player.running?'Pause':'Play';};
+  const renderer=new TextWave(section.querySelector('canvas'),assets);
+  const outputs=Object.fromEntries(['duration','k-value','velocity-value','overshoot-value'].map(key=>[key,section.querySelector(`[data-${key}]`)]));
+  const player={section,renderer,outputs,time:section.querySelector('[data-time]'),k:section.querySelector('[data-k]'),velocity:section.querySelector('[data-velocity]'),overshoot:section.querySelector('[data-overshoot]'),growth:section.querySelector('[data-grow]'),play:section.querySelector('[data-play]'),loop:section.querySelector('[data-loop]'),position:reduced?1:0,running:!reduced,hold:0};players.push(player);
+  player.draw=()=>{const timing=renderer.draw(player.position,Number(player.k.value),Number(player.velocity.value),player.growth.checked,Number(player.overshoot.value)/100);section.dataset.progress=player.position.toFixed(4);section.dataset.duration=timing.total;section.dataset.glyphs=renderer.count;player.outputs['duration'].value=Number.isFinite(timing.total)?`${timing.total.toFixed(2)} s`:'Held · v = 0';player.outputs['k-value'].value=Number(player.k.value).toFixed(1);player.outputs['velocity-value'].value=Number(player.velocity.value).toFixed(2);player.outputs['overshoot-value'].value=`${player.overshoot.value}%`;section.dataset.rampWidth=timing.width;section.dataset.front=player.position*timing.travel;section.dataset.lines=renderer.lineCount;player.time.value=player.position;player.play.textContent=player.running?'Pause':'Play';};
   player.time.addEventListener('input',()=>{player.position=Number(player.time.value);player.running=false;player.hold=0;player.draw();});
   player.overshoot.addEventListener('input',player.draw);player.k.addEventListener('input',player.draw);player.velocity.addEventListener('input',player.draw);player.growth.addEventListener('change',player.draw);
   player.play.addEventListener('click',()=>{if(!player.running&&player.position>=1)player.position=0;player.running=!player.running;player.hold=0;player.draw();});

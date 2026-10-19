@@ -5,43 +5,33 @@ The public compiler remains the reviewed 0.7.2 package, pinned byte for byte in
 website changes. Browser checks use explicit software rendering; preserve the
 physical GPU stop.
 
-## Current text examples
+## Current text example
 
-`public/previews/morphing-current/` now contains real-time LaTeX wave rendering.
-The existing text-flow/LaTeX typesetter, instance packer and native MSDF glyph
-atlas provide the text and equations. One shared WebGL2 shader uses a clamped
-quarter-period sin² alpha ramp along reading order. Lines finish sequentially;
-there is no repeating per-glyph wave or contour stage. Color travels from red through violet across alpha 0–0.8, then fades to white
-across 0.8–1. Compare growth with adjustable 0–50% size overshoot; both settle to
-the same typeset geometry. k ranges from 1–10 and v from 0–1 (zero holds the front).
-The slower defaults are k=4 and v=0.25. Time, k, v, overshoot and growth are live uniforms;
-geometry uploads occur on layout changes, not animation frames.
+`public/previews/morphing-current/` contains one real-time LaTeX text-unfolding
+example. The owner-selected defaults are k=4, v=0.54, 32% overshoot, Grow and Loop
+on. All controls remain adjustable: k 1–10, v 0–1, overshoot 0–50%, and time.
+The former comparison demos and their runtime files are removed.
 
-The compact atlas copies existing glyph tiles without resampling. Its build
-receipt is ASSETS.json; original engine/atlas hashes and current source hashes
-are in SOURCE.json. Extra glyphs can load the existing full LaTeX resources.
-The old sentence recordings and CPU morphology archive are removed from public
-assets. There is one active example implementation. Do not restore stale clips
-or imply that playback controls are real-time rendering.
+Native `Morphing.unfold` owns the quarter-period sin² alpha ramp, back-ease size
+and red-to-violet-to-white color. The compiler emits indexed scalar channels;
+`compile-unfold.py` mechanically translates its scalar WGSL output to WebGL GLSL.
+UNFOLD.json records library and compiler hashes. The public compiler stays 0.7.2.
 
-Run `node tests/current-morphing.cjs` against the local range server or set
-VKF_SITE_URL to the deployed site. Tests use Chromium SwiftShader and software
-WebKit, check actual GPU pixels, live controls, editable LaTeX, stable geometry
-buffers and the absence of video requests. No hardware performance is claimed.
+The existing LaTeX engine supplies layout, native atlas glyphs and rule coverage.
+Glyph instances, cumulative row offsets and row IDs are prepared once per layout;
+GPU instance/vertex indexing handles playback. Control/output nodes are cached.
+Changing time, k, v, overshoot or growth does not upload glyph geometry. Rows
+finish sequentially, with one active front. No text is parsed during animation.
 
-The third comparison is sequential mitosis: the first symbol is present, then
-one coincident child separates from the preceding symbol and changes into the
-next native LaTeX glyph. Earlier symbols stay in place. This adapter supplies
-reading-order correspondence, not automatic semantic matching. Glyphs with holes,
-rules, crossings and line wraps are not a universal topology/collision solution.
+The compact atlas copies native tiles without resampling. ASSETS.json records
+the build; SOURCE.json records engine and current source hashes. Extra glyphs
+can load the existing full LaTeX resources. Old clips and inactive runtimes stay
+retired; this page renders live and requests no videos.
 
-`MITOSIS.json` records the unchanged native `segment.value` and `field.union`
-sources, compiler-emitted WGSL and mechanically translated scalar GLSL. Sources
-and license live in `scripts/text-wave/mitosis/`. The translator rejects unsupported
-emitted scalar syntax. No per-sentence shape workaround or video fallback is used.
-`python3 scripts/text-wave/verify-mitosis-native.py` reproduces 64 native oracle
-values; the browser test compares actual float GPU output to those same values.
-The separately pinned public compiler remains unchanged.
+`node tests/current-morphing.cjs` checks desktop SwiftShader and software WebKit,
+selected defaults, live controls, editable LaTeX, stable GPU geometry buffers,
+white endpoints, spectral ink and float GPU parity with 96 native kernel samples.
+Set VKF_SITE_URL for hosted verification. No hardware performance is claimed.
 
 ## Publication
 

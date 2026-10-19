@@ -13,6 +13,8 @@ assert not (root/'previews/text-unfold').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/app.mjs').exists()
 assert not (root/'previews/gpu-math-typing/examples/live/compiled').exists()
 current=json.loads((root/'previews/morphing-current/SOURCE.json').read_text())
+assert not any((root/'previews/morphing-current'/n).exists() for n in ['mitosis-renderer.mjs','mitosis-kernel.glsl','mitosis-kernel.wgsl','MITOSIS.json'])
+assert (root/'previews/morphing-current/index.html').read_text().count('<section class="demo"')==1
 assert current['entryPoint']=='wave-renderer.mjs:TextWave'
 assert current['execution']=='real-time WebGL2' and current['videoPlayback'] is False
 for name,digest in {**current['sourceFiles'],**current['latexEngineFiles']}.items():

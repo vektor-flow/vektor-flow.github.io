@@ -63,7 +63,7 @@ export class TextWave {
   for(const [index,key] of ordered.entries()){const bounds=lines.get(key);lineInfo.set(key,{index,offset,left:origin[0]-(bounds[1]-bounds[0])*scale/2});offset+=(bounds[1]-bounds[0])/maxWidth;}
   this.pathLength=offset;this.lineCount=ordered.length;const unitsPerPixel=1/(maxWidth*scale);
   const values=[];box.items.forEach(item=>{const line=lineInfo.get(item.flowLine??0);const bounds=lines.get(item.flowLine??0);const moved={...item,color:[1,1,1,1],x:origin[0]+(item.x-(bounds[0]+bounds[1])/2)*scale,y:origin[1]+item.y*scale,sx:(item.sx??1)*scale,sy:(item.sy??1)*scale};if(item.kind==='rule'){moved.width=item.width*scale;moved.height=item.height*scale;}const packed=packLatexItem(moved,this.assets.data,{pixelAlign:false,ink:[1,1,1,1]});const start=line.offset+(packed[0]-line.left)*unitsPerPixel;values.push(...packed,start,line.index,unitsPerPixel,start+packed[2]*.5*unitsPerPixel);});
-  this.count=box.items.length;const gl=this.gl;gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);this.source=source;this.layoutBox=box;
+  this.instances=new Float32Array(values);this.count=box.items.length;const gl=this.gl;gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(values),gl.STATIC_DRAW);this.source=source;this.layoutBox=box;
  }
  timing(k,v){const width=Math.PI/(2*k);const travel=this.pathLength+Math.max(1,this.lineCount)*width;return{width,travel,total:v>0?travel/v:Infinity};}
  draw(progress,k,v,grow=true,amount=0){const gl=this.gl;const timing=this.timing(k,v);

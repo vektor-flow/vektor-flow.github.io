@@ -5,14 +5,18 @@
   "videoPlayback": false,
   "latexEngine": "existing LaTeX typesetter, instance packer and native atlas",
   "sourceFiles": {
-    "previews/morphing-current/index.html": "9d2e6251afe7c66b6787830fb057b9247965df0b22aea61a72b9aac9cb9a7379",
+    "previews/morphing-current/index.html": "287b24aefb5e028a26fa2449692fd79886e4046bfe930211776cf146692a461b",
     "previews/morphing-current/wave.css": "ee0eb802d4d0b85f3d2d355ea86cbd0c1a2a714fb048f536de06d472c8f7928a",
-    "previews/morphing-current/wave.mjs": "28bb45a1e9b9a8e11db007736413c0c110eff18491b5d172c18d4cb43fd6af45",
-    "previews/morphing-current/wave-renderer.mjs": "83e04fc6df3b789a517bc8d1366f9cbdbcf2e1c3d8f42b8529e37d66f79b44ea",
+    "previews/morphing-current/wave.mjs": "93f5ef760858dcd0706be795f9a63b209f79e19571e782198f8e68c956ed9e2e",
+    "previews/morphing-current/wave-renderer.mjs": "ea2e9eaf6419951de82ed327edd6fc5ca23e3aba9b4384989337cee4497731aa",
     "previews/morphing-current/wave-data.json.gz": "f08d73dfa283c7f93d1209b8403d6db1cdcf254361aad8776f8a278d08cebdf6",
     "previews/morphing-current/wave-atlas.rgba.gz": "52f14179a021aff8a00ae0e51c74005cc0f884bc86a30b906ea42db0dc615463",
     "previews/morphing-current/ASSETS.json": "a5d197e815a007110048ffee89e5661ca905014543557c0b033a0b7e21bf0371",
-    "previews/morphing-current/palette-keys.json": "eaf6c087149e4a3be180b45f56c49c683370527c7798c594b1d3e16749062b58"
+    "previews/morphing-current/palette-keys.json": "eaf6c087149e4a3be180b45f56c49c683370527c7798c594b1d3e16749062b58",
+    "previews/morphing-current/mitosis-renderer.mjs": "9b1a74eead02f097cb0ec16e0bd7bb0e85b0eff780696032e136700741fe8848",
+    "previews/morphing-current/mitosis-kernel.glsl": "1e2a4195ae786e045a35febb2fc3a32cce6cef659f5bb340ee9804e63d959988",
+    "previews/morphing-current/mitosis-kernel.wgsl": "1b3dbdb749ee97b8f7f96d27e4f3c4ab937d7d9e8561421750f5a5d993d973eb",
+    "previews/morphing-current/MITOSIS.json": "2682552972135da5b0ea8ef61f8cede8a1227e2a366f493a1b12891a7aaeb54d"
   },
   "latexEngineFiles": {
     "previews/gpu-math-typing/text-flow.mjs": "c8fb1c7d2dde0a9ad3306e2de4eed8ff4e9210ce6b1e358ea0bf6cc909b781c7",
@@ -55,5 +59,15 @@
   "fontNotices": [
     "../gpu-math-typing/ALPHABET-FONT-NOTICES.txt",
     "../gpu-math-typing/EC-FONTS-NOTICES.txt"
-  ]
+  ],
+  "mitosis": {
+    "entryPoint": "mitosis-renderer.mjs:MitosisWave",
+    "method": "one previous-symbol parent and coincident new-symbol carrier; separate embeddings, interpolate local fields and smoothly union contact",
+    "kernel": "compiler-generated Morphing segment.value and field.union, scalar WGSL translated mechanically to WebGL GLSL",
+    "noOpacityBirth": true,
+    "firstSymbolVisibleAtStart": true,
+    "defaultK": 1,
+    "defaultVelocity": 0.1,
+    "scope": "sequential LaTeX draw-item correspondence; no automatic semantic or topology guarantee"
+  }
 }

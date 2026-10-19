@@ -29,6 +29,20 @@ VKF_SITE_URL to the deployed site. Tests use Chromium SwiftShader and software
 WebKit, check actual GPU pixels, live controls, editable LaTeX, stable geometry
 buffers and the absence of video requests. No hardware performance is claimed.
 
+The third comparison is sequential mitosis: the first symbol is present, then
+one coincident child separates from the preceding symbol and changes into the
+next native LaTeX glyph. Earlier symbols stay in place. This adapter supplies
+reading-order correspondence, not automatic semantic matching. Glyphs with holes,
+rules, crossings and line wraps are not a universal topology/collision solution.
+
+`MITOSIS.json` records the unchanged native `segment.value` and `field.union`
+sources, compiler-emitted WGSL and mechanically translated scalar GLSL. Sources
+and license live in `scripts/text-wave/mitosis/`. The translator rejects unsupported
+emitted scalar syntax. No per-sentence shape workaround or video fallback is used.
+`python3 scripts/text-wave/verify-mitosis-native.py` reproduces 64 native oracle
+values; the browser test compares actual float GPU output to those same values.
+The separately pinned public compiler remains unchanged.
+
 ## Publication
 
 Run `python3 scripts/verify-current-site.py`,

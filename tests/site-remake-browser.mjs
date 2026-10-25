@@ -12,7 +12,7 @@ const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',hea
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 let failure;
 try {
- const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1,colorScheme:'light',permissions:['clipboard-read','clipboard-write']});
+ const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1,colorScheme:'light',hasTouch:true,permissions:['clipboard-read','clipboard-write']});
  const page=await context.newPage();
  page.on('pageerror',e=>errors.push(String(e)));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -82,6 +82,15 @@ try {
    await page.goto(base+'/'+route,{waitUntil:'networkidle'});
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route} width ${width}`);
    assert.equal(await page.locator('h1').count(),1);
+   if(route==='index.html' && width<760) {
+    await page.waitForFunction(()=>!document.querySelector('.readme-example-play').disabled,null,{timeout:120000});
+    await page.locator('.readme-example-play').tap();
+    await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"]').hasAttribute('aria-busy'),null,{timeout:120000});
+    assert(await page.locator('[data-vkf-example-id="motion-design"] canvas').count()>0);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'phone plot overflow '+width);
+    assert.equal(await page.locator('textarea').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)),16);
+    checks.push({check:'phone-touch-run-and-real-plots',width,passed:true});
+   }
    const nav=page.locator('nav[aria-label="Main navigation"]');
    assert(await nav.getByRole('link',{name:'Standard library',exact:true}).isVisible());
    const targets=await nav.locator('a').evaluateAll(es=>es.map(e=>({text:e.textContent,box:e.getBoundingClientRect().toJSON()})));

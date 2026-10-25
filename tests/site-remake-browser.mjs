@@ -99,7 +99,7 @@ try {
  await page.locator('[data-copy]').first().click();
  assert((await page.evaluate(()=>navigator.clipboard.readText())).startsWith('vkf -v'));
  checks.push({check:'CLI-copy-exact',passed:true});
- await page.goto(base+'/embed-example.html');
+ await page.goto((process.env.VKF_STARTER_URL??base)+'/embed-example.html');
  await page.getByRole('button',{name:'Calculate',exact:true}).waitFor({timeout:120000});
  await page.getByRole('button',{name:'Calculate',exact:true}).click();
  await page.waitForFunction(()=>document.querySelector('output').textContent.trim()==='25',null,{timeout:120000});
@@ -107,7 +107,7 @@ try {
  await page.getByRole('button',{name:'Calculate',exact:true}).click();
  await page.waitForFunction(()=>document.querySelector('output').textContent.trim()==='49',null,{timeout:120000});
  await page.screenshot({path:path.join(out,'embedded-calculation.png')});
- checks.push({check:'actual-HTML-embedding-two-inputs',passed:true});
+ checks.push({check:'actual-HTML-embedding-two-inputs',origin:process.env.VKF_STARTER_URL??base,passed:true});
  for(const url of ['downloads/vkf-browser-preview-0.7.2.tar.gz','downloads/vkf-browser-preview-0.7.2.tar.gz.sha256','downloads/vkf-embedding-starter-0.7.2.tar.gz','downloads/vkf-embedding-starter-0.7.2.tar.gz.sha256']) assert.equal((await context.request.get(base+'/'+url)).status(),200,url);
  for(const [old,current] of [['guide.html','syntax.html'],['reference.html','stdlib.html'],['browser.html','build.html#embed'],['testing.html','build.html#tests']]) {await page.goto(base+'/'+old);await page.waitForURL('**/'+current);}
  checks.push({check:'download-links-and-legacy-redirects',passed:true});

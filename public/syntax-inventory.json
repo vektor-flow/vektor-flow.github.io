@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "spec_source": "0de4a2b32b7d2bf4bf9ff9b3abf7771adfe9b4c7",
+  "compiler_version": "0.7.2",
+  "inventory_scope": "All 18 consolidated syntax groups and all 22 foundational clauses; mapping is reference coverage, not a compiler-conformance score.",
+  "groups": [
+    {
+      "id": "bindings-and-scopes",
+      "title": "Bindings and scopes"
+    },
+    {
+      "id": "values-and-types",
+      "title": "Values and types"
+    },
+    {
+      "id": "functions-calls-and-specialization",
+      "title": "Functions, calls and specialization"
+    },
+    {
+      "id": "bound-arguments-and-structural-selectors",
+      "title": "Bound arguments and structural selectors"
+    },
+    {
+      "id": "named-and-anonymous-dimensions",
+      "title": "Named and anonymous dimensions"
+    },
+    {
+      "id": "lifting-and-structural-calls",
+      "title": "Lifting and structural calls"
+    },
+    {
+      "id": "operators",
+      "title": "Operators"
+    },
+    {
+      "id": "index-access-and-ranges",
+      "title": "Index access and ranges"
+    },
+    {
+      "id": "folds-recurrence-and-composition",
+      "title": "Folds, recurrence and composition"
+    },
+    {
+      "id": "pipes-and-loop-coordinates",
+      "title": "Pipes and loop coordinates"
+    },
+    {
+      "id": "conditions-matching-and-errors",
+      "title": "Conditions, matching and errors"
+    },
+    {
+      "id": "nominal-types-reflection-and-modules",
+      "title": "Nominal types, reflection and modules"
+    },
+    {
+      "id": "symbolic-domains-and-calculus",
+      "title": "Symbolic domains and calculus"
+    },
+    {
+      "id": "physical-domains-and-units",
+      "title": "Physical domains and units"
+    },
+    {
+      "id": "strings-and-templates",
+      "title": "Strings and templates"
+    },
+    {
+      "id": "geometry-views-and-physics",
+      "title": "Geometry, views and physics"
+    },
+    {
+      "id": "event-and-i-o-concurrency",
+      "title": "Event and I/O concurrency"
+    },
+    {
+      "id": "grammar-decisions-still-open",
+      "title": "Grammar decisions still open"
+    }
+  ],
+  "foundational_clauses": [
+    {
+      "clause": "0.1",
+      "title": "Dimensions and indexed values",
+      "reference": "syntax.html#named-and-anonymous-dimensions",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.2",
+      "title": "Ordinary lifting",
+      "reference": "syntax.html#lifting-and-structural-calls",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.3",
+      "title": "Structural suffix application",
+      "reference": "syntax.html#bound-arguments-and-structural-selectors",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.4",
+      "title": "Elementwise and structural operators",
+      "reference": "syntax.html#operators",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.5",
+      "title": "Concatenation and composition",
+      "reference": "syntax.html#operators",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.6",
+      "title": "First-class functions and operators",
+      "reference": "syntax.html#functions-calls-and-specialization",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.7",
+      "title": "Explicit specialization",
+      "reference": "syntax.html#functions-calls-and-specialization",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.8",
+      "title": "Operator specialization",
+      "reference": "syntax.html#functions-calls-and-specialization",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.9",
+      "title": "Indexed specialization",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.10",
+      "title": "General fold",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.11",
+      "title": "Multidimensional reduction",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.12",
+      "title": "Named reductions",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.13",
+      "title": "Recurrence",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.14",
+      "title": "Function-variable transforms",
+      "reference": "syntax.html#symbolic-domains-and-calculus",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.15",
+      "title": "Differentiation",
+      "reference": "syntax.html#symbolic-domains-and-calculus",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.16",
+      "title": "Integration parameters",
+      "reference": "syntax.html#symbolic-domains-and-calculus",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.17",
+      "title": "Transform specialization",
+      "reference": "syntax.html#symbolic-domains-and-calculus",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.18",
+      "title": "Shared semantic graph",
+      "reference": "syntax.html#symbolic-domains-and-calculus",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.19",
+      "title": "Lazy vectors and inclusive ranges",
+      "reference": "syntax.html#index-access-and-ranges",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.20",
+      "title": "Pipes, matching, scopes and control",
+      "reference": "syntax.html#pipes-and-loop-coordinates",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.21",
+      "title": "Spill-backed nominal values",
+      "reference": "syntax.html#nominal-types-reflection-and-modules",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    },
+    {
+      "clause": "0.22",
+      "title": "Initial visual integration cases",
+      "reference": "syntax.html#folds-recurrence-and-composition",
+      "support": "Design rule; only the displayed specific programs are covered by example verification"
+    }
+  ]
+}

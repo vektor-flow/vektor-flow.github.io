@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Explore the standard library shipped with Vektor Flow 0.7.2: module APIs, source provenance, capability notes and editable programs."><title>Standard library · Vektor Flow</title><link rel="canonical" href="https://vektorflow.org/stdlib.html"><link rel="stylesheet" href="./site.css"><link rel="stylesheet" href="./remake.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2316262b%22/%3E%3Cpath d=%22M7 9l9 15 9-15%22 fill=%22none%22 stroke=%22%2369d8bd%22 stroke-width=%223%22/%3E%3C/svg%3E"></head>
+<body class="remake "><a class="skip-link" href="#content">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">∨</span>Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="syntax.html">Syntax</a><a href="stdlib.html" aria-current="page">Standard library</a><a href="build.html">Build & embed</a><a href="install.html">Download</a></nav><span class="release-version">0.7.2 · Preview</span></header>
+<main id="content"><article class="reference-page"><div class="page-intro"><p class="eyebrow">STANDARD LIBRARY / 0.7.2 PREVIEW</p><h1>Find the right building block.</h1><p class="page-lead">Module APIs, use cases and small programs.</p><p>This inventory comes from the exact source files shipped in the website’s browser package. Source presence is not proof that every API works on every target. Status notes distinguish source, compiler intrinsics and native host capabilities.</p><p><strong>Language core lives elsewhere:</strong> bindings, calls, dimensions, operators, folds and function differentiation are covered in <a href="syntax.html">Syntax</a>. Import a module with <code>la:.linalg</code>, or spill its exports with <code>:.units</code>.</p><div class="reference-tools"><label for="reference-search">Find a module or API</label><input id="reference-search" type="search" placeholder="Try solve, units, queue…" aria-controls="reference-groups"><button type="button" data-expand-all>Expand all</button><button type="button" data-collapse-all>Collapse all</button><span data-search-count role="status"></span></div></div><nav class="reference-toc" aria-label="Library modules"><a href="#math">.math</a><a href="#linalg">.linalg</a><a href="#stat">.stat</a><a href="#units">.units</a><a href="#ui">.ui</a><a href="#concurrent">.concurrent</a><a href="#collections">.collections</a><a href="#errors">.errors</a><a href="#random">.random</a><a href="#regex">.regex</a><a href="#symbolic">.symbolic</a><a href="#physics">.physics</a><a href="#io">.io</a><a href="#command">.command</a><a href="#system">.system</a><a href="#time">.time</a><a href="#ui-colormaps">.ui.colormaps</a><a href="#units-si">.units.si</a><a href="#physics-units">.physics.units</a><a href="#physics-units-si">.physics.units.si</a><a href="#physics-preparation">.physics.preparation</a><a href="#physics-convex_preparation">.physics.convex_preparation</a><a href="#physics-rigid">.physics.rigid</a><a href="#physics-supported_contact">.physics.supported_contact</a></nav><div id="reference-groups"><details class="reference-group" id="math" open><summary><span class="group-number">01</span><span>.math <span class="module-subtitle">/ Elementary math and constants</span></span><small>Source + compiler intrinsics</small></summary><div class="group-body"><p>Trigonometry, logarithms, hyperbolic functions and special functions. Scalar primitives such as sin, cos, exp, ln, sqrt and abs are compiler/runtime operations exposed alongside these source definitions.</p><div class="api-list"><code>pi</code><code>e</code><code>tau</code><code>sin</code><code>cos</code><code>exp</code><code>ln</code><code>sqrt</code><code>abs</code><code>tan</code><code>sec</code><code>cot</code><code>csc</code><code>sinh</code><code>cosh</code><code>tanh</code><code>lg</code><code>lg2</code><code>log</code><code>asinh</code><code>acosh</code><code>atanh</code><code>atan</code><code>atan2</code><code>asin</code><code>acos</code><code>acot</code><code>asec</code><code>acsc</code><code>gamma</code><code>erf</code></div><h3>Angles and complex values</h3><section class="readme-example" data-vkf-example-id="stdlib-example-23" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token operator">:</span> <span class="vf-token operator">.</span>math
+<span class="vf-token operator">::</span><span class="vf-token function">sin</span><span class="vf-token punctuation">(</span><span class="vf-token number">90</span>deg<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span><span class="vf-token function">exp</span><span class="vf-token punctuation">(</span><span class="vf-token builtin">num</span><span class="vf-token punctuation">(</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">)</span><span class="vf-token operator">*</span><span class="vf-token number">180</span>deg<span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-23" aria-label="Editable VKF source: Angles and complex values" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+: .math
+::sin(90deg)
+::exp(num(0,1)*180deg)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>1
+-1 + 1.2246467991473532e-16i
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>tan(value:num) -&gt; num:
+sec(value:num) -&gt; num:
+cot(value:num) -&gt; num:
+csc(value:num) -&gt; num:
+sinh(value:num) -&gt; num:
+cosh(value:num) -&gt; num:
+tanh(value:num) -&gt; num:
+lg(value:num) -&gt; num:
+lg2(value:num) -&gt; num:
+log(value:num, base:num) -&gt; num:
+asinh(value:num) -&gt; num:
+acosh(value:num) -&gt; num:
+atanh(value:num) -&gt; num:
+atan(value:num) -&gt; num:
+atan2(y:num, x:num) -&gt; num:
+asin(value:num) -&gt; num:
+acos(value:num) -&gt; num:
+acot(value:num) -&gt; num:
+asec(value:num) -&gt; num:
+acsc(value:num) -&gt; num:
+gamma(value:num) -&gt; num:
+erf(value:num) -&gt; num:</pre><a href="./stdlib-source/math.vkf" download>Download packaged math.vkf</a><p>SHA256 <code>ca670afda7c9edc010ca25428f61f79c0fb45bdf5655a4a240d2162e744a2f3f</code></p></details></div></details><details class="reference-group" id="linalg"><summary><span class="group-number">02</span><span>.linalg <span class="module-subtitle">/ Linear algebra</span></span><small>Source; solve example below</small></summary><div class="group-body"><p>Solve a rectangular/numerical vector problem using ordinary arrays. The packaged source includes decompositions, solution diagnostics and matrix operations. Presence in the inventory does not qualify every algorithm.</p><div class="api-list"><code>dot</code><code>cross</code><code>outer</code><code>matmul</code><code>transpose</code><code>diag</code><code>trace</code><code>determinant</code><code>solve</code><code>inverse</code><code>rref</code><code>rank</code><code>lu</code><code>cholesky</code><code>qr</code><code>eigen</code><code>svd</code><code>least_squares</code><code>null_space</code><code>solution_space</code><code>residual</code><code>condition_number</code><code>relative_residual</code><code>verify_solution</code></div><h3>Solve a two-variable system</h3><section class="readme-example" data-vkf-example-id="stdlib-linalg-solve" data-verification="pending"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code>la:.linalg
+::la.solve([[2,1],[1,3]],[5,5])</code></pre><textarea class="readme-example-source" aria-label="Editable VKF source: Solve a two-variable system" spellcheck="false">la:.linalg
+::la.solve([[2,1],[1,3]],[5,5])</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>[2, 1]
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>dot(left:[num:n], right:[num:n]) -&gt; num:
+dot(left:[expression:n], right:[expression:n]) -&gt; expression:
+cross(left:[num:3], right:[num:3]) -&gt; [num:3]:
+outer(left:[num:n], right:[num:m]):
+matmul(left:[[num:k]:r], right:[[num:c]:k]) -&gt; [[num:c]:r]:
+transpose(matrix:[[num:c]:r]) -&gt; [[num:r]:c]:
+diag(values:[num:n]) -&gt; [[num:n]:n]:
+trace(matrix:[[num:n]:n]) -&gt; num:
+determinant(matrix:[[num:n]:n], tolerance:num=0.000000000001) -&gt; num:
+solve(matrix:[[num:n]:n], values:[num:n], tolerance:num=0.000000000001) -&gt; [num:n]:
+inverse(matrix:[[num:n]:n], tolerance:num=0.000000000001) -&gt; [[num:n]:n]:
+rref(matrix:[[num:c]:r], tolerance:num=0.000000000001) -&gt; [[num:c]:r]:
+rank(matrix:[[num:c]:r], tolerance:num=0.000000000001) -&gt; int:
+lu(matrix:[[num:n]:n], tolerance:num=0.000000000001):
+cholesky(matrix:[[num:n]:n], tolerance:num=0.000000000001) -&gt; [[num:n]:n]:
+qr(matrix:[[num:c]:r], tolerance:num=0.000000000001) -&gt; (q:[[num:c]:r],r:[[num:c]:c]):
+eigen(
+    matrix:[[num:n]:n],
+    tolerance:num=0.000000000001,
+    max_sweeps:num=64,
+    verify_result:bit=true
+) -&gt; (
+svd(
+    matrix:[[num:c]:r],
+    tolerance:num=0.000000000001,
+    max_sweeps:num=64,
+    verify_result:bit=true
+) -&gt; (
+least_squares(
+    matrix:[[num:c]:r],
+    values:[num:r],
+    tolerance:num=0.000000000001
+) -&gt; [num:c]:
+null_space(
+    matrix:[[num:c]:r],
+    tolerance:num=0.000000000001
+) -&gt; (dimension:int,basis:[[num:c]:c]):
+solution_space(
+    matrix:[[num:c]:r],
+    values:[num:r],
+    tolerance:num=0.000000000001
+) -&gt; (
+residual(
+    matrix:[[num:c]:r],
+    values:[num:c],
+    targets:[num:r]
+) -&gt; [num:r]:
+condition_number(
+    matrix:[[num:n]:n],
+    tolerance:num=0.000000000001
+) -&gt; num:
+relative_residual(
+    matrix:[[num:c]:r],
+    values:[num:c],
+    targets:[num:r]
+) -&gt; num:
+verify_solution(
+    matrix:[[num:n]:n],
+    values:[num:n],
+    targets:[num:n],
+    tolerance:num=0.000000001,
+    condition_limit:num=1000000000000
+):</pre><a href="./stdlib-source/linalg.vkf" download>Download packaged linalg.vkf</a><p>SHA256 <code>5dcd769b40b58738c68774defe032f068b1894b057cc523b4622f3357de9c866</code></p></details></div></details><details class="reference-group" id="stat"><summary><span class="group-number">03</span><span>.stat <span class="module-subtitle">/ Statistics</span></span><small>Source + intrinsics</small></summary><div class="group-body"><p>Summarize and compare numerical data; interpolate or normalize values. Some aggregate entry points are compiler-owned.</p><div class="api-list"><code>interp</code><code>min</code><code>max</code><code>percentile</code><code>median</code><code>iqr</code><code>mode</code><code>zscore</code><code>normalize</code><code>covariance</code><code>correlation</code><code>clamp</code><code>sign</code></div><h3>Structural calls</h3><section class="readme-example" data-vkf-example-id="stdlib-example-16" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">stat</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>stat
+<span class="vf-token function">span</span><span class="vf-token punctuation">(</span>x<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span>stat<span class="vf-token operator">.</span><span class="vf-token function">max</span><span class="vf-token punctuation">(</span>x<span class="vf-token punctuation">)</span><span class="vf-token operator">-</span>stat<span class="vf-token operator">.</span><span class="vf-token function">min</span><span class="vf-token punctuation">(</span>x<span class="vf-token punctuation">)</span>
+<span class="vf-token binding">A</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">4</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">8</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(128 72% 72%)">i</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(164 72% 72%)">j</span>
+<span class="vf-token operator">::</span><span class="vf-token function">span</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(128 72% 72%)">i</span><span class="vf-token punctuation">(</span><span class="vf-token type">A</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-16" aria-label="Editable VKF source: Structural calls" spellcheck="false" autocapitalize="off" autocomplete="off">stat:.stat
+span(x):stat.max(x)-stat.min(x)
+A:[[1,4],[2,8]]_ij
+::span_i(A)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>[1, 4]
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>interp(values:[num:n], targets:[num:m]) -&gt; [num:m]:
+interp(values:[num:n], coordinates:[num:l], targets:[num:m]) -&gt; [num:m]:
+min(values:[num:n]) -&gt; num:
+max(values:[num:n]) -&gt; num:
+percentile(values:[num:n], p:num) -&gt; num:
+median(values:[num:n]) -&gt; num:
+iqr(values:[num:n]) -&gt; num:
+mode(values:[num:n]) -&gt; num:
+zscore(values:[num:n]) -&gt; [num:n]:
+normalize(values:[num:n]) -&gt; [num:n]:
+covariance(x:[num:n], y:[num:m], ddof:num=0) -&gt; num:
+correlation(x:[num:n], y:[num:m]) -&gt; num:
+clamp(value:num, lower:num, upper:num) -&gt; num:
+sign(value:num) -&gt; num:</pre><a href="./stdlib-source/stat.vkf" download>Download packaged stat.vkf</a><p>SHA256 <code>a0d3b7c7af273ea8e3f633e9abd24dc6f0494933cd4c22a6c285272b00faf95b</code></p></details></div></details><details class="reference-group" id="units"><summary><span class="group-number">04</span><span>.units <span class="module-subtitle">/ Physical quantities</span></span><small>Catalog; examples below</small></summary><div class="group-body"><p>Import the coherent SI catalog. Unit metadata belongs to the language; the module supplies names and scales.</p><div class="api-list"><code>m</code><code>km</code><code>cm</code><code>s</code><code>kg</code><code>A</code><code>K</code><code>mol</code><code>cd</code><code>N</code><code>Pa</code><code>J</code><code>W</code><code>rad</code><code>deg</code><code>.to(unit)</code></div><h3>Physical quantities</h3><section class="readme-example" data-vkf-example-id="stdlib-example-19" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token operator">::</span><span class="vf-token number">2</span>m<span class="vf-token operator">+</span><span class="vf-token number">30</span>cm
+<span class="vf-token operator">::</span><span class="vf-token number">30</span>cm<span class="vf-token operator">+</span><span class="vf-token number">2</span>m
+<span class="vf-token operator">::</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">3</span><span class="vf-token punctuation">]</span>m<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>cm<span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-19" aria-label="Editable VKF source: Physical quantities" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+::2m+30cm
+::30cm+2m
+::([1,2,3]m).to(cm)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>2.3 m
+230 cm
+[100, 200, 300] cm
+</pre></details><h3>Unit-aware helpers</h3><section class="readme-example" data-vkf-example-id="stdlib-example-20" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token function">convert</span><span class="vf-token punctuation">(</span>x<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span>x<span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>cm<span class="vf-token punctuation">)</span>
+<span class="vf-token binding">x</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">3</span><span class="vf-token punctuation">]</span>m
+<span class="vf-token operator">::</span><span class="vf-token function">convert</span><span class="vf-token punctuation">(</span>x<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>x</code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-20" aria-label="Editable VKF source: Unit-aware helpers" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+convert(x):x.to(cm)
+x:[1,2,3]m
+::convert(x)
+::x</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>[100, 200, 300] cm
+[1, 2, 3] m
+</pre></details><h3>Empty values and demand</h3><section class="readme-example" data-vkf-example-id="stdlib-example-21" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token function">run</span><span class="vf-token punctuation">(</span>n<span class="vf-token operator">:</span><span class="vf-token builtin">int</span><span class="vf-token punctuation">)</span><span class="vf-token operator">:</span>
+    <span class="vf-token binding">x</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">2</span>m<span class="vf-token operator">:</span>n<span class="vf-token punctuation">]</span>
+    <span class="vf-token binding">y</span><span class="vf-token operator">:</span>x<span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>cm<span class="vf-token punctuation">)</span>
+    <span class="vf-token operator">::</span>y
+    <span class="vf-token number">0</span>
+<span class="vf-token function">run</span><span class="vf-token punctuation">(</span><span class="vf-token number">0</span><span class="vf-token punctuation">)</span>
+<span class="vf-token function">run</span><span class="vf-token punctuation">(</span><span class="vf-token number">2</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-21" aria-label="Editable VKF source: Empty values and demand" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+run(n:int):
+    x:[2m:n]
+    y:x.to(cm)
+    ::y
+    0
+run(0)
+run(2)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>[] cm
+[200, 200] cm
+</pre></details><h3>Units and powers</h3><section class="readme-example" data-vkf-example-id="stdlib-example-22" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token function">area</span><span class="vf-token punctuation">(</span>side<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span>side<span class="vf-token operator">^</span><span class="vf-token number">2</span>
+<span class="vf-token operator">::</span><span class="vf-token function">area</span><span class="vf-token punctuation">(</span><span class="vf-token number">3</span>m<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">^</span><span class="vf-token number">2</span><span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span><span class="vf-token punctuation">(</span><span class="vf-token number">6</span>m<span class="vf-token operator">/</span><span class="vf-token number">2</span>s<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">/</span>s<span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-22" aria-label="Editable VKF source: Units and powers" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+area(side):side^2
+::area(3m).to(m^2)
+::(6m/2s).to(m/s)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>9 m^2
+3 m/s
+</pre></details><h3>Domains and physical dimensions</h3><section class="readme-example" data-vkf-example-id="stdlib-example-24" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token function">position</span><span class="vf-token punctuation">(</span>t<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span><span class="vf-token number">2</span>m<span class="vf-token operator">*</span><span class="vf-token punctuation">(</span>t<span class="vf-token operator">/</span><span class="vf-token number">1</span>s<span class="vf-token punctuation">)</span><span class="vf-token operator">^</span><span class="vf-token number">2</span>
+<span class="vf-token binding">velocity</span><span class="vf-token operator">:</span><span class="vf-token function">deriv</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(164 72% 72%)">t</span><span class="vf-token punctuation">(</span>position<span class="vf-token punctuation">)</span>
+<span class="vf-token binding">acceleration</span><span class="vf-token operator">:</span><span class="vf-token function">deriv</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(164 72% 72%)">t</span><span class="vf-token punctuation">(</span>velocity<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span><span class="vf-token function">position</span><span class="vf-token punctuation">(</span><span class="vf-token number">3</span>s<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span><span class="vf-token function">velocity</span><span class="vf-token punctuation">(</span><span class="vf-token number">3</span>s<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">/</span>s<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span><span class="vf-token function">acceleration</span><span class="vf-token punctuation">(</span><span class="vf-token number">3</span>s<span class="vf-token punctuation">)</span><span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">/</span>s<span class="vf-token operator">^</span><span class="vf-token number">2</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-24" aria-label="Editable VKF source: Domains and physical dimensions" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+position(t):2m*(t/1s)^2
+velocity:deriv_t(position)
+acceleration:deriv_t(velocity)
+::position(3s).to(m)
+::velocity(3s).to(m/s)
+::acceleration(3s).to(m/s^2)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>18 m
+12 m/s
+4 m/s^2
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/units.vkf" download>Download packaged units.vkf</a><p>SHA256 <code>c6eae08570c5fa77548d42c69ab590ebff3956aeb04d519980a225d2897819a5</code></p></details></div></details><details class="reference-group" id="ui"><summary><span class="group-number">05</span><span>.ui <span class="module-subtitle">/ Viewports and plots</span></span><small>Compiler intrinsic viewport API</small></summary><div class="group-body"><p>Create a viewport, add coordinate data, then show it. The viewport API is compiler-owned; ui.vkf itself contains only set_mode.</p><div class="api-list"><code>viewport</code><code>viewport.add(…)</code><code>viewport.add_camera(…)</code><code>viewport.push()</code><code>viewport.show()</code><code>set_mode(mode)</code></div><h3>Connected geometry</h3><section class="readme-example" data-vkf-example-id="stdlib-example-27" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">frame</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>ui<span class="vf-token operator">.</span>viewport
+<span class="vf-token binding">p</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(200 72% 72%)">u</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(272 72% 72%)">c</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">add</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span>p<span class="vf-token punctuation">)</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">push</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">show</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-27" aria-label="Editable VKF source: Connected geometry" spellcheck="false" autocapitalize="off" autocomplete="off">frame:.ui.viewport
+p:[[0,0,0],[1,1,2],[2,0,1]]_uc
+frame.add(p:p)
+frame.push()
+frame.show()</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><h3>Explicit topology</h3><section class="readme-example" data-vkf-example-id="stdlib-example-28" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">frame</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>ui<span class="vf-token operator">.</span>viewport
+<span class="vf-token binding">p</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">3</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(128 72% 72%)">i</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(272 72% 72%)">c</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">add</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span>p<span class="vf-token punctuation">,</span>edge<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">3</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(236 72% 72%)">b</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(272 72% 72%)">m</span><span class="vf-token punctuation">)</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">push</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+frame<span class="vf-token operator">.</span><span class="vf-token function">show</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-28" aria-label="Editable VKF source: Explicit topology" spellcheck="false" autocapitalize="off" autocomplete="off">frame:.ui.viewport
+p:[[0,0,0],[1,0,1],[1,1,2],[0,1,3]]_ic
+frame.add(p:p,edge:[[0,2],[2,3]]_bm)
+frame.push()
+frame.show()</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><h3>Shared geometry, multiple views</h3><section class="readme-example" data-vkf-example-id="stdlib-example-31" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">front</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>ui<span class="vf-token operator">.</span>viewport
+<span class="vf-token binding">side</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>ui<span class="vf-token operator">.</span>viewport
+<span class="vf-token binding">p</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(200 72% 72%)">u</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(272 72% 72%)">c</span>
+front<span class="vf-token operator">.</span><span class="vf-token function">add</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span>p<span class="vf-token punctuation">)</span>
+front<span class="vf-token operator">.</span><span class="vf-token function">add_camera</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">4</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span>target<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span>projection<span class="vf-token operator">:</span><span class="vf-token string">&quot;orthographic&quot;</span><span class="vf-token punctuation">)</span>
+side<span class="vf-token operator">.</span><span class="vf-token function">add</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span>p<span class="vf-token punctuation">)</span>
+side<span class="vf-token operator">.</span><span class="vf-token function">add_camera</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">4</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span>target<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span>projection<span class="vf-token operator">:</span><span class="vf-token string">&quot;orthographic&quot;</span><span class="vf-token punctuation">)</span>
+front<span class="vf-token operator">.</span><span class="vf-token function">show</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+side<span class="vf-token operator">.</span><span class="vf-token function">show</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-31" aria-label="Editable VKF source: Shared geometry, multiple views" spellcheck="false" autocapitalize="off" autocomplete="off">front:.ui.viewport
+side:.ui.viewport
+p:[[0,0,0],[1,0,0],[1,1,0],[0,1,0]]_uc
+front.add(p:p)
+front.add_camera(p:[0,0,4],target:[0,0,0],projection:&quot;orthographic&quot;)
+side.add(p:p)
+side.add_camera(p:[4,0,1],target:[0,0,0],projection:&quot;orthographic&quot;)
+front.show()
+side.show()</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>set_mode(mode:str):</pre><a href="./stdlib-source/ui.vkf" download>Download packaged ui.vkf</a><p>SHA256 <code>1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb</code></p></details></div></details><details class="reference-group" id="concurrent"><summary><span class="group-number">06</span><span>.concurrent <span class="module-subtitle">/ Events and isolated processes</span></span><small>Compiler/runtime intrinsics</small></summary><div class="group-body"><p>Connect workers with FIFO queues, broadcast streams and immutable shared values. These operations coordinate events and I/O.</p><div class="api-list"><code>process(worker, …)</code><code>queue()</code><code>broadcast()</code><code>shared(value)</code><code>process.join()</code><code>process.kill()</code><code>queue.put(value)</code><code>queue.get()</code><code>broadcast.subscribe()</code></div><h3>Queue and process</h3><section class="readme-example" data-vkf-example-id="stdlib-example-32" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">concurrent</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>concurrent
+<span class="vf-token function">worker</span><span class="vf-token punctuation">(</span>events<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span>events<span class="vf-token operator">.</span><span class="vf-token function">get</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token binding">events</span><span class="vf-token operator">:</span>concurrent<span class="vf-token operator">.</span><span class="vf-token function">queue</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token binding">p</span><span class="vf-token operator">:</span>concurrent<span class="vf-token operator">.</span><span class="vf-token function">process</span><span class="vf-token punctuation">(</span>worker<span class="vf-token punctuation">,</span>events<span class="vf-token punctuation">)</span>
+events<span class="vf-token operator">.</span><span class="vf-token function">put</span><span class="vf-token punctuation">(</span><span class="vf-token number">42</span><span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>p<span class="vf-token operator">.</span><span class="vf-token function">join</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-32" aria-label="Editable VKF source: Queue and process" spellcheck="false" autocapitalize="off" autocomplete="off">concurrent:.concurrent
+worker(events):events.get()
+events:concurrent.queue()
+p:concurrent.process(worker,events)
+events.put(42)
+::p.join()</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>42
+</pre></details><h3>Broadcast and shared values</h3><section class="readme-example" data-vkf-example-id="stdlib-example-33" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">concurrent</span><span class="vf-token operator">:</span><span class="vf-token operator">.</span>concurrent
+<span class="vf-token binding">updates</span><span class="vf-token operator">:</span>concurrent<span class="vf-token operator">.</span><span class="vf-token function">broadcast</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token binding">ui_updates</span><span class="vf-token operator">:</span>updates<span class="vf-token operator">.</span><span class="vf-token function">subscribe</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token binding">log_updates</span><span class="vf-token operator">:</span>updates<span class="vf-token operator">.</span><span class="vf-token function">subscribe</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+updates<span class="vf-token operator">.</span><span class="vf-token function">put</span><span class="vf-token punctuation">(</span><span class="vf-token string">&quot;ready&quot;</span><span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>ui_updates<span class="vf-token operator">.</span><span class="vf-token function">get</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>log_updates<span class="vf-token operator">.</span><span class="vf-token function">get</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">)</span>
+<span class="vf-token binding">state</span><span class="vf-token operator">:</span>concurrent<span class="vf-token operator">.</span><span class="vf-token function">shared</span><span class="vf-token punctuation">(</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">3</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span>mode<span class="vf-token operator">:</span><span class="vf-token string">&quot;run&quot;</span><span class="vf-token punctuation">)</span><span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-33" aria-label="Editable VKF source: Broadcast and shared values" spellcheck="false" autocapitalize="off" autocomplete="off">concurrent:.concurrent
+updates:concurrent.broadcast()
+ui_updates:updates.subscribe()
+log_updates:updates.subscribe()
+updates.put(&quot;ready&quot;)
+::ui_updates.get()
+::log_updates.get()
+state:concurrent.shared((p:[1,2,3],mode:&quot;run&quot;))</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>ready
+ready
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/concurrent.vkf" download>Download packaged concurrent.vkf</a><p>SHA256 <code>0309f6be8a254f1a9282f0ddab9edfdd5f76724bf5870f2bf815fd9883fea8f9</code></p></details></div></details><details class="reference-group" id="collections"><summary><span class="group-number">07</span><span>.collections <span class="module-subtitle">/ Collection storage</span></span><small>Capability declaration</small></summary><div class="group-body"><p>Maps, lists and queues are described by a capability record. Storage and ownership are compiler intrinsics.</p><div class="api-list"><code>map</code><code>list</code><code>queue</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/collections.vkf" download>Download packaged collections.vkf</a><p>SHA256 <code>57014c51de253c74998cdeb450771135d434c50e350d0555ebc032b61307a7a1</code></p></details></div></details><details class="reference-group" id="errors"><summary><span class="group-number">08</span><span>.errors <span class="module-subtitle">/ Typed errors</span></span><small>Compiler intrinsic error types</small></summary><div class="group-body"><p>Construct and raise error values; match caught errors by type. Error type masks and unwinding are compiler-owned.</p><div class="api-list"><code>Error</code><code>VektorFlowError</code><code>LexError</code><code>ParseError</code><code>EvalError</code><code>AssertionError</code><code>PythonError</code><code>TypeError</code><code>ValueError</code><code>KeyError</code><code>IndexError</code><code>FileNotFoundError</code><code>RuntimeError</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/errors.vkf" download>Download packaged errors.vkf</a><p>SHA256 <code>150851cae3b6b1f2fc275de0d8678435a2e765f6b8f085a2c76c06584b7a7345</code></p></details></div></details><details class="reference-group" id="random"><summary><span class="group-number">09</span><span>.random <span class="module-subtitle">/ Seeded random sampling</span></span><small>Source; host-dependent default seed</small></summary><div class="group-body"><p>Generate uniform or normal samples while threading the returned seed explicitly. Explicit seeds allow repeatable sequences. Default seeding calls time capabilities.</p><div class="api-list"><code>next</code><code>clock_seed</code><code>uniform</code><code>normal</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>next(seed:num) -&gt; (value:num,seed:num):
+clock_seed() -&gt; num:
+uniform(seed:num=clock_seed(), low:num=0, high:num=1) -&gt; (value:num,seed:num):
+uniform(seed:num=clock_seed(), low:num=0, high:num=1, shape:num) -&gt; (value:[num],seed:num):
+uniform(seed:num=clock_seed(), low:num=0, high:num=1, shape:(num,num)) -&gt; (value:[[num]],seed:num):
+normal(seed:num=clock_seed(), mean:num=0, variance:num=1) -&gt; (value:num,seed:num):</pre><a href="./stdlib-source/random.vkf" download>Download packaged random.vkf</a><p>SHA256 <code>f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5</code></p></details></div></details><details class="reference-group" id="regex"><summary><span class="group-number">10</span><span>.regex <span class="module-subtitle">/ Byte regular expressions</span></span><small>Capability declaration; target-dependent</small></summary><div class="group-body"><p>Compiler-specialized match and groups with compile-time patterns. Packaged notes exclude alternation and quantified groups.</p><div class="api-list"><code>match</code><code>groups</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/regex.vkf" download>Download packaged regex.vkf</a><p>SHA256 <code>748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7</code></p></details></div></details><details class="reference-group" id="symbolic"><summary><span class="group-number">11</span><span>.symbolic <span class="module-subtitle">/ Symbolic source inventory</span></span><small>Experimental; browser coverage unresolved</small></summary><div class="group-body"><p>The package contains symbolic expression, transform and verification definitions. First-class symbolic-domain use is not qualified by the homepage’s deriv_t example. Treat these APIs as experimental source inventory; broad browser support is unresolved.</p><div class="api-list"><code>symbol_name</code><code>symbol_is_constant</code><code>symbol_latex</code><code>katex</code><code>same</code><code>constant</code><code>sin</code><code>cos</code><code>log</code><code>ln</code><code>sqrt</code><code>exp</code><code>real_part</code><code>magnitude</code><code>equation</code><code>less_than</code><code>less_equal</code><code>greater_than</code><code>greater_equal</code><code>not_equal</code><code>implies</code><code>premise</code><code>conclusion</code><code>derivative</code><code>prime</code><code>partial</code><code>at</code><code>where</code><code>boundary_value</code><code>boundary_domain</code><code>equivalent</code><code>z_transform</code><code>verify_z_transform</code><code>z_transform_condition</code><code>verify_z_transform_condition</code><code>transform_condition_count</code><code>transform_condition</code><code>z_transform_conditions</code><code>verify_z_transform_conditions</code><code>verify_inverse_z_transform</code><code>inverse_z_transform</code><code>laplace</code><code>verify_laplace</code><code>laplace_condition</code><code>verify_laplace_condition</code><code>laplace_conditions</code><code>verify_laplace_conditions</code><code>verify_inverse_laplace</code><code>inverse_laplace</code><code>verify_ode_solution</code><code>solve_pde</code><code>verify_pde_solution</code><code>verify_heat_solution</code><code>solve_recurrence</code><code>fourier</code><code>verify_fourier</code><code>verify_inverse_fourier</code><code>inverse_fourier</code><code>fourier_real</code><code>fourier_imag</code><code>haar_wavelet</code><code>verify_haar_wavelet</code><code>verify_inverse_haar_wavelet</code><code>inverse_haar_wavelet</code><code>solution_count</code><code>solution_verified</code><code>solution_condition_count</code><code>solution_condition</code><code>solution_is_branched</code><code>solution_branch_count</code><code>solution_branch</code><code>solution_is_family</code><code>solution_family_dimension</code><code>solution_particular_value</code><code>solution_direction_value</code><code>solution_value</code><code>asymptotic</code><code>verify_asymptotic</code><code>roots</code><code>solve</code><code>verify_solutions</code><code>polynomial</code><code>add_term</code><code>coefficient</code><code>depends_on</code><code>integrate</code><code>inspect_integrate</code><code>integ</code><code>differentiate</code><code>inspect_differentiate</code><code>deriv</code><code>diff</code><code>solve_ode</code><code>limit</code><code>verify_limit</code><code>evaluate</code><code>verify_recurrence</code><code>expand</code><code>collect</code><code>inspect_simplify</code><code>evaluate_inspection</code><code>simplify</code><code>substitute</code><code>term_count</code><code>series_multiply</code></div><p class="scope-note">For a currently demonstrated exact derivative, see <a href="syntax.html#symbolic-domains-and-calculus">function-variable transforms</a>. That example does not establish complete symbolic-library support.</p><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>symbol_name(value:symbol) -&gt; str:
+symbol_is_constant(value:symbol) -&gt; bit:
+symbol_latex(value:symbol) -&gt; str:
+katex(value:expression) -&gt; str:
+same(left:expression, right:expression) -&gt; bit:
+constant(value:num) -&gt; constant:
+sin(value:expression) -&gt; expression:
+cos(value:expression) -&gt; expression:
+log(value:expression) -&gt; expression:
+ln(value:expression) -&gt; expression:
+sqrt(value:expression) -&gt; expression:
+exp(value:expression) -&gt; expression:
+real_part(value:expression) -&gt; expression:
+magnitude(value:expression) -&gt; expression:
+equation(left:expression, right:expression) -&gt; relation:
+equation(left:expression, right:num) -&gt; relation:
+equation(left:num, right:expression) -&gt; relation:
+less_than(left:expression, right:expression) -&gt; relation:
+less_equal(left:expression, right:expression) -&gt; relation:
+greater_than(left:expression, right:expression) -&gt; relation:
+greater_equal(left:expression, right:expression) -&gt; relation:
+not_equal(left:expression, right:expression) -&gt; relation:
+not_equal(left:expression, right:num) -&gt; relation:
+not_equal(left:num, right:expression) -&gt; relation:
+implies(left:proposition, right:proposition) -&gt; proposition:
+premise(value:proposition) -&gt; proposition:
+conclusion(value:proposition) -&gt; proposition:
+derivative(value:expression, variable:symbol) -&gt; expression:
+derivative(variable_name:chr, value:expression) -&gt; expression:
+prime(value:expression, order:num = 1) -&gt; expression:
+partial(value:expression, variable:symbol, order:num = 1) -&gt; expression:
+partial(variable_name:chr, value:expression, order:num = 1) -&gt; expression:
+at(value:expression, point:num) -&gt; expression:
+at(value:expression, argument:expression) -&gt; expression:
+at(value:expression, variable:symbol, point:num) -&gt; expression:
+at(variable_name:chr, value:expression, point:num) -&gt; expression:
+at(value:expression, arguments:[expression:n]) -&gt; expression:
+where(value_constraint:relation, domain_constraint:relation) -&gt; relation:
+boundary_value(boundary:relation) -&gt; relation:
+boundary_domain(boundary:relation) -&gt; relation:
+equivalent(left:expression, right:expression) -&gt; bit:
+z_transform(value:symbolic, index:symbolic, frequency:symbolic) -&gt; symbolic:
+verify_z_transform(
+    candidate:symbolic,
+    value:symbolic,
+    index:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+z_transform_condition(value:symbolic, index:symbolic, frequency:symbolic) -&gt; relation:
+verify_z_transform_condition(
+    candidate:relation,
+    value:symbolic,
+    index:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+transform_condition_count(conditions:[num]) -&gt; num:
+transform_condition(conditions:[num], index:num) -&gt; symbolic:
+z_transform_conditions(value:symbolic, index:symbolic, frequency:symbolic) -&gt; [num]:
+verify_z_transform_conditions(
+    candidate:[num],
+    value:symbolic,
+    index:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+verify_inverse_z_transform(
+    candidate:symbolic,
+    value:symbolic,
+    frequency:symbolic,
+    index:symbolic
+) -&gt; bit:
+inverse_z_transform(value:symbolic, frequency:symbolic, index:symbolic) -&gt; symbolic:
+laplace(value:symbolic, time:symbolic, frequency:symbolic) -&gt; symbolic:
+verify_laplace(
+    candidate:symbolic,
+    value:symbolic,
+    time:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+laplace_condition(value:symbolic, time:symbolic, frequency:symbolic) -&gt; relation:
+verify_laplace_condition(
+    candidate:relation,
+    value:symbolic,
+    time:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+laplace_conditions(value:symbolic, time:symbolic, frequency:symbolic) -&gt; [num]:
+verify_laplace_conditions(
+    candidate:[num],
+    value:symbolic,
+    time:symbolic,
+    frequency:symbolic
+) -&gt; bit:
+verify_inverse_laplace(
+    candidate:symbolic,
+    value:symbolic,
+    frequency:symbolic,
+    time:symbolic
+) -&gt; bit:
+inverse_laplace(value:symbolic, frequency:symbolic, time:symbolic) -&gt; symbolic:
+verify_ode_solution(solution:symbolic, independent:symbolic, rate:num, initial:num) -&gt; bit:
+solve_pde(
+    differential_equation:symbolic,
+    initial_condition:symbolic,
+    boundaries:[symbolic:n],
+    dependent:symbolic,
+    space:symbolic,
+    time:symbolic
+) -&gt; symbolic:
+verify_pde_solution(
+    solution:symbolic,
+    differential_equation:symbolic,
+    initial_condition:symbolic,
+    boundaries:[symbolic:n],
+    dependent:symbolic,
+    space:symbolic,
+    time:symbolic
+) -&gt; bit:
+verify_pde_solution(
+    solution:symbolic,
+    differential_equation:symbolic,
+    boundaries:[symbolic:n],
+    dependent:symbolic,
+    variables:[symbolic:m]
+) -&gt; bit:
+solve_pde(
+    differential_equation:symbolic,
+    boundaries:[symbolic:n],
+    dependent:symbolic,
+    variables:[symbolic:m]
+) -&gt; symbolic:
+verify_heat_solution(solution:symbolic, space:symbolic, time:symbolic) -&gt; bit:
+solve_recurrence(multiplier:num, offset:num, initial:num, index:symbolic) -&gt; symbolic:
+fourier(value:symbolic, time:symbolic, frequency:symbolic) -&gt; symbolic:
+verify_fourier(candidate:symbolic, value:symbolic, time:symbolic, frequency:symbolic) -&gt; bit:
+verify_inverse_fourier(candidate:symbolic, value:symbolic, frequency:symbolic, time:symbolic) -&gt; bit:
+inverse_fourier(value:symbolic, frequency:symbolic, time:symbolic) -&gt; symbolic:
+fourier(values:[num:n]) -&gt; [num]:
+fourier_real(spectrum:[num], frequency:num) -&gt; num:
+fourier_imag(spectrum:[num], frequency:num) -&gt; num:
+verify_inverse_fourier(candidate:[num], spectrum:[num], tolerance:num) -&gt; bit:
+verify_inverse_fourier(candidate:[num], spectrum:[num]) -&gt; bit:
+inverse_fourier(spectrum:[num]) -&gt; [num]:
+haar_wavelet(value:symbolic, variable:symbolic, scale:num, shift:num) -&gt; symbolic:
+verify_haar_wavelet(candidate:symbolic, value:symbolic, variable:symbolic, scale:num, shift:num) -&gt; bit:
+haar_wavelet(values:[num:n]) -&gt; [num]:
+verify_inverse_haar_wavelet(
+    candidate:[num],
+    coefficients:[num],
+    tolerance:num
+) -&gt; bit:
+verify_inverse_haar_wavelet(candidate:[num], coefficients:[num]) -&gt; bit:
+inverse_haar_wavelet(coefficients:[num]) -&gt; [num]:
+solution_count(solutions:symbolic) -&gt; num:
+solution_verified(solutions:symbolic) -&gt; bit:
+solution_condition_count(solutions:symbolic) -&gt; num:
+solution_condition(solutions:symbolic, condition_index:num) -&gt; relation:
+solution_is_branched(solutions:symbolic) -&gt; bit:
+solution_branch_count(solutions:symbolic) -&gt; num:
+solution_branch(solutions:symbolic, branch_index:num) -&gt; symbolic:
+solution_is_family(solutions:symbolic) -&gt; bit:
+solution_family_dimension(solutions:symbolic) -&gt; num:
+solution_particular_value(solutions:symbolic, variable_index:num) -&gt; symbolic:
+solution_direction_value(solutions:symbolic, direction_index:num, variable_index:num) -&gt; symbolic:
+solution_value(solutions:symbolic, solution_index:num, variable_index:num = 0) -&gt; symbolic:
+asymptotic(value:symbolic, variable:symbolic) -&gt; symbolic:
+asymptotic(variable_name:chr, value:symbolic) -&gt; symbolic:
+verify_asymptotic(candidate:symbolic, value:symbolic, variable:symbolic) -&gt; bit:
+roots(equation_value:symbolic, variable:symbolic) -&gt; {num}:
+roots(variable_name:chr, equation_value:symbolic) -&gt; {num}:
+solve(equation_value:symbolic, variables:[symbolic:n]) -&gt; symbolic:
+verify_solutions(
+    solutions:symbolic,
+    equations:[symbolic:e],
+    variables:[symbolic:v]
+) -&gt; bit:
+solve(equations:[symbolic:e], variables:[symbolic:v]) -&gt; symbolic:
+polynomial(variable:symbolic, requested_capacity:num = 4096) -&gt; symbolic:
+polynomial(variable_name:chr, requested_capacity:num = 4096) -&gt; symbolic:
+add_term(value:symbolic, coefficient_value:num, exponent:num) -&gt; symbolic:
+coefficient(value:symbolic, exponents:[num]) -&gt; num:
+depends_on(value:symbolic, variable:symbolic) -&gt; bit:
+depends_on(variable_name:chr, value:symbolic) -&gt; bit:
+integrate(value:symbolic, variable:symbolic) -&gt; symbolic:
+inspect_integrate(value:symbolic, variable:symbolic) -&gt; (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+integrate(variable_name:chr, value:symbolic) -&gt; symbolic:
+integ(variable_name:chr, value:symbolic) -&gt; symbolic:
+integ(variable_names:[chr], value:symbolic) -&gt; symbolic:
+integ(axis:chr, values:[num:n], spacing:num = 1) -&gt; num:
+integ(axis:chr, values:[num:n], coordinates:[num:m]) -&gt; num:
+differentiate(value:symbolic, variable:symbolic, cache:bit = true) -&gt; symbolic:
+inspect_differentiate(value:symbolic, variable:symbolic, cache:bit = true) -&gt; (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+differentiate(variable_name:chr, value:symbolic, cache:bit = true) -&gt; symbolic:
+deriv(variable_name:chr, value:symbolic, cache:bit = true) -&gt; symbolic:
+deriv(axis:chr, values:[num:n], spacing:num = 1) -&gt; [num:n]:
+diff(value:symbolic, variable:symbolic, cache:bit = true) -&gt; symbolic:
+diff(variable_name:chr, value:symbolic, cache:bit = true) -&gt; symbolic:
+verify_ode_solution(
+    solution:symbolic,
+    differential_equation:symbolic,
+    initial_condition:symbolic,
+    dependent:symbolic,
+    independent:symbolic,
+    checks:num = 16
+) -&gt; bit:
+solve_ode(
+    differential_equation:symbolic,
+    initial_condition:symbolic,
+    dependent:symbolic,
+    independent:symbolic
+) -&gt; symbolic:
+verify_ode_solution(
+    solution:symbolic,
+    differential_equation:symbolic,
+    conditions:[symbolic:n],
+    dependent:symbolic,
+    independent:symbolic,
+    checks:num = 16
+) -&gt; bit:
+solve_ode(
+    differential_equation:symbolic,
+    conditions:[symbolic:n],
+    dependent:symbolic,
+    independent:symbolic
+) -&gt; symbolic:
+limit(value:symbolic, variable:symbolic, point:num, side:str) -&gt; symbolic:
+limit(variable_name:chr, value:symbolic, point:num, side:str) -&gt; symbolic:
+limit(value:symbolic, variable:symbolic, point:num) -&gt; symbolic:
+limit(variable_name:chr, value:symbolic, point:num) -&gt; symbolic:
+limit(value:symbolic, variable:symbolic, point:symbolic) -&gt; symbolic:
+limit(variable_name:chr, value:symbolic, point:symbolic) -&gt; symbolic:
+integ(variable_name:chr,
+verify_limit(
+    candidate:symbolic,
+    value:symbolic,
+    variable:symbolic,
+    point:num,
+    side:str = &quot;both&quot;
+) -&gt; bit:
+verify_limit(
+    candidate:symbolic,
+    value:symbolic,
+    variable:symbolic,
+    point:symbolic
+) -&gt; bit:
+evaluate(value:symbolic, variables:[num]) -&gt; num:
+verify_recurrence(
+    solution:symbolic,
+    index:symbolic,
+    multiplier:num,
+    offset:num,
+    initial:num,
+    checks:num = 16
+) -&gt; bit:
+verify_recurrence(
+    solution:symbolic,
+    recurrence:symbolic,
+    initial_condition:symbolic,
+    dependent:symbolic,
+    index:symbolic,
+    checks:num = 16
+) -&gt; bit:
+verify_recurrence(
+    solution:symbolic,
+    recurrence:symbolic,
+    initial_conditions:[symbolic:2],
+    dependent:symbolic,
+    index:symbolic,
+    checks:num = 16
+) -&gt; bit:
+solve_recurrence(
+    recurrence:symbolic,
+    initial_condition:symbolic,
+    dependent:symbolic,
+    index:symbolic
+) -&gt; symbolic:
+solve_recurrence(
+    recurrence:symbolic,
+    initial_conditions:[symbolic:2],
+    dependent:symbolic,
+    index:symbolic
+) -&gt; symbolic:
+solve(
+    relation:symbolic,
+    conditions:[symbolic:1],
+    dependent:symbolic,
+    independent:symbolic
+) -&gt; symbolic:
+solve(
+    relation:symbolic,
+    conditions:[symbolic:2],
+    dependent:symbolic,
+    independent:symbolic
+) -&gt; symbolic:
+solve(
+    relation:symbolic,
+    conditions:[symbolic:n],
+    dependent:symbolic,
+    independent:[symbolic:m]
+) -&gt; symbolic:
+expand(value:symbolic) -&gt; symbolic:
+collect(value:symbolic) -&gt; symbolic:
+inspect_simplify(value:symbolic) -&gt; (source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit):
+evaluate_inspection(view:(source:symbolic,expression:symbolic,steps:[(ordinal:num,rule_id:str,status:str,input:symbolic,output:symbolic,assumption:(kind:str,operand:symbolic,scope:str),numerical_requirement:str,execution_authority:bit)],domain:(scope:str,execution_checked:bit),ordinal_scope:str,numerical_requirement:str,execution_authority:bit), variables:[num]) -&gt; num:
+simplify(value:symbolic) -&gt; symbolic:
+substitute(value:symbolic, variable:symbolic, replacement:symbolic) -&gt; symbolic:
+substitute(value:symbolic, variable:symbolic, replacement:num) -&gt; symbolic:
+substitute(variable_name:chr, value:symbolic, replacement:symbolic) -&gt; symbolic:
+substitute(variable_name:chr, value:symbolic, replacement:num) -&gt; symbolic:
+term_count(value:symbolic) -&gt; num:
+series_multiply(left:[num], right:[num], order:num) -&gt; [num]:</pre><a href="./stdlib-source/symbolic.vkf" download>Download packaged symbolic.vkf</a><p>SHA256 <code>70ac20e278689da2a155213120a804ee5c5143ba51682f208a8f65dd74377175</code></p></details></div></details><details class="reference-group" id="physics"><summary><span class="group-number">12</span><span>.physics <span class="module-subtitle">/ Physical model helpers</span></span><small>Source; broad runtime coverage unqualified</small></summary><div class="group-body"><p>Source includes mass properties, rigid-body state, contact impulses and material helpers. The small quantity examples below do not qualify a complete physical simulation engine.</p><div class="api-list"><code>rb_add3</code><code>rb_sub3</code><code>rb_scale3</code><code>rb_dot3</code><code>rb_cross3</code><code>rb_mat3</code><code>rb_identity3</code><code>rb_scale_mat3</code><code>rb_add_mat3</code><code>rb_outer3</code><code>rb_trace3</code><code>rb_det3</code><code>rb_inverse3</code><code>rb_mat_vec3</code><code>rb_abs</code><code>parallel_axis_shift3</code><code>tetra_mass_properties3</code><code>combine_mass_properties3</code><code>rigid_state3</code><code>force_at_point3</code><code>step_rigid_body_momentum3</code><code>vec2</code><code>vec3</code><code>add2</code><code>add3</code><code>sub2</code><code>sub3</code><code>scale2</code><code>scale3</code><code>dot2</code><code>dot3</code><code>cross3</code><code>mat2</code><code>mat3</code><code>zero3x3</code><code>identity3x3</code><code>scale_mat3</code><code>add_mat3</code><code>neg_mat3</code><code>mat_vec3</code><code>mat_mul3</code><code>diag_inv3</code><code>skew3</code><code>collision_body3</code><code>collision_body_inverse3</code><code>body_inv_mass3</code><code>body_pp3</code><code>body_pL3</code><code>body_Lp3</code><code>body_LL3</code><code>collision_matrix3</code><code>apply_collision_matrix3</code><code>normal_restitution_impulse3</code><code>abs_num</code><code>clamp_num</code><code>max_num</code><code>length3</code><code>unit_or_zero3</code><code>project_normal3</code><code>project_tangent3</code><code>tangential_friction_impulse3</code><code>normal_contact_impulse3</code><code>rolling_resistance_impulse3</code><code>spin_friction_impulse3</code><code>coupled_contact_impulse3</code><code>solid_contact_impulse3</code><code>angular_damping3</code><code>dice_texture</code><code>rigid_material</code><code>dice_material</code><code>felt_table_material</code><code>contact_material</code><code>copy_rigid_material</code><code>infinite_plane3</code><code>cube_inv_inertia3</code><code>dice_body3</code><code>dice_roll_initial_state</code><code>first_plane_bounce3</code><code>dice_transform_frame</code><code>dice_roll_path3</code><code>settled_face_from_angular_velocity</code></div><h3>Unit-aware state evolution</h3><section class="readme-example" data-vkf-example-id="stdlib-example-29" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span> <span class="vf-token operator">.</span>units
+<span class="vf-token function">advance</span><span class="vf-token punctuation">(</span>p<span class="vf-token punctuation">,</span>v<span class="vf-token punctuation">,</span>a<span class="vf-token punctuation">,</span>dt<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span><span class="vf-token punctuation">(</span>
+    <span class="vf-token binding">p</span><span class="vf-token operator">:</span>p<span class="vf-token operator">+</span>v<span class="vf-token operator">*</span>dt<span class="vf-token operator">+</span>a<span class="vf-token operator">*</span>dt<span class="vf-token operator">^</span><span class="vf-token number">2</span><span class="vf-token operator">/</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span>
+    <span class="vf-token binding">v</span><span class="vf-token operator">:</span>v<span class="vf-token operator">+</span>a<span class="vf-token operator">*</span>dt
+<span class="vf-token punctuation">)</span>
+<span class="vf-token binding">state</span><span class="vf-token operator">:</span><span class="vf-token function">advance</span><span class="vf-token punctuation">(</span><span class="vf-token number">0</span>m<span class="vf-token punctuation">,</span><span class="vf-token number">2</span>m<span class="vf-token operator">/</span><span class="vf-token number">1</span>s<span class="vf-token punctuation">,</span><span class="vf-token number">1</span>m<span class="vf-token operator">/</span><span class="vf-token number">1</span>s<span class="vf-token operator">^</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span>s<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>state<span class="vf-token operator">.</span>p
+<span class="vf-token operator">::</span>state<span class="vf-token operator">.</span>v<span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">/</span>s<span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-29" aria-label="Editable VKF source: Unit-aware state evolution" spellcheck="false" autocapitalize="off" autocomplete="off">: .units
+advance(p,v,a,dt):(
+    p:p+v*dt+a*dt^2/2,
+    v:v+a*dt
+)
+state:advance(0m,2m/1s,1m/1s^2,2s)
+::state.p
+::state.v.to(m/s)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>6 m
+4 m/s
+</pre></details><h3>Motion fields</h3><section class="readme-example" data-vkf-example-id="stdlib-example-30" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token operator">:</span><span class="vf-token operator">.</span>physics<span class="vf-token operator">.</span>units
+<span class="vf-token function">advance</span><span class="vf-token punctuation">(</span>p<span class="vf-token punctuation">,</span>v<span class="vf-token punctuation">,</span>dt<span class="vf-token punctuation">)</span><span class="vf-token operator">:</span><span class="vf-token punctuation">(</span>p<span class="vf-token operator">:</span>p<span class="vf-token operator">+</span>v<span class="vf-token operator">*</span>dt<span class="vf-token punctuation">,</span>v<span class="vf-token operator">:</span>v<span class="vf-token punctuation">)</span>
+<span class="vf-token binding">p_ic</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span>m
+<span class="vf-token binding">v_ic</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">0</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">,</span><span class="vf-token number">0</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span>m<span class="vf-token operator">/</span><span class="vf-token number">1</span>s
+<span class="vf-token binding">state</span><span class="vf-token operator">:</span><span class="vf-token function">advance</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(128 72% 72%)">i</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(272 72% 72%)">c</span><span class="vf-token punctuation">(</span>p<span class="vf-token punctuation">,</span>v<span class="vf-token punctuation">,</span><span class="vf-token number">2</span>s<span class="vf-token punctuation">)</span>
+<span class="vf-token operator">::</span>state<span class="vf-token operator">.</span>p
+<span class="vf-token operator">::</span>state<span class="vf-token operator">.</span>v<span class="vf-token operator">.</span><span class="vf-token function">to</span><span class="vf-token punctuation">(</span>m<span class="vf-token operator">/</span>s<span class="vf-token punctuation">)</span></code></pre><textarea class="readme-example-source" data-example-id="stdlib-example-30" aria-label="Editable VKF source: Motion fields" spellcheck="false" autocapitalize="off" autocomplete="off">:.physics.units
+advance(p,v,dt):(p:p+v*dt,v:v)
+p_ic:[[0,0,0],[1,0,0]]m
+v_ic:[[0,1,0],[0,2,0]]m/1s
+state:advance_ic(p,v,2s)
+::state.p
+::state.v.to(m/s)</textarea></div><section class="readme-example-terminal" aria-label="Example output"><span>Console</span><pre class="readme-example-output" aria-live="polite"></pre></section></div></div></section><details class="expected-result"><summary>Expected result · 0.7.2</summary><pre>[[0, 2, 0], [1, 4, 0]] m
+[[0, 1, 0], [0, 2, 0]] m/s
+</pre></details><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>rb_add3(a:any, b:any):
+rb_sub3(a:any, b:any):
+rb_scale3(s:num, v:any):
+rb_dot3(a:[num:3], b:[num:3]) -&gt; num:
+rb_cross3(a:[num:3], b:[num:3]) -&gt; [num:3]:
+rb_mat3(
+    a00:num, a01:num, a02:num,
+    a10:num, a11:num, a12:num,
+    a20:num, a21:num, a22:num
+):
+rb_identity3():
+rb_scale_mat3(s:num, A:any):
+rb_add_mat3(A:any, B:any):
+rb_outer3(a:[num:3], b:[num:3]) -&gt; [[num:3]:3]:
+rb_trace3(A:[[num:3]:3]) -&gt; num:
+rb_det3(A:[[num:3]:3]) -&gt; num:
+rb_inverse3(A:[[num:3]:3]) -&gt; [[num:3]:3]:
+rb_mat_vec3(A:[[num:3]:3], v:[num:3]) -&gt; [num:3]:
+rb_abs(x:num):
+parallel_axis_shift3(mass:num, displacement:any):
+tetra_mass_properties3(a:any, b:any, c:any, d:any, density:num):
+combine_mass_properties3(a:any, b:any):
+rigid_state3(position:[num:3], momentum:[num:3], angular_momentum:[num:3]):
+force_at_point3(force:any, point:any, center_world:any):
+step_rigid_body_momentum3(
+    state:(position:[num:3], momentum:[num:3], angular_momentum:[num:3]),
+    properties:(mass:num, inertia_tensor:[[num:3]:3]),
+    dt:num,
+    force:[num:3],
+    torque:[num:3]
+):
+vec2(x:num, y:num):
+vec3(x:num, y:num, z:num):
+add2(a:any, b:any):
+add3(a:any, b:any):
+sub2(a:any, b:any):
+sub3(a:any, b:any):
+scale2(s:num, v:any):
+scale3(s:num, v:any):
+dot2(a:[num:2], b:[num:2]) -&gt; num:
+dot3(a:[num:3], b:[num:3]) -&gt; num:
+cross3(a:[num:3], b:[num:3]) -&gt; [num:3]:
+mat2(a00:num, a01:num, a10:num, a11:num):
+mat3(
+    a00:num, a01:num, a02:num,
+    a10:num, a11:num, a12:num,
+    a20:num, a21:num, a22:num
+):
+zero3x3():
+identity3x3():
+scale_mat3(s:num, A:any):
+add_mat3(A:any, B:any):
+neg_mat3(A:any):
+mat_vec3(A:[[num:3]:3], v:[num:3]) -&gt; [num:3]:
+mat_mul3(A:[[num:3]:3], B:[[num:3]:3]) -&gt; [[num:3]:3]:
+diag_inv3(diagonal:any):
+skew3(r:any):
+collision_body3(mass:num, inv_inertia:[[num:3]:3], contact_offset:[num:3]):
+collision_body_inverse3(inv_mass:num, inv_inertia:[[num:3]:3], contact_offset:[num:3]):
+body_inv_mass3(body:any):
+body_pp3(body:any):
+body_pL3(body:any):
+body_Lp3(body:any):
+body_LL3(body:any):
+collision_matrix3(body_a:any, body_b:any):
+apply_collision_matrix3(matrix:any, linear_impulse:any, angular_impulse:any):
+normal_restitution_impulse3(matrix:any, relative_velocity:any, normal:any, restitution:num):
+abs_num(x:num):
+clamp_num(x:num, lo:num, hi:num):
+max_num(a:num, b:num):
+length3(v:any):
+unit_or_zero3(v:any):
+project_normal3(v:any, normal:any):
+project_tangent3(v:any, normal:any):
+tangential_friction_impulse3(matrix:any, relative_velocity:any, normal:any, normal_impulse_magnitude:num, contact:any):
+normal_contact_impulse3(matrix:any, relative_velocity:any, normal:any, contact:any):
+rolling_resistance_impulse3(
+    matrix:any,
+    relative_angular_velocity:any,
+    normal:any,
+    normal_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+spin_friction_impulse3(
+    matrix:any,
+    relative_angular_velocity:any,
+    normal:any,
+    normal_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+coupled_contact_impulse3(
+    matrix:any,
+    relative_velocity:any,
+    relative_angular_velocity:any,
+    normal:any,
+    tangent:any,
+    rolling_axis:any,
+    normal_impulse_magnitude:num,
+    rolling_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+solid_contact_impulse3(
+    matrix:any,
+    relative_velocity:any,
+    relative_angular_velocity:any,
+    normal:any,
+    tangent:any,
+    rolling_axis:any,
+    contact_radius:num,
+    rolling_radius:num,
+    contact:any
+):
+angular_damping3(angular_velocity:any, damping:num):
+dice_texture():
+rigid_material(
+    name:str,
+    density:num,
+    e_n:num,
+    e_t:num,
+    mu_s:num,
+    mu_d:num,
+    mu_r:num
+):
+dice_material():
+felt_table_material():
+contact_material(a:any, b:any):
+copy_rigid_material(value:any):
+infinite_plane3(normal:[num:3], offset:num, source_material:any):
+cube_inv_inertia3(mass:num, size:num):
+dice_body3(
+    size:num,
+    mass:num,
+    center:[num:3],
+    linear_velocity:[num:3],
+    angular_velocity:[num:3],
+    source_material:any
+):
+dice_roll_initial_state(seed:num):
+first_plane_bounce3(dice:any, plane:any, contact:any):
+dice_transform_frame(center:any, rotation_degrees:any):
+dice_roll_path3(dice:any, plane:any, contact:any):
+settled_face_from_angular_velocity(angular_velocity:any):</pre><a href="./stdlib-source/physics.vkf" download>Download packaged physics.vkf</a><p>SHA256 <code>a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3</code></p></details></div></details><details class="reference-group" id="io"><summary><span class="group-number">13</span><span>.io <span class="module-subtitle">/ Files and streams</span></span><small>Native host capability</small></summary><div class="group-body"><p>Text and string-backed byte buffers: print, read_line and file operations. The browser runner does not offer native filesystem access.</p><div class="api-list"><code>print</code><code>eprint</code><code>read_line</code><code>read_text</code><code>write_text</code><code>append_text</code><code>read_bytes</code><code>write_bytes</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/io.vkf" download>Download packaged io.vkf</a><p>SHA256 <code>0df4f64fa1597f619743fb0ff01105f59c1e7883e19bc095f00ba48e9a3e7d80</code></p></details></div></details><details class="reference-group" id="command"><summary><span class="group-number">14</span><span>.command <span class="module-subtitle">/ OS commands</span></span><small>Native host capability</small></summary><div class="group-body"><p>run takes a program and exact argument vector; shell explicitly crosses into the platform shell. These native OS capabilities are unavailable to website programs.</p><div class="api-list"><code>run</code><code>shell</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>run(program:str, args:any) -&gt; (code:int,out:str,err:str):
+shell(command:str) -&gt; (code:int,out:str,err:str):</pre><a href="./stdlib-source/command.vkf" download>Download packaged command.vkf</a><p>SHA256 <code>1d7b751e40daaf1689bb78dbac8fb593a998841e6b05de50e49130089ac63d34</code></p></details></div></details><details class="reference-group" id="system"><summary><span class="group-number">15</span><span>.system <span class="module-subtitle">/ Host information</span></span><small>Native host capability</small></summary><div class="group-body"><p>Read host identity, working directory, environment and CPU count. Native host capabilities differ from the isolated browser runner.</p><div class="api-list"><code>os</code><code>arch</code><code>cpu_count</code><code>cwd</code><code>env</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>os() -&gt; str:
+arch() -&gt; str:
+cpu_count() -&gt; int:
+cwd() -&gt; str:
+env(name:str) -&gt; (found:bit,value:str):</pre><a href="./stdlib-source/system.vkf" download>Download packaged system.vkf</a><p>SHA256 <code>5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9</code></p></details></div></details><details class="reference-group" id="time"><summary><span class="group-number">16</span><span>.time <span class="module-subtitle">/ Clocks and time formatting</span></span><small>Target-dependent host capability</small></summary><div class="group-body"><p>Read clocks, sleep and format time. Blocking and clock capabilities require a compatible target runtime.</p><div class="api-list"><code>wall_time</code><code>monotonic</code><code>sleep</code><code>time_stamp</code><code>format_time</code><code>current_time</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>wall_time() -&gt; num:
+monotonic() -&gt; num:
+sleep(seconds:num):
+time_stamp() -&gt; str:
+format_time(seconds:num, fmt:str=&quot;%Y-%m-%d %H:%M:%S&quot;, utc:bit=false) -&gt; str:
+current_time(fmt:str=&quot;%Y-%m-%d %H:%M:%S&quot;, utc:bit=false) -&gt; str:</pre><a href="./stdlib-source/time.vkf" download>Download packaged time.vkf</a><p>SHA256 <code>5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc</code></p></details></div></details><details class="reference-group" id="ui-colormaps"><summary><span class="group-number">17</span><span>.ui.colormaps <span class="module-subtitle">/ Colormap selectors</span></span><small>Compiler selector namespace</small></summary><div class="group-body"><p>Compile-time palette selectors for viewport layers. The suffix selects the color coordinate; alpha forms add an opacity channel. See the packaged source for normalization and axis rules.</p><div class="api-list"><code>viridis_i</code><code>plasma_i</code><code>inferno_i</code><code>magma_i</code><code>cividis_i</code><code>turbo_i</code><code>Spectral_i</code><code>twilight_i</code><code>tab20_i</code><code>terrain_i</code><code>alpha_jet_ij</code><code>alpha_tab20_qi</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/ui/colormaps.vkf" download>Download packaged ui/colormaps.vkf</a><p>SHA256 <code>1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82</code></p></details></div></details><details class="reference-group" id="units-si"><summary><span class="group-number">18</span><span>.units.si <span class="module-subtitle">/ Coherent SI catalog</span></span><small>Catalog source</small></summary><div class="group-body"><p>The base catalog imported by .units. Native lowering expands unit metadata and prefixes.</p><div class="api-list"></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/units/si.vkf" download>Download packaged units/si.vkf</a><p>SHA256 <code>36a2ce04f5ebff724d5c75a330f7eb42a5d816749557fb9f8b6668a60fd928c1</code></p></details></div></details><details class="reference-group" id="physics-units"><summary><span class="group-number">19</span><span>.physics.units <span class="module-subtitle">/ Physics unit alias</span></span><small>Catalog alias</small></summary><div class="group-body"><p>Reexports the physical quantity catalog for existing physics programs. New numerical code can import .units directly.</p><div class="api-list"></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/physics/units.vkf" download>Download packaged physics/units.vkf</a><p>SHA256 <code>79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2</code></p></details></div></details><details class="reference-group" id="physics-units-si"><summary><span class="group-number">20</span><span>.physics.units.si <span class="module-subtitle">/ Physics SI alias</span></span><small>Catalog alias</small></summary><div class="group-body"><p>Compatibility namespace for coherent SI units. Unit semantics remain part of the language core.</p><div class="api-list"></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>This module declares capabilities, imports or constants; callable exports are compiler-owned.</pre><a href="./stdlib-source/physics/units/si.vkf" download>Download packaged physics/units/si.vkf</a><p>SHA256 <code>d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05</code></p></details></div></details><details class="reference-group" id="physics-preparation"><summary><span class="group-number">21</span><span>.physics.preparation <span class="module-subtitle">/ Tetrahedron preparation</span></span><small>Experimental source</small></summary><div class="group-body"><p>Validation and preparation helpers for tetrahedral mass data. Source inventory only; not qualified by the quantity examples.</p><div class="api-list"><code>finite</code><code>prepare_tetrahedron</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>finite(x:num): (x=x) /\ ((abs(x)-abs(x))=0) /\ ((x=abs(x)) \/ (x=0-abs(x)))
+prepare_tetrahedron(a:[quantity&lt;1,0,0,0,0,0,0&gt;:3],b:[quantity&lt;1,0,0,0,0,0,0&gt;:3],c:[quantity&lt;1,0,0,0,0,0,0&gt;:3],d:[quantity&lt;1,0,0,0,0,0,0&gt;:3],authoredmass:quantity&lt;0,1,0,0,0,0,0&gt;):</pre><a href="./stdlib-source/physics/preparation.vkf" download>Download packaged physics/preparation.vkf</a><p>SHA256 <code>02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8</code></p></details></div></details><details class="reference-group" id="physics-convex_preparation"><summary><span class="group-number">22</span><span>.physics.convex_preparation <span class="module-subtitle">/ Convex geometry preparation</span></span><small>Experimental source</small></summary><div class="group-body"><p>Vertex, edge and face validation before preparing a convex object in SI.</p><div class="api-list"><code>vertex</code><code>validate_vertex</code><code>validate_edge</code><code>validate_face_indices</code><code>validate_face</code><code>part_for_face</code><code>prepare_convex_si</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>vertex(points:[[num:3]:n],index:int):
+validate_vertex(points:[[num:3]:n],faces:[[int:3]:nf],i:int):
+validate_edge(faces:[[int:3]:nf],u:int,w:int):
+validate_face_indices(count:int,face:[int:3]):
+validate_face(points:[[num:3]:n],faces:[[int:3]:nf],i:int,origin:[num:3]):
+part_for_face(points:[[num:3]:n],faces:[[int:3]:nf],origin:[num:3],i:int):
+prepare_convex_si(points:[[num:3]:n],faces:[[int:3]:nf],massvalue:num,mu_s:num,mu_d:num,restitution:num):</pre><a href="./stdlib-source/physics/convex_preparation.vkf" download>Download packaged physics/convex_preparation.vkf</a><p>SHA256 <code>69145d0db315e3d97aff50077fedf7c879be1cdb093b63a7aa3b6a9fbf08ae00</code></p></details></div></details><details class="reference-group" id="physics-rigid"><summary><span class="group-number">23</span><span>.physics.rigid <span class="module-subtitle">/ Rigid-body preparation and step</span></span><small>Experimental source</small></summary><div class="group-body"><p>Prepare physical state and advance it with source-defined helpers. Complete runtime and target acceptance is not established here.</p><div class="api-list"><code>prepare_si</code><code>step</code><code>prepare</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>prepare_si(points:[[P:3]:nv],faces:[[Q:3]:nf],massvalue:M,friction:Y,restitution:R,position:[X:3],orientation:[O:4],velocity:[D:3],omega:[U:3],gravity:[G:3]):
+step(state:(backing:(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list&lt;num&gt;,snapshot:[num:14]),time:quantity&lt;0,0,1,0,0,0,0&gt;,position:[quantity&lt;1,0,0,0,0,0,0&gt;:3],orientation:[num:4],velocity:[quantity&lt;1,0,-1,0,0,0,0&gt;:3],omega:[quantity&lt;0,0,-1,0,0,0,0&gt;:3]),duration:quantity&lt;0,0,1,0,0,0,0&gt;):
+prepare(points:[[quantity&lt;1,0,0,0,0,0,0&gt;:3]:nv],faces:[[Q:3]:nf],massvalue:quantity&lt;0,1,0,0,0,0,0&gt;,friction:Y,restitution:R,position:[quantity&lt;1,0,0,0,0,0,0&gt;:3],orientation:[O:4],velocity:[quantity&lt;1,0,-1,0,0,0,0&gt;:3],omega:[quantity&lt;0,0,-1,0,0,0,0&gt;:3],gravity:[quantity&lt;1,0,-2,0,0,0,0&gt;:3]):</pre><a href="./stdlib-source/physics/rigid.vkf" download>Download packaged physics/rigid.vkf</a><p>SHA256 <code>44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c</code></p></details></div></details><details class="reference-group" id="physics-supported_contact"><summary><span class="group-number">24</span><span>.physics.supported_contact <span class="module-subtitle">/ Supported contact</span></span><small>Experimental source</small></summary><div class="group-body"><p>Contact and advance helpers for supported bodies. Treat runtime support as target-dependent.</p><div class="api-list"><code>supported_sign</code><code>supported_finite</code><code>supported_max</code><code>supported_min</code><code>supported_candidate</code><code>supported_count</code><code>supported_contact_si</code><code>advance</code></div><details class="api-source"><summary>Source signatures and provenance</summary><p>Exact source extracted from the pinned compiler.data archive. Names listed above may include documented compiler intrinsics; the signatures below are source definitions only.</p><pre>supported_sign(x:num):
+supported_finite(x:num): (x=x) /\ ((abs(x)-abs(x))=0) /\ ((x=abs(x)) \/ (x=0-abs(x)))
+supported_max(a:num,b:num):
+supported_min(a:num,b:num):
+supported_candidate(active:bit,value:num,index:int):
+supported_count(active:bit):
+supported_contact_si(mass:num,inertia:num,radius:num,normal_load:num,drive:num,velocity:num,omega:num,spin0:num,duration:num,mu_s:num,mu_d:num,mu_r:num,rolling_length:num,mu_n:num,spin_length:num):
+advance(mass,inertia,radius,normal_load,drive,v,omega,spin,dt,mu_s,mu_d,mu_r,rolling_length,mu_n,spin_length):</pre><a href="./stdlib-source/physics/supported_contact.vkf" download>Download packaged physics/supported_contact.vkf</a><p>SHA256 <code>9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05</code></p></details></div></details></div><details class="api-source"><summary>All packaged sources, including support modules</summary><ul><li><a href="./stdlib-source/math.vkf" download>.math</a> — Source + compiler intrinsics</li><li><a href="./stdlib-source/linalg.vkf" download>.linalg</a> — Source; solve example below</li><li><a href="./stdlib-source/stat.vkf" download>.stat</a> — Source + intrinsics</li><li><a href="./stdlib-source/units.vkf" download>.units</a> — Catalog; examples below</li><li><a href="./stdlib-source/ui.vkf" download>.ui</a> — Compiler intrinsic viewport API</li><li><a href="./stdlib-source/concurrent.vkf" download>.concurrent</a> — Compiler/runtime intrinsics</li><li><a href="./stdlib-source/collections.vkf" download>.collections</a> — Capability declaration</li><li><a href="./stdlib-source/errors.vkf" download>.errors</a> — Compiler intrinsic error types</li><li><a href="./stdlib-source/random.vkf" download>.random</a> — Source; host-dependent default seed</li><li><a href="./stdlib-source/regex.vkf" download>.regex</a> — Capability declaration; target-dependent</li><li><a href="./stdlib-source/symbolic.vkf" download>.symbolic</a> — Experimental; browser coverage unresolved</li><li><a href="./stdlib-source/physics.vkf" download>.physics</a> — Source; broad runtime coverage unqualified</li><li><a href="./stdlib-source/io.vkf" download>.io</a> — Native host capability</li><li><a href="./stdlib-source/command.vkf" download>.command</a> — Native host capability</li><li><a href="./stdlib-source/system.vkf" download>.system</a> — Native host capability</li><li><a href="./stdlib-source/time.vkf" download>.time</a> — Target-dependent host capability</li><li><a href="./stdlib-source/ui/colormaps.vkf" download>.ui.colormaps</a> — Compiler selector namespace</li><li><a href="./stdlib-source/units/si.vkf" download>.units.si</a> — Catalog source</li><li><a href="./stdlib-source/physics/units.vkf" download>.physics.units</a> — Catalog alias</li><li><a href="./stdlib-source/physics/units/si.vkf" download>.physics.units.si</a> — Catalog alias</li><li><a href="./stdlib-source/physics/preparation.vkf" download>.physics.preparation</a> — Experimental source</li><li><a href="./stdlib-source/physics/convex_preparation.vkf" download>.physics.convex_preparation</a> — Experimental source</li><li><a href="./stdlib-source/physics/rigid.vkf" download>.physics.rigid</a> — Experimental source</li><li><a href="./stdlib-source/physics/supported_contact.vkf" download>.physics.supported_contact</a> — Experimental source</li><li><a href="./stdlib-source/io_direct_smoke.vkf" download>io_direct_smoke.vkf</a> — Packaged support source; not separately qualified public API</li><li><a href="./stdlib-source/physics/runtime.vkf" download>physics/runtime.vkf</a> — Packaged support source; not separately qualified public API</li><li><a href="./stdlib-source/physics_collision_matrix_smoke.vkf" download>physics_collision_matrix_smoke.vkf</a> — Packaged support source; not separately qualified public API</li><li><a href="./stdlib-source/physics_contact_model_smoke.vkf" download>physics_contact_model_smoke.vkf</a> — Packaged support source; not separately qualified public API</li><li><a href="./stdlib-source/physics_rigid_body_smoke.vkf" download>physics_rigid_body_smoke.vkf</a> — Packaged support source; not separately qualified public API</li></ul></details><p class="source-note">Package source: <code>fb41913c619e0dac6c66b08ee44e1ee18ce67aa8</code>. <a href="stdlib-inventory.json">Machine-readable source inventory and hashes</a> · <a href="current-compiler-release.json">Compiler pins</a></p></article></main><footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><span>Mathematics, made into programs.</span><nav aria-label="More"><a href="performance.html">Performance & evidence</a><a href="coming-soon.html">Experimental previews</a><a href="https://github.com/vektor-flow/spec">Language specification</a></nav><small>Experimental language · Incomplete 0.7.2 preview</small></footer><script type="module" src="./reference-navigation.mjs"></script><script type="module" src="./current-documentation-examples.mjs"></script></body></html>

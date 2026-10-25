@@ -123,3 +123,34 @@ This uses the existing JavaScript browser physics reference. It does not complet
 the native VKF physics/compiler port. LaTeX glyph drawing uses the GPU; its
 existing layout/typesetting remains JavaScript. The native symbolic WASM and
 compiled Morphing field kernels remain separate, unchanged components.
+
+## Website remake (e1079)
+
+The content entry points are Overview (`index.html`), Syntax, Standard library,
+Build & embed, and Download. The homepage keeps one actual motion program;
+other programs are grouped in searchable, expandable references. All formerly
+displayed source programs remain available. `stdlib-inventory.json` and
+`stdlib-source/` are extracted from the exact 0.7.2 data archive, not a newer
+compiler branch. Inventory presence does not qualify complete API support.
+
+The public runtime remains pinned to the same incomplete 0.7.2 package.
+`embed-example.html` connects a real HTML input to source compilation and
+execution in the existing Web Worker. Package it reproducibly with
+`python3 scripts/package-embedding-starter.py`; this performs no compiler build.
+The starter keeps relative runtime paths and original third-party notices.
+
+Run `python3 tests/site-remake-source.py` for source/provenance checks. After
+all required optimization workers close, serve `public/` on localhost with
+COOP/COEP headers and run `tests/site-remake-browser.mjs` using the existing
+Playwright installation. `VKF_SITE_URL`, `VKF_PLAYWRIGHT_MODULE`, and
+`VKF_SITE_EVIDENCE` configure the test. It serially executes each unique program,
+binds displayed copies by source hash, checks real UI reruns, captures desktop
+and phone layouts, checks copy/download/navigation, and runs the HTML form.
+Software-rendered browser QA makes no physical GPU performance claim.
+
+Before publication, run the existing current-site policy and manifest checks.
+Use the existing Pages `main` workflow and `vektorflow.org` domain. Check the
+remote parent immediately before a fast-forward push; preserve newer preview
+assets and record the previous remote commit for rollback. Useful older
+documentation paths redirect to the new guide sections; retired binaries remain
+retired. Website publication does not promote a compiler release.

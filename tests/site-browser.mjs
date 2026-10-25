@@ -7,7 +7,7 @@ try{
  await page.goto(base+'/');
  await page.waitForFunction(()=>[...document.querySelectorAll('.readme-example-play')].some(x=>!x.disabled),{timeout:120000});
  assert((await page.locator('.release-version').innerText()).includes('0.7.2'));
- const example=page.locator('.readme-example').first();await example.locator('button').click();await page.waitForFunction(()=>document.querySelector('.readme-example-output').textContent.includes('[3, 7]'),{timeout:120000});
+ const example=page.locator('[data-vkf-example-id="example-1"]');await example.locator('button').click();await page.waitForFunction(()=>document.querySelector('[data-vkf-example-id="example-1"] .readme-example-output').textContent.includes('[3, 7]'),{timeout:120000});
  await page.getByRole('link',{name:'Coming soon',exact:true}).first().click();assert((await page.locator('.release-version').innerText()).includes('0.7.2'));
  await page.getByRole('link',{name:'Open GPU math preview',exact:true}).click();assert(page.url().endsWith('/previews/gpu-math-typing/'));
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

@@ -6,14 +6,93 @@
 .readme li{margin-block:.65rem}
 .readme-example-play:disabled{color:var(--muted);background:transparent;border-color:var(--rule);cursor:not-allowed;opacity:.65}
 .readme-example-output{min-height:1.5em}
-</style></head>
+
+.purpose-hero{padding:12px 0 28px}
+.readme .purpose-eyebrow{color:var(--accent);font-size:.78rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.readme .purpose-hero h2{font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.08;letter-spacing:-.045em;margin:.3em 0 .55em}
+.purpose-lead{font-size:1.18rem;line-height:1.6;max-width:48rem}
+.purpose-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px}
+.purpose-primary{display:inline-block;padding:10px 18px;border-radius:6px;background:var(--accent);color:#fff;text-decoration:none;font-weight:650}
+.purpose-demo{border-top:1px solid var(--rule);padding-top:24px}
+.readme .purpose-demo h2{margin-top:.3em}
+.purpose-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.purpose-steps>div{padding:16px;border:1px solid var(--rule);border-radius:6px;min-width:0}
+.purpose-steps span{display:block;color:var(--accent);font-size:.78rem;font-weight:700;margin-bottom:8px}
+.purpose-steps strong{display:block;line-height:1.4}
+.readme .purpose-steps p{font-size:.9rem;color:var(--muted);margin:.6em 0 0}
+.purpose-result-hint{font-size:.9rem;line-height:1.6}
+.purpose-result-hint h3{margin-top:0}
+.purpose-key{font-weight:750}
+.purpose-position{color:#126593}.purpose-velocity{color:#a54008}.purpose-phase{color:#167c45}
+@media(prefers-color-scheme:dark){.purpose-status{--purpose-status-bg:#161b22}.purpose-primary{background:#7962c8}.purpose-position{color:#40b8ff}.purpose-velocity{color:#ff9b60}.purpose-phase{color:#50e697}}
+.purpose-status{padding:12px 16px;border-left:3px solid var(--accent);background:var(--purpose-status-bg,#f6f8fa);font-size:.9rem}
+.purpose-scope{border-block:1px solid var(--rule);margin-top:32px;padding-bottom:20px}
+@media(max-width:640px){.purpose-steps{grid-template-columns:1fr}.purpose-hero{padding-top:0}.purpose-actions{align-items:flex-start;flex-direction:column}.purpose-status{overflow-wrap:anywhere}}
+@media(max-width:640px){[data-vkf-example-id="motion-design"] .readme-example-source,[data-vkf-example-id="motion-design"] .readme-example-highlight{font-size:16px;line-height:24px}}
+</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2317253d%22/%3E%3Cpath d=%22M7 9l9 15 9-15%22 fill=%22none%22 stroke=%22%236cceff%22 stroke-width=%223%22/%3E%3C/svg%3E">
+</head>
 <body><a class="skip-link" href="#readme-documentation">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html#examples" aria-current="page">Examples</a><a href="syntax.html">Syntax</a><a href="features.html">Features</a><a href="install.html">Download</a><a href="performance.html">Performance</a><a href="coming-soon.html">Coming soon</a></nav><span class="release-version">0.7.2 · Preview</span></header>
 <main class="landing"><article id="readme-documentation" class="readme"><h1 id="vektor-flow">Vektor Flow</h1>
-<p>A compact mathematical language for working with values, dimensions and functions.</p>
-<p><a href="#examples">Examples</a> · <a href="syntax.html">Syntax</a> · <a href="features.html">Features</a> · <a href="install.html">Download</a> · <a href="performance.html">Performance</a></p>
-<p>Write the relationships in your data. Named dimensions align values; explicit reductions combine them. Functions work over compatible structures, and demand selects what must be computed.</p>
-<h2 id="examples">Examples</h2>
-<p>Edit and run these examples in your browser. This compiler is incomplete; the examples below are verified.</p>
+<section class="purpose-hero" aria-labelledby="purpose-title">
+<p class="purpose-eyebrow">Mathematics → programs → interactive views</p>
+<h2 id="purpose-title">Keep the mathematics.<br>Explore what it does.</h2>
+<p class="purpose-lead">Vektor Flow is an experimental programming language for people who build mathematical models, scientific tools and visual explanations. Work with symbolic expressions and matrices, then bring the results into interactive plots in the browser.</p>
+<p>Use one mathematical description to connect a calculation, its derivative and its picture. Inspect the relationships as you change the model, instead of maintaining separate formulas for every view.</p>
+<p class="purpose-actions"><a class="purpose-primary" href="#smooth-transition">Explore the motion example</a><a href="install.html">Get the 0.7.2 preview</a></p>
+</section>
+<section aria-labelledby="smooth-transition" class="purpose-demo">
+<p class="purpose-eyebrow">A model you can investigate</p>
+<h2 id="smooth-transition">Design a move. See where it overshoots.</h2>
+<p>How should a camera move between two positions? Use normalized time and position from 0 to 1. Choose the endpoint slopes, solve for a cubic path, and differentiate it symbolically. Compare position with velocity, then look at the same motion as a position–velocity curve.</p>
+<div class="purpose-steps" aria-label="The mathematical workflow">
+<div><span>01 · Solve a matrix</span><strong>Four constraints → four coefficients</strong><p>Start at 0, end at 1; choose the slope at each end.</p></div>
+<div><span>02 · Keep the expression</span><strong>Path → derivative function</strong><p>Inspect the formula behind the motion and its rate of change.</p></div>
+<div><span>03 · Plot both views</span><strong>Time curves + phase portrait</strong><p>Look for overshoot and reversal before using the path.</p></div>
+</div>
+<p id="motion-verification" class="purpose-status"><strong>Locally browser-tested · publication pending.</strong> This local example uses APIs present in the published 0.7.2 package. The combined program was locally checked with endpoint slopes 0 and −2, including rerun and phone layouts. Output and plots appear only after execution; no result is prefilled.</p>
+<p><strong>Try it:</strong> run the program, then change <code>exit_slope</code> from <code>0</code> to <code>-2</code> and run again. With zero endpoint slopes, the mathematical solution is <code>[0, 0, 3, -2]</code>, giving <code>3x² − 2x³</code>. A negative final slope asks the path to reverse before it arrives: look for the overshoot in position and the sign change in velocity.</p>
+<section class="readme-example" data-vkf-example-id="motion-design" data-verification="e1003-local-browser" data-compiler-status="loading" aria-describedby="motion-verification"><div class="readme-example-bar"><span>Locally tested example · Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code>la:.linalg
+exit_slope:0
+c:la.solve([[1,0,0,0],[1,1,1,1],
+            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
+path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
+slope:deriv_t(path)
+::c
+::path(0.5,c.0,c.1,c.2,c.3)
+::slope(0.5,c.0,c.1,c.2,c.3)
+t:0.005*[0..200]
+curves:.ui.viewport
+curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
+curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
+curves.show()
+phase:.ui.viewport
+phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
+phase.show()</code></pre><textarea class="readme-example-source" data-example-id="motion-design" aria-label="Editable VKF source: Matrix solve, symbolic path and motion plots" spellcheck="false" autocapitalize="off" autocomplete="off">la:.linalg
+exit_slope:0
+c:la.solve([[1,0,0,0],[1,1,1,1],
+            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
+path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
+slope:deriv_t(path)
+::c
+::path(0.5,c.0,c.1,c.2,c.3)
+::slope(0.5,c.0,c.1,c.2,c.3)
+t:0.005*[0..200]
+curves:.ui.viewport
+curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
+curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
+curves.show()
+phase:.ui.viewport
+phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
+phase.show()</textarea></div><section class="readme-example-terminal" aria-label="Motion example output"><span>Compiler output · blue position · orange velocity · green phase portrait</span><pre class="readme-example-output" data-output-kind="unrun" aria-live="polite"></pre></section></div><section class="readme-example-result" data-example-result aria-label="Motion example plots"><div data-result-hint class="purpose-result-hint"><p class="purpose-eyebrow">Your model, two views</p><h3>From constraints to a curve</h3><p><code>p(0) = 0</code><br><code>p(1) = 1</code><br><code>p′(0) = 0</code><br><code>p′(1) = exit_slope</code></p><p>Run to see the compiler’s output here.</p><p><span class="purpose-key purpose-position">Blue</span> · position over time<br><span class="purpose-key purpose-velocity">Orange</span> · velocity over time<br><span class="purpose-key purpose-phase">Green</span> · position against velocity</p><p>Change the endpoint slope in the source, then run again to compare the motion.</p></div></section></div></section>
+<p>The matrix rows encode <code>p(0)</code>, <code>p(1)</code>, <code>p′(0)</code> and <code>p′(1)</code>. The compiler’s deriv_t function transform differentiates the cubic in VKF. Both plots sample the path and its derived function using the actual solved coefficients passed explicitly as parameters. This working 0.7.2 example uses function differentiation rather than first-class symbolic domain expressions. These are sampled curves, not a claim of adaptive symbolic plotting or a physical simulation.</p>
+</section>
+<section class="purpose-scope" aria-labelledby="preview-scope">
+<h2 id="preview-scope">A mathematical workspace, still taking shape</h2>
+<p>VKF connects symbolic computation, ordinary functions and dimension-aware data with visual programs. A <code>Window</code> is a class-like function for a UI container; a <code>Viewport</code> is a screen or an embedded VKF region for presenting a view.</p>
+<p>The published engine is the <strong>0.7.2 experimental preview</strong>. The previously verified examples below cover a limited set of behavior; they do not establish complete language support. Browser execution and target support vary; the combined motion example above still needs browser verification. See <a href="features.html">capabilities and implementation status</a> and <a href="coming-soon.html">work in progress</a>.</p>
+</section>
+<h2 id="examples">Explore the language</h2>
+<p>Edit and run these previously verified 0.7.2 examples in your browser. Start here for the smaller building blocks behind mathematical programs.</p>
 <h3 id="named-dimensions-and-reductions">Named dimensions and reductions</h3>
 <p>Names align dimensions. Repeating a name selects a diagonal; summation is explicit.</p>
 <section class="readme-example" data-vkf-example-id="example-1" data-compiler-status="loading"><div class="readme-example-bar"><span>Editable example · Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code><span class="vf-token binding">A</span><span class="vf-token operator">:</span><span class="vf-token punctuation">[</span><span class="vf-token punctuation">[</span><span class="vf-token number">1</span><span class="vf-token punctuation">,</span><span class="vf-token number">2</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">,</span><span class="vf-token punctuation">[</span><span class="vf-token number">3</span><span class="vf-token punctuation">,</span><span class="vf-token number">4</span><span class="vf-token punctuation">]</span><span class="vf-token punctuation">]</span><span class="vf-token operator">_</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(128 72% 72%)">i</span><span class="vf-token dimension" style="--vf-dimension-color:hsl(164 72% 72%)">j</span>
@@ -435,4 +514,4 @@ state:concurrent.shared((p:[1,2,3],mode:&quot;run&quot;))</textarea></div><secti
 ready
 </pre></section></div></div></section>
 <p>Both active subscribers receive <code>ready</code>. <code>shared</code> accepts one ordinary value; published generations are immutable. Its update API remains a separate design decision.</p>
-<p>VKF is experimental. These examples define intended behavior; compiler support and target verification are tracked independently.</p></article></main><footer class="site-footer">Incomplete compiler · Runnable examples</footer><script type="module" src="./current-documentation-examples.mjs?asset=3e65c70162739881"></script></body></html>
+<p>VKF is experimental. These examples define intended behavior; compiler support and target verification are tracked independently.</p></article></main><footer class="site-footer">Experimental 0.7.2 preview · Browser examples</footer><script type="module" src="./current-documentation-examples.mjs?asset=306b6e77981582ec"></script></body></html>

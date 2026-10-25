@@ -30,9 +30,14 @@ for (const example of document.querySelectorAll('.readme-example')) {
   const button = example.querySelector('.readme-example-play');
   const output = example.querySelector('.readme-example-output');
   const workspace = example.querySelector('.readme-example-workspace');
+  const resultContainer = example.querySelector('[data-example-result]') ?? workspace;
+  const resultHint = example.querySelector('[data-result-hint]');
   if (output && source.value !== source.defaultValue) output.textContent = '';
   let revision = 0, busy = false, dispose;
-  const clearScene = () => { dispose?.(); dispose = undefined; };
+  const clearScene = () => {
+    dispose?.(); dispose = undefined;
+    if (resultHint) resultHint.hidden = false;
+  };
 
   const refresh = () => {
     code.innerHTML = highlightVkf(source.value + '\n');
@@ -54,9 +59,11 @@ for (const example of document.querySelectorAll('.readme-example')) {
     source.dispatchEvent(new Event('input', {bubbles:true}));
   });
   if (ready && button && output && workspace) {
-    example.dataset.compilerStatus = 'verified-examples';
+    example.dataset.compilerStatus = example.dataset.verification === 'pending'
+      ? 'package-ready-example-unverified' : 'verified-examples';
     const label = example.querySelector('.readme-example-bar > span');
-    if (label) label.textContent = 'Editable example';
+    if (label) label.textContent = example.dataset.verification === 'pending'
+      ? 'New example · interactive verification pending' : 'Editable example';
     button.disabled = false;
     button.setAttribute('aria-disabled', 'false');
     button.title = 'Run with the browser compiler';
@@ -76,7 +83,10 @@ for (const example of document.querySelectorAll('.readme-example')) {
         output.textContent = result.output.stdout + (result.output.stderr ?? '');
         if (result.packets?.length) {
           await ensureInlineRenderer();
-          if (revision === runRevision) dispose = mountRetainedSceneResult(workspace, result.packets);
+          if (revision === runRevision) {
+            dispose = mountRetainedSceneResult(resultContainer, result.packets);
+            if (resultHint) resultHint.hidden = true;
+          }
         }
       } catch (error) {
         if (revision === runRevision) {

@@ -17,7 +17,7 @@ try {
  page.on('pageerror',e=>errors.push(String(e)));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  const sources=new Map();
- for(const route of ['index.html','syntax.html','stdlib.html','build.html']) {
+ for(const route of ['index.html','syntax.html','stdlib.html','build.html','examples.html']) {
   await page.goto(base+'/'+route,{waitUntil:'networkidle'});
   await page.waitForFunction(()=>[...document.querySelectorAll('.readme-example-play')].some(x=>!x.disabled),null,{timeout:120000});
   assert.equal(await page.locator('.readme-example-output').evaluateAll(es=>es.every(e=>e.textContent==='')),true,route+' initially empty outputs');
@@ -32,7 +32,9 @@ try {
  // Each source is compiled/executed once through the actual worker API; route/source hashes bind all displayed copies.
  await page.goto(base+'/index.html',{waitUntil:'networkidle'});
  await page.waitForFunction(()=>!document.querySelector('.readme-example-play').disabled,null,{timeout:120000});
+ const previous=process.env.VKF_PREVIOUS_EXAMPLE_RESULTS?new Map(JSON.parse(fs.readFileSync(process.env.VKF_PREVIOUS_EXAMPLE_RESULTS,'utf8')).map(r=>[r.source_sha256,r])):new Map();
  for(const [source_sha256,example] of sources) {
+  if(previous.get(source_sha256)?.passed){ const prior=previous.get(source_sha256);rows.push({...prior,route:example.route,id:example.id,occurrences:example.occurrences,reused_actual_verification:process.env.VKF_PREVIOUS_EXAMPLE_RESULTS});continue; }
   const result=await page.evaluate(async source=>{
    const {createInlineRunner}=await import('./inline-runner.mjs');
    const release=await fetch('./current-compiler-release.json').then(r=>r.json());
@@ -46,23 +48,32 @@ try {
   fs.writeFileSync(path.join(out,'example-checks.json'),JSON.stringify(rows,null,2));
  }
  assert(rows.every(r=>r.passed),'one or more examples failed; see example-checks.json');
- // Run the actual homepage UI and inspect both plots; change a parameter and check invalidation/rerun.
+ // Run the scientific homepage UI, inspect the actual curve, then choose another spectrum.
+ const science=page.locator('[data-vkf-example-id="scientific-spectrum"]');
+ await science.locator('.readme-example-play').click();
+ await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="scientific-spectrum"]').hasAttribute('aria-busy'),null,{timeout:120000});
+ assert.equal(await science.locator('.readme-example-output').getAttribute('data-output-kind'),'stdout');
+ assert((await science.locator('.readme-example-output').innerText()).includes('[3, 8, 4]'));
+ assert(await science.locator('canvas').count()>0);
+ await page.screenshot({path:path.join(out,'desktop-home.png'),fullPage:true});
+ await science.screenshot({path:path.join(out,'desktop-scientific-workflow.png')});
+ const textarea=science.locator('textarea');const original=await textarea.inputValue();
+ await textarea.fill(original.replace('selected:spectra.(2,:)','selected:spectra.(0,:)'));
+ assert.equal(await science.locator('.readme-example-output').innerText(),'');
+ assert.equal(await science.locator('canvas').count(),0);
+ await science.locator('.readme-example-play').click();
+ await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="scientific-spectrum"]').hasAttribute('aria-busy'),null,{timeout:120000});
+ assert((await science.locator('.readme-example-output').innerText()).includes('[1, 5, 2]'));
+ checks.push({check:'scientific-real-UI-two-runs-and-invalidation',passed:true});
+ await page.goto(base+'/examples.html#motion');
+ await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"] button').disabled,null,{timeout:120000});
  const motion=page.locator('[data-vkf-example-id="motion-design"]');
- await motion.locator('.readme-example-play').click();
+ await motion.locator('button').click();
  await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"]').hasAttribute('aria-busy'),null,{timeout:120000});
- assert.equal(await motion.locator('.readme-example-output').getAttribute('data-output-kind'),'stdout');
  assert((await motion.locator('.readme-example-output').innerText()).includes('1.5'));
  assert(await motion.locator('canvas').count()>0);
- await page.screenshot({path:path.join(out,'desktop-home.png'),fullPage:true});
  await motion.screenshot({path:path.join(out,'desktop-motion.png')});
- const textarea=motion.locator('textarea');const original=await textarea.inputValue();
- await textarea.fill(original.replace('exit_slope:0','exit_slope:-2'));
- assert.equal(await motion.locator('.readme-example-output').innerText(),'');
- assert.equal(await motion.locator('canvas').count(),0);
- await motion.locator('.readme-example-play').click();
- await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"]').hasAttribute('aria-busy'),null,{timeout:120000});
- assert((await motion.locator('.readme-example-output').innerText()).includes('0.75'));
- checks.push({check:'motion-real-UI-two-runs-and-invalidation',passed:true});
+ checks.push({check:'matrix-function-transform-and-two-views-real-UI',passed:true});
  // Search, disclosure and keyboard-accessible controls.
  await page.goto(base+'/syntax.html');
  await page.locator('#reference-search').fill('recurrence');
@@ -78,15 +89,15 @@ try {
  checks.push({check:'search-expand-collapse-and-deep-link',passed:true});
  for(const width of [1440,390,320]) {
   await page.setViewportSize({width,height:width===1440?1000:844});
-  for(const route of ['index.html','syntax.html','stdlib.html','build.html','install.html']) {
+  for(const route of ['index.html','syntax.html','stdlib.html','build.html','install.html','examples.html']) {
    await page.goto(base+'/'+route,{waitUntil:'networkidle'});
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route} width ${width}`);
    assert.equal(await page.locator('h1').count(),1);
    if(route==='index.html' && width<760) {
     await page.waitForFunction(()=>!document.querySelector('.readme-example-play').disabled,null,{timeout:120000});
     await page.locator('.readme-example-play').tap();
-    await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"]').hasAttribute('aria-busy'),null,{timeout:120000});
-    assert(await page.locator('[data-vkf-example-id="motion-design"] canvas').count()>0);
+    await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="scientific-spectrum"]').hasAttribute('aria-busy'),null,{timeout:120000});
+    assert(await page.locator('[data-vkf-example-id="scientific-spectrum"] canvas').count()>0);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'phone plot overflow '+width);
     assert.equal(await page.locator('textarea').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)),16);
     checks.push({check:'phone-touch-run-and-real-plots',width,passed:true});

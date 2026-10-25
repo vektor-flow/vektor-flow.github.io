@@ -9,11 +9,11 @@ try {
  await page.goto(base+'/');
  await page.waitForFunction(()=>[...document.querySelectorAll('.readme-example-play')].some(x=>!x.disabled),null,{timeout:120000});
  assert((await page.locator('.release-version').innerText()).includes('0.7.2'));
- const example=page.locator('[data-vkf-example-id="motion-design"]');
+ const example=page.locator('[data-vkf-example-id="scientific-spectrum"]');
  assert.equal(await example.locator('.readme-example-output').innerText(),'');
  await example.locator('button').click();
- await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="motion-design"]').hasAttribute('aria-busy'),null,{timeout:120000});
- assert((await example.locator('.readme-example-output').innerText()).includes('1.5'));
+ await page.waitForFunction(()=>!document.querySelector('[data-vkf-example-id="scientific-spectrum"]').hasAttribute('aria-busy'),null,{timeout:120000});
+ assert((await example.locator('.readme-example-output').innerText()).includes('[3, 8, 4]'));
  assert(await example.locator('canvas').count()>0);
  await page.getByRole('link',{name:'Syntax',exact:true}).first().click();
  await page.locator('#reference-search').fill('specialization');

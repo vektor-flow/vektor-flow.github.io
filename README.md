@@ -127,8 +127,8 @@ compiled Morphing field kernels remain separate, unchanged components.
 ## Website remake (e1079)
 
 The content entry points are Overview (`index.html`), Syntax, Standard library,
-Build & embed, and Download. The homepage keeps one actual motion program;
-other programs are grouped in searchable, expandable references. All formerly
+Build & embed, and Download. The homepage keeps one actual spectral-analysis program;
+the matrix/derivative motion program is on Examples, and other programs are grouped in searchable, expandable references. All formerly
 displayed source programs remain available. `stdlib-inventory.json` and
 `stdlib-source/` are extracted from the exact 0.7.2 data archive, not a newer
 compiler branch. Inventory presence does not qualify complete API support.

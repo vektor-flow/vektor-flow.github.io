@@ -5,7 +5,8 @@ root = Path(__file__).resolve().parents[1] / 'public'
 name = 'vkf-embedding-starter-0.7.2'
 files = [root / n for n in ['embed-example.html', 'embed-example.mjs',
     'inline-runner.mjs', 'canonical-inline-worker.mjs', 'vkf-browser-isolation.mjs',
-    'vkf-coep-sw.js', 'current-compiler-release.json']]
+    'vkf-coep-sw.js', 'current-compiler-release.json',
+    'verification/site-remake-e1079.json', 'verification/website-examples.json']]
 for folder in ['playground', 'vf-ui', 'vendor']:
     files.extend(p for p in (root / folder).rglob('*') if p.is_file())
 files = sorted(set(files))

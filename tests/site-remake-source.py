@@ -19,7 +19,7 @@ old=[]
 for name in ['index.html','syntax.html']:
  p=Sources();p.feed(subprocess.check_output(['git','show','6472d2a:public/'+name],cwd=root,text=True));old+=p.sources
 new=[]
-for name in ['index.html','syntax.html','stdlib.html','build.html','install.html']:
+for name in ['index.html','syntax.html','stdlib.html','build.html','install.html','examples.html']:
  p=Sources();p.feed((public/name).read_text());new+=p.sources
  assert p.h1==1,name
  assert len(p.ids)==len(set(p.ids)),name+' duplicate IDs'

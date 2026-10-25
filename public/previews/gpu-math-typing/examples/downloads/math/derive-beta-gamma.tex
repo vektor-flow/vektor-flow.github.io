@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Beta–gamma identity via a Jacobian
+% Assumptions: p,q > 0; all integrals converge.
+% Express the product as a double integral.
+\[
+\Gamma(p)\Gamma(q)=\int_0^{\infty}\int_0^{\infty}x^{p-1}y^{q-1}e^{-x-y}\,dx\,dy
+\]
+% Use r > 0 and 0 < u < 1.
+\[
+x=ru,\quad y=r(1-u)
+\]
+% Compute the absolute Jacobian.
+\[
+\left|\frac{\partial(x,y)}{\partial(r,u)}\right|=r
+\]
+% Separate the transformed variables.
+\[
+\Gamma(p)\Gamma(q)=\int_0^{\infty}r^{p+q-1}e^{-r}\,dr\int_0^1u^{p-1}(1-u)^{q-1}\,du
+\]
+% Recognize the two special functions.
+\[
+\Gamma(p)\Gamma(q)=\Gamma(p+q)B(p,q)
+\]
+% Divide by the positive gamma factor.
+\[
+B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}
+\]
+\end{document}

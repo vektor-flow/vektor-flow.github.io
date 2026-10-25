@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Joint normal mean and variance MLE
+% Assumptions: Independent normal observations; n ≥ 2 and not all observations coincide; v = σ² > 0.
+% Write the joint likelihood.
+\[
+L(\mu,v)=(2\pi v)^{-n/2}e^{-\sum_i(x_i-\mu)^2/(2v)}
+\]
+% Take logarithms.
+\[
+\ell(\mu,v)=-\frac{n}{2}\ln(2\pi v)-\frac{1}{2v}\sum_i(x_i-\mu)^2
+\]
+% Set the mean score to zero.
+\[
+\frac{\partial\ell}{\partial\mu}=\frac{1}{v}\sum_i(x_i-\mu)=0
+\]
+% Recover the sample mean.
+\[
+\hat\mu=\bar x=\frac{1}{n}\sum_i x_i
+\]
+% Optimize the profile likelihood over positive variance.
+\[
+\frac{\partial\ell}{\partial v}=-\frac{n}{2v}+\frac{\sum_i(x_i-\bar x)^2}{2v^2}=0
+\]
+% This is the MLE; its denominator is n, not the unbiased estimator’s n−1.
+\[
+\hat v=\frac{1}{n}\sum_i(x_i-\bar x)^2
+\]
+\end{document}

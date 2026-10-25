@@ -188,6 +188,7 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
   let backend = null;
   let scene = { primitives: [] };
   let vertices = new Float32Array();
+  let resident = null;
   let cssWidth = 1;
   let cssHeight = 1;
   let destroyed = false;
@@ -195,7 +196,12 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
   async function initialize() {
     assertAlive();
     resize();
-    backend = await createWebGpuBackend(canvas).catch(() => null);
+    if (options.backend !== 'webgl2') {
+      backend = await createWebGpuBackend(canvas, options).catch(error => {
+        if (options.backend === 'webgpu' || options.device) throw error;
+        return null;
+      });
+    }
     if (!backend) backend = createWebGl2Backend(canvas);
     if (!backend) throw new Error('A WebGPU or WebGL2 GPU backend is required');
     backend.resize(cssWidth, cssHeight);
@@ -206,6 +212,7 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
   function setScene(nextScene = {}) {
     assertAlive();
     scene = nextScene;
+    resident = null;
     vertices = buildScreenSpaceSimplexVertices(scene);
     backend?.render(vertices);
   }
@@ -213,8 +220,24 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
   function setPackedVertices(nextVertices, dirtyRange = null) {
     assertAlive();
     scene = null;
+    resident = null;
     vertices = requirePackedSimplexVertices(nextVertices);
     backend?.render(vertices, dirtyRange);
+  }
+
+  // Buffer is borrowed from a compute producer on this renderer's device.
+  // The producer owns its lifetime; geometry never passes through CPU memory.
+  function setResidentVertices(buffer, vertexCount) {
+    assertAlive();
+    if (!backend?.renderResident) throw new Error('Resident vertices require WebGPU');
+    if (!Number.isInteger(vertexCount) || vertexCount < 0 ||
+        !buffer || buffer.size < vertexCount * BYTES_PER_VERTEX) {
+      throw new RangeError('Invalid resident vertex buffer');
+    }
+    scene = null;
+    vertices = new Float32Array();
+    resident = { buffer, vertexCount };
+    backend.renderResident(buffer, vertexCount);
   }
 
   function resize(width = canvas.clientWidth, height = canvas.clientHeight) {
@@ -227,7 +250,8 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
     if (canvas.width !== bufferWidth) canvas.width = bufferWidth;
     if (canvas.height !== bufferHeight) canvas.height = bufferHeight;
     backend?.resize(cssWidth, cssHeight);
-    backend?.render(vertices);
+    if (resident) backend?.renderResident(resident.buffer, resident.vertexCount);
+    else backend?.render(vertices);
   }
 
   function destroy() {
@@ -247,6 +271,13 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
     initialize,
     setScene,
     setPackedVertices,
+    setResidentVertices,
+    captureFrame(options) {
+      assertAlive();
+      if (!backend?.captureFrame) throw new Error('GPU frame readback is unavailable');
+      return backend.captureFrame(options);
+    },
+    get device() { return backend?.device || null; },
     resize,
     destroy,
     get backend() {
@@ -337,13 +368,17 @@ function clampUnit(value) {
   return Math.max(0, Math.min(1, Number.isFinite(value) ? value : 0));
 }
 
-async function createWebGpuBackend(canvas) {
+async function createWebGpuBackend(canvas, options = {}) {
   if (!globalThis.navigator?.gpu) return null;
   const probeCanvas = createWebGpuProbeCanvas(canvas);
   if (!probeCanvas?.getContext?.('webgpu')) return null;
-  const adapter = await globalThis.navigator.gpu.requestAdapter();
-  if (!adapter) return null;
-  const device = await adapter.requestDevice();
+  let device = options.device;
+  const ownsDevice = !device;
+  if (!device) {
+    const adapter = await globalThis.navigator.gpu.requestAdapter();
+    if (!adapter) return null;
+    device = await adapter.requestDevice();
+  }
   const context = canvas.getContext('webgpu');
   if (!context) return null;
   const format = globalThis.navigator.gpu.getPreferredCanvasFormat();
@@ -410,13 +445,14 @@ async function createWebGpuBackend(canvas) {
       entryPoint: 'fragmentMain',
       targets: [{
         format,
-        blend: {
+        blend: options.opaqueGeometry ? undefined : {
           color: { srcFactor: 'src-alpha', dstFactor: 'one-minus-src-alpha' },
           alpha: { srcFactor: 'one', dstFactor: 'one-minus-src-alpha' }
         }
       }]
     },
-    primitive: { topology: 'triangle-list' }
+    primitive: { topology: 'triangle-list' },
+    multisample: { count: 4 }
   });
   const bindGroup = device.createBindGroup({
     layout: bindGroupLayout,
@@ -425,11 +461,70 @@ async function createWebGpuBackend(canvas) {
   let vertexBuffer = null;
   let vertexCapacity = 0;
   let vertexCount = 0;
+  let multisampleTexture = null;
+  let textureWidth = 0;
+  let textureHeight = 0;
+
+  function draw(buffer, count) {
+    const encoder = device.createCommandEncoder();
+    const pass = encoder.beginRenderPass({
+      colorAttachments: [{
+        view: multisampleTexture.createView(),
+        resolveTarget: context.getCurrentTexture().createView(),
+        clearValue: options.clearColor || { r: 0, g: 0, b: 0, a: 0 },
+        loadOp: 'clear',
+        storeOp: 'discard'
+      }]
+    });
+    if (buffer && count) {
+      pass.setPipeline(pipeline);
+      pass.setBindGroup(0, bindGroup);
+      pass.setVertexBuffer(0, buffer);
+      pass.draw(count);
+    }
+    pass.end();
+    device.queue.submit([encoder.finish()]);
+  }
 
   return {
+    device,
+    renderResident: draw,
+    async captureFrame({timestamp, duration}) {
+      if (!Number.isSafeInteger(timestamp) || timestamp < 0 ||
+          !Number.isSafeInteger(duration) || duration <= 0) throw new RangeError('Invalid capture timing');
+      // Obtain and queue the texture copy before yielding: the canvas texture
+      // belongs to this presentation task. Pixels, not geometry, cross to CPU.
+      const width=canvas.width, height=canvas.height;
+      const stride=Math.ceil(width*4/256)*256;
+      const readback=device.createBuffer({size:stride*height,
+        usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
+      try {
+        const encoder=device.createCommandEncoder();
+        encoder.copyTextureToBuffer({texture:context.getCurrentTexture()},
+          {buffer:readback,bytesPerRow:stride,rowsPerImage:height},[width,height]);
+        device.queue.submit([encoder.finish()]);
+        await readback.mapAsync(GPUMapMode.READ);
+        const frame=new VideoFrame(readback.getMappedRange(),{
+          format:format.startsWith('bgra')?'BGRA':'RGBA',codedWidth:width,codedHeight:height,
+          layout:[{offset:0,stride}],timestamp,duration
+        });
+        readback.unmap();
+        return frame;
+      } finally { readback.destroy(); }
+    },
     kind: 'webgpu',
     resize(width, height) {
-      context.configure({ device, format, alphaMode: 'premultiplied' });
+      context.configure({ device, format, alphaMode: options.alphaMode || 'premultiplied',
+        usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC });
+      if (textureWidth !== canvas.width || textureHeight !== canvas.height) {
+        multisampleTexture?.destroy();
+        textureWidth = canvas.width;
+        textureHeight = canvas.height;
+        multisampleTexture = device.createTexture({
+          size: [textureWidth, textureHeight], sampleCount: 4, format,
+          usage: GPUTextureUsage.RENDER_ATTACHMENT
+        });
+      }
       device.queue.writeBuffer(viewportBuffer, 0, new Float32Array([width, height, 0, 0]));
     },
     render(vertices, dirtyRange = null) {
@@ -462,28 +557,13 @@ async function createWebGpuBackend(canvas) {
           device.queue.writeBuffer(vertexBuffer, 0, vertices);
         }
       }
-      const encoder = device.createCommandEncoder();
-      const pass = encoder.beginRenderPass({
-        colorAttachments: [{
-          view: context.getCurrentTexture().createView(),
-          clearValue: { r: 0, g: 0, b: 0, a: 0 },
-          loadOp: 'clear',
-          storeOp: 'store'
-        }]
-      });
-      if (vertexBuffer && vertexCount) {
-        pass.setPipeline(pipeline);
-        pass.setBindGroup(0, bindGroup);
-        pass.setVertexBuffer(0, vertexBuffer);
-        pass.draw(vertexCount);
-      }
-      pass.end();
-      device.queue.submit([encoder.finish()]);
+      draw(vertexBuffer, vertexCount);
     },
     destroy() {
       vertexBuffer?.destroy();
       viewportBuffer.destroy();
-      device.destroy();
+      multisampleTexture?.destroy();
+      if (ownsDevice) device.destroy();
     }
   };
 }

@@ -1,0 +1,10 @@
+{
+  "runtime": "vf-ui/vf-physics-engine.mjs",
+  "sha256": "526b318080c6ba9ec1a115a8e364188b41bab1918db1bbb867443805120f1620",
+  "entryPoint": "stepRigidPolygonWorld2D",
+  "canonicalMatch": "Exact byte match with bootstrap/seed/web/vf-ui/vf-physics-engine.mjs and site-public/public/vf-ui/vf-physics-engine.mjs",
+  "backend": "Existing VKF JavaScript browser physics reference; not a newly compiled native/WASM/GPU physics engine",
+  "gameAdapter": "physics.mjs: stable object IDs, analytic circles, CSS-pixel coordinates, mass=r^2, zero gravity, restitution=1, friction=0, sleep disabled; held object is kinematic",
+  "ownership": "VKF owns integration, contact geometry, constraints and impulses. Game owns mathematical compatibility, gesture targets and merge choreography.",
+  "grabConstraint": "Held bodies are kinematic during time advancement; if an authored pointer target creates impossible packing, VKF zero-time contact projection may displace the grabbed body too."
+}

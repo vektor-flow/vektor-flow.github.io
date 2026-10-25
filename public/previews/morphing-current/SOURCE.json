@@ -1,0 +1,66 @@
+{
+  "schema": 2,
+  "entryPoint": "wave-renderer.mjs:TextWave",
+  "execution": "real-time WebGL2",
+  "videoPlayback": false,
+  "latexEngine": "existing LaTeX typesetter, instance packer and native atlas",
+  "sourceFiles": {
+    "previews/morphing-current/index.html": "4d65189ae49467925d10f5b67d3d2d9b58c1fa7e7bf904b817db0a8c58387db6",
+    "previews/morphing-current/wave.css": "ee0eb802d4d0b85f3d2d355ea86cbd0c1a2a714fb048f536de06d472c8f7928a",
+    "previews/morphing-current/wave.mjs": "1532c37a4daf166c639b1bfbb95cb4c65dbf85670a215eb7f5d72103424531d9",
+    "previews/morphing-current/wave-renderer.mjs": "6baef05c415d1d472023450a8d8d8756d7420f43d1b5f113c17b2c913d35176e",
+    "previews/morphing-current/wave-data.json.gz": "f08d73dfa283c7f93d1209b8403d6db1cdcf254361aad8776f8a278d08cebdf6",
+    "previews/morphing-current/wave-atlas.rgba.gz": "52f14179a021aff8a00ae0e51c74005cc0f884bc86a30b906ea42db0dc615463",
+    "previews/morphing-current/ASSETS.json": "a5d197e815a007110048ffee89e5661ca905014543557c0b033a0b7e21bf0371",
+    "previews/morphing-current/palette-keys.json": "eaf6c087149e4a3be180b45f56c49c683370527c7798c594b1d3e16749062b58",
+    "previews/morphing-current/unfold-kernel.glsl": "cd896ded84d9adc103327703a7852db67565e5830f12d82b709af60cb10c01a5",
+    "previews/morphing-current/unfold-kernel.wgsl": "88ffc516f991e46ca9d41b9f57266fe80759d7259b31c4ec3b7f6d08d6f0dcda",
+    "previews/morphing-current/unfold.vkf": "39e00e232a37e1e895160588006c2b9d60ddd165d3e7ff8c6ef98e5aecae9e11",
+    "previews/morphing-current/UNFOLD.json": "ba8f37a7b34d10e98327721e92178c82fac2a9daa33ff4b1e3b7acc3c1698d86",
+    "previews/morphing-current/UNFOLD-LICENSE.txt": "6cd2adfa839b3c3e1e96635d81e89fff3658b21b073f1bb85e8db45d96ebc01d"
+  },
+  "latexEngineFiles": {
+    "previews/gpu-math-typing/text-flow.mjs": "c8fb1c7d2dde0a9ad3306e2de4eed8ff4e9210ce6b1e358ea0bf6cc909b781c7",
+    "previews/gpu-math-typing/typing-layout.mjs": "52d6a972233061580f1746c1aca9ac8982f8848710453161b9dc682571c97e29",
+    "previews/gpu-math-typing/draft-parser.mjs": "8fc168d260f67c506586fd4387ca616659fb1ace805b277998ed8b56f872c0c0",
+    "previews/gpu-math-typing/latex-instances.mjs": "99aa4686cd1093be82416b65428809407a510c9227e064625692a9b9a0ab9495",
+    "previews/gpu-math-typing/colors.mjs": "ac40bc6db11f76d28f71f57e38ecf491ca70cbb74648d096db2283dc535173ef",
+    "previews/gpu-math-typing/units.mjs": "78054248f3a80adaf4b2cf8ae5fbab0d6acf10b34ccd9eb9d012e0bdb7bc1777",
+    "previews/gpu-math-typing/latex-modules/packages/amsmath.mjs": "87fb96305d55442c559dc28a3f2255d2409c9396aa7ca56cafa5c69479281774",
+    "previews/gpu-math-typing/typing-data.json": "d334af0440654e4e21663227f18600c08996dabc21bc9a2124bdcf282090c396",
+    "previews/gpu-math-typing/atlas.rgba.gz": "c72d7972c9e346cde15f9c5287658b6c92640ccab144a4d551d69ee9b96bd308"
+  },
+  "wave": {
+    "method": "one clamped quarter-period sin\u00b2 alpha front along reading order",
+    "alpha": "sin(clamp(k*(front-x),0,pi/2))^2",
+    "rowSeparation": "one ramp width; preceding row settles before next row begins",
+    "sharedShader": true,
+    "defaultK": 4,
+    "defaultVelocity": 0.54,
+    "velocityUnits": "longest line widths per second",
+    "color": "red through violet at alpha 0\u20130.8, smooth fade to white at 0.8\u20131",
+    "growth": [
+      "back-ease growth with adjustable peak overshoot 0\u201350%"
+    ],
+    "contour": false,
+    "kRange": [
+      1,
+      10
+    ],
+    "velocityRange": [
+      0,
+      1
+    ],
+    "zeroVelocity": "hold current front",
+    "defaultOvershoot": 0.32,
+    "defaultGrow": true,
+    "defaultLoop": true,
+    "nativeLibrary": "Morphing.unfold",
+    "libraryCommit": "9afef22",
+    "indexing": "precomputed row and glyph instance indices"
+  },
+  "fontNotices": [
+    "../gpu-math-typing/ALPHABET-FONT-NOTICES.txt",
+    "../gpu-math-typing/EC-FONTS-NOTICES.txt"
+  ]
+}

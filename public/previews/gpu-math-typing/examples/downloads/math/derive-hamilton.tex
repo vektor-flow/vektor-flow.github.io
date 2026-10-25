@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Hamilton’s equations from a Legendre transform
+% Assumptions: One generalized coordinate; the velocity-to-momentum map is locally invertible.
+% Define momentum and the Hamiltonian.
+\[
+p=\frac{\partial L}{\partial\dot q},\quad H(q,p,t)=p\dot q-L
+\]
+% Take the total differential.
+\[
+dH=\dot q\,dp+p\,d\dot q-L_q\,dq-L_{\dot q}\,d\dot q-L_t\,dt
+\]
+% Cancel the velocity differentials using p = L velocity derivative.
+\[
+dH=\dot q\,dp-L_q\,dq-L_t\,dt
+\]
+% Use the Euler–Lagrange equation.
+\[
+\dot p=L_q
+\]
+% Substitute the momentum derivative.
+\[
+dH=\dot q\,dp-\dot p\,dq-L_t\,dt
+\]
+% Compare coefficients of independent differentials.
+\[
+\dot q=\frac{\partial H}{\partial p},\quad\dot p=-\frac{\partial H}{\partial q},\quad H_t=-L_t
+\]
+\end{document}

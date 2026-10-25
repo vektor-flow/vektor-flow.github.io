@@ -9,7 +9,7 @@ try{
  assert((await page.locator('.release-version').innerText()).includes('0.7.2'));
  const example=page.locator('[data-vkf-example-id="example-1"]');await example.locator('button').click();await page.waitForFunction(()=>document.querySelector('[data-vkf-example-id="example-1"] .readme-example-output').textContent.includes('[3, 7]'),{timeout:120000});
  await page.getByRole('link',{name:'Coming soon',exact:true}).first().click();assert((await page.locator('.release-version').innerText()).includes('0.7.2'));
- await page.getByRole('link',{name:'Open GPU math preview',exact:true}).click();assert(page.url().endsWith('/previews/gpu-math-typing/'));
+ await page.getByRole('link',{name:'Open GPU math lab',exact:true}).click();assert(page.url().endsWith('/previews/gpu-math-typing/document.html'));
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  for(const url of ['/runtimes/v0.4.7/vkf-shared-compiler.wasm','/releases/0.4.7.html','/browser.html','/downloads/current/vkf-browser-compiler.zip','/previews/0.6.0/contact-core-1/'])assert.equal((await context.request.get(base+url)).status(),404,url);
  console.log('PASS 0.7.2 live compiler example, Coming soon navigation, phone width and retired endpoints404');

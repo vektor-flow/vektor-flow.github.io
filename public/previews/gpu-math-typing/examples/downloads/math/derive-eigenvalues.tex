@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Eigenvalues of a symmetric 2×2 matrix
+% Assumptions: a,b,d are real; the symmetric matrix has real eigenvalues.
+% Start with a real symmetric matrix.
+\[
+A=\begin{pmatrix}a&b\\b&d\end{pmatrix}
+\]
+% Expand the characteristic determinant.
+\[
+\det(A-\lambda I)=(a-\lambda)(d-\lambda)-b^2
+\]
+% Collect powers of λ.
+\[
+\lambda^2-(a+d)\lambda+ad-b^2=0
+\]
+% Apply the quadratic formula.
+\[
+\lambda_{\pm}=\frac{a+d\pm\sqrt{(a+d)^2-4(ad-b^2)}}{2}
+\]
+% Simplify the discriminant.
+\[
+\lambda_{\pm}=\frac{a+d}{2}\pm\sqrt{\left(\frac{a-d}{2}\right)^2+b^2}
+\]
+% Check trace and determinant invariants.
+\[
+\lambda_++\lambda_-=a+d,\quad\lambda_+\lambda_-=ad-b^2
+\]
+\end{document}

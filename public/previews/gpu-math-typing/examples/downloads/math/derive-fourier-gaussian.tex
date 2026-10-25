@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Fourier transform of a Gaussian via an ODE
+% Assumptions: a > 0; transform convention F(k) = ∫ f(x)e⁻ⁱᵏˣ dx.
+% Define the transform.
+\[
+F(k)=\int_{-\infty}^{\infty}e^{-ax^2}e^{-ikx}\,dx
+\]
+% Differentiate under the integral.
+\[
+F^{\prime}(k)=-i\int_{-\infty}^{\infty}xe^{-ax^2}e^{-ikx}\,dx
+\]
+% Rewrite the moment as a derivative.
+\[
+xe^{-ax^2}=-\frac{1}{2a}\frac{d}{dx}e^{-ax^2}
+\]
+% Integrate by parts; the Gaussian boundary term vanishes.
+\[
+F^{\prime}(k)=-\frac{k}{2a}F(k)
+\]
+% Solve the first-order ODE.
+\[
+F(k)=F(0)e^{-k^2/(4a)}
+\]
+% Determine the constant from the Gaussian integral.
+\[
+F(k)=\sqrt{\frac{\pi}{a}}e^{-k^2/(4a)}
+\]
+\end{document}

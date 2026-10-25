@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% A linear ODE with a nonconstant coefficient
+% Assumptions: x is real; y(0) = y₀.
+% Start with the linear ODE.
+\[
+y^{\prime}+2xy=x
+\]
+% Construct the integrating factor.
+\[
+\mu(x)=e^{\int2x\,dx}=e^{x^2}
+\]
+% Multiply the equation.
+\[
+e^{x^2}y^{\prime}+2xe^{x^2}y=xe^{x^2}
+\]
+% Recognize a product derivative.
+\[
+\frac{d}{dx}(e^{x^2}y)=xe^{x^2}
+\]
+% Integrate.
+\[
+e^{x^2}y=\frac{1}{2}e^{x^2}+C
+\]
+% Apply the initial condition.
+\[
+y(x)=\frac{1}{2}+\left(y_0-\frac{1}{2}\right)e^{-x^2}
+\]
+\end{document}

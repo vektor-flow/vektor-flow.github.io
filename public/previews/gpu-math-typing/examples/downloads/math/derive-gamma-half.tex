@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Gamma recurrence and Γ(1/2)
+% Assumptions: s > 0; boundary terms vanish in the integration by parts.
+% Define the gamma function.
+\[
+\Gamma(s)=\int_0^{\infty}t^{s-1}e^{-t}\,dt
+\]
+% Integrate by parts.
+\[
+\Gamma(s+1)=\left[-t^se^{-t}\right]_0^{\infty}+s\int_0^{\infty}t^{s-1}e^{-t}\,dt
+\]
+% Obtain the recurrence.
+\[
+\Gamma(s+1)=s\Gamma(s)
+\]
+% Substitute t = u².
+\[
+\Gamma\left(\frac{1}{2}\right)=2\int_0^{\infty}e^{-u^2}\,du
+\]
+% Use the Gaussian integral.
+\[
+\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}
+\]
+% Apply the recurrence twice.
+\[
+\Gamma\left(\frac{5}{2}\right)=\frac{3}{2}\frac{1}{2}\sqrt{\pi}=\frac{3\sqrt{\pi}}{4}
+\]
+\end{document}

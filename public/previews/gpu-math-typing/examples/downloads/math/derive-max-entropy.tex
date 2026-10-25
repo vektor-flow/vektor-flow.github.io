@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Maximum entropy with a fixed mean energy
+% Assumptions: Finite states with energies Eᵢ; prescribed mean lies strictly between distinct extreme energies.
+% Maximize entropy under normalization and a fixed mean energy.
+\[
+H(p)=-\sum_i p_i\ln p_i
+\]
+% Introduce two multipliers.
+\[
+\mathcal L=-\sum_i p_i\ln p_i-\alpha(\sum_i p_i-1)-\beta(\sum_i p_iE_i-U)
+\]
+% Find the interior stationary distribution.
+\[
+\frac{\partial\mathcal L}{\partial p_i}=-\ln p_i-1-\alpha-\beta E_i=0
+\]
+% Solve the stationarity equation.
+\[
+p_i=e^{-1-\alpha}e^{-\beta E_i}
+\]
+% Normalization fixes the common factor.
+\[
+Z(\beta)=\sum_j e^{-\beta E_j},\quad p_i=\frac{e^{-\beta E_i}}{Z(\beta)}
+\]
+% Choose β to satisfy the energy constraint; strict concavity guarantees the unique maximizer.
+\[
+U=-\frac{d}{d\beta}\ln Z(\beta)
+\]
+\end{document}

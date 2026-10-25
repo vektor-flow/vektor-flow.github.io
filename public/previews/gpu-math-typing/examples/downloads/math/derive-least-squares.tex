@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Normal equations from a quadratic objective
+% Assumptions: Real A has full column rank; b is a real vector.
+% Minimize squared residual length.
+\[
+J(x)=\frac{1}{2}(Ax-b)^T(Ax-b)
+\]
+% Expand the quadratic.
+\[
+J(x)=\frac{1}{2}x^TA^TAx-x^TA^Tb+\frac{1}{2}b^Tb
+\]
+% Differentiate with respect to x.
+\[
+\nabla J(x)=A^TAx-A^Tb
+\]
+% Stationarity gives the normal equations.
+\[
+A^TA\hat{x}=A^Tb
+\]
+% Full column rank makes this Hessian positive definite.
+\[
+\nabla^2J=A^TA
+\]
+% Unique minimizer; numerically, QR or SVD avoids forming this inverse.
+\[
+\hat{x}=(A^TA)^{-1}A^Tb
+\]
+\end{document}

@@ -1,187 +1,92 @@
 {
-  "schema": 1,
-  "compiler_version": "0.7.2",
-  "compiler_wasm_sha256": "2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5",
+  "schema": 2,
+  "compiler_source": "bac7ceb2c243c1e9b31420a4f1984d1e654f64e0baaa8d1162915ed93eef6216",
+  "compiler_wasm_sha256": "9e26acdc161ebfa6c4795181e0c666d587a726d3b1221b8b9f859c5309a36ac4",
   "fixture": {
-    "shape": [
+    "kind": "Generated Lorentzian model, not measurements",
+    "analysisShape": [
       4,
-      3
+      257
     ],
-    "axis_order": [
-      "sample",
-      "energy"
-    ],
-    "vkf_axes": "pu",
-    "python_dtype": "float64",
-    "vkf_input": "numeric floating-point literals",
-    "render_vertices": "float32",
-    "file_io_in_spectral_core": false
-  },
-  "source": {
-    "spectroscopy.vkf": "c441df83838d29b8f581b4d21d0af1adbba20c0c543266bdbee3d0c850340e3d",
-    "spectroscopy.py": "09950c4a78988555da142abaf37288da00ef566b7c72490ee8a8746b542ccda6",
-    "partial-application.py": "44cf9bfbc8489a3dc08f9e29d9e417c80348f2de2b8988e4a755c747242263d4"
-  },
-  "checks": {
-    "vkf_source_execution": "PASS_ACTUAL_PROBE",
-    "vkf_stdout": "[4, 2, 5, 2]\n[3, 8, 4]\n",
-    "retained_plot_vertices": 3,
-    "x_bounds": [
+    "plottedSamples": 513,
+    "vkfAxes": "pu",
+    "energyRange": [
       -1,
       1
     ],
-    "y_bounds": [
-      0,
-      10
-    ],
-    "full_site_UI": "PASS",
-    "python_numerical_and_hdf5": {
+    "center": 0,
+    "width": 0.1,
+    "baseline": 1,
+    "amplitude": "1+p",
+    "python_dtype": "float64",
+    "render_vertices": "float32"
+  },
+  "source": {
+    "spectroscopy.vkf": "6740f49f2c4f5dd24508df56943023061ce7173806a639774d7d0256da11a18e",
+    "spectroscopy.py": "6bc71bdc3bd5c018757a8cb92f8d048574e9166c5977c367c4f122b56c304fa5",
+    "partial-application.py": "44cf9bfbc8489a3dc08f9e29d9e417c80348f2de2b8988e4a755c747242263d4"
+  },
+  "checks": {
+    "vkf": {
+      "id": "scientific-spectrum",
+      "source_sha256": "7333ae9d0046d4efbec194e9cec39a5c9a88506d05903901369603a39c964cdd",
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+      "vertexCounts": [
+        513
+      ],
+      "hardwareDevices": [],
+      "rendererContexts": [
+        {
+          "type": "2d",
+          "canvasClass": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0"
+        },
+        {
+          "type": "2d",
+          "canvasClass": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0"
+        },
+        {
+          "type": "2d",
+          "canvasClass": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0"
+        },
+        {
+          "type": "2d",
+          "canvasClass": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0"
+        }
+      ],
+      "passed": true
+    },
+    "pythonNumericalAndHdf5": {
       "passed": true,
+      "stdout": "[0.99009901 1.98019802 2.97029703 3.96039604]\n4.0\n-0.7568024953079282\n(2, 57)\n",
       "versions": {
-        "Python": "3.14.4",
+        "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
         "numpy": "2.3.5",
-        "h5py": "3.15.1",
-        "matplotlib": "3.10.7+dfsg1"
+        "matplotlib": "3.10.7+dfsg1",
+        "h5py": "3.15.1"
       },
-      "fixture": {
-        "shape": [
-          4,
-          3
-        ],
-        "dtype": "float64",
-        "axes": [
-          "sample",
-          "energy"
-        ],
-        "values": [
-          [
-            1.0,
-            5.0,
-            2.0
-          ],
-          [
-            2.0,
-            3.0,
-            4.0
-          ],
-          [
-            3.0,
-            8.0,
-            4.0
-          ],
-          [
-            4.0,
-            5.0,
-            6.0
-          ]
-        ],
-        "energy": [
-          -1.0,
-          0.0,
-          1.0
-        ]
-      },
+      "analysisShape": [
+        4,
+        257
+      ],
+      "plotSamples": 513,
       "contrast": [
-        4.0,
-        2.0,
-        5.0,
-        2.0
+        0.9900990099009901,
+        1.9801980198019802,
+        2.9702970297029703,
+        3.9603960396039604
       ],
-      "selected": [
-        3.0,
-        8.0,
-        4.0
+      "selectedCenter": 4.0,
+      "hdf5RegionShape": [
+        2,
+        57
       ],
-      "plotBounds": {
-        "x": [
-          -1,
-          1
-        ],
-        "y": [
-          0,
-          10
-        ]
-      },
-      "hdf5": {
-        "logicalScalarElements": 1,
-        "logicalRegionShape": [
-          2,
-          2
-        ],
-        "physicalIOBytes": "UNMEASURED; selection/cache/layout dependent"
-      },
-      "timing": "UNMEASURED",
-      "memory": "UNMEASURED",
-      "noPixelEquivalenceClaim": true
-    },
-    "actual_plot_xy": [
-      [
-        -1.0,
-        3.0
-      ],
-      [
-        0.0,
-        8.0
-      ],
-      [
-        1.0,
-        4.0
-      ]
-    ],
-    "displayed_python_source": {
-      "status": "PASS",
-      "source_sha256": "09950c4a78988555da142abaf37288da00ef566b7c72490ee8a8746b542ccda6",
-      "versions": {
-        "Python": "3.14.4",
-        "numpy": "2.3.5",
-        "matplotlib": "3.10.7+dfsg1"
-      },
-      "contrast": [
-        4.0,
-        2.0,
-        5.0,
-        2.0
-      ],
-      "selected": [
-        3.0,
-        8.0,
-        4.0
-      ],
-      "x_bounds": [
-        -1.0,
-        1.0
-      ],
-      "y_bounds": [
-        0.0,
-        10.0
-      ],
-      "timing": "UNMEASURED",
-      "pixel_equivalence": "NOT_CLAIMED"
-    },
-    "python_partial_application": {
-      "passed": true,
-      "source_sha256": "44cf9bfbc8489a3dc08f9e29d9e417c80348f2de2b8988e4a755c747242263d4",
-      "result": 8,
-      "timing": "UNMEASURED"
-    },
-    "vkf_runtime_source_sha256": "9ba79f79bcf92938407f4133d75ca476badea20e0ff65126b00a6de72801af62",
-    "vkf_partial_application": {
-      "status": "PASS",
-      "source_sha256": "16a36522571e1c1cfed5df1d1d0d01f427639b2a59cf4fa483e7ec12dff868c5",
-      "canonical_reference": "syntax.html#bound-arguments-and-structural-selectors",
-      "result": "8\n"
+      "fullImportsAndOutput": true,
+      "numericEquivalentToVKF": true,
+      "sourcePins": {
+        "python-disk.py": "6f0529570a72425e86e7490880c25a7d40addcd0a49d952a9b660a1e3eb3e29b",
+        "python-spectrum.py": "6bc71bdc3bd5c018757a8cb92f8d048574e9166c5977c367c4f122b56c304fa5"
+      }
     }
   },
-  "remaining_claims": {
-    "vkf_hdf5_reader": "NO_VERIFIED_PUBLIC_API",
-    "general_out_of_core_demand": "UNQUALIFIED_DESIGN_GOAL",
-    "multi_axis_signal_function": "NOT_ESTABLISHED_BY_THIS_ONE_AXIS_EXAMPLE",
-    "general_append_image_stack": "UNQUALIFIED_DESIGN_GOAL",
-    "automatic_cpu_gpu_placement": "INCOMPLETE",
-    "speedup": "UNMEASURED",
-    "physical_io_bytes": "UNMEASURED",
-    "peak_memory": "UNMEASURED",
-    "pixel_equivalence": "NOT_CLAIMED"
-  },
-  "publication_evidence": "verification/site-remake-e1079.json"
+  "noSpeedOrMemoryClaim": true
 }

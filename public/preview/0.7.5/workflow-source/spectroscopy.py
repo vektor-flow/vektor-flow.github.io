@@ -1,15 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-energy = np.array([-1., 0., 1.], dtype=np.float64)
-spectra = np.array([[1., 5., 2.], [2., 3., 4.],
-                    [3., 8., 4.], [4., 5., 6.]], dtype=np.float64)
-
+site = np.arange(4, dtype=np.float64)
+energy = np.linspace(-1., 1., 257)
+profile = 1 / (1 + 100 * energy ** 2)
+spectra = 1 + (1 + site[:, None]) * profile[None, :]
 contrast = np.ptp(spectra, axis=1)
-selected = spectra[2, :]
+curve_energy = np.linspace(-1., 1., 513)
+selected_site = 2
+selected = 1 + (1 + selected_site) / (1 + 100 * curve_energy ** 2)
 print(contrast)
-print(selected)
-fig, ax = plt.subplots(dpi=96)
-ax.plot(energy, selected, color=(.25, .72, 1., 1.), linewidth=.75)
-ax.set(xlim=(-1, 1), ylim=(0, 10))
+print(selected[256])
+fig, ax = plt.subplots()
+ax.plot(curve_energy, selected, color=(.25, .72, 1., 1.))
+ax.set(xlim=(-1, 1), ylim=(0, 5),
+       xlabel="Energy coordinate", ylabel="Generated intensity")
 plt.show()

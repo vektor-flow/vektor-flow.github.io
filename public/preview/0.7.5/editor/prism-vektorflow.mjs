@@ -1,3 +1,4 @@
+// Original grammar provenance; Prism fixes below are a separate e1155 edition.
 export const TEXTMATE_GRAMMAR_SHA256 = 'b1aa632c44ec6132a36cf045a1adc79152bb5b7c6261e49d5c115bb62137fd89';
 
 export function registerVektorFlowPrism(Prism) {
@@ -32,7 +33,9 @@ export function registerVektorFlowPrism(Prism) {
         escape: /\\(?:["\\nrt$]|.)/,
       },
     },
-    'line-print-sugar': { pattern: /:::/, alias: 'keyword' },
+    derivative: {pattern: /([A-Za-z0-9_)\]])['’]+[a-z]+/, lookbehind:true, alias:'operator'},
+    template: {pattern: /'(?:\\.|[^'\\\n])*'/, greedy:true, alias:'string'},
+    'line-print-sugar': { pattern: /:::/, alias: 'operator' },
     module: {
       pattern: /(:)(\.)([a-zA-Z_][a-zA-Z0-9_]*)/,
       inside: {
@@ -48,6 +51,10 @@ export function registerVektorFlowPrism(Prism) {
         function: /(?:sum|mean|variance|std|range|count|min|max|percentile|median|iqr|mode|zscore|normalize|covariance|correlation|integ|integrate|deriv|differentiate|diff|limit|roots|polynomial|depends_on|substitute)(?=_)/,
         dimension: /_[a-z]+$/,
       },
+    },
+    'selected-axis-call': {
+      pattern: /(^|[^.\w])([A-Za-z][A-Za-z0-9]*)_([a-z]+)(?=\s*\()/,
+      lookbehind:true, inside:{ function:/^[A-Za-z][A-Za-z0-9]*(?=_)/, dimension:/_[a-z]+$/ }
     },
     'stdlib-call': {
       pattern: /\b(?:math|stat|random|time|io|collections|errors|system|process|regex|linalg|physics|symbolic)\b\s*\.\s*[a-zA-Z_][a-zA-Z0-9_]*\s*(?=\()/,
@@ -68,9 +75,9 @@ export function registerVektorFlowPrism(Prism) {
     },
     binding: { pattern: /^\s*[a-zA-Z_][a-zA-Z0-9_]*(?=\s*:(?!::))/m, alias: 'variable' },
     boolean: /\b(?:true|false)\??\b/,
-    wildcard: { pattern: /\b_\?/, alias: 'keyword' },
+    wildcard: { pattern: /\b_\?/, alias: 'operator' },
     builtin: /\b(?:bit|chr|dig|int|num|str|type|any)\b/,
-    number: /\b(?:\d+\.\d+|\d+)\b/,
+    number: /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/,
     'anonymous-dimension': /\.\.\./,
     'attached-dimension': {
       pattern: /([0-9'"\])}])_(?:[a-z]+|[0-9]+)\b/,
@@ -78,7 +85,7 @@ export function registerVektorFlowPrism(Prism) {
       alias: 'dimension',
     },
     dimension: {
-      pattern: /\b[A-Za-z][A-Za-z0-9]*_(?!min\b|max\b|pot\b|tot\b|count\b)(?:[a-z]+|[0-9]+)\b(?!\s*\()/,
+      pattern: /\b[A-Za-z][A-Za-z0-9]*_(?!min\b|max\b|pot\b|tot\b|count\b)(?:[a-z]+|[0-9]+)\b(?!\s*[:(])/,
       alias: 'dimension',
     },
     operator: /:::|::|>>|==|~=|!=|!\?|<=|>=|=>|->|\/\/|\.\.|><|\/\\|\\\/|@::|@:|@>|@\||@!|\(\s*[+\-*/]\s*\)|\{\s*[+\-*/]\s*\}|[=<>+\-*/^%&~:$?.|!]/,

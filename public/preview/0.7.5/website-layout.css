@@ -1,29 +1,90 @@
-/* Layout fixes only. The established site.css, remake.css and editor styles are retained verbatim. */
-.remake .readme-example-bar>span{margin-right:auto}
-.remake .readme-example-bar .copy-button{min-height:32px;padding:4px 10px;font-size:12px}
-.remake #calculation{display:flex;align-items:end;flex-wrap:wrap;gap:14px;margin:24px 0}
-.remake #calculation label{width:100%}
-.remake #calculation input{font:inherit;padding:10px;max-width:100%;width:160px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:5px}
-.remake #calculation button{font:inherit;padding:11px 20px;background:var(--accent);color:var(--paper);border:0;border-radius:5px;min-height:44px}
-.remake #calculation button:disabled{opacity:.6}
-.remake #result{display:block;white-space:pre-wrap;min-height:54px;padding:16px;background:var(--rule);border-radius:5px}
-.performance-page .pending{color:var(--muted);font-variant-numeric:tabular-nums}
-.remake .platform-links{display:flex;flex-wrap:wrap;gap:12px 22px}
-.remake .source-note{overflow-wrap:anywhere}
-.remake .group-body>ul{padding-left:22px}
-.performance-page .performance-table{display:table;width:100%;table-layout:fixed;border-collapse:collapse}
-.performance-page .performance-table th,.performance-page .performance-table td{display:table-cell;padding:6px 8px;white-space:nowrap;vertical-align:middle}
-.performance-page .performance-table th:first-child{width:36%;text-align:left}
-.performance-page .performance-table td,.performance-page .performance-table thead th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
-.performance-page .performance-table tbody th{font-weight:400}
-.performance-page .performance-table abbr{text-decoration:none;cursor:help}
-.performance-page .unqualified{color:var(--muted);font-size:12px}
-.performance-page .platform-links{display:flex;flex-wrap:wrap;gap:8px 16px}
-@media(max-width:620px){
-.performance-page .performance-table{font-size:11px}
-.performance-page .performance-table th,.performance-page .performance-table td{padding:6px 4px}
-.performance-page .performance-table thead th{font-size:10px}
-.performance-page .unqualified{font-size:10px}
+/* Original site.css owns fonts, colors, navigation, and editable code components. */
+main { min-width: 0; }
+article.readme { width: min(860px, calc(100% - 48px)); }
+.preview-notice { width:min(960px,calc(100% - 48px)); margin:1rem auto; font-size:14px; color:var(--muted); }
+.hero,.chapter,.next-step,.page-intro { margin:0 0 2rem; }
+.hero { padding:0; }
+.hero-lead,.page-lead { font-size:1.15rem; }
+.hero-context,.fine-print,.source-note { color:var(--muted); }
+.eyebrow,.step-number,.group-number { color:var(--muted); font-size:13px; }
+.actions,.chapter-nav,.reference-toc,.platform-links { display:flex; flex-wrap:wrap; gap:12px 22px; margin:1rem 0; }
+.button,.text-link { color:var(--accent); }
+.reference-page,.guide-page { padding:40px 0 64px; }
+.reference-group { border-top:1px solid var(--rule); padding:12px 0; scroll-margin-top:24px; }
+.reference-group>summary { cursor:pointer; font-size:18px; font-weight:650; }
+.reference-group>summary small { font-size:12px; font-weight:400; margin-left:12px; color:var(--muted); }
+.reference-tools { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:20px 0; }
+.reference-tools input { min-width:0; flex:1; padding:10px; font:inherit; color:inherit; background:transparent; border:1px solid var(--rule); }
+.reference-tools button,.copy-button,#calculation button { min-height:34px; padding:6px 10px; border:1px solid var(--rule); border-radius:6px; font:inherit; font-size:12px; color:inherit; background:transparent; cursor:pointer; }
+[data-search-count] { width:100%; color:var(--muted); font-size:13px; }
+.readme-example-bar { gap:8px; }
+.readme-example-bar>span { margin-right:auto; line-height:1.4; }
+.readme-example-bar button { flex-shrink:0; }
+.readme-example-highlight,.readme-example-source,.readme-example-highlight code { font:16px/24px ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:normal; tab-size:4; }
+.readme-example-highlight code { padding:0; background:transparent; border:0; white-space:pre; }
+code,pre,textarea,.token { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-style:normal; }
+pre { max-width:100%; overflow:auto; }
+.code-snippet { margin:16px 0; }
+.code-snippet pre { padding:16px; border-radius:6px; background:#0d1117; color:#e6edf3; white-space:pre; }
+.code-snippet-bar { display:flex; justify-content:space-between; gap:10px; font-size:13px; }
+.code-snippet-bar button { font:inherit; }
+:not(pre)>code { overflow-wrap:anywhere; }
+pre code { background:transparent!important; padding:0!important; }
+.token { font-size:inherit; line-height:inherit; }
+.token.comment { color:#8b949e; }
+.token.string,.token.escape { color:#a5d6ff; }
+.token.number { color:#79c0ff; }
+.token.operator,.token.keyword { color:#ff7b72; }
+.token.boolean { color:#7ee787; }
+.token.function,.token.binding,.token.variable { color:#d2a8ff; }
+.token.builtin,.token.class-name,.token.namespace { color:#ffa657; }
+.token.dimension,.token.attached-dimension { color:#56d4dd; }
+.token.punctuation { color:#c9d1d9; }
+:not(pre)>code .token.comment { color:#626570; }
+:not(pre)>code .token.string { color:#075875; }
+:not(pre)>code .token.number { color:#0550ae; }
+:not(pre)>code .token.operator { color:#a62638; }
+:not(pre)>code .token.boolean { color:#116329; }
+:not(pre)>code .token.function,:not(pre)>code .token.binding,:not(pre)>code .token.variable { color:#6639ba; }
+:not(pre)>code .token.builtin,:not(pre)>code .token.class-name,:not(pre)>code .token.namespace { color:#953800; }
+:not(pre)>code .token.dimension { color:#096e78; }
+:not(pre)>code .token.punctuation { color:#424a53; }
+.expected-result { color:var(--muted); font-size:14px; }
+.expected-result pre { padding:12px; background:var(--rule); }
+.feature-grid>*,.three-columns>* { margin-bottom:1.5rem; }
+.site-footer nav { display:flex; flex-wrap:wrap; gap:12px; margin:12px 0; }
+.site-footer small { display:block; }
+#calculation { display:flex; flex-wrap:wrap; gap:12px; align-items:end; }
+#calculation label { width:100%; }
+#calculation input { font:inherit; padding:8px; max-width:100%; }
+#result { display:block; white-space:pre-wrap; margin:16px 0; }
+.performance-table { width:100%; border-collapse:collapse; }
+.performance-table td { text-align:right; }
+.performance-table th:first-child { text-align:left; }
+@media(prefers-color-scheme:dark) {
+ :not(pre)>code .token { color:inherit; }
+ :not(pre)>code .token.number { color:#79c0ff; }
+ :not(pre)>code .token.function,:not(pre)>code .token.binding,:not(pre)>code .token.variable { color:#d2a8ff; }
+ :not(pre)>code .token.operator { color:#ff7b72; }
+ :not(pre)>code .token.dimension { color:#56d4dd; }
+ :not(pre)>code .token.string { color:#a5d6ff; }
+ :not(pre)>code .token.builtin,:not(pre)>code .token.class-name { color:#ffa657; }
 }
-
-.preview-notice{max-width:1200px;margin:1rem auto;padding:.75rem 1rem;border-left:3px solid var(--accent,#39a98c);font-size:.9rem;line-height:1.5}
+@media(max-width:760px) { article.readme { width:calc(100% - 32px); } }
+@media(max-width:620px) {
+ article.readme,.preview-notice { width:calc(100% - 24px); }
+ .site-nav nav { justify-content:flex-start; overflow-x:auto; gap:14px; padding-bottom:4px; }
+ .site-nav { overflow:hidden; }
+ .readme-example-bar { flex-wrap:wrap; }
+ .readme-example-bar>span { flex:1 1 170px; }
+ .readme h1 { font-size:30px; }
+ .performance-table { font-size:11px; }
+}
+.readme pre:not(.readme-example-highlight):not(.readme-example-output) { padding:16px; border-radius:6px; background:#0d1117; color:#e6edf3; }
+.readme-example-terminal code { color:inherit; }
+.comparison-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
+@media(min-width:1200px) { .comparison-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+.readme .readme-example-highlight,.readme .readme-example-source,.readme .readme-example-highlight code { font:16px/24px ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:normal; tab-size:4; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.readme-example-result,.purpose-result-hint { font-family:inherit; }
+@media(max-width:620px) { .site-nav nav { flex-wrap:wrap; overflow:visible; gap:8px 14px; } }

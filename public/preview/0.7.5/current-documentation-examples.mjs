@@ -1,5 +1,5 @@
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {highlightVkf} from './editor/vkf-highlighter.mjs?asset=9a71063d8cf6357f';
+import {highlightVkf} from './code-highlight.mjs';
 import {createInlineRunner} from './inline-runner.mjs';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
@@ -8,7 +8,7 @@ const release = await fetch(new URL('./current-compiler-release.json', import.me
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
 const runner = ['verified-examples','private-candidate'].includes(release?.status)
   ? createInlineRunner({wasmUrl:release.package.wasm, moduleURL:release.package.module,
-      dataURL:release.package.data, timeoutMs:120000}) : null;
+      dataURL:release.package.data, timeoutMs:360000}) : null;
 
 // Pages may reload once to establish shared memory. Restore drafts before a
 // Run records its revision, so the first result cannot be mistaken for stale.

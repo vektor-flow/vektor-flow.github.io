@@ -1,3 +1,4 @@
+import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
 import {createInlineRunner} from './inline-runner.mjs';
 const form = document.querySelector('#calculation');
 const input = document.querySelector('#number');
@@ -23,8 +24,8 @@ try {
     if (!Number.isFinite(value)) return;
     const runRevision = revision;
     busy = true;
-    const source = `square(x):x^2\n::square(${value})`;
-    sourceView.textContent = source;
+    const source = `square(x): x ^ 2\n\n:: square(${value})`;
+    sourceView.querySelector('code').innerHTML = highlightVkf(source);
     button.disabled = true; output.textContent = ''; status.textContent = 'Compiling and running…';
     try {
       const result = await runner.run(source);

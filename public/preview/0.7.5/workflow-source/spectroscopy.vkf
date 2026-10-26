@@ -1,15 +1,25 @@
-stat:.stat
-site:[0..3]_p
-energy:(-1.0+0.0078125*[0..256])_u
-profile:1.0/(1.0+100.0*energy^2)
-spectra:1.0+(1.0+site_p)*profile_u
-span(x):stat.max(x)-stat.min(x)
-::span_u(spectra)
-curve_energy:-1.0+0.00390625*[0..512]
-selected_site:2
-selected:1.0+(1.0+selected_site)/(1.0+100.0*curve_energy^2)
-::selected.(256)
-view:.ui.viewport
-view.add(x:curve_energy_u,y:selected_u,color:[0.25,0.72,1,1])
-view.push(x_lim:[-1,1],y_lim:[0,5])
+stat: .stat
+
+spectra:
+    site: [0..3]_p
+    profile:
+        energy: (-1.0 + 0.0078125 * [0..256])_u
+        1.0 / (1.0 + 100.0 * energy ^ 2)
+    1.0 + (1.0 + site_p) * profile_u
+
+span(x): stat.max(x) - stat.min(x)
+
+:: span_u(spectra)
+
+curve_energy: -1.0 + 0.00390625 * [0..512]
+selected:
+    selected_site: 2
+    1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
+
+:: selected.(256)
+
+view: .ui.viewport
+
+view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
+view.push(x_lim: [-1, 1], y_lim: [0, 5])
 view.show()

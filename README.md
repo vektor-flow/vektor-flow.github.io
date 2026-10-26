@@ -154,3 +154,50 @@ remote parent immediately before a fast-forward push; preserve newer preview
 assets and record the previous remote commit for rollback. Useful older
 documentation paths redirect to the new guide sections; retired binaries remain
 retired. Website publication does not promote a compiler release.
+
+## VKF website example style
+
+The authored examples in `public/preview/0.7.5/` use these conventions. Apply
+changes to the editable source, displayed Prism code and canonical runnable
+copy together; retain exact source hashes and require fresh qualification.
+
+- Use one space on each side of binary assignment, arithmetic, comparison,
+  composition, pipeline and logical operators: `x = y`, `a + b`, `f & g`.
+  VKF binding and named-argument colons take no space before and one after:
+  `x: 3`, `f[n: 3]`, `view.add(x: u_u, y: y_u)`.
+- Put a space after commas. Keep calls, indexing and member access compact:
+  `f(x, y)`, `A.(1, :)`, `record.x`. Do not separate axis suffixes, derivative
+  suffixes, unit literals or selected operators: `A_ii`, `f'x`, `2m`, `a &_i b`.
+  Unary signs bind to their operand: `-1`, `a * -b`. Operator values stay
+  intact: `[+, *]` and `reduce_i(+, A, 0)` where the grammar permits them.
+- Indent bodies and continuation rows by four spaces. Add a blank row between
+  imports, data/model definitions, computation and plot/output stages, where
+  it helps reading. Do not add a blank row after every statement or align
+  columns with padding. Preserve all statement boundaries and nesting.
+- Keep helper variables in the narrowest valid lexical scope. When a helper
+  only computes another binding, put it inside that binding’s indented
+  computation block; its last expression supplies the result. Apply the same
+  rule inside functions. Keep shared model inputs/axes and mutable UI/process
+  state in the scope their consumers and lifetimes require. Preserve evaluation
+  order; do not invent block syntax or shorten an escaping callable’s lifetime.
+  The homepage spectral calculation and Examples motion solve demonstrate this.
+- A one-line function stays on one line, with no return-channel notation.
+  Multiline functions use explicit return channels. Indented value-binding
+  blocks remain expressions: their last expression supplies the value.
+  Preserve spill constructor semantics; a single spill body stays on one line.
+- Treat VKF as VKF. Never run a Python formatter over it. Dots encode spacing
+  metadata, primes depend on attachment, adjacency enables implicit products,
+  and indentation creates scopes. Preserve strings, comments, LaTeX escapes,
+  range bounds, suffixes and multi-character operators exactly. Token identity
+  alone does not establish semantic equivalence; changed examples need actual
+  parser/compiler review and execution before publication.
+- Every inline/block/editor example uses Prism and monospace. Preserve source
+  newlines and the existing horizontally scrolling editor on narrow screens.
+  Formatting belongs in authored source, never letter spacing or HTML spaces.
+
+Changed sources require fresh execution with the pinned compiler and actual
+desktop/phone presentation checks before publication. Historical qualification
+records keep their original source hashes. Namespace aliases stay in the import
+scope supported by the compiler; computational helper values use the narrowest
+qualified local block. Callable intermediates may share the enclosing value
+computation when the compiler cannot return them from a tighter binding block.

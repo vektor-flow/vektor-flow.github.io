@@ -52,12 +52,6 @@ for (const example of document.querySelectorAll('.readme-example')) {
     if (output) output.textContent = '';
   });
   source.addEventListener('scroll', refresh);
-  source.addEventListener('keydown', event => {
-    if (event.key !== 'Tab') return;
-    event.preventDefault();
-    source.setRangeText('    ', source.selectionStart, source.selectionEnd, 'end');
-    source.dispatchEvent(new Event('input', {bubbles:true}));
-  });
   if (ready && button && output && workspace) {
     example.dataset.compilerStatus = release.status==='private-candidate' ? 'private-candidate' : example.dataset.verification === 'pending'
       ? 'package-ready-example-unverified' : 'verified-examples';

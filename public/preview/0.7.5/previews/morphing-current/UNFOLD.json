@@ -1,0 +1,28 @@
+{
+  "sourceSha256": "39e00e232a37e1e895160588006c2b9d60ddd165d3e7ff8c6ef98e5aecae9e11",
+  "fixtureSha256": "75b09490b38242ee6a0c208eebe5f8e1db61fe20d9f2d822108eac6a400d817d",
+  "compilerSha256": "180d8266817cc31381557cb31675513fba084fee6bb6f30b1976d4b387300111",
+  "gpuCompilerSha256": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+  "wgslSha256": "88ffc516f991e46ca9d41b9f57266fe80759d7259b31c4ec3b7f6d08d6f0dcda",
+  "indexedChannels": [
+    "alpha",
+    "growth",
+    "red",
+    "green",
+    "blue"
+  ],
+  "rendererOwns": "cached glyph and row indices, font coverage, playback",
+  "libraryCommit": "9afef22",
+  "librarySource": "https://github.com/vektor-flow/libraries/blob/9afef22/morphing/unfold.vkf",
+  "glslSha256": "cd896ded84d9adc103327703a7852db67565e5830f12d82b709af60cb10c01a5",
+  "translation": "mechanical scalar WGSL to GLSL; all alpha, growth and color math compiled from native VKF",
+  "selectedDefaults": {
+    "k": 4,
+    "velocity": 0.54,
+    "overshoot": 0.32,
+    "grow": true,
+    "loop": true
+  },
+  "indexing": "cached renderer-owned glyph instance and row IDs; indexed native scalar channels",
+  "license": "UNFOLD-LICENSE.txt"
+}

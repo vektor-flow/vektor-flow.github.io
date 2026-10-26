@@ -1,0 +1,3272 @@
+{
+  "source_commit": "68dbd1ca5bbfe595b42ab5fe319252716efe1d70",
+  "publication_status": "pending",
+  "tables": [
+    {
+      "platform": "linux",
+      "suite": "core",
+      "headers": [
+        "Workload",
+        "C++",
+        "Rust",
+        "Zig"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "spectral-norm-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Spectral norm",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "0.2522060648486427"
+              },
+              "original_display": "0.25"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "0.1518094256951939"
+              },
+              "original_display": "0.15"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "0.15190832507110283"
+              },
+              "original_display": "0.15"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "fannkuch-redux-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Fannkuch",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "2.1660015845674065"
+              },
+              "original_display": "2.17"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "1.8197984353194394"
+              },
+              "original_display": "1.82"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "1.6459850855194842"
+              },
+              "original_display": "1.65"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "n-body-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "N-body",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "3.018712070325977"
+              },
+              "original_display": "3.02"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "4.304776639164573"
+              },
+              "original_display": "4.30"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "2.1580676609832117"
+              },
+              "original_display": "2.16"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Combined kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "0.5394769722183393"
+              },
+              "original_display": "0.54"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "0.8774832124344385"
+              },
+              "original_display": "0.88"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "0.9973489601449432"
+              },
+              "original_display": "1.00"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-parallel-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Parallel kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "0.34868212886111444"
+              },
+              "original_display": "0.35"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "0.5724172777513207"
+              },
+              "original_display": "0.57"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "0.6490242298071511"
+              },
+              "original_display": "0.65"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "linux",
+      "suite": "linalg",
+      "headers": [
+        "Workload",
+        "Eigen",
+        "faer",
+        "SciPy"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "solve-general-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Solve 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "452.11560627910967"
+              },
+              "original_display": "452.12"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "351.55839467396345"
+              },
+              "original_display": "351.56"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "283.75499828765265"
+              },
+              "original_display": "283.75"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "least-squares-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Least squares \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "532.34734427629"
+              },
+              "original_display": "532.35"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "313.9039576213306"
+              },
+              "original_display": "313.90"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "267.6455273851061"
+              },
+              "original_display": "267.65"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "lu-general-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "LU 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "492.8020697385481"
+              },
+              "original_display": "492.80"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "424.8557054229828"
+              },
+              "original_display": "424.86"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "613.8528769138462"
+              },
+              "original_display": "613.85"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "qr-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "QR 96\u00d748 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "78.34148027499977"
+              },
+              "original_display": "78.34"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "94.83111645107144"
+              },
+              "original_display": "94.83"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "95.74998124856162"
+              },
+              "original_display": "95.75"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "cholesky-spd-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Cholesky 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "316.97564116737846"
+              },
+              "original_display": "316.98"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "591.8168632057515"
+              },
+              "original_display": "591.82"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "410.01693559345244"
+              },
+              "original_display": "410.02"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "svd-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "SVD 96\u00d748 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "229.00250829969139"
+              },
+              "original_display": "229.00"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "364.152303022163"
+              },
+              "original_display": "364.15"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "324.30301936488274"
+              },
+              "original_display": "324.30"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "eigen-symmetric-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Eigenvalues 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "1054.7199748856976"
+              },
+              "original_display": "1054.72"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "1034.409423292037"
+              },
+              "original_display": "1034.41"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "1168.9802056690658"
+              },
+              "original_display": "1168.98"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "linux",
+      "suite": "symbolic",
+      "headers": [
+        "Workload",
+        "SymEngine",
+        "SymPy",
+        "Symbolics"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "expand1",
+            "data-qualified": "false",
+            "title": "symbolics: spawnSync /dev/shm/vkf-architecture-0136/symbolic-peers105/julia-1.12.6/bin/julia ETIMEDOUT"
+          },
+          "label": "Expansion 1",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /dev/shm/vkf-architecture-0136/symbolic-peers105/julia-1.12.6/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /dev/shm/vkf-architecture-0136/symbolic-peers105/julia-1.12.6/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /dev/shm/vkf-architecture-0136/symbolic-peers105/julia-1.12.6/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "expand2",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Expansion 2",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.9035020550353356"
+              },
+              "original_display": "0.90"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.008186814452603743"
+              },
+              "original_display": "0.01"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.06681122177006477"
+              },
+              "original_display": "0.07"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "add1",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Addition",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.0033273480693704676"
+              },
+              "original_display": "0.00"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.017927223866186212"
+              },
+              "original_display": "0.02"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.000558507454433903"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "series",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Series",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.026690031699676466"
+              },
+              "original_display": "0.03"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.035129304708874806"
+              },
+              "original_display": "0.04"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.0018401101967206945"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-arm64",
+      "suite": "core",
+      "headers": [
+        "Workload",
+        "C++",
+        "Rust",
+        "Zig"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "spectral-norm-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Spectral norm",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "2.3427637416522673"
+              },
+              "original_display": "2.34"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "2.4975654442441924"
+              },
+              "original_display": "2.50"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "2.3896346401181345"
+              },
+              "original_display": "2.39"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "fannkuch-redux-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Fannkuch",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "5.018839669800556"
+              },
+              "original_display": "5.02"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "5.313797955186231"
+              },
+              "original_display": "5.31"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "5.397833588535675"
+              },
+              "original_display": "5.40"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "n-body-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "N-body",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "9.98421525387806"
+              },
+              "original_display": "9.98"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "10.346563751791075"
+              },
+              "original_display": "10.35"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "7.9055267868559005"
+              },
+              "original_display": "7.91"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Combined kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "5.15131086806429"
+              },
+              "original_display": "5.15"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "4.101236572184846"
+              },
+              "original_display": "4.10"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "5.546705440694591"
+              },
+              "original_display": "5.55"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-parallel-large",
+            "data-qualified": "false",
+            "title": "/Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/native-compiler/native-entry-timer /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-code.bin /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-data.bin 5 5 2 failed:"
+          },
+          "label": "Parallel kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "/Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/native-compiler/native-entry-timer /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-code.bin /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "/Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/native-compiler/native-entry-timer /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-code.bin /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "/Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/native-compiler/native-entry-timer /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-code.bin /Users/runner/work/_temp/vkf-private-macos-arm64/measurements/harness/benchmarks/core-comparison/.work/combined-kernels-parallel-large/sources/.vkfbuild/vkf/arm64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-arm64",
+      "suite": "linalg",
+      "headers": [
+        "Workload",
+        "Eigen",
+        "faer",
+        "SciPy"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "solve-general-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+          },
+          "label": "Solve 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "least-squares-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+          },
+          "label": "Least squares",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "lu-general-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+          },
+          "label": "LU 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "qr-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+          },
+          "label": "QR 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "cholesky-spd-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+          },
+          "label": "Cholesky 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 private ABI argument overflow"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "svd-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+          },
+          "label": "SVD 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "eigen-symmetric-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+          },
+          "label": "Eigenvalues 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: direct arm64 backend unsupported: arm64 list literal is too large"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-arm64",
+      "suite": "symbolic",
+      "headers": [
+        "Workload",
+        "SymEngine",
+        "SymPy",
+        "Symbolics"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "expand1",
+            "data-qualified": "false",
+            "title": "symbolics: spawnSync /Users/runner/hostedtoolcache/julia/1.12.6/aarch64/bin/julia ETIMEDOUT"
+          },
+          "label": "Expansion 1",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /Users/runner/hostedtoolcache/julia/1.12.6/aarch64/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /Users/runner/hostedtoolcache/julia/1.12.6/aarch64/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync /Users/runner/hostedtoolcache/julia/1.12.6/aarch64/bin/julia ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "expand2",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Expansion 2",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.33356128270804747"
+              },
+              "original_display": "0.33"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.011351925911085681"
+              },
+              "original_display": "0.01"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.08920282559423563"
+              },
+              "original_display": "0.09"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "add1",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Addition",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.0021656524686987253"
+              },
+              "original_display": "0.00"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.013453309192974683"
+              },
+              "original_display": "0.01"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.0006076865031847674"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "series",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Series",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.0416546753198771"
+              },
+              "original_display": "0.04"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.05522866557804212"
+              },
+              "original_display": "0.06"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.004108901080492139"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "windows",
+      "suite": "core",
+      "headers": [
+        "Workload",
+        "C++",
+        "Rust",
+        "Zig"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "spectral-norm-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Spectral norm",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "0.16355209116171768"
+              },
+              "original_display": "0.16"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "0.16405891700315428"
+              },
+              "original_display": "0.16"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "0.16359898322744867"
+              },
+              "original_display": "0.16"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "fannkuch-redux-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Fannkuch",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "1.8413076897648109"
+              },
+              "original_display": "1.84"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "2.1786066368241683"
+              },
+              "original_display": "2.18"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "1.8724853273610191"
+              },
+              "original_display": "1.87"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "n-body-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "N-body",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "3.3605602247114406"
+              },
+              "original_display": "3.36"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "3.982040242707548"
+              },
+              "original_display": "3.98"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "2.638758350302139"
+              },
+              "original_display": "2.64"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Combined kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "1.0398938481922118"
+              },
+              "original_display": "1.04"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "0.9541325219286311"
+              },
+              "original_display": "0.95"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "1.0712652755511647"
+              },
+              "original_display": "1.07"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-parallel-large",
+            "data-qualified": "false",
+            "title": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\native-compiler\\native-entry-timer.exe C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-code.bin C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-data.bin 5 5 2 failed:"
+          },
+          "label": "Parallel kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\native-compiler\\native-entry-timer.exe C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-code.bin C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\native-compiler\\native-entry-timer.exe C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-code.bin C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\native-compiler\\native-entry-timer.exe C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-code.bin C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\vektor-flow-core-comparison\\combined-kernels-parallel-large\\sources\\.vkfbuild\\vkf\\x64-data.bin 5 5 2 failed:"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "windows",
+      "suite": "linalg",
+      "headers": [
+        "Workload",
+        "Eigen",
+        "faer",
+        "SciPy"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "solve-general-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Solve 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "508.6666666664966"
+              },
+              "original_display": "508.67"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "536.9431887597472"
+              },
+              "original_display": "536.94"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "422.0049382714638"
+              },
+              "original_display": "422.00"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "least-squares-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Least squares \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "932.4628445429895"
+              },
+              "original_display": "932.46"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "941.2841402342699"
+              },
+              "original_display": "941.28"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "579.157570362591"
+              },
+              "original_display": "579.16"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "lu-general-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "LU 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "709.7662628975695"
+              },
+              "original_display": "709.77"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "623.72126946528"
+              },
+              "original_display": "623.72"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "917.8065264676911"
+              },
+              "original_display": "917.81"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "qr-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "QR 96\u00d748 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "109.22321578229676"
+              },
+              "original_display": "109.22"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "111.79743721712924"
+              },
+              "original_display": "111.80"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "128.75228934663917"
+              },
+              "original_display": "128.75"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "cholesky-spd-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Cholesky 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "535.5318925722092"
+              },
+              "original_display": "535.53"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "363.68552294088767"
+              },
+              "original_display": "363.69"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "574.593651508138"
+              },
+              "original_display": "574.59"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "svd-tall-96x48",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "SVD 96\u00d748 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "230.9341678441151"
+              },
+              "original_display": "230.93"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "445.63877954641754"
+              },
+              "original_display": "445.64"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "405.5927369322081"
+              },
+              "original_display": "405.59"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "eigen-symmetric-96",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer; original speed gate failed"
+          },
+          "label": "Eigenvalues 96 \u2020",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "eigen",
+                "data-ratio": "1397.814416325221"
+              },
+              "original_display": "1397.81"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "faer",
+                "data-ratio": "1439.490669465863"
+              },
+              "original_display": "1439.49"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "scipy",
+                "data-ratio": "1589.297188143887"
+              },
+              "original_display": "1589.30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "windows",
+      "suite": "symbolic",
+      "headers": [
+        "Workload",
+        "SymEngine",
+        "SymPy",
+        "Symbolics"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "expand1",
+            "data-qualified": "false",
+            "title": "symbolics: spawnSync C:\\hostedtoolcache\\windows\\julia\\1.12.6\\x64\\bin\\julia.exe ETIMEDOUT"
+          },
+          "label": "Expansion 1",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync C:\\hostedtoolcache\\windows\\julia\\1.12.6\\x64\\bin\\julia.exe ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync C:\\hostedtoolcache\\windows\\julia\\1.12.6\\x64\\bin\\julia.exe ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "symbolics: spawnSync C:\\hostedtoolcache\\windows\\julia\\1.12.6\\x64\\bin\\julia.exe ETIMEDOUT"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "expand2",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Expansion 2",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.6566228817285871"
+              },
+              "original_display": "0.66"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.010953692295357014"
+              },
+              "original_display": "0.01"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.10494612724699345"
+              },
+              "original_display": "0.10"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "add1",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Addition",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.0031397600782363385"
+              },
+              "original_display": "0.00"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.020514991047091004"
+              },
+              "original_display": "0.02"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.0008157375745813347"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "series",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Series",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symengine",
+                "data-ratio": "0.015393578003037969"
+              },
+              "original_display": "0.02"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "sympy",
+                "data-ratio": "0.03908321645434081"
+              },
+              "original_display": "0.04"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "symbolics",
+                "data-ratio": "0.0023932544563370454"
+              },
+              "original_display": "0.00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "wasm",
+      "suite": "core",
+      "headers": [
+        "Workload",
+        "C++",
+        "Rust",
+        "Zig"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "spectral-norm-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Spectral norm",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "313.3176640638622"
+              },
+              "original_display": "313.32"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "305.9353225251297"
+              },
+              "original_display": "305.94"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "310.31367905950316"
+              },
+              "original_display": "310.31"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "fannkuch-redux-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Fannkuch",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "1105.3681355301335"
+              },
+              "original_display": "1105.37"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "1068.5100350942296"
+              },
+              "original_display": "1068.51"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "1042.6066790404227"
+              },
+              "original_display": "1042.61"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "n-body-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "N-body",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "627.198684277827"
+              },
+              "original_display": "627.20"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "982.2804578419142"
+              },
+              "original_display": "982.28"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "664.3269831945494"
+              },
+              "original_display": "664.33"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Combined kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "645.3195759107786"
+              },
+              "original_display": "645.32"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "584.6479677333529"
+              },
+              "original_display": "584.65"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "674.8403244055141"
+              },
+              "original_display": "674.84"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-parallel-large",
+            "data-qualified": "false",
+            "title": "Numerical execution only; required two-worker concurrency is not verified"
+          },
+          "label": "Parallel kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Numerical execution only; required two-worker concurrency is not verified"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Numerical execution only; required two-worker concurrency is not verified"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Numerical execution only; required two-worker concurrency is not verified"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "wasm",
+      "suite": "linalg",
+      "headers": [
+        "Workload",
+        "Eigen",
+        "faer",
+        "SciPy"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "solve-general-96",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "Solve 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "least-squares-tall-96x48",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "Least squares",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "lu-general-96",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "LU 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "qr-tall-96x48",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "QR 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "cholesky-spd-96",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "Cholesky 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "svd-tall-96x48",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "SVD 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "eigen-symmetric-96",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "Eigenvalues 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "wasm",
+      "suite": "symbolic",
+      "headers": [
+        "Workload",
+        "SymEngine",
+        "SymPy",
+        "Symbolics"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "expand1",
+            "data-qualified": "false",
+            "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+          },
+          "label": "Expansion 1",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "expand2",
+            "data-qualified": "false",
+            "title": "unreachable"
+          },
+          "label": "Expansion 2",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "unreachable"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "add1",
+            "data-qualified": "false",
+            "title": "Expected values to be strictly equal:\n\n0 !== 2998\n"
+          },
+          "label": "Addition",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Expected values to be strictly equal:\n\n0 !== 2998\n"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Expected values to be strictly equal:\n\n0 !== 2998\n"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Expected values to be strictly equal:\n\n0 !== 2998\n"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "series",
+            "data-qualified": "false",
+            "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+          },
+          "label": "Series",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Original internal monotonic timer is unavailable or did not measure execution; no zero-time score"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-x64",
+      "suite": "core",
+      "headers": [
+        "Workload",
+        "C++",
+        "Rust",
+        "Zig"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "spectral-norm-large",
+            "data-qualified": "false",
+            "title": "1:1: native code exceeds runner capacity"
+          },
+          "label": "Spectral norm",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "fannkuch-redux-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "Fannkuch",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "2.0098584767536027"
+              },
+              "original_display": "2.01"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "2.354855204177226"
+              },
+              "original_display": "2.35"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "2.4188808637750108"
+              },
+              "original_display": "2.42"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "n-body-large",
+            "data-qualified": "true",
+            "title": "Ten valid correct samples per required peer"
+          },
+          "label": "N-body",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "cpp",
+                "data-ratio": "3.2323910203112014"
+              },
+              "original_display": "3.23"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "rust",
+                "data-ratio": "4.983498316258534"
+              },
+              "original_display": "4.98"
+            },
+            {
+              "attributes": {
+                "class": [
+                  "ratio"
+                ],
+                "data-peer": "zig",
+                "data-ratio": "2.459409251346833"
+              },
+              "original_display": "2.46"
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-large",
+            "data-qualified": "false",
+            "title": "1:1: native code exceeds runner capacity"
+          },
+          "label": "Combined kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "combined-kernels-parallel-large",
+            "data-qualified": "false",
+            "title": "1:1: native code exceeds runner capacity"
+          },
+          "label": "Parallel kernels",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-x64",
+      "suite": "linalg",
+      "headers": [
+        "Workload",
+        "Eigen",
+        "faer",
+        "SciPy"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "solve-general-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "Solve 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "least-squares-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "Least squares",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "lu-general-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "LU 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "qr-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "QR 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "cholesky-spd-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "Cholesky 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "svd-tall-96x48",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "SVD 96\u00d748",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "eigen-symmetric-96",
+            "data-qualified": "false",
+            "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+          },
+          "label": "Eigenvalues 96",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "<driver-smoke>:1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "macos-x64",
+      "suite": "symbolic",
+      "headers": [
+        "Workload",
+        "SymEngine",
+        "SymPy",
+        "Symbolics"
+      ],
+      "rows": [
+        {
+          "attributes": {
+            "data-workload": "expand1",
+            "data-qualified": "false",
+            "title": "1:1: native code exceeds runner capacity"
+          },
+          "label": "Expansion 1",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "expand2",
+            "data-qualified": "false",
+            "title": "1:1: native code exceeds runner capacity"
+          },
+          "label": "Expansion 2",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "1:1: native code exceeds runner capacity"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "add1",
+            "data-qualified": "false",
+            "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+          },
+          "label": "Addition",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        },
+        {
+          "attributes": {
+            "data-workload": "series",
+            "data-qualified": "false",
+            "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+          },
+          "label": "Series",
+          "cells": [
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            },
+            {
+              "attributes": {
+                "class": [
+                  "unqualified"
+                ],
+                "title": "Ten zero internal timing samples; no successful timing credit: vkf"
+              },
+              "original_display": "Unqual."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

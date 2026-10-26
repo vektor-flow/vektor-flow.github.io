@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% An integral evaluated by differentiating a parameter
+% Assumptions: a ≥ 0; differentiation under the integral is justified on bounded parameter intervals.
+% The quotient has its removable endpoint value at x = 1.
+\[
+F(a)=\int_0^1\frac{x^a-1}{\ln x}\,dx
+\]
+% Differentiate with respect to a.
+\[
+F^{\prime}(a)=\int_0^1x^a\,dx
+\]
+% Evaluate the power integral.
+\[
+F^{\prime}(a)=\frac{1}{a+1}
+\]
+% Integrate in the parameter.
+\[
+F(a)=\ln(a+1)+C
+\]
+% Use the initial parameter value.
+\[
+F(0)=0,\quad C=0
+\]
+% Recover the original integral.
+\[
+\int_0^1\frac{x^a-1}{\ln x}\,dx=\ln(a+1)
+\]
+\end{document}

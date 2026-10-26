@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Underdamped motion from the characteristic roots
+% Assumptions: ω₀ > γ ≥ 0; y(0) = y₀ and y′(0) = v₀.
+% A damped oscillator.
+\[
+y^{\prime\prime}+2\gamma y^{\prime}+\omega_0^2y=0
+\]
+% Use an exponential trial solution.
+\[
+\lambda^2+2\gamma\lambda+\omega_0^2=0
+\]
+% The underdamped roots are complex conjugates.
+\[
+\lambda=-\gamma\pm i\sqrt{\omega_0^2-\gamma^2}
+\]
+% Define the damped frequency.
+\[
+\omega=\sqrt{\omega_0^2-\gamma^2}
+\]
+% Combine into a real solution.
+\[
+y(t)=e^{-\gamma t}(A\cos\omega t+B\sin\omega t)
+\]
+% Impose both initial conditions.
+\[
+y(t)=e^{-\gamma t}\left(y_0\cos\omega t+\frac{v_0+\gamma y_0}{\omega}\sin\omega t\right)
+\]
+\end{document}

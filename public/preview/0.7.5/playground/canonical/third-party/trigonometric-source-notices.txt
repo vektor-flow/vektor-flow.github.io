@@ -1,0 +1,118 @@
+__cos.c
+/* origin: FreeBSD /usr/src/lib/msun/src/k_cos.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+__rem_pio2.c
+/* origin: FreeBSD /usr/src/lib/msun/src/e_rem_pio2.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ *
+ * Optimized by Bruce D. Evans.
+ */
+
+__rem_pio2_large.c
+/* origin: FreeBSD /usr/src/lib/msun/src/k_rem_pio2.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+__sin.c
+/* origin: FreeBSD /usr/src/lib/msun/src/k_sin.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+cos.c
+/* origin: FreeBSD /usr/src/lib/msun/src/s_cos.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+floor.c
+#include "vkf_trig_internal.h"
+
+#ifndef __wasm__
+#if FLT_EVAL_METHOD==0 || FLT_EVAL_METHOD==1
+#define EPS DBL_EPSILON
+#elif FLT_EVAL_METHOD==2
+#define EPS LDBL_EPSILON
+#endif
+#if defined(_MSC_VER)
+static const double_t toint = 4503599627370496.0; /* 1 / DBL_EPSILON */
+
+scalbn.c
+#include "vkf_trig_internal.h"
+
+double scalbn(double x, int n)
+{
+	union {double f; uint64_t i;} u;
+	double_t y = x;
+
+	if (n > 1023) {
+		y *= 0x1p1023;
+		n -= 1023;
+		if (n > 1023) {
+			y *= 0x1p1023;
+			n -= 1023;
+			if (n > 1023)
+				n = 1023;
+		}
+	} else if (n < -1022) {
+		/* make sure final n < -53 to avoid double
+		   rounding in the subnormal range */
+
+sin.c
+/* origin: FreeBSD /usr/src/lib/msun/src/s_sin.c */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */

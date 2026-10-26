@@ -1,0 +1,9 @@
+# Shared signed-field merge for a two-object cohort and its result.
+# Native Morphing kernels own smooth contact and geometry interpolation.
+f:.morphing.field
+s:.morphing.segment
+kernel(index:int,params:[num],values:[num])->num:
+    q:params.(0)
+    contact:f.union(params.(1),params.(2),params.(4)*4*q*(1-q))
+    @:s.value(contact,params.(3),0,0,1,q)
+::kernel(0,[0.5,1,1,2,0.1],[0])

@@ -1,0 +1,667 @@
+{
+  "reuse": {
+    "status": "REUSED_ACTUAL_EXACT_PACKAGE_ARITHMETIC_SMOKE",
+    "source": {
+      "path": "/mnt/development/VektorFlow-e1085-20261025/BENCHMARK-SMOKE.json",
+      "bytes": 20718,
+      "sha256": "58757df9d3cf3ba7f0808673f131c56465cffae63c81eb9cc642993e0711340a",
+      "scope": "Arithmetic only,2target rows,10 measured repetitions each, no original32peer claim"
+    },
+    "packageManifestSHA256": "c0321a7c1ebb86b719cd6f5be78e157c6b19032d43057b8ec0ccf03f6d5f4036",
+    "sourceBinding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "artifactHashes": {
+      "linux/vkf-0.7.5": "af8819c706057f228414ce7f4528c1a7ea1cfc4509c6fb7a56b646f7b1b762b2",
+      "wasm/vkf-0.7.5.cjs": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b",
+      "wasm/vkf-0.7.5.wasm": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626",
+      "bin/vkf-0.7.5": "85f5e9b62189599d21ea046154781c1926b0b5da675c2291c8c95a740efa9849"
+    },
+    "rows": 2,
+    "measuredSamples": 20,
+    "warmupSamples": 2,
+    "nativeTarget": "x86_64 ELF",
+    "wasmTarget": "wasm32 on Linux x86_64 Node22.22.1",
+    "peerRatiosPublished": 0,
+    "original32PeerRows": "UNRUN",
+    "reasonNoReplay": "Identical source, packaged artifacts, input, completed-output boundary and correctness oracle; preserve actual raw samples",
+    "monotonic": 1484364.865203318
+  },
+  "raw": {
+    "schema": "vkf075-exact-package-benchmark-smoke-v1",
+    "scope": "Small correctness-bound compiler/generated-program smoke, not the original32 peer workload inventory; no comparative speedup",
+    "source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "candidate_manifest_sha256": "c0321a7c1ebb86b719cd6f5be78e157c6b19032d43057b8ec0ccf03f6d5f4036",
+    "artifact_shas": {
+      "linux/vkf-0.7.5": "af8819c706057f228414ce7f4528c1a7ea1cfc4509c6fb7a56b646f7b1b762b2",
+      "wasm/vkf-0.7.5.cjs": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b",
+      "wasm/vkf-0.7.5.wasm": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626",
+      "bin/vkf-0.7.5": "85f5e9b62189599d21ea046154781c1926b0b5da675c2291c8c95a740efa9849"
+    },
+    "local_only": true,
+    "cloud_execution": false,
+    "platform_provenance": "/mnt/development/VektorFlow-e1085-20261025/PLATFORM.json",
+    "platform_sha256": "94ec80e9137b331f5b9c1cb8447a020460537b8646d1af7ad9e0000afb582100",
+    "host": {
+      "os": "Linux",
+      "kernel": "7.0.0-38-generic",
+      "machine_isa": "x86_64",
+      "cpu_vendor": "AuthenticAMD",
+      "cpu_model": "AMD Ryzen 7 3700X 8-Core Processor",
+      "physical_cores": 8,
+      "logical_cpus": 16,
+      "cpu_family": "23",
+      "cpu_model_number": "113"
+    },
+    "node": {
+      "node": "22.22.1",
+      "acorn": "8.16.0",
+      "ada": "3.3.0",
+      "ares": "1.34.6",
+      "brotli": "1.2.0",
+      "cjs_module_lexer": "1.2.3",
+      "cldr": "48.0",
+      "icu": "78.2",
+      "llhttp": "9.3.0",
+      "modules": "127",
+      "napi": "10",
+      "nbytes": "0.1.1",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.68.0",
+      "openssl": "3.5.5",
+      "simdjson": "4.2.4",
+      "simdutf": "8.0.0",
+      "sqlite": "3.46.1",
+      "tz": "2025c",
+      "unicode": "17.0",
+      "uv": "1.51.0",
+      "uvwasi": "0.0.23",
+      "v8": "12.4.254.21-node.35",
+      "zlib": "1.3.1",
+      "zstd": "1.5.7"
+    },
+    "wasm_target": "wasm32, no threads, no SIMD, no memory64 (actual validator receipt)",
+    "node_flags": [
+      "--stack-size=8192"
+    ],
+    "symbolic_benchmark": "UNRUN; corrected symbolic correctness not qualified",
+    "cold_wasm_factory_ms": 198.435154,
+    "warmups_per_row": 1,
+    "repetitions_per_row": 10,
+    "rows": [
+      {
+        "target": "linux-native-elf",
+        "id": "arithmetic",
+        "source_sha256": "854af939fa697eb3b82e0783d0f1d89908aa02a398c2f68460a187dc1b30274e",
+        "compiler_sha256": "85f5e9b62189599d21ea046154781c1926b0b5da675c2291c8c95a740efa9849",
+        "factory_sha256": null,
+        "compile_boundary": "Fresh packaged ELF compiler process through native program/IR/diagnostic artifact writes; includes process startup and file IO",
+        "execution_boundary": "Fresh generated x86_64 ELF child through wait/reap; includes process startup",
+        "target_architecture": "x86_64 ELF",
+        "samples": [
+          {
+            "ordinal": -1,
+            "warmup": true,
+            "compile_ms": 904.6602059999999,
+            "execution_ms": 13.321504999999888,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 918.71443,
+            "correct": true
+          },
+          {
+            "ordinal": 0,
+            "warmup": false,
+            "compile_ms": 910.7667220000001,
+            "execution_ms": 14.953384999999798,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 926.1219209999997,
+            "correct": true
+          },
+          {
+            "ordinal": 1,
+            "warmup": false,
+            "compile_ms": 917.7652779999999,
+            "execution_ms": 16.179349999999886,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 934.348704,
+            "correct": true
+          },
+          {
+            "ordinal": 2,
+            "warmup": false,
+            "compile_ms": 913.8948100000002,
+            "execution_ms": 16.20207100000016,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 930.4924550000001,
+            "correct": true
+          },
+          {
+            "ordinal": 3,
+            "warmup": false,
+            "compile_ms": 903.0410969999998,
+            "execution_ms": 16.139580000000024,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 919.6158310000001,
+            "correct": true
+          },
+          {
+            "ordinal": 4,
+            "warmup": false,
+            "compile_ms": 923.6656810000004,
+            "execution_ms": 16.19419099999959,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 940.2748060000004,
+            "correct": true
+          },
+          {
+            "ordinal": 5,
+            "warmup": false,
+            "compile_ms": 893.8484120000003,
+            "execution_ms": 15.94424699999945,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 910.4586479999998,
+            "correct": true
+          },
+          {
+            "ordinal": 6,
+            "warmup": false,
+            "compile_ms": 896.763578,
+            "execution_ms": 16.326452000000245,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 913.6009869999998,
+            "correct": true
+          },
+          {
+            "ordinal": 7,
+            "warmup": false,
+            "compile_ms": 910.6298800000004,
+            "execution_ms": 13.431365999998889,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 924.6203029999997,
+            "correct": true
+          },
+          {
+            "ordinal": 8,
+            "warmup": false,
+            "compile_ms": 907.1712070000012,
+            "execution_ms": 16.0394780000006,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 923.6296409999995,
+            "correct": true
+          },
+          {
+            "ordinal": 9,
+            "warmup": false,
+            "compile_ms": 906.5607689999997,
+            "execution_ms": 12.912859000000026,
+            "actual": 9,
+            "program_sha256": "9d67fd77e6aeed805c1d3bba4793bae7d5b1b1557f739c5697bbbb1c64599f26",
+            "end_to_end_ms": 919.8101530000004,
+            "correct": true
+          }
+        ],
+        "failures": [],
+        "accepted_samples": 10,
+        "status": "PASS",
+        "compile_ms": {
+          "count": 10,
+          "median": 908.9005435000008,
+          "p95": 923.6656810000004,
+          "max": 923.6656810000004
+        },
+        "execution_ms": {
+          "count": 10,
+          "median": 16.08952900000031,
+          "p95": 16.326452000000245,
+          "max": 16.326452000000245
+        },
+        "end_to_end_ms": {
+          "count": 10,
+          "median": 924.1249719999996,
+          "p95": 940.2748060000004,
+          "max": 940.2748060000004
+        }
+      },
+      {
+        "target": "wasm32",
+        "id": "arithmetic",
+        "source_sha256": "854af939fa697eb3b82e0783d0f1d89908aa02a398c2f68460a187dc1b30274e",
+        "compiler_sha256": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626",
+        "factory_sha256": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b",
+        "compile_boundary": "Warm compiler instance synchronous C API source compilation/emit/result copy+JSON parse",
+        "execution_boundary": "Fresh emitted WASM compile+instantiate+execute+typed output decode in Node V8",
+        "target_architecture": "wasm32",
+        "samples": [
+          {
+            "ordinal": -1,
+            "warmup": true,
+            "compile_ms": 8589.384748000002,
+            "execution_ms": 30.5340380000016,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 8637.285600000001,
+            "correct": true
+          },
+          {
+            "ordinal": 0,
+            "warmup": false,
+            "compile_ms": 6304.771118000001,
+            "execution_ms": 4736.576867,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 11049.028460999998,
+            "correct": true
+          },
+          {
+            "ordinal": 1,
+            "warmup": false,
+            "compile_ms": 6272.638203000002,
+            "execution_ms": 13.981792999999016,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6297.4283300000025,
+            "correct": true
+          },
+          {
+            "ordinal": 2,
+            "warmup": false,
+            "compile_ms": 6239.751941000002,
+            "execution_ms": 15.517883000000438,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6264.710841,
+            "correct": true
+          },
+          {
+            "ordinal": 3,
+            "warmup": false,
+            "compile_ms": 6238.995502000005,
+            "execution_ms": 13.897533000003023,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6260.752332000004,
+            "correct": true
+          },
+          {
+            "ordinal": 4,
+            "warmup": false,
+            "compile_ms": 6226.083042999999,
+            "execution_ms": 11.198989000004076,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6247.985783999997,
+            "correct": true
+          },
+          {
+            "ordinal": 5,
+            "warmup": false,
+            "compile_ms": 6162.533454999997,
+            "execution_ms": 11.43148199999996,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6184.341045000001,
+            "correct": true
+          },
+          {
+            "ordinal": 6,
+            "warmup": false,
+            "compile_ms": 6199.297090999993,
+            "execution_ms": 12.55699499999173,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6222.493347999996,
+            "correct": true
+          },
+          {
+            "ordinal": 7,
+            "warmup": false,
+            "compile_ms": 6235.867383999997,
+            "execution_ms": 15.945816999999806,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6259.828249999991,
+            "correct": true
+          },
+          {
+            "ordinal": 8,
+            "warmup": false,
+            "compile_ms": 6251.529817000002,
+            "execution_ms": 13.881592000005185,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6273.107323999997,
+            "correct": true
+          },
+          {
+            "ordinal": 9,
+            "warmup": false,
+            "compile_ms": 6249.954158000008,
+            "execution_ms": 14.354097999996156,
+            "actual": [
+              9
+            ],
+            "program_sha256": "72b01ebaf4cc2cde71170420d9e46a8079d4acc0b0d30e5600f5e6168b362166",
+            "end_to_end_ms": 6273.900974999997,
+            "correct": true
+          }
+        ],
+        "failures": [],
+        "accepted_samples": 10,
+        "status": "PASS",
+        "compile_ms": {
+          "count": 10,
+          "median": 6239.373721500004,
+          "p95": 6304.771118000001,
+          "max": 6304.771118000001
+        },
+        "execution_ms": {
+          "count": 10,
+          "median": 13.939663000001019,
+          "p95": 4736.576867,
+          "max": 4736.576867
+        },
+        "end_to_end_ms": {
+          "count": 10,
+          "median": 6262.731586500002,
+          "p95": 11049.028460999998,
+          "max": 11049.028460999998
+        }
+      }
+    ],
+    "joins": [
+      {
+        "pid": 1404977,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-0/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1404998,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-0/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1404999,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-1/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405003,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-1/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405004,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-2/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405005,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-2/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405006,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-3/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405026,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-3/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405027,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-4/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405029,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-4/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405030,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-5/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405112,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-5/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405113,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-6/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405116,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-6/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405117,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-7/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405118,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-7/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405119,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-8/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405120,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-8/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405121,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-9/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405146,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-9/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405147,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/bin/vkf-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1085-20261025/packages/vkf-0.7.5-rc.e1085-current-90abc5f4c135/examples/arithmetic.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-10/program",
+          "--diagnostics"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      },
+      {
+        "pid": 1405228,
+        "argv": [
+          "/mnt/development/VektorFlow-e1085-20261025/benchmark-native-arithmetic-10/program"
+        ],
+        "exit": 0,
+        "signal": null,
+        "joined": true
+      }
+    ],
+    "unsupported": {
+      "Windows": "-",
+      "macOS": "-",
+      "Safari": "-"
+    },
+    "physical_gpu_tested": false,
+    "measurement_clock": "Node performance.now monotonic wall clock",
+    "completed": true,
+    "correct": true,
+    "all_children_joined": true
+  },
+  "currentCoreManifestSHA256": "803a049f57f9b2ffdec4ac3e49fb5d33a45828e9279c4baa8d33ce096a45bf48",
+  "identityNote": "Metadata-only scoped repackage. Compiler/runtime/input bytes match original measured package; no browser-extension timing claim and no peer ratios."
+}

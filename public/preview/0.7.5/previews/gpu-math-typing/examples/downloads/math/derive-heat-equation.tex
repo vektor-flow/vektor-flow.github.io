@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Heat equation: separation and sine modes
+% Assumptions: κ,L > 0; zero Dirichlet boundaries on [0,L]; initial data f is square integrable.
+% State the equation and boundaries.
+\[
+u_t=\kappa u_{xx},\quad u(0,t)=u(L,t)=0
+\]
+% Seek a nonzero separated mode.
+\[
+u(x,t)=X(x)T(t)
+\]
+% Separate the independent variables where the factors are nonzero.
+\[
+\frac{T^{\prime}}{\kappa T}=\frac{X^{\prime\prime}}{X}=-\lambda
+\]
+% Obtain the spatial and temporal ODEs.
+\[
+X^{\prime\prime}+\lambda X=0,\quad T^{\prime}+\kappa\lambda T=0
+\]
+% Boundary conditions select n = 1,2,… .
+\[
+\lambda_n=\left(\frac{n\pi}{L}\right)^2,\quad X_n=\sin\frac{n\pi x}{L}
+\]
+% Superpose the decaying modes.
+\[
+u(x,t)=\sum_{n=1}^{\infty}b_n e^{-\kappa(n\pi/L)^2t}\sin\frac{n\pi x}{L}
+\]
+% Project the initial data onto the sine basis; the initial limit is in L².
+\[
+b_n=\frac{2}{L}\int_0^L f(x)\sin\frac{n\pi x}{L}\,dx
+\]
+\end{document}

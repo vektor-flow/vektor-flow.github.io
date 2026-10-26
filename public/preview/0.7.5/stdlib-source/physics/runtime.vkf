@@ -1,0 +1,6 @@
+# Internal ordinary source owner for the checked immutable spatial replay binding.
+# Source copies remain ordinary source and fail closed; spelling grants no authority.
+errors:.errors
+_replay_si(desc:any,history:[num:n]) -> [num:15]:
+ errors.RuntimeError("native physics source owner context unavailable")!
+ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]

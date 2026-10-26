@@ -1,0 +1,29 @@
+/* Layout fixes only. The established site.css, remake.css and editor styles are retained verbatim. */
+.remake .readme-example-bar>span{margin-right:auto}
+.remake .readme-example-bar .copy-button{min-height:32px;padding:4px 10px;font-size:12px}
+.remake #calculation{display:flex;align-items:end;flex-wrap:wrap;gap:14px;margin:24px 0}
+.remake #calculation label{width:100%}
+.remake #calculation input{font:inherit;padding:10px;max-width:100%;width:160px;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:5px}
+.remake #calculation button{font:inherit;padding:11px 20px;background:var(--accent);color:var(--paper);border:0;border-radius:5px;min-height:44px}
+.remake #calculation button:disabled{opacity:.6}
+.remake #result{display:block;white-space:pre-wrap;min-height:54px;padding:16px;background:var(--rule);border-radius:5px}
+.performance-page .pending{color:var(--muted);font-variant-numeric:tabular-nums}
+.remake .platform-links{display:flex;flex-wrap:wrap;gap:12px 22px}
+.remake .source-note{overflow-wrap:anywhere}
+.remake .group-body>ul{padding-left:22px}
+.performance-page .performance-table{display:table;width:100%;table-layout:fixed;border-collapse:collapse}
+.performance-page .performance-table th,.performance-page .performance-table td{display:table-cell;padding:6px 8px;white-space:nowrap;vertical-align:middle}
+.performance-page .performance-table th:first-child{width:36%;text-align:left}
+.performance-page .performance-table td,.performance-page .performance-table thead th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.performance-page .performance-table tbody th{font-weight:400}
+.performance-page .performance-table abbr{text-decoration:none;cursor:help}
+.performance-page .unqualified{color:var(--muted);font-size:12px}
+.performance-page .platform-links{display:flex;flex-wrap:wrap;gap:8px 16px}
+@media(max-width:620px){
+.performance-page .performance-table{font-size:11px}
+.performance-page .performance-table th,.performance-page .performance-table td{padding:6px 4px}
+.performance-page .performance-table thead th{font-size:10px}
+.performance-page .unqualified{font-size:10px}
+}
+
+.preview-notice{max-width:1200px;margin:1rem auto;padding:.75rem 1rem;border-left:3px solid var(--accent,#39a98c);font-size:.9rem;line-height:1.5}

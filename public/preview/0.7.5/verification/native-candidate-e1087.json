@@ -1,0 +1,185 @@
+{
+  "source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+  "packageManifestSHA256": "c0321a7c1ebb86b719cd6f5be78e157c6b19032d43057b8ec0ccf03f6d5f4036",
+  "requirements": {
+    "linux": {
+      "linux": {
+        "glibc_versions": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.3",
+          "GLIBC_2.3.2",
+          "GLIBC_2.3.4",
+          "GLIBC_2.4",
+          "GLIBC_2.14",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.29",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34",
+          "GLIBC_2.35",
+          "GLIBC_2.38"
+        ],
+        "highest_required": "GLIBC_2.38",
+        "machine": "ELF64 AMD x86-64 PIE",
+        "interpreter": "/lib64/ld-linux-x86-64.so.2",
+        "DT_NEEDED": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "RPATH_RUNPATH_present": false,
+        "note": "x86-64-baseline; not proof that every reused provider/optional generated kernel has baseline-only instructions"
+      },
+      "bin": {
+        "glibc_versions": [
+          "GLIBC_2.2.5",
+          "GLIBC_2.3",
+          "GLIBC_2.3.2",
+          "GLIBC_2.3.4",
+          "GLIBC_2.4",
+          "GLIBC_2.6",
+          "GLIBC_2.7",
+          "GLIBC_2.9",
+          "GLIBC_2.14",
+          "GLIBC_2.15",
+          "GLIBC_2.17",
+          "GLIBC_2.18",
+          "GLIBC_2.27",
+          "GLIBC_2.29",
+          "GLIBC_2.32",
+          "GLIBC_2.33",
+          "GLIBC_2.34",
+          "GLIBC_2.35",
+          "GLIBC_2.38"
+        ],
+        "highest_required": "GLIBC_2.38",
+        "machine": "ELF64 AMD x86-64 PIE",
+        "interpreter": "/lib64/ld-linux-x86-64.so.2",
+        "DT_NEEDED": [
+          "libm.so.6",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "RPATH_RUNPATH_present": false,
+        "note": "x86-64-baseline; not proof that every reused provider/optional generated kernel has baseline-only instructions"
+      }
+    },
+    "wasm": {
+      "initial_memory_bytes": 67108864,
+      "maximum_memory_bytes": 536870912,
+      "stack_bytes": 8388608,
+      "artifact_bytes": 69116378,
+      "node_tested": "22.22.1 V8 12.4.254.21-node.35",
+      "node_flags": [
+        "--stack-size=8192"
+      ],
+      "features": "wasm32; producer static wasm-validate --disable-simd PASS with threads/memory64 disabled; target_features section absent",
+      "browser_qualification": "UNRUN; e1087 owner"
+    },
+    "native_optional_missing": [
+      "bin/libvkf-concurrent-runtime.so",
+      "bin/libvkf-physics-runtime.so"
+    ],
+    "native_core_external_build_sdk": "no clang/LLVM/include tree/link-time .a needed on reviewed Linux direct ELF path; extracted runtime proof UNRUN",
+    "native_other_modes": "--external-frontend/--emit-wasm/--emit-webgpu use missing sibling helper tools; not a universal CLI SDK",
+    "source_archive": "partial overlay + absolute VFS/provider build provenance, not standalone rebuild SDK"
+  },
+  "qualification": {
+    "source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "profile_pass": false,
+    "full_sourceAPI864_qualified": false,
+    "canonical_counts": {
+      "linux-native": {
+        "PASS": 312,
+        "PASS_NEGATIVE_GUARD": 120
+      },
+      "wasm": {
+        "UNRUN": 432
+      }
+    },
+    "canonical_failures": {
+      "linux-native": [],
+      "wasm": []
+    },
+    "remaining_canonical": {
+      "path": "/mnt/development/VektorFlow-e1085-20261025/REMAINING-CANONICAL-ROWS.json",
+      "bytes": 18063,
+      "sha256": "efe1506833d5fdab0add8d52114f538bd8c20a1c27e1463d49fd0cd78123ca68"
+    },
+    "focused": {
+      "linux": {
+        "rows": 33,
+        "pass": 33,
+        "failures": []
+      },
+      "wasm": {
+        "rows": 33,
+        "pass": 33,
+        "failures": []
+      }
+    },
+    "native_codegen_core": {
+      "passed": 5,
+      "core_qualified": true,
+      "program_executions": 3,
+      "native_generated_ELF432": "UNRUN"
+    },
+    "packaged_smoke": {
+      "counts": {
+        "PASS": 18,
+        "UNRUN": 2
+      },
+      "unrun": [
+        {
+          "target": "linux",
+          "id": "symbolic",
+          "status": "UNRUN",
+          "reason": "Corrected symbolic compilation exceeded bounded diagnostic; no execution or PASS inherited"
+        },
+        {
+          "target": "wasm",
+          "id": "symbolic",
+          "status": "UNRUN",
+          "reason": "Corrected symbolic compilation exceeded bounded diagnostic; no execution or PASS inherited"
+        }
+      ],
+      "failures": []
+    },
+    "benchmark_smoke": {
+      "correct": true,
+      "rows": 2,
+      "accepted_samples": 20,
+      "scope": "Arithmetic smoke only, actual packaged native ELF codegen + wasm32 compiler,10samples each; not original32peer inventory",
+      "symbolic": "UNRUN correctness unqualified"
+    },
+    "symbolic_release_gate": {
+      "status": "FAIL_POSITIVE_COMPILE_TIMEOUT",
+      "source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+      "diagnostic": "/mnt/development/VektorFlow-e1085-20261025/SYMBOLIC-CORRECTED-EXAMPLE.json",
+      "raw_job_receipt": "/mnt/development/VektorFlow-e1085-20261025/receipts/143-symbolic-corrected-example.json",
+      "no_timing_samples_accepted": true
+    },
+    "critical_native_accuracy": "OPEN;1083 terminal without hardware turn; fresh1086 successor",
+    "stable_release": false,
+    "canonical_master": "561/7664 unchanged; full391/full7664 UNRUN",
+    "artifact_shas": {
+      "linux/vkf-0.7.5": "af8819c706057f228414ce7f4528c1a7ea1cfc4509c6fb7a56b646f7b1b762b2",
+      "wasm/vkf-0.7.5.cjs": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b",
+      "wasm/vkf-0.7.5.wasm": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626",
+      "bin/vkf-0.7.5": "85f5e9b62189599d21ea046154781c1926b0b5da675c2291c8c95a740efa9849"
+    },
+    "receipt_pins": {
+      "canonical-current/RESULT.json": "16f529e64e45e1234b8c79ff69cee33be0cee3d162afd639d82a96aedf16fa5b",
+      "canonical-current/FINAL-SEAL.json": "56ce7b8720ad9bf6a3acde59f6e3f3218a7e42c7e89f417c27c096a89dd2689a",
+      "CONFIG-current.json": "4bb45ee103d76eb04cfac09098530f89549d782e0e17b8022ffe766f9f56bdfa",
+      "current-qualification-linux.json": "0e881cb344601e46de46fd481c5cadbb49729dab09234dd656a2f732754563d1",
+      "current-qualification-wasm.json": "10a3918356bdf4bc7ba07fcca9425013588bca6b8f873fb837668b7bbc1f7bad",
+      "native-cli/NATIVE-SMOKE.json": "9b0c7cc296cd92d7420b80ccafd0f5374370c0df8875f4df8a4e950a5155330b",
+      "PACKAGED-SMOKE.json": "b8e51880decfb33d94b6d97e72f8fa6fb87203057daf28ab69d8a9451428923b",
+      "BENCHMARK-SMOKE.json": "58757df9d3cf3ba7f0808673f131c56465cffae63c81eb9cc642993e0711340a",
+      "PLATFORM.json": "94ec80e9137b331f5b9c1cb8447a020460537b8646d1af7ad9e0000afb582100"
+    }
+  },
+  "stable": false
+}

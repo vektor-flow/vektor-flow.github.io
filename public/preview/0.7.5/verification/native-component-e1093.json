@@ -1,0 +1,232 @@
+{
+  "schema": "vkf075-native-closure-consumer-contract-v1",
+  "worker": "e1093",
+  "version": "0.7.5",
+  "status": "CHECKPOINT_NATIVE_REPLAY_OWNER_OPEN",
+  "package": {
+    "root": "/mnt/development/VektorFlow-e1093-20261026/packages/vkf-0.7.5-rc.e1093-nativeclosure-f0dd19cd4aea",
+    "manifest": {
+      "path": "/mnt/development/VektorFlow-e1093-20261026/packages/vkf-0.7.5-rc.e1093-nativeclosure-f0dd19cd4aea/candidate.manifest.json",
+      "bytes": 44275,
+      "sha256": "ad8c746706222021e0352561809f90f5d6990cf5b027bd7d1d4318476aec872e"
+    },
+    "archive": {
+      "path": "/mnt/development/VektorFlow-e1093-20261026/packages/vkf-0.7.5-rc.e1093-nativeclosure-f0dd19cd4aea.tar.gz",
+      "bytes": 35184996,
+      "sha256": "2cb55581257cf81004799f11fe1658e64d1c19ca2120b03b99da9f9c85833170"
+    },
+    "source_binding": "f0dd19cd4aea72ddcd02cfe67e46944945df3234d2b9a01f5190d9dab83cf81f",
+    "component_bindings": {
+      "bin/vkf-0.7.5": "f0dd19cd4aea72ddcd02cfe67e46944945df3234d2b9a01f5190d9dab83cf81f",
+      "linux/vkf-0.7.5": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+      "wasm/vkf-0.7.5.cjs": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+      "wasm/vkf-0.7.5.wasm": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a"
+    },
+    "qualification": "BOUNDED_CORE_CONCURRENCY_PURE_PHYSICS_PASS_PUBLIC_REPLAY_FAIL",
+    "new_package_immutable": true,
+    "qualified_rows": [
+      "--version",
+      "--source-binding",
+      "preserved-linux-API-source-binding",
+      "preserved-linux-API-wrapper",
+      "preserved-wasm-API-wrapper",
+      "core-numeric",
+      "core-array",
+      "core-function",
+      "concurrent-native-ordinary",
+      "physics-pure-ordinary",
+      "physics-runtime-auth-negative",
+      "concurrent-missing-runtime-negative",
+      "checkout-unmounted"
+    ],
+    "failed_rows": [
+      "physics-replay-ordinary"
+    ],
+    "native_closure_complete": false
+  },
+  "native_compiler": {
+    "artifact": {
+      "path": "/mnt/development/VektorFlow-e1093-20261026/native-cli-v2/vkf-0.7.5",
+      "bytes": 31089896,
+      "sha256": "515b9f26c849a19507a7fcf1e06e89df8ac0abb97d7a8bfd80603fd1864a7f0d"
+    },
+    "source_binding": "f0dd19cd4aea72ddcd02cfe67e46944945df3234d2b9a01f5190d9dab83cf81f",
+    "semantic_parent": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "recompiled_jobs": 5,
+    "unchanged_provider_count": 236,
+    "source_binding_check": "PASS exact extracted namespace",
+    "old_native_checks_inherited": 0,
+    "qualified_source_programs": [
+      "core-numeric",
+      "core-array",
+      "core-function",
+      "concurrent-native-ordinary",
+      "physics-pure-ordinary"
+    ],
+    "public_physics_replay": "FAIL source-owner context unavailable; no PhysicsReplay instruction or physics SO DT_NEEDED emitted"
+  },
+  "semantic_parent": {
+    "package_root": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.e1087-core-90abc5f4c135",
+    "parent_package": {
+      "root": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.e1087-core-90abc5f4c135",
+      "archive": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.tar.gz",
+      "archiveSHA256": "624f5957edfa5b19d962444fe13ebea4aefbf41099804bd3f4bf31311f681649",
+      "manifestSHA256": "803a049f57f9b2ffdec4ac3e49fb5d33a45828e9279c4baa8d33ce096a45bf48",
+      "files": 83,
+      "binaryHashes": {
+        "bin/vkf-0.7.5": "85f5e9b62189599d21ea046154781c1926b0b5da675c2291c8c95a740efa9849",
+        "linux/vkf-0.7.5": "af8819c706057f228414ce7f4528c1a7ea1cfc4509c6fb7a56b646f7b1b762b2",
+        "wasm/vkf-0.7.5.cjs": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b",
+        "wasm/vkf-0.7.5.wasm": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626"
+      },
+      "scope": {
+        "status": "EXPERIMENTAL_NUMERIC_CORE_CANDIDATE",
+        "compilerSourceBinding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+        "nativePhysics": {
+          "available": false,
+          "reason": "Empty compiled-in expected runtime SHA; no physics .so can authenticate this binary"
+        },
+        "nativeConcurrency": {
+          "available": false,
+          "reason": "Exact authenticated runtime/slots ABI closure absent"
+        },
+        "unsupportedNativeHelpers": [
+          "external frontend",
+          "native CLI WASM helper",
+          "native CLI WebGPU helper"
+        ],
+        "linuxRequirements": [
+          "x86_64 Linux",
+          "glibc/libm >=2.38",
+          "/lib64/ld-linux-x86-64.so.2"
+        ],
+        "testedCPU": "AMD Ryzen7 3700X",
+        "allCPUsQualified": false,
+        "symbolicExpansion": "Known positive compile timeout; fix in progress",
+        "browserESMEditor": "New bridge fails normal browser worker stack; not adopted as default editor",
+        "stable": false,
+        "outsideWorkspaceNumericValidation": "UNRUN until separate actual receipt"
+      },
+      "sourceHelperPID": 1475429,
+      "monotonic": 1485994.651693376
+    },
+    "terminal_result": "/mnt/development/VektorFlow-e1087-20261026/RESULT.json",
+    "semantic_source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "native_root": "/mnt/development/VektorFlow-e1085-20261025/native-cli",
+    "native_vfs": "/mnt/development/VektorFlow-e1085-20261025/native-cli/compiler-vfs.json",
+    "native_provider_rsp": "/mnt/development/VektorFlow-e1085-20261025/native-cli/providers.rsp",
+    "module_backend": "/mnt/development/VektorFlow-e894-20261024/compiler-metadata/module-backend.o",
+    "remaining_parent_gates": [
+      "e1087 canonicalWASM73PASS4negative4FAIL351UNRUN",
+      "e1087 new browser26PASS31FAIL; not adopted; site review incomplete and unpublished",
+      "symbolic positive20 and matrixsolve remain unqualified"
+    ],
+    "browser": {
+      "actualESMWasmDataBuilt": true,
+      "abiSmokePassed": 3,
+      "actual57Attempted": 57,
+      "passed": 26,
+      "failed": 31,
+      "normalBrowserStackFailure": true,
+      "extraBrowserStackFlags": false,
+      "defaultAdopted": false,
+      "artifacts": {
+        "compiler.mjs": "2c6669e14640371c698b07b0df86dce7b92a89c1caa801e9d0fd58c3b7e1ea23",
+        "compiler.wasm": "ea47caf98eb596ddfc4e06213b59055b78fae215872b4925bbc5488bb1c0e514",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      }
+    },
+    "parent_qualification": {
+      "passed": 432,
+      "producer": "e1085 CURRENT-QUALIFICATION; exact same90abc artifacts",
+      "generatedNativeELF432": "UNRUN"
+    },
+    "next_browser_WASM_owner": "e1095 after e1093; no wait cycle",
+    "native_accuracy_owner": "e1094 after e1093"
+  },
+  "component_hash_bound_fields_only": true,
+  "preserved_component_receipts": {
+    "semantic_source_binding": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+    "linux_sourceAPI": {
+      "artifact": {
+        "path": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.e1087-core-90abc5f4c135/linux/vkf-0.7.5",
+        "bytes": 25135208,
+        "sha256": "af8819c706057f228414ce7f4528c1a7ea1cfc4509c6fb7a56b646f7b1b762b2"
+      },
+      "receipt": {
+        "path": "/mnt/development/VektorFlow-e1085-20261025/CURRENT-QUALIFICATION.json",
+        "bytes": 3670,
+        "sha256": "9bf781dd9924f05cb47474a3839c295aeeb6a323b4a2e9bd99c4abc358e1f866"
+      },
+      "scope": "432 sourceAPI rows retained only for exact unchanged component bytes/configuration; not generated nativeELF432"
+    },
+    "WASM": {
+      "artifacts": {
+        "vkf-0.7.5.cjs": {
+          "path": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.e1087-core-90abc5f4c135/wasm/vkf-0.7.5.cjs",
+          "bytes": 168657,
+          "sha256": "004315aa9d507f615c6017f3d030e926b1096b80958d616d10d4916334175a5b"
+        },
+        "vkf-0.7.5.wasm": {
+          "path": "/mnt/development/VektorFlow-e1087-20261026/packages/vkf-0.7.5-rc.e1087-core-90abc5f4c135/wasm/vkf-0.7.5.wasm",
+          "bytes": 69116378,
+          "sha256": "35f5dc0a1150342db6d54f9a485c2cf93ff7a66989bf3a5f9e09d50402c37626"
+        }
+      },
+      "receipt": {
+        "path": "/mnt/development/VektorFlow-e1087-20261026/canonical-wasm-focused/RESULT.json",
+        "bytes": 1608680,
+        "sha256": "7278c22eeb9b650a20cc2ef0669e3b9eebc430357ede70857877c4787cf4bf57"
+      },
+      "scope": "73positive+4negative pass;4old PID admission failures and351UNRUN retained"
+    },
+    "browser": {
+      "actualESMWasmDataBuilt": true,
+      "abiSmokePassed": 3,
+      "actual57Attempted": 57,
+      "passed": 26,
+      "failed": 31,
+      "normalBrowserStackFailure": true,
+      "extraBrowserStackFlags": false,
+      "defaultAdopted": false,
+      "artifacts": {
+        "compiler.mjs": "2c6669e14640371c698b07b0df86dce7b92a89c1caa801e9d0fd58c3b7e1ea23",
+        "compiler.wasm": "ea47caf98eb596ddfc4e06213b59055b78fae215872b4925bbc5488bb1c0e514",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      }
+    },
+    "site_source": "c2d59bde08e5726134775b332f9b984705a640d1",
+    "next_browser_owner": "e1095 after e1093"
+  },
+  "passed_fields": {
+    "native_runtime_ABI": true,
+    "native_generated_ELF_bounded_package": false,
+    "native_concurrency_source": true,
+    "native_physics_source": false,
+    "native_full432": false,
+    "native_GPU_accuracy": false
+  },
+  "qualification": {
+    "path": "/mnt/development/VektorFlow-e1093-20261026/EXTRACTED-NATIVE-CHECKS.json",
+    "bytes": 54619,
+    "sha256": "c6afabad4cc734a6a5bfd4ebaec36c8ff21764ccee604ff812b167ee6962311f"
+  },
+  "runtime_qualification": {
+    "path": "/mnt/development/VektorFlow-e1093-20261026/RUNTIME-ABI-CHECKS.json",
+    "bytes": 2851,
+    "sha256": "e575e5da787d737c75021a0c1a5dc618f9fdfba860da127c3044753a8bb50b13"
+  },
+  "remaining": [
+    "BLOCKING public physics replay: generated ELF reports source owner context unavailable and has no PhysicsReplay operation / physics SO dependency. Exact runtime ABI45+lifecycle5 passed; namespace source replay did not. See PHYSICS-OWNER-CHECKPOINT-HANDOFF.txt.",
+    "Specialization-order source patch and direct-import SDK diagnostic did not repair public replay; no completed native closure or stable claim. Original bundled pure smoke argument record requires explicit projection; corrected actual source fixture passed.",
+    "Native package qualification incomplete or failed; actual saved rows are authoritative, never file presence.",
+    "Ordinary native GPU accuracy is owned by fresh e1094 after this closure; no wait cycle and no accuracy PASS inherited.",
+    "Full generated nativeELF432 and original32-peer benchmark not established by this bounded native closure.",
+    "Stable/public release remains conditional on all actual required gates. No stable promotion or remote publication by e1093.",
+    "e1087 canonicalWASM73PASS4negative4FAIL351UNRUN",
+    "e1087 new browser26PASS31FAIL; not adopted; site review incomplete and unpublished",
+    "symbolic positive20 and matrixsolve remain unqualified"
+  ],
+  "website_consumer_contract": "Use exact artifact hash, per-component source binding, qualified field and receipt scope; e1094 native GPU accuracy then fresh website validator consumes actual terminal manifest. Terminal e1087 site source c2d59bde preserves abf60d8+1089 design and content; old0.7.2 default remains live. Browser/WASM fixes owned by e1095 after native closure; no redesign.",
+  "stable_promoted": false
+}

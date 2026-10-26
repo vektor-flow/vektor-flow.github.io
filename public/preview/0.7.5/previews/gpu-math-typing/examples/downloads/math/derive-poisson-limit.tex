@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Poisson law as a binomial limit
+% Assumptions: Fixed integer k ≥ 0 and λ > 0; take n → ∞ with n ≥ k and n > λ.
+% Start with a binomial probability.
+\[
+P_n(k)=\binom{n}{k}\left(\frac{\lambda}{n}\right)^k\left(1-\frac{\lambda}{n}\right)^{n-k}
+\]
+% Separate the finite product; for k = 0 it is empty and equals one.
+\[
+\binom{n}{k}\left(\frac{\lambda}{n}\right)^k=\frac{\lambda^k}{\Gamma(k+1)}\prod_{j=0}^{k-1}\left(1-\frac{j}{n}\right)
+\]
+% Every factor tends to one for fixed k.
+\[
+\prod_{j=0}^{k-1}\left(1-\frac{j}{n}\right)\to1
+\]
+% Use the first-order logarithm expansion.
+\[
+n\ln\left(1-\frac{\lambda}{n}\right)\to-\lambda
+\]
+% The fixed −k correction tends to one.
+\[
+\left(1-\frac{\lambda}{n}\right)^{n-k}\to e^{-\lambda}
+\]
+% Combine the limits.
+\[
+P_n(k)\to e^{-\lambda}\frac{\lambda^k}{\Gamma(k+1)}
+\]
+\end{document}

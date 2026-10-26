@@ -1,0 +1,1294 @@
+{
+  "schema": "vektor-flow.public-firefox-benchmarks.v1",
+  "release": "0.7.1",
+  "generated_at": "2026-10-08T09:15:41.548503+00:00",
+  "browser": {
+    "user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:154.0) Gecko/20100101 Firefox/154.0",
+    "cross_origin_isolated": true,
+    "hardware_concurrency": 16
+  },
+  "firefox_version": "154.0",
+  "compiler_assets_sha256": {
+    "compiler.mjs": "c991dd7794bd9e695e81df4a2e62919e4d59dc8a5d50d36ee805aa4c3969b2b7",
+    "compiler.wasm": "e4cb7a80c04ee7ee0a8c86c4cc255bf8b0dcb40b6584da2eb605491e170f28a0",
+    "compiler.data": "266e78929be870859c65e16f4ecbeba2681d60e10dd280a60904c86374f830ce"
+  },
+  "download": {
+    "scope": "Published0.7.1WASMdownloadZIPreadback; exactsamecompilerassetsasregular51browserproof",
+    "version": "0.7.1",
+    "url": "https://vektorflow.org/downloads/current/vkf-browser-compiler.zip",
+    "archive_sha256": "4f4fd0482d164af8913be05c7cd99dc038f10420720f94a329a359a9138ef24b",
+    "matches_root_live_download": true,
+    "assets": [
+      {
+        "file": "compiler.mjs",
+        "zip_entry": "compiler.mjs",
+        "sha256": "c991dd7794bd9e695e81df4a2e62919e4d59dc8a5d50d36ee805aa4c3969b2b7",
+        "bytes": 170677,
+        "matches_published_descriptor": true
+      },
+      {
+        "file": "compiler.wasm",
+        "zip_entry": "compiler.wasm",
+        "sha256": "e4cb7a80c04ee7ee0a8c86c4cc255bf8b0dcb40b6584da2eb605491e170f28a0",
+        "bytes": 12842006,
+        "matches_published_descriptor": true
+      },
+      {
+        "file": "compiler.data",
+        "zip_entry": "compiler.data",
+        "sha256": "266e78929be870859c65e16f4ecbeba2681d60e10dd280a60904c86374f830ce",
+        "bytes": 484084,
+        "matches_published_descriptor": true
+      }
+    ],
+    "timed_benchmark_started": false
+  },
+  "protocol": {
+    "sample_count": 10,
+    "warmups": 3,
+    "clock": "performance.now in cross-origin isolated Firefox",
+    "affinity_logical_cpus": [
+      4,
+      5,
+      12,
+      13
+    ],
+    "linux_timing_overlap": false,
+    "metric": "Canonical program entry invocation; VM reset, formatting and validation outside timing",
+    "compile_metric": "Warm-loaded frontend compileSource after canonical compiler factory initialization; excludes download/factory startup",
+    "browser_parallel_workers": 0,
+    "host_note": "Shared workstation with other workers active; no exclusive-machine claim."
+  },
+  "attempted_maintained_cases": 15,
+  "qualified_cases": 11,
+  "rows": [
+    {
+      "case": "spectral-norm-large",
+      "source": {
+        "file": "programs/spectral-norm-large.vkf",
+        "byte_sha256": "74b5bfe819229b434a594b7d6ed75ef75c6f4c70b084c8df4d1ee731c2cdf011",
+        "normalized_sha256": "0f2caef3f8ac8c87120d2f8b089a4825ff5dafd1ac1ad1e9a7684a3b11d82a5c",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "ba220a94bdf7a578c0e8f4050a1cbe04ec86cdbbb9dd72afc77b7ed4d8e2f82b",
+      "original_expected_value": 1.2742241159529055,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 983.1199999999999,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 993.1799999999994,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 996.5799999999999,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 996.8999999999996,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 981.7999999999993,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 980.2400000000016,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 985.9400000000005,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 979.9200000000001,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 990.5400000000009,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        },
+        {
+          "elapsed_ms": 989.2600000000002,
+          "stdout": "1.2742241159529055\n",
+          "actual_value": 1.2742241159529055
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          983.1199999999999,
+          993.1799999999994,
+          996.5799999999999,
+          996.8999999999996,
+          981.7999999999993,
+          980.2400000000016,
+          985.9400000000005,
+          979.9200000000001,
+          990.5400000000009,
+          989.2600000000002
+        ],
+        "median_ms": 987.6000000000004,
+        "mean_ms": 987.7480000000002,
+        "sample_standard_deviation_ms": 6.489863549327207
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          2935.6800000000003,
+          2915.279999999999,
+          2917.5200000000004,
+          2917.5800000000017,
+          3259.4399999999987,
+          2973.0999999999985,
+          2920.0800000000017,
+          2925.3800000000047,
+          2932.1200000000026,
+          2928.6600000000035
+        ],
+        "median_ms": 2927.020000000004,
+        "mean_ms": 2962.4840000000013,
+        "sample_standard_deviation_ms": 105.68359982093206,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "fannkuch-redux-large",
+      "source": {
+        "file": "programs/fannkuch-redux-large.vkf",
+        "byte_sha256": "dfc6ac1d563607cfbc875b3750bcf65466dea388da0e264edf9cab39c06ff721",
+        "normalized_sha256": "17d1f923c93606b7b7ccb7c53b96d32e852c0708f0356537aebd85bf7d031403",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "6164d7fbd4dc4fdc0551a96ea966d515231e711c53f3fecd3588a6bf67bcbcb0",
+      "original_expected_value": 7319638,
+      "status": "failed",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
+      "error_name": "RuntimeError",
+      "measured_samples": 0,
+      "heap_limit": 76117776,
+      "heap_pointer": 76117776,
+      "allocation_miss": 1,
+      "failure_phase": "first warmup; no operation samples measured"
+    },
+    {
+      "case": "n-body-large",
+      "source": {
+        "file": "programs/n-body-large.vkf",
+        "byte_sha256": "adbc7f0506207649ce90e5a4918c2ab7943cff345b4cd4bb7fc2be5ce5b448c5",
+        "normalized_sha256": "efb13c5d4234ca757f1dbbef069551872b42e36fbc88bd05c56fbcf940568309",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": null,
+      "original_expected_value": 0.1779462269170188,
+      "status": "failed",
+      "reason": "WASM norm requires a fixed numeric aggregate in function advance.body.body[1].expr.segments[0].body[1].expr.segments[0].body[2].value.right.left",
+      "error_name": "Error",
+      "measured_samples": 0
+    },
+    {
+      "case": "combined-kernels-large",
+      "source": {
+        "file": "programs/combined-kernels-large.vkf",
+        "byte_sha256": "8f4e01b3f2da81e1279b0cd287da0392326776e48e5e30f7c181904d6885eb7a",
+        "normalized_sha256": "d7ba2ecb9495d6ed5f6b61466cf83f79094c094aa5c93d7734c2df37580c6da1",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "5b17d38b6e215f52c6547ab94963f642775e2098476094e5f15e4d70d8e06889",
+      "original_expected_value": 1725861.452170343,
+      "status": "failed",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
+      "error_name": "RuntimeError",
+      "measured_samples": 0,
+      "heap_limit": 76163456,
+      "heap_pointer": 76163440,
+      "allocation_miss": 1,
+      "failure_phase": "first warmup; no operation samples measured"
+    },
+    {
+      "case": "combined-kernels-parallel-large",
+      "source": {
+        "file": "programs/combined-kernels-parallel-large.vkf",
+        "byte_sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+        "normalized_sha256": "ee456edb7010d3a95e3a89bf319961eaf004b1b1fc0175926a27921ecb305cdb",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "43b2e6d2dfde376d9cc4522fab7aed1c848af68ced56f55e72b73f0db9d1857f",
+      "original_expected_value": 1725861.452170343,
+      "status": "failed",
+      "reason": "Compiler-owned64 MiB allocation arena exhausted during first warmup",
+      "error_name": "RuntimeError",
+      "measured_samples": 0,
+      "heap_limit": 76163696,
+      "heap_pointer": 76161824,
+      "allocation_miss": 1,
+      "failure_phase": "first warmup; no operation samples measured"
+    },
+    {
+      "case": "startup",
+      "source": {
+        "file": "programs/startup.vkf",
+        "byte_sha256": "32b122d793dffb92e8663f2253b8517bed22472022dceb4e8958bbe06e770230",
+        "normalized_sha256": "addd712b613dca12aa01830acabe0e18b601c5a593e34b01e59b3e0dc29aa544",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "699427b2a354861b6a43e2c8734312114b7e5d4950b63fa5ee38523ce9f8a44f",
+      "original_expected_value": 0,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0.020000000004074536,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0.020000000004074536,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0.020000000004074536,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        },
+        {
+          "elapsed_ms": 0,
+          "stdout": "0\n",
+          "actual_value": 0
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          0,
+          0.020000000004074536,
+          0.020000000004074536,
+          0,
+          0.020000000004074536,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_ms": 0,
+        "mean_ms": 0.006000000001222361,
+        "sample_standard_deviation_ms": 0.009660917832761146
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          10.559999999997672,
+          10.119999999995343,
+          9.979999999995925,
+          9.89999999999418,
+          10.099999999991269,
+          9.960000000006403,
+          10.039999999993597,
+          10.419999999998254,
+          10.179999999993015,
+          10.080000000001746
+        ],
+        "median_ms": 10.089999999996508,
+        "mean_ms": 10.13399999999674,
+        "sample_standard_deviation_ms": 0.20742870261044313,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "scalar-control-small",
+      "source": {
+        "file": "programs/scalar-control-small.vkf",
+        "byte_sha256": "661b512b2c6322cee4447661dca15a67f283975a5b780508cd36da91c329f669",
+        "normalized_sha256": "f47939ef8c51eae3d88252e14e418de64a2c2a24a7351deebbe11c378a1a0008",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "2e54aff5c6cabd6320c811f0c640d1bf541ceed7e8ced478830d63cf1a1f089c",
+      "original_expected_value": 21.017288693559877,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 1.1600000000034925,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.139999999999418,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.3399999999965075,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.3799999999901047,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.2399999999906868,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.3000000000029104,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.3000000000029104,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.4199999999982538,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.2799999999988358,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        },
+        {
+          "elapsed_ms": 1.2400000000052387,
+          "stdout": "21.017288693559877\n",
+          "actual_value": 21.017288693559877
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          1.1600000000034925,
+          1.139999999999418,
+          1.3399999999965075,
+          1.3799999999901047,
+          1.2399999999906868,
+          1.3000000000029104,
+          1.3000000000029104,
+          1.4199999999982538,
+          1.2799999999988358,
+          1.2400000000052387
+        ],
+        "median_ms": 1.2900000000008731,
+        "mean_ms": 1.2799999999988358,
+        "sample_standard_deviation_ms": 0.08894442709229954
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          134.47999999999593,
+          132.40000000000873,
+          132.41999999999825,
+          131.6600000000035,
+          132.68000000000757,
+          132.6999999999971,
+          132.13999999999942,
+          131.72000000000116,
+          132.35999999998603,
+          132.68000000000757
+        ],
+        "median_ms": 132.4100000000035,
+        "mean_ms": 132.5240000000005,
+        "sample_standard_deviation_ms": 0.781667732762818,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "spectral-norm-small",
+      "source": {
+        "file": "programs/spectral-norm-small.vkf",
+        "byte_sha256": "338af4f20c418b6030ca3a75c8cc27843a09bf171a488dad6faf40d7b7ef502c",
+        "normalized_sha256": "518f53cb4457dc70b8d1777db3381b6083f22dc9021d85229c44ecf91244bfcf",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "05925c0c3d15a5763804159629e5280dd7fc0a92957255f84e75b751aba525f4",
+      "original_expected_value": 1.2742199912349306,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 39.73999999999069,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 41.94000000000233,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 40.63999999999942,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 40.80000000000291,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.94000000000233,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.86000000000058,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.84000000001106,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.76000000000931,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.720000000001164,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        },
+        {
+          "elapsed_ms": 39.74000000000524,
+          "stdout": "1.2742199912349306\n",
+          "actual_value": 1.2742199912349306
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          39.73999999999069,
+          41.94000000000233,
+          40.63999999999942,
+          40.80000000000291,
+          39.94000000000233,
+          39.86000000000058,
+          39.84000000001106,
+          39.76000000000931,
+          39.720000000001164,
+          39.74000000000524
+        ],
+        "median_ms": 39.85000000000582,
+        "mean_ms": 40.1980000000025,
+        "sample_standard_deviation_ms": 0.7258068307443218
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          2096.9400000000023,
+          2094.5,
+          2086.7599999999948,
+          2138.5399999999936,
+          2094.720000000001,
+          2118.6399999999994,
+          2118.5999999999913,
+          2094.979999999996,
+          2098.5199999999895,
+          2106.959999999992
+        ],
+        "median_ms": 2097.729999999996,
+        "mean_ms": 2104.915999999996,
+        "sample_standard_deviation_ms": 15.831377563418606,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "spectral-norm-medium",
+      "source": {
+        "file": "programs/spectral-norm-medium.vkf",
+        "byte_sha256": "815524094abbc324e4b67c38866b58d8e253a8047db3d480e314ede47d7224c6",
+        "normalized_sha256": "27c3d4dcf02e1837fe4f3d0f4cd43475c68c28239dd169309942ab6ad21540f7",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "a8f9ba820b7234824d019739e8c7f99c359e070a7e696eec84d0fa6aff1fbf13",
+      "original_expected_value": 1.2742238666431718,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 244.61999999999534,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 247.11999999999534,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 250.82000000000698,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 248.09999999997672,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 247.36000000001513,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 247.55999999999767,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 247.04000000000815,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 246.46000000002095,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 246.81999999997788,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        },
+        {
+          "elapsed_ms": 247.45999999999185,
+          "stdout": "1.2742238666431718\n",
+          "actual_value": 1.2742238666431718
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          244.61999999999534,
+          247.11999999999534,
+          250.82000000000698,
+          248.09999999997672,
+          247.36000000001513,
+          247.55999999999767,
+          247.04000000000815,
+          246.46000000002095,
+          246.81999999997788,
+          247.45999999999185
+        ],
+        "median_ms": 247.24000000000524,
+        "mean_ms": 247.3359999999986,
+        "sample_standard_deviation_ms": 1.539575699124757
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          2380.3000000000175,
+          2378.359999999986,
+          2367.899999999994,
+          2363.399999999994,
+          2355.860000000015,
+          2373.9199999999837,
+          2391.779999999999,
+          2373.0999999999767,
+          2364.279999999999,
+          2372
+        ],
+        "median_ms": 2372.5499999999884,
+        "mean_ms": 2372.0899999999965,
+        "sample_standard_deviation_ms": 10.089991740992302,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "fannkuch-redux-small",
+      "source": {
+        "file": "programs/fannkuch-redux-small.vkf",
+        "byte_sha256": "f2c7b6e25634b856a7ab782cfd08f5d0ae0fbfc0e911d28d9110484e18e0b8c9",
+        "normalized_sha256": "417acd481deed73ab56efff46cc228ec7e2f4ec1a1056bfff6bb380b2a532d2c",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "57539c8c4efe7a205c089076d381a6600c02e5e4cc1c9c1538498e44d8e9df84",
+      "original_expected_value": 22816,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 63.85999999998603,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 63.88000000000466,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 62.9199999999837,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 63.61999999999534,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 63.83999999999651,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 64.73999999999069,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 63.26000000000931,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 64.01999999998952,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 63.52000000001863,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        },
+        {
+          "elapsed_ms": 64.73999999999069,
+          "stdout": "22816\n",
+          "actual_value": 22816
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          63.85999999998603,
+          63.88000000000466,
+          62.9199999999837,
+          63.61999999999534,
+          63.83999999999651,
+          64.73999999999069,
+          63.26000000000931,
+          64.01999999998952,
+          63.52000000001863,
+          64.73999999999069
+        ],
+        "median_ms": 63.84999999999127,
+        "mean_ms": 63.83999999999651,
+        "sample_standard_deviation_ms": 0.576194411632801
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          770.5400000000081,
+          767.640000000014,
+          761.6999999999825,
+          760.2799999999988,
+          753.9199999999837,
+          757.2000000000116,
+          761.1999999999825,
+          761.4599999999919,
+          759,
+          763.0800000000163
+        ],
+        "median_ms": 761.3299999999872,
+        "mean_ms": 761.601999999999,
+        "sample_standard_deviation_ms": 4.779934448650089,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "fannkuch-redux-medium",
+      "source": {
+        "file": "programs/fannkuch-redux-medium.vkf",
+        "byte_sha256": "6efc92be7929cb1245e910be96a5717a9ac089a63839f34d04f5d89b98195894",
+        "normalized_sha256": "25fb465d13a5ec2a2c227a68a737bbdb88495bcb850ecfe5eff22015a3efbaa4",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "d064e3e2fbc52066e7f7cfdd9381b258852bac14f924a1ee80be11fc478aa0f5",
+      "original_expected_value": 161622,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 626.7799999999988,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 633.640000000014,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 634.0800000000163,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 634.8000000000175,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 637.179999999993,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 636.0799999999872,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 639.3800000000047,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 639.2000000000116,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 639.6600000000035,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        },
+        {
+          "elapsed_ms": 642.9000000000233,
+          "stdout": "161622\n",
+          "actual_value": 161622
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          626.7799999999988,
+          633.640000000014,
+          634.0800000000163,
+          634.8000000000175,
+          637.179999999993,
+          636.0799999999872,
+          639.3800000000047,
+          639.2000000000116,
+          639.6600000000035,
+          642.9000000000233
+        ],
+        "median_ms": 636.6299999999901,
+        "mean_ms": 636.3700000000069,
+        "sample_standard_deviation_ms": 4.452267836610333
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          794.5799999999872,
+          758.1599999999744,
+          758.6199999999953,
+          761.5199999999895,
+          764.6800000000221,
+          763.0599999999977,
+          764.6600000000035,
+          771.2600000000093,
+          771.8800000000047,
+          783.0200000000186
+        ],
+        "median_ms": 764.6700000000128,
+        "mean_ms": 769.1440000000002,
+        "sample_standard_deviation_ms": 11.633636290231637,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "n-body-small",
+      "source": {
+        "file": "programs/n-body-small.vkf",
+        "byte_sha256": "e28b4473ec233813825d06d546e162f242fc75928e2945ebebe302ff4ef7af00",
+        "normalized_sha256": "8503713288bf3943fab0f6574a85e5ab0ccb05b1a41679aaa24ef104bd803f57",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "6d6016272d87bba6d0d33969cb29893b4ef61fa19f386aff5470be7e4033d532",
+      "original_expected_value": 0.17058959158982645,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 17.10000000000582,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.119999999995343,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.220000000001164,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.14000000001397,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.220000000001164,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.160000000003492,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.239999999990687,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 18,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.380000000004657,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        },
+        {
+          "elapsed_ms": 17.320000000006985,
+          "stdout": "0.17058959158982623\n",
+          "actual_value": 0.17058959158982623
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          17.10000000000582,
+          17.119999999995343,
+          17.220000000001164,
+          17.14000000001397,
+          17.220000000001164,
+          17.160000000003492,
+          17.239999999990687,
+          18,
+          17.380000000004657,
+          17.320000000006985
+        ],
+        "median_ms": 17.220000000001164,
+        "mean_ms": 17.29000000000233,
+        "sample_standard_deviation_ms": 0.26453313171954157
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          2142,
+          2142,
+          2131.560000000027,
+          2112.399999999994,
+          2108.220000000001,
+          2106.2399999999907,
+          2110.540000000008,
+          2143.5599999999977,
+          2146.859999999986,
+          2099.459999999992
+        ],
+        "median_ms": 2121.9800000000105,
+        "mean_ms": 2124.2839999999997,
+        "sample_standard_deviation_ms": 18.534920315748405,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "n-body-medium",
+      "source": {
+        "file": "programs/n-body-medium.vkf",
+        "byte_sha256": "6cf57bd078d671bd75782a5e2e2dd43fe9780fd0f6c29150ac8fcecb780cf883",
+        "normalized_sha256": "d83e65f5186e55e865111450a2edf28f6b3fec67fd278176fc3173446d96d0f3",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "1255152d6c6bb302f9ab71617ab91104ac28a475fd0116ab0dfb01453f4e46af",
+      "original_expected_value": 0.16236109654075642,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 230.6600000000035,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 231.17999999999302,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 233.44000000000233,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 233.72000000000116,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 233.5800000000163,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 231.14000000001397,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 225.0800000000163,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 232.5,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 231.01999999998952,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        },
+        {
+          "elapsed_ms": 227.52000000001863,
+          "stdout": "0.16236109654075581\n",
+          "actual_value": 0.1623610965407558
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          230.6600000000035,
+          231.17999999999302,
+          233.44000000000233,
+          233.72000000000116,
+          233.5800000000163,
+          231.14000000001397,
+          225.0800000000163,
+          232.5,
+          231.01999999998952,
+          227.52000000001863
+        ],
+        "median_ms": 231.1600000000035,
+        "mean_ms": 230.98400000000547,
+        "sample_standard_deviation_ms": 2.7805003546480127
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          2117.7999999999884,
+          2125.359999999986,
+          2115.720000000001,
+          2122.9400000000023,
+          2136.2000000000116,
+          2117.7399999999907,
+          2143.4800000000105,
+          2112.9400000000023,
+          2121.960000000021,
+          2113.1600000000035
+        ],
+        "median_ms": 2119.8800000000047,
+        "mean_ms": 2122.730000000002,
+        "sample_standard_deviation_ms": 10.029575154405,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "fixed-vector-medium",
+      "source": {
+        "file": "programs/fixed-vector-medium.vkf",
+        "byte_sha256": "378185b8fa4f94c9f957b7f417700635166ceb3fb75b725af78c66be6667c217",
+        "normalized_sha256": "c4044fd00a97fa1941c51c36ddf72c6f23f22953c93182f724a09c2078b81701",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "6c122568d5ef58f861f6b4cc140f6005daee7c48abeac6eeb92b4550e0cb7c61",
+      "original_expected_value": 10.099567298080487,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 12.779999999998836,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 12.779999999998836,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 13.10000000000582,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 12.959999999991851,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 12.89999999999418,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 12.960000000020955,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 13.059999999997672,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 13.040000000008149,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 12.800000000017462,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        },
+        {
+          "elapsed_ms": 13.299999999988358,
+          "stdout": "10.099567298080487\n",
+          "actual_value": 10.099567298080487
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          12.779999999998836,
+          12.779999999998836,
+          13.10000000000582,
+          12.959999999991851,
+          12.89999999999418,
+          12.960000000020955,
+          13.059999999997672,
+          13.040000000008149,
+          12.800000000017462,
+          13.299999999988358
+        ],
+        "median_ms": 12.960000000006403,
+        "mean_ms": 12.968000000002212,
+        "sample_standard_deviation_ms": 0.1649781130231612
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          288.6600000000035,
+          275.64000000001397,
+          275.9799999999814,
+          276.2600000000093,
+          277.2600000000093,
+          279.21999999997206,
+          278.27999999999884,
+          277.63999999998487,
+          277.5,
+          276.78000000002794
+        ],
+        "median_ms": 277.38000000000466,
+        "mean_ms": 278.3220000000001,
+        "sample_standard_deviation_ms": 3.789734086243324,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    },
+    {
+      "case": "record-value-medium",
+      "source": {
+        "file": "programs/record-value-medium.vkf",
+        "byte_sha256": "9a81cf3126b9b00a494849eab884c8f4c394e0e89bf9b7be6414c1aff4074ec2",
+        "normalized_sha256": "029d722332c63fccf76c90aa875c2bbecd216f91b8d40cc47c895995904c1340",
+        "normalization": "CRLF to LF; remove one trailing LF"
+      },
+      "program_wasm_sha256": "84970e1baed090fe3ae0a433322c7e7241e361b2cd42b79baaa5dfe3a5be4b5f",
+      "original_expected_value": -2.0473715203632542e+23,
+      "status": "passed",
+      "samples": [
+        {
+          "elapsed_ms": 36.579999999987194,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 36.01999999998952,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 35.74000000001979,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 36.94000000000233,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 36.320000000006985,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 37.39999999999418,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 37.85999999998603,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 37.34000000002561,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 38.779999999998836,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        },
+        {
+          "elapsed_ms": 37.54000000000815,
+          "stdout": "-2.0473715203632542e+23\n",
+          "actual_value": -2.0473715203632542e+23
+        }
+      ],
+      "raw_operation": {
+        "samples_ms": [
+          36.579999999987194,
+          36.01999999998952,
+          35.74000000001979,
+          36.94000000000233,
+          36.320000000006985,
+          37.39999999999418,
+          37.85999999998603,
+          37.34000000002561,
+          38.779999999998836,
+          37.54000000000815
+        ],
+        "median_ms": 37.14000000001397,
+        "mean_ms": 37.05200000000186,
+        "sample_standard_deviation_ms": 0.9212648310256871
+      },
+      "warm_loaded_frontend_compile": {
+        "samples_ms": [
+          232.10000000000582,
+          233.36000000001513,
+          226.51999999998952,
+          227.11999999999534,
+          227.27999999999884,
+          227.22000000000116,
+          244.95999999999185,
+          238.5,
+          228.72000000000116,
+          226.55999999999767
+        ],
+        "median_ms": 228,
+        "mean_ms": 231.23399999999964,
+        "sample_standard_deviation_ms": 6.196121008788963,
+        "metric": "compileSource after canonical compiler factory initialization, excludes download and factory startup"
+      },
+      "warmups": 3,
+      "operations_per_sample": 1,
+      "metric": "performance.now around vkf_vm_invoke only; VM reset and compiler-owned formatting outside timer",
+      "selected_workers": 0,
+      "execution_mode": "single Firefox main thread",
+      "imports": []
+    }
+  ]
+}

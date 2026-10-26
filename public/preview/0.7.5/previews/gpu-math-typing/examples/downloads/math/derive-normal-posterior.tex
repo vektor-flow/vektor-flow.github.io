@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Normal–normal Bayesian posterior
+% Assumptions: Independent xᵢ conditional on μ; known σ² > 0; prior μ ~ N(m₀,s₀²), s₀² > 0.
+% Multiply prior and likelihood; constants independent of μ are omitted.
+\[
+p(\mu\,|\, x)=C e^{-(\mu-m_0)^2/(2s_0^2)}e^{-\sum_i(x_i-\mu)^2/(2\sigma^2)}
+\]
+% Collect posterior precision and linear coefficient.
+\[
+\tau=\frac{1}{s_0^2}+\frac{n}{\sigma^2},\quad h=\frac{m_0}{s_0^2}+\frac{n\bar x}{\sigma^2}
+\]
+% Expand and collect powers of μ.
+\[
+\ln p(\mu\,|\, x)=-\frac{1}{2}(\tau\mu^2-2h\mu)+C
+\]
+% Complete the square.
+\[
+\tau\mu^2-2h\mu=\tau\left(\mu-\frac{h}{\tau}\right)^2-\frac{h^2}{\tau}
+\]
+% Identify posterior mean and variance.
+\[
+m_n=\frac{h}{\tau},\quad s_n^2=\frac{1}{\tau}
+\]
+% Normalize the Gaussian density.
+\[
+p(\mu\,|\, x)=\frac{1}{\sqrt{2\pi s_n^2}}e^{-(\mu-m_n)^2/(2s_n^2)}
+\]
+\end{document}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Work through spectral analysis and constrained motion, with fair Python comparisons and explicit limits."><title>From measurements to a question you can test · Vektor Flow</title><link rel="canonical" href="https://vektorflow.org/preview/0.7.5/examples.html"><link rel="stylesheet" href="./site.css"><link rel="stylesheet" href="./remake.css"><link rel="stylesheet" href="./website-layout.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2316262b%22/%3E%3Cpath d=%22M7 9l9 15 9-15%22 fill=%22none%22 stroke=%22%2369d8bd%22 stroke-width=%223%22/%3E%3C/svg%3E"></head><body class="remake "><a class="skip-link" href="#content">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">∨</span>Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html">Why</a><a href="build.html">How</a><a href="features.html">What</a><a href="examples.html" aria-current="page">Examples</a><a href="syntax.html">Syntax</a><a href="stdlib.html">Standard library</a><a href="install.html">Download</a><a href="performance.html">Performance</a></nav><span class="release-version">0.7.5 preview</span></header><main id="content"><p class="preview-notice">0.7.5 website preview · Try the reviewed examples and explore the new site. Compiler release checks are still in progress. <a href="release-status.html">Release status</a></p><article class="guide-page"><div class="page-intro"><p class="eyebrow">EXAMPLES / COMPLETE WORKFLOWS</p><h1>From measurements to a question you can test</h1><p class="page-lead">Inspect every input, follow each step and change the question in runnable code.</p></div>
+<nav class="reference-toc" aria-label="Workflows"><a href="#spectra">Spectral analysis</a><a href="#partial">Parameter binding</a><a href="#disk">Selected disk reads</a><a href="#motion">Constrained motion</a></nav>
+<section id="spectra"><p class="eyebrow">01 / SPECTRAL ANALYSIS</p><h2>Find a feature, then inspect its source.</h2><p>Suppose a measurement records intensity at several energy channels for each sampling site. Calculate the peak-to-peak contrast at every site, then inspect a selected spectrum. This fixture uses four sites and three channels so every input and result can be checked.</p><div class="table-scroll"><table><thead><tr><th>Contract</th><th>Both programs</th></tr></thead><tbody><tr><td>Axes</td><td>Four sampling sites × three energy channels; VKF labels <code>p,u</code></td></tr><tr><td>Energy</td><td>−1, 0, 1</td></tr><tr><td>Data</td><td>[1,5,2], [2,3,4], [3,8,4], [4,5,6]</td></tr><tr><td>Operation</td><td>Maximum minus minimum per spectrum; select row 2</td></tr><tr><td>Numerical output</td><td>Contrast [4,2,5,2]; selected spectrum [3,8,4]</td></tr><tr><td>Storage and rendering</td><td>Python float64; VKF floating-point literals; rendered VKF vertices use float32</td></tr><tr><td>File I/O and timing</td><td>No file I/O in this core task; speed and memory advantages unmeasured</td></tr></tbody></table></div>
+<div class="comparison-grid"><div><h3>Python / fixture</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>import numpy as np
+import matplotlib.pyplot as plt
+
+energy = np.array([-1., 0., 1.], dtype=np.float64)
+spectra = np.array([[1., 5., 2.], [2., 3., 4.],
+                    [3., 8., 4.], [4., 5., 6.]], dtype=np.float64)</pre></div><h3>Python / analysis and plot</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>contrast = np.ptp(spectra, axis=1)
+selected = spectra[2, :]
+print(contrast)
+print(selected)
+fig, ax = plt.subplots(dpi=96)
+ax.plot(energy, selected, color=(.25, .72, 1., 1.), linewidth=.75)
+ax.set(xlim=(-1, 1), ylim=(0, 10))
+plt.show()</pre></div></div><div><h3>VKF / fixture</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>stat:.stat
+energy:[-1.0,0.0,1.0]_u
+spectra:[[1.0,5.0,2.0],[2.0,3.0,4.0],
+         [3.0,8.0,4.0],[4.0,5.0,6.0]]_pu</pre></div><h3>VKF / analysis and view</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>span(x):stat.max(x)-stat.min(x)
+contrast:span_u(spectra)
+::contrast
+selected:spectra.(2,:)
+::selected
+view:.ui.viewport
+view.add(x:energy_u,y:selected_u,color:[0.25,0.72,1,1])
+view.push(x_lim:[-1,1],y_lim:[0,10])
+view.show()</pre></div></div></div><p>NumPy's <code>ptp</code> already states the reduction concisely. VKF makes the selected dimension part of calling an ordinary <code>span</code> function. These are two readable ways to express the same numerical task; the plots are not claimed to be pixel-identical.</p><section class="readme-example" data-vkf-example-id="scientific-spectrum" data-verification="e1079-verified"><div class="readme-example-bar"><span>Loading compiler…</span><button class="readme-example-play" type="button" disabled aria-disabled="true">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code>stat:.stat
+energy:[-1.0,0.0,1.0]_u
+spectra:[[1.0,5.0,2.0],[2.0,3.0,4.0],
+         [3.0,8.0,4.0],[4.0,5.0,6.0]]_pu
+span(x):stat.max(x)-stat.min(x)
+contrast:span_u(spectra)
+::contrast
+selected:spectra.(2,:)
+::selected
+view:.ui.viewport
+view.add(x:energy_u,y:selected_u,color:[0.25,0.72,1,1])
+view.push(x_lim:[-1,1],y_lim:[0,10])
+view.show()</code></pre><textarea class="readme-example-source" aria-label="Editable VKF source: Compare spectral contrast along the energy axis" spellcheck="false">stat:.stat
+energy:[-1.0,0.0,1.0]_u
+spectra:[[1.0,5.0,2.0],[2.0,3.0,4.0],
+         [3.0,8.0,4.0],[4.0,5.0,6.0]]_pu
+span(x):stat.max(x)-stat.min(x)
+contrast:span_u(spectra)
+::contrast
+selected:spectra.(2,:)
+::selected
+view:.ui.viewport
+view.add(x:energy_u,y:selected_u,color:[0.25,0.72,1,1])
+view.push(x_lim:[-1,1],y_lim:[0,10])
+view.show()</textarea></div><section class="readme-example-terminal" aria-label="Spectroscopy output"><span>Console · contrast for four sites, then selected spectrum</span><pre class="readme-example-output" aria-live="polite"></pre></section></div><section class="readme-example-result" data-example-result aria-label="Selected spectrum plot"><div data-result-hint class="purpose-result-hint"><h3>Find the strongest variation.</h3><p>Four sampling sites. Three energy channels each. Reduce along the energy axis, then inspect one spectrum.</p><p>The fixture is written out in full. No HDF5 reader or unmeasured out-of-core pipeline is hidden behind this example.</p><p>Run to see the actual calculation and curve.</p></div></section></div></section><p>Change the selected site and inspect the new curve. To change the analysis instead, keep the fixture and replace the body of <code>span</code>. <a href="syntax.html#named-and-anonymous-dimensions">See how selected dimensions work →</a></p></section>
+<section id="partial"><p class="eyebrow">02 / PARAMETER BINDING</p><h2>Carry a decision into the next calculation.</h2><p>When a model parameter is fixed, keep the resulting function as a value. Python provides this through <code>functools.partial</code>; VKF places parameter binding in the language syntax. Both examples below produce 8.</p><div class="comparison-grid"><div><h3>Python / import</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>from functools import partial</pre></div><h3>Python / bind and call</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>def power(x, n):
+    return x ** n
+
+cube = partial(power, n=3)
+print(cube(2))</pre></div></div><div><h3>VKF / bind and call</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>power(x,n):x^n
+cube:power[n:3]
+::cube(2)</pre></div></div></div><p><a href="syntax.html#bound-arguments-and-structural-selectors">Run the parameter-binding examples →</a></p></section>
+<section id="disk"><p class="eyebrow">03 / LARGE-DATA BOUNDARY</p><h2>Request a region without inventing an API.</h2><p>For a dataset already stored in HDF5, idiomatic h5py can select a scalar or a region directly. It does not require reading the complete dataset. Physical reads still depend on chunking, compression and caches.</p><h3>Python / create the same fixture on disk</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>import h5py
+
+with h5py.File(&quot;spectra.h5&quot;, &quot;w&quot;) as file:
+    file.create_dataset(&quot;intensity&quot;, data=spectra)</pre></div><h3>Python / inspect selected values</h3><div class="code-snippet"><button class="copy-button" type="button" data-copy aria-label="Copy code">Copy</button><pre>with h5py.File(&quot;spectra.h5&quot;, &quot;r&quot;) as file:
+    dataset = file[&quot;intensity&quot;]
+    one = np.sin(dataset[2, 1])
+    region = np.sin(dataset[1:3, 0:2])</pre></div><p>The scalar selection reads intensity 8; the selected 2 × 2 input region is [[2,3],[3,8]]. NumPy applies sine after each selection. Inspect <code>one</code> and <code>region</code> in Python to see the transformed values. File setup stays separate from the selected-read task.</p><div class="scope-note"><p>VKF's goal is a language-level path from selected demand to a bounded working set. This site supplies no runnable VKF HDF5 equivalent and makes no out-of-core performance claim. The working spectral example above is in memory.</p></div></section>
+<section id="motion"><p class="eyebrow">04 / A CONSTRAINED MODEL</p><h2>Solve the path. Inspect its rate of change.</h2><p>Choose a cubic path that begins at 0, ends at 1 and has selected endpoint slopes. Solve its four coefficients as a linear system, derive its slope, then inspect both time curves and a phase view.</p><p>The default endpoint slope is zero. At the midpoint the program prints position 0.5 and slope 1.5. Change <code>exit_slope</code> to explore how the solution changes.</p><section class="readme-example" data-vkf-example-id="motion-design" data-verification="e1003-local-browser" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code>la:.linalg
+exit_slope:0
+c:la.solve([[1,0,0,0],[1,1,1,1],
+            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
+path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
+slope:deriv_t(path)
+::c
+::path(0.5,c.0,c.1,c.2,c.3)
+::slope(0.5,c.0,c.1,c.2,c.3)
+t:0.005*[0..200]
+curves:.ui.viewport
+curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
+curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
+curves.show()
+phase:.ui.viewport
+phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
+phase.show()</code></pre><textarea class="readme-example-source" data-example-id="motion-design" aria-label="Editable VKF source: Matrix solve, function derivative and motion plots" spellcheck="false" autocapitalize="off" autocomplete="off">la:.linalg
+exit_slope:0
+c:la.solve([[1,0,0,0],[1,1,1,1],
+            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
+path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
+slope:deriv_t(path)
+::c
+::path(0.5,c.0,c.1,c.2,c.3)
+::slope(0.5,c.0,c.1,c.2,c.3)
+t:0.005*[0..200]
+curves:.ui.viewport
+curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
+curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
+curves.show()
+phase:.ui.viewport
+phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
+phase.show()</textarea></div><section class="readme-example-terminal" aria-label="Motion example output"><span>Compiler output · blue position · orange velocity · green phase portrait</span><pre class="readme-example-output" aria-live="polite"></pre></section></div><section class="readme-example-result" data-example-result aria-label="Motion example plots"><div data-result-hint class="purpose-result-hint"><p class="purpose-eyebrow">Your model, two views</p><h3>From constraints to a curve</h3><p><code>p(0) = 0</code><br><code>p(1) = 1</code><br><code>p′(0) = 0</code><br><code>p′(1) = exit_slope</code></p><p>Run to see the compiler’s output here.</p><p><span class="purpose-key purpose-position">Blue</span> · position over time<br><span class="purpose-key purpose-velocity">Orange</span> · velocity over time<br><span class="purpose-key purpose-phase">Green</span> · position against velocity</p><p>Change the endpoint slope in the source, then run again to compare the motion.</p></div></section></div></section><p>This is a sampled model with two retained views. It is not a benchmark or a qualification of large animated scenes. <a href="stdlib.html#linalg">Inspect the linear-algebra source →</a></p></section>
+</article></main><footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><span>Stay with the question.</span><nav aria-label="More"><a href="experiments.html">Experiments</a><a href="performance.html">Performance</a><a href="https://github.com/vektor-flow/spec">Language specification</a></nav><small>Experimental language · 0.7.5 candidate preview</small></footer><script type="module" src="./reference-navigation.mjs"></script><script type="module" src="./current-documentation-examples.mjs"></script><script type="module" src="./website-controls.mjs"></script></body></html>

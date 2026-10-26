@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "compiler_version": "0.7.2",
+  "compiler_wasm_sha256": "2455d249026f0c9d1250920c52640a421e4d99746665ddbeb176102c2a1b07b5",
+  "fixture": {
+    "shape": [
+      4,
+      3
+    ],
+    "axis_order": [
+      "sample",
+      "energy"
+    ],
+    "vkf_axes": "pu",
+    "python_dtype": "float64",
+    "vkf_input": "numeric floating-point literals",
+    "render_vertices": "float32",
+    "file_io_in_spectral_core": false
+  },
+  "source": {
+    "spectroscopy.vkf": "c441df83838d29b8f581b4d21d0af1adbba20c0c543266bdbee3d0c850340e3d",
+    "spectroscopy.py": "09950c4a78988555da142abaf37288da00ef566b7c72490ee8a8746b542ccda6",
+    "partial-application.py": "44cf9bfbc8489a3dc08f9e29d9e417c80348f2de2b8988e4a755c747242263d4"
+  },
+  "checks": {
+    "vkf_source_execution": "PASS_ACTUAL_PROBE",
+    "vkf_stdout": "[4, 2, 5, 2]\n[3, 8, 4]\n",
+    "retained_plot_vertices": 3,
+    "x_bounds": [
+      -1,
+      1
+    ],
+    "y_bounds": [
+      0,
+      10
+    ],
+    "full_site_UI": "PASS",
+    "python_numerical_and_hdf5": {
+      "passed": true,
+      "versions": {
+        "Python": "3.14.4",
+        "numpy": "2.3.5",
+        "h5py": "3.15.1",
+        "matplotlib": "3.10.7+dfsg1"
+      },
+      "fixture": {
+        "shape": [
+          4,
+          3
+        ],
+        "dtype": "float64",
+        "axes": [
+          "sample",
+          "energy"
+        ],
+        "values": [
+          [
+            1.0,
+            5.0,
+            2.0
+          ],
+          [
+            2.0,
+            3.0,
+            4.0
+          ],
+          [
+            3.0,
+            8.0,
+            4.0
+          ],
+          [
+            4.0,
+            5.0,
+            6.0
+          ]
+        ],
+        "energy": [
+          -1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "contrast": [
+        4.0,
+        2.0,
+        5.0,
+        2.0
+      ],
+      "selected": [
+        3.0,
+        8.0,
+        4.0
+      ],
+      "plotBounds": {
+        "x": [
+          -1,
+          1
+        ],
+        "y": [
+          0,
+          10
+        ]
+      },
+      "hdf5": {
+        "logicalScalarElements": 1,
+        "logicalRegionShape": [
+          2,
+          2
+        ],
+        "physicalIOBytes": "UNMEASURED; selection/cache/layout dependent"
+      },
+      "timing": "UNMEASURED",
+      "memory": "UNMEASURED",
+      "noPixelEquivalenceClaim": true
+    },
+    "actual_plot_xy": [
+      [
+        -1.0,
+        3.0
+      ],
+      [
+        0.0,
+        8.0
+      ],
+      [
+        1.0,
+        4.0
+      ]
+    ],
+    "displayed_python_source": {
+      "status": "PASS",
+      "source_sha256": "09950c4a78988555da142abaf37288da00ef566b7c72490ee8a8746b542ccda6",
+      "versions": {
+        "Python": "3.14.4",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.7+dfsg1"
+      },
+      "contrast": [
+        4.0,
+        2.0,
+        5.0,
+        2.0
+      ],
+      "selected": [
+        3.0,
+        8.0,
+        4.0
+      ],
+      "x_bounds": [
+        -1.0,
+        1.0
+      ],
+      "y_bounds": [
+        0.0,
+        10.0
+      ],
+      "timing": "UNMEASURED",
+      "pixel_equivalence": "NOT_CLAIMED"
+    },
+    "python_partial_application": {
+      "passed": true,
+      "source_sha256": "44cf9bfbc8489a3dc08f9e29d9e417c80348f2de2b8988e4a755c747242263d4",
+      "result": 8,
+      "timing": "UNMEASURED"
+    },
+    "vkf_runtime_source_sha256": "9ba79f79bcf92938407f4133d75ca476badea20e0ff65126b00a6de72801af62",
+    "vkf_partial_application": {
+      "status": "PASS",
+      "source_sha256": "16a36522571e1c1cfed5df1d1d0d01f427639b2a59cf4fa483e7ec12dff868c5",
+      "canonical_reference": "syntax.html#bound-arguments-and-structural-selectors",
+      "result": "8\n"
+    }
+  },
+  "remaining_claims": {
+    "vkf_hdf5_reader": "NO_VERIFIED_PUBLIC_API",
+    "general_out_of_core_demand": "UNQUALIFIED_DESIGN_GOAL",
+    "multi_axis_signal_function": "NOT_ESTABLISHED_BY_THIS_ONE_AXIS_EXAMPLE",
+    "general_append_image_stack": "UNQUALIFIED_DESIGN_GOAL",
+    "automatic_cpu_gpu_placement": "INCOMPLETE",
+    "speedup": "UNMEASURED",
+    "physical_io_bytes": "UNMEASURED",
+    "peak_memory": "UNMEASURED",
+    "pixel_equivalence": "NOT_CLAIMED"
+  },
+  "publication_evidence": "verification/site-remake-e1079.json"
+}

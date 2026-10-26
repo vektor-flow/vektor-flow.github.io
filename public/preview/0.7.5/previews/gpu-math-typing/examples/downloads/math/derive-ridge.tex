@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Ridge regression in singular-value coordinates
+% Assumptions: λ > 0; A = UΣVᵀ is a thin SVD.
+% Penalize coefficient size.
+\[
+J(x)=\|Ax-b\|^2+\lambda\|x\|^2
+\]
+% Differentiate both terms.
+\[
+\nabla J=2A^T(Ax-b)+2\lambda x
+\]
+% The shifted matrix is invertible.
+\[
+(A^TA+\lambda I)x=A^Tb
+\]
+% Introduce the singular-value decomposition.
+\[
+A=U\Sigma V^T
+\]
+% Resolve the solution on the row-space singular vectors; the orthogonal component is zero.
+\[
+\hat{x}=V(\Sigma^T\Sigma+\lambda I)^{-1}\Sigma^TU^Tb
+\]
+% Each singular direction receives a regularized weight.
+\[
+\hat{x}=\sum_i\frac{\sigma_i}{\sigma_i^2+\lambda}v_i u_i^Tb
+\]
+\end{document}

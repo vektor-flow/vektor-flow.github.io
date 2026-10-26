@@ -1,0 +1,216 @@
+# Supported scalar-inertia contact, constant support load and tangential drive.
+# Origin: svenviktorjonsson/rigid-body-collisions, research/adaptive-benchmark-validation.
+# Source commit: 1098616162342d894d9c0a098f8f5ad8af427d23; supported_backend/kernel.h.
+# Kernel SHA256: 6e5050759cbc00734215b4a15ded36f1dd1ca903d40cceb0149fe20fe8c8c40d.
+# Port included by the source owner; upstream has no repository-level license.
+# This notice preserves provenance and does not relicense upstream code.
+# Fields and impulses use fixed declared axes, not changing final t/s directions.
+:.math
+errors:.errors
+
+supported_sign(x:num):
+ x>0? @:1
+ x<0? @:0-1
+ 0
+
+supported_finite(x:num): (x=x) /\ ((abs(x)-abs(x))=0) /\ ((x=abs(x)) \/ (x=0-abs(x)))
+
+supported_max(a:num,b:num):
+ a<b? @:b
+ a
+supported_min(a:num,b:num):
+ b<a? @:b
+ a
+
+supported_candidate(active:bit,value:num,index:int):
+ active? @:supported_sign(value)
+ index=0? @:0
+ index=1? @:0-1
+ 1
+
+supported_count(active:bit):
+ active? @:1
+ 3
+
+supported_contact_si(mass:num,inertia:num,radius:num,normal_load:num,drive:num,velocity:num,omega:num,spin0:num,duration:num,mu_s:num,mu_d:num,mu_r:num,rolling_length:num,mu_n:num,spin_length:num):
+ values:[mass,inertia,radius,normal_load,drive,velocity,omega,spin0,duration,mu_s,mu_d,mu_r,rolling_length,mu_n,spin_length]
+ [..14] >>
+  ~supported_finite(values.($))? errors.ValueError("nonfinite supported-contact input")!
+ (mass<=0 \/ inertia<=0 \/ radius<=0)? errors.ValueError("positive mass/inertia/radius required")!
+ duration<0? errors.ValueError("nonnegative duration required")!
+ (normal_load<0 \/ mu_s<0 \/ mu_d<0 \/ mu_r<0 \/ rolling_length<0 \/ mu_n<0 \/ spin_length<0 \/ mu_d>mu_s)? errors.ValueError("invalid supported-contact resistance")!
+ ((mu_r>0 /\ rolling_length=0) \/ (mu_n>0 /\ spin_length=0))? errors.ValueError("positive angular resistance requires a moment length")!
+ eps:0.0000000000000002220446049250313
+ inverse_m:1/mass
+ inverse_rot:radius*radius/inertia
+ inverse_R:1/radius
+ mobility:inverse_m+inverse_rot
+ cap:mu_r*rolling_length*inverse_R*normal_load
+ static_cap:mu_s*normal_load
+ dynamic_cap:mu_d*normal_load
+ force_tolerance:64*eps*supported_max(supported_max(supported_max(static_cap,dynamic_cap),abs(drive)),supported_max(cap,0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001))
+ slip_tolerance:force_tolerance*(inverse_m+2*inverse_rot)
+ rolling_tolerance:2*force_tolerance*inverse_rot
+ inverse_mobility:1/mobility
+ v:velocity
+ q:radius*omega
+ time:0.0
+ dx:0.0
+ p:0.0
+ L:0.0
+ loss_f:0.0
+ loss_r:0.0
+ phases:0
+ h:0.0
+ tolerance:0.0
+ u:0.0
+ sliding:false
+ rolling:false
+ f:0.0
+ b:0.0
+ dv:0.0
+ dq:0.0
+ du:0.0
+ su:0
+ sq:0
+ found:false
+ nu:0
+ nq:0
+ i:0
+ j:0
+ tu:0.0
+ tq:0.0
+ event_tolerance:0.0
+ stop_u:false
+ stop_q:false
+ has_u:false
+ has_q:false
+ time<duration?>
+  .phases+:1
+  phases>32? errors.RuntimeError("supported-contact branch budget")!
+  .tolerance:supported_min(0.000000000001,64*eps*supported_max(abs(v),abs(q)))
+  .u:v-q
+  abs(u)<=tolerance?
+   .v:q
+   .u:0.0
+  abs(q)<=tolerance? .q:0.0
+  .sliding:abs(u)>tolerance
+  .rolling:abs(q)>tolerance
+  .f:0.0
+  .b:0.0
+  .dv:0.0
+  .dq:0.0
+  .du:0.0
+  .su:0
+  .sq:0
+  .found:false
+  (sliding /\ rolling)?
+   .su:supported_sign(u)
+   .sq:supported_sign(q)
+   .f:0-dynamic_cap*su
+   .b:0-cap*sq
+   .dv:(drive+f)*inverse_m
+   .dq:(0-f+b)*inverse_rot
+   .du:dv-dq
+   .found:true
+  .nu:supported_count(sliding)
+  .nq:supported_count(rolling)
+  .i:0
+  (i<nu /\ ~found)?>
+   .j:0
+   (j<nq /\ ~found)?>
+    .su:supported_candidate(sliding,u,i)
+    .sq:supported_candidate(rolling,q,j)
+    (su=0 /\ sq=0)?
+     .f:0-drive
+     .b:f
+    (su=0 /\ sq!=0)?
+     .b:0-cap*sq
+     .f:(b*inverse_rot-drive*inverse_m)*inverse_mobility
+    (su!=0 /\ sq=0)?
+     .f:0-dynamic_cap*su
+     .b:f
+    (su!=0 /\ sq!=0)?
+     .f:0-dynamic_cap*su
+     .b:0-cap*sq
+    .j+:1
+    (su=0 /\ abs(f)>static_cap+force_tolerance)? @>
+    (sq=0 /\ abs(b)>cap+force_tolerance)? @>
+    .dv:(drive+f)*inverse_m
+    .dq:(0-f+b)*inverse_rot
+    .du:dv-dq
+    (~sliding /\ su!=0 /\ su*du<=slip_tolerance)? @>
+    (~rolling /\ sq!=0 /\ sq*dq<=rolling_tolerance)? @>
+    .found:true
+   .i+:1
+  ~found? errors.RuntimeError("no admissible supported-contact branch")!
+  .h:duration-time
+  .tu:0.0
+  .tq:tu
+  .has_u:su!=0 /\ u*du<0
+  has_u? .tu:0-u/du
+  .has_q:sq!=0 /\ q*dq<0
+  has_q? .tq:0-q/dq
+  (tu>0 /\ tu<h)? .h:tu
+  (tq>0 /\ tq<h)? .h:tq
+  .event_tolerance:16*eps*supported_max(duration,h)
+  .stop_u:has_u /\ abs(tu-h)<=event_tolerance
+  .stop_q:has_q /\ abs(tq-h)<=event_tolerance
+  h<=0? errors.RuntimeError("nonadvancing supported-contact event")!
+  .dx+:v*h+0.5*dv*h*h
+  .p+:f*h
+  .L+:radius*b*h
+  .loss_f-:f*(u*h+0.5*du*h*h)
+  .loss_r-:b*(q*h+0.5*dq*h*h)
+  .v+:dv*h
+  .q+:dq*h
+  .time+:h
+  (stop_q \/ sq=0)? .q:0.0
+  (stop_u \/ su=0)? .v:q
+  duration-time<=8*eps*duration? .time:duration
+ spin_capacity:mu_n*spin_length*normal_load*duration
+ arrest:inertia*abs(spin0)
+ Ln:0-supported_sign(spin0)*supported_min(spin_capacity,arrest)
+ spin:spin0+Ln/inertia
+ spin_capacity>=arrest? .spin:0.0
+ w:q*inverse_R
+ loss_n:0.5*inertia*(spin0*spin0-spin*spin)
+ before:0.5*mass*velocity*velocity+0.5*inertia*(omega*omega+spin0*spin0)
+ after:0.5*mass*v*v+0.5*inertia*(w*w+spin*spin)
+ work:drive*dx
+ loss:loss_f+loss_r+loss_n
+ residual:after-before-work+loss
+ scale:supported_max(supported_max(supported_max(before,after),abs(work)),supported_max(loss,0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001))
+ (~supported_finite(residual) \/ ~supported_finite(p) \/ ~supported_finite(L))? errors.RuntimeError("nonfinite supported-contact response")!
+ (supported_min(supported_min(loss_f,loss_r),loss_n)<0-0.00000000001*scale \/ abs(residual)>0.0000000002*scale)? errors.RuntimeError("supported-contact energy gate")!
+ [v,w,spin,dx,p,L,Ln,loss_f,loss_r,loss_n,residual]
+
+:.physics.units
+
+advance(mass,inertia,radius,normal_load,drive,v,omega,spin,dt,mu_s,mu_d,mu_r,rolling_length,mu_n,spin_length):
+ result:supported_contact_si(
+  num((mass+0kg)/kg),
+  num((inertia+0kg*m^2)/(kg*m^2)),
+  num((radius+0m)/m),
+  num((normal_load+0kg*m/s^2)/(kg*m/s^2)),
+  num((drive+0kg*m/s^2)/(kg*m/s^2)),
+  num((v+0m/s)/(m/s)),
+  num((omega+0rad/s)/(rad/s)),
+  num((spin+0rad/s)/(rad/s)),
+  num((dt+0s)/s),
+  num((mu_s+0rad)/rad),num((mu_d+0rad)/rad),num((mu_r+0rad)/rad),
+  num((rolling_length+0m)/m),num((mu_n+0rad)/rad),num((spin_length+0m)/m)
+ )
+ (
+  v:result.0*m/s,
+  omega:result.1*rad/s,
+  spin:result.2*rad/s,
+  displacement:result.3*m,
+  contact_impulse:result.4*kg*m/s,
+  independent_rolling_impulse:result.5*kg*m^2/s,
+  independent_spin_impulse:result.6*kg*m^2/s,
+  sliding_loss:result.7*kg*m^2/s^2,
+  rolling_loss:result.8*kg*m^2/s^2,
+  spin_loss:result.9*kg*m^2/s^2,
+  energy_residual:result.10*kg*m^2/s^2
+ )

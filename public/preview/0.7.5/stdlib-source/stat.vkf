@@ -1,0 +1,294 @@
+# Deterministic statistics implemented in VKF source.
+# Random sampling stays a host-capability slice; every pure statistic lives here.
+
+_stat_abs(value:num) -> num:
+    value < 0? @: 0 - value
+    value
+
+_sum_indices(
+    values:[num:n],
+    from:num = 0,
+    to:num = -1,
+    step:num = 1
+) -> num:
+    count: values.length()
+    (step != 0 /\ step % 1 = 0)?! "stat.sum index step must be a non-zero integer"
+    to < 0?
+        .to: count - 1
+    # A direction mismatch is an empty sum, even before bounds are checked.
+    (step > 0 /\ from > to) \/ (step < 0 /\ from < to)? @: 0
+    (from >= 0 /\ from < count /\ to >= 0 /\ to < count)?! "stat.sum index bounds are out of range"
+    total: 0
+    index: from
+    step > 0?
+        index <= to?>
+            .total+: values.(index)
+            .index+: step
+    step < 0?
+        index >= to?>
+            .total+: values.(index)
+            .index+: step
+    total
+
+_interpolate_coordinate(values:[num:n], coordinates:[num:m], target:num) -> num:
+    count: values.length()
+    result: 0
+    found: false
+    coordinate_index: 0
+    left_coordinate: 0
+    right_coordinate: 0
+    lower: 0
+    upper: 0
+    slope: 0
+    coordinate_index < count - 1?>
+        .left_coordinate: coordinates.(coordinate_index)
+        .right_coordinate: coordinates.(coordinate_index + 1)
+        .lower: left_coordinate
+        .upper: right_coordinate
+        lower > upper?
+            .lower: right_coordinate
+            .upper: left_coordinate
+        (~found /\ target >= lower /\ target <= upper)?
+            .slope: (values.(coordinate_index + 1) - values.(coordinate_index)) / (right_coordinate - left_coordinate)
+            .result: values.(coordinate_index) + slope * (target - left_coordinate)
+            .found: true
+        .coordinate_index+: 1
+    found?! "stat.interp target is outside the coordinate range"
+    result
+
+_interpolate_index(values:[num:n], target:num) -> num:
+    count: values.length()
+    (count > 0)?! "stat.interp values must be non-empty"
+    (target >= 0 /\ target <= count - 1)?! "stat.interp target is outside the index range"
+    lower: int(target // 1)
+    upper: lower + 1
+    upper >= count? @: values.(lower)
+    values.(lower) + (target - lower) * (values.(upper) - values.(lower))
+
+_interp_indices(values:[num:n], targets:[num:m]) -> [num:m]:
+    result: targets >> 0
+    index: 0
+    index < targets.length()?>
+        result.(index): _interpolate_index(values, targets.(index))
+        .index+: 1
+    result
+
+_interp_coordinates(values:[num:n], coordinates:[num:l], targets:[num:m]) -> [num:m]:
+    (values.length() = coordinates.length())?! "stat.interp coordinate count must match values"
+    count: values.length()
+    direction: 0
+    coordinate_index: 1
+    count > 1?
+        .direction: coordinates.1 - coordinates.0
+        direction != 0?! "stat.interp coordinates must be strictly monotonic"
+        coordinate_index < count - 1?>
+            delta: coordinates.(coordinate_index + 1) - coordinates.(coordinate_index)
+            (delta != 0 /\ delta * direction > 0)?! "stat.interp coordinates must be strictly monotonic"
+            .coordinate_index+: 1
+    result: targets >> 0
+    index: 0
+    index < targets.length()?>
+        result.(index): _interpolate_coordinate(values, coordinates, targets.(index))
+        .index+: 1
+    result
+
+# `interp_axis` is numerical only.  The typed compiler expands an indexed
+# value across the selected structural axes and calls these one-axis kernels.
+interp(values:[num:n], targets:[num:m]) -> [num:m]:
+    _interp_indices(values, targets)
+
+interp(values:[num:n], coordinates:[num:l], targets:[num:m]) -> [num:m]:
+    _interp_coordinates(values, coordinates, targets)
+
+_sum_coordinates(
+    values:[num:n],
+    coordinates:[num:m],
+    from:num = 0,
+    to:num = 0,
+    step:num = 0,
+    has_from:bit = false,
+    has_to:bit = false,
+    has_step:bit = false
+) -> num:
+    count: values.length()
+    (count = coordinates.length())?! "stat.sum coordinate count must match values"
+    count = 0? @: 0
+    direction: 0
+    coordinate_index: 0
+    count > 1?
+        .direction: coordinates.1 - coordinates.0
+        direction != 0?! "stat.sum coordinates must be strictly monotonic"
+        .coordinate_index: 1
+        coordinate_index < count - 1?>
+            delta: coordinates.(coordinate_index + 1) - coordinates.(coordinate_index)
+            (delta != 0 /\ delta * direction > 0)?! "stat.sum coordinates must be strictly monotonic"
+            .coordinate_index+: 1
+    coordinate_min: coordinates.0
+    coordinate_max: coordinates.(count - 1)
+    direction < 0?
+        .coordinate_min: coordinates.(count - 1)
+        .coordinate_max: coordinates.0
+    ~has_from?
+        .from: coordinate_min
+    ~has_to?
+        .to: coordinate_max
+    (from >= coordinate_min /\ from <= coordinate_max /\ to >= coordinate_min /\ to <= coordinate_max)?! "stat.sum coordinate bounds are outside the coordinate range"
+    total: 0
+    target_index: 0
+    count_steps: 0
+    raw_count: 0
+    has_step?
+        step != 0?! "stat.sum coordinate step must be non-zero"
+        ((step > 0 /\ from > to) \/ (step < 0 /\ from < to))? @: 0
+        .raw_count: (to - from) / step
+        .count_steps: raw_count // 1
+        raw_count >= 0?
+            .count_steps: (raw_count + 0.5) // 1
+        raw_count < 0?
+            .count_steps: (raw_count - 0.5) // 1
+        _stat_abs(raw_count - count_steps) < 0.000000001?! "stat.sum coordinate bounds must differ by an integral number of steps"
+    has_step?
+        target_index <= count_steps?>
+            .total+: _interpolate_coordinate(values, coordinates, from + target_index * step)
+            .target_index+: 1
+    .coordinate_index: 0
+    ~has_step?
+        coordinate_index < count?>
+            coordinate: coordinates.(coordinate_index)
+            coordinate >= from /\ coordinate <= to?
+                .total+: values.(coordinate_index)
+            .coordinate_index+: 1
+    total
+
+min(values:[num:n]) -> num:
+    percentile(values, 0)
+
+max(values:[num:n]) -> num:
+    percentile(values, 100)
+
+percentile(values:[num:n], p:num) -> num:
+    n: stat.count(values)
+    (n > 0)?! "stat.percentile: sequence must be non-empty"
+    (p >= 0 /\ p <= 100)?! "stat.percentile: p must be in [0, 100]"
+    sorted: values >> $
+    sort_i: 0
+    smallest: 0
+    sort_j: 0
+    sort_i < n?>
+        .smallest: sort_i
+        .sort_j: sort_i + 1
+        sort_j < n?>
+            sorted.(sort_j) < sorted.(smallest)?
+                .smallest: sort_j
+            .sort_j: sort_j + 1
+        smallest != sort_i?
+            temporary: sorted.(sort_i)
+            sorted.(sort_i): sorted.(smallest)
+            sorted.(smallest): temporary
+        .sort_i: sort_i + 1
+    n = 1? @: sorted.0
+    rank: (p / 100) * (n - 1)
+    lower: int(rank // 1)
+    upper: lower + 1
+    upper >= n? @: sorted.(lower)
+    fraction: rank - lower
+    sorted.(lower) + fraction * (sorted.(upper) - sorted.(lower))
+
+median(values:[num:n]) -> num:
+    percentile(values, 50)
+
+iqr(values:[num:n]) -> num:
+    percentile(values, 75) - percentile(values, 25)
+
+mode(values:[num:n]) -> num:
+    n: stat.count(values)
+    (n > 0)?! "stat.mode: sequence must be non-empty"
+    sorted: values >> $
+    sort_i: 0
+    smallest: 0
+    sort_j: 0
+    sort_i < n?>
+        .smallest: sort_i
+        .sort_j: sort_i + 1
+        sort_j < n?>
+            sorted.(sort_j) < sorted.(smallest)?
+                .smallest: sort_j
+            .sort_j: sort_j + 1
+        smallest != sort_i?
+            temporary: sorted.(sort_i)
+            sorted.(sort_i): sorted.(smallest)
+            sorted.(smallest): temporary
+        .sort_i: sort_i + 1
+    best: sorted.0
+    best_count: 1
+    current: sorted.0
+    current_count: 1
+    i: 1
+    i < n?>
+        sorted.(i) = current?
+            .current_count: current_count + 1
+        sorted.(i) != current?
+            .current: sorted.(i)
+            .current_count: 1
+        current_count > best_count?
+            .best: current
+            .best_count: current_count
+        .i: i + 1
+    best
+
+zscore(values:[num:n]) -> [num:n]:
+    n: stat.count(values)
+    (n > 0)?! "stat.zscore: sequence must be non-empty"
+    sigma: stat.std(values)
+    sigma = 0? @: values >> 0
+    mu: stat.mean(values)
+    result: values >> $
+    i: 0
+    i < n?>
+        result.(i): (result.(i) - mu) / sigma
+        .i: i + 1
+    result
+
+normalize(values:[num:n]) -> [num:n]:
+    n: stat.count(values)
+    (n > 0)?! "stat.normalize: sequence must be non-empty"
+    lo: min(values)
+    hi: max(values)
+    hi = lo? @: values >> 0
+    result: values >> $
+    i: 0
+    i < n?>
+        result.(i): (result.(i) - lo) / (hi - lo)
+        .i: i + 1
+    result
+
+covariance(x:[num:n], y:[num:m], ddof:num=0) -> num:
+    n: stat.count(x)
+    (n = stat.count(y))?! "stat.covariance: sequences must have equal length"
+    (n >= ddof + 1)?! "stat.covariance: insufficient elements"
+    mean_x: stat.mean(x)
+    mean_y: stat.mean(y)
+    i: 0
+    total: 0
+    i < n?>
+        .total: total + (x.(i) - mean_x) * (y.(i) - mean_y)
+        .i: i + 1
+    total / (n - ddof)
+
+correlation(x:[num:n], y:[num:m]) -> num:
+    n: stat.count(x)
+    (n = stat.count(y) /\ n > 0)?! "stat.correlation: sequences must be equal and non-empty"
+    sigma_x: stat.std(x)
+    sigma_y: stat.std(y)
+    (sigma_x = 0 \/ sigma_y = 0)? @: 0
+    covariance(x, y) / (sigma_x * sigma_y)
+
+clamp(value:num, lower:num, upper:num) -> num:
+    value < lower? @: lower
+    value > upper? @: upper
+    value
+
+sign(value:num) -> num:
+    value > 0? @: 1
+    value < 0? @: -1
+    0

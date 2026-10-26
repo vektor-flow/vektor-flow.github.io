@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Differentiate a geometric series twice
+% Assumptions: |r| < 1; power series may be differentiated inside their convergence disk.
+% Start with the geometric series.
+\[
+S(r)=\sum_{n=0}^{\infty}r^n=\frac{1}{1-r}
+\]
+% Differentiate term by term.
+\[
+S^{\prime}(r)=\sum_{n=1}^{\infty}nr^{n-1}=\frac{1}{(1-r)^2}
+\]
+% Multiply by r.
+\[
+rS^{\prime}(r)=\sum_{n=1}^{\infty}nr^n=\frac{r}{(1-r)^2}
+\]
+% Differentiate the weighted series.
+\[
+\frac{d}{dr}\left(\frac{r}{(1-r)^2}\right)=\frac{1+r}{(1-r)^3}
+\]
+% Multiply by r again.
+\[
+\sum_{n=1}^{\infty}n^2r^n=\frac{r(1+r)}{(1-r)^3}
+\]
+% Evaluate at r = 1/2.
+\[
+\sum_{n=1}^{\infty}\frac{n^2}{2^n}=6
+\]
+\end{document}

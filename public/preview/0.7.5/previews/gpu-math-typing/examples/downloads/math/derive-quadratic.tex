@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Quadratic formula by completing the square
+% Assumptions: Real a,b,c; a ≠ 0. Real roots require b² − 4ac ≥ 0.
+% Start from the general quadratic.
+\[
+ax^2+bx+c=0
+\]
+% Divide by nonzero a.
+\[
+x^2+\frac{b}{a}x=-\frac{c}{a}
+\]
+% Complete the square on both sides.
+\[
+x^2+\frac{b}{a}x+\frac{b^2}{4a^2}=\frac{b^2-4ac}{4a^2}
+\]
+% Recognize the square.
+\[
+\left(x+\frac{b}{2a}\right)^2=\frac{b^2-4ac}{4a^2}
+\]
+% The ± sign includes both branches, also when a is negative.
+\[
+2ax+b=\pm\sqrt{b^2-4ac}
+\]
+% Isolate x; the two roots coincide when the discriminant is zero.
+\[
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\]
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+% Euler–Lagrange equation from the first variation
+% Assumptions: L is smooth; variations η vanish at endpoints; paths are sufficiently differentiable.
+% Define the action.
+\[
+S[q]=\int_a^b L(q,\dot q,t)\,dt
+\]
+% Vary the path with fixed endpoints.
+\[
+q_{\varepsilon}=q+\varepsilon\eta,\quad\eta(a)=\eta(b)=0
+\]
+% Differentiate with respect to ε at zero.
+\[
+\delta S=\int_a^b\left(\frac{\partial L}{\partial q}\eta+\frac{\partial L}{\partial\dot q}\dot\eta\right)dt
+\]
+% Integrate the velocity term by parts.
+\[
+\delta S=\left[\frac{\partial L}{\partial\dot q}\eta\right]_a^b+\int_a^b\left(\frac{\partial L}{\partial q}-\frac{d}{dt}\frac{\partial L}{\partial\dot q}\right)\eta\,dt
+\]
+% Endpoint variations eliminate the boundary term.
+\[
+\int_a^b\left(\frac{\partial L}{\partial q}-\frac{d}{dt}\frac{\partial L}{\partial\dot q}\right)\eta\,dt=0
+\]
+% Apply the fundamental lemma of the calculus of variations.
+\[
+\frac{d}{dt}\frac{\partial L}{\partial\dot q}-\frac{\partial L}{\partial q}=0
+\]
+\end{document}

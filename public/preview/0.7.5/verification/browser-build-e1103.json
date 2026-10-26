@@ -1,0 +1,964 @@
+{
+  "worker": "e1103",
+  "status": "ACTUAL_QUALIFICATION_INCOMPLETE",
+  "attempted": 57,
+  "passed": 52,
+  "failed": 5,
+  "total": 57,
+  "compilerSource": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+  "artifactHashes": {
+    "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+    "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+    "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+  },
+  "browserComponents": [
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/playground/vkf-canonical-execution.mjs",
+      "bytes": 4668,
+      "sha256": "75a568e59ff2f3229847f4206d4e4a55eef45f7199541f717232e680b24702a3"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/playground/vkf-canonical-browser-compiler.mjs",
+      "bytes": 2500,
+      "sha256": "37fc99f92e39f07cbf234a5beb750c6f0054a362cc53c19886bceae588fa3ff7"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/e1103-check-worker.mjs",
+      "bytes": 634,
+      "sha256": "df113582f6c23c32759960545727e9f1e94919db139c26557a647c13cccf71df"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/canonical-inline-worker.mjs",
+      "bytes": 589,
+      "sha256": "bbf09a17b9efbc73356508981e13d9495fa36b66049cdd3eb36db4419be55ee9"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/inline-runner.mjs",
+      "bytes": 2326,
+      "sha256": "b325853e6957ae7c5f030c364fb8505f267c2d530126f5fe4b84a63fc99f957c"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/current-documentation-examples.mjs",
+      "bytes": 4784,
+      "sha256": "ae7b8787eefe0bbaa9b4ebcb99a5b343008146e96dcfa04e9ddb9a9dc58865ff"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1103-20261026/site/public/embed-example.mjs",
+      "bytes": 2279,
+      "sha256": "db0015f5011122d6242664ab852a23a3207d7f9018f0947b17ade719627c1c5f"
+    }
+  ],
+  "originalExactSourcesPreserved": true,
+  "changedArtifactInheritsNoPriorPass": true,
+  "rows": [
+    {
+      "id": "scientific-spectrum",
+      "source_sha256": "9ba79f79bcf92938407f4133d75ca476badea20e0ff65126b00a6de72801af62",
+      "expected": null,
+      "status": "error",
+      "message": "Compiled program requires an unavailable host capability",
+      "packetCount": 0,
+      "passed": false,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-geometry-views-and-physics-0",
+      "source_sha256": "bccfa1ecca20f3767ff57e01f7fa93f444b862484ea18e523d4141a798a64688",
+      "expected": null,
+      "status": "error",
+      "message": "unsupported retained direct-point Layer channel p_uc",
+      "packetCount": 0,
+      "passed": false,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-18",
+      "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+      "expected": "1\n2\n",
+      "status": "ok",
+      "stdout": "1\n2\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-20",
+      "source_sha256": "cffd737fada2e1e0d5528a1706b0756b3d86cf9562a5774e42ee16c4baad2d1d",
+      "expected": "[100, 200, 300] cm\n[1, 2, 3] m\n",
+      "status": "ok",
+      "stdout": "[100, 200, 300] cm\n[1, 2, 3] m\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-28",
+      "source_sha256": "92541c734e6cabb10c2b4b7df5b83ac8a7db1353c57a6d3caf550060714fec73",
+      "expected": null,
+      "status": "error",
+      "message": "unsupported retained direct-point Layer channel edge_bm",
+      "packetCount": 0,
+      "passed": false,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-31",
+      "source_sha256": "124c7b1df8edd7eeab194b5d6e091133dbc927bd6c3603f94816c6c8fcf08468",
+      "expected": null,
+      "status": "error",
+      "message": "unsupported retained direct-point Layer channel p_uc",
+      "packetCount": 0,
+      "passed": false,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-32",
+      "source_sha256": "5025363afb2b36d75c50b222057aafd279f3fab271c8ac87a9b3b44eda4a737a",
+      "expected": "42\n",
+      "status": "ok",
+      "stdout": "42\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-33",
+      "source_sha256": "cc0becce1b7bd38bbaef8c0dedaea722df5319cd535521998a1455788165b439",
+      "expected": "ready\nready\n",
+      "status": "ok",
+      "stdout": "ready\nready\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "motion-design",
+      "source_sha256": "3260a5da33c940c9ef118470237b8b845bf74ea0b54c637010c2a8c4f6e2177e",
+      "expected": null,
+      "status": "error",
+      "message": "retained direct-point packet supports 1..102 fixed points within the 1024-value wire collection cap",
+      "packetCount": 0,
+      "passed": false,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-3",
+      "source_sha256": "1acc7ec0b5f36fda48596f00ef76b8b1f3d04b5f54a4c37087a5bdaa5bf86bfa",
+      "expected": "3\n1\n7\n",
+      "status": "ok",
+      "stdout": "3\n1\n7\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-values-and-types-0",
+      "source_sha256": "b07d41a96ff4571ed4754e88e0144ba576295e43754f6f6809589f65ab7e3691",
+      "expected": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+      "status": "ok",
+      "stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-1",
+      "source_sha256": "b35452c3a99a3dd48c69249d56f90507f434ebe8e9990cbd9776284b9681d1b1",
+      "expected": "4\n2\n",
+      "status": "ok",
+      "stdout": "4\n2\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-2",
+      "source_sha256": "57caf89363439fe4c51d00715d522f6387e574b74c9c2c39ff09d30fffd8a09d",
+      "expected": "3\n",
+      "status": "ok",
+      "stdout": "3\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-10",
+      "source_sha256": "19a14486f5bab6d77c7c8a4d9d2617b9bfaca743842abbc305d5feac6148b61b",
+      "expected": "23\nA4\n",
+      "status": "ok",
+      "stdout": "23\nA4\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-11",
+      "source_sha256": "8ca69eca3f244eb7b2e5c99084ddca005f6565bdf64769f4d489d1c664de96c5",
+      "expected": "5\n6\n",
+      "status": "ok",
+      "stdout": "5\n6\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-12",
+      "source_sha256": "152a585243eee2ea8cacb24e309b4c14e23dcfc6a5a382a4eb9fbb6c1054a876",
+      "expected": "5\n",
+      "status": "ok",
+      "stdout": "5\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-4",
+      "source_sha256": "94e4b2a4b315aa5579ddf191868db887eac4090e96b4dcaa10a54ac1e01bca9e",
+      "expected": "5\n3\n6\n",
+      "status": "ok",
+      "stdout": "5\n3\n6\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-26",
+      "source_sha256": "16a36522571e1c1cfed5df1d1d0d01f427639b2a59cf4fa483e7ec12dff868c5",
+      "expected": "8\n",
+      "status": "ok",
+      "stdout": "8\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-6",
+      "source_sha256": "e149dcbe621a4f867963ef884828d6944b409e1c2008f8100bb2e510f06c9f3a",
+      "expected": "7\n4\n",
+      "status": "ok",
+      "stdout": "7\n4\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-3",
+      "source_sha256": "53868b166fc60814810a6a179304c6c0ce63f483276ba3b36536f92e7508b047",
+      "expected": "5\n",
+      "status": "ok",
+      "stdout": "5\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-5",
+      "source_sha256": "aab799e4db1e94d2b7546ea986dc388fd2ace67f658f1e7c5b86bc11eaaae4a5",
+      "expected": "11\n11\n",
+      "status": "ok",
+      "stdout": "11\n11\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "spill-record",
+      "source_sha256": "e83d4f83254551e1b504e31a30fbabff58f6dd01a1d8f583fd2203d10a392a74",
+      "expected": "5\n",
+      "status": "ok",
+      "stdout": "5\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "import-module",
+      "source_sha256": "6206bcee611fe4c3d6636f9ef2ea399256c103e95033e0012e77723d3553df89",
+      "expected": "9\n",
+      "status": "ok",
+      "stdout": "9\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-index-access-and-ranges-1",
+      "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+      "expected": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+      "status": "ok",
+      "stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-1",
+      "source_sha256": "35d96db8eeff47ea1786d1be007d86c762ce82cbb2c70152e4d9e4f8c50f914d",
+      "expected": "[3, 7]\n[1, 4]\n",
+      "status": "ok",
+      "stdout": "[3, 7]\n[1, 4]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-2",
+      "source_sha256": "88cf7be5bbe872c5eb26a2d79ac40d70686b6928db70e3e1281249a94b041e07",
+      "expected": "[[19, 22], [43, 50]]\n",
+      "status": "ok",
+      "stdout": "[[19, 22], [43, 50]]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-13",
+      "source_sha256": "32063e8856824478bdcde383f848f7c9d159831698cd5a4b62ce437b1f2f1368",
+      "expected": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+      "status": "ok",
+      "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-15",
+      "source_sha256": "01783ba2a5e9f6be817f95fbe2b9f41d7e3620805b9504b2624fd8fa47f2d159",
+      "expected": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
+      "status": "ok",
+      "stdout": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-7",
+      "source_sha256": "663090a22246fa8d1924acf7859c478324eb910cefafa4d7c6200c9876d08388",
+      "expected": "[[19, 22], [43, 50]]\n[1, 4]\n",
+      "status": "ok",
+      "stdout": "[[19, 22], [43, 50]]\n[1, 4]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-8",
+      "source_sha256": "248fb304d0e2302803fe002352164843d63def42c839beb05f6d25b02fd28304",
+      "expected": "[0, 2, 3]\n",
+      "status": "ok",
+      "stdout": "[0, 2, 3]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-lifting-and-structural-calls-0",
+      "source_sha256": "a7aaa6b51c624e89afe624ceef3ca8b5256d906c8cd11fa036926c5e5cd215ff",
+      "expected": "[1, 4]\n",
+      "status": "ok",
+      "stdout": "[1, 4]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-18",
+      "source_sha256": "f537b33a126fc98e094499e8832b1d0b49b85f4aa9165ec09bcaff76fe9feb41",
+      "expected": "[1, 2, 3, 4]\n",
+      "status": "ok",
+      "stdout": "[1, 2, 3, 4]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-operators-0",
+      "source_sha256": "92bf4804b487a1a8bf082609ba000631bdb959b94ceff8ea84c879e346375e47",
+      "expected": "[4, 6]\n8\n",
+      "status": "ok",
+      "stdout": "[4, 6]\n8\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-extra-index-access-and-ranges-0",
+      "source_sha256": "03640d98212e494bdf94e979e69b50c54e52214b0b9e171487bb2fff6bd57c3d",
+      "expected": "0\n1\n2\n3\n",
+      "status": "ok",
+      "stdout": "0\n1\n2\n3\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-4",
+      "source_sha256": "c1daf64c48cc94f1b046a1626fa9f72bce9af12c55d7321a60d3d95fdb7e00d3",
+      "expected": "6\n",
+      "status": "ok",
+      "stdout": "6\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-9",
+      "source_sha256": "b9ed9b0f20413c4d63ff0c0895a198582390bce5d8d2817ebcc72367ee56f093",
+      "expected": "6\n",
+      "status": "ok",
+      "stdout": "6\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-10",
+      "source_sha256": "542dda914baed1c68e4f27ebc96c8169ea320413f9eb3258849f2f8e73865c38",
+      "expected": "0.052808601763274413 + 0.22361225622108541i\n",
+      "status": "ok",
+      "stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-11",
+      "source_sha256": "455a111f8bb6f3f7980a60ea9a9a9a1d381988b04251a2e33b65af71c9b05b8d",
+      "expected": "0\n0\n10\n1\n1\n20\n",
+      "status": "ok",
+      "stdout": "0\n0\n10\n1\n1\n20\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "conditional-loop",
+      "source_sha256": "e8bd7c70ff69b7fbd5ea9967e36025f95b98eb1d8fae14fa3a55a443447fb0b0",
+      "expected": "0\n1\n2\n",
+      "status": "ok",
+      "stdout": "0\n1\n2\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-12",
+      "source_sha256": "5445056fcb52d02c371981318e49514efa502bcf2578565dd4c4651815506e3b",
+      "expected": "many\n",
+      "status": "ok",
+      "stdout": "many\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-13",
+      "source_sha256": "09af896fa2d13bb633be53e271b3f05fe7c2a6a583b0c9fd50c81794083e3239",
+      "expected": "message\n",
+      "status": "ok",
+      "stdout": "message\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-9",
+      "source_sha256": "7628726ecf36d5647fa5f600e9555cde4bb7bc94abb87e26281bd11c8b984db0",
+      "expected": "2\n3\n",
+      "status": "ok",
+      "stdout": "2\n3\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-14",
+      "source_sha256": "852d49849ba7fea0db83bafe9f1a03dd63c646a579eee0a426083e3eeec56f20",
+      "expected": "2\n",
+      "status": "ok",
+      "stdout": "2\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-6",
+      "source_sha256": "6ce3f904621cc4e848c361da8d7f11dd73b358156be3583a8e843583c0d4ce56",
+      "expected": "6\n",
+      "status": "ok",
+      "stdout": "6\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-15",
+      "source_sha256": "8ae71d5e7b19335b2315383db596d9454278a225883902f9a23d7334a07f5cd2",
+      "expected": "6\n9\n",
+      "status": "ok",
+      "stdout": "6\n9\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-16",
+      "source_sha256": "7426aed4f44fce2c5b1cc191d5ea0e618c60410d179b809099867f203ed604ba",
+      "expected": "230 cm\n[100, 200, 300] cm\n",
+      "status": "ok",
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "more-example-25",
+      "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+      "expected": "x = 1.3\n[1.3, 2.5]\n",
+      "status": "ok",
+      "stdout": "x = 1.3\n[1.3, 2.5]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "syntax-example-17",
+      "source_sha256": "73faddcd27a018399ec12fb76dbab8c766c1160518d50f0f9f6f57109980182d",
+      "expected": "[1.2, 4.6]\n",
+      "status": "ok",
+      "stdout": "[1.2, 4.6]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-23",
+      "source_sha256": "8cf745bca9c848c7bc453579a2b996bb0cb8eb682a63f0cafc6e28446de44d12",
+      "expected": "1\n-1 + 1.2246467991473532e-16i\n",
+      "status": "ok",
+      "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-linalg-solve",
+      "source_sha256": "7215e2b22a5fd1bbc485a085f52102d76763714450d48297082caf77553fe7c6",
+      "expected": "[2, 1]\n",
+      "status": "ok",
+      "stdout": "[2, 1]\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-19",
+      "source_sha256": "5379cc0e3025041b9e96950c527426eeea8abb9126942445d084d88a5ad4f20a",
+      "expected": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "status": "ok",
+      "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-21",
+      "source_sha256": "9ebb81da82d9d328970a73c290335eee2598c46bba17c87f6ad5385194f84005",
+      "expected": "[] cm\n[200, 200] cm\n",
+      "status": "ok",
+      "stdout": "[] cm\n[200, 200] cm\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-22",
+      "source_sha256": "25c8462804c58a23634eecc166282ba5346c5e7c38ed510f2a037f2f675a7fc3",
+      "expected": "9 m^2\n3 m/s\n",
+      "status": "ok",
+      "stdout": "9 m^2\n3 m/s\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-24",
+      "source_sha256": "0f59b4219ea6d8ace3829ff0a47a8a0dc34b3fe29244a097a8a12e5d8e701001",
+      "expected": "18 m\n12 m/s\n4 m/s^2\n",
+      "status": "ok",
+      "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-29",
+      "source_sha256": "99561b9aedda5f80bdc8e438ec5bf1fb84d53fe09e05a6dd431b8e8754043e20",
+      "expected": "6 m\n4 m/s\n",
+      "status": "ok",
+      "stdout": "6 m\n4 m/s\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "stdlib-example-30",
+      "source_sha256": "622d3dc1cfb891a70649e7c72a6f4711561b50771a8e7df62bbb07a583825878",
+      "expected": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+      "status": "ok",
+      "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    },
+    {
+      "id": "path-assertions",
+      "source_sha256": "932849d09e71acfe8dd9e3d52579710ea6c2bcc0634800c384897216683bf883",
+      "expected": "passed\n",
+      "status": "ok",
+      "stdout": "passed\n",
+      "packetCount": 0,
+      "passed": true,
+      "artifactHashes": {
+        "compiler.mjs": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
+        "compiler.wasm": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
+        "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+      },
+      "sourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+      "actualApiSourceBinding": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4"
+    }
+  ],
+  "stable": false,
+  "published": false
+}

@@ -1,76 +1,14 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Scientific data workflows in VKF and Python, with matched fixtures, actual runtime checks and explicit implementation limits."><title>Scientific workflows · Vektor Flow</title><link rel="canonical" href="https://vektorflow.org/examples.html"><link rel="stylesheet" href="./site.css"><link rel="stylesheet" href="./remake.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%2316262b%22/%3E%3Cpath d=%22M7 9l9 15 9-15%22 fill=%22none%22 stroke=%22%2369d8bd%22 stroke-width=%223%22/%3E%3C/svg%3E"></head>
-<body class="remake "><a class="skip-link" href="#content">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">∨</span>Vektor Flow</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="examples.html" aria-current="page">Examples</a><a href="syntax.html">Syntax</a><a href="stdlib.html">Standard library</a><a href="build.html">Build & embed</a><a href="install.html">Download</a></nav><span class="release-version">0.7.2 · Preview</span></header>
-<main id="content"><article class="guide-page"><div class="page-intro"><p class="eyebrow">SCIENTIFIC WORKFLOWS / HONEST COMPARISONS</p><h1>Follow a question through the data.</h1><p class="page-lead">What gets simpler—and what the preview cannot do yet.</p><p>These examples connect the founder’s research frustrations to concrete programs. The working spectroscopy task uses a fully visible in-memory fixture. HDF5 ingestion, general lazy data pipelines and stacked-image browsing are separately labelled design goals. Speed and peak-memory comparisons are <strong>UNMEASURED</strong>.</p></div><nav class="reference-toc" aria-label="Scientific workflows"><a href="#spectroscopy">Spectral contrast</a><a href="#partial-application">Bind model parameters</a><a href="#hdf5">Selected HDF5 data</a><a href="#image-stacks">Image stacks</a><a href="#motion">Constraints, derivatives & plots</a><a href="#comparison-status">Coverage and evidence</a></nav>
-<section id="spectroscopy"><h2>1. Compare spectra along the energy axis</h2><p>Four sampling sites × three energy channels. Find each spectrum’s maximum minus minimum, select site 2, then plot it. Inputs use floating-point values in both languages. The calculation has no file I/O.</p><p><strong>The useful difference:</strong> NumPy already expresses this reduction concisely with <code>np.ptp(..., axis=1)</code>. VKF makes the selected dimension part of function application: <code>span_u(spectra_pu)</code> keeps energy intact and lifts over sites. The function does not need to know which positional axis it occupies.</p><p>This is a clarity comparison, not a claim that VKF is always shorter. Setup and the complete core task are shown for both; no helper implementation or plotting work is hidden.</p><div class="comparison-grid"><div><h3>Python · setup and fixture</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>import numpy as np
-import matplotlib.pyplot as plt
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vektor Flow — latest preview</title>
 
-energy = np.array([-1., 0., 1.], dtype=np.float64)
-spectra = np.array([[1., 5., 2.], [2., 3., 4.],
-                    [3., 8., 4.], [4., 5., 6.]], dtype=np.float64)</pre></div><h3>Python · complete core task</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>contrast = np.ptp(spectra, axis=1)
-selected = spectra[2, :]
-print(contrast)
-print(selected)
-fig, ax = plt.subplots(dpi=96)
-ax.plot(energy, selected, color=(.25, .72, 1., 1.), linewidth=.75)
-ax.set(xlim=(-1, 1), ylim=(0, 10))
-plt.show()</pre></div></div><div><h3>VKF · setup and fixture</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>stat:.stat
-energy:[-1.0,0.0,1.0]_u
-spectra:[[1.0,5.0,2.0],[2.0,3.0,4.0],
-         [3.0,8.0,4.0],[4.0,5.0,6.0]]_pu</pre></div><h3>VKF · complete core task</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>span(x):stat.max(x)-stat.min(x)
-contrast:span_u(spectra)
-::contrast
-selected:spectra.(2,:)
-::selected
-view:.ui.viewport
-view.add(x:energy_u,y:selected_u,color:[0.25,0.72,1,1])
-view.push(x_lim:[-1,1],y_lim:[0,10])
-view.show()</pre></div></div></div><p><a class="button primary" href="index.html#examples">Run this exact VKF program →</a></p><p>Expected numerical results: contrast <code>[4, 2, 5, 2]</code>; selected spectrum <code>[3, 8, 4]</code>. Both plots request the same blue RGBA color and x/y bounds. The VKF packet contains three float32 render vertices; Python computes with float64 arrays. The fixture values are exactly representable; this is not a general precision or pixel-equivalence claim. Native plot defaults, fonts and controls differ.</p><p class="fine-print">Reference APIs: <a href="https://numpy.org/doc/stable/reference/generated/numpy.ptp.html">NumPy ptp</a> and <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html">Matplotlib plot</a>. NumPy supports reductions over one or several axes; this working VKF workflow verifies one selected energy axis only.</p></section>
-<section id="partial-application"><h2>Bind a model parameter without a wrapper</h2><p>Keep a cubic response function while leaving its input free. Both languages support this naturally: Python provides <code>functools.partial</code>; VKF makes named argument binding part of the call grammar. This removes a separate import and keeps the binding alongside the language’s ordinary function syntax.</p><div class="comparison-grid"><div><h3>Python · setup</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>from functools import partial</pre></div><h3>Python · complete core task</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>def power(x, n):
-    return x ** n
-
-cube = partial(power, n=3)
-print(cube(2))</pre></div></div><div><h3>VKF · no setup import</h3><p>The operation is part of the language.</p><h3>VKF · complete core task</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>power(x,n):x^n
-cube:power[n:3]
-::cube(2)</pre></div></div></div><p>Both print <code>8</code>. The shorter function definition and built-in binding syntax are visible here; no speed advantage is inferred. <a href="syntax.html#bound-arguments-and-structural-selectors">Run the canonical partial-application examples →</a></p></section><section id="hdf5"><h2>2. Inspect a small part of an HDF5 dataset</h2><p><strong>Python can already read selected elements and slices directly.</strong> Apply the transformation after selecting the data. This is the appropriate baseline, rather than loading an entire dataset just to inspect one element.</p><h3>Python · optional fixture-file setup</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>import h5py
-
-with h5py.File(&quot;spectra.h5&quot;, &quot;w&quot;) as file:
-    file.create_dataset(&quot;intensity&quot;, data=spectra)</pre></div><h3>Python · complete selected-read task</h3><div class="code-snippet"><button type="button" class="copy-button" data-copy aria-label="Copy code">Copy</button><pre>with h5py.File(&quot;spectra.h5&quot;, &quot;r&quot;) as file:
-    dataset = file[&quot;intensity&quot;]
-    one = np.sin(dataset[2, 1])
-    region = np.sin(dataset[1:3, 0:2])</pre></div><p>The logical selection is one scalar and a 2 × 2 region. Physical disk reads depend on storage layout, compression, chunks and caches; bytes read and cold/warm performance are unmeasured here. <a href="https://docs.h5py.org/en/stable/high/dataset.html">h5py documents direct hyperslab selection and chunked I/O.</a></p><h3>VKF · design goal, no runnable equivalent yet</h3><p>The goal is for consumer demand to flow through transformations so that asking for one transformed value avoids unrelated work. This 0.7.2 site has no verified public HDF5 reader or out-of-core pipeline. There is intentionally no invented VKF import, API or Run button for that workflow. The <a href="syntax.html#ranges-and-demand">finite-demand range example</a> establishes a smaller capability only.</p></section>
-<section id="image-stacks"><h2>3. Browse related maps without rebuilding the viewer</h2><p>The founder once built a viewer simply to step through 100 images. VKF’s visual design aims to reuse one layer/property model and append states for stacked views. That would reduce the glue between a calculation and the views used to inspect it.</p><p>Matplotlib already has image display, widgets and animation tools; a fixed <code>imshow</code> image can be updated with <code>set_data</code>. A custom stack browser still needs an input/control connection. No executed, equivalent 100-image comparison is claimed here.</p><p><strong>Current boundary:</strong> the preview’s coordinate layers, <code>push</code> with explicit bounds, and displayed plots are tested. General <code>append</code>-driven image stacks and a published HDF5-to-viewer path remain unqualified. See <a href="stdlib.html#ui">the UI module inventory</a>. Automatic CPU/GPU placement and speed are also not established by this example.</p></section>
-<section id="motion"><h2>4. Solve constraints, derive a path, inspect its motion</h2><p>A cubic trajectory is useful when designing an experimental scan or controlled motion. This unchanged program solves four endpoint constraints, differentiates the resulting parameterized function and draws time curves and a position–velocity portrait. It demonstrates <code>.linalg.solve</code> and an exact function transform, not a complete first-class symbolic library.</p><p>Run it, then change <code>exit_slope:0</code> to <code>exit_slope:-2</code>. A requested negative arrival velocity makes the path overshoot and reverse before reaching its endpoint.</p><section class="readme-example" data-vkf-example-id="motion-design" data-verification="e1003-local-browser" data-compiler-status="loading"><div class="readme-example-bar"><span>Loading compiler…</span><button type="button" class="readme-example-play" disabled aria-disabled="true" title="Loading the browser compiler">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre class="readme-example-highlight" aria-hidden="true"><code>la:.linalg
-exit_slope:0
-c:la.solve([[1,0,0,0],[1,1,1,1],
-            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
-path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
-slope:deriv_t(path)
-::c
-::path(0.5,c.0,c.1,c.2,c.3)
-::slope(0.5,c.0,c.1,c.2,c.3)
-t:0.005*[0..200]
-curves:.ui.viewport
-curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
-curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
-curves.show()
-phase:.ui.viewport
-phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
-phase.show()</code></pre><textarea class="readme-example-source" data-example-id="motion-design" aria-label="Editable VKF source: Matrix solve, function derivative and motion plots" spellcheck="false" autocapitalize="off" autocomplete="off">la:.linalg
-exit_slope:0
-c:la.solve([[1,0,0,0],[1,1,1,1],
-            [0,1,0,0],[0,1,2,3]], [0,1,0,exit_slope])
-path(t,a,b,d,e):a+b*t+d*t^2+e*t^3
-slope:deriv_t(path)
-::c
-::path(0.5,c.0,c.1,c.2,c.3)
-::slope(0.5,c.0,c.1,c.2,c.3)
-t:0.005*[0..200]
-curves:.ui.viewport
-curves.add(x:t_u,y:path(t_u,c.0,c.1,c.2,c.3),color:[0.25,0.72,1,1])
-curves.add(x:t_u,y:slope(t_u,c.0,c.1,c.2,c.3),color:[1,0.45,0.18,1])
-curves.show()
-phase:.ui.viewport
-phase.add(x:path(t_u,c.0,c.1,c.2,c.3),y:slope(t_u,c.0,c.1,c.2,c.3),color:[0.3,0.9,0.55,1])
-phase.show()</textarea></div><section class="readme-example-terminal" aria-label="Motion example output"><span>Compiler output · blue position · orange velocity · green phase portrait</span><pre class="readme-example-output" aria-live="polite"></pre></section></div><section class="readme-example-result" data-example-result aria-label="Motion example plots"><div data-result-hint class="purpose-result-hint"><p class="purpose-eyebrow">Your model, two views</p><h3>From constraints to a curve</h3><p><code>p(0) = 0</code><br><code>p(1) = 1</code><br><code>p′(0) = 0</code><br><code>p′(1) = exit_slope</code></p><p>Run to see the compiler’s output here.</p><p><span class="purpose-key purpose-position">Blue</span> · position over time<br><span class="purpose-key purpose-velocity">Orange</span> · velocity over time<br><span class="purpose-key purpose-phase">Green</span> · position against velocity</p><p>Change the endpoint slope in the source, then run again to compare the motion.</p></div></section></div></section><details class="expected-result"><summary>Expected behavior</summary><p>Zero endpoint slopes give coefficients <code>[0,0,3,-2]</code>. At t = 0.5, position is 0.5 and velocity is 1.5. Two actual viewports appear after execution.</p></details></section>
-<section id="comparison-status"><h2>What is verified, and what is not</h2><p><a href="comparison-coverage.json">Machine-readable comparison coverage</a> records the fixture, code hashes, version pins, actual checks and remaining claims. <a href="verification/site-remake-e1079.json">The site verification report</a> records each promoted source program. Fewer lines do not establish less I/O, lower memory use or greater speed.</p><div class="table-scroll"><table><thead><tr><th>Claim</th><th>Scope</th><th>Status</th></tr></thead><tbody><tr><td>Named-axis spectral contrast and selected curve</td><td>4 × 3 explicit fixture, 0.7.2 browser compiler</td><td>Actual execution checked; full UI qualification passed; see the evidence</td></tr><tr><td>Equivalent Python numerical task and selected HDF5 reads</td><td>Same explicit fixture; versions in evidence</td><td>Executed locally</td></tr><tr><td>General VKF HDF5/out-of-core demand</td><td>No verified API in this preview</td><td>Unsupported / design goal</td></tr><tr><td>General stacked-image browsing</td><td>No equivalent paired program qualified</td><td>Design goal / unqualified</td></tr><tr><td>Speed, I/O bytes and peak memory advantage</td><td>Needs versioned matched benchmark evidence</td><td>UNMEASURED</td></tr></tbody></table></div></section></article></main><footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><span>Mathematics, made into programs.</span><nav aria-label="More"><a href="performance.html">Performance & evidence</a><a href="coming-soon.html">Experimental previews</a><a href="https://github.com/vektor-flow/spec">Language specification</a></nav><small>Experimental language · Incomplete 0.7.2 preview</small></footer><script type="module" src="./reference-navigation.mjs"></script><script type="module" src="./current-documentation-examples.mjs"></script></body></html>
+<link rel="canonical" href="https://vektorflow.org/preview/0.7.5/examples.html">
+<script>
+// Generated from latest-preview.json. Replace avoids a back-button redirect loop.
+const destination = new URL("/preview/0.7.5/examples.html", location.origin);
+destination.search = location.search;
+destination.hash = location.hash;
+if (destination.href !== location.href) location.replace(destination.href);
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=/preview/0.7.5/examples.html"></noscript>
+</head><body><p><a href="/preview/0.7.5/examples.html">Open the latest Vektor Flow preview</a></p></body></html>

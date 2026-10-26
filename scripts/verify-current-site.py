@@ -63,7 +63,13 @@ for p in root.rglob('*.html'):
   assert dest.is_relative_to(root.resolve()),(p,href)
   if dest.is_dir():dest/= 'index.html'
   assert dest.is_file(),(str(p.relative_to(root)),href)
-for name in ['index.html','syntax.html','features.html','install.html','performance.html','coming-soon.html']:
- assert '0.7.2' in (root/name).read_text(),name
+# User-authorized main-address preview routing. Keep all binary/retirement guards above.
+import importlib.util,sys
+sys.dont_write_bytecode=True
+spec=importlib.util.spec_from_file_location('latest_preview',Path(__file__).with_name('update-latest-preview.py'))
+routing=importlib.util.module_from_spec(spec);spec.loader.exec_module(routing)
+for path,content in routing.generated().items():
+ assert path.read_text()==content,'Run update-latest-preview.py: '+str(path)
+ assert '/preview/' in content
 assert 'noindex' in (root/'404.html').read_text()
-print('PASS current0.7.2 bytes, public asset retirement, current navigation and local page dependencies')
+print('PASS historical compiler bytes, asset retirement, latest-preview entry routing and local page dependencies')

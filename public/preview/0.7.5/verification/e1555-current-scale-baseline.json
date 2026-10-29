@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "status": "UNRESOLVED_CURRENT_EXACT_SCALE_BASELINE",
+  "recorded_utc": "2026-10-29T19:31:13.066570+00:00",
+  "release": "0.7.5 private candidate",
+  "compiler_source_binding": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
+  "compiler_wasm_sha256": "961a1fc45ef9ab1e7a7e650a7d95bf489fe4df50176674427c5bcae0dc4cead5",
+  "environment": {
+    "os": "Linux",
+    "browser": "Google Chrome 154.0.8037.97",
+    "headless": true,
+    "physical_board": "NVIDIA GT 1030",
+    "software_rasterizer_disabled": true,
+    "job_memory_max_gib": 10,
+    "js_heap_max_mib": 3072,
+    "physical_reserve_gib": 4
+  },
+  "five_million_points": {
+    "required_population": 5000000,
+    "source": "viewport: .ui.viewport\npoints:[[0.0:3]:5000000]\ni:0\ni<5000000?>\n    points.(i):[(i%2500)/2499*2-1,(i//2500)/1999*2-1,0]\n    .i:i+1\nviewport.add(p:points_ic,s:2,color:[0.1,0.3,0.7,0.5],id:\"release-points\")\nviewport.show()\n",
+    "source_sha256": "0da4371815759460a8b870d8c909c998c5dfd8b87973ca4726fd80973df9d6dc",
+    "route": "current InlineRunner -> genuine compiled guest -> retained scene arena -> shipping VfDisplay",
+    "status": "FAILED_BEFORE_SCENE_PACKET",
+    "error": "unreachable",
+    "diagnostic_phase": "guest.execute",
+    "cold_attempt_seconds": 13.245929244003491,
+    "outer_launch_through_close_seconds": 14.320442480995553,
+    "diagnostic_cold_attempt_seconds": 13.21111388198915,
+    "renderer_reached": false,
+    "resident_points": null,
+    "submitted_points": null,
+    "drawn_points": null,
+    "full_update_ms": null,
+    "scheduled_input_through_completion_ms": null,
+    "display_ms": null,
+    "under_10ms_qualified": false
+  },
+  "webgpu_route": {
+    "status": "DEVICE_CREATION_FAILED",
+    "added_flags": [
+      "--enable-unsafe-webgpu",
+      "--enable-features=Vulkan",
+      "--disable-vulkan-surface"
+    ],
+    "adapter_found": true,
+    "error": "vkCreateDevice failed with VK_ERROR_DEVICE_LOST",
+    "outer_launch_through_close_seconds": 20.43200906398124,
+    "same_route_hardware_render_verified": false,
+    "queue_completion_verified": false
+  },
+  "ten_thousand_native_labels": {
+    "required_population": 10000,
+    "status": "SHIPPING_NATIVE_PROVIDER_INTEGRATION_PENDING",
+    "fresh_native_distinct_formulas": 200,
+    "full_update_ms": null,
+    "under_10ms_qualified": false
+  },
+  "local48": {
+    "status": "UNRUN",
+    "required_rows": 48,
+    "warm_repetitions": 10,
+    "fresh_qualified_component_selection": false
+  },
+  "interpretation": "Cold failure observations are not update times. No exact-scale frame or current full-update timing exists yet. Historical GPU-only times are excluded. This result does not qualify a stable release or change benchmark cells."
+}

@@ -1,5 +1,6 @@
 import {nativeOutlineCommands} from './vf-plot-pdf-commands.mjs';
 import {textSelectionObjects} from './vf-selection-adapters.mjs';
+import {dyadic,minus,times} from './vf-native-residual.mjs';
 const fail=(code,status='FAIL')=>Object.assign(Error(code),{code,status});
 const need=(v,c,s)=>{if(!v)throw fail(c,s);};
 const freeze=v=>{if(v&&typeof v==='object'){for(const x of Object.values(v))freeze(x);Object.freeze(v);}return v;};
@@ -50,16 +51,70 @@ export function createNativePlotTypography({provider,vectors,engineIdentity,reso
 }
 const point=(m,p)=>[m[0]*p[0]+m[2]*p[1]+m[4],m[1]*p[0]+m[3]*p[1]+m[5]];
 const distance=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1];return Math.hypot(dx,dy)?Math.abs(dx*(a[1]-p[1])-(a[0]-p[0])*dy)/Math.hypot(dx,dy):Math.hypot(p[0]-a[0],p[1]-a[1]);};
+/** Refine the existing mesh where a curve's control hull contains an actual
+ * area sample. A distance tolerance alone cannot preserve sample-side tests.
+ * Sharing the predicate over visible placements keeps one mesh per source;
+ * no glyph name, expression, reference pixel or raster output is consulted.
+ * This is tessellation, not a certificate for GPU float/subpixel rounding.
+ */
+export function nativeCurveSampleRefinement(matrices,{width,height,pixelRatio=1,samplesPerAxis=4}={}) {
+ need(Array.isArray(matrices)&&matrices.every(m=>m.length===6&&m.every(Number.isFinite))&&
+  width>0&&height>0&&pixelRatio>0&&Number.isInteger(samplesPerAxis)&&samplesPerAxis>=1&&samplesPerAxis<=8,'PLOT_LABEL_SAMPLE_TRANSFORM');
+ const step=samplesPerAxis,pixelWidth=Math.max(1,Math.round(width*pixelRatio)),pixelHeight=Math.max(1,Math.round(height*pixelRatio));
+ const cross=(a,b,p)=>(b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]);
+ const orientation=(a,b,p,epsilon)=>{
+  const determinant=cross(a,b,p);if(Math.abs(determinant)>epsilon)return Math.sign(determinant);
+  // An error envelope is a sign filter, not an expansion of a tiny hull.
+  // Reuse the native exact dyadic arithmetic only for uncertain determinants.
+  const x=minus(dyadic(b[0]),dyadic(a[0])),y=minus(dyadic(b[1]),dyadic(a[1])),
+   u=minus(dyadic(p[0]),dyadic(a[0])),v=minus(dyadic(p[1]),dyadic(a[1])),n=minus(times(x,v),times(y,u)).n;
+  return n<0n?-1:n>0n?1:0;
+ };
+ const contains=(a,b,c,p,epsilon)=>{
+  const s=orientation(a,b,c,epsilon);return s!==0&&s*orientation(a,b,p,epsilon)>=0&&s*orientation(b,c,p,epsilon)>=0&&s*orientation(c,a,p,epsilon)>=0;
+ };
+ const refine=(a,b,c,d)=>{
+  // GL maps CSS coordinates to the rounded device target independently on
+  // each axis; fractional CSS dimensions must use that same sample lattice.
+  for(const matrix of matrices){const p=[a,b,c,d].map(v=>point(matrix,v).map((x,k)=>x*(k?pixelHeight/height:pixelWidth/width))),xs=p.map(v=>v[0]),ys=p.map(v=>v[1]);
+   const magnitude=Math.max(1,...xs.map(Math.abs),...ys.map(Math.abs)),epsilon=64*Number.EPSILON*magnitude*magnitude;
+   const x0=Math.max(0,Math.ceil(Math.min(...xs)*step-.5)),x1=Math.min(pixelWidth*step-1,Math.floor(Math.max(...xs)*step-.5)),
+    y0=Math.max(0,Math.ceil(Math.min(...ys)*step-.5)),y1=Math.min(pixelHeight*step-1,Math.floor(Math.max(...ys)*step-.5));
+   for(let iy=y0;iy<=y1;iy++){const y=(iy+.5)/step;
+    // Extreme scanlines meet only shared endpoints. Their curve/chord ray
+    // contributions agree unless BOTH endpoints lie on the lower scanline:
+    // a bowed curve over a horizontal chord can enclose a boundary sample.
+    // Preserve that case and the strict/half-open nonzero ray convention.
+    if(y>=Math.max(...ys)||y<=Math.min(...ys)&&!(p[0][1]===y&&p[3][1]===y))continue;
+    // A convex hull's scanline interval has endpoints on control-point
+    // pairs. All six pairs include its boundary without another hull builder.
+    // Only lattice centers in that thin interval need exact membership tests;
+    // the bounding rectangle can otherwise contain many irrelevant samples.
+    let left=Infinity,right=-Infinity;
+    for(let j=0;j<4;j++)for(let k=j+1;k<4;k++){const a=p[j],b=p[k];if(y<Math.min(a[1],b[1])||y>Math.max(a[1],b[1]))continue;
+     if(a[1]===b[1]){left=Math.min(left,a[0],b[0]);right=Math.max(right,a[0],b[0]);}
+     else {const x=a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]);left=Math.min(left,x);right=Math.max(right,x);}
+    }
+    const roundoff=64*Number.EPSILON*magnitude,first=Math.max(x0,Math.ceil((left-roundoff)*step-.5)),last=Math.min(x1,Math.floor((right+roundoff)*step-.5));
+    for(let ix=first;ix<=last;ix++){const sample=[(ix+.5)/step,y];
+    // Every point in a four-control convex hull belongs to one of these
+    // triangles, including inflected cubics and either contour orientation.
+    if(contains(p[0],p[1],p[2],sample,epsilon)||contains(p[0],p[1],p[3],sample,epsilon)||
+       contains(p[0],p[2],p[3],sample,epsilon)||contains(p[1],p[2],p[3],sample,epsilon)){refine.lastBoundary={matrix:[...matrix],sample,controls:p};return true;}
+   }}
+  }return false;
+ };return refine;
+}
 /** Adaptive physical outlines; tolerance is in projected DEVICE pixels. Native
  * positions/scales/holes are never replaced by text bounds. Same rings feed GPU
  * filled faces, PDF capture and the existing shared selection adapter/kernel.
  */
-export function nativeOutlineRings(commands,matrix,{tolerance=.125,maxDepth=18,maxPoints=65536}={}) {
+export function nativeOutlineRings(commands,matrix,{tolerance=.125,maxDepth=18,maxPoints=65536,refineCurve=null}={}) {
  need(matrix?.length===6&&matrix.every(Number.isFinite)&&tolerance>0,'PLOT_LABEL_TRANSFORM');
  const rings=[];let ring,current,origin,count=0;
  const add=p=>{need(++count<=maxPoints,'PLOT_LABEL_OUTLINE_LIMIT');if(!ring.length||Math.hypot(p[0]-ring.at(-1)[0],p[1]-ring.at(-1)[1])>1e-12)ring.push(p);};
- function curve(a,b,c,d,depth=0){if(Math.max(distance(b,a,d),distance(c,a,d))<=tolerance){add(d);return;}
-  need(depth<maxDepth,'PLOT_LABEL_CURVE_PRECISION');const mid=(x,y)=>[(x[0]+y[0])/2,(x[1]+y[1])/2],ab=mid(a,b),bc=mid(b,c),cd=mid(c,d),abc=mid(ab,bc),bcd=mid(bc,cd),m=mid(abc,bcd);
+ function curve(a,b,c,d,depth=0){if(Math.max(distance(b,a,d),distance(c,a,d))<=tolerance&&(!refineCurve||!refineCurve(a,b,c,d))){add(d);return;}
+  if(depth>=maxDepth){const error=fail('PLOT_LABEL_CURVE_PRECISION');if(refineCurve?.lastBoundary){error.boundary=refineCurve.lastBoundary;error.message+=':'+JSON.stringify(error.boundary);}throw error;}const mid=(x,y)=>[(x[0]+y[0])/2,(x[1]+y[1])/2],ab=mid(a,b),bc=mid(b,c),cd=mid(c,d),abc=mid(ab,bc),bcd=mid(bc,cd),m=mid(abc,bcd);
   curve(a,ab,abc,m,depth+1);curve(m,bcd,cd,d,depth+1);}
  for(const c of commands){if(c[0]==='M'){if(ring?.length>2)rings.push(ring);ring=[];current=point(matrix,c.slice(1));origin=current;add(current);}
   else if(c[0]==='L'){need(ring,'PLOT_LABEL_PATH');current=point(matrix,c.slice(1));add(current);}
@@ -85,7 +140,7 @@ export function triangulateNativeRings(rings) {
   need(winding===0,'PLOT_LABEL_UNCLOSED_WINDING');need(triangles.length<=50000,'PLOT_LABEL_TRIANGLE_LIMIT');
  }return triangles;
 }
-export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourceId=elementId,color=[0,0,0,1],pixelRatio=1,tolerance=.125}={}) {
+export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourceId=elementId,color=[0,0,0,1],pixelRatio=1,tolerance=.125,refineCurve=null}={}) {
  need(typeof elementId==='string'&&elementId&&typeof sourceId==='string'&&sourceId&&pixelRatio>0,'PLOT_LABEL_ID');
  const source=lease.run.kind==='text'?lease.run.text:lease.run.source,parts=[],triangles=[];
  const items=lease.box.items;
@@ -94,7 +149,7 @@ export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourc
   else {need(item.kind==='rule'&&[item.width,item.height].every(n=>Number.isFinite(n)&&n>=0),'PLOT_LABEL_RULE');commands=[['M',0,0],['L',item.width,0],['L',item.width,item.height],['L',0,item.height],['Z']];}
   const sx=item.sx??1,sy=item.sy??1,m=[matrix[0]*sx,matrix[1]*sx,matrix[2]*sy,matrix[3]*sy,
    matrix[0]*item.x+matrix[2]*item.y+matrix[4],matrix[1]*item.x+matrix[3]*item.y+matrix[5]];
-  const device=m.map((v)=>v*pixelRatio),deviceRings=nativeOutlineRings(commands,device,{tolerance}),rings=deviceRings.map(r=>r.map(p=>p.map(v=>v/pixelRatio)));
+  const device=m.map((v)=>v*pixelRatio),deviceRings=nativeOutlineRings(commands,device,{tolerance,refineCurve}),rings=deviceRings.map(r=>r.map(p=>p.map(v=>v/pixelRatio)));
   const text=lease.run.kind==='text';need(!text||(Number.isSafeInteger(item.start)&&Number.isSafeInteger(item.stop)),'PLOT_LABEL_NATIVE_UTF16_CLUSTER_MISSING');
   // Math075 has no exposed per-glyph origin. Keep one honest whole-run math
   // cluster instead of guessing character positions from glyphs or source.

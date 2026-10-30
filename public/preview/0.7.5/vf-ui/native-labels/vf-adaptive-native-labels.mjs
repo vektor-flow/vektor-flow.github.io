@@ -1,5 +1,5 @@
 import {createSpatialRanges} from './vf-spatial-ranges.mjs';
-import {prepareNativeLabelGeometry} from './vf-native-plot-labels.mjs';
+import {prepareNativeLabelGeometry,nativeCurveSampleRefinement} from './vf-native-plot-labels.mjs';
 import {nativeOutlineCommands} from './vf-plot-pdf-commands.mjs';
 import {nativeAccuracySourceOutlines} from './vf-native-accuracy-source.mjs';
 const need=(v,c)=>{if(!v)throw Error(c);};
@@ -35,10 +35,17 @@ export async function createAdaptiveNativeLabelBatches({typography,specs,coordin
    g.tree=createSpatialRanges(g.labels.length,i=>{const a=g.instances.subarray(i*4,i*4+4),b=g.bounds,z=a[2];return [a[0]+b[0]*z,a[1]-b[3]*z,0,a[0]+b[2]*z,a[1]-b[1]*z,0];},{leafSize:1});
   }
   const active=[];
-  function frame(c,width,height){need(!closed,'ADAPTIVE_NATIVE_CLOSED');const begin=performance.now(),scale=operatorNorm(c)*pixelRatio;active.length=0;const pinned=new Set();let submitted=0,triangles=0,visited=0,misses=0;
+  function frame(c,width,height,{samplesPerAxis=4,pixelRatio:framePixelRatio=pixelRatio}={}){need(!closed,'ADAPTIVE_NATIVE_CLOSED');const begin=performance.now(),scale=operatorNorm(c)*framePixelRatio;active.length=0;const pinned=new Set();let submitted=0,triangles=0,visited=0,misses=0;
    for(const g of groups.values()){const q=g.tree.query([c[0],c[1],c[2],c[3],0,0,c[4],c[5]],width,height,1);visited+=q.visited;if(!q.submitted)continue;
-    const projected=scale*g.maxScale,bound=2**Math.ceil(Math.log2(Math.max(projected,1/1024))),key=String(bound);let mesh=g.meshes.get(key);
-    if(!mesh){const t=performance.now(),geometry=prepareNativeLabelGeometry(g.lease,typography.vectors,[1,0,0,1,0,0],{elementId:'adaptive-template:'+g.id,pixelRatio:1,tolerance:toleranceDevice/bound});
+    const projected=scale*g.maxScale,bound=2**Math.ceil(Math.log2(Math.max(projected,1/1024))),key=JSON.stringify([bound,c,width,height,framePixelRatio,samplesPerAxis]);let mesh=g.meshes.get(key);
+    if(!mesh){const t=performance.now(),matrices=[];
+     // Use the same immutable float32 placements uploaded to the GPU. A
+     // camera/viewport/AA phase change invalidates the source template; color
+     // changes retain it. Source edits create new groups through the label API.
+     for(let r=0;r<q.rangeCount*2;r+=2)for(let i=q.ranges[r];i<q.ranges[r+1];i++){
+      const [x,y,z]=g.instances.subarray(i*4,i*4+3);matrices.push([c[0]*z,c[1]*z,-c[2]*z,-c[3]*z,c[0]*x+c[2]*y+c[4],c[1]*x+c[3]*y+c[5]]);
+     }
+     const refineCurve=nativeCurveSampleRefinement(matrices,{width,height,pixelRatio:framePixelRatio,samplesPerAxis}),geometry=prepareNativeLabelGeometry(g.lease,typography.vectors,[1,0,0,1,0,0],{elementId:'adaptive-template:'+g.id,pixelRatio:1,tolerance:toleranceDevice/bound,refineCurve});
      const vertices=new Float32Array(geometry.triangles.length*18);let at=0;for(const triangle of geometry.triangles)for(const p of triangle.points){vertices.set([p[0],p[1],...triangle.color],at);at+=6;}
      mesh={key,vertices,projectedBoundDevice:bound,toleranceLocal:toleranceDevice/bound,triangles:geometry.triangles.length};
      if(g.meshes.size>=maxMeshLevels){const oldKey=g.meshes.keys().next().value;meshCPUBytes-=g.meshes.get(oldKey).vertices.byteLength;g.meshes.delete(oldKey);}

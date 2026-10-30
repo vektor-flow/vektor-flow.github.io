@@ -136,7 +136,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
        gl.bindBuffer(gl.ARRAY_BUFFER,b.instanceBuffer);gl.enableVertexAttribArray(2);gl.vertexAttribPointer(2,4,gl.FLOAT,false,16,0);gl.vertexAttribDivisor(2,1);gl.drawArraysInstanced(gl.TRIANGLES,0,b.vertexCount,b.count);nativeDraws++;}
       gl.vertexAttribDivisor(2,0);gl.disableVertexAttribArray(2);
     }
-    if(adaptiveScene){const active=adaptiveScene.frame(camera,cssWidth,cssHeight);adaptiveLast=adaptiveScene.statistics();
+    if(adaptiveScene){const active=adaptiveScene.frame(camera,cssWidth,cssHeight,{samplesPerAxis:sampleCount,pixelRatio:target.pixelRatio});adaptiveLast=adaptiveScene.statistics();
       if(adaptiveLast.meshMisses)for(const [group,gpu] of adaptiveGPU)for(const [key,mesh] of gpu.meshes)if(!group.meshes.has(key)){gl.deleteBuffer(mesh.buffer);if(mesh.indexBuffer)gl.deleteBuffer(mesh.indexBuffer);nativeBytes-=mesh.bytes;gpu.meshes.delete(key);}
       gl.useProgram(nativePaint);gl.uniform2f(uniform(nativePaint,'viewport'),cssWidth,cssHeight);gl.uniform4fv(uniform(nativePaint,'linear'),camera.slice(0,4));gl.uniform2fv(uniform(nativePaint,'translate'),camera.slice(4));gl.uniform1i(uniform(nativePaint,'styleOverride'),nativeStyleColor?1:0);gl.uniform4fv(uniform(nativePaint,'styleColor'),nativeStyleColor??[0,0,0,1]);
       const drawStart=performance.now();

@@ -1,0 +1,580 @@
+{
+  "status": "CURRENT_SMALL_SIN_COMPLETE",
+  "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+  "startedMonotonic": 238873.423459841,
+  "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+  "pageErrors": [],
+  "cases": [],
+  "result": {
+    "rows": [
+      {
+        "name": "unprimed",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b",
+        "requestToPacketMs": 1591.9900000095367,
+        "requestToCompleteRasterMs": 1618.8900000154972,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 16846000,
+            "packetJSONChars": 978,
+            "allocateMs": 0.04500001668930054,
+            "heapCopyMs": 8.929999977350235,
+            "stdoutMs": 0.3500000238418579,
+            "retainedFormatMs": 90.46499997377396,
+            "packetReadMs": 0.06000000238418579,
+            "jsonParseMs": 0.04500001668930054,
+            "arenaReconstructionMs": 0.25999999046325684
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.16,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 764.31,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 25.655,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 18.964999,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.225001,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 15.215,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.785,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 3.135,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 41492,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 68491,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 181059,
+                  "typed_functions": 1,
+                  "wasm_bytes": 68491
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1.04,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 6.875,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 17.925,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 22.175,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 4.78,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 337.7,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 165.705,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 22.69,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.025,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 4.395,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.96,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 18.785,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 23.625,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 45.24,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 12.595,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 5.195,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 69.38,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 831.5600000023842,
+            "transportReadMs": 0.6700000166893005,
+            "jsParseMs": 0.28999999165534973,
+            "wasmCopyMs": 0.07999998331069946,
+            "profileReadMs": 2.7000000178813934,
+            "typedIRChars": 41492,
+            "manifestChars": 2374,
+            "guestWasmBytes": 68491
+          },
+          "compileMs": 835.4149999916553,
+          "executeMs": 262.1850000023842,
+          "formatMs": 100.16999998688698
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2771,
+            "draws": 3
+          }
+        ],
+        "rasterHashes": [
+          "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-8,
+        "maxXError": 0,
+        "arenaHashes": [
+          "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+        ],
+        "meets400ms": false
+      },
+      {
+        "name": "initialized-repeat",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b",
+        "requestToPacketMs": 202.0649999976158,
+        "requestToCompleteRasterMs": 211.4500000178814,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 16846000,
+            "packetJSONChars": 978,
+            "allocateMs": 0.009999990463256836,
+            "heapCopyMs": 1.9099999964237213,
+            "stdoutMs": 0.050000011920928955,
+            "retainedFormatMs": 70.57499998807907,
+            "packetReadMs": 0.015000015497207642,
+            "jsonParseMs": 0.02000001072883606,
+            "arenaReconstructionMs": 0.08499997854232788
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.01,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 0.195,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 23.67,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 19.145,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.24,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 8.655,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.684999,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 1.785001,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 41492,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 68491,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 1,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 0,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 181059,
+                  "typed_functions": 1,
+                  "wasm_bytes": 68491
+                },
+                "stages": [
+                  {
+                    "milliseconds": 0.005,
+                    "stage": "compile-response-cache-lookup"
+                  },
+                  {
+                    "milliseconds": 0.06,
+                    "stage": "compile-response-cache-restore"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 60.264999985694885,
+            "transportReadMs": 0.42500001192092896,
+            "jsParseMs": 0.17500001192092896,
+            "wasmCopyMs": 0.06000000238418579,
+            "profileReadMs": 1.3399999737739563,
+            "typedIRChars": 41492,
+            "manifestChars": 2374,
+            "guestWasmBytes": 68491
+          },
+          "compileMs": 62.2950000166893,
+          "executeMs": 66.40999999642372,
+          "formatMs": 72.6749999821186
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2771,
+            "draws": 3
+          }
+        ],
+        "rasterHashes": [
+          "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-8,
+        "maxXError": 0,
+        "arenaHashes": [
+          "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+        ],
+        "meets400ms": true
+      },
+      {
+        "name": "real-source-edit",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(2 * u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b",
+        "requestToPacketMs": 739.0949999988079,
+        "requestToCompleteRasterMs": 748.294999986887,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 16944920,
+            "packetJSONChars": 979,
+            "allocateMs": 0,
+            "heapCopyMs": 1.3700000047683716,
+            "stdoutMs": 0.034999996423721313,
+            "retainedFormatMs": 68.65999999642372,
+            "packetReadMs": 0.02000001072883606,
+            "jsonParseMs": 0.04999998211860657,
+            "arenaReconstructionMs": 0.11000001430511475
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.014999,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 528.975001,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 25.85,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 21.92,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.16,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 8.69,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.8,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 1.83,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 49954,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 70528,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 193595,
+                  "typed_functions": 1,
+                  "wasm_bytes": 70528
+                },
+                "stages": [
+                  {
+                    "milliseconds": 0.025,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 0.095,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 5.085,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 7.679999,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 1.275001,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 178.28,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 163.59,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 26.005,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.025,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 4.285,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.914999,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 14.025001,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 8.745,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 28.905,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 10.645,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 4.295,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 73.35,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 594.1350000202656,
+            "transportReadMs": 0.16499999165534973,
+            "jsParseMs": 0.19999998807907104,
+            "wasmCopyMs": 0.02000001072883606,
+            "profileReadMs": 2.240000009536743,
+            "typedIRChars": 49954,
+            "manifestChars": 2374,
+            "guestWasmBytes": 70528
+          },
+          "compileMs": 596.7849999964237,
+          "executeMs": 71.53499999642372,
+          "formatMs": 70.25999999046326
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2814,
+            "draws": 3
+          }
+        ],
+        "rasterHashes": [
+          "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-8,
+        "maxXError": 0,
+        "arenaHashes": [
+          "95ae9ca96bf6cf631cc6fb4a9417da0539686444788e5a19638d872b9f3c0c3f"
+        ],
+        "meets400ms": false
+      }
+    ],
+    "binding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b",
+    "endpoint": "ordinary InlineRunner request including compile/eval/data/bridge through shipping same Canvas2D complete getImageData raster; app navigation excluded; unprimed lazy initialization inside request; console endpoint separately"
+  },
+  "browserClosed": true,
+  "serverClosed": true,
+  "requests": [
+    "/preview/0.7.5/release-status.html",
+    "/preview/0.7.5/site.css",
+    "/preview/0.7.5/website-layout.css",
+    "/preview/0.7.5/code-highlight.mjs",
+    "/preview/0.7.5/reference-navigation.mjs",
+    "/preview/0.7.5/website-controls.mjs",
+    "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+    "/preview/0.7.5/editor/prism-vektorflow.mjs",
+    "/preview/0.7.5/vendor/prism/prism-python.min.js",
+    "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+    "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+    "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+    "/preview/0.7.5/current-compiler-release.json",
+    "/preview/0.7.5/inline-runner.mjs",
+    "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+    "/preview/0.7.5/vkf-browser-isolation.mjs",
+    "/preview/0.7.5/inline-renderer-loader.mjs",
+    "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+    "/preview/0.7.5/playground/canonical/compiler.mjs",
+    "/preview/0.7.5/playground/canonical/compiler.wasm",
+    "/preview/0.7.5/playground/canonical/compiler.data",
+    "/preview/0.7.5/canonical-inline-worker.mjs",
+    "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+    "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+    "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+    "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+    "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+    "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+    "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+    "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+    "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+    "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+    "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+    "/preview/0.7.5/playground/canonical/compiler.mjs",
+    "/preview/0.7.5/playground/canonical/compiler.wasm",
+    "/preview/0.7.5/playground/canonical/compiler.data",
+    "/preview/0.7.5/vf-ui/vf-frame.css",
+    "/preview/0.7.5/vf-ui/katex/katex.min.js",
+    "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+    "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+    "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+    "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+    "/preview/0.7.5/vf-ui/vf-html-components.js",
+    "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+    "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+    "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+    "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+    "/preview/0.7.5/vf-ui/vf-render-clock.js",
+    "/preview/0.7.5/vf-ui/vf-frame.js",
+    "/preview/0.7.5/vf-ui/vf-widgets.js",
+    "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+    "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+    "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+    "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+    "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+    "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+    "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+    "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+    "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+    "/preview/0.7.5/vf-ui/vf-display.js",
+    "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+    "/preview/0.7.5/inline-retained-scene-view.mjs"
+  ],
+  "ownedChildren": [
+    {
+      "pid": 2098234,
+      "command": "/opt/google/chrome/chrome"
+    }
+  ]
+}

@@ -15,6 +15,9 @@ const {row,phase,component,host}=req;for(const p of component.files)bytes(p);for
 const {diagnosticBoundary}=await import(pathToFileURL(host.diagnostic.path));
 const {decodeOutputStream}=await import(pathToFileURL(host.codec.path));
 const {executeEmittedProgramV1}=await import(pathToFileURL(host.consumer.path));
+const {mountImmutableHostDocuments}=await import(pathToFileURL(host.documents.path));
+// Verify once; compiler FS and each separate guest receive the same original bytes.
+const documents=!req.peer&&row.oracle.mount?[{path:row.oracle.mount.virtual_path,bytes:new Uint8Array(bytes(row.oracle.mount.input))}]:[];
 const result={samples_ms:[],values:[],outputs:[],compile_samples_ms:[],full_program_samples_ms:[],node_version:process.version,v8_version:process.versions.v8,
  lifecycle:'one cold compiler owner per row; core independent correctness consumer then one fresh guest timer instance with exact transient heap rewind; extra one guest instance no rewind as original',engine:'Node-V8-WASM32',accepted_samples:0};
 let program,wasm;
@@ -27,7 +30,7 @@ else{
  const owner=await factory({wasmBinary:bytes(w),noInitialRun:true,...(data?{getPreloadedPackage:()=>{const b=bytes(data);return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);}}:{})});result.owner_cold_ms=performance.now()-start;
  if(component.formatter_source_binding){assert.ok(owner.formatterOwner);assert.equal(owner.formatterOwner.ccall('vkf075_source_binding','string',[],[]),component.formatter_source_binding);}
  assert.equal(owner.ccall('vkf075_version','string',[],[]),'VKF 0.7.5');assert.equal(owner.ccall('vkf075_source_binding','string',[],[]),component.source_binding);
- for(const f of row.oracle.mount?[row.oracle.mount]:[]){const b=bytes(f.input);owner.FS.mkdirTree(path.dirname(f.virtual_path));owner.FS.writeFile(f.virtual_path,b);}
+ for(const document of documents){owner.FS.mkdirTree(path.dirname(document.path));owner.FS.writeFile(document.path,document.bytes);}
  const source=bytes(row.source_pins[0]).toString();
  const runs=row.suite==='core'&&phase==='measure'?10:1,warmups=row.suite==='core'?1:0;
  for(let i=-warmups;i<runs;i++){
@@ -49,13 +52,14 @@ else{
  // No fabricated import handlers: concurrent/retained unavailable in Node stay UNRUN.
  entry=program.manifest.functions[row.suite==='core'&&row.workload!=='combined-kernels-parallel-large'?'vkf_benchmark_entry':'$vkf_main'];assert.ok(entry&&entry.parameters===0);
  const correctnessEntry=program.manifest.functions.$vkf_main;assert.ok(correctnessEntry&&correctnessEntry.parameters===0);
- const initial=await executeEmittedProgramV1(wasm,program.manifest,correctnessEntry,{diagnosticBoundary,decodeOutputStream,concurrent,prerequisiteError:m=>new Error('UNRUN genuine host prerequisite: '+m),observe:({instance})=>{e=instance.exports;}});
+ const initial=await executeEmittedProgramV1(wasm,program.manifest,correctnessEntry,{diagnosticBoundary,decodeOutputStream,concurrent,...(documents.length?{documents}:{}),prerequisiteError:m=>new Error('UNRUN genuine host prerequisite: '+m),observe:({instance})=>{e=instance.exports;}});
  if(row.suite==='core'){
   const value=Array.isArray(initial.value)?initial.value[0]:initial.value;
   assert.ok(Number.isFinite(value));result.observation={value};result.correctness_observation={value};
   const m=await WebAssembly.compile(wasm), imports=WebAssembly.Module.imports(m);
   if(imports.length) {assert.ok(concurrent && imports.length===1 && imports[0].module==='vkf.concurrent' && imports[0].name==='invoke');timerHost=concurrent.create(m,()=>e);}
   e=(await WebAssembly.instantiate(m,timerHost??{})).exports;
+  if(documents.length)mountImmutableHostDocuments(e,program.manifest,documents);
  }else{const stdout=initial.value.map(v=>String(v)).join('\n');await parse(row,'vkf',stdout);result.observation={stdout};}
  const boundary=diagnosticBoundary(e,program.manifest);
  invoke=()=>{

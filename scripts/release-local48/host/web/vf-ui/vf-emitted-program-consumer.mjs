@@ -1,6 +1,7 @@
+import {mountImmutableHostDocuments} from '../../immutable-host-documents.mjs';
 import {programRequirements} from '../../program-capabilities.mjs';
 // Actual emitted-program consumer, shared by qualification and the live shell.
-// No source evaluator, fixture loader, record-as-owner path or VM simulation.
+// Immutable documents use the existing sealed guest arena; no source evaluation.
 export async function executeEmittedProgramV1(bytes, manifest, entry, options) {
   const {diagnosticBoundary, decodeOutputStream, prerequisiteError} = options;
   const need = message => { throw prerequisiteError(message); };
@@ -47,6 +48,11 @@ export async function executeEmittedProgramV1(bytes, manifest, entry, options) {
     }
     const instance = await WebAssembly.instantiate(module, imports), e = instance.exports;
     api = e;
+    // Copy exact caller-owned UTF-8 bytes before any guest entry runs. Authority
+    // belongs to this instance, survives reset, and ends on explicit clear or
+    // instance disposal. Escaped observations may still invoke this same guest.
+    if (options.documents !== undefined)
+      mountImmutableHostDocuments(e, manifest, options.documents);
     if (wire) { retained.bind(e, manifest); }
     // The same964 decoder validates the exact bound instance, and the same968
     // decoder consumes the original ordered output nodes. No import error is

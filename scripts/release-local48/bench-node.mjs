@@ -37,35 +37,53 @@ else{
  wasm=Buffer.from(program.wasm_hex,'hex');fs.writeFileSync(path.join(req.run,'program.wasm'),wasm);fs.writeFileSync(path.join(req.run,'program.json'),JSON.stringify(program));
  result.program_sha256=hash(wasm);
 }
-let e,entry,invoke;
+let e,entry,invoke, timerHost;
+const concurrent = host.concurrent ? (await import(pathToFileURL(host.concurrent.path))).createNodeConcurrent() : null;
+result.concurrent = concurrent?.receipt;
+const count=phase==='measure'?10:0;
+let timerFailed = false, timerFailure;
+try {
 if(req.peer){const m=await WebAssembly.compile(wasm);assert.equal(WebAssembly.Module.imports(m).length,0,'missing genuine peer host import');const instance=await WebAssembly.instantiate(m);e=instance.exports;e._initialize?.();invoke=()=>e.vkf_benchmark();}
 else{
  // Use actual final consumer for correctness/host-capability intake before timing.
  // No fabricated import handlers: concurrent/retained unavailable in Node stay UNRUN.
  entry=program.manifest.functions[row.suite==='core'&&row.workload!=='combined-kernels-parallel-large'?'vkf_benchmark_entry':'$vkf_main'];assert.ok(entry&&entry.parameters===0);
  const correctnessEntry=program.manifest.functions.$vkf_main;assert.ok(correctnessEntry&&correctnessEntry.parameters===0);
- const initial=await executeEmittedProgramV1(wasm,program.manifest,correctnessEntry,{diagnosticBoundary,decodeOutputStream,prerequisiteError:m=>new Error('UNRUN genuine host prerequisite: '+m),observe:({instance})=>{e=instance.exports;}});
+ const initial=await executeEmittedProgramV1(wasm,program.manifest,correctnessEntry,{diagnosticBoundary,decodeOutputStream,concurrent,prerequisiteError:m=>new Error('UNRUN genuine host prerequisite: '+m),observe:({instance})=>{e=instance.exports;}});
  if(row.suite==='core'){
   const value=Array.isArray(initial.value)?initial.value[0]:initial.value;
   assert.ok(Number.isFinite(value));result.observation={value};result.correctness_observation={value};
-  const m=await WebAssembly.compile(wasm);assert.equal(WebAssembly.Module.imports(m).length,0,'UNRUN genuine concurrent host timer prerequisite');
-  e=(await WebAssembly.instantiate(m)).exports;
+  const m=await WebAssembly.compile(wasm), imports=WebAssembly.Module.imports(m);
+  if(imports.length) {assert.ok(concurrent && imports.length===1 && imports[0].module==='vkf.concurrent' && imports[0].name==='invoke');timerHost=concurrent.create(m,()=>e);}
+  e=(await WebAssembly.instantiate(m,timerHost??{})).exports;
  }else{const stdout=initial.value.map(v=>String(v)).join('\n');await parse(row,'vkf',stdout);result.observation={stdout};}
  const boundary=diagnosticBoundary(e,program.manifest);
  invoke=()=>{
   const checkpoint=e.vkf_vm_heap_ptr();
   try{
    assert.equal(boundary.invoke(entry.index,0),0);
-   if(row.suite!=='core'||entry===program.manifest.functions.$vkf_main){const s=decodeOutputStream(e,program.manifest);assert.equal(s.effects.length,0);return s.value;}
+   if(row.suite!=='core'||entry===program.manifest.functions.$vkf_main){timerHost?.materializeOutput();const s=decodeOutputStream(e,program.manifest);assert.equal(s.effects.length,0);return s.value;}
    assert.equal(e.vkf_vm_value_slot_size(),24);const ptr=e.vkf_vm_results_ptr(),view=new DataView(e.memory.buffer);assert.equal(view.getUint32(ptr,true),2);return view.getFloat64(ptr+8,true);
   }finally{if(row.suite==='core')assert.equal(e.vkf_vm_rewind(checkpoint),checkpoint);}
  };
 }
-const count=phase==='measure'?10:0,warmups=req.peer||row.suite==='core'?(row.warmup_contract.runtime_warmups??1):0;
+const warmups=req.peer||row.suite==='core'?(row.warmup_contract.runtime_warmups??1):0;
 async function observe(measured){const start=performance.now(),value=invoke(),wall=performance.now()-start;
  if(row.suite==='core'){const v=Array.isArray(value)?value[0]:value;assert.ok(Number.isFinite(v));if(result.correctness_observation)assert.ok(Math.abs(v-result.correctness_observation.value)<=(row.oracle.original_definition?.tolerance??1e-9),'main stdout versus direct benchmark entry mismatch');if(measured){result.samples_ms.push(wall);result.values.push(v);}return {value:v};}
  const stdout=value.map(v=>String(v)).join('\n'),parsed=await parse(row,'vkf',stdout);if(measured){result.samples_ms.push(parsed.elapsed_ms);result.outputs.push(stdout);result.full_program_samples_ms.push(wall);if(row.oracle.kind==='e1201-exact-symbolic'){(result.first_operation_samples_ms??=[]).push(parsed.first_operation_ms);}}return {stdout};}
 for(let i=0;i<warmups;i++){result.observation=await observe(false);result.runtime_warmups_completed=(result.runtime_warmups_completed??0)+1;}
 for(let i=0;i<count;i++)await observe(true);
+} catch (error) { timerFailed = true; timerFailure = error; throw error; }
+finally {
+  try { await timerHost?.close(); }
+  catch (closeError) {
+    if (!timerFailed) throw closeError;
+    if (timerFailure && (typeof timerFailure === 'object' || typeof timerFailure === 'function')) {
+      try { Object.defineProperty(timerFailure, 'ownedCloseErrors', {value: [closeError], configurable: true}); }
+      catch { /* Preserve even a frozen primary error. */ }
+    }
+  }
+}
+if(row.parallel_contract){assert.ok(concurrent?.receipt.workers_created>0);assert.equal(concurrent.receipt.workers_created,concurrent.receipt.workers_closed);assert.ok(concurrent.receipt.operations[6]>0);assert.equal(concurrent.receipt.operations[6],concurrent.receipt.operations[7]);}
 assert.equal(result.samples_ms.length,count);result.accepted_samples=count;
 fs.writeFileSync(path.join(req.run,'node-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

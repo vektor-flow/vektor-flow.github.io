@@ -1,10 +1,31 @@
 import {createAdaptiveNativeLabelBatches} from './vf-adaptive-native-labels.mjs';
 import {createSharedAreaRenderer} from './vf-shared-area-renderer.mjs';
+import {loadCurrentNativeTypography} from './vf-current-native-provider.mjs';
 
 const need = (ok, message) => { if (!ok) throw new Error(message); };
 const affine = m => Array.isArray(m) && m.length === 6 && m.every(Number.isFinite);
 const compose = (a,b) => [a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],
   a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
+
+/** Application entry for live native labels. The application owns the native
+ * engine/transport; this module never parses or typesets a formula in JS.
+ * Byte-pinned seed layouts are reusable work, not the set of allowed sources:
+ * every miss enters typeset(run, identity), then the existing provider checks
+ * the returned source, engine/resources, diagnostics and physical font mapping.
+ * A different engine/resource context requires a new installation/bundle.
+ */
+export async function installCurrentNativeLabelEngine({VfDisplay=globalThis.VfDisplay,
+  bundle,typeset,fetch:fetcher=globalThis.fetch,renderingPolicy='required',rendererFactory=createSharedAreaRenderer}={}) {
+  need(typeof typeset==='function','NATIVE_LABEL_LIVE_ENGINE_REQUIRED');
+  const typography=await loadCurrentNativeTypography({files:bundle?.files,identity:bundle?.identity,fetch:fetcher,typeset});
+  let uninstall;
+  try{uninstall=installCurrentNativeLabels({VfDisplay,typography,renderingPolicy,rendererFactory});}
+  catch(error){typography.close();throw error;}
+  let closing;
+  return Object.freeze({typography,
+    close(){if(!closing)closing=(async()=>{await uninstall();await VfDisplay.joinNativeLabelCleanup?.();typography.close();return {joined:true};})();return closing;}
+  });
+}
 
 /** Install into VfDisplay's ordinary text-overlay lifecycle. No new page,
  * synthetic retained packet, layout implementation or independent demo host.

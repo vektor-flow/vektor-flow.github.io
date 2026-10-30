@@ -1,0 +1,702 @@
+{
+  "schema": 1,
+  "date": "2026-10-30",
+  "status": "CURRENT_CORRECTNESS_BLOCKED",
+  "releaseQualified": false,
+  "compilerCandidatePublished": false,
+  "completeGpuPipeline": false,
+  "physicalGpuExecuted": false,
+  "fullWorkload10ms": "UNMEASURED",
+  "broadSpeedReleaseGates": "Retired; required workload correctness and crashes remain unwaived",
+  "projectLibrary": {
+    "name": "VKF Morphing",
+    "ownership": "Project/application library, not standard library",
+    "worldCommit": "2be1048a844e34d09821a0996cce636562607448",
+    "engineCommit": "f5c3afb01a728241440ed4ac9a46289578225e0f"
+  },
+  "currentNativeCompilerRepair": {
+    "commit": "6826d0af621b78a4acc71e8c7e327ab9185e7a7b",
+    "root": "/mnt/development/VektorFlow-e1601-20261030/compiler-source",
+    "headerSha256": "6e0eb3aa3dbbc7314eb64342a525867ce7126a98b4af16b777934a9237147d12",
+    "deltaBinding": "6076e992484736d315d7d3dfaa9431c314701a0f60626d380a924ee54628ddd0",
+    "nativeCompilerSha256": "703e4aabbead19fc10222f9f14e50481fff31bf7a0deca36d913f86fad69cb19",
+    "browserCompilerUnchanged": true,
+    "fullGpuAcceptance": false,
+    "result": {
+      "rows": [
+        {
+          "name": "skipped",
+          "compileExit": 0,
+          "compileStderr": "",
+          "selected": false,
+          "sourceSha256": "d2420ec01bfb76b49e5bfe865f81f948543b913d11ee124f39a2c2a2b0a384e6",
+          "spirvValidation": {
+            "exit": 0,
+            "stdout": "/mnt/development/VektorFlow-e1601-20261030/short-circuit-probes/skipped.comp\n",
+            "stderr": ""
+          },
+          "native": {
+            "exit": 0,
+            "stdout": "[[-1.5, -0.5, 0.5], [-0.5, 0.5, 1.5], [0.5, 1.5, 2.5]]\n",
+            "stderr": ""
+          },
+          "shaderSha256": "6036f132cd576231000ebb043bcdb64f4a8b61cebdd77ee8e5af3f76fc4a0b4b"
+        },
+        {
+          "name": "selected",
+          "compileExit": 0,
+          "compileStderr": "",
+          "selected": true,
+          "sourceSha256": "d12f3778bf1a568934016b5d59d7e989b94e71e9d68a5f7a7470c7c5ae1f7282",
+          "spirvValidation": {
+            "exit": 0,
+            "stdout": "/mnt/development/VektorFlow-e1601-20261030/short-circuit-probes/selected.comp\n",
+            "stderr": ""
+          },
+          "native": {
+            "exit": 1,
+            "stdout": "",
+            "stderr": "rhs assertion selected\n"
+          },
+          "shaderSha256": "442265eb9fc96991b24e406310fb30293e31acb2274ddced1715bb4303c2d02f"
+        }
+      ],
+      "compilerSha256": "703e4aabbead19fc10222f9f14e50481fff31bf7a0deca36d913f86fad69cb19",
+      "combined": {
+        "exit": 1,
+        "stderr": "<driver-smoke>:1:1: pure helper nonloop conditional required [helper=__vkf_module_s__prepare, loop=true, output_allowed=false, semantic_id=absent]\n",
+        "elapsedSeconds": 21.910405687987804,
+        "shaderProduced": false
+      },
+      "physicalGpuExecuted": false,
+      "shaderDispatchNumericalEquivalence": false,
+      "fullWorld": false
+    },
+    "priorConstantGuardResult": {
+      "rows": [
+        {
+          "name": "record",
+          "argv": [
+            "/mnt/development/VektorFlow-e1601-20261030/native-cli/vkf-native-0.7.5",
+            "-b",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/record.vkf",
+            "-o",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/record.native",
+            "--diagnostics",
+            "--optimizer-policy",
+            "scalar",
+            "--emit-vulkan-field",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/record.comp",
+            "--vulkan-field-entry",
+            "run",
+            "--vulkan-field-runtime-inputs"
+          ],
+          "exit": 0,
+          "elapsedSeconds": 1.0415058429935016,
+          "stderr": "",
+          "compilerSha256": "89bc4197b276a7415176c7aa9fbf45e47a8e9fe53e8d82e0daa67787c9148183",
+          "sourceSha256": "711bd7a24df118d23e14b79bd5c9557cb2abf9e338f8bae6bfe134d60535aa06",
+          "shaderProduced": true,
+          "spirvValidation": {
+            "exit": 0,
+            "stdout": "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/record.comp\n",
+            "stderr": ""
+          },
+          "native": {
+            "exit": 0,
+            "stdout": "[[-1.5, -0.5, 0.5], [-0.5, 0.5, 1.5], [0.5, 1.5, 2.5]]\n",
+            "stderr": ""
+          }
+        },
+        {
+          "name": "combined-library",
+          "argv": [
+            "/mnt/development/VektorFlow-e1601-20261030/native-cli/vkf-native-0.7.5",
+            "-b",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/combined-library.vkf",
+            "-o",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/combined-library.native",
+            "--diagnostics",
+            "--optimizer-policy",
+            "scalar",
+            "--emit-vulkan-field",
+            "/mnt/development/VektorFlow-e1601-20261030/gpu-probes-and/combined-library.comp",
+            "--vulkan-field-entry",
+            "run",
+            "--vulkan-field-runtime-inputs"
+          ],
+          "exit": 1,
+          "elapsedSeconds": 21.849651933996938,
+          "stderr": "<driver-smoke>:1:1: pure helper nonloop conditional required\n",
+          "compilerSha256": "89bc4197b276a7415176c7aa9fbf45e47a8e9fe53e8d82e0daa67787c9148183",
+          "sourceSha256": "09754dc632ae4d04ddd5e4922869afca942c6c47b0ff478859208290db3d2840",
+          "shaderProduced": false
+        }
+      ],
+      "physicalGpuExecuted": false,
+      "fullScene": false,
+      "fullPipeline": false,
+      "performanceMeasured": false
+    },
+    "preciseHelperDiagnostic": {
+      "error": "<driver-smoke>:1:1: pure helper nonloop conditional required [helper=__vkf_module_s__prepare, loop=true, output_allowed=false, semantic_id=absent]\n",
+      "typedIrPath": "/mnt/development/VektorFlow-e1601-20261030/short-circuit-probes/.vkfbuild/combined-library/typed-ir.json",
+      "typedIrSha256": "1fe5f1fc0f2457bf09214a69faa28dc8808efc092621fad7a84b3b1999f165e6",
+      "exactTypedIR": {
+        "functionOrdinal": 53,
+        "helper": "__vkf_module_s__prepare",
+        "statementOrdinal": 4,
+        "astPath": "body[53].body.body[4]",
+        "statement": {
+          "body": {
+            "body": [
+              {
+                "expr": {
+                  "condition": {
+                    "kind": "binary_op",
+                    "left": {
+                      "kind": "unary_op",
+                      "op": "ABS",
+                      "operand": {
+                        "base": {
+                          "kind": "load",
+                          "name": "knots",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "[num]"
+                          },
+                          "semantic_id": 203,
+                          "type": "[num]"
+                        },
+                        "expanded_index_count": 1,
+                        "indices": [
+                          {
+                            "kind": "load",
+                            "name": "i",
+                            "ordinary_source_type_identity": {
+                              "kind": "ordinary_source_type_identity",
+                              "owner": "ordinary_expression_typing",
+                              "resolved_type": "int"
+                            },
+                            "semantic_id": 197,
+                            "type": "int"
+                          }
+                        ],
+                        "kind": "dotted_index",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "num"
+                        },
+                        "semantic_id": 205,
+                        "type": "num"
+                      },
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "num"
+                      },
+                      "semantic_id": 207,
+                      "type": "num"
+                    },
+                    "left_type": "num",
+                    "op": "LT",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "bit"
+                    },
+                    "right": {
+                      "kind": "binary_op",
+                      "left": {
+                        "kind": "const",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "semantic_id": 209,
+                        "type": "int",
+                        "value": 10
+                      },
+                      "left_type": "int",
+                      "op": "CARET",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "num"
+                      },
+                      "right": {
+                        "kind": "const",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "semantic_id": 211,
+                        "type": "int",
+                        "value": 100
+                      },
+                      "right_type": "int",
+                      "semantic_id": 213,
+                      "type": "num"
+                    },
+                    "right_type": "num",
+                    "semantic_id": 215,
+                    "type": "bit"
+                  },
+                  "kind": "assert_expr",
+                  "message": {
+                    "kind": "const",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "str"
+                    },
+                    "semantic_id": 217,
+                    "type": "str",
+                    "value": "nonfinite or excessive coordinate"
+                  },
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "bit"
+                  },
+                  "semantic_id": 219,
+                  "type": "bit"
+                },
+                "kind": "expr_stmt"
+              },
+              {
+                "body": {
+                  "body": [
+                    {
+                      "expr": {
+                        "condition": {
+                          "kind": "binary_op",
+                          "left": {
+                            "base": {
+                              "kind": "load",
+                              "name": "knots",
+                              "ordinary_source_type_identity": {
+                                "kind": "ordinary_source_type_identity",
+                                "owner": "ordinary_expression_typing",
+                                "resolved_type": "[num]"
+                              },
+                              "semantic_id": 226,
+                              "type": "[num]"
+                            },
+                            "expanded_index_count": 1,
+                            "indices": [
+                              {
+                                "kind": "load",
+                                "name": "i",
+                                "ordinary_source_type_identity": {
+                                  "kind": "ordinary_source_type_identity",
+                                  "owner": "ordinary_expression_typing",
+                                  "resolved_type": "int"
+                                },
+                                "semantic_id": 197,
+                                "type": "int"
+                              }
+                            ],
+                            "kind": "dotted_index",
+                            "ordinary_source_type_identity": {
+                              "kind": "ordinary_source_type_identity",
+                              "owner": "ordinary_expression_typing",
+                              "resolved_type": "num"
+                            },
+                            "semantic_id": 228,
+                            "type": "num"
+                          },
+                          "left_type": "num",
+                          "op": "GT",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "bit"
+                          },
+                          "right": {
+                            "base": {
+                              "kind": "load",
+                              "name": "knots",
+                              "ordinary_source_type_identity": {
+                                "kind": "ordinary_source_type_identity",
+                                "owner": "ordinary_expression_typing",
+                                "resolved_type": "[num]"
+                              },
+                              "semantic_id": 230,
+                              "type": "[num]"
+                            },
+                            "expanded_index_count": 1,
+                            "indices": [
+                              {
+                                "kind": "binary_op",
+                                "left": {
+                                  "kind": "load",
+                                  "name": "i",
+                                  "ordinary_source_type_identity": {
+                                    "kind": "ordinary_source_type_identity",
+                                    "owner": "ordinary_expression_typing",
+                                    "resolved_type": "int"
+                                  },
+                                  "semantic_id": 197,
+                                  "type": "int"
+                                },
+                                "left_type": "int",
+                                "op": "MINUS",
+                                "ordinary_source_type_identity": {
+                                  "kind": "ordinary_source_type_identity",
+                                  "owner": "ordinary_expression_typing",
+                                  "resolved_type": "int"
+                                },
+                                "right": {
+                                  "kind": "const",
+                                  "ordinary_source_type_identity": {
+                                    "kind": "ordinary_source_type_identity",
+                                    "owner": "ordinary_expression_typing",
+                                    "resolved_type": "int"
+                                  },
+                                  "semantic_id": 232,
+                                  "type": "int",
+                                  "value": 1
+                                },
+                                "right_type": "int",
+                                "semantic_id": 235,
+                                "type": "int"
+                              }
+                            ],
+                            "kind": "dotted_index",
+                            "ordinary_source_type_identity": {
+                              "kind": "ordinary_source_type_identity",
+                              "owner": "ordinary_expression_typing",
+                              "resolved_type": "num"
+                            },
+                            "semantic_id": 237,
+                            "type": "num"
+                          },
+                          "right_type": "num",
+                          "semantic_id": 239,
+                          "type": "bit"
+                        },
+                        "kind": "assert_expr",
+                        "message": {
+                          "kind": "const",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "str"
+                          },
+                          "semantic_id": 241,
+                          "type": "str",
+                          "value": "coordinates must increase strictly"
+                        },
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "bit"
+                        },
+                        "semantic_id": 243,
+                        "type": "bit"
+                      },
+                      "kind": "expr_stmt"
+                    }
+                  ],
+                  "kind": "block"
+                },
+                "condition": {
+                  "kind": "binary_op",
+                  "left": {
+                    "kind": "load",
+                    "name": "i",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 197,
+                    "type": "int"
+                  },
+                  "left_type": "int",
+                  "op": "GT",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "bit"
+                  },
+                  "right": {
+                    "kind": "const",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 221,
+                    "type": "int",
+                    "value": 0
+                  },
+                  "right_type": "int",
+                  "semantic_id": 224,
+                  "type": "bit"
+                },
+                "kind": "if_stmt",
+                "loop": false
+              },
+              {
+                "kind": "store_binding",
+                "name": "i",
+                "type": "int",
+                "update": true,
+                "value": {
+                  "kind": "binary_op",
+                  "left": {
+                    "kind": "load",
+                    "name": "i",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 197,
+                    "type": "int"
+                  },
+                  "left_type": "int",
+                  "op": "PLUS",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "right": {
+                    "kind": "const",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 245,
+                    "type": "int",
+                    "value": 1
+                  },
+                  "right_type": "int",
+                  "semantic_id": 248,
+                  "type": "int"
+                }
+              }
+            ],
+            "kind": "block"
+          },
+          "condition": {
+            "kind": "binary_op",
+            "left": {
+              "kind": "load",
+              "name": "i",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "int"
+              },
+              "semantic_id": 197,
+              "type": "int"
+            },
+            "left_type": "int",
+            "op": "LT",
+            "ordinary_source_type_identity": {
+              "kind": "ordinary_source_type_identity",
+              "owner": "ordinary_expression_typing",
+              "resolved_type": "bit"
+            },
+            "right": {
+              "kind": "load",
+              "name": "count",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "int"
+              },
+              "semantic_id": 146,
+              "type": "int"
+            },
+            "right_type": "int",
+            "semantic_id": 201,
+            "type": "bit"
+          },
+          "kind": "if_stmt",
+          "loop": true,
+          "loop_index": "$0"
+        }
+      },
+      "currentProjectSource": "/home/viktor/Projects/Vektor Flow/.worktrees/native-morph-bulk-20261027/morphing/state.vkf",
+      "currentProjectSourceSha256": "ea2e9d1dd2d255e1390791797c67dd627b4202adf63908d906a4279d5edcc85a",
+      "sourceFunction": "prepare(knots,values,width,mode)",
+      "sourceLocation": "morphing/state.vkf:13",
+      "meaning": "First coordinate-validation while loop i<count; loop=true/output_allowed=false, not generic inferred failure",
+      "remaining": "Normal GPU lowering must retain loop, validation and mutable library semantics; normal real-f32 source/artifact still unbound"
+    },
+    "shortCircuitRepair": "Review1602 found eager RHS helper statements. Current repair binds LHS, captures RHS statements and places them with RHS assignment under selected runtime branches. Skipped/selected assertion controls compiled/validated and native output checked; no numerical shader dispatch proof.",
+    "scope": "Current selected native075 Vulkan f64 compiler repair, not a matching WGSL real-f32 emitter or browser compiler rebuild",
+    "failureProgression": [
+      "expression record",
+      "binary operator GE",
+      "binary operator AND",
+      "pure helper nonloop conditional required"
+    ]
+  },
+  "worldNativeHelper": {
+    "worldCommit": "2be1048a844e34d09821a0996cce636562607448",
+    "entry": "world.measurement(1.25,0,1).normalized",
+    "argv": [
+      "/mnt/development/VektorFlow-e1601-20261030/native-cli/vkf-native-0.7.5",
+      "-b",
+      "/mnt/development/VektorFlow-e1601-20261030/project-world/examples/cuvami-world/current-source-check.vkf",
+      "-o",
+      "/mnt/development/VektorFlow-e1601-20261030/final-world-check.native",
+      "--diagnostics",
+      "--optimizer-policy",
+      "scalar"
+    ],
+    "exit": 0,
+    "elapsedSeconds": 13.727325518993894,
+    "stderr": "",
+    "fullPipeline": false,
+    "fullScene": false,
+    "physicalGpuExecuted": false,
+    "native": {
+      "exit": 0,
+      "stdout": "1.25\n",
+      "stderr": ""
+    },
+    "compiledWithNativeCompilerSha256": "89bc4197b276a7415176c7aa9fbf45e47a8e9fe53e8d82e0daa67787c9148183"
+  },
+  "engineValidation": {
+    "scope": "Existing engine changed admission/count/reset/readback only; synthetic fixture, not authored scene or compiled project law",
+    "softwareWebGpuOnly": true,
+    "physicalGpuAcceptance": false,
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "result": {
+      "adapter": {
+        "vendor": "google",
+        "architecture": "swiftshader",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": true
+      },
+      "shaderCompilationErrors": 0,
+      "rows": [
+        {
+          "bodyCount": 17,
+          "triangleCount": 17,
+          "renderVertexCount": 51,
+          "errors": 0,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 12,
+          "triangleCount": 12,
+          "renderVertexCount": 36,
+          "errors": 0,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 17,
+          "triangleCount": 17,
+          "renderVertexCount": 51,
+          "errors": 0,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 17.5,
+          "triangleCount": 17,
+          "renderVertexCount": 51,
+          "errors": 1,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 17,
+          "triangleCount": 17,
+          "renderVertexCount": 51,
+          "errors": 4,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 12,
+          "triangleCount": 12,
+          "renderVertexCount": 36,
+          "errors": 0,
+          "projectErrors": 0
+        },
+        {
+          "bodyCount": 17,
+          "triangleCount": 17,
+          "renderVertexCount": 51,
+          "errors": 0,
+          "projectErrors": 32
+        }
+      ],
+      "actualLiveTriangleReadback": true,
+      "clockPauseScale": true,
+      "resetGeometryCounts": true,
+      "projectGpuErrorPropagation": true,
+      "validationErrors": [],
+      "fullScene": false,
+      "generatedLaw": false,
+      "renderedScene": false,
+      "timingClaim": false
+    },
+    "earlierAttempt": "Inherited configuration returned no GPU adapter; explicit WebGPU enablement selected SwiftShader fallback. No hardware or timing acceptance."
+  },
+  "requiredFiveMillionPoints": {
+    "status": "FAIL_CURRENT_EXACT_5M",
+    "browserBinding": "ab8237e6b706c446b45530ab88fc9f1b28bb7cd7dc8c8be935ee674c6b0edef4",
+    "browserBuildReused": true,
+    "compilerWasmSha256": "aabd3bc00d9145ffcb2c6bd06d57f09ee61593d7a56b7e5bedd1a98e8cacaa08",
+    "guestWasmSha256": "8965f93a5502c10c5d8f098d98d05734e61ac38aeddb974d11bae9ebf897c9e3",
+    "requestedPopulation": 5000000,
+    "completeOutput": false,
+    "renderedScene": false,
+    "viewAnimationColorQualification": false,
+    "error": "page.evaluate: Error: unreachable\n    at owned.onmessage (http://127.0.0.1:41453/preview/0.7.5/inline-runner.mjs:84:55)\n    at /mnt/development/VektorFlow-e1601-20261030/required-current-exact5m.mjs:20:103",
+    "observedFailureState": {
+      "heap": 1086952544,
+      "heapLimit": 1086952576,
+      "memoryBytes": 1086980096,
+      "guestArenaBytes": 1073741824
+    },
+    "causeBoundary": "Observed unreachable near arena limit; no further causal allocation repair or unchanged retry in this result",
+    "elapsedIncludingHarnessSeconds": 34.237624888977734,
+    "browserClosed": true,
+    "serverClosed": true
+  },
+  "authoredWorld": {
+    "cohorts": 10,
+    "endpointObjects": [
+      12,
+      17
+    ],
+    "quality": {
+      "grid": 65,
+      "fieldGrid": 33,
+      "fps": 24,
+      "substeps": 2,
+      "durationSeconds": 10
+    },
+    "remaining": [
+      "Native glyph contour/field extraction for all current native LaTeX endpoints into twenty33x33 fields; actual .latex_library resources/module staging and direct scene fragment binder",
+      "Runtime component ancestry/persistent GPU ID allocation/actual local split+merge event activation from current physical states; helpers and independent initial bodies do not implement continuing free split/merge dynamics",
+      "Compiler-generated scalar-field ABI wrappers and a real compiled-law adapter that binds current project kernels and writes engine resident buffers; world rich-record/packet source alone is not emitted GPU law",
+      "Generate exact contour boundary masks and component-local collision geometry, respecting current triangle compaction/T-junctions; constant per-triangle masks are prohibited",
+      "Connect full direct geometry/nativeLaTeX/global+local graph encoders to actual state and GPU indirect live draw range",
+      "Bind current normal real-f32 compiler/source/artifact; currentVulkan075 causal repair remains actual1601-owned, historicalmanifestHash alone is insufficient",
+      "Compile/run/verify current complete scene with normal dependencies and physical workload timings. Geometry changes during a physics interval must be represented in actual engine collision-boundary motion; end-of-step geometry swap alone is not a no-pass-through proof."
+    ]
+  },
+  "publicationScope": "Truthful current status/evidence only. Published compiler bytes remain unchanged; this report does not qualify a stable release or promote the private candidate.",
+  "earlierEvidence": "e1596-current-gpu-integration.json preserves the initial selected-native compile failure and accepted finite private-browser controls; this current record adds later failures and scoped repairs without overwriting history."
+}

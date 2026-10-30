@@ -1,0 +1,2830 @@
+{
+  "schema": 1,
+  "status": "SELECTED_COMPONENT_CORRECTNESS_PROGRESS_COMPARATIVE_TIMING_NOT_ADMITTED",
+  "baselinePublishedScope": "58c707f682c865a7ba0b122569312aafe50dbff0",
+  "originalCorpus": {
+    "path": "/mnt/development/VektorFlow-e1201-20261026/config/peer48-corpus.json",
+    "bytes": 446248,
+    "sha256": "363b4ebed2972c4a285a754b43eace4437591ff01bc153103ad154c388a39b4a"
+  },
+  "originalPreparedJobs": {
+    "path": "/mnt/development/VektorFlow-e1201-20261026/config/peer48-jobs.prepared.json",
+    "bytes": 215251,
+    "sha256": "6708fbc72a3e8f928187445d14642e8b22152cf528e1c637b5eec7382f7fbdd5"
+  },
+  "selectionIdentity": "584fb82a16103d52990b2fd6604716ff3dd0260086460e52567baf2acdbd897f",
+  "components": {
+    "linux-cli": {
+      "sourceBinding": "native-components:503537b36f4c0615b5926b4f90e491a521c20e880b9b1601aae04476ab8c77f9",
+      "files": [
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/bin/vkf-0.7.5",
+          "sha256": "131418bd958017195dd7604a6502652e6ef26525f65230f2019967caf2cbbf0f",
+          "bytes": 31729280
+        }
+      ],
+      "fileCount": 1,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/metadata/linux-cli.source_manifest.json",
+        "sha256": "397723743b4ba2ae03d6f12ff142b071ce95f5261dd2360bf034dac191babdfc",
+        "bytes": 2099
+      }
+    },
+    "linux-helper": {
+      "sourceBinding": "e1124.native-host.571d2370c8e1ae5caa442a348b863b4134858be0ea259826ea9608f65a68ecd0",
+      "files": [
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/bin/vkf-linux-ui-package",
+          "sha256": "e59cf11fb5ad8d9fc47b53e81afd39c92bd4048364503ff366fdd17d29cf00ea",
+          "bytes": 1654488
+        }
+      ],
+      "fileCount": 1,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/metadata/linux-helper.source_manifest.json",
+        "sha256": "ddd6d3dbd3b87d7f74720484f0b54a8012d3fc6bb33a4e0756d16e77a05c97f6",
+        "bytes": 2537
+      }
+    },
+    "native-runtime": {
+      "sourceBinding": "per-file-native-runtime",
+      "files": [
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/collections.vkf",
+          "sha256": "57014c51de253c74998cdeb450771135d434c50e350d0555ebc032b61307a7a1",
+          "bytes": 605
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/command.vkf",
+          "sha256": "1d7b751e40daaf1689bb78dbac8fb593a998841e6b05de50e49130089ac63d34",
+          "bytes": 389
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/concurrent.vkf",
+          "sha256": "0309f6be8a254f1a9282f0ddab9edfdd5f76724bf5870f2bf815fd9883fea8f9",
+          "bytes": 1096
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/errors.vkf",
+          "sha256": "150851cae3b6b1f2fc275de0d8678435a2e765f6b8f085a2c76c06584b7a7345",
+          "bytes": 592
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/io.vkf",
+          "sha256": "0df4f64fa1597f619743fb0ff01105f59c1e7883e19bc095f00ba48e9a3e7d80",
+          "bytes": 543
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/io_direct_smoke.vkf",
+          "sha256": "400c1f216fe490cc77ac4ddb67b2a3f33b85058382737c17e154b70289d80b74",
+          "bytes": 286
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/linalg.vkf",
+          "sha256": "5dcd769b40b58738c68774defe032f068b1894b057cc523b4622f3357de9c866",
+          "bytes": 44024
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/math.vkf",
+          "sha256": "ca670afda7c9edc010ca25428f61f79c0fb45bdf5655a4a240d2162e744a2f3f",
+          "bytes": 3955
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/convex_preparation.vkf",
+          "sha256": "69145d0db315e3d97aff50077fedf7c879be1cdb093b63a7aa3b6a9fbf08ae00",
+          "bytes": 5606
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/preparation.vkf",
+          "sha256": "02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8",
+          "bytes": 2830
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/rigid.vkf",
+          "sha256": "44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c",
+          "bytes": 10046
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/runtime.vkf",
+          "sha256": "28ba2b827cb93c24ae0dad07ee56f444a8e1e7d229c3ece6a4f3dbba272e375b",
+          "bytes": 340
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/supported_contact.vkf",
+          "sha256": "9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05",
+          "bytes": 7224
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/units/si.vkf",
+          "sha256": "d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05",
+          "bytes": 290
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics/units.vkf",
+          "sha256": "79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2",
+          "bytes": 214
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics.vkf",
+          "sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3",
+          "bytes": 28856
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
+          "sha256": "7c7fd8b7fe93197cafbe91c769a39be2ef6913c8d734c3706fddf4765025c8e9",
+          "bytes": 324
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
+          "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152",
+          "bytes": 648
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
+          "sha256": "3547a685b765a70d4d68c8cfc1835bfd8bea3564e8e66fc6891977066f64058b",
+          "bytes": 579
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/random.vkf",
+          "sha256": "f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5",
+          "bytes": 2295
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/regex.vkf",
+          "sha256": "748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7",
+          "bytes": 460
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/stat.vkf",
+          "sha256": "a0d3b7c7af273ea8e3f633e9abd24dc6f0494933cd4c22a6c285272b00faf95b",
+          "bytes": 9584
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/symbolic.vkf",
+          "sha256": "e02c54e96eed9d87bb0f417e528f2758ffcbd62a632a031736612ceb95da6ea4",
+          "bytes": 483082
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/system.vkf",
+          "sha256": "5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9",
+          "bytes": 375
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/time.vkf",
+          "sha256": "5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc",
+          "bytes": 3986
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/ui/colormaps.vkf",
+          "sha256": "1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82",
+          "bytes": 1396
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/ui.vkf",
+          "sha256": "1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb",
+          "bytes": 26
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/units/si.vkf",
+          "sha256": "36a2ce04f5ebff724d5c75a330f7eb42a5d816749557fb9f8b6668a60fd928c1",
+          "bytes": 286
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/compiler/self_hosted/stdlib/units.vkf",
+          "sha256": "c6eae08570c5fa77548d42c69ab590ebff3956aeb04d519980a225d2897819a5",
+          "bytes": 151
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libX11.so.6",
+          "sha256": "badd43566333da97d916ab365c61227751d49cd5c0df5d49dabdbd67b8c6fd19",
+          "bytes": 1318648
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libXau.so.6",
+          "sha256": "2b742de65acd00f154ed156720af66c0c0af9a58360ba041f25a41e2f775fab5",
+          "bytes": 18776
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libXdmcp.so.6",
+          "sha256": "24beecbb0faf600d1a646b5edfc8c144da6f2965cb427598f4e17edc1285a733",
+          "bytes": 26856
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libXext.so.6",
+          "sha256": "9e358938dc783704b75a8a27f07b9a2cc7dfb7ff73fd05cbcfe634b8c2afc74a",
+          "bytes": 77592
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libXrender.so.1",
+          "sha256": "708d1c6a5d8aa5169d61e5b79973bf012047de0fb881d2836d44b3167a1a51a5",
+          "bytes": 43712
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libbrotlicommon.so.1",
+          "sha256": "fb353cab2ea4ecd90814b46f872c21e1034c92bd86c3c677415748b4d16b5ad1",
+          "bytes": 141712
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libbrotlidec.so.1",
+          "sha256": "eb8768f85e9c367cd74772919b5668bbe0045cb71b65d75aafc32828e7acb1b7",
+          "bytes": 55688
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libbz2.so.1.0",
+          "sha256": "7138aeb748f73c150b1d34d67de69139a441910cd7b269076ba3c8b986dea9a7",
+          "bytes": 83120
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libcairo.so.2",
+          "sha256": "f8ed09b8ed35a1c19be81434bf7cb0fde1c1a0355b8ac74b7d3cf97788bdffe6",
+          "bytes": 1366968
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libexpat.so.1",
+          "sha256": "2e5f66e2784c2746775567ff9916f6e7503182a8f1f2deb8ca729dfc1463849f",
+          "bytes": 186704
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libfontconfig.so.1",
+          "sha256": "cabcdfea3d61540e8aa7f93a29642da1d1e35c8f5fd13549f4b8ee2ee0ab28f0",
+          "bytes": 338080
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libfreetype.so.6",
+          "sha256": "36be278a8138d3e5773eb3f8491ff3fe73122a3051a9b36d1f86457ce0fad22d",
+          "bytes": 870552
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libgcc_s.so.1",
+          "sha256": "9d339ecb409578d6a5d587e6c537a8f9589b8a13fefba30d167433a4b5758bee",
+          "bytes": 187120
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libpixman-1.so.0",
+          "sha256": "8740b21b15423da495da1c89e83d0fb64ca871bd4da47341d0422d7afb3b25e3",
+          "bytes": 747768
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libpng16.so.16",
+          "sha256": "2a570998f08a406b4083b06888e528fa0c5d6cc3bef77b40026d661c91cbfb90",
+          "bytes": 231648
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libstdc++.so.6",
+          "sha256": "5bb0d21308f123b6ad46c6f35b42cedfcb8d6d439a53aa3dae04d880aaffdde3",
+          "bytes": 2735712
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libxcb-render.so.0",
+          "sha256": "ee3c4a0893f4d944acbc83433234a97d94556e10c6a238e533f82b7a6bbe821b",
+          "bytes": 55608
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libxcb-shm.so.0",
+          "sha256": "58fcb847e2009affbd7eeb1f6d39949f29ccc153f230e0b0d23de00d2b5c1353",
+          "bytes": 14632
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libxcb.so.1",
+          "sha256": "6af94be329e17e57f1cc0f5e4afb5bdfe669a5168accdc31b03274110b937b41",
+          "bytes": 170680
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/native-package/lib/linux-ui/libz.so.1",
+          "sha256": "27fa6c6cb94fb5b099ead61758a300dbc392d1dbf307fff6c16a9b8e57fdc9de",
+          "bytes": 121272
+        }
+      ],
+      "fileCount": 49,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/metadata/native-runtime.source_manifest.json",
+        "sha256": "0d0ccb956a8e332989365ab5ee43207916c6fa1f39ff931e82bbe44648ad89b2",
+        "bytes": 29593
+      }
+    },
+    "node": {
+      "sourceBinding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+      "files": [
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.mjs",
+          "bytes": 756,
+          "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler-base.mjs",
+          "bytes": 184876,
+          "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.wasm",
+          "bytes": 65390139,
+          "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.data",
+          "bytes": 610088,
+          "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/formatter.mjs",
+          "bytes": 62804,
+          "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/formatter.wasm",
+          "bytes": 1118687,
+          "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+        }
+      ],
+      "fileCount": 6,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/local48-selection/metadata/node.source.json",
+        "bytes": 3897,
+        "sha256": "110eeaf2c54ab595b3a8627a1d35524b2b39781e0cff103e693d540be1029a31"
+      }
+    },
+    "browser": {
+      "sourceBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+      "files": [
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.mjs",
+          "bytes": 756,
+          "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler-base.mjs",
+          "bytes": 184876,
+          "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.wasm",
+          "bytes": 65390139,
+          "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/compiler.data",
+          "bytes": 610088,
+          "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/formatter.mjs",
+          "bytes": 62804,
+          "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/formatter.wasm",
+          "bytes": 1118687,
+          "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/site/public/preview/0.7.5/playground/canonical/package.json",
+          "bytes": 6040,
+          "sha256": "540d3915acda92dc7218f5f089f3d92a8aeb89904358b9c63518b2de5b7f45ab"
+        }
+      ],
+      "fileCount": 7,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/local48-selection/metadata/browser.source.json",
+        "bytes": 4407,
+        "sha256": "b13b3b87b1f89495cda9c8eed69f072bce8fa8e5d98994154abe4720a4ea08f2"
+      }
+    },
+    "site": {
+      "sourceBinding": "site-tree:a6ade5de44b9d1e47936dbd48ae60e8ef3ea2964123d2571cf10ae3961e014a9",
+      "files": [],
+      "fileCount": 3965,
+      "metadata": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/local48-selection/metadata/site.source.json",
+        "bytes": 2685728,
+        "sha256": "e319cd82524b1cea6742c239256ef7f32597e95b2bbfee438e7a8505c2e9dbaf"
+      }
+    }
+  },
+  "tools": {
+    "cpp": {
+      "path": "/usr/bin/x86_64-linux-gnu-g++-15",
+      "bytes": 1305304,
+      "sha256": "e6718f7e0c7d057c3ff77b550c603da9bc4030e3ede3c053705acce1293dbe4d",
+      "version": "x86_64-linux-gnu-g++-15 (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/cpp.version.join.json",
+        "sha256": "14c6b594db54eef79d83d9879a726cc8efbdd0a28770ca8d2b0c4c88660a6776",
+        "bytes": 545
+      }
+    },
+    "rust": {
+      "path": "/usr/lib/rust-1.93/bin/rustc",
+      "bytes": 14504,
+      "sha256": "8e509606d3aa8a69e7dd2c935c78a0c7a8803148cc80e8936812630b1b115ab0",
+      "version": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/rust.version.join.json",
+        "sha256": "39193fb82804be0cd9ba56f8874e1a7895c54616514581a498b4a58248a09736",
+        "bytes": 542
+      }
+    },
+    "zig": {
+      "path": "/home/viktor/.local/share/zig/zig-x86_64-linux-0.16.0/zig",
+      "bytes": 172641672,
+      "sha256": "2317bbb91798556d9d0f38aabdac23db83f0979b25f767259ae474546724087c",
+      "version": "0.16.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/zig.version.join.json",
+        "sha256": "6699684074b83bec4f74c938592610ecb5f5a11fd0dc0b209e1625cdb28b4943",
+        "bytes": 566
+      }
+    },
+    "em++": {
+      "path": "/usr/share/emscripten/em++",
+      "bytes": 1065,
+      "sha256": "b0c9551f9155fa9c028efa24591acdfd30f02f32fb247cf9266f5f0f2ede7589",
+      "version": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.69 ()\nCopyright (C) 2014 the Emscripten authors (see AUTHORS.txt)\nThis is free and open source software under the MIT license.\nThere is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/em++.version.join.json",
+        "sha256": "a2874923329c85fd400bb03871deaa2c860434f1e0d654499232c049f30be5a5",
+        "bytes": 541
+      }
+    },
+    "rust-wasm": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+      "bytes": 656984,
+      "sha256": "bd1875234c27f9f0c9f9c700ade69f7e83d25e368f38407d32b4b0e2cbc2426d",
+      "version": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/rust-wasm.version.join.json",
+        "sha256": "66d01cb1d15313df17edac0d0aff8543893fe8599cc600406e1d0d7fa8dc87a1",
+        "bytes": 594
+      }
+    },
+    "entry_timer": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/entry_timer",
+      "bytes": 26544,
+      "sha256": "4dc04eb7a136a80d4d117a66745814fbcda7c73fd31e1b043880d14e64992bd7",
+      "version": "frozen original timer 3ab9779aaf8034ffcf1f16b8fa78288749e9cce7d9f3b4e289817fddcb133e83",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/entry_timer.build.join.json",
+        "sha256": "bc34cf239ed6ed123fee8e71319f6b968b50476c58ceffc43fb15de5885ffa95",
+        "bytes": 890
+      }
+    },
+    "library_timer": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/library_timer",
+      "bytes": 16864,
+      "sha256": "725ae31d70b509c86883006db95cd5a7793c2314cbdb6a23a857ccfc66a98f58",
+      "version": "frozen original timer 94fb768f2e85494e0c9d3e95d89a72f738f2387a4279b3ac08ed79cc218bd659",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/tools/library_timer.build.join.json",
+        "sha256": "bd5ae3d2864cbef9966d325b8be1d7ce02a8cb1062127328ddef9ed1ea095a35",
+        "bytes": 908
+      }
+    },
+    "faer": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/linalg-peers/faer-target/release/vkf-linalg-faer-runner",
+      "bytes": 3899912,
+      "sha256": "7317182cb0b6c334443f1f03fc4a938a9342f2502f551b0c368125558be1047f",
+      "version": "faer 0.24.4; parallelism=sequential",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/LINALG-PEER-PREREQUISITES.json",
+        "sha256": "6e9c5096d3f872f00accd0b0921cb73176899b6de50f0794012763e2b582840c",
+        "bytes": 111309
+      }
+    },
+    "eigen": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/linalg-peers/eigen-build/vkf-linalg-eigen",
+      "bytes": 618408,
+      "sha256": "b2dcfc7699b3a975f7cbfd69545ebc71585336c7daeb60a21957822008f0dea5",
+      "version": "Eigen5.0.0 selected by exact original CMake recipe",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/LINALG-PEER-PREREQUISITES.json",
+        "sha256": "6e9c5096d3f872f00accd0b0921cb73176899b6de50f0794012763e2b582840c",
+        "bytes": 111309
+      }
+    },
+    "python-peer": {
+      "path": "/usr/bin/python3.14",
+      "bytes": 7477160,
+      "sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "version": "NumPy2.3.5/SciPy1.16.3/SymPy1.14.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/PEER-TOOLS-INTAKE.json",
+        "sha256": "15987eaf6fdf0979d31d87af6d9d0af1bad51d653bd7bed12a200a284b99a9ec",
+        "bytes": 11349
+      }
+    },
+    "python-peer-e1201": {
+      "path": "/usr/bin/python3.14",
+      "bytes": 7477160,
+      "sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "version": "1.14.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/REMAINING-SYMBOLIC-PREREQUISITES.json",
+        "sha256": "52e2cfd47196e7341c170fb17694ad6c30e192d446fbbe80db365e721ad21f98",
+        "bytes": 88921
+      }
+    },
+    "symengine": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/remaining-symbolic-peers/symengine-original4",
+      "bytes": 4723976,
+      "sha256": "0244a7c92b87992d5c44466792dacedeae7c49ea92ba2bf6e7f0c017ed7a6c4d",
+      "version": "symengine=0.15.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/REMAINING-SYMBOLIC-PREREQUISITES.json",
+        "sha256": "52e2cfd47196e7341c170fb17694ad6c30e192d446fbbe80db365e721ad21f98",
+        "bytes": 88921
+      }
+    },
+    "julia": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/julia-setup/julia-1.12.6/bin/julia",
+      "bytes": 23352,
+      "sha256": "fd670aabc838e93f178cbcf7304c5e9c50aadcce3735e86d5e3218b1bb04e602",
+      "version": "1.12.6/Symbolics7.31.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/JULIA-PREREQUISITE.json",
+        "sha256": "9e11a7b3a772e0432d0b30701041c4fa490dc6412ba96973ee9389ff8f089779",
+        "bytes": 5522
+      }
+    },
+    "symbolics-e1201": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/julia-setup/julia-1.12.6/bin/julia",
+      "bytes": 23352,
+      "sha256": "fd670aabc838e93f178cbcf7304c5e9c50aadcce3735e86d5e3218b1bb04e602",
+      "version": "1.12.6/Symbolics7.31.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/SYMBOLICS-PREREQUISITE-CONTROLS.json",
+        "sha256": "962e019f8a1c6bee1bf3c3934e55a77b26eaf7911dcf04b635212ddd22844f6c",
+        "bytes": 24267
+      }
+    },
+    "symengine-e1201": {
+      "path": "/mnt/development/VektorFlow-e1625-20261030/peers-fixed/symengine-e1201",
+      "bytes": 4740600,
+      "sha256": "cbb6da7347cb3843f7b04eaf1452535156288237726f305c8fbe2ceb563267d3",
+      "version": "symengine=0.15.0",
+      "version_evidence": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/SYMENGINE-ADAPTER-PREREQUISITE.json",
+        "sha256": "1e0ed36bf5230c8d43ed9bed4b704ffcef282aba88be025508de7da0490b4021",
+        "bytes": 153077
+      }
+    }
+  },
+  "rustWasm": {
+    "version": "1.93.1",
+    "manifestURL": "https://static.rust-lang.org/dist/channel-rust-1.93.1.toml",
+    "manifestSHA256": "4812a3c610bacc74eed12c89c312e540722dccccd867bd55096402da13b3a516",
+    "components": [
+      {
+        "package": "rustc",
+        "target": "x86_64-unknown-linux-gnu",
+        "url": "https://static.rust-lang.org/dist/2026-02-12/rustc-1.93.1-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "b9db2636f5a101c4cdaf46a26f8a0c8e4b5767ecdb02ae9c7ccc3ead577732bc",
+        "installed": true
+      },
+      {
+        "package": "rust-std",
+        "target": "x86_64-unknown-linux-gnu",
+        "url": "https://static.rust-lang.org/dist/2026-02-12/rust-std-1.93.1-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "82c4e41268f1741e4eb68796aeb6ca5042406ae858dd56144155c4ef8d87d8b6",
+        "installed": true
+      },
+      {
+        "package": "rust-std",
+        "target": "wasm32-unknown-unknown",
+        "url": "https://static.rust-lang.org/dist/2026-02-12/rust-std-1.93.1-wasm32-unknown-unknown.tar.xz",
+        "sha256": "82bcf1e75ad071548bb97f11676b332dd260807572414553a06ee5d88d20a63e",
+        "installed": true
+      }
+    ],
+    "actual": true,
+    "executable": "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+    "executableSHA256": "bd1875234c27f9f0c9f9c700ade69f7e83d25e368f38407d32b4b0e2cbc2426d",
+    "versionOutput": "rustc 1.93.1 (01f6ddf75 2026-02-11)\nbinary: rustc\ncommit-hash: 01f6ddf7588f42ae2d7eb0a2f21d44e8e96674cf\ncommit-date: 2026-02-11\nhost: x86_64-unknown-linux-gnu\nrelease: 1.93.1\nLLVM version: 21.1.8\n",
+    "wasmStdlib": [
+      {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/lib/rustlib/wasm32-unknown-unknown/lib/libstd-2baeb4f6b8c48837.rlib",
+        "sha256": "355e564c0c20a75a51c98857add70dd98bfb8f470d89736c79b1276a73cc4852"
+      }
+    ],
+    "originalMissingPath": "/dev/shm/vkf-architecture-0136/rust-wasm74/sysroot/bin/rustc",
+    "identityEqualsOriginal": false,
+    "observedMonotonic": 276455.918912772,
+    "compilerBytesEqualOriginal": true,
+    "identityScope": "Compiler executable bytes equal original; complete former sysroot unavailable for equality comparison; fresh official1931 target installed and tested separately."
+  },
+  "nativeFix": {
+    "source": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/compiler-source/compiler/native/lowering/statement_bind_stages_5.cpp",
+      "bytes": 25294,
+      "sha256": "a4bbd93493897bdb878d52c1f07d54ddf4a050befade01697bfdc10a73919caa"
+    },
+    "binary": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/vkf-native-numeric-properties",
+      "bytes": 31729280,
+      "sha256": "131418bd958017195dd7604a6502652e6ef26525f65230f2019967caf2cbbf0f"
+    },
+    "affectedObjects": 1,
+    "reusedObjects": 237,
+    "regression": {
+      "passed": 2,
+      "total": 2,
+      "results": [
+        {
+          "name": "native-numeric-property-replacement",
+          "status": "PASS",
+          "stdout": "1.25\n2.5\n3.75\n0.5\n",
+          "originalRun": "/mnt/development/VektorFlow-e1627-20261030/native-property-regression/native-numeric-property-replacement/run.join.json"
+        },
+        {
+          "name": "native-numeric-property-shape-mismatch",
+          "status": "PASS_EXPECTED_REJECTION",
+          "diagnostic": "<driver-smoke>:1:1: cannot coerce [num:2] to [int:3] in record property update items\n"
+        }
+      ],
+      "scope": "Minimal causal numeric property and unchanged shape rejection; not a new release test denominator"
+    },
+    "originalFailurePreserved": {
+      "path": "/mnt/development/VektorFlow-e1627-20261030/matched48/queue/preflight.linux.core.spectral-norm-large.json",
+      "bytes": 4916,
+      "sha256": "57fdf2de734b93968de57755d04a344ae86a0b9afd3d88db42fc7347aab8c290"
+    }
+  },
+  "sourceVariants": {
+    "symengine": {
+      "original": {
+        "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_symengine.cpp",
+        "bytes": 2989,
+        "sha256": "d8104611f51024496b91819a7f2f17f5bf1e8786566cd504b599ece5a3e3e486"
+      },
+      "adapted": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/local48-source/symbolic_symengine.cpp",
+        "sha256": "aa1037c585cf3df364183bd91bb035d868736944167dce79f8f3100d5ad31fb1",
+        "bytes": 3322
+      },
+      "actual_build_source": {
+        "path": "/mnt/development/VektorFlow-e1625-20261030/site/scripts/release-local48/symbolic_symengine.cpp",
+        "bytes": 3322,
+        "sha256": "aa1037c585cf3df364183bd91bb035d868736944167dce79f8f3100d5ad31fb1"
+      },
+      "semantic_change": "E/I identifier alpha renames only"
+    }
+  },
+  "nativeParallelCompileSummary": {
+    "artifact_fallback": false,
+    "artifact_ms": 5292.392661,
+    "artifact_path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/compile.0/program",
+    "ast_path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/compile.0/.vkfbuild/program/ast.json",
+    "diagnostics_emitted": true,
+    "empirical_tuning": {
+      "cache_hit": false,
+      "candidates": [
+        {
+          "code_bytes": 8125335,
+          "code_hash": "c85246b4791b7de0",
+          "correct": true,
+          "mean_ns": 0,
+          "median_ns": 0,
+          "normalized_to_baseline": false,
+          "policy": "serial-mask-ff",
+          "runs": 0,
+          "samples_ns": [],
+          "stddev_ns": 0,
+          "tested": false
+        },
+        {
+          "code_bytes": 8125526,
+          "code_hash": "f3dfee143caef9f1",
+          "correct": true,
+          "mean_ns": 0,
+          "median_ns": 0,
+          "normalized_to_baseline": false,
+          "policy": "threaded-mask-ff",
+          "runs": 0,
+          "samples_ns": [],
+          "stddev_ns": 0,
+          "tested": false
+        }
+      ],
+      "composition_cache_hit": false,
+      "elapsed_ms": 2103.484001,
+      "eligible": true,
+      "fingerprint": "505942bcfa3e1bec",
+      "function_landscape_reused_count": 0,
+      "function_landscape_search_count": 0,
+      "function_policies": [
+        {
+          "name": "$entry",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "advance",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "fannkuch",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "left_root",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "multiply_at_av",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "multiply_atv",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "multiply_av",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "n_body",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "offset_momentum",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "right_root",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "spectral_norm",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        },
+        {
+          "name": "system_kinetic_checksum",
+          "optimization_enabled": false,
+          "selected_policy": "auto"
+        }
+      ],
+      "landscape_runs": 0,
+      "module_abi_policy": "mask-ff",
+      "parallel_eligible": true,
+      "parallel_selected": false,
+      "parallel_thread_handles_closed": 0,
+      "parallel_threads_created": 0,
+      "parallel_threads_joined": 0,
+      "parallel_width": 0,
+      "requested_policy": "auto",
+      "selected_policy": "auto",
+      "total_runs": 0,
+      "tuned": false
+    },
+    "frontend_mode": "integrated",
+    "ir_ms": 1345.295085,
+    "lexer_ms": 39.48205,
+    "machine_code_fingerprint": "c85246b4791b7de0",
+    "manifest_path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/compile.0/.vkfbuild/program/x64-manifest.json",
+    "module_ast_cache_hits": 0,
+    "module_ast_cache_misses": 0,
+    "optimizer_cache_hit": false,
+    "optimizer_ms": 2103.484001,
+    "optimizer_policy": "auto",
+    "parser_ms": 114.226593,
+    "ran": false,
+    "run_ms": 0,
+    "status": "compiled",
+    "stderr": "",
+    "stdlib_ast_cache_hits": 0,
+    "stdlib_ast_cache_misses": 2,
+    "stdout": "",
+    "token_path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/compile.0/.vkfbuild/program/tokens.json",
+    "total_ms": 6796.478588,
+    "typed_ir_path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/compile.0/.vkfbuild/program/typed-ir.json"
+  },
+  "symbolicsResourceCap": {
+    "pid": 2578238,
+    "command": [
+      "/mnt/development/VektorFlow-e1625-20261030/julia-setup/julia-1.12.6/bin/julia",
+      "--project=/mnt/development/VektorFlow-e1625-20261030/julia-setup/project",
+      "--startup-file=no",
+      "--history-file=no",
+      "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/competitors/symbolics_runner.jl",
+      "expand1"
+    ],
+    "oldAddressSpaceLimit": [
+      -1,
+      -1
+    ],
+    "addressSpaceLimitBytes": 17179869184,
+    "availableBytes": 20132020224,
+    "physicalReserveBytes": 4294967296,
+    "reason": "Adaptive per-process memory cap for genuinely admitted original Symbolics expansion; preserve4GiB reserve and other apps. No source/input/oracle/algorithm/timeout alteration.",
+    "observedMonotonic": 278083.733122709
+  },
+  "originalSymbolicsProbeBoundary": "Earlier finite60s probe retained incomplete; original current matched native preflight completed genuine Symbolics output39711 within existing600s bound.",
+  "matchedPreflights": {
+    "passed": 14,
+    "failed": 1,
+    "unrun": 33,
+    "total": 48
+  },
+  "nativeWasmParity": {
+    "passed": 2,
+    "total": 24
+  },
+  "rows": [
+    {
+      "id": "linux.core.spectral-norm-large",
+      "target": "linux",
+      "suite": "core",
+      "workload": "spectral-norm-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/linux/spectral-norm-large.vkf",
+          "sha256": "74b5bfe819229b434a594b7d6ed75ef75c6f4c70b084c8df4d1ee731c2cdf011",
+          "bytes": 1087
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/spectral-norm-large.json",
+          "sha256": "24bdfe5872e12b2242b00e55bf9f6b43885ef2ddb57c1755caec2e176cc1b3c7",
+          "bytes": 486
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.spectral-norm-large.json",
+        "bytes": 6521,
+        "sha256": "eb678812415db9a085d108b788400cf4426b61210a258f18acf780d178752fe9"
+      },
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ]
+    },
+    {
+      "id": "linux.core.fannkuch-redux-large",
+      "target": "linux",
+      "suite": "core",
+      "workload": "fannkuch-redux-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/linux/fannkuch-redux-large.vkf",
+          "sha256": "dfc6ac1d563607cfbc875b3750bcf65466dea388da0e264edf9cab39c06ff721",
+          "bytes": 1894
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/fannkuch-redux-large.json",
+          "sha256": "86fe5426832f93bae34112764d8665071fbae234ba9560620c99daa9e24b0a7a",
+          "bytes": 475
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.fannkuch-redux-large.json",
+        "bytes": 6500,
+        "sha256": "31d13263972a6891d5faf040c2041d20613c200c5062d596e7580f933348097b"
+      },
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        }
+      ]
+    },
+    {
+      "id": "linux.core.n-body-large",
+      "target": "linux",
+      "suite": "core",
+      "workload": "n-body-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/linux/n-body-large.vkf",
+          "sha256": "10d7cdaf1a0f1e504c966e5fd55e1d23cf371f758dbf090017387599889c4847",
+          "bytes": 2542
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/n-body-large.json",
+          "sha256": "41ddb65d4979d0d096e04bd30d5c525ec0046dc368b0f6edf5c0db7ea2c165ad",
+          "bytes": 472
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.n-body-large.json",
+        "bytes": 6389,
+        "sha256": "ab7e242673cebcdd17b61d21f9301f17b04682a4028dec8190df7ee55adbc87f"
+      },
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ]
+    },
+    {
+      "id": "linux.core.combined-kernels-large",
+      "target": "linux",
+      "suite": "core",
+      "workload": "combined-kernels-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/linux/combined-kernels-large.vkf",
+          "sha256": "8f4e01b3f2da81e1279b0cd287da0392326776e48e5e30f7c181904d6885eb7a",
+          "bytes": 5493
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-large.json",
+          "sha256": "9df46a44f8df3f92f6ff89e94d3f6ff448ca577cbf5bd317b5b0a217e62fa774",
+          "bytes": 525
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-large.json",
+        "bytes": 6614,
+        "sha256": "071a44263afccfb70ce4a77d9de5783962248977f4e00a4bdab84f0f18b8034f"
+      },
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ]
+    },
+    {
+      "id": "linux.core.combined-kernels-parallel-large",
+      "target": "linux",
+      "suite": "core",
+      "workload": "combined-kernels-parallel-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/linux/combined-kernels-parallel-large.vkf",
+          "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+          "bytes": 5633
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+          "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+          "bytes": 543
+        }
+      ],
+      "status": "FAIL",
+      "acceptedComparativeSamples": 0,
+      "reason": "command failed: /mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large/vkf/runtime-timer.join.json",
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.core.combined-kernels-parallel-large.json",
+        "bytes": 5139,
+        "sha256": "2283693fb1c5b4bb22607d3fa29f16f95743b95e89c6ac9987fc65f47f1294d7"
+      },
+      "observations": []
+    },
+    {
+      "id": "linux.linalg.solve-general-96",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "solve-general-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/solve-general-96.vkf",
+          "sha256": "8a6d8b39ab5e5d68d7505f6a33db7ec179692b2bfacbd7f7d2af58faa87699ea",
+          "bytes": 3123
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/solve-general-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.solve-general-96.json",
+        "bytes": 9555,
+        "sha256": "2c54199bac9b17435c2f631992c7c30ea31138e8934c56fd2f2fb1c35487dbfb"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.6122840158641\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.066600999999999994\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.07703100000000000\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.166462\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.least-squares-tall-96x48",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "least-squares-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/least-squares-tall-96x48.vkf",
+          "sha256": "7acf429bdd4dc9f798cf9826d479fe4cb4611559a32e2e2ddbb682d887e9e319",
+          "bytes": 3180
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/least-squares-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.least-squares-tall-96x48.json",
+        "bytes": 9672,
+        "sha256": "a8b36e4661e218211a63887e0de5add1fb68e6d37a9f0c51f18f50c0ad155fba"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=30.4492390132509\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.083861000000000005\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.07064100000000001\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14144200000000001\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.lu-general-96",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "lu-general-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/lu-general-96.vkf",
+          "sha256": "98293edfae38b491dff9c96a46e68f36dc1eba74f5a4227d5fe7070968e9b3ac",
+          "bytes": 3088
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/lu-general-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.lu-general-96.json",
+        "bytes": 9362,
+        "sha256": "44e55518fe6ee3c38363211eb623985449839412e984e23f3e0a156e8c1d0963"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=32.154502987396\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.099941000000000002\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.11157199999999999\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.10605100000000001\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.qr-tall-96x48",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "qr-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/qr-tall-96x48.vkf",
+          "sha256": "6dc82899a9f8edc5b9255a9e50f0f8ca23df34ca473cf04f46887e7a8b6437da",
+          "bytes": 2942
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/qr-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.qr-tall-96x48.json",
+        "bytes": 9535,
+        "sha256": "19ffafad5a61217779c9184520b8995b3ba88db4913ede10ac2d7231d14f5a0d"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=10.2583910338581\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.13458200000000001\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.08713100000000000\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.18471299999999999\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.cholesky-spd-96",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "cholesky-spd-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/cholesky-spd-96.vkf",
+          "sha256": "a83cbea56b0f975b9c05cd123035daea998c229296f513abe7a07798a6430207",
+          "bytes": 2823
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/cholesky-spd-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.cholesky-spd-96.json",
+        "bytes": 9372,
+        "sha256": "b62cd2214c4725111a422c74c7d3abdd8887a0e82caf48a1e3be91b940fb7546"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=14.5429369877093\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.039861000000000001\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02943000000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.071081000000000005\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.svd-tall-96x48",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "svd-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/svd-tall-96x48.vkf",
+          "sha256": "7a465ef743a790a3ab7884b9bfc6a715eb8c0a536cb91159abd9104c1c3f7f17",
+          "bytes": 3148
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/svd-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.svd-tall-96x48.json",
+        "bytes": 9503,
+        "sha256": "d98a6f86e13de5198563e244f82e46768a09245dd4dffc7af79c0aef078b66b4"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=135.774974012747\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.59966699999999995\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.37336399999999997\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.574716\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.linalg.eigen-symmetric-96",
+      "target": "linux",
+      "suite": "linalg",
+      "workload": "eigen-symmetric-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/eigen-symmetric-96.vkf",
+          "sha256": "87f671e510875a4cdc8892366a3b4998367fda1a62dbf5b13044def8e435f90e",
+          "bytes": 3231
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/eigen-symmetric-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.linalg.eigen-symmetric-96.json",
+        "bytes": 9727,
+        "sha256": "ccdd7f8e5d0854029d1209fbf6be819dc93eba51169d54aada5ae0f35830bfad"
+      },
+      "observations": [
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=828.637466998771\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.89139999999999997\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.77902899999999997\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.150914\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.symbolic.expand1",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "expand1",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/expand1-timed.vkf",
+          "sha256": "1398080e84149a0be1125d8fa4d14e443776b182ce49cbfbdc6ccaaf493c90dd",
+          "bytes": 195
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.linux.symbolic.expand1.json",
+        "bytes": 6754,
+        "sha256": "2967cb3fb1c72fdb4ad4c5865502e096704cdf7aad9f48f4ecda2cf9e4f53dd6"
+      },
+      "observations": [
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "vkf",
+          "stdout": "45986.924035008997\n39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symengine",
+          "stdout": "elapsed_ms=56.0804\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "sympy",
+          "stdout": "sympy=1.14.0\nelapsed_ms=9018.044407000\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symbolics",
+          "stdout": "julia=1.12.6\nsymbolics=7.31.0\nelapsed_ms=162084.227523\noutput=39711\n"
+        }
+      ]
+    },
+    {
+      "id": "linux.symbolic.expand2",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "expand2",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/expand2-timed.vkf",
+          "sha256": "5efa5f113c05a8593017c5516f7cfc183c3b2bf22ff4428fd647bffef419c4a2",
+          "bytes": 297
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.add1",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "add1",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/add1-timed.vkf",
+          "sha256": "e849082e865685abf796c1571cd4d09060a5738e79fac70fcd20e912743bdf11",
+          "bytes": 425
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.series",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "series",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/series-timed.vkf",
+          "sha256": "156e118bf7a23e13e8d766752a0786bc5d3e079ed0b7378866716ca423897015",
+          "bytes": 323
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.core.spectral-norm-large",
+      "target": "wasm",
+      "suite": "core",
+      "workload": "spectral-norm-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/spectral-norm-large.vkf",
+          "sha256": "3ebc48ec4e75a9b24da7c5b34db085846bfb6aa2535cda68b3ab0aff3bb91433",
+          "bytes": 1146
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/spectral-norm-large.json",
+          "sha256": "24bdfe5872e12b2242b00e55bf9f6b43885ef2ddb57c1755caec2e176cc1b3c7",
+          "bytes": 486
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.wasm.core.spectral-norm-large.json",
+        "bytes": 6607,
+        "sha256": "0926c86e832c1848e6f132ca2c7b69a9322a98673eaf66242d778daebaaecf08"
+      },
+      "observations": [
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ]
+    },
+    {
+      "id": "wasm.core.fannkuch-redux-large",
+      "target": "wasm",
+      "suite": "core",
+      "workload": "fannkuch-redux-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/fannkuch-redux-large.vkf",
+          "sha256": "4c687a2bd176cd634a66f91578bdd33fcaead38892d3acdf6dce293dd16036fb",
+          "bytes": 1953
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/fannkuch-redux-large.json",
+          "sha256": "86fe5426832f93bae34112764d8665071fbae234ba9560620c99daa9e24b0a7a",
+          "bytes": 475
+        }
+      ],
+      "status": "PASS",
+      "acceptedComparativeSamples": 0,
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/preflight.wasm.core.fannkuch-redux-large.json",
+        "bytes": 6577,
+        "sha256": "c7a5222a9227c0465706ed83ee726a0f6261cf88c626a991d6b3a12c413bf0b4"
+      },
+      "observations": [
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ]
+    },
+    {
+      "id": "wasm.core.n-body-large",
+      "target": "wasm",
+      "suite": "core",
+      "workload": "n-body-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/n-body-large.vkf",
+          "sha256": "87b883e6e393b1245a01505e89c97169d425ece79d13964ca8f10c2fa598e347",
+          "bytes": 2601
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/n-body-large.json",
+          "sha256": "41ddb65d4979d0d096e04bd30d5c525ec0046dc368b0f6edf5c0db7ea2c165ad",
+          "bytes": 472
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.core.combined-kernels-large",
+      "target": "wasm",
+      "suite": "core",
+      "workload": "combined-kernels-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/combined-kernels-large.vkf",
+          "sha256": "e433cb57905b297f80adc336740d02b764a07a7add14a440a4bb0a3a65b76158",
+          "bytes": 5552
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-large.json",
+          "sha256": "9df46a44f8df3f92f6ff89e94d3f6ff448ca577cbf5bd317b5b0a217e62fa774",
+          "bytes": 525
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.core.combined-kernels-parallel-large",
+      "target": "wasm",
+      "suite": "core",
+      "workload": "combined-kernels-parallel-large",
+      "peers": [
+        "cpp",
+        "rust",
+        "zig"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/combined-kernels-parallel-large.vkf",
+          "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+          "bytes": 5633
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+          "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+          "bytes": 97379
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+          "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+          "bytes": 543
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.solve-general-96",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "solve-general-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/solve-general-96.vkf",
+          "sha256": "8a6d8b39ab5e5d68d7505f6a33db7ec179692b2bfacbd7f7d2af58faa87699ea",
+          "bytes": 3123
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/solve-general-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.least-squares-tall-96x48",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "least-squares-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/least-squares-tall-96x48.vkf",
+          "sha256": "7acf429bdd4dc9f798cf9826d479fe4cb4611559a32e2e2ddbb682d887e9e319",
+          "bytes": 3180
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/least-squares-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.lu-general-96",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "lu-general-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/lu-general-96.vkf",
+          "sha256": "98293edfae38b491dff9c96a46e68f36dc1eba74f5a4227d5fe7070968e9b3ac",
+          "bytes": 3088
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/lu-general-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.qr-tall-96x48",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "qr-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/qr-tall-96x48.vkf",
+          "sha256": "6dc82899a9f8edc5b9255a9e50f0f8ca23df34ca473cf04f46887e7a8b6437da",
+          "bytes": 2942
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/qr-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.cholesky-spd-96",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "cholesky-spd-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/cholesky-spd-96.vkf",
+          "sha256": "a83cbea56b0f975b9c05cd123035daea998c229296f513abe7a07798a6430207",
+          "bytes": 2823
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/cholesky-spd-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.svd-tall-96x48",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "svd-tall-96x48",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/svd-tall-96x48.vkf",
+          "sha256": "7a465ef743a790a3ab7884b9bfc6a715eb8c0a536cb91159abd9104c1c3f7f17",
+          "bytes": 3148
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/svd-tall-96x48-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.linalg.eigen-symmetric-96",
+      "target": "wasm",
+      "suite": "linalg",
+      "workload": "eigen-symmetric-96",
+      "peers": [
+        "eigen",
+        "faer",
+        "scipy"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/materialized-linalg/eigen-symmetric-96.vkf",
+          "sha256": "87f671e510875a4cdc8892366a3b4998367fda1a62dbf5b13044def8e435f90e",
+          "bytes": 3231
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/linalg-comparison/run.mjs",
+          "sha256": "c42283e49b5112d2b36d61831295fc4ac4c132a7b816617c76409fb9eca97b04",
+          "bytes": 14853
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/eigen-symmetric-96-manifest.json",
+          "sha256": "a51d5b0f384992fd279ef82e8058b220aa57d5100b314c00446c7ce19da7d360",
+          "bytes": 4423
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.expand1",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "expand1",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/expand1-timed.vkf",
+          "sha256": "1398080e84149a0be1125d8fa4d14e443776b182ce49cbfbdc6ccaaf493c90dd",
+          "bytes": 195
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.expand2",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "expand2",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/expand2-timed.vkf",
+          "sha256": "5efa5f113c05a8593017c5516f7cfc183c3b2bf22ff4428fd647bffef419c4a2",
+          "bytes": 297
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.add1",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "add1",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/add1-timed.vkf",
+          "sha256": "e849082e865685abf796c1571cd4d09060a5738e79fac70fcd20e912743bdf11",
+          "bytes": 425
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.series",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "series",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/programs/series-timed.vkf",
+          "sha256": "156e118bf7a23e13e8d766752a0786bc5d3e079ed0b7378866716ca423897015",
+          "bytes": 323
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/run.mjs",
+          "sha256": "78b6eb09b1e7b496a0794135c75855385ebcc2f063d9d524a9ea3f452516f44f",
+          "bytes": 17974
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.diff-polynomial-16",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "diff-polynomial-16",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-polynomial-16.vkf",
+          "bytes": 701,
+          "sha256": "080e8fb0cc6f62cb93f9fe2eac5f3d8f86f93210ee2aa43638ad9f1df66bf571"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.mixed-partial-6x5",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "mixed-partial-6x5",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/mixed-partial-6x5.vkf",
+          "bytes": 847,
+          "sha256": "7964d098b14e2b98bc2209f45c98fbb054233a31a3423961b4cb8f61524a37f0"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.diff-rational",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "diff-rational",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-rational.vkf",
+          "bytes": 437,
+          "sha256": "ed76ea02c8e421a82094c9d519d35dc5f085b68837b2e4ff78cb5f892a8e579f"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.diff-transcendental",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "diff-transcendental",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-transcendental.vkf",
+          "bytes": 450,
+          "sha256": "c5013de43b44b07817a3627d60a75b56d82561a628eaf397e7ff49a5404a9ae5"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.substitute-polynomial-12",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "substitute-polynomial-12",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/substitute-polynomial-12.vkf",
+          "bytes": 740,
+          "sha256": "197b20bd73639e85b8bae2df311b1fce43c8215a86672751e533d2ce34829c62"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.substitute-transcendental",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "substitute-transcendental",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/substitute-transcendental.vkf",
+          "bytes": 499,
+          "sha256": "d27b9f452525f78b439963d35958d629417c5457e4e512b73761aae93cc9415e"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.collect-polynomial-24",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "collect-polynomial-24",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/collect-polynomial-24.vkf",
+          "bytes": 701,
+          "sha256": "be75dc221697db86a2877813f55f04c1724ca02013a1a911dc5946c4e945cfce"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "linux.symbolic.shared-dag-derivative-24",
+      "target": "linux",
+      "suite": "symbolic",
+      "workload": "shared-dag-derivative-24",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/shared-dag-derivative-24.vkf",
+          "bytes": 747,
+          "sha256": "5c9a6a63317f2e6fb1f20e95ed174b620062c58ada74735a23fe6519c639db43"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.diff-polynomial-16",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "diff-polynomial-16",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-polynomial-16.vkf",
+          "bytes": 701,
+          "sha256": "080e8fb0cc6f62cb93f9fe2eac5f3d8f86f93210ee2aa43638ad9f1df66bf571"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.mixed-partial-6x5",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "mixed-partial-6x5",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/mixed-partial-6x5.vkf",
+          "bytes": 847,
+          "sha256": "7964d098b14e2b98bc2209f45c98fbb054233a31a3423961b4cb8f61524a37f0"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.diff-rational",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "diff-rational",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-rational.vkf",
+          "bytes": 437,
+          "sha256": "ed76ea02c8e421a82094c9d519d35dc5f085b68837b2e4ff78cb5f892a8e579f"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.diff-transcendental",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "diff-transcendental",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/diff-transcendental.vkf",
+          "bytes": 450,
+          "sha256": "c5013de43b44b07817a3627d60a75b56d82561a628eaf397e7ff49a5404a9ae5"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.substitute-polynomial-12",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "substitute-polynomial-12",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/substitute-polynomial-12.vkf",
+          "bytes": 740,
+          "sha256": "197b20bd73639e85b8bae2df311b1fce43c8215a86672751e533d2ce34829c62"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.substitute-transcendental",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "substitute-transcendental",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/substitute-transcendental.vkf",
+          "bytes": 499,
+          "sha256": "d27b9f452525f78b439963d35958d629417c5457e4e512b73761aae93cc9415e"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.collect-polynomial-24",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "collect-polynomial-24",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/collect-polynomial-24.vkf",
+          "bytes": 701,
+          "sha256": "be75dc221697db86a2877813f55f04c1724ca02013a1a911dc5946c4e945cfce"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    },
+    {
+      "id": "wasm.symbolic.shared-dag-derivative-24",
+      "target": "wasm",
+      "suite": "symbolic",
+      "workload": "shared-dag-derivative-24",
+      "peers": [
+        "symengine",
+        "sympy",
+        "symbolics"
+      ],
+      "sourcePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/programs/shared-dag-derivative-24.vkf",
+          "bytes": 747,
+          "sha256": "5c9a6a63317f2e6fb1f20e95ed174b620062c58ada74735a23fe6519c639db43"
+        }
+      ],
+      "oraclePins": [
+        {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_exact.py",
+          "bytes": 12453,
+          "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+        }
+      ],
+      "status": "UNRUN",
+      "acceptedComparativeSamples": 0
+    }
+  ],
+  "parityRows": [
+    {
+      "id": "parity.core.spectral-norm-large",
+      "status": "PASS",
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/parity.core.spectral-norm-large.json",
+        "bytes": 12106,
+        "sha256": "a0a751faa8016a5bdbaf580dbd36f35ec6a8c4be5583474e3ddd860820f24a7f"
+      }
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "status": "PASS",
+      "reason": null,
+      "result": {
+        "path": "/mnt/development/VektorFlow-e1627-20261030/matched48-numeric/queue/parity.core.fannkuch-redux-large.json",
+        "bytes": 12053,
+        "sha256": "d5270253d316806b643b701ca234df3b0a174a0587396932f925734984dd24e9"
+      }
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.series",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN",
+      "reason": "Matching original target preflights not yet both qualified",
+      "result": null
+    }
+  ],
+  "comparativeSamples": 0,
+  "ratios": {},
+  "fullTimingIsReleaseGate": false,
+  "broadSpeedThresholdsRetired": true,
+  "stable": false,
+  "complete": false,
+  "full075Qualified": false,
+  "linuxCompilerSDKQualified": false,
+  "fullGpuWorldQualified": false,
+  "fullLatex": "SKIP_INCOMPLETE_OUTSIDE_SUPPORTED_SCOPE",
+  "failuresPreserved": true,
+  "limits": [
+    "The existing published browser/Node ESM embedding57/57 and unchanged native label/plotting scope remain qualified only as previously reported.",
+    "This derived native compiler has a one-object numeric-property fix and only the named actual controls below; it is not a fully qualified Linux SDK.",
+    "Original correctness stdout retains its internal operation-clock fields as raw evidence; those are not accepted comparative samples or ratios. All48 matched correctness preflights and24 target parity controls must pass before any new comparative timing. Missing and failed rows remain visible; no ratios are fabricated.",
+    "The original native parallel timer failure and any actual compiler/runtime/peer timeout boundaries remain failures or UNRUN, distinct from mathematical incorrectness and retired release speed thresholds.",
+    "Standalone PDF, full LaTeX and complete physics/Morphing world are outside this work; no completion is claimed."
+  ],
+  "observedMonotonic": 278834.517602427
+}

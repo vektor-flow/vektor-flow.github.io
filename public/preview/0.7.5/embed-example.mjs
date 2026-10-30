@@ -1,5 +1,5 @@
 import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
-import {createInlineRunner} from './inline-runner.mjs?v=873bda32dbbb9501';
+import {createInlineRunner} from './inline-runner.mjs?v=100ee98814b65a23';
 const form = document.querySelector('#calculation');
 const input = document.querySelector('#number');
 const button = document.querySelector('#run');

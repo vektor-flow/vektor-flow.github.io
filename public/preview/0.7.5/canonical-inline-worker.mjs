@@ -1,4 +1,4 @@
-import {createCanonicalExecution} from './playground/vkf-canonical-execution.mjs';
+import {createCanonicalExecution} from './playground/vkf-canonical-execution.mjs?sha256=cd209871296ac7b67f55fd0dbcda0a0403679ebceeceeb76f82714bd4df1b94c';
 let compilerPromise;
 self.onmessage=async({data})=>{
   if(data?.type==='vkf-retained-result')return;

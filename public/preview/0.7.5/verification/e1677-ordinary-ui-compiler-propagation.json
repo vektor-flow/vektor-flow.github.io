@@ -1,0 +1,1154 @@
+{
+  "schema": 1,
+  "status": "PASS_NAMED_CURRENT_ORDINARY_UI_SOURCE_EDIT_RASTER_AND_NODE_TRANSPORT",
+  "owner": "e1677",
+  "sourceCommit": "ae0e200708a660b965a98e17e5ed8e1f2c5420a6",
+  "frontendBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+  "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "sourceReviewFreeze": {
+    "status": "SOURCE_AND_RUNTIME_BYTES_FROZEN_AFFECTED_CHECKS_PENDING",
+    "site": "/mnt/development/VektorFlow-e1677-20261030/site",
+    "parent": "f540346528169b3356825b862a6125dcfb47b120",
+    "files": {
+      "build.html": {
+        "bytes": 17590,
+        "sha256": "e34f9e95fef6cbb5887a1f6ab73024bed0aedcc3347c71da3aea1322a66bcef1"
+      },
+      "canonical-inline-worker.mjs": {
+        "bytes": 804,
+        "sha256": "8fceec29debf9a40c75adcbdf85515e3fdebd8fb2d02b0bf416bc299042c531c"
+      },
+      "current-documentation-examples.mjs": {
+        "bytes": 4689,
+        "sha256": "8daed554a9a13c0dcae52e4b0a0ec0e327773cebbf5c217a51d3c15eace65ec7"
+      },
+      "embed-example.html": {
+        "bytes": 4083,
+        "sha256": "1b91d3e0858eacb74baf249a1f0f5ed7e821e7efbd94fdf96d8af4f352e37035"
+      },
+      "embed-example.mjs": {
+        "bytes": 2570,
+        "sha256": "ba66b5307a591d3932c462476c659bbe219cefd115648b1230b816fe6b720736"
+      },
+      "examples.html": {
+        "bytes": 44978,
+        "sha256": "b642eceba8f87750d855f1113e6225124c2298827b39f1936122ddf6f04217db"
+      },
+      "index.html": {
+        "bytes": 27027,
+        "sha256": "68d5212d0da6d5318688ac27a05900b4a0b97f015a8895f8844022d8438c6649"
+      },
+      "inline-runner.mjs": {
+        "bytes": 7219,
+        "sha256": "100ee98814b65a23196a2d746bd59a384fe3df2c40234a9d0e166d09168d9bd6"
+      },
+      "playground/canonical/compiler-base.mjs": {
+        "bytes": 184885,
+        "sha256": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c"
+      },
+      "playground/canonical/compiler.data": {
+        "bytes": 610405,
+        "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      },
+      "playground/canonical/compiler.mjs": {
+        "bytes": 828,
+        "sha256": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae"
+      },
+      "playground/canonical/compiler.wasm": {
+        "bytes": 65507158,
+        "sha256": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d"
+      },
+      "playground/canonical/formatter.mjs": {
+        "bytes": 62804,
+        "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      },
+      "playground/canonical/formatter.wasm": {
+        "bytes": 1118687,
+        "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+      },
+      "playground/vkf-canonical-execution.mjs": {
+        "bytes": 6678,
+        "sha256": "cd209871296ac7b67f55fd0dbcda0a0403679ebceeceeb76f82714bd4df1b94c"
+      },
+      "stdlib.html": {
+        "bytes": 328101,
+        "sha256": "8a0d7d40d2d7c5780ff7ad155f07494d92396028f5f3d0b3b815a55b3a5a121f"
+      },
+      "syntax.html": {
+        "bytes": 165204,
+        "sha256": "31378e87d3f372a82f5cb5cf97549f304a1c208635efe79bdab7b1c7281a36ae"
+      }
+    },
+    "frontendBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+    "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "source": "ae0e200708a660b965a98e17e5ed8e1f2c5420a6",
+    "ordinarySourceEditRunner": "/mnt/development/VektorFlow-e1677-20261030/current-small-sin.mjs",
+    "normalNodeRunner": "/mnt/development/VektorFlow-e1677-20261030/node-package-compat-packaged.mjs",
+    "originalOracleUnchanged": true,
+    "repositoryInstructions": "No AGENTS.md or handover/status files in this current site checkout; README read; current user authorization supersedes historical root compiler promotion restriction only for preview075",
+    "observedMonotonic": 304311.228418036
+  },
+  "normalCompilerOwnerBindingFix": {
+    "path": "playground/vkf-canonical-execution.mjs",
+    "before": "const sourceBinding=formatter.ccall('vkf075_source_binding','string',[],[]);",
+    "after": "const sourceBinding=owner.ccall('vkf075_source_binding','string',[],[]);",
+    "formatterOperationsAndGuardsUnchanged": true
+  },
+  "normalUiSourceEdit": {
+    "status": "CURRENT_SMALL_SIN_COMPLETE",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 304316.345290046,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [],
+    "phases": [],
+    "cases": [],
+    "result": {
+      "rows": [
+        {
+          "name": "unprimed",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+          "requestToPacketMs": 1397.1349999904633,
+          "requestToCompleteRasterMs": 1436.2450000047684,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14796080,
+              "packetJSONChars": 978,
+              "allocateMs": 0.02499997615814209,
+              "heapCopyMs": 7.740000009536743,
+              "stdoutMs": 0.3400000333786011,
+              "retainedFormatMs": 37.439999997615814,
+              "packetReadMs": 0.0899999737739563,
+              "jsonParseMs": 0.05500000715255737,
+              "arenaReconstructionMs": 0.2250000238418579
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.165,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 755.43,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 25.83,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 18.515001,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 1.2,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 15.745,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 1.87,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 3.144999,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 41492,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 70080,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 0,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 1,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 184237,
+                    "typed_functions": 1,
+                    "wasm_bytes": 70080
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 1.059999,
+                      "stage": "provider-frontend"
+                    },
+                    {
+                      "milliseconds": 7.515001,
+                      "stage": "source-prepare"
+                    },
+                    {
+                      "milliseconds": 17.269999,
+                      "stage": "source-lex"
+                    },
+                    {
+                      "milliseconds": 21.530001,
+                      "stage": "source-parse"
+                    },
+                    {
+                      "milliseconds": 4.529999,
+                      "stage": "source-link"
+                    },
+                    {
+                      "milliseconds": 333.720001,
+                      "stage": "source-semantic-lower"
+                    },
+                    {
+                      "milliseconds": 161.234999,
+                      "stage": "source-private-browser-lower"
+                    },
+                    {
+                      "milliseconds": 22.485,
+                      "stage": "source-context-identity"
+                    },
+                    {
+                      "milliseconds": 0.025,
+                      "stage": "provider-execution-ir"
+                    },
+                    {
+                      "milliseconds": 4.510001,
+                      "stage": "canonical-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.959999,
+                      "stage": "executable-ir-copy"
+                    },
+                    {
+                      "milliseconds": 18.74,
+                      "stage": "typed-program-lowering"
+                    },
+                    {
+                      "milliseconds": 23.800001,
+                      "stage": "bytecode-lowering"
+                    },
+                    {
+                      "milliseconds": 45.38,
+                      "stage": "wasm-emission"
+                    },
+                    {
+                      "milliseconds": 12.509999,
+                      "stage": "wasm-hex-transport"
+                    },
+                    {
+                      "milliseconds": 5.5,
+                      "stage": "manifest"
+                    },
+                    {
+                      "milliseconds": 69.495,
+                      "stage": "compile-response-json"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 823.0550000071526,
+              "transportReadMs": 0.75,
+              "jsParseMs": 0.28999996185302734,
+              "wasmCopyMs": 0.09500002861022949,
+              "profileReadMs": 2.6649999618530273,
+              "typedIRChars": 41492,
+              "manifestChars": 2374,
+              "guestWasmBytes": 70080
+            },
+            "compileMs": 850.9350000023842,
+            "executeMs": 230.5600000023842,
+            "formatMs": 45.9200000166893
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2771,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-1--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.8414709848078965
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+          ]
+        },
+        {
+          "name": "initialized-repeat",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+          "requestToPacketMs": 148.0100000500679,
+          "requestToCompleteRasterMs": 158.0600000023842,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14796080,
+              "packetJSONChars": 978,
+              "allocateMs": 0.004999995231628418,
+              "heapCopyMs": 1.5999999642372131,
+              "stdoutMs": 0.04500001668930054,
+              "retainedFormatMs": 15.649999976158142,
+              "packetReadMs": 0.04500001668930054,
+              "jsonParseMs": 0.02499997615814209,
+              "arenaReconstructionMs": 0.51500004529953
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.01,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 0.19,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 24.55,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 18.590001,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 1.309999,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 8.54,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 1.775001,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.844999,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 41492,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 70080,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 1,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 0,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 184237,
+                    "typed_functions": 1,
+                    "wasm_bytes": 70080
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 0.005,
+                      "stage": "compile-response-cache-lookup"
+                    },
+                    {
+                      "milliseconds": 0.06,
+                      "stage": "compile-response-cache-restore"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 60.22999995946884,
+              "transportReadMs": 0.20500004291534424,
+              "jsParseMs": 0.1499999761581421,
+              "wasmCopyMs": 0.04500001668930054,
+              "profileReadMs": 1.2599999904632568,
+              "typedIRChars": 41492,
+              "manifestChars": 2374,
+              "guestWasmBytes": 70080
+            },
+            "compileMs": 72.73000001907349,
+            "executeMs": 56.77999997138977,
+            "formatMs": 17.89500004053116
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2771,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-2--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.8414709848078965
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+          ]
+        },
+        {
+          "name": "real-source-edit",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(2 * u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+          "requestToPacketMs": 666.0050000548363,
+          "requestToCompleteRasterMs": 674.8400000333786,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14895000,
+              "packetJSONChars": 979,
+              "allocateMs": 0.004999995231628418,
+              "heapCopyMs": 1.3650000095367432,
+              "stdoutMs": 0.029999971389770508,
+              "retainedFormatMs": 14.035000026226044,
+              "packetReadMs": 0.030000030994415283,
+              "jsonParseMs": 0.014999985694885254,
+              "arenaReconstructionMs": 0.039999961853027344
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.01,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 531.945,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 27.62,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 22.23,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 1.17,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 8.69,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 1.860001,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.904999,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 49954,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 72109,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 0,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 1,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 196757,
+                    "typed_functions": 1,
+                    "wasm_bytes": 72109
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 0.020001,
+                      "stage": "provider-frontend"
+                    },
+                    {
+                      "milliseconds": 0.089999,
+                      "stage": "source-prepare"
+                    },
+                    {
+                      "milliseconds": 5.27,
+                      "stage": "source-lex"
+                    },
+                    {
+                      "milliseconds": 8.065,
+                      "stage": "source-parse"
+                    },
+                    {
+                      "milliseconds": 1.330001,
+                      "stage": "source-link"
+                    },
+                    {
+                      "milliseconds": 175.245,
+                      "stage": "source-semantic-lower"
+                    },
+                    {
+                      "milliseconds": 166.979999,
+                      "stage": "source-private-browser-lower"
+                    },
+                    {
+                      "milliseconds": 25.025001,
+                      "stage": "source-context-identity"
+                    },
+                    {
+                      "milliseconds": 0.009999,
+                      "stage": "provider-execution-ir"
+                    },
+                    {
+                      "milliseconds": 4.185001,
+                      "stage": "canonical-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.879999,
+                      "stage": "executable-ir-copy"
+                    },
+                    {
+                      "milliseconds": 14.325,
+                      "stage": "typed-program-lowering"
+                    },
+                    {
+                      "milliseconds": 8.64,
+                      "stage": "bytecode-lowering"
+                    },
+                    {
+                      "milliseconds": 29.38,
+                      "stage": "wasm-emission"
+                    },
+                    {
+                      "milliseconds": 11.085001,
+                      "stage": "wasm-hex-transport"
+                    },
+                    {
+                      "milliseconds": 4.199999,
+                      "stage": "manifest"
+                    },
+                    {
+                      "milliseconds": 75.605001,
+                      "stage": "compile-response-json"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 598.6200000047684,
+              "transportReadMs": 0.10500001907348633,
+              "jsParseMs": 0.1899999976158142,
+              "wasmCopyMs": 0.014999985694885254,
+              "profileReadMs": 2.3600000143051147,
+              "typedIRChars": 49954,
+              "manifestChars": 2374,
+              "guestWasmBytes": 72109
+            },
+            "compileMs": 614.3949999809265,
+            "executeMs": 35.625,
+            "formatMs": 15.52999997138977
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2814,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-3--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.9999998829558185
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "95ae9ca96bf6cf631cc6fb4a9417da0539686444788e5a19638d872b9f3c0c3f"
+          ]
+        }
+      ],
+      "binding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+      "endpoint": "ordinary InlineRunner request including compile/eval/data/bridge through shipping same Canvas2D complete getImageData raster; app navigation excluded; unprimed lazy initialization inside request; console endpoint separately"
+    },
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "/preview/0.7.5/inline-retained-scene-view.mjs"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2915673,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "normalNodeESM": {
+    "status": "PASS_NORMAL_NODE_ESM_PACKAGE_COMPILE_EXECUTE_STDOUT",
+    "stdout": "7\n",
+    "frontendBinding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+    "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "wasmBytes": 36339,
+    "scope": "Actual normal ESM package/import/compile/guest/formatter transport control; no retained Node DOM/GPU claim"
+  },
+  "requestedShippingBytes": {
+    "/preview/0.7.5/canonical-inline-worker.mjs": {
+      "bytes": 804,
+      "sha256": "8fceec29debf9a40c75adcbdf85515e3fdebd8fb2d02b0bf416bc299042c531c"
+    },
+    "/preview/0.7.5/code-highlight.mjs": {
+      "bytes": 1162,
+      "sha256": "26542dbe4b226163d38fdd940b55142ac737f2f1eb063975ae16c84ab0b506da"
+    },
+    "/preview/0.7.5/current-compiler-release.json": {
+      "bytes": 7343,
+      "sha256": "84cf620e3989c7c0fd28292f6ce81b4a97a612375b07a472d955c38590c18968"
+    },
+    "/preview/0.7.5/editor/prism-vektorflow.mjs": {
+      "bytes": 4120,
+      "sha256": "78001a75dd9f81550cac1c638d25bc0ec01e69bedd63ef807fa91a07fc4ee188"
+    },
+    "/preview/0.7.5/inline-renderer-loader.mjs": {
+      "bytes": 1872,
+      "sha256": "c749bd1d8104d064eb20c71c1325ee95e86a05bf2fbbbd94a2a692a0c0ba486f"
+    },
+    "/preview/0.7.5/inline-retained-scene-view.mjs": {
+      "bytes": 15639,
+      "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
+    },
+    "/preview/0.7.5/inline-runner.mjs": {
+      "bytes": 7219,
+      "sha256": "100ee98814b65a23196a2d746bd59a384fe3df2c40234a9d0e166d09168d9bd6"
+    },
+    "/preview/0.7.5/playground/browser-copy-retained-packets.mjs": {
+      "bytes": 1480,
+      "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
+    },
+    "/preview/0.7.5/playground/canonical/compiler-base.mjs": {
+      "bytes": 184885,
+      "sha256": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c"
+    },
+    "/preview/0.7.5/playground/canonical/compiler.data": {
+      "bytes": 610405,
+      "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+    },
+    "/preview/0.7.5/playground/canonical/compiler.mjs": {
+      "bytes": 828,
+      "sha256": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae"
+    },
+    "/preview/0.7.5/playground/canonical/compiler.wasm": {
+      "bytes": 65507158,
+      "sha256": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d"
+    },
+    "/preview/0.7.5/playground/canonical/formatter.mjs": {
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+    },
+    "/preview/0.7.5/playground/canonical/formatter.wasm": {
+      "bytes": 1118687,
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    },
+    "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs": {
+      "bytes": 4014,
+      "sha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493"
+    },
+    "/preview/0.7.5/playground/vkf-canonical-execution.mjs": {
+      "bytes": 6678,
+      "sha256": "cd209871296ac7b67f55fd0dbcda0a0403679ebceeceeb76f82714bd4df1b94c"
+    },
+    "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs": {
+      "bytes": 6983,
+      "sha256": "b039bcca369fbf22cfefb6b8e02054ef2e8c05be3a4ed553edc1623a76d62d4a"
+    },
+    "/preview/0.7.5/playground/vkf-concurrent-host.mjs": {
+      "bytes": 16437,
+      "sha256": "0974ecfa7847ce8594772c2e1b62aebb03fff3754abfe592887de13a457be0d2"
+    },
+    "/preview/0.7.5/playground/vkf-concurrent-process.mjs": {
+      "bytes": 4653,
+      "sha256": "a0ba510be29bcfba5f27badfe761456ced38fe99f9c4f311f4177936ab9dfedd"
+    },
+    "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs": {
+      "bytes": 3650,
+      "sha256": "160d1acd0fe058254d017530d152199e47af67408c07b901aaa80e677b37c675"
+    },
+    "/preview/0.7.5/playground/vkf-concurrent-values.mjs": {
+      "bytes": 7622,
+      "sha256": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679"
+    },
+    "/preview/0.7.5/playground/vkf-prepared-workers.mjs": {
+      "bytes": 2604,
+      "sha256": "5a4bec830e66483e0fd35ac5efff661f667c9509548eb1fac03d44de1c886ac1"
+    },
+    "/preview/0.7.5/playground/vkf-retained-execution-control.mjs": {
+      "bytes": 1338,
+      "sha256": "a1faae2909f21bbefe55a9988eea15fe28d956b121135c838693d9524df61423"
+    },
+    "/preview/0.7.5/playground/vkf-retained-window-execution.mjs": {
+      "bytes": 5573,
+      "sha256": "f60e7d22c0d280029f8988a22e2be3038c96b6c335a20c7ca8cc3db71e7741ef"
+    },
+    "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs": {
+      "bytes": 682,
+      "sha256": "4cb2bd0a9c915bbe6a7ccebe5e45579c8e6a5a69cf276c5ec781446f065fefc2"
+    },
+    "/preview/0.7.5/reference-navigation.mjs": {
+      "bytes": 2031,
+      "sha256": "ab40075949bcf82be36f151d67514975b9bde1775cb580744dc5ede8c3d5645f"
+    },
+    "/preview/0.7.5/release-status.html": {
+      "bytes": 26162,
+      "sha256": "9e2132459527073ed8ca986323c2456dce7a1b19e2bca19a061157434a8ac3ff"
+    },
+    "/preview/0.7.5/site.css": {
+      "bytes": 11121,
+      "sha256": "9a57163da0fdcdd637e3497c7b5587696b3f190c8ff910f1b20ab9d3883204d2"
+    },
+    "/preview/0.7.5/vendor/prism/prism-bash.min.js": {
+      "bytes": 6143,
+      "sha256": "6260814110e5182f2956e3bd257429548d9dbf2a9b66a63719b26cf9fac966a7"
+    },
+    "/preview/0.7.5/vendor/prism/prism-clike.min.js": {
+      "bytes": 708,
+      "sha256": "c76ba4e240932bdc75546be30e550f5ba5e13815ff71511c76e9e27ac3072444"
+    },
+    "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js": {
+      "bytes": 7519,
+      "sha256": "bf43b61cc4c8cdd990414ca67201dda33d776d1e202fcf712e32f7cf1e1002bc"
+    },
+    "/preview/0.7.5/vendor/prism/prism-javascript.min.js": {
+      "bytes": 4611,
+      "sha256": "0345ea83e12b7b974e953c79a64dea35a40308309449db70b82020fb688ac321"
+    },
+    "/preview/0.7.5/vendor/prism/prism-python.min.js": {
+      "bytes": 2113,
+      "sha256": "ed4385685bcf2d4935c8dbbab4bde16603da1329e092d2bf36c3dadd67e9a85c"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-core.js": {
+      "bytes": 17860,
+      "sha256": "2c414dedd1dc10da8f553e04ce3fd2de020e7acf00eb48f976d058a5411ab693"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js": {
+      "bytes": 14836,
+      "sha256": "db179b3ad2885fe3187735f5e07175a8888e6ecf7263e2a9ed8436404299e459"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js": {
+      "bytes": 13724,
+      "sha256": "17468a185566d6e3b0bc5c8eff749482cb9399e84c97a01c0caeaac59e2c0f2f"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js": {
+      "bytes": 5206,
+      "sha256": "04298dc65b9f691676b3908c400ba45d82800e80d0129bb0fa3831175b62d093"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js": {
+      "bytes": 37294,
+      "sha256": "89126424637eacc41cecdce57c17ad2326b2e7772dc2978e94948464966b0ef0"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js": {
+      "bytes": 7141,
+      "sha256": "5b1441aff2b84fffb1e02eb3d4f4b4dc81ebeaa155519fb7e852db9c22427365"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-math.js": {
+      "bytes": 4924,
+      "sha256": "3b91b0d3140162e9579a48f907cc703b77817b9e610ed076483f9375d2ea4023"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js": {
+      "bytes": 16458,
+      "sha256": "06ba6aabdccc3ee1ead00225394f83b79667045de2e8b167ec9657805836e6a7"
+    },
+    "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js": {
+      "bytes": 419195,
+      "sha256": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314"
+    },
+    "/preview/0.7.5/vf-ui/katex/katex.min.js": {
+      "bytes": 275414,
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+    },
+    "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js": {
+      "bytes": 26734,
+      "sha256": "64960b6d2be29343e7a64d0bf209d4c26ae5d305320a0dc347c7c12dcf7dac75"
+    },
+    "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js": {
+      "bytes": 1591,
+      "sha256": "e0404f60f661239f453793964273daae100ecfbab7c0658e459146ded7901b22"
+    },
+    "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js": {
+      "bytes": 13720,
+      "sha256": "ce9309e37d39a8d1bd326af34d43c92b335b0d12945c1896622940ff6b95d911"
+    },
+    "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js": {
+      "bytes": 1303,
+      "sha256": "547e8ed0bb74760cec9bac2ecd8e2b9d2123dd67f423cb6b999d8eb5027ad199"
+    },
+    "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js": {
+      "bytes": 5555,
+      "sha256": "72eb524cc308507a63aebb01915bc75d8f968e2763b7c8967ad3996f347c47b7"
+    },
+    "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js": {
+      "bytes": 19214,
+      "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
+    },
+    "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js": {
+      "bytes": 70206,
+      "sha256": "1486c62fdf3f975a9d95df508de1c129d517413f47caa14b222dde0007b0e606"
+    },
+    "/preview/0.7.5/vf-ui/vf-display.js": {
+      "bytes": 640099,
+      "sha256": "2879dc33670393ffdcbe16b8a1f94d19513957f0cb13e70e485b8802c6879c21"
+    },
+    "/preview/0.7.5/vf-ui/vf-frame.css": {
+      "bytes": 20433,
+      "sha256": "ea8e9f3cd0fcc7e3cec2b4fc6e2dff394badc0a14d366767c3cdfc0ab92e0690"
+    },
+    "/preview/0.7.5/vf-ui/vf-frame.js": {
+      "bytes": 63720,
+      "sha256": "865f43b7cc537de826c3c6dca7114c93f371c6e6d031be725344b197ad8db353"
+    },
+    "/preview/0.7.5/vf-ui/vf-gpu-runtime.js": {
+      "bytes": 33158,
+      "sha256": "9a323546d8e46cce824aac5e999a05c8953e5bf56c77a6a30f8db447793f6508"
+    },
+    "/preview/0.7.5/vf-ui/vf-html-components.js": {
+      "bytes": 17079,
+      "sha256": "3bbf2e4aeacf6f2066201105ef0af48e207771e04bad90a4d2da75c08bea9724"
+    },
+    "/preview/0.7.5/vf-ui/vf-render-clock.js": {
+      "bytes": 2878,
+      "sha256": "c2250bef93b3de6afdff83aa09d1d0e144dc46251db8440a92b4e5660db93b54"
+    },
+    "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js": {
+      "bytes": 3773,
+      "sha256": "b7082ab7a277ece450781deb5e4a56f8e3dd33ef5f78c4a921fc47dfae2f001b"
+    },
+    "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js": {
+      "bytes": 27429,
+      "sha256": "20f9507ed5ebd7846ad03f7fda65ce8acc339dc4e77fc22caaade4dfefadd5cb"
+    },
+    "/preview/0.7.5/vf-ui/vf-runtime-flow.js": {
+      "bytes": 23897,
+      "sha256": "b7a464edd0e88206d079a19a47259af9a22c9841cac6fdb58e39ca7ed262061f"
+    },
+    "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js": {
+      "bytes": 27244,
+      "sha256": "15072337a9d12f6901593a73e989133387fb182970c8fbc847d585163ab0e7e6"
+    },
+    "/preview/0.7.5/vf-ui/vf-runtime-scene.js": {
+      "bytes": 31907,
+      "sha256": "fb2541fc19be0274de86909b15f252fcfbb15c308f1d56986ed8a8f41f17a20a"
+    },
+    "/preview/0.7.5/vf-ui/vf-runtime-source.js": {
+      "bytes": 7829,
+      "sha256": "bb9c3a5a256f8e294e4fd5b5bc4c65c548b6b717f8c23c03c74e5fba44913feb"
+    },
+    "/preview/0.7.5/vf-ui/vf-shared-runtime.js": {
+      "bytes": 8646,
+      "sha256": "1725ee7329ac829e922efc8a5b47df433ff7341485a3fca37112f0cebd732ab6"
+    },
+    "/preview/0.7.5/vf-ui/vf-startup-gate.js": {
+      "bytes": 6363,
+      "sha256": "ec551b48249bf6cd10ff9224750e31bd9ea88fb4da99f789f64d2b55d51dc78d"
+    },
+    "/preview/0.7.5/vf-ui/vf-static-html-loader.js": {
+      "bytes": 9094,
+      "sha256": "71bd12c268b023dab13be48d05caa6ee03048f0cddc761ddfc67c11390340775"
+    },
+    "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs": {
+      "bytes": 15776,
+      "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+    },
+    "/preview/0.7.5/vf-ui/vf-widgets.js": {
+      "bytes": 44424,
+      "sha256": "00251dc4541eabeb2d75b4b2b8eea34061335314d46ca29e849fafafee4715cb"
+    },
+    "/preview/0.7.5/vkf-browser-isolation.mjs": {
+      "bytes": 1767,
+      "sha256": "004f550e714e99ae665f5f05af7bf2bd3746aab1f605e2c53f0865182cbd6594"
+    },
+    "/preview/0.7.5/website-controls.mjs": {
+      "bytes": 1487,
+      "sha256": "abb415531c7af5f0ed7c43fc4891dd7afb43bbed9bc971d1f8986e247dbc9255"
+    },
+    "/preview/0.7.5/website-layout.css": {
+      "bytes": 6386,
+      "sha256": "775c4165faa778cd8f16b9d1e50d5f4da0b3c643be57ab05124d219dd986cd09"
+    }
+  },
+  "shippingBytesFrozenThroughAffectedChecks": true,
+  "original1025PointSourceAndNumericalRasterOracleUnchanged": true,
+  "noHiddenPrewarm": true,
+  "noHostGeneratedPacket": true,
+  "acceptedExactCompilerBuildAndOriginalSymbolicResults": {
+    "evidence": "./e1675-normal-wasm-private-workspace.json",
+    "sourceCommit": "ae0e200708a660b965a98e17e5ed8e1f2c5420a6",
+    "selection": "541008843f841f8783d2c5292faf4aa952e8c23253541b94d95f00d6ad7833b3",
+    "currentPreflight": {
+      "passed": 2,
+      "failed": 0,
+      "unrun": 46,
+      "total": 48
+    },
+    "currentParity": {
+      "passed": 0,
+      "failed": 0,
+      "unrun": 24,
+      "total": 24
+    },
+    "replayedHere": false,
+    "independentBuildReview": "e1674/NEW1675-COALESCER-PACKAGE-REVIEW.json",
+    "independentOriginalResultReview": "e1676/NEW1675-ORIGINAL-ADD1-2998-RETENTION-REVIEW.json"
+  },
+  "matchedPreflights": {
+    "passed": 2,
+    "failed": 0,
+    "unrun": 46,
+    "total": 48
+  },
+  "nativeWasmParity": {
+    "passed": 0,
+    "failed": 0,
+    "unrun": 24,
+    "total": 24
+  },
+  "comparativeSamples": 0,
+  "ratios": {},
+  "timingsInformationalOnly": true,
+  "stable": false,
+  "complete": false,
+  "full075Qualified": false,
+  "linuxCompilerSDKQualified": false,
+  "fullGpuWorldQualified": false,
+  "historical57AndScaleAndNativeEvidenceDoesNotQualifyChangedCompiler": true,
+  "unchangedComponents": [
+    "compiler.data",
+    "formatter.mjs",
+    "formatter.wasm",
+    "29libraries",
+    "headers",
+    "hostABI",
+    "retainedrenderer",
+    "fonts",
+    "native-label adapter"
+  ],
+  "noRebuild": true,
+  "noNewBankOrQuota": true,
+  "rawEvidence": {
+    "CURRENT-SMALL-SIN-RESULT.json": {
+      "bytes": 24212,
+      "sha256": "37ffa29ae7fc9b58ff6f57860c5f99051874ace0b63348d282d5e12a745aaac0"
+    },
+    "NODE-PACKAGE-COMPAT-PACKAGED.json": {
+      "bytes": 410,
+      "sha256": "57f23beb9bf72c3a45f5f9a15f2dc5025fea77a3b2711d4b35c97246f2eb0d0d"
+    },
+    "small-sin.vkf": {
+      "bytes": 120,
+      "sha256": "cabc06086a23a33e67120de8bcd14a93c4cd41fd999e7085d2f48016d047b50c"
+    },
+    "small-sin-controls.mjs": {
+      "bytes": 5044,
+      "sha256": "8862f2c419b1025388506a0ae89c77934d9e319f7117507d14e0f5add339b472"
+    },
+    "current-small-sin.mjs": {
+      "bytes": 4950,
+      "sha256": "a076cf57218647346f2fd0cfdf14be826ec9175d6ff7a65ea15bb6d9b1d63fc4"
+    },
+    "node-package-compat-packaged.mjs": {
+      "bytes": 2513,
+      "sha256": "d6fe4b972ec00a0e0e965226fc84f859f0542c2191af70ca19568c3dd760bd12"
+    }
+  },
+  "outerJoins": {
+    "existing1025point-ordinary-source-edit-complete-raster": {
+      "name": "existing1025point-ordinary-source-edit-complete-raster",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1677-20261030/current-small-sin.mjs"
+      ],
+      "limit": 240,
+      "pid": 2915660,
+      "start": 304315.447186138,
+      "exit": 0,
+      "end": 304319.457337582,
+      "elapsedSeconds": 4.010151513968594,
+      "childJoined": true,
+      "reserveRefusal": null
+    },
+    "existing-offered-node-esm-compile-guest-formatter-control": {
+      "name": "existing-offered-node-esm-compile-guest-formatter-control",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1677-20261030/node-package-compat-packaged.mjs"
+      ],
+      "limit": 90,
+      "pid": 2915884,
+      "start": 304329.560952147,
+      "exit": 0,
+      "end": 304330.271091015,
+      "elapsedSeconds": 0.7101389979943633,
+      "childJoined": true,
+      "reserveRefusal": null
+    }
+  },
+  "observedMonotonic": 304398.347979242
+}

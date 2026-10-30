@@ -4,65 +4,53 @@
   "status": "published-scoped-embedding",
   "complete": false,
   "stable": false,
-  "source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
-  "release_source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
+  "source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+  "release_source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
   "library_source": "ba9edf4d57148c160e0d5ba136326c914b9395c95f33a9f3a9499ad94ae1d88e",
   "files": {
     "compiler.mjs": {
       "bytes": 828,
-      "sha256": "dc0a258a71a5ce71ddaf1c196eb3d97dbd48220a61221757686d9eddbecbad64"
+      "sha256": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae"
+    },
+    "compiler-base.mjs": {
+      "bytes": 184885,
+      "sha256": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c"
     },
     "compiler.wasm": {
-      "bytes": 65390459,
-      "sha256": "e91525d99caebc787724ffe173e7baf671b2794a135b2f55757df8b446b80c42"
-    },
-    "formatter.wasm": {
-      "bytes": 1118687,
-      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
-    },
-    "formatter.mjs": {
-      "bytes": 62804,
-      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
-    },
-    "README.txt": {
-      "bytes": 3641,
-      "sha256": "04a975f00db34a74f0360435efb11be369437f6e22a3b8c99305936489ddecdf"
+      "bytes": 65507158,
+      "sha256": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d"
     },
     "compiler.data": {
       "bytes": 610405,
       "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
     },
-    "compiler-base.mjs": {
-      "bytes": 184915,
-      "sha256": "26e3ccb9f36656650bd5b164a32c4788cb5ecb754bacef506a90c1a0ef82c0ba"
+    "formatter.mjs": {
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+    },
+    "formatter.wasm": {
+      "bytes": 1118687,
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    },
+    "README.txt": {
+      "bytes": 1938,
+      "sha256": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
     }
   },
   "verification": {
-    "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
-    "evidence": "../../verification/e1615-current-renderer-queue.json",
+    "status": "PASS_NAMED_CURRENT_ORDINARY_UI_SOURCE_EDIT_RASTER_AND_NODE_TRANSPORT",
+    "evidence": "../../verification/e1677-ordinary-ui-compiler-propagation.json",
     "oldPassCarry": false,
-    "required5MRenderViewOrdinaryColor": true,
-    "native10000Qualified": false,
-    "fullGpuWorldComplete": false,
-    "multiRendererQueueCorrectness": true,
-    "native10000OrdinaryUiComplete": true,
-    "nativeLiveEngineEntry": true,
-    "native8OriginalWitnessesPassed": 8,
-    "native8OriginalWitnessesTotal": 8,
-    "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
-    "currentCanonical57": {
-      "passed": 57,
-      "total": 57,
-      "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-      "oldPassCarry": false,
-      "evidence": "../../verification/e1625-current-qualification.json",
-      "newExecution": false,
-      "reusedByExplicitComponentImpact": true,
-      "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
+    "historicalEvidenceDoesNotQualifyCurrentCompiler": true,
+    "ordinarySourceEdit": {
+      "rows": 3,
+      "pointsPerRow": 1025,
+      "completeCanvas2DRaster": true,
+      "realSourceEditChangesArenaAndRaster": true
     },
-    "normalSymbolicRendererLibrary": {
-      "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
-      "evidence": "../../verification/e1642-symbolic-renderer-library.json"
+    "normalNodeESM": {
+      "stdout": "7\n",
+      "independentBindings": true
     }
   },
   "historical_verification": {
@@ -124,51 +112,56 @@
       "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
     }
   },
-  "compiler_source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
-  "browser_binding": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
+  "compiler_source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+  "browser_binding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
   "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "frontend_binding": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
+  "frontend_binding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
   "stable_release": false,
   "sha256": {
-    "compiler.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-    "compiler.wasm": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
-    "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+    "compiler.mjs": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae",
+    "compiler-base.mjs": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c",
+    "compiler.wasm": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d",
+    "compiler.data": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7",
+    "formatter.mjs": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
+    "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+    "README.txt": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
   },
   "published": true,
-  "publication_status": "PUBLISHED_CORRECTNESS_CHECKED_SUPPORTED_EMBEDDING_SCOPE",
-  "physical_gpu_tested": true,
+  "publication_status": "PUBLISHED_CORRECTNESS_CHECKED_NAMED_EMBEDDING_SCOPE",
+  "physical_gpu_tested": false,
   "release_qualified": false,
   "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
   "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7",
   "scoped_release": {
     "version": "0.7.5",
     "components": [
-      "browser-WASM compiler and formatter",
-      "browser retained plotting",
+      "browser-WASM compiler and independent formatter",
+      "ordinary retained plotting",
       "Node ESM compiler/guest/formatter embedding"
     ],
-    "qualification": "Named supported controls only; full release remains unqualified.",
-    "existingBrowserPrograms": {
-      "passed": 57,
-      "total": 57,
-      "newExecution": false,
-      "reusedByExplicitComponentImpact": true,
-      "evidence": "../../verification/e1625-current-qualification.json"
-    },
-    "evidence": "../../verification/e1642-symbolic-renderer-library.json",
+    "qualification": "Only named current affected controls and accepted exact ae0e200 original symbolic receipts; historical full banks are not current qualification.",
+    "evidence": "../../verification/e1677-ordinary-ui-compiler-propagation.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
     "comparativeBenchmarksQualified": false,
-    "originalAffectedSymbolicRows": {
+    "fullGpuWorldQualified": false,
+    "matchedPreflights": {
       "passed": 2,
-      "total": 48,
+      "failed": 0,
       "unrun": 46,
-      "parityPassed": 1,
-      "parityTotal": 24
+      "total": 48
     },
-    "normalBrowserLoaderCase": {
-      "passed": 1,
-      "total": 1
+    "nativeWasmParity": {
+      "passed": 0,
+      "failed": 0,
+      "unrun": 24,
+      "total": 24
+    },
+    "comparativeSamples": 0,
+    "ordinarySourceEdit": {
+      "rows": 3,
+      "pointsPerRow": 1025,
+      "completeRaster": true
     },
     "normalNodeEsmStdout": "7\n"
   },
@@ -176,5 +169,69 @@
     "sourceCommit": "3ef02b76fcc9de3a32b8693544afba54c12b830c",
     "changed": "Normal symbolic.vkf numeric-leaf KaTeX renderer and corresponding generated embedded table; one unchanged-code API provider rebuilt,139 objects and formatter retained",
     "evidence": "../../verification/e1642-symbolic-renderer-library.json"
-  }
+  },
+  "historical_before_ae0e200": {
+    "verification": {
+      "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
+      "evidence": "../../verification/e1615-current-renderer-queue.json",
+      "oldPassCarry": false,
+      "required5MRenderViewOrdinaryColor": true,
+      "native10000Qualified": false,
+      "fullGpuWorldComplete": false,
+      "multiRendererQueueCorrectness": true,
+      "native10000OrdinaryUiComplete": true,
+      "nativeLiveEngineEntry": true,
+      "native8OriginalWitnessesPassed": 8,
+      "native8OriginalWitnessesTotal": 8,
+      "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
+      "currentCanonical57": {
+        "passed": 57,
+        "total": 57,
+        "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+        "oldPassCarry": false,
+        "evidence": "../../verification/e1625-current-qualification.json",
+        "newExecution": false,
+        "reusedByExplicitComponentImpact": true,
+        "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
+      },
+      "normalSymbolicRendererLibrary": {
+        "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
+        "evidence": "../../verification/e1642-symbolic-renderer-library.json"
+      }
+    },
+    "scoped_release": {
+      "version": "0.7.5",
+      "components": [
+        "browser-WASM compiler and formatter",
+        "browser retained plotting",
+        "Node ESM compiler/guest/formatter embedding"
+      ],
+      "qualification": "Named supported controls only; full release remains unqualified.",
+      "existingBrowserPrograms": {
+        "passed": 57,
+        "total": 57,
+        "newExecution": false,
+        "reusedByExplicitComponentImpact": true,
+        "evidence": "../../verification/e1625-current-qualification.json"
+      },
+      "evidence": "../../verification/e1642-symbolic-renderer-library.json",
+      "linuxCompilerSDKQualified": false,
+      "crossTargetParityQualified": false,
+      "comparativeBenchmarksQualified": false,
+      "originalAffectedSymbolicRows": {
+        "passed": 2,
+        "total": 48,
+        "unrun": 46,
+        "parityPassed": 1,
+        "parityTotal": 24
+      },
+      "normalBrowserLoaderCase": {
+        "passed": 1,
+        "total": 1
+      },
+      "normalNodeEsmStdout": "7\n"
+    },
+    "physical_gpu_tested": true
+  },
+  "compiler_source_commit": "ae0e200708a660b965a98e17e5ed8e1f2c5420a6"
 }

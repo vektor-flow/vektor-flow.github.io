@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmprxcfd408.js
+// include: /tmp/tmpdlx5lfpj.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -78,7 +78,7 @@ if (ENVIRONMENT_IS_NODE) {
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/mnt/development/VektorFlow-e1642-20261030/embedded-library-build/compiler.data';
+      var PACKAGE_NAME = '/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data';
       var REMOTE_PACKAGE_BASE = 'compiler.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
@@ -223,10 +223,10 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e1642-20261030/embedded-library-build/compiler.data');
+          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data');
 
       };
-      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e1642-20261030/embedded-library-build/compiler.data');
+      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
@@ -251,7 +251,7 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
 
   })();
 
-// end include: /tmp/tmprxcfd408.js
+// end include: /tmp/tmpdlx5lfpj.js
 
 
 // Sometimes an existing Module object exists with properties

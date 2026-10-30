@@ -1,6 +1,6 @@
 // Keep editable sources and output together; only a reviewed package enables Run.
 import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
-import {createInlineRunner} from './inline-runner.mjs?v=873bda32dbbb9501';
+import {createInlineRunner} from './inline-runner.mjs?v=100ee98814b65a23';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
 

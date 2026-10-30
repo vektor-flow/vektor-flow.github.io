@@ -38,7 +38,7 @@ if preview.exists():
  for row in manifest['files']:
   data=(preview/row['path']).read_bytes()
   assert len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256'],row['path']
- expected_preview={'compiler.mjs': 'dc0a258a71a5ce71ddaf1c196eb3d97dbd48220a61221757686d9eddbecbad64', 'compiler.wasm': 'e91525d99caebc787724ffe173e7baf671b2794a135b2f55757df8b446b80c42', 'compiler.data': '529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7', 'compiler-base.mjs': '26e3ccb9f36656650bd5b164a32c4788cb5ecb754bacef506a90c1a0ef82c0ba'}
+ expected_preview={'compiler.mjs': '22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae', 'compiler.wasm': 'd453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d', 'compiler.data': '529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7', 'compiler-base.mjs': '0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c'}
  for name,digest in expected_preview.items():assert hashlib.sha256((preview/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
 for p in root.rglob('*'):
  if not p.is_file():continue

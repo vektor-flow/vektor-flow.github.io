@@ -22,7 +22,7 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets){
     const status=formatter.ccall(operation,'number',['number','number','number'],[pointer,length,outputPointer]);
     if(status!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));
   };
-  const sourceBinding=formatter.ccall('vkf075_source_binding','string',[],[]);
+  const sourceBinding=owner.ccall('vkf075_source_binding','string',[],[]);
   if(typeof sourceBinding!=='string'||!/^[a-f0-9]{64}$/.test(sourceBinding))throw new TypeError('Compiler source binding is unavailable');
   if(packageDescriptor.expectedSourceBinding!==undefined&&packageDescriptor.expectedSourceBinding!==sourceBinding)throw new TypeError('Compiler source binding mismatch');
   let pending=Promise.resolve();

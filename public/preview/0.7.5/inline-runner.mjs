@@ -1,7 +1,7 @@
 import {dispatchRetainedExecution,cancelRetainedExecutions} from './playground/vkf-retained-window-execution.mjs';
 import {ensureBrowserIsolation} from './vkf-browser-isolation.mjs';
 const DEFAULT_WASM_URL=new URL('./playground/canonical/compiler.wasm',import.meta.url);
-const WORKER_URL=new URL('./canonical-inline-worker.mjs?v=27be743174d8877f',import.meta.url);
+const WORKER_URL=new URL('./canonical-inline-worker.mjs?v=8fceec29debf9a40',import.meta.url);
 export const DEFAULT_EXECUTION_TIMEOUT_MS=30000;
 export function createInlineRunner({wasmUrl=DEFAULT_WASM_URL,moduleURL,dataURL,expectedSourceBinding,
   fetchImpl=globalThis.fetch,WorkerClass=globalThis.Worker,

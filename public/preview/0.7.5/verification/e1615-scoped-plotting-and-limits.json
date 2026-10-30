@@ -1,0 +1,1233 @@
+{
+  "schema": 1,
+  "status": "SCOPED_PLOTTING_OBSERVATIONS_AND_CURRENT_CORRECTNESS_LIMITS",
+  "stable": false,
+  "complete": false,
+  "full075Qualified": false,
+  "codePackagePublishedCommit": "698cdca627518096bdd07880f5236beb76a85dd4",
+  "uiSource": {
+    "selectedCommit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
+    "acceptedUiBase": "c0f361bbf3f3b4b7ea665d250322ebbcab6da7a2",
+    "sourceReady": "cf94cdd0ca5262c0fb56a6dddf1b8ddcd3479434",
+    "paths": {
+      "public/preview/0.7.5/inline-retained-scene-view.mjs": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6",
+      "public/preview/0.7.5/vf-ui/vf-display.js": "2879dc33670393ffdcbe16b8a1f94d19513957f0cb13e70e485b8802c6879c21",
+      "public/preview/0.7.5/vf-ui/vf-native-scene.js": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec",
+      "public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314",
+      "tests/normal-multi-renderer.mjs": "a22c46bd5b2b54000867b498b0d7b92b619a46d8571679b1f64c7cba3558a602",
+      "tests/retained-view-history.mjs": "f49c8b928fd715d2fd2f30b0d5ff3af717ecc08e775c59db9808f202a291de62",
+      "tests/retained-exact5m-controls.mjs": "565b02fc9780d92e330af971f85bb071afb5414ef66a02e6eac4887a9e49c32f"
+    }
+  },
+  "artifactBindings": {
+    "frontend": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+    "formatter": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03"
+  },
+  "plotting": {
+    "status": "CURRENT_SMALL_SIN_COMPLETE",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 265954.99681536,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [],
+    "phases": [],
+    "cases": [],
+    "result": {
+      "rows": [
+        {
+          "name": "unprimed",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+          "requestToPacketMs": 1362.9900000095367,
+          "requestToCompleteRasterMs": 1399.199999988079,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14796080,
+              "packetJSONChars": 978,
+              "allocateMs": 0.034999996423721313,
+              "heapCopyMs": 7.969999998807907,
+              "stdoutMs": 0.2750000059604645,
+              "retainedFormatMs": 37.31999999284744,
+              "packetReadMs": 0.10999998450279236,
+              "jsonParseMs": 0.04500001668930054,
+              "arenaReconstructionMs": 0.22499999403953552
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.15,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 738.25,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 25.935,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 18.375,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 1.205,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 15.54,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 1.78,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 3.14,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 41492,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 70080,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 0,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 1,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 184237,
+                    "typed_functions": 1,
+                    "wasm_bytes": 70080
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 1.015,
+                      "stage": "provider-frontend"
+                    },
+                    {
+                      "milliseconds": 1.19,
+                      "stage": "source-prepare"
+                    },
+                    {
+                      "milliseconds": 16.74,
+                      "stage": "source-lex"
+                    },
+                    {
+                      "milliseconds": 22.630001,
+                      "stage": "source-parse"
+                    },
+                    {
+                      "milliseconds": 4.884999,
+                      "stage": "source-link"
+                    },
+                    {
+                      "milliseconds": 324.665,
+                      "stage": "source-semantic-lower"
+                    },
+                    {
+                      "milliseconds": 159.09,
+                      "stage": "source-private-browser-lower"
+                    },
+                    {
+                      "milliseconds": 22.495,
+                      "stage": "source-context-identity"
+                    },
+                    {
+                      "milliseconds": 0.025,
+                      "stage": "provider-execution-ir"
+                    },
+                    {
+                      "milliseconds": 4.315,
+                      "stage": "canonical-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.935,
+                      "stage": "executable-ir-copy"
+                    },
+                    {
+                      "milliseconds": 20.29,
+                      "stage": "typed-program-lowering"
+                    },
+                    {
+                      "milliseconds": 23.360001,
+                      "stage": "bytecode-lowering"
+                    },
+                    {
+                      "milliseconds": 45.579999,
+                      "stage": "wasm-emission"
+                    },
+                    {
+                      "milliseconds": 12.4,
+                      "stage": "wasm-hex-transport"
+                    },
+                    {
+                      "milliseconds": 5.34,
+                      "stage": "manifest"
+                    },
+                    {
+                      "milliseconds": 68.36,
+                      "stage": "compile-response-json"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 805.5649999976158,
+              "transportReadMs": 0.7849999964237213,
+              "jsParseMs": 0.2900000214576721,
+              "wasmCopyMs": 0.07499998807907104,
+              "profileReadMs": 2.634999990463257,
+              "typedIRChars": 41492,
+              "manifestChars": 2374,
+              "guestWasmBytes": 70080
+            },
+            "compileMs": 832.8050000071526,
+            "executeMs": 232.8949999809265,
+            "formatMs": 45.99500000476837
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2771,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-1--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.8414709848078965
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+          ]
+        },
+        {
+          "name": "initialized-repeat",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+          "requestToPacketMs": 144.9699999988079,
+          "requestToCompleteRasterMs": 157.6850000023842,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14796080,
+              "packetJSONChars": 978,
+              "allocateMs": 0.004999995231628418,
+              "heapCopyMs": 1.7000000178813934,
+              "stdoutMs": 0.034999996423721313,
+              "retainedFormatMs": 12.995000004768372,
+              "packetReadMs": 0.02499997615814209,
+              "jsonParseMs": 0.02000001072883606,
+              "arenaReconstructionMs": 0.06999999284744263
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.01,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 0.19,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 24.285,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 18.72,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 1.245,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 8.335,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 1.76,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.83,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 41492,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 70080,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 1,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 0,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 184237,
+                    "typed_functions": 1,
+                    "wasm_bytes": 70080
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 0.005,
+                      "stage": "compile-response-cache-lookup"
+                    },
+                    {
+                      "milliseconds": 0.06,
+                      "stage": "compile-response-cache-restore"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 59.86500000953674,
+              "transportReadMs": 0.16999998688697815,
+              "jsParseMs": 0.14500001072883606,
+              "wasmCopyMs": 0.03999999165534973,
+              "profileReadMs": 1.219999998807907,
+              "typedIRChars": 41492,
+              "manifestChars": 2374,
+              "guestWasmBytes": 70080
+            },
+            "compileMs": 72.61000001430511,
+            "executeMs": 56.90999999642372,
+            "formatMs": 14.854999989271164
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2771,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-2--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.8414709848078965
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+          ]
+        },
+        {
+          "name": "real-source-edit",
+          "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(2 * u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+          "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+          "requestToPacketMs": 748.5900000035763,
+          "requestToCompleteRasterMs": 771.8799999952316,
+          "timing": {
+            "formatProfile": {
+              "binaryRetained": true,
+              "usedBytes": 14895000,
+              "packetJSONChars": 979,
+              "allocateMs": 0.009999990463256836,
+              "heapCopyMs": 1.550000011920929,
+              "stdoutMs": 0.034999996423721313,
+              "retainedFormatMs": 21.689999997615814,
+              "packetReadMs": 0.03999999165534973,
+              "jsonParseMs": 0.030000001192092896,
+              "arenaReconstructionMs": 0.03999999165534973
+            },
+            "compileProfile": {
+              "native": {
+                "bridge_stages": [
+                  {
+                    "milliseconds": 0.01,
+                    "stage": "bridge-source-copy"
+                  },
+                  {
+                    "milliseconds": 544.61,
+                    "stage": "bridge-compiler-call"
+                  },
+                  {
+                    "milliseconds": 40.42,
+                    "stage": "bridge-response-json-parse"
+                  },
+                  {
+                    "milliseconds": 36.89,
+                    "stage": "bridge-ir-json"
+                  },
+                  {
+                    "milliseconds": 2.105001,
+                    "stage": "bridge-manifest-json"
+                  },
+                  {
+                    "milliseconds": 12.809999,
+                    "stage": "bridge-wasm-hex-decode"
+                  },
+                  {
+                    "milliseconds": 2.690001,
+                    "stage": "bridge-formatter-ir-copy"
+                  },
+                  {
+                    "milliseconds": 2.789999,
+                    "stage": "bridge-output-plan"
+                  }
+                ],
+                "browser_ir_json_bytes": 49954,
+                "browser_manifest_json_bytes": 2374,
+                "browser_wasm_bytes": 72109,
+                "compiler": {
+                  "sizes": {
+                    "argument_slot_capacity": 16,
+                    "artifact_cache_hit": 0,
+                    "bytecode_constants": 34,
+                    "bytecode_functions": 1,
+                    "default_argument_slots": 16,
+                    "document_arena_bytes": 541728,
+                    "execution_body_statements": 7,
+                    "frontend_compile_calls": 1,
+                    "mount_arena_bytes": 4198720,
+                    "mutable_compile_input": 0,
+                    "packaged_module_parse_calls": 0,
+                    "required_argument_slots": 0,
+                    "response_json_bytes": 196757,
+                    "typed_functions": 1,
+                    "wasm_bytes": 72109
+                  },
+                  "stages": [
+                    {
+                      "milliseconds": 0.02,
+                      "stage": "provider-frontend"
+                    },
+                    {
+                      "milliseconds": 0.095,
+                      "stage": "source-prepare"
+                    },
+                    {
+                      "milliseconds": 5.19,
+                      "stage": "source-lex"
+                    },
+                    {
+                      "milliseconds": 7.825,
+                      "stage": "source-parse"
+                    },
+                    {
+                      "milliseconds": 1.43,
+                      "stage": "source-link"
+                    },
+                    {
+                      "milliseconds": 174.505,
+                      "stage": "source-semantic-lower"
+                    },
+                    {
+                      "milliseconds": 164.155,
+                      "stage": "source-private-browser-lower"
+                    },
+                    {
+                      "milliseconds": 25.355,
+                      "stage": "source-context-identity"
+                    },
+                    {
+                      "milliseconds": 0.005,
+                      "stage": "provider-execution-ir"
+                    },
+                    {
+                      "milliseconds": 4.075,
+                      "stage": "canonical-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.805,
+                      "stage": "executable-ir-copy"
+                    },
+                    {
+                      "milliseconds": 14.195,
+                      "stage": "typed-program-lowering"
+                    },
+                    {
+                      "milliseconds": 8.36,
+                      "stage": "bytecode-lowering"
+                    },
+                    {
+                      "milliseconds": 29.075,
+                      "stage": "wasm-emission"
+                    },
+                    {
+                      "milliseconds": 11.03,
+                      "stage": "wasm-hex-transport"
+                    },
+                    {
+                      "milliseconds": 4.235001,
+                      "stage": "manifest"
+                    },
+                    {
+                      "milliseconds": 92.324999,
+                      "stage": "compile-response-json"
+                    }
+                  ]
+                }
+              },
+              "compilerCallMs": 645.3849999904633,
+              "transportReadMs": 0.13500002026557922,
+              "jsParseMs": 0.23999997973442078,
+              "wasmCopyMs": 0.02000001072883606,
+              "profileReadMs": 3.770000010728836,
+              "typedIRChars": 49954,
+              "manifestChars": 2374,
+              "guestWasmBytes": 72109
+            },
+            "compileMs": 675.2600000202656,
+            "executeMs": 49.339999973773956,
+            "formatMs": 23.405000001192093
+          },
+          "observations": [
+            {
+              "backend": "Canvas2D",
+              "completion": "normal static presented callback then full-canvas getImageData",
+              "width": 798,
+              "height": 326,
+              "nonblankPixels": 2814,
+              "draws": 6,
+              "presented": [
+                {
+                  "frameId": "vf-inline-result-3--frame_0",
+                  "serial": 4,
+                  "snapshot": {
+                    "camera": null,
+                    "axis3d": {},
+                    "axes": [
+                      {
+                        "index": 0,
+                        "fields": {
+                          "x_min": 0,
+                          "x_max": 1,
+                          "y_min": 0,
+                          "y_max": 0.9999998829558185
+                        }
+                      }
+                    ]
+                  },
+                  "endpoint": "canvas-command-completed",
+                  "renderCameras": []
+                }
+              ]
+            }
+          ],
+          "rasterHashes": [
+            "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+          ],
+          "pointCount": 1025,
+          "maxNumericalError": 2.9772385223836295e-08,
+          "maxXError": 0,
+          "arenaHashes": [
+            "95ae9ca96bf6cf631cc6fb4a9417da0539686444788e5a19638d872b9f3c0c3f"
+          ]
+        }
+      ],
+      "binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+      "endpoint": "ordinary InlineRunner request including compile/eval/data/bridge through shipping same Canvas2D complete getImageData raster; app navigation excluded; unprimed lazy initialization inside request; console endpoint separately"
+    },
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "/preview/0.7.5/inline-retained-scene-view.mjs"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2356445,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "plottingScope": "Three existing single observations: unprimed, initialized repeat and real sin(x)->sin(2*x) edit. All1025numericpoints/fullCanvas2Draster; initializedownerstate separated. Not physical GPU, matchedpeer ratios or ten-sample benchmark completion.",
+  "retained5M": {
+    "evidence": "./e1615-current-renderer-queue.json",
+    "population": 5000000,
+    "allChannels": 50000000,
+    "indices": 5000000,
+    "originalPacketSHA256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24",
+    "originalSourceRequestToPacketMs": 107866.535,
+    "vmReplayed": false,
+    "scope": "Accepted original authentic compiler packet/current actual physicalGPU views and ordinarycolor; retainedpacket setup is separate from originalsource request timing"
+  },
+  "native10000": {
+    "originalRequiredFailure": {
+      "status": "UNRESOLVED_NATIVE_SHIPPING_BASELINE",
+      "cases": [
+        {
+          "kind": "before",
+          "labels": 1,
+          "result": {
+            "status": "MEASURED_NO_RELEASE_QUALIFICATION",
+            "renderingPolicy": "required",
+            "labels": 1,
+            "residentViewUpdates": false,
+            "updateKind": "view",
+            "preparationThroughColdMs": 132.33500000834465,
+            "cold": {
+              "updatePath": "ordinary-display-content-command",
+              "cpuThroughSubmitMs": 51.75,
+              "blockingGPUCompletionMs": 67.3449999988079,
+              "headlessRAFObservedMs": 77.125,
+              "headlessRAFTimestamp": 534.625,
+              "physicalDisplayQualified": false,
+              "finishReturnMs": 51.87000000476837,
+              "throughImmediateReadbackMs": 65.98499998450279,
+              "fenceBeforeReadback": 37147,
+              "fenceStatus": 37148,
+              "fencePolls": 1,
+              "pixelHash": 2321640373,
+              "nonblankPixels": 54,
+              "adapter": "ANGLE (NVIDIA, Vulkan 1.4.312 (NVIDIA NVIDIA GeForce GT 1030 (0x00001D01)), NVIDIA)",
+              "statistics": {
+                "status": "SUBMITTED_COMPLETION_UNMEASURED",
+                "renderingPolicy": "required",
+                "releaseQualified": false,
+                "inputAt": 471.6899999976158,
+                "cpuThroughSubmitMs": 48.55500000715256,
+                "census": {
+                  "labels": 1,
+                  "distinctSources": 1,
+                  "glyphInstances": 4,
+                  "ruleInstances": 0,
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "maxMeshLevels": 4,
+                  "maxMeshBytes": 134217728,
+                  "meshCPUBytes": 0,
+                  "toleranceDevice": 0.04,
+                  "profile": "default-native9a86-inline10/7/5",
+                  "font_size": "explicit unsupported until independent profile qualification",
+                  "downsampling": false,
+                  "last": {
+                    "meshBuilds": 0,
+                    "meshBuildMs": 0,
+                    "meshCPUBytes": 0,
+                    "maxMeshBytes": 134217728
+                  }
+                },
+                "renderer": {
+                  "styleColor": null,
+                  "nativeAccuracy": {
+                    "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                    "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                    "outlines": 4,
+                    "instances": 4,
+                    "triangles": 198,
+                    "width": 1278,
+                    "height": 798,
+                    "pixelRatio": 1,
+                    "instanceBytes": 20008,
+                    "geometryBuilds": 4,
+                    "sampleBuilds": 4,
+                    "hits": 0,
+                    "newNodes": 23608,
+                    "newPixels": 79,
+                    "newGeometryNodes": 500,
+                    "entries": 8,
+                    "bytes": 1258250,
+                    "maxEntries": 4096,
+                    "maxBytes": 134217728,
+                    "maxNewProofs": 4096,
+                    "maxNewNodes": 2000000,
+                    "maxNewPixels": 1048576,
+                    "nodes": 23608,
+                    "pixels": 79,
+                    "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded pinned LRU",
+                    "displayOnly": true,
+                    "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                    "indexed10kAccuracy": "OPEN",
+                    "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                    "allFontsCertificate": false,
+                    "residentRasterEnvelope": 0.04095458984375,
+                    "residentGPUBytes": 14256,
+                    "sourcePreparationMs": 22.610000014305115,
+                    "packedBytes": 0,
+                    "rasterErrorEnvelopeAreaTexels": 0.0117034912109375,
+                    "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                    "camera": [
+                      300,
+                      0,
+                      0,
+                      -300.00000000000006,
+                      641.25,
+                      400
+                    ]
+                  },
+                  "indexedMeshes": 0,
+                  "indexedSourceVertices": 0,
+                  "indexedUniqueVertices": 0,
+                  "batches": 0,
+                  "labels": 0,
+                  "submittedVertices": 0,
+                  "gpuBytes": 14256,
+                  "coverageBytes": 65270016,
+                  "uploads": 4,
+                  "verifiedInstanceSamples": 0,
+                  "draws": 4,
+                  "camera": [
+                    300,
+                    0,
+                    0,
+                    -300.00000000000006,
+                    641.25,
+                    400
+                  ],
+                  "adaptive": null,
+                  "adaptiveDrawWallMs": 0
+                },
+                "engineIdentity": "current-vkf-native:8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab:8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
+                "resourceIdentity": "6b3f5503e457f2c157f4a509b39ca8e62092f368cd740ca209e019e6d9233a0f:1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620"
+              }
+            },
+            "rows": [],
+            "releaseQualified": false,
+            "scheduled100HzQualified": false,
+            "scope": "Current native engine output -> actual ordinary frame overlay -> existing renderer; named evaluated update only; arbitrary per-label animation/display and accuracy acceptance separate",
+            "cleanupJoined": true
+          },
+          "outerCaseMs": 212.07294600000012
+        },
+        {
+          "kind": "before",
+          "labels": 10000,
+          "error": "page.evaluate: Error: NATIVE_SAMPLE_NODE_BUDGET\n    at fail (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:4:32)\n    at require (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:5:35)\n    at regionSegment (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:68:3)\n    at Object.region (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:87:23)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:109:31)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:59)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:38187/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at /mnt/development/VektorFlow-e1615-20261030/native-required-current.mjs:5:112",
+          "outerCaseMs": 773.7702400000001
+        }
+      ],
+      "errors": [],
+      "scope": "fresh current native typography -> ordinary shipping VfFrame/VfDisplay required accuracy; setup and steady-view separate",
+      "browserClosed": true,
+      "serverClosed": true,
+      "ownedChildren": [
+        {
+          "pid": 2362466,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "routeAttempt": {
+      "status": "UNRESOLVED_REQUIRED_ONE_LABEL_COLD_COMPLETION_GUARD_NO_FULL10000_OUTPUT",
+      "sourceReady": {
+        "status": "SOURCE_READY_UNRUN",
+        "sourceRepo": "/mnt/development/VektorFlow-e1617-20261030/site",
+        "branch": "source/e1617-native10000-proof",
+        "base": "698cdca627518096bdd07880f5236beb76a85dd4",
+        "readyCommit": "77f2d7102f0bf3805eb81636ef264c38f501cbf0",
+        "paths": {
+          "public/preview/0.7.5/vf-ui/native-labels/vf-native-label-layer.mjs": "eac2d17a9a4f56be506f6f87b308c646c84d79c665c8c1b73988e24806492b49",
+          "public/preview/0.7.5/vf-ui/native-labels/vf-native-curve-renderer.mjs": "8e981fad891e7a6a8bb6d56a0ee1b1b4b914f9b327a5fc03bb6bde9d25427122"
+        },
+        "diff": "Ordinary required native label layer explicitly selects existing physical curve backend. Its missing setNativeColor API now preserves required prior NATIVE_ACCURACY_STYLE_PROFILE_UNQUALIFIED refusal; no coloracceptance/no-op/TypeError. No shader/physicalgeometry/quality/population/budget change.",
+        "adoption": "Actual alone fetches local branch and cherry-picks BOTH commits in order into own current checkout after nonoverlap check; earlier c673 alone is incomplete APIcompatibility. Source never edits peerroot.",
+        "qualification": "UNBUILT_UNRUN: source-only routing repair; required10000/platform/full075 stillunqualified. Existing shader exact residual/interval path must actually complete and satisfy originalsemantic/quality controls.",
+        "failurePreserved": "Original current NATIVE_SAMPLE_NODE_BUDGET stillFAIL; no changedcandidatePASS from oldcontrol/outerexit0.",
+        "originalStart": 266639.834450187,
+        "operationStop": 269639.834450187,
+        "observedMonotonic": 266990.730895253,
+        "commitsInOrder": [
+          "c67338cfcd4403565ad45e82798cd87d4e070323",
+          "77f2d7102f0bf3805eb81636ef264c38f501cbf0"
+        ],
+        "reviewResponse": "Read reviewer1616 PUBLIC routeReview asdata; missing setNativeColor finding handled by secondcommit, independentlyunverified/unrun."
+      },
+      "localHead": "9f89c42568d669aa7ba9f9b757a38fc5c009f14b",
+      "sourceOnly": false,
+      "countsRequired": {
+        "labels": 10000,
+        "formulas": 200,
+        "glyphs": 34100,
+        "rules": 1000,
+        "outlines": 35100
+      },
+      "originalOrderAndPhysicalBindingOracle": true,
+      "sampleUnknownMustBeZero": true,
+      "previousNodeBudgetFailurePreserved": "NATIVE-ALL-KINDS-RESULT.json",
+      "observedMonotonic": 267258.251368432,
+      "phase": {
+        "phase": "ALL_ORIGINAL_NATIVE_SOURCE_CENSUS",
+        "labels": 1,
+        "distinctSources": 1,
+        "glyphInstances": 4,
+        "ruleInstances": 0,
+        "outlines": 4,
+        "originalSourceOrder": true,
+        "physicalBinding": true,
+        "AA16": true
+      },
+      "ownedBrowserClosure": {
+        "status": "OWN_NATIVE_ROUTE_BROWSER_RESOURCES_JOINED",
+        "processes": [
+          {
+            "pid": 2383342,
+            "alreadyAbsent": true
+          },
+          {
+            "pid": 2383369,
+            "alreadyAbsent": true
+          },
+          {
+            "pid": 2383371,
+            "alreadyAbsent": true
+          },
+          {
+            "pid": 2383383,
+            "alreadyAbsent": true
+          },
+          {
+            "pid": 2383413,
+            "alreadyAbsent": true
+          },
+          {
+            "pid": 2383439,
+            "alreadyAbsent": true
+          }
+        ],
+        "noUnrelatedSignals": true,
+        "observedMonotonic": 267558.659880231
+      },
+      "result": "NATIVE-REQUIRED-ROUTE-RESULT.json",
+      "completedNativeOutput": false,
+      "full10000Qualified": false,
+      "observedDriverRSSBytes": 8530288640,
+      "diagnosis": "Required first one-label source census succeeded; no inner completed frame before bounded220souterguard. Observed physical Chrome GPUprocess busy~206CPU seconds/RSS8.53GB during cold initialization. Full10000phase not reached. This is unresolved initialization/output evidence, not a new latency gate or full10000 numerical failure. Original NodeBudget failure retained separately.",
+      "unpublishedAttemptBranch": "e1615/native10000-required-attempt",
+      "unpublishedAttemptHead": "9f89c42568d669aa7ba9f9b757a38fc5c009f14b",
+      "restoredPublishedCheckout": "698cdca627518096bdd07880f5236beb76a85dd4",
+      "publishedNativeRoutePromoted": false,
+      "exactPhaseNote": "Source census ran in setNativeScene after renderer.initialize completed. Blocking work is in required setNativeScene/render/certificate/refinement path, not proven to be the initial renderer shader. GPUprocess CPU/RSS suggests compilation work; exact phase not yetinstrumented. No unchanged rerun.",
+      "existingNextDiagnostic": "Current native-label-layer -> vf-shared-area-renderer curve route -> vf-native-curve-renderer submit/render/prepareCertificates and lazy exact program() link. Source-only or nextactual instrument existing compile/link/refinement boundaries, preserve firstguard outcome."
+    },
+    "freshNativeComponent": {
+      "nativeRun": "Fresh e1615 native-current-output with own input/outputpaths",
+      "producerSha256": "8a0f9a004f9732ed97118d0325f04001c8b552744589c78aa1dbdf76875bb670",
+      "producerSourceComponent": "8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab",
+      "originalGenuineBuild": "/mnt/development/VektorFlow-e1550-20261029/current-label-build-result.json",
+      "scope": "Exact existing unchanged native typography component8b1744 executed afresh; NOT a newly-built bb400/3a6 fullnative compiler or fullrelease qualification"
+    },
+    "newRoutePublished": false,
+    "required10000Complete": false,
+    "fullNativeQualified": false,
+    "scope": "One-label old requiredcontrol had54nonblankpixels; full10000oldroute fails nodebudget. New reviewedroute preserves allnativeinputs/count/order/AA16 but one-label currentattempt did not reach completedframe within admitted220s. No full10000newroute output or accuracy credit; cold/setupbudget observation is not a speed gate."
+  },
+  "normalGPUCompiler": {
+    "currentControl": {
+      "sourceCommit": "ea1b9aca877136feff230519a4c34765fe2d6421",
+      "sourceParent": "8bcb0fceae4fa1962561a9084faf032d9b212225",
+      "nativeFrontendSource": "efa5f55; unchanged frontend transaction b93f9a51",
+      "shaderSha256": "2d38c7d27c5743825d3d668258a923dd83e40607f5d50f000cbba9f007f63b65",
+      "driverSha256": "7a5ba869f5487956315cefce4caff8a06d7c47f32502e3468dfe12e74538b5c5",
+      "result": {
+        "status": "PASS_NORMAL_REAL_F32_INDEXED_ARRAY_STORAGE_CONTROL",
+        "sourceCommit": "ea1b9aca877136feff230519a4c34765fe2d6421",
+        "fullWorldComplete": false,
+        "scope": "Maintained normal typed-IR F32 four-binding numeric-array control, declared errors-buffer scratch allocation; no custom shader or fullworld claim",
+        "pageErrors": [],
+        "result": {
+          "status": "PASS_NORMAL_REAL_F32_INDEXED_ARRAY_STORAGE_CONTROL",
+          "adapter": {
+            "vendor": "nvidia",
+            "architecture": "pascal",
+            "isFallbackAdapter": false
+          },
+          "requirements": {
+            "resultElements": 13,
+            "errorElements": 4098,
+            "summaryOffset": 4,
+            "wordsPerInvocation": 4096
+          },
+          "shortScratchRefusedBeforeDispatch": true,
+          "rows": [
+            {
+              "params": [
+                5,
+                1,
+                0
+              ],
+              "output": [
+                1,
+                5,
+                1,
+                2,
+                2,
+                6,
+                7,
+                4,
+                5,
+                15,
+                6,
+                8,
+                7
+              ],
+              "error": 0,
+              "summary": 0,
+              "completion": "actual WebGPU queue completed and copied/mapAsync output"
+            },
+            {
+              "params": [
+                5,
+                0,
+                0
+              ],
+              "output": [
+                1,
+                2,
+                1,
+                2,
+                2,
+                3,
+                4,
+                4,
+                5,
+                15,
+                6,
+                8,
+                7
+              ],
+              "error": 0,
+              "summary": 0,
+              "completion": "actual WebGPU queue completed and copied/mapAsync output"
+            },
+            {
+              "params": [
+                5,
+                1,
+                1
+              ],
+              "output": [
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN",
+                "NaN"
+              ],
+              "error": 1,
+              "summary": 1,
+              "completion": "actual WebGPU queue completed and copied/mapAsync output"
+            }
+          ],
+          "gpuErrors": [],
+          "deviceLost": false,
+          "fullWorldComplete": false
+        },
+        "browserClosed": true,
+        "serverClosed": true,
+        "children": [
+          {
+            "pid": 2386606,
+            "command": "/opt/google/chrome/chrome"
+          }
+        ]
+      },
+      "fullWorldComplete": false,
+      "observedMonotonic": 267616.436868791
+    },
+    "runtimeCommit": "cc836c416c620bc937ed0b944609bbd7c92da297",
+    "nativeFiniteControl": {
+      "status": "PASS_SAME_FRONTEND_NATIVE_FINITE_CONSTANT_CONTROL",
+      "stdout": "[1, 5, 1, 2, 2, 6, 7, 4, 5, 15, 6, 8, 7]\n",
+      "stderr": "",
+      "output": [
+        1,
+        5,
+        1,
+        2,
+        2,
+        6,
+        7,
+        4,
+        5,
+        15,
+        6,
+        8,
+        7
+      ],
+      "binarySha256": "b5b0bc1edce674cdbbb5237ee814d497f9b6bf76dffac682c0b64dcba7493f2a",
+      "scope": "Same efa5f55 frontend/native artifact for unchangedcontrol; no changednativeVulkan/world/complete targetparity qualification"
+    },
+    "sameCombined": {
+      "name": "combined-current-project-libraries",
+      "argv": [
+        "/mnt/development/VektorFlow-e1615-20261030/gpu-native/vkf-native-0.7.5",
+        "-b",
+        "/mnt/development/VektorFlow-e1615-20261030/gpu-stage/combined-current-project-libraries.vkf",
+        "-o",
+        "/mnt/development/VektorFlow-e1615-20261030/gpu-output/combined-current-project-libraries.native",
+        "--diagnostics",
+        "--optimizer-policy",
+        "scalar",
+        "--emit-vulkan-field",
+        "/mnt/development/VektorFlow-e1615-20261030/gpu-output/combined.comp",
+        "--vulkan-field-entry",
+        "run",
+        "--vulkan-field-runtime-inputs"
+      ],
+      "exit": 1,
+      "elapsedSeconds": 22.022802303021308,
+      "sourceSha256": "09754dc632ae4d04ddd5e4922869afca942c6c47b0ff478859208290db3d2840",
+      "stderr": "<driver-smoke>:1:1: missing parameter tolerance\n",
+      "emittedWgsl": false,
+      "physicalGpu": false
+    },
+    "publishedBrowserCompilerChanged": false,
+    "scope": "Maintained separate F32field route/control only; exactscratch allocation and bindings validated, typedIRunchanged. Combined09754dc+cdd14e0 frontend rejects missingparameter tolerance beforeGPUlowering. Fullworld/nativeVulkan/currentphysics transaction notqualified."
+  },
+  "local48": {
+    "readiness": {
+      "plan": {
+        "path": "/mnt/development/VektorFlow-e1201-20261026/config/peer48-corpus.json",
+        "bytes": 446248,
+        "sha256": "363b4ebed2972c4a285a754b43eace4437591ff01bc153103ad154c388a39b4a"
+      },
+      "prepared": {
+        "path": "/mnt/development/VektorFlow-e1201-20261026/config/peer48-jobs.prepared.json",
+        "bytes": 215251,
+        "sha256": "6708fbc72a3e8f928187445d14642e8b22152cf528e1c637b5eec7382f7fbdd5"
+      },
+      "rows": 48,
+      "jobs": 120,
+      "matchedPreflight": "CURRENT_UNRUN",
+      "parity": "CURRENT_UNRUN",
+      "comparativeTimingEligible": false,
+      "blockers": [
+        "Exact current sixcomponentnative/NodeWASM target selection and closure not freshly bound",
+        "SymEngine0.15 compiled library/generatedheaders/adapter receipt missing; downloadedarchives not installedproof",
+        "Julia1.12.6/Symbolics7.31 installed project/depot receipt missing",
+        "Otherpeer identities and all48preflight/24parity not currentverified"
+      ],
+      "timingSamplesCredited": 0
+    },
+    "prerequisiteRepair": {
+      "status": "SYMENGINE015_ACTUAL_LIBRARY_BUILT_CURRENT_IDENTITY",
+      "sourceCommit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d",
+      "originalInputHeadersVerified": {
+        "symengine": 175,
+        "boost": 15793
+      },
+      "configureArgv": [
+        "cmake",
+        "-S",
+        "/mnt/development/VektorFlow-e1615-20261030/peers/symengine",
+        "-B",
+        "/mnt/development/VektorFlow-e1615-20261030/peers/symengine-build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DINTEGER_CLASS=boostmp",
+        "-DBUILD_TESTS=OFF",
+        "-DBUILD_BENCHMARKS=OFF",
+        "-DBoost_DIR=/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/symbolic-comparison/cmake",
+        "-DBOOST_ROOT=/mnt/development/VektorFlow-e1615-20261030/peers/boost_1_86_0"
+      ],
+      "toolVersions": {
+        "cmake": {
+          "path": "/usr/bin/cmake",
+          "stdout": "cmake version 4.2.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n",
+          "stderr": ""
+        },
+        "ninja": {
+          "path": "/usr/bin/ninja",
+          "stdout": "1.13.2\n",
+          "stderr": ""
+        },
+        "c++": {
+          "path": "/usr/bin/c++",
+          "stdout": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+          "stderr": ""
+        },
+        "gcc": {
+          "path": "/usr/bin/gcc",
+          "stdout": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+          "stderr": ""
+        }
+      },
+      "originalLibrarySha256": "3ed74ec890cac19a520f979b1cee41f8d9f36e6c79d6cf1d8c9dc6b4f6fbcabc",
+      "originalLibraryCompilerProvenance": "unrecovered; current toolchain disclosed, no byte-equivalence claim",
+      "changedDependencyIdentityRequired": true,
+      "preflightParity": "CURRENT_UNRUN",
+      "comparativeTimingEligible": false,
+      "observedMonotonic": 267169.955325979,
+      "library": {
+        "path": "/mnt/development/VektorFlow-e1615-20261030/peers/symengine-build/symengine/libsymengine.a",
+        "bytes": 21559684,
+        "sha256": "8dd89418c7a1412a968cd6f28c545ac857f5ac294cb2d3bf23f2fe6c5ce30288"
+      },
+      "originalBinaryBytesMatched": false,
+      "buildElapsedSeconds": 308.1489191389992,
+      "generatedHeaders": [
+        {
+          "path": "/mnt/development/VektorFlow-e1615-20261030/peers/symengine-build/symengine/symengine_export.h",
+          "bytes": 1036,
+          "sha256": "f5f45b07106a001be0e3757fca3eb395bf4fa9f03ea92089e4bbe32ef44a54ad"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1615-20261030/peers/symengine-build/symengine/symengine_config.h",
+          "bytes": 3020,
+          "sha256": "60487da68d3ba654ded9232b9a40c5564ee0839a0f95453e13bf8ff7115fb880"
+        },
+        {
+          "path": "/mnt/development/VektorFlow-e1615-20261030/peers/symengine-build/symengine/symengine_config_cling.h",
+          "bytes": 434,
+          "sha256": "e2f4e913d8ef0b8f5228e036736fc57e7ee954b25d3dbca66b4c9f7f7753629e"
+        }
+      ]
+    },
+    "currentMatchedPreflight": "UNRUN",
+    "currentNativeWasmParity": "UNRUN",
+    "comparativeTimingEligible": false,
+    "timingSamplesCredited": 0,
+    "remaining": [
+      "Fresh sixcomponent selection/compatibility closure missing",
+      "SymEngine library rebuilt with disclosednewhash; actual originalrunner/expandedadapter and freshmatchedoutputs still missing",
+      "Julia1.12.6/Symbolics7.31 installedenvironment and otherconfiguredpeer/tool receipts unverified/missing",
+      "All48preflight/24parity unrun; no ratios or fabricated rows"
+    ]
+  },
+  "timingPolicy": "Informational; retired400ms/10ms/20x thresholds and full48x10 completion do not gate publication.",
+  "remainingLimits": [
+    "native10000 currentcomplete output unqualified",
+    "fullnative/platform unqualified",
+    "full authored GPU physics/Morphing world incomplete"
+  ],
+  "observedMonotonic": 267798.493345773
+}

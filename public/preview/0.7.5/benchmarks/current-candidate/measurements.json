@@ -82,5 +82,87 @@
     "rawResultBytes": 4444,
     "rawResultSha256": "9e8a682d9cc963b7d37eaaa311beb9e4d1172d2c5a98cc610e99a6cd46b95cae",
     "performanceGainClaimed": false
+  },
+  "privateCandidate": {
+    "scope": "Private unreleased 26a candidate; no asset publication or qualified release",
+    "sourceBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+    "artifactSha256": {
+      "compiler.mjs": "f6823eca7fc7e541ba0e2d5190429f842729abb993e1d45d45f1c9d49a8b416a",
+      "compiler.wasm": "7df1578bf760afd9dc7c8f63450c8113ca47586f17e41582eddce77e98ac1cb5",
+      "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+    },
+    "releaseQualified": false,
+    "units": "ms",
+    "observationsPerCase": 1,
+    "speedGainClaimed": false,
+    "timingBoundary": "Ordinary1025-point request through compilation/evaluation/bridge/full798x326Canvas2D getImageData raster; navigationexcluded/nohiddenprewarm; cold/repeat/realedit separate",
+    "cases": [
+      {
+        "name": "unprimed",
+        "requestToCompleteRasterMs": 1412.7349999845028,
+        "compileMs": 825.5649999976158,
+        "meets400ms": false
+      },
+      {
+        "name": "initialized-repeat",
+        "requestToCompleteRasterMs": 210.12000000476837,
+        "compileMs": 61.72000002861023,
+        "meets400ms": true
+      },
+      {
+        "name": "real-source-edit",
+        "requestToCompleteRasterMs": 738.2400000095367,
+        "compileMs": 587.7899999916553,
+        "meets400ms": false
+      }
+    ],
+    "coldAndRealEditMeet400ms": false,
+    "finiteCorrectnessRepair": {
+      "rows": 262144,
+      "indexedUpdates": 2,
+      "beforeStdout": "[0, 0, 0]\n[0, 0, 0]\n",
+      "afterStdout": "[1, 2, 3]\n[2, 3, 4]\n",
+      "aliasGenerationsPreserved": true,
+      "genuineNodeOtherCasesPassed": 6,
+      "correctedDiagnosticBoundsCases": [
+        {
+          "name": "checked-negative",
+          "status": 4,
+          "mask": 545
+        },
+        {
+          "name": "checked-fractional",
+          "status": 4,
+          "mask": 545
+        },
+        {
+          "name": "checked-upper-bound",
+          "status": 4,
+          "mask": 545
+        }
+      ]
+    },
+    "exact5M": {
+      "status": "TRAP_BEFORE_PACKET",
+      "firstOuterSeconds": 32.74632,
+      "packetProduced": false,
+      "populationCensusVerified": false,
+      "renderVerified": false,
+      "gpuUpdateQualified": false,
+      "failureCause": "Unresolved; source counter reached5000000, no checked error mask; heap/allocator cause not established by counter alone"
+    },
+    "native10K": {
+      "status": "NATIVE_SAMPLE_NODE_BUDGET",
+      "newNodes": 1999905,
+      "limit": 2000000,
+      "remainingNodes": 95,
+      "instances": 626,
+      "sampleBuilds": 373,
+      "componentMatchesSite": false,
+      "completeUpdateUnder10msQualified": false
+    },
+    "rawResultFile": "e1587-private-26a-observations.json",
+    "rawResultSha256": "8632877213a4fcaac5a6e0a8246d025e9f7b45b942433c3cb2491ccb8d1b0516",
+    "benchmarkComparisons": "All48rowsUNRUN;360ratio dashesunchanged"
   }
 }

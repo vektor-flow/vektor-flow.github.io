@@ -1,0 +1,5039 @@
+{
+  "schema": 1,
+  "scope": "Private unreleased compiler candidate observations only; no stable qualification or comparative benchmark result",
+  "worker": "e1587",
+  "sourceBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+  "artifactSha256": {
+    "compiler.mjs": "f6823eca7fc7e541ba0e2d5190429f842729abb993e1d45d45f1c9d49a8b416a",
+    "compiler.wasm": "7df1578bf760afd9dc7c8f63450c8113ca47586f17e41582eddce77e98ac1cb5",
+    "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+  },
+  "releaseQualified": false,
+  "exact5MQualified": false,
+  "native10KQualified": false,
+  "local48": "UNRUN; all360ratio cells remain dashes",
+  "failureDisclosure": "Initial single-flag candidate b94 returned zeros and is preserved. Initial alias harness failed before evaluation. Initial three bounds controls used the plain invoke export and trapped; corrected manifest diagnostic export returned status4/mask545. Six other genuine Node cases passed. No aggregate PASS is inferred from the initial FAIL report.",
+  "sourceFilePins": {
+    "BEFORE-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "bytes": 9331,
+      "sha256": "48252e6a34956a96df57cda5303e8cf70de5686a2e793dae9b570180d1fb9347"
+    },
+    "AFTER-FLAG-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "bytes": 9343,
+      "sha256": "c1c46eacd865e3dbf1a56d689c2d94f0412254991c740c4a6815546e3ae3cd8d"
+    },
+    "COHERENT-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "bytes": 9340,
+      "sha256": "a969fde9f01621d338aa2221e92c9d59a40c3758e224bbd372ec7c7ed6d2e4a5"
+    },
+    "RETAINED-ALIAS-CONTROL-RESULT.json": {
+      "bytes": 9686,
+      "sha256": "b53098b1852387845717874948559c7f8c746c77261ceb519a814a405e4889ed"
+    },
+    "RETAINED-ALIAS-FIRST-HARNESS-FAILURE.json": {
+      "bytes": 1298,
+      "sha256": "69fa855aefcbd6265323e519c4a4503bc9b859fc0fff50a84007e8bac6f90c03"
+    },
+    "COHERENT-NODE-CONTROLS-RESULT.json": {
+      "bytes": 67018,
+      "sha256": "433868fe7fa2d734c0a61d8c6d04ed9591632f281f9240f2ad956806815ed6d1"
+    },
+    "COHERENT-DIAGNOSTIC-CONTROLS-RESULT.json": {
+      "bytes": 12286,
+      "sha256": "4b0a1524918852b38e5483df7a0c92bbc99102062ca81be4af222ab0834beb29"
+    },
+    "COHERENT-CURRENT-SMALL-SIN-RESULT.json": {
+      "bytes": 21800,
+      "sha256": "035e3804153eeb1e3749d5bd05443cd4d4c4ad2c89eabd9b99d659557100d133"
+    },
+    "COHERENT-EXACT-5M-TRAP-RESULT.json": {
+      "bytes": 4606,
+      "sha256": "b2dfbb3262bfc5eb30a67e4bb7dcc70ae9fb3d0ead6c249f9bca95a537fd6e2c"
+    },
+    "COHERENT-EXACT-5M-FAILURE-STATE-RESULT.json": {
+      "bytes": 5477,
+      "sha256": "1ac231f74486a0d243705d5c75e25fe95d6754c84428a68e56c6cc2cb9371bc4"
+    },
+    "COHERENT-5M-FAILURE-STATE.json": {
+      "bytes": 1335,
+      "sha256": "826a79775bc064c4fa65af0603aaba2686959072c2d7ae16f69a815a2785f331"
+    },
+    "NATIVE-10K-CONTEXT-RESULT.json": {
+      "bytes": 7127,
+      "sha256": "dc9de6499c4c3653deb57b2860d1c7c202362032b55690a55525201726f28ed6"
+    },
+    "NATIVE-10K-ACCUMULATED-WORK-CAUSE.json": {
+      "bytes": 4634,
+      "sha256": "e779b349843bdf2ffe1fd1db4d750d733b7fe6375365d457704802474d608314"
+    }
+  },
+  "records": {
+    "BEFORE-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "status": "CURRENT_EXACT_5M_COMPLETE",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 240987.711702596,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "result": {
+        "source": "viewport:.ui.viewport\npoints:[[0.0:3]:262144]\ni:0\ni<2?>\n    points.(i):[i+1,i+2,i+3]\n    .i:i+1\n::points.(0)\n::points.(1)\nviewport.show()\n",
+        "stdout": "[0, 0, 0]\n[0, 0, 0]\n",
+        "expected": "[1, 2, 3]\n[2, 3, 4]\n",
+        "correct": false,
+        "requestToPacketMs": 1714.6500000059605,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 63540344,
+            "packetJSONChars": 2,
+            "allocateMs": 0.20500001311302185,
+            "heapCopyMs": 29.180000007152557,
+            "stdoutMs": 1.3400000035762787,
+            "retainedFormatMs": 4.7249999940395355,
+            "packetReadMs": 0.03999999165534973,
+            "jsonParseMs": 0.009999990463256836,
+            "arenaReconstructionMs": 0.11000001430511475
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.145,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 833.490001,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 24.894999,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 13.505,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.315,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 17.415,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.57,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 2.425001,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 27610,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 75190,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 18,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 9,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 180575,
+                  "typed_functions": 1,
+                  "wasm_bytes": 75190
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1.020001,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.179999,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 21.715,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 30.065,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 7.115,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 390.225,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 181.67,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 16.475,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.02,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 3.655,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.71,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 16.04,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 24.52,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 46.135,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 13.265,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 5.105,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 69.66,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 895.7649999856949,
+            "transportReadMs": 0.49000000953674316,
+            "jsParseMs": 0.25,
+            "wasmCopyMs": 0.0949999988079071,
+            "profileReadMs": 2.794999986886978,
+            "typedIRChars": 27610,
+            "manifestChars": 2374,
+            "guestWasmBytes": 75190
+          },
+          "compileMs": 899.5150000154972,
+          "executeMs": 540.9299999773502,
+          "formatMs": 35.61500000953674
+        },
+        "binding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b"
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2117171,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "AFTER-FLAG-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "status": "DEFERRED_CAUSAL_CONTROL_OBSERVED",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 241526.441293287,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "result": {
+        "source": "viewport:.ui.viewport\npoints:[[0.0:3]:262144]\ni:0\ni<2?>\n    points.(i):[i+1,i+2,i+3]\n    .i:i+1\n::points.(0)\n::points.(1)\nviewport.show()\n",
+        "stdout": "[0, 0, 0]\n[0, 0, 0]\n",
+        "expected": "[1, 2, 3]\n[2, 3, 4]\n",
+        "correct": false,
+        "requestToPacketMs": 1672.6500000059605,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 63540344,
+            "packetJSONChars": 2,
+            "allocateMs": 0.26999998092651367,
+            "heapCopyMs": 29.62000000476837,
+            "stdoutMs": 1.3199999928474426,
+            "retainedFormatMs": 4.83500000834465,
+            "packetReadMs": 0.034999996423721313,
+            "jsonParseMs": 0.009999990463256836,
+            "arenaReconstructionMs": 0.10500001907348633
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.149999,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 822.315,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 24.950001,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 13.82,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.25,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 17.944999,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.680001,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 2.42,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 27610,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 75190,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 18,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 9,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 180575,
+                  "typed_functions": 1,
+                  "wasm_bytes": 75190
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.175,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 22.03,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 29.83,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 6.435,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 377.44,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 183.459999,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 15.510001,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.024999,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 3.715,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.725001,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 16.355,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 24.71,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 48.09,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 13.505,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 5.209999,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 68.22,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 885.5550000071526,
+            "transportReadMs": 0.5,
+            "jsParseMs": 0.25999999046325684,
+            "wasmCopyMs": 0.09999999403953552,
+            "profileReadMs": 2.8550000190734863,
+            "typedIRChars": 27610,
+            "manifestChars": 2374,
+            "guestWasmBytes": 75190
+          },
+          "compileMs": 889.3900000154972,
+          "executeMs": 538.3599999845028,
+          "formatMs": 36.21000000834465
+        },
+        "binding": "b94d1a663a4b899fceeb8cbe57b97588e3428d3532202c5faab396cbbc91f552"
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2120813,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "COHERENT-RETAINED-DEFERRED-STDOUT-RESULT.json": {
+      "status": "DEFERRED_CAUSAL_CONTROL_OBSERVED",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242342.63996547,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "result": {
+        "source": "viewport:.ui.viewport\npoints:[[0.0:3]:262144]\ni:0\ni<2?>\n    points.(i):[i+1,i+2,i+3]\n    .i:i+1\n::points.(0)\n::points.(1)\nviewport.show()\n",
+        "stdout": "[1, 2, 3]\n[2, 3, 4]\n",
+        "expected": "[1, 2, 3]\n[2, 3, 4]\n",
+        "correct": true,
+        "requestToPacketMs": 1565.875,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 63541176,
+            "packetJSONChars": 2,
+            "allocateMs": 0.39500001072883606,
+            "heapCopyMs": 29.709999978542328,
+            "stdoutMs": 1.3149999976158142,
+            "retainedFormatMs": 4.830000013113022,
+            "packetReadMs": 0.03999999165534973,
+            "jsonParseMs": 0.004999995231628418,
+            "arenaReconstructionMs": 0.11000001430511475
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.14,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 850.31,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 26.03,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 14.63,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.22,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 16.86,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 1.674999,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 2.535001,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 29810,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 79474,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 18,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 11,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 191343,
+                  "typed_functions": 1,
+                  "wasm_bytes": 79474
+                },
+                "stages": [
+                  {
+                    "milliseconds": 0.995001,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.15,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 21.57,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 33.219999,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 6.255001,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 384.225,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 187.894999,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 16.790001,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.02,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 3.909999,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 1.795001,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 17.23,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 29.405,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 50.515,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 14.12,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 5.705,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 71.699999,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 914.4650000035763,
+            "transportReadMs": 0.625,
+            "jsParseMs": 0.25999999046325684,
+            "wasmCopyMs": 0.09999999403953552,
+            "profileReadMs": 2.9950000047683716,
+            "typedIRChars": 29810,
+            "manifestChars": 2374,
+            "guestWasmBytes": 79474
+          },
+          "compileMs": 918.5550000071526,
+          "executeMs": 354.4200000166893,
+          "formatMs": 36.41999998688698
+        },
+        "binding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225"
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2125954,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "RETAINED-ALIAS-CONTROL-RESULT.json": {
+      "status": "DEFERRED_CAUSAL_CONTROL_OBSERVED",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242380.22981491,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "result": {
+        "source": "viewport:.ui.viewport\npoints:[[0.0:3]:262144]\nold:points\npoints.(0):[1,2,3]\nfirst:points\ni:1\ni<3?>\n    points.(i):[i+1,i+2,i+3]\n    .i:i+1\n::points.(0)\n::points.(1)\n::points.(2)\n::points.(262143)\n::old.(0)\n::old.(1)\n::first.(0)\n::first.(1)\n::first.(2)\nviewport.show()\n",
+        "stdout": "[1, 2, 3]\n[2, 3, 4]\n[3, 4, 5]\n[0, 0, 0]\n[0, 0, 0]\n[0, 0, 0]\n[1, 2, 3]\n[0, 0, 0]\n[0, 0, 0]\n",
+        "expected": "[1, 2, 3]\n[2, 3, 4]\n[3, 4, 5]\n[0, 0, 0]\n[0, 0, 0]\n[0, 0, 0]\n[1, 2, 3]\n[0, 0, 0]\n[0, 0, 0]\n",
+        "correct": true,
+        "requestToPacketMs": 2202.5349999964237,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 67757056,
+            "packetJSONChars": 2,
+            "allocateMs": 0.3149999976158142,
+            "heapCopyMs": 31.955000013113022,
+            "stdoutMs": 1.4399999976158142,
+            "retainedFormatMs": 4.969999998807907,
+            "packetReadMs": 0.034999996423721313,
+            "jsonParseMs": 0.009999990463256836,
+            "arenaReconstructionMs": 0.11500000953674316
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.144999,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 1448.855001,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 52.23,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 32.129999,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 1.210001,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 36.014999,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 3.345,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 4.655,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 68989,
+              "browser_manifest_json_bytes": 2381,
+              "browser_wasm_bytes": 156487,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 18,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 28,
+                  "frontend_compile_calls": 1,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 384555,
+                  "typed_functions": 1,
+                  "wasm_bytes": 156487
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1.025,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.295001,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 38.984999,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 43.855001,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 8.404999,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 577.765,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 357.345,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 33.895001,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.019999,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 7.755,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 6.130001,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 41.359999,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 45.455001,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 94.519999,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 26.350001,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 9.419999,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 150.895001,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 1580,
+            "transportReadMs": 1.2350000143051147,
+            "jsParseMs": 0.35999998450279236,
+            "wasmCopyMs": 0.13500002026557922,
+            "profileReadMs": 2.8299999833106995,
+            "typedIRChars": 68989,
+            "manifestChars": 2381,
+            "guestWasmBytes": 156487
+          },
+          "compileMs": 1584.6899999976158,
+          "executeMs": 349.59999999403954,
+          "formatMs": 38.854999989271164
+        },
+        "binding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225"
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2126515,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "RETAINED-ALIAS-FIRST-HARNESS-FAILURE.json": {
+      "status": "FAIL_DEFERRED_CAUSAL_CONTROL",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242358.555312282,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "error": "ReferenceError: source is not defined\n    at file:///mnt/development/VektorFlow-e1587-20261030/current-retained-alias.mjs:20:122",
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2126218,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "COHERENT-NODE-CONTROLS-RESULT.json": {
+      "status": "FAIL_FINITE_GENUINE_NODE_CONTROLS",
+      "binding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+      "rows": [
+        {
+          "name": "unchanged-small-repeat",
+          "status": 0,
+          "stdout": "[[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6]]\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 9,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 23,
+                "count": 233,
+                "arraySets": [
+                  {
+                    "index": 211,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 201,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 205,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 1,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 8
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "forwarded-other-alias",
+          "status": 0,
+          "stdout": "[1, 2, 3]\n[0, 0, 0]\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 10,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 27,
+                "count": 231,
+                "arraySets": [
+                  {
+                    "index": 198,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 188,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 192,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 9,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 22,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 3,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 10
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "tensor-rank2-replacement-effects",
+          "status": 0,
+          "stdout": "index\nvalue\n[9, 9, 9]\n33\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 19,
+            "functions": [
+              {
+                "name": "mark",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 3,
+                "count": 9,
+                "arraySets": [],
+                "checkedGets": 0
+              },
+              {
+                "name": "row",
+                "parameters": 1,
+                "resultType": 5,
+                "locals": 8,
+                "count": 88,
+                "arraySets": [
+                  {
+                    "index": 72,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 79,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 65,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 0
+              },
+              {
+                "name": "__vkf_nominal_value_3",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 2,
+                "count": 4,
+                "arraySets": [],
+                "checkedGets": 0
+              },
+              {
+                "name": "run",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 69,
+                "count": 601,
+                "arraySets": [
+                  {
+                    "index": 65,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 72,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 8,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 58,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 144,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 151,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 11,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 137,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 326,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 316,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 320,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 15,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 9,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 17,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 34,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 15,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 16,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 34,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 34,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 34,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 18,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 15,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 15,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 20
+              },
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 1,
+                "count": 14,
+                "arraySets": [],
+                "checkedGets": 0
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "tensor-rank2-replacement-shape-recovery",
+          "status": 0,
+          "stdout": "shape\n12\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 39,
+            "functions": [
+              {
+                "name": "__vkf_structural_2",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 28,
+                "count": 240,
+                "arraySets": [
+                  {
+                    "index": 69,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 76,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 62,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 231,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 221,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 225,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 10,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 27,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 27,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 27,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 27,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 8
+              },
+              {
+                "name": "__vkf_nominal_value_8",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 2,
+                "count": 4,
+                "arraySets": [],
+                "checkedGets": 0
+              },
+              {
+                "name": "run",
+                "parameters": 3,
+                "resultType": 1,
+                "locals": 55,
+                "count": 417,
+                "arraySets": [
+                  {
+                    "index": 65,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 72,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 9,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 58,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 144,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 151,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 12,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 137,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 6
+              },
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 7,
+                "count": 58,
+                "arraySets": [],
+                "checkedGets": 0
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "tensor-row-alias-after-materialization",
+          "status": 0,
+          "stdout": "[1, 7, 3]\n[1, 2, 3]\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 10,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 42,
+                "count": 363,
+                "arraySets": [
+                  {
+                    "index": 192,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 182,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 186,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 19,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 1,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 19,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 19,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 19,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 329,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 36,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 293,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 31,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 24,
+                        "type": 5,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 26,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 24,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 25,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 23,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 26,
+                        "type": 5,
+                        "first": 0,
+                        "second": 1
+                      },
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 335,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 26,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 24,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 25,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 23,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 26,
+                        "type": 5,
+                        "first": 0,
+                        "second": 1
+                      },
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 107,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 38,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 26,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 17
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "tensor-index-rhs-error-order",
+          "status": 0,
+          "stdout": "index\nvalue\ncaught\n12\n",
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 40,
+            "functions": [
+              {
+                "name": "mark",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 3,
+                "count": 9,
+                "arraySets": [],
+                "checkedGets": 0
+              },
+              {
+                "name": "row",
+                "parameters": 1,
+                "resultType": 5,
+                "locals": 8,
+                "count": 88,
+                "arraySets": [
+                  {
+                    "index": 72,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 79,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 65,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 0
+              },
+              {
+                "name": "__vkf_nominal_value_3",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 2,
+                "count": 4,
+                "arraySets": [],
+                "checkedGets": 0
+              },
+              {
+                "name": "run",
+                "parameters": 2,
+                "resultType": 1,
+                "locals": 77,
+                "count": 719,
+                "arraySets": [
+                  {
+                    "index": 65,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 72,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 8,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 6,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 58,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 144,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 60,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 2,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 15,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 151,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 11,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 11,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 7,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 137,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      }
+                    ]
+                  },
+                  {
+                    "index": 409,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 1,
+                    "before": [
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 16,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 9,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 15,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 17,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 16,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 430,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 23,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 40,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 15,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 22,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 40,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 108,
+                        "type": 3,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 417,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 109,
+                        "type": 1,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 16,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 110,
+                        "type": 2,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 2,
+                        "first": 17,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 430,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 11
+              },
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 7,
+                "count": 57,
+                "arraySets": [],
+                "checkedGets": 0
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "checked-negative",
+          "error": "RuntimeError: unreachable\n    at wasm://wasm/00030f1a:wasm-function[72]:0x8d70\n    at check (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:4:361)\n    at async checkCase (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:5:38)\n    at async file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:9:141",
+          "pass": false
+        },
+        {
+          "name": "checked-fractional",
+          "error": "RuntimeError: unreachable\n    at wasm://wasm/00030f7a:wasm-function[72]:0x8d70\n    at check (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:4:361)\n    at async checkCase (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:5:38)\n    at async file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:9:141",
+          "pass": false
+        },
+        {
+          "name": "checked-upper-bound",
+          "error": "RuntimeError: unreachable\n    at wasm://wasm/00030f1a:wasm-function[72]:0x8d70\n    at check (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:4:361)\n    at async checkCase (file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:5:38)\n    at async file:///mnt/development/VektorFlow-e1587-20261030/coherent-node-controls.mjs:9:141",
+          "pass": false
+        }
+      ],
+      "retainedMetadataOnly": true
+    },
+    "COHERENT-DIAGNOSTIC-CONTROLS-RESULT.json": {
+      "status": "PASS_DIAGNOSTIC_CONTROLS",
+      "binding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+      "rows": [
+        {
+          "name": "checked-negative",
+          "status": 4,
+          "mask": 545,
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 9,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 24,
+                "count": 234,
+                "arraySets": [
+                  {
+                    "index": 207,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 197,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 201,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 1,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 9
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "checked-fractional",
+          "status": 4,
+          "mask": 545,
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 10,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 24,
+                "count": 234,
+                "arraySets": [
+                  {
+                    "index": 207,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 197,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 201,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 9,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 1,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 9
+              }
+            ]
+          },
+          "guestExecuted": true
+        },
+        {
+          "name": "checked-upper-bound",
+          "status": 4,
+          "mask": 545,
+          "decoded": {
+            "metadataOnly": true,
+            "guestInvoked": false,
+            "version": 4,
+            "entry": 4294967295,
+            "constantCount": 9,
+            "functions": [
+              {
+                "name": "$vkf_main",
+                "parameters": 0,
+                "resultType": 5,
+                "locals": 24,
+                "count": 234,
+                "arraySets": [
+                  {
+                    "index": 207,
+                    "opcode": 26,
+                    "type": 5,
+                    "first": 0,
+                    "second": 0,
+                    "before": [
+                      {
+                        "opcode": 21,
+                        "type": 0,
+                        "first": 197,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 20,
+                        "type": 0,
+                        "first": 201,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 27,
+                        "type": 6,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 4,
+                        "first": 8,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 29,
+                        "type": 6,
+                        "first": 7,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 106,
+                        "type": 0,
+                        "first": 161,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 0,
+                        "type": 0,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 4,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 2,
+                        "first": 3,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      }
+                    ],
+                    "after": [
+                      {
+                        "opcode": 4,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 21,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 5,
+                        "first": 5,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 122,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 4,
+                        "type": 5,
+                        "first": 0,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 3,
+                        "type": 1,
+                        "first": 1,
+                        "second": 0
+                      },
+                      {
+                        "opcode": 1,
+                        "type": 2,
+                        "first": 4,
+                        "second": 0
+                      }
+                    ]
+                  }
+                ],
+                "checkedGets": 9
+              }
+            ]
+          },
+          "guestExecuted": true
+        }
+      ]
+    },
+    "COHERENT-CURRENT-SMALL-SIN-RESULT.json": {
+      "status": "CURRENT_SMALL_SIN_COMPLETE",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242507.383194633,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [],
+      "cases": [],
+      "result": {
+        "rows": [
+          {
+            "name": "unprimed",
+            "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+            "actualBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+            "requestToPacketMs": 1377.7049999833107,
+            "requestToCompleteRasterMs": 1412.7349999845028,
+            "timing": {
+              "formatProfile": {
+                "binaryRetained": true,
+                "usedBytes": 16846000,
+                "packetJSONChars": 978,
+                "allocateMs": 0.030000001192092896,
+                "heapCopyMs": 8.199999988079071,
+                "stdoutMs": 0.320000022649765,
+                "retainedFormatMs": 88.10499998927116,
+                "packetReadMs": 0.08000001311302185,
+                "jsonParseMs": 0.054999977350234985,
+                "arenaReconstructionMs": 0.2150000035762787
+              },
+              "compileProfile": {
+                "native": {
+                  "bridge_stages": [
+                    {
+                      "milliseconds": 0.14,
+                      "stage": "bridge-source-copy"
+                    },
+                    {
+                      "milliseconds": 754.41,
+                      "stage": "bridge-compiler-call"
+                    },
+                    {
+                      "milliseconds": 25.585,
+                      "stage": "bridge-response-json-parse"
+                    },
+                    {
+                      "milliseconds": 18.56,
+                      "stage": "bridge-ir-json"
+                    },
+                    {
+                      "milliseconds": 1.22,
+                      "stage": "bridge-manifest-json"
+                    },
+                    {
+                      "milliseconds": 15.875,
+                      "stage": "bridge-wasm-hex-decode"
+                    },
+                    {
+                      "milliseconds": 1.785,
+                      "stage": "bridge-formatter-ir-copy"
+                    },
+                    {
+                      "milliseconds": 3.17,
+                      "stage": "bridge-output-plan"
+                    }
+                  ],
+                  "browser_ir_json_bytes": 41492,
+                  "browser_manifest_json_bytes": 2374,
+                  "browser_wasm_bytes": 68491,
+                  "compiler": {
+                    "sizes": {
+                      "argument_slot_capacity": 16,
+                      "artifact_cache_hit": 0,
+                      "bytecode_constants": 33,
+                      "bytecode_functions": 1,
+                      "default_argument_slots": 16,
+                      "document_arena_bytes": 541728,
+                      "execution_body_statements": 7,
+                      "frontend_compile_calls": 1,
+                      "mount_arena_bytes": 4198720,
+                      "mutable_compile_input": 0,
+                      "packaged_module_parse_calls": 0,
+                      "required_argument_slots": 0,
+                      "response_json_bytes": 181059,
+                      "typed_functions": 1,
+                      "wasm_bytes": 68491
+                    },
+                    "stages": [
+                      {
+                        "milliseconds": 1.01,
+                        "stage": "provider-frontend"
+                      },
+                      {
+                        "milliseconds": 1.125,
+                        "stage": "source-prepare"
+                      },
+                      {
+                        "milliseconds": 16.905,
+                        "stage": "source-lex"
+                      },
+                      {
+                        "milliseconds": 23.05,
+                        "stage": "source-parse"
+                      },
+                      {
+                        "milliseconds": 4.38,
+                        "stage": "source-link"
+                      },
+                      {
+                        "milliseconds": 334.265,
+                        "stage": "source-semantic-lower"
+                      },
+                      {
+                        "milliseconds": 161.085,
+                        "stage": "source-private-browser-lower"
+                      },
+                      {
+                        "milliseconds": 22.67,
+                        "stage": "source-context-identity"
+                      },
+                      {
+                        "milliseconds": 0.02,
+                        "stage": "provider-execution-ir"
+                      },
+                      {
+                        "milliseconds": 4.39,
+                        "stage": "canonical-ir-copy"
+                      },
+                      {
+                        "milliseconds": 1.955,
+                        "stage": "executable-ir-copy"
+                      },
+                      {
+                        "milliseconds": 19.15,
+                        "stage": "typed-program-lowering"
+                      },
+                      {
+                        "milliseconds": 24.21,
+                        "stage": "bytecode-lowering"
+                      },
+                      {
+                        "milliseconds": 47.11,
+                        "stage": "wasm-emission"
+                      },
+                      {
+                        "milliseconds": 12.495,
+                        "stage": "wasm-hex-transport"
+                      },
+                      {
+                        "milliseconds": 5.139999,
+                        "stage": "manifest"
+                      },
+                      {
+                        "milliseconds": 71.540001,
+                        "stage": "compile-response-json"
+                      }
+                    ]
+                  }
+                },
+                "compilerCallMs": 821.8049999773502,
+                "transportReadMs": 0.6200000047683716,
+                "jsParseMs": 0.2750000059604645,
+                "wasmCopyMs": 0.08000001311302185,
+                "profileReadMs": 2.6749999821186066,
+                "typedIRChars": 41492,
+                "manifestChars": 2374,
+                "guestWasmBytes": 68491
+              },
+              "compileMs": 825.5649999976158,
+              "executeMs": 231.01000002026558,
+              "formatMs": 97.01999998092651
+            },
+            "observations": [
+              {
+                "backend": "Canvas2D",
+                "completion": "full-canvas getImageData",
+                "width": 798,
+                "height": 326,
+                "nonblankPixels": 2771,
+                "draws": 3
+              }
+            ],
+            "rasterHashes": [
+              "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+            ],
+            "pointCount": 1025,
+            "maxNumericalError": 2.9772385223836295e-08,
+            "maxXError": 0,
+            "arenaHashes": [
+              "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+            ],
+            "meets400ms": false
+          },
+          {
+            "name": "initialized-repeat",
+            "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+            "actualBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+            "requestToPacketMs": 201.90999999642372,
+            "requestToCompleteRasterMs": 210.12000000476837,
+            "timing": {
+              "formatProfile": {
+                "binaryRetained": true,
+                "usedBytes": 16846000,
+                "packetJSONChars": 978,
+                "allocateMs": 0,
+                "heapCopyMs": 1.4449999928474426,
+                "stdoutMs": 0.04999998211860657,
+                "retainedFormatMs": 72.3250000178814,
+                "packetReadMs": 0.019999980926513672,
+                "jsonParseMs": 0.02000001072883606,
+                "arenaReconstructionMs": 0.06999999284744263
+              },
+              "compileProfile": {
+                "native": {
+                  "bridge_stages": [
+                    {
+                      "milliseconds": 0.009999,
+                      "stage": "bridge-source-copy"
+                    },
+                    {
+                      "milliseconds": 0.195001,
+                      "stage": "bridge-compiler-call"
+                    },
+                    {
+                      "milliseconds": 23.645,
+                      "stage": "bridge-response-json-parse"
+                    },
+                    {
+                      "milliseconds": 18.77,
+                      "stage": "bridge-ir-json"
+                    },
+                    {
+                      "milliseconds": 1.225,
+                      "stage": "bridge-manifest-json"
+                    },
+                    {
+                      "milliseconds": 8.135,
+                      "stage": "bridge-wasm-hex-decode"
+                    },
+                    {
+                      "milliseconds": 1.715,
+                      "stage": "bridge-formatter-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.78,
+                      "stage": "bridge-output-plan"
+                    }
+                  ],
+                  "browser_ir_json_bytes": 41492,
+                  "browser_manifest_json_bytes": 2374,
+                  "browser_wasm_bytes": 68491,
+                  "compiler": {
+                    "sizes": {
+                      "argument_slot_capacity": 16,
+                      "artifact_cache_hit": 1,
+                      "bytecode_constants": 33,
+                      "bytecode_functions": 1,
+                      "default_argument_slots": 16,
+                      "document_arena_bytes": 541728,
+                      "execution_body_statements": 7,
+                      "frontend_compile_calls": 0,
+                      "mount_arena_bytes": 4198720,
+                      "mutable_compile_input": 0,
+                      "packaged_module_parse_calls": 0,
+                      "required_argument_slots": 0,
+                      "response_json_bytes": 181059,
+                      "typed_functions": 1,
+                      "wasm_bytes": 68491
+                    },
+                    "stages": [
+                      {
+                        "milliseconds": 0.005,
+                        "stage": "compile-response-cache-lookup"
+                      },
+                      {
+                        "milliseconds": 0.065,
+                        "stage": "compile-response-cache-restore"
+                      }
+                    ]
+                  }
+                },
+                "compilerCallMs": 59.62000000476837,
+                "transportReadMs": 0.4099999964237213,
+                "jsParseMs": 0.22999998927116394,
+                "wasmCopyMs": 0.07500001788139343,
+                "profileReadMs": 1.2699999809265137,
+                "typedIRChars": 41492,
+                "manifestChars": 2374,
+                "guestWasmBytes": 68491
+              },
+              "compileMs": 61.72000002861023,
+              "executeMs": 65.74499997496605,
+              "formatMs": 73.93999999761581
+            },
+            "observations": [
+              {
+                "backend": "Canvas2D",
+                "completion": "full-canvas getImageData",
+                "width": 798,
+                "height": 326,
+                "nonblankPixels": 2771,
+                "draws": 3
+              }
+            ],
+            "rasterHashes": [
+              "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+            ],
+            "pointCount": 1025,
+            "maxNumericalError": 2.9772385223836295e-08,
+            "maxXError": 0,
+            "arenaHashes": [
+              "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+            ],
+            "meets400ms": true
+          },
+          {
+            "name": "real-source-edit",
+            "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(2 * u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+            "actualBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+            "requestToPacketMs": 728.5,
+            "requestToCompleteRasterMs": 738.2400000095367,
+            "timing": {
+              "formatProfile": {
+                "binaryRetained": true,
+                "usedBytes": 16944920,
+                "packetJSONChars": 979,
+                "allocateMs": 0.004999995231628418,
+                "heapCopyMs": 1.7450000047683716,
+                "stdoutMs": 0.030000001192092896,
+                "retainedFormatMs": 69.63499999046326,
+                "packetReadMs": 0.02000001072883606,
+                "jsonParseMs": 0.025000005960464478,
+                "arenaReconstructionMs": 0.07999998331069946
+              },
+              "compileProfile": {
+                "native": {
+                  "bridge_stages": [
+                    {
+                      "milliseconds": 0.015001,
+                      "stage": "bridge-source-copy"
+                    },
+                    {
+                      "milliseconds": 520.28,
+                      "stage": "bridge-compiler-call"
+                    },
+                    {
+                      "milliseconds": 25.435,
+                      "stage": "bridge-response-json-parse"
+                    },
+                    {
+                      "milliseconds": 22.095,
+                      "stage": "bridge-ir-json"
+                    },
+                    {
+                      "milliseconds": 1.17,
+                      "stage": "bridge-manifest-json"
+                    },
+                    {
+                      "milliseconds": 8.26,
+                      "stage": "bridge-wasm-hex-decode"
+                    },
+                    {
+                      "milliseconds": 1.86,
+                      "stage": "bridge-formatter-ir-copy"
+                    },
+                    {
+                      "milliseconds": 1.93,
+                      "stage": "bridge-output-plan"
+                    }
+                  ],
+                  "browser_ir_json_bytes": 49954,
+                  "browser_manifest_json_bytes": 2374,
+                  "browser_wasm_bytes": 70528,
+                  "compiler": {
+                    "sizes": {
+                      "argument_slot_capacity": 16,
+                      "artifact_cache_hit": 0,
+                      "bytecode_constants": 33,
+                      "bytecode_functions": 1,
+                      "default_argument_slots": 16,
+                      "document_arena_bytes": 541728,
+                      "execution_body_statements": 7,
+                      "frontend_compile_calls": 1,
+                      "mount_arena_bytes": 4198720,
+                      "mutable_compile_input": 0,
+                      "packaged_module_parse_calls": 0,
+                      "required_argument_slots": 0,
+                      "response_json_bytes": 193595,
+                      "typed_functions": 1,
+                      "wasm_bytes": 70528
+                    },
+                    "stages": [
+                      {
+                        "milliseconds": 0.015001,
+                        "stage": "provider-frontend"
+                      },
+                      {
+                        "milliseconds": 0.1,
+                        "stage": "source-prepare"
+                      },
+                      {
+                        "milliseconds": 5.134999,
+                        "stage": "source-lex"
+                      },
+                      {
+                        "milliseconds": 7.765001,
+                        "stage": "source-parse"
+                      },
+                      {
+                        "milliseconds": 1.24,
+                        "stage": "source-link"
+                      },
+                      {
+                        "milliseconds": 170.11,
+                        "stage": "source-semantic-lower"
+                      },
+                      {
+                        "milliseconds": 164.57,
+                        "stage": "source-private-browser-lower"
+                      },
+                      {
+                        "milliseconds": 25.064999,
+                        "stage": "source-context-identity"
+                      },
+                      {
+                        "milliseconds": 0.010001,
+                        "stage": "provider-execution-ir"
+                      },
+                      {
+                        "milliseconds": 4.135,
+                        "stage": "canonical-ir-copy"
+                      },
+                      {
+                        "milliseconds": 1.91,
+                        "stage": "executable-ir-copy"
+                      },
+                      {
+                        "milliseconds": 14.06,
+                        "stage": "typed-program-lowering"
+                      },
+                      {
+                        "milliseconds": 8.655,
+                        "stage": "bytecode-lowering"
+                      },
+                      {
+                        "milliseconds": 29.65,
+                        "stage": "wasm-emission"
+                      },
+                      {
+                        "milliseconds": 10.565,
+                        "stage": "wasm-hex-transport"
+                      },
+                      {
+                        "milliseconds": 4.16,
+                        "stage": "manifest"
+                      },
+                      {
+                        "milliseconds": 72.535,
+                        "stage": "compile-response-json"
+                      }
+                    ]
+                  }
+                },
+                "compilerCallMs": 585.0949999988079,
+                "transportReadMs": 0.15000000596046448,
+                "jsParseMs": 0.19999998807907104,
+                "wasmCopyMs": 0.02000001072883606,
+                "profileReadMs": 2.294999986886978,
+                "typedIRChars": 49954,
+                "manifestChars": 2374,
+                "guestWasmBytes": 70528
+              },
+              "compileMs": 587.7899999916553,
+              "executeMs": 68.68000000715256,
+              "formatMs": 71.53999999165535
+            },
+            "observations": [
+              {
+                "backend": "Canvas2D",
+                "completion": "full-canvas getImageData",
+                "width": 798,
+                "height": 326,
+                "nonblankPixels": 2814,
+                "draws": 3
+              }
+            ],
+            "rasterHashes": [
+              "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+            ],
+            "pointCount": 1025,
+            "maxNumericalError": 2.9772385223836295e-08,
+            "maxXError": 0,
+            "arenaHashes": [
+              "95ae9ca96bf6cf631cc6fb4a9417da0539686444788e5a19638d872b9f3c0c3f"
+            ],
+            "meets400ms": false
+          }
+        ],
+        "binding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+        "endpoint": "ordinary InlineRunner request including compile/eval/data/bridge through shipping same Canvas2D complete getImageData raster; app navigation excluded; unprimed lazy initialization inside request; console endpoint separately"
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+        "/preview/0.7.5/inline-retained-scene-view.mjs"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2127550,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "COHERENT-EXACT-5M-TRAP-RESULT.json": {
+      "status": "FAIL_CURRENT_EXACT_5M",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242466.251626973,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [
+        "VKF_PHASE {\"name\":\"compile-begin\",\"at\":82.02500000596046}",
+        "VKF_PHASE {\"name\":\"compile-end\",\"at\":1271.0649999976158,\"ms\":1189.0499999821186}",
+        "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1744.5549999773502}"
+      ],
+      "cases": [],
+      "error": "page.evaluate: Error: unreachable\n    at owned.onmessage (http://127.0.0.1:41291/preview/0.7.5/inline-runner.mjs:84:55)\n    at /mnt/development/VektorFlow-e1587-20261030/current-exact5m-phased.mjs:20:90",
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2127203,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "COHERENT-EXACT-5M-FAILURE-STATE-RESULT.json": {
+      "status": "FAIL_CURRENT_EXACT_5M",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 242565.936186645,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [
+        "VKF_PHASE {\"name\":\"compile-begin\",\"at\":82.56499999761581}",
+        "VKF_PHASE {\"name\":\"compile-end\",\"at\":1246.4800000190735,\"ms\":1163.925000011921}",
+        "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1679.9900000095367}",
+        "VKF_PHASE {\"name\":\"window-failure\",\"at\":31917.725000023842,\"error\":\"RuntimeError: unreachable\",\"state\":{\"heap\":963998152,\"heapBase\":13210704,\"heapLimit\":1086952528,\"memoryBytes\":1086980096,\"control\":4822064,\"words\":[4822096,4822432,1120868,818518008,1,0,0,308593608],\"frame\":4822096,\"count\":67,\"locals\":[{\"i\":0,\"p\":13211032,\"tag\":18,\"length\":1,\"number\":2.121995792e-314},{\"i\":1,\"p\":13211056,\"tag\":4,\"length\":3,\"number\":7.286943066083465e-305},{\"i\":2,\"p\":13211128,\"tag\":11,\"length\":2,\"number\":6.5271724e-317},{\"i\":3,\"p\":13211672,\"tag\":4,\"length\":5000000,\"number\":5.321714295616618e-243},{\"i\":4,\"p\":10168,\"tag\":1,\"length\":0,\"number\":5e-324},{\"i\":5,\"p\":228730856,\"tag\":2,\"length\":0,\"number\":5000000},{\"i\":6,\"p\":228730832,\"tag\":2,\"length\":0,\"number\":5000000}]}}"
+      ],
+      "cases": [],
+      "error": "page.evaluate: Error: unreachable\n    at owned.onmessage (http://127.0.0.1:38569/preview/0.7.5/inline-runner.mjs:84:55)\n    at /mnt/development/VektorFlow-e1587-20261030/current-exact5m-failure-state.mjs:20:90",
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2127984,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "COHERENT-5M-FAILURE-STATE.json": {
+      "name": "window-failure",
+      "at": 31917.725000023842,
+      "error": "RuntimeError: unreachable",
+      "state": {
+        "heap": 963998152,
+        "heapBase": 13210704,
+        "heapLimit": 1086952528,
+        "memoryBytes": 1086980096,
+        "control": 4822064,
+        "words": [
+          4822096,
+          4822432,
+          1120868,
+          818518008,
+          1,
+          0,
+          0,
+          308593608
+        ],
+        "frame": 4822096,
+        "count": 67,
+        "locals": [
+          {
+            "i": 0,
+            "p": 13211032,
+            "tag": 18,
+            "length": 1,
+            "number": 2.121995792e-314
+          },
+          {
+            "i": 1,
+            "p": 13211056,
+            "tag": 4,
+            "length": 3,
+            "number": 7.286943066083465e-305
+          },
+          {
+            "i": 2,
+            "p": 13211128,
+            "tag": 11,
+            "length": 2,
+            "number": 6.5271724e-317
+          },
+          {
+            "i": 3,
+            "p": 13211672,
+            "tag": 4,
+            "length": 5000000,
+            "number": 5.321714295616618e-243
+          },
+          {
+            "i": 4,
+            "p": 10168,
+            "tag": 1,
+            "length": 0,
+            "number": 5e-324
+          },
+          {
+            "i": 5,
+            "p": 228730856,
+            "tag": 2,
+            "length": 0,
+            "number": 5000000
+          },
+          {
+            "i": 6,
+            "p": 228730832,
+            "tag": 2,
+            "length": 0,
+            "number": 5000000
+          }
+        ]
+      }
+    },
+    "NATIVE-10K-CONTEXT-RESULT.json": {
+      "nativeComponentBinding": "8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab",
+      "currentSiteBinding": "26a815b0301aa1d84a64cd563658ea6408cae5f824acd35c0545ea3d13ae8225",
+      "currentEdBBundleQualification": false,
+      "releaseQualified": false,
+      "status": "UNRESOLVED_NATIVE_SHIPPING_BASELINE",
+      "cases": [
+        {
+          "kind": "view",
+          "labels": 10000,
+          "error": "page.evaluate: Error: NATIVE_SAMPLE_NODE_BUDGET\n    at fail (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:4:32)\n    at require (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:5:35)\n    at regionSegment (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:68:3)\n    at Object.region (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:87:23)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:109:31)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:59)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:42147/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at /mnt/development/VektorFlow-e1587-20261030/current-native-label-context-diagnostic.mjs:5:128",
+          "outerCaseMs": 806.7352040000001
+        }
+      ],
+      "errors": [],
+      "scope": "fresh current native typography -> ordinary shipping VfFrame/VfDisplay required accuracy; setup and steady-view separate",
+      "diagnostics": [
+        {
+          "code": "NATIVE_SAMPLE_NODE_BUDGET",
+          "message": "NATIVE_SAMPLE_NODE_BUDGET",
+          "stats": {
+            "instances": 626,
+            "geometryBuilds": 6,
+            "sampleBuilds": 373,
+            "hits": 872,
+            "newNodes": 1999905,
+            "newPixels": 8119,
+            "newGeometryNodes": 889
+          },
+          "remainingNodes": 95,
+          "remainingPixels": 1040457,
+          "commandCount": 18,
+          "matrix": [
+            0.9,
+            0,
+            0,
+            0.9000000000000002,
+            405.49659662496106,
+            590.909090909091
+          ],
+          "phase": {
+            "matrix": [
+              0.9,
+              0,
+              0,
+              0.9000000000000002,
+              0.2465966249610574,
+              0.15909090909099177
+            ],
+            "shift": [
+              405.25,
+              590.75
+            ],
+            "normalized": true
+          },
+          "canonical": [
+            0.9,
+            0,
+            0,
+            0.9000000000000002,
+            2.2465966249610574,
+            8.159090909090992
+          ],
+          "extent": [
+            9,
+            11
+          ],
+          "provenance": {
+            "kind": "fresh-current-vkf-native-layout",
+            "engineIdentity": "current-vkf-native:8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab:8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
+            "resourceIdentity": "6b3f5503e457f2c157f4a509b39ca8e62092f368cd740ca209e019e6d9233a0f:1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620",
+            "compilerSha256": "8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab",
+            "programSha256": "8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
+            "catalogSha256": "6b3f5503e457f2c157f4a509b39ca8e62092f368cd740ca209e019e6d9233a0f",
+            "fontRevision": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620",
+            "source": "-7.7",
+            "elementId": "native-label:1203",
+            "itemIndex": 1,
+            "glyphKey": "f1497c2a00516950335fb369bbd64d54fbc0b6cf9722ad11828efac5a1a79008",
+            "nativeItemKey": "text/7",
+            "sourceGeneration": null,
+            "size": [
+              1,
+              1
+            ],
+            "placement": [
+              7.748743724704234,
+              0
+            ],
+            "sourceBounds": [
+              20.478822701004045,
+              6.42036637511675,
+              0.8302149410414073
+            ]
+          },
+          "physicalIdentity": {
+            "mappingSha256": "6b677b5c3a09023471ae0feb1216062f01074ba6f1f2d7355450285344a70ad5",
+            "glyphKey": "f1497c2a00516950335fb369bbd64d54fbc0b6cf9722ad11828efac5a1a79008",
+            "operators": "4.742216687422168 -6.067247820672479 m\n4.831880448318805 -6.186799501867996 4.831880448318805 -6.206724782067249 4.831880448318805 -6.415940224159403 c\n2.4109589041095894 -6.415940224159403 l\n1.1955168119551682 -6.415940224159403 1.1755915317559156 -6.545454545454547 1.1357409713574098 -6.734744707347448 c\n0.8866749688667498 -6.734744707347448 l\n0.5579078455790786 -4.682440846824409 l\n0.8069738480697386 -4.682440846824409 l\n0.8368617683686178 -4.841843088418432 0.9265255292652554 -5.469489414694895 1.0560398505603987 -5.589041095890412 c\n1.1257783312577836 -5.648816936488171 1.9028642590286429 -5.648816936488171 2.032378580323786 -5.648816936488171 c\n4.094645080946451 -5.648816936488171 l\n3.9850560398505612 -5.489414694894148 3.198007471980075 -4.40348692403487 2.9788293897882943 -4.074719800747198 c\n2.082191780821918 -2.729763387297634 1.753424657534247 -1.3449564134495644 1.753424657534247 -0.32876712328767127 c\n1.753424657534247 -0.22914072229140725 1.753424657534247 0.21917808219178087 2.2117061021170614 0.21917808219178087 c\n2.669987546699876 0.21917808219178087 2.669987546699876 -0.22914072229140725 2.669987546699876 -0.32876712328767127 c\n2.669987546699876 -0.8368617683686178 l\n2.669987546699876 -1.38480697384807 2.6998754669987552 -1.9327521793275222 2.7795765877957663 -2.470734744707348 c\n2.819427148194272 -2.6998754669987552 2.9589041095890414 -3.5566625155666256 3.3972602739726034 -4.174346201743463 c\nh",
+            "metrics": [
+              0.5579078455790786,
+              -6.734744707347448,
+              4.831880448318805,
+              0.21917808219178087
+            ],
+            "fontBinding": {
+              "program": "fdcede8794018df5f2b58f0905fb20a2b418ed8f67b73ee12445855dfbe5b1be",
+              "metrics": "87f2d8981927644cbecaf3d639e96e348ea4e7be49d8804468bd8ba9ff3f5244",
+              "encoding": "17768bd628396ff0a6a7378b707b9fad6d576c4715d0936a172f6ad42f53d209",
+              "fontMatrix": [
+                0.001,
+                0,
+                0,
+                0.001,
+                0,
+                0
+              ],
+              "physicalFontId": "physical-font:913ba763e85172a575aa90f1f1f84d68c73e6d86e574b498c0fb1817b9141d1f",
+              "charString": "dc39895dd0e0070ff2bc44adbdef248666abf2b698fa5bc6914cc12e1f0192f1",
+              "code": 55,
+              "glyphName": "seven",
+              "sizeSp": 655360,
+              "revision": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620"
+            },
+            "resourceClosure": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620"
+          }
+        }
+      ],
+      "browserClosed": true,
+      "serverClosed": true,
+      "ownedChildren": [
+        {
+          "pid": 2128262,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "NATIVE-10K-ACCUMULATED-WORK-CAUSE.json": {
+      "code": "NATIVE_SAMPLE_NODE_BUDGET",
+      "message": "NATIVE_SAMPLE_NODE_BUDGET",
+      "stats": {
+        "instances": 626,
+        "geometryBuilds": 6,
+        "sampleBuilds": 373,
+        "hits": 872,
+        "newNodes": 1999905,
+        "newPixels": 8119,
+        "newGeometryNodes": 889
+      },
+      "remainingNodes": 95,
+      "remainingPixels": 1040457,
+      "commandCount": 18,
+      "matrix": [
+        0.9,
+        0,
+        0,
+        0.9000000000000002,
+        405.49659662496106,
+        590.909090909091
+      ],
+      "phase": {
+        "matrix": [
+          0.9,
+          0,
+          0,
+          0.9000000000000002,
+          0.2465966249610574,
+          0.15909090909099177
+        ],
+        "shift": [
+          405.25,
+          590.75
+        ],
+        "normalized": true
+      },
+      "canonical": [
+        0.9,
+        0,
+        0,
+        0.9000000000000002,
+        2.2465966249610574,
+        8.159090909090992
+      ],
+      "extent": [
+        9,
+        11
+      ],
+      "provenance": {
+        "kind": "fresh-current-vkf-native-layout",
+        "engineIdentity": "current-vkf-native:8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab:8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
+        "resourceIdentity": "6b3f5503e457f2c157f4a509b39ca8e62092f368cd740ca209e019e6d9233a0f:1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620",
+        "compilerSha256": "8b1744e2779d3fb3d054b2201951dac3c9dfd34a0b211543361fc0ae32b419ab",
+        "programSha256": "8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
+        "catalogSha256": "6b3f5503e457f2c157f4a509b39ca8e62092f368cd740ca209e019e6d9233a0f",
+        "fontRevision": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620",
+        "source": "-7.7",
+        "elementId": "native-label:1203",
+        "itemIndex": 1,
+        "glyphKey": "f1497c2a00516950335fb369bbd64d54fbc0b6cf9722ad11828efac5a1a79008",
+        "nativeItemKey": "text/7",
+        "sourceGeneration": null,
+        "size": [
+          1,
+          1
+        ],
+        "placement": [
+          7.748743724704234,
+          0
+        ],
+        "sourceBounds": [
+          20.478822701004045,
+          6.42036637511675,
+          0.8302149410414073
+        ]
+      },
+      "physicalIdentity": {
+        "mappingSha256": "6b677b5c3a09023471ae0feb1216062f01074ba6f1f2d7355450285344a70ad5",
+        "glyphKey": "f1497c2a00516950335fb369bbd64d54fbc0b6cf9722ad11828efac5a1a79008",
+        "operators": "4.742216687422168 -6.067247820672479 m\n4.831880448318805 -6.186799501867996 4.831880448318805 -6.206724782067249 4.831880448318805 -6.415940224159403 c\n2.4109589041095894 -6.415940224159403 l\n1.1955168119551682 -6.415940224159403 1.1755915317559156 -6.545454545454547 1.1357409713574098 -6.734744707347448 c\n0.8866749688667498 -6.734744707347448 l\n0.5579078455790786 -4.682440846824409 l\n0.8069738480697386 -4.682440846824409 l\n0.8368617683686178 -4.841843088418432 0.9265255292652554 -5.469489414694895 1.0560398505603987 -5.589041095890412 c\n1.1257783312577836 -5.648816936488171 1.9028642590286429 -5.648816936488171 2.032378580323786 -5.648816936488171 c\n4.094645080946451 -5.648816936488171 l\n3.9850560398505612 -5.489414694894148 3.198007471980075 -4.40348692403487 2.9788293897882943 -4.074719800747198 c\n2.082191780821918 -2.729763387297634 1.753424657534247 -1.3449564134495644 1.753424657534247 -0.32876712328767127 c\n1.753424657534247 -0.22914072229140725 1.753424657534247 0.21917808219178087 2.2117061021170614 0.21917808219178087 c\n2.669987546699876 0.21917808219178087 2.669987546699876 -0.22914072229140725 2.669987546699876 -0.32876712328767127 c\n2.669987546699876 -0.8368617683686178 l\n2.669987546699876 -1.38480697384807 2.6998754669987552 -1.9327521793275222 2.7795765877957663 -2.470734744707348 c\n2.819427148194272 -2.6998754669987552 2.9589041095890414 -3.5566625155666256 3.3972602739726034 -4.174346201743463 c\nh",
+        "metrics": [
+          0.5579078455790786,
+          -6.734744707347448,
+          4.831880448318805,
+          0.21917808219178087
+        ],
+        "fontBinding": {
+          "program": "fdcede8794018df5f2b58f0905fb20a2b418ed8f67b73ee12445855dfbe5b1be",
+          "metrics": "87f2d8981927644cbecaf3d639e96e348ea4e7be49d8804468bd8ba9ff3f5244",
+          "encoding": "17768bd628396ff0a6a7378b707b9fad6d576c4715d0936a172f6ad42f53d209",
+          "fontMatrix": [
+            0.001,
+            0,
+            0,
+            0.001,
+            0,
+            0
+          ],
+          "physicalFontId": "physical-font:913ba763e85172a575aa90f1f1f84d68c73e6d86e574b498c0fb1817b9141d1f",
+          "charString": "dc39895dd0e0070ff2bc44adbdef248666abf2b698fa5bc6914cc12e1f0192f1",
+          "code": 55,
+          "glyphName": "seven",
+          "sizeSp": 655360,
+          "revision": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620"
+        },
+        "resourceClosure": "1e8c82415317cf277bfb66ab8662e272efb008ad99107e7307be54a10d701620"
+      }
+    }
+  }
+}

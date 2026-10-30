@@ -76,10 +76,20 @@ export function nativeCurveSampleRefinement(matrices,{width,height,pixelRatio=1,
  const refine=(a,b,c,d)=>{
   // GL maps CSS coordinates to the rounded device target independently on
   // each axis; fractional CSS dimensions must use that same sample lattice.
-  for(const matrix of matrices){const p=[a,b,c,d].map(v=>point(matrix,v).map((x,k)=>x*(k?pixelHeight/height:pixelWidth/width))),xs=p.map(v=>v[0]),ys=p.map(v=>v[1]);
-   const magnitude=Math.max(1,...xs.map(Math.abs),...ys.map(Math.abs)),epsilon=64*Number.EPSILON*magnitude*magnitude;
-   const x0=Math.max(0,Math.ceil(Math.min(...xs)*step-.5)),x1=Math.min(pixelWidth*step-1,Math.floor(Math.max(...xs)*step-.5)),
-    y0=Math.max(0,Math.ceil(Math.min(...ys)*step-.5)),y1=Math.min(pixelHeight*step-1,Math.floor(Math.max(...ys)*step-.5));
+  for(const matrix of matrices){
+   // Reject empty sample rectangles before allocating hull/predicate state.
+   // Keep exactly the same binary64 transform order and lattice bounds.
+   const sx=pixelWidth/width,sy=pixelHeight/height,
+    ax=(matrix[0]*a[0]+matrix[2]*a[1]+matrix[4])*sx,ay=(matrix[1]*a[0]+matrix[3]*a[1]+matrix[5])*sy,
+    bx=(matrix[0]*b[0]+matrix[2]*b[1]+matrix[4])*sx,by=(matrix[1]*b[0]+matrix[3]*b[1]+matrix[5])*sy,
+    cx=(matrix[0]*c[0]+matrix[2]*c[1]+matrix[4])*sx,cy=(matrix[1]*c[0]+matrix[3]*c[1]+matrix[5])*sy,
+    dx=(matrix[0]*d[0]+matrix[2]*d[1]+matrix[4])*sx,dy=(matrix[1]*d[0]+matrix[3]*d[1]+matrix[5])*sy,
+    minX=Math.min(ax,bx,cx,dx),maxX=Math.max(ax,bx,cx,dx),minY=Math.min(ay,by,cy,dy),maxY=Math.max(ay,by,cy,dy),
+    x0=Math.max(0,Math.ceil(minX*step-.5)),x1=Math.min(pixelWidth*step-1,Math.floor(maxX*step-.5)),
+    y0=Math.max(0,Math.ceil(minY*step-.5)),y1=Math.min(pixelHeight*step-1,Math.floor(maxY*step-.5));
+   if(x0>x1||y0>y1)continue;
+   const p=[[ax,ay],[bx,by],[cx,cy],[dx,dy]],ys=[ay,by,cy,dy],
+    magnitude=Math.max(1,Math.abs(ax),Math.abs(bx),Math.abs(cx),Math.abs(dx),Math.abs(ay),Math.abs(by),Math.abs(cy),Math.abs(dy)),epsilon=64*Number.EPSILON*magnitude*magnitude;
    for(let iy=y0;iy<=y1;iy++){const y=(iy+.5)/step;
     // Extreme scanlines meet only shared endpoints. Their curve/chord ray
     // contributions agree unless BOTH endpoints lie on the lower scanline:

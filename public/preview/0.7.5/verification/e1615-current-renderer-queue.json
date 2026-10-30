@@ -1,0 +1,1927 @@
+{
+  "schema": 1,
+  "status": "CURRENT_EXPERIMENTAL_UI_SCHEDULER_AND_AFFECTED_GPU_CORRECTNESS_PASSED",
+  "stable": false,
+  "complete": false,
+  "full075Qualified": false,
+  "releaseQualified": false,
+  "uiSource": {
+    "selectedCommit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
+    "acceptedUiBase": "c0f361bbf3f3b4b7ea665d250322ebbcab6da7a2",
+    "sourceReady": "cf94cdd0ca5262c0fb56a6dddf1b8ddcd3479434",
+    "paths": {
+      "public/preview/0.7.5/inline-retained-scene-view.mjs": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6",
+      "public/preview/0.7.5/vf-ui/vf-display.js": "2879dc33670393ffdcbe16b8a1f94d19513957f0cb13e70e485b8802c6879c21",
+      "public/preview/0.7.5/vf-ui/vf-native-scene.js": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec",
+      "public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314",
+      "tests/normal-multi-renderer.mjs": "a22c46bd5b2b54000867b498b0d7b92b619a46d8571679b1f64c7cba3558a602",
+      "tests/retained-view-history.mjs": "f49c8b928fd715d2fd2f30b0d5ff3af717ecc08e775c59db9808f202a291de62",
+      "tests/retained-exact5m-controls.mjs": "565b02fc9780d92e330af971f85bb071afb5414ef66a02e6eac4887a9e49c32f"
+    }
+  },
+  "rendererSHA256": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314",
+  "cacheKey": "2eaf4972b0800b1e",
+  "compilerBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "compilerSource": "bb400e112295bc990147735c22d9a69f518c2196",
+  "previousAcceptedEvidence": "./e1612-current-retained-ui.json",
+  "multiRendererBefore": {
+    "label": "before",
+    "scope": "ordinary same-Frame two renderer entries plus another continuous Frame; real GPU completion and pixels",
+    "errors": [],
+    "result": {
+      "status": "FAIL_MISSING_ACTUAL_COMPLETION",
+      "rows": [
+        {
+          "shift": 0.12,
+          "callback": null,
+          "callbacks": [
+            {
+              "sequence": 2,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            },
+            null,
+            null
+          ],
+          "prior": [
+            0,
+            0,
+            0
+          ],
+          "completed": [
+            140,
+            0,
+            0
+          ],
+          "queued": [
+            true,
+            true,
+            false
+          ]
+        }
+      ],
+      "gpuErrors": [],
+      "rendererCount": 3,
+      "continuous": true
+    },
+    "status": "FAIL_MISSING_ACTUAL_COMPLETION",
+    "browserClosed": true,
+    "serverClosed": true,
+    "children": [
+      {
+        "pid": 2342291,
+        "cmd": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "multiRenderer": {
+    "label": "final",
+    "scope": "ordinary same-Frame two renderer entries plus another continuous Frame; real GPU completion and pixels",
+    "errors": [],
+    "result": {
+      "status": "PASS_REAL_GPU_MULTI_RENDERER_COMPLETION",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "pascal",
+        "isFallbackAdapter": false
+      },
+      "rows": [
+        {
+          "shift": 0.12,
+          "callback": {
+            "serial": 2,
+            "snapshot": {
+              "camera": {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ]
+              },
+              "axis3d": {},
+              "axes": []
+            },
+            "endpoint": "gpu-queue-completed",
+            "renderCameras": [
+              {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              },
+              {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            ]
+          },
+          "callbacks": [
+            {
+              "sequence": 2,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            },
+            {
+              "sequence": 1,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "target": [
+                  0.12,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0.12,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            },
+            {
+              "sequence": 1,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  0,
+                  0,
+                  4
+                ],
+                "target": [
+                  0,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0,
+                  0,
+                  4
+                ],
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            }
+          ],
+          "prior": [
+            0,
+            0,
+            0
+          ],
+          "completed": [
+            2,
+            2,
+            2
+          ],
+          "queued": [
+            false,
+            true,
+            false
+          ]
+        },
+        {
+          "shift": -0.15,
+          "callback": {
+            "serial": 3,
+            "snapshot": {
+              "camera": {
+                "pos": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "target": [
+                  -0.15,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  -0.15,
+                  0,
+                  4
+                ]
+              },
+              "axis3d": {},
+              "axes": []
+            },
+            "endpoint": "gpu-queue-completed",
+            "renderCameras": [
+              {
+                "pos": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "target": [
+                  -0.15,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              },
+              {
+                "pos": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "target": [
+                  -0.15,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            ]
+          },
+          "callbacks": [
+            {
+              "sequence": 4,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "target": [
+                  -0.15,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            },
+            {
+              "sequence": 3,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "target": [
+                  -0.15,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  -0.15,
+                  0,
+                  4
+                ],
+                "__vf_live_mutated": true,
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            },
+            {
+              "sequence": 3,
+              "endpoint": "gpu-queue-completed",
+              "camera": {
+                "pos": [
+                  0,
+                  0,
+                  4
+                ],
+                "target": [
+                  0,
+                  0,
+                  0
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1.5,
+                "position": [
+                  0,
+                  0,
+                  4
+                ],
+                "viewport_width_px": 478,
+                "viewport_height_px": 358
+              }
+            }
+          ],
+          "prior": [
+            2,
+            2,
+            2
+          ],
+          "completed": [
+            4,
+            3,
+            3
+          ],
+          "queued": [
+            true,
+            true,
+            false
+          ]
+        }
+      ],
+      "captures": [
+        {
+          "frameId": "queue-two",
+          "objectId": 1,
+          "sequence": 5,
+          "width": 478,
+          "height": 358,
+          "nonblank": 3539,
+          "hash": 3634207556
+        },
+        {
+          "frameId": "queue-two",
+          "objectId": 2,
+          "sequence": 4,
+          "width": 478,
+          "height": 358,
+          "nonblank": 3540,
+          "hash": 3102629605
+        },
+        {
+          "frameId": "queue-continuous",
+          "objectId": 1,
+          "sequence": 3,
+          "width": 478,
+          "height": 358,
+          "nonblank": 3596,
+          "hash": 1859487637
+        }
+      ],
+      "gpuErrors": [],
+      "rendererCount": 3,
+      "continuous": true,
+      "stop": {
+        "before": 4,
+        "settled": 4,
+        "final": 4,
+        "survivorProgress": true
+      }
+    },
+    "status": "PASS_REAL_GPU_MULTI_RENDERER_COMPLETION",
+    "browserClosed": true,
+    "serverClosed": true,
+    "children": [
+      {
+        "pid": 2345463,
+        "cmd": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "finiteHistory": {
+    "status": "COMPLETE_REAL_STATIC_RETAINED_RENDER_VIEW_COLOR",
+    "historyResult": {
+      "status": "PASS_RETAINED_VIEW_HISTORY",
+      "endpoint": "gpu-queue-completed",
+      "intermediateSerial": 13,
+      "finalSerial": 149,
+      "scope": "ordinary zoom/pan/back/forward/home, interruption, exact completed endpoints and branch semantics; no physical GPU/fullscale claim from Canvas"
+    },
+    "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "population": 4096,
+    "allChannels": 40960,
+    "indexCount": 4096,
+    "maxError": 2.838316426334586e-08,
+    "guestArenaBytes": 1073741824,
+    "requestToPacketMs": 24352.37999999523,
+    "setupThroughInitialReadbackMs": 25090.960000008345,
+    "first": [
+      {
+        "frameId": "vf-inline-result-1--frame_0",
+        "serial": 2,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      }
+    ],
+    "actualMountedFrameId": "vf-inline-result-1--frame_0",
+    "initial": {
+      "width": 998,
+      "height": 326,
+      "pixelHash": 2620339878,
+      "nonblankPixels": 14909,
+      "rSum": 467508,
+      "gSum": 934442,
+      "bSum": 1821060,
+      "aSum": 2154637,
+      "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+    },
+    "updates": [
+      {
+        "shift": 0.12,
+        "presented": {
+          "serial": 3,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 19.729999989271164,
+        "throughReadbackMs": 33.71999999880791,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2508626844,
+        "nonblankPixels": 95119,
+        "rSum": 639665,
+        "gSum": 1283115,
+        "bSum": 2505776,
+        "aSum": 2965745,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": -0.15,
+        "presented": {
+          "serial": 4,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 10.719999998807907,
+        "throughReadbackMs": 26.889999985694885,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2188607479,
+        "nonblankPixels": 95169,
+        "rSum": 638219,
+        "gSum": 1280082,
+        "bSum": 2500220,
+        "aSum": 2959825,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": 0.03,
+        "presented": {
+          "serial": 5,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 10.46000000834465,
+        "throughReadbackMs": 26.890000015497208,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2056498389,
+        "nonblankPixels": 95185,
+        "rSum": 639735,
+        "gSum": 1283163,
+        "bSum": 2506286,
+        "aSum": 2966654,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      }
+    ],
+    "colorUpdate": {
+      "completedThroughReadbackMs": 51.62999999523163,
+      "before": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2056498389,
+        "nonblankPixels": 95185,
+        "rSum": 639735,
+        "gSum": 1283163,
+        "bSum": 2506286,
+        "aSum": 2966654,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "after": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2180511645,
+        "nonblankPixels": 95185,
+        "rSum": 2966654,
+        "gSum": 750883,
+        "bSum": 400819,
+        "aSum": 2966654,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "presented": {
+        "serial": 6,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ]
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ],
+            "__vf_live_mutated": true,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      },
+      "actualRuntimePacket": true,
+      "noExtraRedrawOrCameraRequest": true
+    },
+    "gpuErrors": [],
+    "deviceLost": false,
+    "fullGpuWorldComplete": false,
+    "releaseQualified": false,
+    "timing": {
+      "formatProfile": {
+        "binaryRetained": true,
+        "usedBytes": 18569392,
+        "packetJSONChars": 1050,
+        "allocateMs": 0.02499997615814209,
+        "heapCopyMs": 4.270000010728836,
+        "stdoutMs": 0.25,
+        "retainedFormatMs": 70.37999999523163,
+        "packetReadMs": 0.125,
+        "jsonParseMs": 0.050000011920928955,
+        "arenaReconstructionMs": 0.26499998569488525
+      },
+      "compileProfile": {
+        "native": {
+          "bridge_stages": [
+            {
+              "milliseconds": 0.150001,
+              "stage": "bridge-source-copy"
+            },
+            {
+              "milliseconds": 19316.694999,
+              "stage": "bridge-compiler-call"
+            },
+            {
+              "milliseconds": 1145.045001,
+              "stage": "bridge-response-json-parse"
+            },
+            {
+              "milliseconds": 1554.46,
+              "stage": "bridge-ir-json"
+            },
+            {
+              "milliseconds": 1.13,
+              "stage": "bridge-manifest-json"
+            },
+            {
+              "milliseconds": 489.745,
+              "stage": "bridge-wasm-hex-decode"
+            },
+            {
+              "milliseconds": 141.119999,
+              "stage": "bridge-formatter-ir-copy"
+            },
+            {
+              "milliseconds": 431.795001,
+              "stage": "bridge-output-plan"
+            }
+          ],
+          "browser_ir_json_bytes": 3368905,
+          "browser_manifest_json_bytes": 2390,
+          "browser_wasm_bytes": 2305745,
+          "compiler": {
+            "sizes": {
+              "argument_slot_capacity": 16,
+              "artifact_cache_hit": 0,
+              "bytecode_constants": 37,
+              "bytecode_functions": 1,
+              "default_argument_slots": 16,
+              "document_arena_bytes": 541728,
+              "execution_body_statements": 6,
+              "frontend_compile_calls": 1,
+              "mount_arena_bytes": 4198720,
+              "mutable_compile_input": 0,
+              "packaged_module_parse_calls": 0,
+              "required_argument_slots": 0,
+              "response_json_bytes": 7982996,
+              "typed_functions": 1,
+              "wasm_bytes": 2305745
+            },
+            "stages": [
+              {
+                "milliseconds": 0.995,
+                "stage": "provider-frontend"
+              },
+              {
+                "milliseconds": 1.275,
+                "stage": "source-prepare"
+              },
+              {
+                "milliseconds": 28.1,
+                "stage": "source-lex"
+              },
+              {
+                "milliseconds": 35.365,
+                "stage": "source-parse"
+              },
+              {
+                "milliseconds": 7.515,
+                "stage": "source-link"
+              },
+              {
+                "milliseconds": 4680.425,
+                "stage": "source-semantic-lower"
+              },
+              {
+                "milliseconds": 4700.7,
+                "stage": "source-private-browser-lower"
+              },
+              {
+                "milliseconds": 1829.455,
+                "stage": "source-context-identity"
+              },
+              {
+                "milliseconds": 0.045,
+                "stage": "provider-execution-ir"
+              },
+              {
+                "milliseconds": 320.324999,
+                "stage": "canonical-ir-copy"
+              },
+              {
+                "milliseconds": 154.47,
+                "stage": "executable-ir-copy"
+              },
+              {
+                "milliseconds": 1868.985001,
+                "stage": "typed-program-lowering"
+              },
+              {
+                "milliseconds": 924.96,
+                "stage": "bytecode-lowering"
+              },
+              {
+                "milliseconds": 973.85,
+                "stage": "wasm-emission"
+              },
+              {
+                "milliseconds": 383.885,
+                "stage": "wasm-hex-transport"
+              },
+              {
+                "milliseconds": 237.185,
+                "stage": "manifest"
+              },
+              {
+                "milliseconds": 3130.285,
+                "stage": "compile-response-json"
+              }
+            ]
+          }
+        },
+        "compilerCallMs": 23116.57500001788,
+        "transportReadMs": 5.824999988079071,
+        "jsParseMs": 9.849999994039536,
+        "wasmCopyMs": 1.1299999952316284,
+        "profileReadMs": 2.5349999964237213,
+        "typedIRChars": 3368905,
+        "manifestChars": 2390,
+        "guestWasmBytes": 2305745
+      },
+      "compileMs": 23725.060000002384,
+      "executeMs": 298.55500000715256,
+      "formatMs": 75.5
+    }
+  },
+  "required5M": {
+    "status": "COMPLETE_REAL_STATIC_RETAINED_RENDER_VIEW_COLOR",
+    "authenticPersistedPacketReuse": {
+      "arenaSha256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24",
+      "metadataFromActualCompiler": true,
+      "originalRequestToPacketMs": 107866.53499999642,
+      "scope": "same complete actual compiler packet; fresh normal physicalGPU view/color check, not newrequest timing"
+    },
+    "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "population": 5000000,
+    "allChannels": 50000000,
+    "indexCount": 5000000,
+    "maxError": 2.9790396705031696e-08,
+    "guestArenaBytes": 1073741824,
+    "setupThroughInitialReadbackMs": 4065.169999986887,
+    "first": [
+      {
+        "frameId": "vf-inline-result-1--frame_0",
+        "serial": 2,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      }
+    ],
+    "actualMountedFrameId": "vf-inline-result-1--frame_0",
+    "initial": {
+      "width": 998,
+      "height": 326,
+      "pixelHash": 2807348364,
+      "nonblankPixels": 15060,
+      "rSum": 799626,
+      "gSum": 1624149,
+      "bSum": 3147890,
+      "aSum": 3756522,
+      "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+    },
+    "updates": [
+      {
+        "shift": 0.12,
+        "presented": {
+          "serial": 3,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 628.0500000119209,
+        "throughReadbackMs": 792.455000013113,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 1611481300,
+        "nonblankPixels": 99539,
+        "rSum": 5423604,
+        "gSum": 10924520,
+        "bSum": 21300801,
+        "aSum": 25135224,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": -0.15,
+        "presented": {
+          "serial": 4,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 842.464999973774,
+        "throughReadbackMs": 1005.169999986887,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 3522104994,
+        "nonblankPixels": 99538,
+        "rSum": 5420203,
+        "gSum": 10918165,
+        "bSum": 21287641,
+        "aSum": 25119482,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": 0.03,
+        "presented": {
+          "serial": 5,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 583.5400000214577,
+        "throughReadbackMs": 740.9500000178814,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 310958498,
+        "nonblankPixels": 99539,
+        "rSum": 5423391,
+        "gSum": 10924111,
+        "bSum": 21299495,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      }
+    ],
+    "colorUpdate": {
+      "completedThroughReadbackMs": 714.0250000059605,
+      "before": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 310958498,
+        "nonblankPixels": 99539,
+        "rSum": 5423391,
+        "gSum": 10924111,
+        "bSum": 21299495,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "after": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 3969930161,
+        "nonblankPixels": 99539,
+        "rSum": 25133990,
+        "gSum": 6345253,
+        "bSum": 3370251,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "presented": {
+        "serial": 6,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ]
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ],
+            "__vf_live_mutated": true,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      },
+      "actualRuntimePacket": true,
+      "noExtraRedrawOrCameraRequest": true
+    },
+    "gpuErrors": [],
+    "deviceLost": false,
+    "fullGpuWorldComplete": false,
+    "releaseQualified": false,
+    "timing": {
+      "formatProfile": {
+        "binaryRetained": true,
+        "usedBytes": 1038526432,
+        "packetJSONChars": 1068,
+        "allocateMs": 2.3700000047683716,
+        "heapCopyMs": 514.1150000095367,
+        "stdoutMs": 0.3199999928474426,
+        "retainedFormatMs": 7463.205000013113,
+        "packetReadMs": 0.09000000357627869,
+        "jsonParseMs": 0.04999998211860657,
+        "arenaReconstructionMs": 102.9050000011921
+      },
+      "compileProfile": {
+        "native": {
+          "bridge_stages": [
+            {
+              "milliseconds": 0.175001,
+              "stage": "bridge-source-copy"
+            },
+            {
+              "milliseconds": 1086.639999,
+              "stage": "bridge-compiler-call"
+            },
+            {
+              "milliseconds": 29.665,
+              "stage": "bridge-response-json-parse"
+            },
+            {
+              "milliseconds": 19.55,
+              "stage": "bridge-ir-json"
+            },
+            {
+              "milliseconds": 1.195,
+              "stage": "bridge-manifest-json"
+            },
+            {
+              "milliseconds": 16.91,
+              "stage": "bridge-wasm-hex-decode"
+            },
+            {
+              "milliseconds": 2.15,
+              "stage": "bridge-formatter-ir-copy"
+            },
+            {
+              "milliseconds": 2.395001,
+              "stage": "bridge-output-plan"
+            }
+          ],
+          "browser_ir_json_bytes": 42717,
+          "browser_manifest_json_bytes": 2381,
+          "browser_wasm_bytes": 82069,
+          "compiler": {
+            "sizes": {
+              "argument_slot_capacity": 16,
+              "artifact_cache_hit": 0,
+              "bytecode_constants": 42,
+              "bytecode_functions": 1,
+              "default_argument_slots": 16,
+              "document_arena_bytes": 541728,
+              "execution_body_statements": 10,
+              "frontend_compile_calls": 1,
+              "mount_arena_bytes": 4198720,
+              "mutable_compile_input": 0,
+              "packaged_module_parse_calls": 0,
+              "required_argument_slots": 0,
+              "response_json_bytes": 209447,
+              "typed_functions": 1,
+              "wasm_bytes": 82069
+            },
+            "stages": [
+              {
+                "milliseconds": 1.010001,
+                "stage": "provider-frontend"
+              },
+              {
+                "milliseconds": 1.269999,
+                "stage": "source-prepare"
+              },
+              {
+                "milliseconds": 28.15,
+                "stage": "source-lex"
+              },
+              {
+                "milliseconds": 35.905,
+                "stage": "source-parse"
+              },
+              {
+                "milliseconds": 7.35,
+                "stage": "source-link"
+              },
+              {
+                "milliseconds": 493.285,
+                "stage": "source-semantic-lower"
+              },
+              {
+                "milliseconds": 286.41,
+                "stage": "source-private-browser-lower"
+              },
+              {
+                "milliseconds": 24.715,
+                "stage": "source-context-identity"
+              },
+              {
+                "milliseconds": 0.025,
+                "stage": "provider-execution-ir"
+              },
+              {
+                "milliseconds": 4.875,
+                "stage": "canonical-ir-copy"
+              },
+              {
+                "milliseconds": 2.22,
+                "stage": "executable-ir-copy"
+              },
+              {
+                "milliseconds": 19.16,
+                "stage": "typed-program-lowering"
+              },
+              {
+                "milliseconds": 28.065,
+                "stage": "bytecode-lowering"
+              },
+              {
+                "milliseconds": 50.325001,
+                "stage": "wasm-emission"
+              },
+              {
+                "milliseconds": 14.759999,
+                "stage": "wasm-hex-transport"
+              },
+              {
+                "milliseconds": 6.185,
+                "stage": "manifest"
+              },
+              {
+                "milliseconds": 78.975,
+                "stage": "compile-response-json"
+              }
+            ]
+          }
+        },
+        "compilerCallMs": 1159.9800000190735,
+        "transportReadMs": 0.699999988079071,
+        "jsParseMs": 0.3100000023841858,
+        "wasmCopyMs": 0.07499998807907104,
+        "profileReadMs": 2.6200000047683716,
+        "typedIRChars": 42717,
+        "manifestChars": 2381,
+        "guestWasmBytes": 82069
+      },
+      "compileMs": 1188.9749999940395,
+      "executeMs": 97866.22999998927,
+      "formatMs": 8083.280000001192
+    },
+    "persistedPacketFetchMs": 705.0399999916553,
+    "originalSourceRequestToPacketMs": 107866.53499999642,
+    "setupThroughInitialReadbackMsMeaning": "Authenticated original-packet transport/mount; excludes original compiler/VM request. No new source request timing or speed claim."
+  },
+  "formChecks": [
+    {
+      "width": 1280,
+      "value": "3",
+      "expected": "9",
+      "output": "9\n"
+    },
+    {
+      "width": 390,
+      "value": "-4",
+      "expected": "16",
+      "output": "16\n"
+    }
+  ],
+  "authenticPacket": {
+    "bytes": 220000000,
+    "sha256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24",
+    "allChannels": 50000000,
+    "indices": 5000000,
+    "vmReplayed": false,
+    "originalCompilerMetadata": true
+  },
+  "nodeEvidence": {
+    "reusedUnchanged": true,
+    "evidence": "./e1612-current-retained-ui.json",
+    "resultSHA256": "611d654783c0ef0f1a40900167347fecd741909f00898b717c299031abc576bc",
+    "scope": "Exact unchanged compiler/frontend/formatter artifact pins; normal Node ESM compile/guest/stdout7 previously accepted"
+  },
+  "limits": [
+    "Experimental browser and named normal Node ESM scope only; stable/full075 qualification incomplete",
+    "Native10000 complete current-component output and broader fullnative/platform coverage unqualified",
+    "Full authored physical GPU physics/project Morphing world incomplete; source1614 is separate compiler source work",
+    "Missing matched LOCAL48 peers/preflight/parity remain missing; no comparative ratios or speed PASS",
+    "Retained packet fetch and GPU measurements do not repeat or replace original107866.535ms source-to-packet observation"
+  ],
+  "priorFailuresRetained": [
+    "Original private POST persistence stall/reserve refusals/earlier camera timeout retained in e1612 evidence",
+    "Before fix, ordinary same-Frame second entry and other continuous Frame had no completion while first entry completed140",
+    "Two local harness preparation syntax errors retained in own job ledger; corrected before successful affected checks"
+  ],
+  "timingPolicy": "Informational only; no400ms/10ms/20x threshold or full48x10 publication gate"
+}

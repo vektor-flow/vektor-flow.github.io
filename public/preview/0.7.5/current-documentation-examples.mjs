@@ -1,6 +1,6 @@
 // Keep editable sources and output together; only a reviewed package enables Run.
 import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
-import {createInlineRunner} from './inline-runner.mjs';
+import {createInlineRunner} from './inline-runner.mjs?v=873bda32dbbb9501';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
 
@@ -8,7 +8,7 @@ const release = await fetch(new URL('./current-compiler-release.json', import.me
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
 const runner = ['verified-examples','private-candidate'].includes(release?.status)
   ? createInlineRunner({wasmUrl:release.package.wasm, moduleURL:release.package.module,
-      dataURL:release.package.data, timeoutMs:360000}) : null;
+      dataURL:release.package.data, expectedSourceBinding:release.browser_binding??release.compiler_source, timeoutMs:360000}) : null;
 
 // Pages may reload once to establish shared memory. Restore drafts before a
 // Run records its revision, so the first result cannot be mistaken for stale.
@@ -98,3 +98,5 @@ for (const example of document.querySelectorAll('.readme-example')) {
   window.addEventListener('pagehide', clearScene);
   refresh();
 }
+
+window.addEventListener('pagehide',event=>{if(!event.persisted)void runner?.dispose();});

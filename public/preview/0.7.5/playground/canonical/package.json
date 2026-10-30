@@ -4,32 +4,120 @@
   "status": "private-candidate",
   "complete": false,
   "stable": false,
-  "source": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
-  "release_source": "1f54325481a36b9b87853d9c90a1dc093fab8e248f30163144b4aa6e6a6b8dd4",
+  "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "release_source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
   "library_source": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
   "files": {
-    "compiler.wasm": {
-      "sha256": "f01fb691bd95344e862d68a000d711de8b2e0f35a3d3f21114ad67b2a2a6d673",
-      "bytes": 64488549
-    },
     "compiler.mjs": {
-      "sha256": "d26d3cee2d7afd7018d0f220c095a0426b8988144d3710b69c0470558ee60e3e",
-      "bytes": 182375
+      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+      "bytes": 756
+    },
+    "compiler-base.mjs": {
+      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302",
+      "bytes": 184876
+    },
+    "compiler.wasm": {
+      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+      "bytes": 65390139
     },
     "compiler.data": {
       "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
       "bytes": 610088
     },
+    "formatter.mjs": {
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
+      "bytes": 62804
+    },
+    "formatter.wasm": {
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+      "bytes": 1118687
+    },
     "README.txt": {
-      "sha256": "a5711d2e83f4864849c51b38272d02e1e4d226838030b2e7cfcfc9488453054a",
-      "bytes": 401
+      "sha256": "8de2634e874cfe3085313865fbdfd699393e32f42e4edc7bf8923fc16cdb507b",
+      "bytes": 1060
     }
   },
   "verification": {
-    "attempted": 57,
-    "passed": 52,
-    "failed": 5,
-    "required": 57,
-    "proof": "../../verification/browser-build-e1103.json"
-  }
+    "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
+    "evidence": "../../verification/e1615-current-renderer-queue.json",
+    "oldPassCarry": false,
+    "required5MRenderViewOrdinaryColor": true,
+    "native10000Qualified": false,
+    "fullGpuWorldComplete": false,
+    "multiRendererQueueCorrectness": true
+  },
+  "historical_verification": {
+    "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
+    "release_source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
+    "files": {
+      "compiler.wasm": {
+        "sha256": "961a1fc45ef9ab1e7a7e650a7d95bf489fe4df50176674427c5bcae0dc4cead5",
+        "bytes": 65023607
+      },
+      "compiler.mjs": {
+        "sha256": "0dd71194694da9b865f5a8c9af81bf80e2ead7e8db723fd6af6a6811a7998894",
+        "bytes": 182316
+      },
+      "compiler.data": {
+        "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
+        "bytes": 610088
+      },
+      "README.txt": {
+        "sha256": "a5711d2e83f4864849c51b38272d02e1e4d226838030b2e7cfcfc9488453054a",
+        "bytes": 401
+      }
+    },
+    "verification": {
+      "attempted": 57,
+      "passed": 57,
+      "failed": 0,
+      "required": 57,
+      "proof": "../../verification/e1221-exact-final57.json",
+      "scope": "57 existing exactsource/stdout/scenebyte oracles; not full release or UI perf"
+    },
+    "oldPassCarry": false,
+    "scope": "Historical ec86 package qualification; does not qualify the current compiler files."
+  },
+  "previous_candidate": {
+    "source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
+    "release_source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
+    "files": {
+      "compiler.mjs": {
+        "sha256": "362deeacd3dd200d9f13b3aea7d75b48f083e3c88d4d5ea7f7befbd9dcdb7226",
+        "bytes": 184885
+      },
+      "compiler.wasm": {
+        "sha256": "51ab559f70552199a316b997c4129a4bb98362e52e99235cab7fc129c1923985",
+        "bytes": 65392809
+      },
+      "compiler.data": {
+        "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
+        "bytes": 610088
+      },
+      "README.txt": {
+        "sha256": "0c2e14ed829429db75bf9f3953777b478e91352d7ec2d9072079496c6ba11809",
+        "bytes": 331
+      }
+    },
+    "verification": {
+      "status": "PRIVATE_UNQUALIFIED_CAUSAL_PACKET_GC_CANDIDATE",
+      "oldPassCarry": false,
+      "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
+    }
+  },
+  "compiler_source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "browser_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "frontend_binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+  "stable_release": false,
+  "sha256": {
+    "compiler.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+    "compiler.wasm": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+    "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+  },
+  "published": true,
+  "publication_status": "PUBLISHED_EXPERIMENTAL_CURRENT_BROWSER_CANDIDATE",
+  "physical_gpu_tested": true,
+  "release_qualified": false,
+  "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71"
 }

@@ -38,7 +38,7 @@ if preview.exists():
  for row in manifest['files']:
   data=(preview/row['path']).read_bytes()
   assert len(data)==row['bytes'] and hashlib.sha256(data).hexdigest()==row['sha256'],row['path']
- expected_preview={'compiler.mjs':'850c132341e6d18e8abd603f0d7761b3197c6cb573fe4f0f1f2c95cfc66d70fb','compiler.wasm':'9e26acdc161ebfa6c4795181e0c666d587a726d3b1221b8b9f859c5309a36ac4','compiler.data':'31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f'}
+ expected_preview={'compiler.mjs': 'df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f', 'compiler.wasm': '306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740', 'compiler.data': '31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f'}
  for name,digest in expected_preview.items():assert hashlib.sha256((preview/'playground/canonical'/name).read_bytes()).hexdigest()==digest,name
 for p in root.rglob('*'):
  if not p.is_file():continue

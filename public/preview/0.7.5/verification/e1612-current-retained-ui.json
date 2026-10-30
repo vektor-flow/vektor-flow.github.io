@@ -1,0 +1,1088 @@
+{
+  "schema": 1,
+  "status": "CURRENT_BROWSER_RETAINED_UI_CORRECTNESS_COMPLETE_FULL_075_UNQUALIFIED",
+  "releaseQualified": false,
+  "stable": false,
+  "complete": false,
+  "compilerBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "compilerSource": "bb400e112295bc990147735c22d9a69f518c2196",
+  "uiSource": {
+    "sourceReady": "cf94cdd0ca5262c0fb56a6dddf1b8ddcd3479434",
+    "sourceBase": "df96fe55dd37564ddadba87ab253d3fefd5a0b8b",
+    "selectedCommit": "c0f361bbf3f3b4b7ea665d250322ebbcab6da7a2",
+    "paths": {
+      "public/preview/0.7.5/inline-retained-scene-view.mjs": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6",
+      "public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js": "3efa929936558820a1d34c968f26a8d8cf42156eb56b531965625b67e2cb1297",
+      "public/preview/0.7.5/vf-ui/vf-display.js": "2879dc33670393ffdcbe16b8a1f94d19513957f0cb13e70e485b8802c6879c21",
+      "public/preview/0.7.5/vf-ui/vf-native-scene.js": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec",
+      "tests/retained-exact5m-controls.mjs": "565b02fc9780d92e330af971f85bb071afb5414ef66a02e6eac4887a9e49c32f",
+      "tests/retained-view-history.mjs": "f49c8b928fd715d2fd2f30b0d5ff3af717ecc08e775c59db9808f202a291de62"
+    },
+    "patchSHA256": "473ae8c03bd7cea1cc107d14d044220327fe15fbf8ea81f64fa4d3b30a0d7311",
+    "rootStableUiUnchanged": true,
+    "preservedSelectedNativeLabelAdditions": true,
+    "observedMonotonic": 264388.249282892,
+    "previousReady": "ef69265ded4fcfb26be2ff3848802ffba1da0e08",
+    "actualCausalFix": "Owned unified root finite revision0; normal source/geometry update replacesroot, colorpatch incrementsrevision; global unrevisioned provider semantics untouched",
+    "actualBackpressureFix": "Connect existing isGpuWorkPending/queueRendererForGpuDrain at actualnormal_renderContent admission beforeupload; existingqueuecompletiondrains; no new scheduler/framequota"
+  },
+  "artifacts": {
+    "compiler.mjs": {
+      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+      "bytes": 756
+    },
+    "compiler-base.mjs": {
+      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302",
+      "bytes": 184876
+    },
+    "compiler.wasm": {
+      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+      "bytes": 65390139
+    },
+    "compiler.data": {
+      "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
+      "bytes": 610088
+    },
+    "formatter.mjs": {
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
+      "bytes": 62804
+    },
+    "formatter.wasm": {
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+      "bytes": 1118687
+    },
+    "README.txt": {
+      "sha256": "d80ac53429492e804cf9e3dc17cf148f8f56e09e04f22e9560e7a43fe1e4cddf",
+      "bytes": 913
+    }
+  },
+  "required5M": {
+    "status": "COMPLETE_REAL_STATIC_RETAINED_RENDER_VIEW_COLOR",
+    "authenticPersistedPacketReuse": {
+      "arenaSha256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24",
+      "metadataFromActualCompiler": true,
+      "originalRequestToPacketMs": 107866.53499999642,
+      "scope": "same complete actual compiler packet; fresh normal physicalGPU view/color check, not newrequest timing"
+    },
+    "actualBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "population": 5000000,
+    "allChannels": 50000000,
+    "indexCount": 5000000,
+    "maxError": 2.9790396705031696e-08,
+    "guestArenaBytes": 1073741824,
+    "requestToPacketMs": 107866.53499999642,
+    "setupThroughInitialReadbackMs": 3928.4600000083447,
+    "first": [
+      {
+        "frameId": "vf-inline-result-1--frame_0",
+        "serial": 2,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      }
+    ],
+    "actualMountedFrameId": "vf-inline-result-1--frame_0",
+    "initial": {
+      "width": 998,
+      "height": 326,
+      "pixelHash": 2807348364,
+      "nonblankPixels": 15060,
+      "rSum": 799626,
+      "gSum": 1624149,
+      "bSum": 3147890,
+      "aSum": 3756522,
+      "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+    },
+    "updates": [
+      {
+        "shift": 0.12,
+        "presented": {
+          "serial": 3,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.12,
+                0,
+                4
+              ],
+              "target": [
+                0.12,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.12,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 532.7299999892712,
+        "throughReadbackMs": 550.2699999809265,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 1611481300,
+        "nonblankPixels": 99539,
+        "rSum": 5423604,
+        "gSum": 10924520,
+        "bSum": 21300801,
+        "aSum": 25135224,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": -0.15,
+        "presented": {
+          "serial": 4,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                -0.15,
+                0,
+                4
+              ],
+              "target": [
+                -0.15,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                -0.15,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 531.7699999809265,
+        "throughReadbackMs": 546.6449999809265,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 3522104994,
+        "nonblankPixels": 99538,
+        "rSum": 5420203,
+        "gSum": 10918165,
+        "bSum": 21287641,
+        "aSum": 25119482,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      {
+        "shift": 0.03,
+        "presented": {
+          "serial": 5,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ]
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                0.03,
+                0,
+                4
+              ],
+              "target": [
+                0.03,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                1,
+                0
+              ],
+              "projection": "orthographic",
+              "ortho_scale": 1.05,
+              "position": [
+                0.03,
+                0,
+                4
+              ],
+              "__vf_live_mutated": true,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        },
+        "callbackMs": 501.4849999845028,
+        "throughReadbackMs": 516.3949999809265,
+        "width": 998,
+        "height": 326,
+        "pixelHash": 310958498,
+        "nonblankPixels": 99539,
+        "rSum": 5423391,
+        "gSum": 10924111,
+        "bSum": 21299495,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      }
+    ],
+    "colorUpdate": {
+      "completedThroughReadbackMs": 715.7600000202656,
+      "before": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 310958498,
+        "nonblankPixels": 99539,
+        "rSum": 5423391,
+        "gSum": 10924111,
+        "bSum": 21299495,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "after": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 3969930161,
+        "nonblankPixels": 99539,
+        "rSum": 25133990,
+        "gSum": 6345253,
+        "bSum": 3370251,
+        "aSum": 25133990,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "presented": {
+        "serial": 6,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ]
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0.03,
+              0,
+              4
+            ],
+            "target": [
+              0.03,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 1.05,
+            "position": [
+              0.03,
+              0,
+              4
+            ],
+            "__vf_live_mutated": true,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      },
+      "actualRuntimePacket": true,
+      "noExtraRedrawOrCameraRequest": true
+    },
+    "gpuErrors": [],
+    "deviceLost": false,
+    "fullGpuWorldComplete": false,
+    "releaseQualified": false,
+    "timing": {
+      "formatProfile": {
+        "binaryRetained": true,
+        "usedBytes": 1038526432,
+        "packetJSONChars": 1068,
+        "allocateMs": 2.3700000047683716,
+        "heapCopyMs": 514.1150000095367,
+        "stdoutMs": 0.3199999928474426,
+        "retainedFormatMs": 7463.205000013113,
+        "packetReadMs": 0.09000000357627869,
+        "jsonParseMs": 0.04999998211860657,
+        "arenaReconstructionMs": 102.9050000011921
+      },
+      "compileProfile": {
+        "native": {
+          "bridge_stages": [
+            {
+              "milliseconds": 0.175001,
+              "stage": "bridge-source-copy"
+            },
+            {
+              "milliseconds": 1086.639999,
+              "stage": "bridge-compiler-call"
+            },
+            {
+              "milliseconds": 29.665,
+              "stage": "bridge-response-json-parse"
+            },
+            {
+              "milliseconds": 19.55,
+              "stage": "bridge-ir-json"
+            },
+            {
+              "milliseconds": 1.195,
+              "stage": "bridge-manifest-json"
+            },
+            {
+              "milliseconds": 16.91,
+              "stage": "bridge-wasm-hex-decode"
+            },
+            {
+              "milliseconds": 2.15,
+              "stage": "bridge-formatter-ir-copy"
+            },
+            {
+              "milliseconds": 2.395001,
+              "stage": "bridge-output-plan"
+            }
+          ],
+          "browser_ir_json_bytes": 42717,
+          "browser_manifest_json_bytes": 2381,
+          "browser_wasm_bytes": 82069,
+          "compiler": {
+            "sizes": {
+              "argument_slot_capacity": 16,
+              "artifact_cache_hit": 0,
+              "bytecode_constants": 42,
+              "bytecode_functions": 1,
+              "default_argument_slots": 16,
+              "document_arena_bytes": 541728,
+              "execution_body_statements": 10,
+              "frontend_compile_calls": 1,
+              "mount_arena_bytes": 4198720,
+              "mutable_compile_input": 0,
+              "packaged_module_parse_calls": 0,
+              "required_argument_slots": 0,
+              "response_json_bytes": 209447,
+              "typed_functions": 1,
+              "wasm_bytes": 82069
+            },
+            "stages": [
+              {
+                "milliseconds": 1.010001,
+                "stage": "provider-frontend"
+              },
+              {
+                "milliseconds": 1.269999,
+                "stage": "source-prepare"
+              },
+              {
+                "milliseconds": 28.15,
+                "stage": "source-lex"
+              },
+              {
+                "milliseconds": 35.905,
+                "stage": "source-parse"
+              },
+              {
+                "milliseconds": 7.35,
+                "stage": "source-link"
+              },
+              {
+                "milliseconds": 493.285,
+                "stage": "source-semantic-lower"
+              },
+              {
+                "milliseconds": 286.41,
+                "stage": "source-private-browser-lower"
+              },
+              {
+                "milliseconds": 24.715,
+                "stage": "source-context-identity"
+              },
+              {
+                "milliseconds": 0.025,
+                "stage": "provider-execution-ir"
+              },
+              {
+                "milliseconds": 4.875,
+                "stage": "canonical-ir-copy"
+              },
+              {
+                "milliseconds": 2.22,
+                "stage": "executable-ir-copy"
+              },
+              {
+                "milliseconds": 19.16,
+                "stage": "typed-program-lowering"
+              },
+              {
+                "milliseconds": 28.065,
+                "stage": "bytecode-lowering"
+              },
+              {
+                "milliseconds": 50.325001,
+                "stage": "wasm-emission"
+              },
+              {
+                "milliseconds": 14.759999,
+                "stage": "wasm-hex-transport"
+              },
+              {
+                "milliseconds": 6.185,
+                "stage": "manifest"
+              },
+              {
+                "milliseconds": 78.975,
+                "stage": "compile-response-json"
+              }
+            ]
+          }
+        },
+        "compilerCallMs": 1159.9800000190735,
+        "transportReadMs": 0.699999988079071,
+        "jsParseMs": 0.3100000023841858,
+        "wasmCopyMs": 0.07499998807907104,
+        "profileReadMs": 2.6200000047683716,
+        "typedIRChars": 42717,
+        "manifestChars": 2381,
+        "guestWasmBytes": 82069
+      },
+      "compileMs": 1188.9749999940395,
+      "executeMs": 97866.22999998927,
+      "formatMs": 8083.280000001192
+    },
+    "persistedPacketFetchMs": 735.160000026226,
+    "setupThroughInitialReadbackMsMeaning": "fresh authenticated packet transport/mount, excludes originalVMrequest; no timing comparison or speedPASS"
+  },
+  "originalFullRequest": {
+    "result": {
+      "status": "CURRENT_EXACT5M_STATIC_RETAINED_FAILURE",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 263836.668505265,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [
+        "VKF_PHASE {\"name\":\"compile-begin\",\"at\":93.8299999833107}",
+        "VKF_PHASE {\"name\":\"compile-end\",\"at\":1282.8100000023842,\"ms\":1188.9749999940395}",
+        "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":2752.4900000095367,\"bytes\":82069,\"sha256\":\"8804716a6a544ab05d95bdfd6f67f0acdada78ad21811ea719e1531c3fef8a00\"}",
+        "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":2754.8849999904633}",
+        "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":99975.6399999857}",
+        "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":100457.21500000358}",
+        "VKF_PHASE {\"name\":\"guest-end\",\"at\":99149.03000000119,\"ms\":97866.22999998927}",
+        "VKF_PHASE {\"name\":\"format-begin\",\"at\":99149.14499998093,\"used\":1038526432}",
+        "VKF_PHASE {\"name\":\"physical-adapter\",\"available\":true,\"vendor\":\"nvidia\",\"architecture\":\"pascal\",\"isFallbackAdapter\":false}",
+        "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":107129.13499999046}"
+      ],
+      "cases": [],
+      "error": "page.evaluate: Target page, context or browser has been closed\n    at /mnt/development/VektorFlow-e1612-20261030/static-exact5m-persistence-fixed.mjs:20:98",
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+        "/preview/0.7.5/playground/canonical/formatter.mjs",
+        "/preview/0.7.5/playground/canonical/formatter.wasm",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+        "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+        "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs",
+        "/preview/0.7.5/vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+        "/preview/0.7.5/inline-retained-scene-view.mjs"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2329149,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    "job": {
+      "name": "full-authored5m-after-causal-native-persistence-observer-fix",
+      "command": [
+        "node",
+        "/mnt/development/VektorFlow-e1612-20261030/static-exact5m-persistence-fixed.mjs"
+      ],
+      "limit": 260,
+      "pid": 2329136,
+      "start": 263836.29024906,
+      "exit": -15,
+      "end": 263968.962925075,
+      "elapsedSeconds": 132.67267622496001,
+      "childJoined": true,
+      "reserveRefusal": {
+        "availableBytes": 4252626944,
+        "monotonic": 263968.96174717
+      }
+    },
+    "initialGpu": {
+      "phase": "ACTUAL_STATIC_INITIAL_PRESENTATION",
+      "count": 5000000,
+      "first": [
+        {
+          "frameId": "vf-inline-result-1--frame_0",
+          "serial": 2,
+          "snapshot": {
+            "camera": {
+              "pos": [
+                2.8,
+                -3.6,
+                2.4
+              ],
+              "position": [
+                2.8,
+                -3.6,
+                2.4
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                1
+              ],
+              "fov": 42
+            },
+            "axis3d": {
+              "x_min": -1,
+              "x_max": 1,
+              "y_min": -1,
+              "y_max": 1,
+              "z_min": -1,
+              "z_max": 1
+            },
+            "axes": [
+              {
+                "index": 1,
+                "fields": {
+                  "x_min": -1,
+                  "x_max": 1,
+                  "y_min": -1,
+                  "y_max": 1,
+                  "z_min": -1,
+                  "z_max": 1
+                }
+              }
+            ]
+          },
+          "endpoint": "gpu-queue-completed",
+          "renderCameras": [
+            {
+              "pos": [
+                2.8,
+                -3.6,
+                2.4
+              ],
+              "position": [
+                2.8,
+                -3.6,
+                2.4
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                1
+              ],
+              "fov": 42,
+              "viewport_width_px": 998,
+              "viewport_height_px": 326
+            }
+          ]
+        }
+      ],
+      "initialView": {
+        "serial": 2,
+        "snapshot": {
+          "camera": {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42
+          },
+          "axis3d": {
+            "x_min": -1,
+            "x_max": 1,
+            "y_min": -1,
+            "y_max": 1,
+            "z_min": -1,
+            "z_max": 1
+          },
+          "axes": [
+            {
+              "index": 1,
+              "fields": {
+                "x_min": -1,
+                "x_max": 1,
+                "y_min": -1,
+                "y_max": 1,
+                "z_min": -1,
+                "z_max": 1
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "position": [
+              2.8,
+              -3.6,
+              2.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              0,
+              1
+            ],
+            "fov": 42,
+            "viewport_width_px": 998,
+            "viewport_height_px": 326
+          }
+        ]
+      },
+      "initial": {
+        "width": 998,
+        "height": 326,
+        "pixelHash": 2807348364,
+        "nonblankPixels": 15060,
+        "rSum": 799626,
+        "gSum": 1624149,
+        "bSum": 3147890,
+        "aSum": 3756522,
+        "readback": "actual renderer GPU copyTextureToBuffer/mapAsync"
+      },
+      "status": {
+        "hasFrame": true,
+        "entryCount": 1,
+        "renderers": 1,
+        "runningRenderers": 1,
+        "canvasCount": 1,
+        "initFailures": [],
+        "runtimeFailures": [],
+        "presentedViewSerial": 2,
+        "presentationEndpoint": "gpu-queue-completed",
+        "viewTransitionActive": false,
+        "lastWgpuError": "",
+        "lastWgpuLog": "[vf-geom-wgpu] init OK 998x326 objectId=1"
+      }
+    }
+  },
+  "finiteHistory": {
+    "status": "PASS_RETAINED_VIEW_HISTORY",
+    "endpoint": "gpu-queue-completed",
+    "intermediateSerial": 13,
+    "finalSerial": 94,
+    "scope": "ordinary zoom/pan/back/forward/home, interruption, exact completed endpoints and branch semantics; no physical GPU/fullscale claim from Canvas"
+  },
+  "smallPlot": {
+    "selectedUiCommit": "c481e411ad0cb3d2e4dfd61bb66b9f4fc507ad04",
+    "binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "status": "CURRENT_SMALL_SIN_COMPLETE",
+    "rows": [
+      {
+        "name": "unprimed",
+        "points": 1025,
+        "maxError": 2.9772385223836295e-08,
+        "requestThroughCompleteRasterMs": 1413.705000013113,
+        "raster": "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+      },
+      {
+        "name": "initialized-repeat",
+        "points": 1025,
+        "maxError": 2.9772385223836295e-08,
+        "requestThroughCompleteRasterMs": 163.3550000190735,
+        "raster": "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+      },
+      {
+        "name": "real-source-edit",
+        "points": 1025,
+        "maxError": 2.9772385223836295e-08,
+        "requestThroughCompleteRasterMs": 694.0600000023842,
+        "raster": "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+      }
+    ],
+    "scope": "genuine1025currentVM+formatter, ordinary2Dretained first-presented endpoint, cold/repeat/actualsin2xedit changesarena+raster; no400msgate. UInewsourceintake later requiresaffectedcheck only; no blanketcarry."
+  },
+  "packetPersistence": {
+    "arenaBytes": 220000000,
+    "arenaSha256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24",
+    "authenticMetadata": true,
+    "sourceBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03"
+  },
+  "priorFailuresRetained": [
+    "Prior1608 completepacket but blank GPU output and dynamic-only oracle refusal",
+    "Own initial intake runner mismatch",
+    "Old history duplicate owner and actual color source/instance routing failures",
+    "Private large HTTP POST persistence seam stalled after completepacket beforemount; genuine byte-only probe reproduced. Metadata and actual bytes then persisted and first realGPUframe completed; 4GiB reserve guard safely stopped the memory-heavy request owner during updates. The exact authenticated persistedpacket was reused for full normalGPUview/color without repeating the VM."
+  ],
+  "limits": [
+    "Native 10000-label complete current-component output not qualified",
+    "Full authored nonlinear GPU world and current F32 indexed-array backend remain incomplete",
+    "Historical57-program preview qualification is not carried to this compiler binding",
+    "Only named Linux Chromium NVIDIA Pascal / normal Node ESM scope is supported by these results",
+    "No new comparative timing: missing LOCAL48 peers/preflight/parity/results remain missing; no fabricated ratios"
+  ],
+  "timingPolicy": "400ms/10ms/20x release thresholds retired; actual timings remain informational",
+  "published": false
+}

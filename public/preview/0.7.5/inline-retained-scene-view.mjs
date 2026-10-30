@@ -147,6 +147,22 @@ export function mountRetainedSceneResult(container, packets, {
   }
   container.append(viewport);
   let disposed = false;
+  const presentationAbort = new AbortController();
+  let resolvePresented;
+  const presented = new Promise(resolve => { resolvePresented = resolve; });
+  const firstPresentations = new Map();
+  const firstPresented = (frameId, record) => {
+    if (disposed || firstPresentations.has(frameId)) return;
+    firstPresentations.set(frameId, record);
+    if (firstPresentations.size !== ownedPackets.length) return;
+    layer.dataset.vfRenderState = "visible";
+    layer.dispatchEvent?.(new Event("vf-inline-result-visible"));
+    resolvePresented(ownedPackets.map(packet => ({
+      frameId: packet.metadata.scene.frame,
+      ...firstPresentations.get(packet.metadata.scene.frame),
+    })));
+    if (animated) presentFrame = requestAnimationFrame(animate);
+  };
   let presentFrame = 0;
   let animationLast = null;
   let animationElapsed = 0;
@@ -239,15 +255,13 @@ export function mountRetainedSceneResult(container, packets, {
   presentFrame = requestAnimationFrame(() => {
     presentFrame = 0;
     if (disposed) return;
-    for (const packet of ownedPackets) VfDisplay.renderRetainedSceneArena(packet);
     layer.dataset.vfRenderState = "presenting";
-    presentFrame = requestAnimationFrame(() => {
-      presentFrame = 0;
-      if (disposed) return;
-      layer.dataset.vfRenderState = "visible";
-      layer.dispatchEvent?.(new Event("vf-inline-result-visible"));
-      if (animated) presentFrame = requestAnimationFrame(animate);
-    });
+    for (const packet of ownedPackets) {
+      VfDisplay.renderRetainedSceneArena(packet, {
+        signal: presentationAbort.signal,
+        afterPresented: record => firstPresented(packet.metadata.scene.frame, record),
+      });
+    }
   });
   const enlarge = document.createElement("button");
   enlarge.type = "button";
@@ -287,14 +301,23 @@ export function mountRetainedSceneResult(container, packets, {
   });
   const dispose = () => {
     disposed = true;
+    presentationAbort.abort();
+    resolvePresented(null);
     if (presentFrame) cancelAnimationFrame(presentFrame);
     for (const { capture } of movieCaptures.values()) capture.cancel();
     movieCaptures.clear();
     if (dialog) { dialog.close(); restore(); }
     enlarge.remove();
-    for (const frame of frames) frame?.root?.remove?.();
+    for (const [index, frame] of frames.entries()) {
+      VfDisplay.disposeGeomFrame?.(ownedPackets[index].metadata.scene.frame);
+      frame?.root?.remove?.();
+    }
     viewport.remove?.();
   };
+  // Scoped actual Frame identities and a real renderer completion endpoint.
+  // Null means disposed before first presentation; never a successful draw.
+  dispose.presented = presented;
+  dispose.frameIds = Object.freeze(ownedPackets.map(packet => packet.metadata.scene.frame));
   dispose.element = frames.length === 1 ? frames[0]?.root ?? viewport : viewport;
   return dispose;
 }

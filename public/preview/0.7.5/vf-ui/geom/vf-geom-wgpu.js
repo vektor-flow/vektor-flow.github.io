@@ -581,7 +581,7 @@
         pending: false,
         pendingStartMs: 0.0,
         submitter: null,
-        queued: Object.create(null),
+        queued: new Map(),
         order: []
       };
     }
@@ -592,31 +592,33 @@
     if (!renderer || typeof renderer.requestFrame !== "function") { return; }
     var state = scheduler || gpuSchedulerState(renderer);
     if (!state) { return; }
-    var key = String(renderer._frameId || "") + "/" + (renderer._offscreenFrame === true ? "offscreen" : "visible");
-    if (!state.queued[key]) {
-      state.queued[key] = renderer;
-      state.order.push(key);
-    } else {
-      state.queued[key] = renderer;
+    // One ordinary Frame can own several independent renderer entries.
+    if (!state.queued.has(renderer)) {
+      state.queued.set(renderer, true);
+      state.order.push(renderer);
     }
     renderer._renderQueuedWhileGpuPending = true;
   }
 
   function drainQueuedGpuRenderers(scheduler) {
     if (!scheduler || scheduler.pending === true) { return; }
-    var key = "";
-    while (scheduler.order.length > 0 && !key) {
-      var candidate = scheduler.order.shift();
-      if (scheduler.queued[candidate]) {
-        key = candidate;
-      }
-    }
-    if (!key) { return; }
-    var renderer = scheduler.queued[key];
-    delete scheduler.queued[key];
-    if (renderer && typeof renderer.requestFrame === "function") {
+    while (scheduler.order.length > 0 && scheduler.pending !== true) {
+      var renderer = scheduler.order.shift();
+      if (!scheduler.queued.delete(renderer)) { continue; }
       renderer._renderQueuedWhileGpuPending = false;
-      renderer.requestFrame();
+      if (!renderer._device || (!renderer._running && renderer._offscreenFrame !== true) ||
+          (renderer._offscreenFrame !== true && renderer._canvas && renderer._canvas.isConnected === false)) { continue; }
+      // Submit the selected live entry in this drain. Deferring it to RAF
+      // lets an earlier continuous renderer steal the newly available slot.
+      try { renderer._renderContent(perfNowMs()); }
+      catch (error) {
+        renderer._runtimeError = "frame: " + (error && error.message ? error.message : String(error));
+        wlog("error", renderer._runtimeError);
+        renderer.stop();
+        if (typeof renderer._onFramePresentationError === "function") {
+          renderer._onFramePresentationError(error);
+        }
+      }
     }
   }
 
@@ -625,12 +627,10 @@
     return !!(scheduler && scheduler.pending === true);
   }
 
-  function drainSubmittedCallbacks(renderer) {
-    if (!renderer || !Array.isArray(renderer._afterSubmittedWorkDoneCallbacks)) { return; }
-    var callbacks = renderer._afterSubmittedWorkDoneCallbacks.splice(0);
+  function drainSubmittedCallbacks(renderer, callbacks, presented) {
     for (var i = 0; i < callbacks.length; i += 1) {
       try {
-        callbacks[i]();
+        callbacks[i](presented);
       } catch (err) {
         failFast("after submitted frame callback failed: " + (err && err.message ? err.message : String(err)));
       }
@@ -645,17 +645,35 @@
     renderer._afterSubmittedWorkDoneCallbacks.push(callback);
   }
 
-  function markSubmittedGpuWork(renderer) {
+  function markSubmittedGpuWork(renderer, presentation) {
+    // Freeze both the pose and callbacks at THIS submit. A later request must
+    // never complete on an earlier in-flight frame's queue fence.
+    var callbacks = Array.isArray(renderer._afterSubmittedWorkDoneCallbacks)
+      ? renderer._afterSubmittedWorkDoneCallbacks.splice(0) : [];
+    var sequence = Number(renderer._submittedFrameSequence || 0) + 1;
+    renderer._submittedFrameSequence = sequence;
+    var presented = { sequence: sequence, camera: presentation.camera, view: presentation.view,
+      endpoint: "gpu-queue-completed" };
+    function complete() {
+      if (sequence <= Number(renderer._presentedFrameSequence || 0)) { return; }
+      renderer._presentedFrameSequence = sequence;
+      renderer._lastPresentedFrame = presented;
+      renderer._markPresentedFirstFrame();
+      if (typeof renderer._onFramePresented === "function") { renderer._onFramePresented(presented); }
+      drainSubmittedCallbacks(renderer, callbacks, presented);
+    }
     if (!renderer || !renderer._device || !renderer._device.queue || typeof renderer._device.queue.onSubmittedWorkDone !== "function") {
-      drainSubmittedCallbacks(renderer);
+      renderer._runtimeError = "submitted frame has no GPU completion fence";
       return;
     }
     var scheduler = gpuSchedulerState(renderer);
     if (scheduler) {
+      if (!scheduler.pending) { scheduler.pendingStartMs = perfNowMs(); }
+      scheduler.pendingCount = Number(scheduler.pendingCount || 0) + 1;
       scheduler.pending = true;
-      scheduler.pendingStartMs = perfNowMs();
       scheduler.submitter = renderer;
     }
+    renderer._gpuPendingCount = Number(renderer._gpuPendingCount || 0) + 1;
     renderer._gpuWorkPending = true;
     renderer._debugGpuSubmitCount = Number(renderer._debugGpuSubmitCount || 0) + 1;
     renderer._debugGpuPendingStartMs = perfNowMs();
@@ -666,13 +684,18 @@
       var queuedCount = schedulerNow && schedulerNow.order ? schedulerNow.order.length : 0;
       var queued = queuedCount > 0 || renderer._renderQueuedWhileGpuPending === true;
       if (schedulerNow) {
-        schedulerNow.pending = false;
-        schedulerNow.pendingStartMs = 0.0;
-        schedulerNow.submitter = null;
+        schedulerNow.pendingCount = Math.max(0, Number(schedulerNow.pendingCount || 1) - 1);
+        schedulerNow.pending = schedulerNow.pendingCount > 0;
+        if (!schedulerNow.pending) { schedulerNow.pendingStartMs = 0.0; schedulerNow.submitter = null; }
       }
-      renderer._gpuWorkPending = false;
-      renderer._debugGpuPendingStartMs = 0;
-      drainSubmittedCallbacks(renderer);
+      renderer._gpuPendingCount = Math.max(0, Number(renderer._gpuPendingCount || 1) - 1);
+      renderer._gpuWorkPending = renderer._gpuPendingCount > 0;
+      if (!renderer._gpuWorkPending) { renderer._debugGpuPendingStartMs = 0; }
+      try { complete(); }
+      catch (error) {
+        renderer._runtimeError = "frame presentation callback failed: " + String(error);
+        wlog("error", renderer._runtimeError);
+      }
       if (chessLagDebugEnabled() && (pendingMs > 80 || queued)) {
         lagDebugLog(
           renderer,
@@ -686,17 +709,21 @@
         );
       }
       drainQueuedGpuRenderers(schedulerNow);
-    }).catch(function () {
+    }).catch(function (error) {
       var schedulerNow = gpuSchedulerState(renderer);
       if (schedulerNow) {
-        schedulerNow.pending = false;
-        schedulerNow.pendingStartMs = 0.0;
-        schedulerNow.submitter = null;
+        schedulerNow.pendingCount = Math.max(0, Number(schedulerNow.pendingCount || 1) - 1);
+        schedulerNow.pending = schedulerNow.pendingCount > 0;
+        if (!schedulerNow.pending) { schedulerNow.pendingStartMs = 0.0; schedulerNow.submitter = null; }
       }
-      renderer._gpuWorkPending = false;
-      renderer._debugGpuPendingStartMs = 0;
+      renderer._gpuPendingCount = Math.max(0, Number(renderer._gpuPendingCount || 1) - 1);
+      renderer._gpuWorkPending = renderer._gpuPendingCount > 0;
+      if (!renderer._gpuWorkPending) { renderer._debugGpuPendingStartMs = 0; }
       renderer._renderQueuedWhileGpuPending = false;
-      drainSubmittedCallbacks(renderer);
+      renderer._runtimeError = "GPU frame completion failed: " + String(error);
+      if (typeof renderer._onFramePresentationError === "function") {
+        renderer._onFramePresentationError(error);
+      }
       drainQueuedGpuRenderers(schedulerNow);
     });
   }
@@ -3435,7 +3462,9 @@ fn fs_point_impostor(i: PointImpostorVOut) -> DepthFragmentOut {
   if ((sc.receive_shadow & 2u) != 0u || i.color.a < 0.0) {
     let emissive = min(vec3<f32>(1.0, 1.0, 1.0), (i.color.rgb * 1.18) + vec3<f32>(0.10, 0.08, 0.02));
     out.color = vec4f(emissive * (instAlpha * mask * sc.alpha_mul), instAlpha * mask * sc.alpha_mul);
-    out.depth = clamp(i.clip.z / max(i.clip.w, 1.0e-6), 0.0, 1.0);
+    // Fragment builtin position.z is already viewport depth; its w is
+    // reciprocal clip W. Dividing again wrongly pushes unlit points to far depth.
+    out.depth = clamp(i.clip.z, 0.0, 1.0);
     return out;
   }
   let z = sqrt(max(0.0, 1.0 - min(dot(i.local_uv, i.local_uv), 1.0)));
@@ -8871,7 +8900,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
         instanceKind: mesh.instance_kind || null,
         staticIndices: mesh.static_indices === true,
         staticVertices: mesh.static_vertices === true,
-        staticInstances: mesh.static_instances === true || (mesh.static_vertices === true && mesh.static_indices === true && !!mesh.instance_kind),
+        staticInstances: mesh.static_instances === true,
         ibCount: mesh.indices.length,
         topology: mesh.topology || "triangle-list",
         uniformBuf: uniformBuf,
@@ -8936,7 +8965,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
           existing.instanceKind = mesh.instance_kind || null;
           existing.staticIndices = mesh.static_indices === true;
           existing.staticVertices = mesh.static_vertices === true;
-          existing.staticInstances = mesh.static_instances === true || (mesh.static_vertices === true && mesh.static_indices === true && !!mesh.instance_kind);
+          existing.staticInstances = mesh.static_instances === true;
           existing.topology = mesh.topology || "triangle-list";
           existing.objectId = Number(mesh.object_id || (i + 1)) || (i + 1);
           nextParts[i] = existing;
@@ -8983,6 +9012,12 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
 
     _renderContent: function (t, options) {
       if (!this._device) { return; }
+      // Use the existing shared queue drain before uploads or another draw.
+      // Pending GPU work owns its staging buffers and presented snapshot.
+      if (isGpuWorkPending(this)) {
+        queueRendererForGpuDrain(this);
+        return;
+      }
       options = options && typeof options === "object" ? options : {};
       var perfSample = Object.create(null);
       var perfTotalStart = perfNowMs();
@@ -8990,6 +9025,11 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
       var mesh = this._getMesh(t * 0.001);
       perfSample.get_mesh = perfNowMs() - perfStageStart;
       if (!mesh) { return; }
+      // Only small view metadata is copied, never geometry/packet buffers.
+      var presentation = {
+        camera: mesh.camera ? JSON.parse(JSON.stringify(mesh.camera)) : null,
+        view: mesh.__vfFrameView ? JSON.parse(JSON.stringify(mesh.__vfFrameView)) : null
+      };
       maybeLogMirrorCamera(this, mesh);
       var meshRevision = Number(mesh && mesh.__revision);
       if (mesh !== this._lastMesh || meshRevision !== this._lastMeshRevision) {
@@ -9170,8 +9210,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
         perfStageStart = perfNowMs();
         this._device.queue.submit([encBatch.finish()]);
         enqueueSubmittedCallback(this, function () { notifyLinkedTextureFrames(this); }.bind(this));
-        markSubmittedGpuWork(this);
-        this._markPresentedFirstFrame();
+        markSubmittedGpuWork(this, presentation);
         perfSample.submit = perfNowMs() - perfStageStart;
         perfSample.total = perfNowMs() - perfTotalStart;
         this._renderEvidenceSequence += 1;
@@ -9379,8 +9418,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
       this._blitFrameTargetToCanvas(enc, mesh);
       this._device.queue.submit([enc.finish()]);
       enqueueSubmittedCallback(this, function () { notifyLinkedTextureFrames(this); }.bind(this));
-      markSubmittedGpuWork(this);
-      this._markPresentedFirstFrame();
+      markSubmittedGpuWork(this, presentation);
 
       // Fire the callback after the combined visible+pick submit.
       if (fireSinglePickCallback && this._pickCallback) { this._pickCallback(); }
@@ -9545,6 +9583,14 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
     stop: function () {
       this._running = false;
       if (this._raf) { cancelAnimationFrame(this._raf); this._raf = 0; }
+      var scheduler = gpuSchedulerState(this);
+      if (scheduler) {
+        scheduler.queued.delete(this);
+        var index = scheduler.order.indexOf(this);
+        if (index >= 0) { scheduler.order.splice(index, 1); }
+      }
+      this._renderQueuedWhileGpuPending = false;
+      this._renderPending = false;
     },
 
     destroy: function () {

@@ -8301,8 +8301,9 @@
       return [lerpNumber(a[0], b[0], t), lerpNumber(a[1], b[1], t), lerpNumber(a[2], b[2], t)];
     }
     function smoothStep(t) {
-      t = Math.max(0.0, Math.min(1.0, Number(t || 0.0)));
-      return t * t * (3.0 - (2.0 * t));
+      t = Math.max(0.0, Math.min(1.0, Number(t) || 0.0));
+      // Same symmetric C1 quadratic clock as retained pan/zoom/history.
+      return t <= 0.5 ? 2 * t * t : 1 - 2 * (1 - t) * (1 - t);
     }
     function playerSideCamera(camera, side) {
       var source = cloneCameraState(camera, cameraFallback);
@@ -8370,7 +8371,9 @@
       return cameraFromPlayerSideState(state, seedCamera);
     }
     function startAutoSwitchCamera(camera, side) {
-      var from = cloneCameraState(camera, cameraFallback);
+      var renderer = global.__vfFrameRenderers && global.__vfFrameRenderers[watchedFrameId];
+      var presented = renderer && renderer._lastPresentedFrame;
+      var from = cloneCameraState(presented && presented.camera || camera, cameraFallback);
       storeActivePlayerSideCamera(from);
       var sideName = normalizePlayerSide(side);
       var toState = ensurePlayerSideCameraState(sideName, from);

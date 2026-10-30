@@ -74,6 +74,8 @@
   var _plotCameraRaf = Object.create(null);
   var _geomTextFollow = Object.create(null);
   var _mathTextHtmlCache = Object.create(null);
+  var _nativeLabelRendererFactory = null;
+  var _nativeLabelCleanup = new Set();
   var _vfPointerStreamInflight = false;
   var _vfPointerStreamPending = null;
   var _vfHostInputReady = false;
@@ -2592,6 +2594,10 @@
       light_flares: lightFlares || null,
       background: Array.isArray(background) ? background.slice(0, 4) : null,
       mode3d: false,
+      // This owned static scene is replaced on normal geometry updates. Give
+      // unchanged frames a real revision: Number(undefined) is NaN and would
+      // re-upload every instance buffer on every continuous draw.
+      __revision: 0,
       unified_renderer: true
     };
   }
@@ -2646,6 +2652,7 @@
           instance_kind: String(spec.instance_kind || ""),
           static_vertices: spec.static_vertices === true,
           static_indices: spec.static_indices === true,
+          static_instances: spec.static_instances === true,
           topology: spec.topology || "triangle-list",
           transparent: spec.transparent === true,
           depth_write: spec.depth_write === true,
@@ -2900,6 +2907,7 @@
   }
 
   function mutatePlotCamera(fid, mutator) {
+    interruptFrameViewTransition(fid);
     if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
     var geom = _lastDisplayPayload.geom[fid];
     var camera = Object.assign({}, geom.camera || {});
@@ -3028,6 +3036,8 @@
   }
 
   function applyAxis3DCameraToLiveRenderers(fid, camera) {
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    var view = tagFrameView(String(fid), geom);
     var rec = frameRecs[String(fid)] || null;
     if (!rec || !Array.isArray(rec.entries)) { return; }
     for (var i = 0; i < rec.entries.length; i += 1) {
@@ -3035,6 +3045,7 @@
       var liveMesh = entry && entry.ref && entry.ref.mesh ? entry.ref.mesh : null;
       if (!liveMesh) { continue; }
       liveMesh.camera = Object.assign({}, camera || {});
+      liveMesh.__vfFrameView = view;
       if (entry.renderer && typeof entry.renderer.requestFrame === "function") {
         entry.renderer.requestFrame();
       }
@@ -4751,6 +4762,7 @@
   }
 
   function applyAxis3DSelectionZoom(fid, body, drag) {
+    interruptFrameViewTransition(fid);
     var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
     if (!geom) { return; }
     var cfg = axis3DBoxRuntime(geom);
@@ -4778,21 +4790,18 @@
         target[axis + "_min"] = c - half;
         target[axis + "_max"] = c + half;
       }
-      animateAxisRanges(300, function (a) {
-        axis3DApplyBoxRangePlan(cfg, start, target, a);
-        repaintAxis3DHelperLines(fid);
-      });
+      var before = captureFrameViewSnapshot(geom);
+      axis3DApplyBoxRangePlan(cfg, start, target, 1);
+      var destination = captureFrameViewSnapshot(geom);
+      applyFrameViewSnapshot(geom, before);
+      animateFrameViewSnapshot(fid, body, destination, 300, true);
       return;
     }
-    animateAxisRanges(300, function (a) {
-      mutateAxis3DCamera(fid, function (camera) {
-        var factor = 1 - (1 - frac) * a;
-        if (String(camera.projection || "").toLowerCase() === "orthographic") {
-          camera.ortho_scale = Math.max(1e-6, Number(camera.ortho_scale || 2.5) * factor);
-        }
-      }, { skipTextOverlay: true });
-      repaintAxis3DHelperLines(fid);
-    });
+    var destination = captureFrameViewSnapshot(geom);
+    if (destination.camera && String(destination.camera.projection || "").toLowerCase() === "orthographic") {
+      destination.camera.ortho_scale = Math.max(1e-6, Number(destination.camera.ortho_scale || 2.5) * frac);
+      animateFrameViewSnapshot(fid, body, destination, 300, true);
+    }
   }
 
   function axis3DBoxScreenAxisDirections(camera, body, cfg) {
@@ -5319,6 +5328,7 @@
     if (!frameEl) { return; }
     rebuildAxis3DLocalField(fid, true, geom);
     applyAxis3DBoundMeshes(geom);
+    var view = tagFrameView(fid, geom);
     var rec = frameRecs[fid] || null;
     if (rec && Array.isArray(rec.entries)) {
       var fit = fittedFrameContentRect(frameEl, geomFrameHost(frameEl, fid));
@@ -5335,6 +5345,7 @@
         if (!entry) { continue; }
         var liveMesh = buildSingleMesh(visibleMeshes[i], effectiveCamera, lights);
         if (!liveMesh) { continue; }
+        liveMesh.__vfFrameView = view;
         liveMesh.__revision = Number(visibleMeshes[i].__revision || visibleMeshes[i].__dataRevision || 0);
         if (!entry.ref) { entry.ref = { mesh: liveMesh }; }
         else { entry.ref.mesh = liveMesh; }
@@ -5421,6 +5432,7 @@
   }
 
   function mutateAxis3DCamera(fid, mutator, options) {
+    interruptFrameViewTransition(fid);
     if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
     var geom = _lastDisplayPayload.geom[fid];
     var camera = normalizeGeomCamera(geom.camera || {});
@@ -5594,6 +5606,7 @@
   }
 
   function mutateAxisViewport(fid, mutator, options) {
+    interruptFrameViewTransition(fid);
     if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
     var geom = _lastDisplayPayload.geom[fid];
     var meshes = Array.isArray(geom.meshes) ? geom.meshes : [];
@@ -5627,9 +5640,15 @@
   ];
 
   function captureFrameViewSnapshot(geom) {
-    var snapshot = { camera: null, axes: [] };
+    var snapshot = { camera: null, axis3d: {}, axes: [] };
     if (geom && geom.camera) {
       snapshot.camera = JSON.parse(JSON.stringify(geom.camera));
+      delete snapshot.camera.__vf_live_mutated;
+    }
+    if (geom && geom.axis3d_runtime) {
+      VIEW_AXIS_FIELDS.forEach(function (name) {
+        if (Object.prototype.hasOwnProperty.call(geom.axis3d_runtime, name)) { snapshot.axis3d[name] = geom.axis3d_runtime[name]; }
+      });
     }
     var meshes = geom && Array.isArray(geom.meshes) ? geom.meshes : [];
     for (var index = 0; index < meshes.length; index += 1) {
@@ -5647,15 +5666,313 @@
 
   function applyFrameViewSnapshot(geom, snapshot) {
     if (!geom || !snapshot) { return false; }
-    if (snapshot.camera) { geom.camera = JSON.parse(JSON.stringify(snapshot.camera)); }
+    geom.camera = cloneFrameView(snapshot.camera);
+    if (geom.camera) { geom.camera.__vf_live_mutated = true; }
+    function restoreFields(target, fields) {
+      if (!target) { return; }
+      VIEW_AXIS_FIELDS.forEach(function (name) {
+        if (Object.prototype.hasOwnProperty.call(fields || {}, name)) { target[name] = fields[name]; }
+        else { delete target[name]; }
+      });
+      target.__vf_live_mutated = true;
+      // A restored angle must also replace the gesture controller's raw angle;
+      // otherwise the next drag resumes from the pre-navigation rotation.
+      if (Object.prototype.hasOwnProperty.call(fields || {}, "rotation_deg")) { target.__raw_rotation_deg = fields.rotation_deg; }
+      else { delete target.__raw_rotation_deg; }
+      if (Object.prototype.hasOwnProperty.call(fields || {}, "theta_offset_rad")) { target.__raw_theta_offset_rad = fields.theta_offset_rad; }
+      else { delete target.__raw_theta_offset_rad; }
+      delete target.__frozen_tick_values;
+      delete target.__frozen_box_tick_state;
+    }
+    restoreFields(geom.axis3d_runtime, snapshot.axis3d);
     var meshes = Array.isArray(geom.meshes) ? geom.meshes : [];
     var axes = Array.isArray(snapshot.axes) ? snapshot.axes : [];
     for (var index = 0; index < axes.length; index += 1) {
       var target = meshes[axes[index].index] && meshes[axes[index].index].axis_ticks;
       if (!target) { continue; }
-      Object.assign(target, axes[index].fields || {});
-      target.__vf_live_mutated = true;
+      restoreFields(target, axes[index].fields);
     }
+    return true;
+  }
+
+  function cloneFrameView(value) {
+    return value == null ? value : JSON.parse(JSON.stringify(value));
+  }
+
+  function frameViewRecord(fid) {
+    if (!frameRecs[fid]) { frameRecs[fid] = { entries: [] }; }
+    return frameRecs[fid];
+  }
+
+  function tagFrameView(fid, geom) {
+    var rec = frameViewRecord(fid);
+    rec.viewSerial = Number(rec.viewSerial || 0) + 1;
+    return { serial: rec.viewSerial, snapshot: captureFrameViewSnapshot(geom) };
+  }
+
+  function publishFrameView(fid, rec, view, endpoint, cameras) {
+    if (frameRecs[fid] !== rec || !view ||
+        (rec.presentedView && view.serial < rec.presentedView.serial)) { return; }
+    rec.presentedView = { serial: view.serial, snapshot: cloneFrameView(view.snapshot),
+      endpoint: endpoint, renderCameras: cloneFrameView(cameras || []) };
+    var listeners = (rec.viewListeners || []).slice();
+    for (var i = 0; i < listeners.length; i += 1) { listeners[i](rec.presentedView); }
+  }
+
+  function listenFrameView(rec, callback) {
+    if (!rec.viewListeners) { rec.viewListeners = []; }
+    rec.viewListeners.push(callback);
+    return function () {
+      var i = rec.viewListeners.indexOf(callback);
+      if (i >= 0) { rec.viewListeners.splice(i, 1); }
+    };
+  }
+
+  function observeFrameViewRenderer(fid, rec, entry) {
+    var renderer = entry.renderer;
+    var owner = findFrameEl(geomTargetFrameId(fid));
+    renderer._onFramePresentationError = function () {
+      if (rec.viewTransition) { rec.viewTransition.cancel(); }
+    };
+    renderer._onFramePresented = function (presented) {
+      if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 || !presented.view ||
+          !owner || owner.isConnected === false || findFrameEl(geomTargetFrameId(fid)) !== owner) { return; }
+      entry.presentedView = presented;
+      var serial = presented.view.serial;
+      var cameras = [];
+      for (var i = 0; i < rec.entries.length; i += 1) {
+        var other = rec.entries[i].presentedView;
+        if (!other || !other.view || other.view.serial !== serial) { return; }
+        cameras.push(other.camera);
+      }
+      publishFrameView(fid, rec, presented.view, presented.endpoint, cameras);
+    };
+  }
+
+  function getGeomFramePresentedView(fid) {
+    var rec = frameRecs[String(fid)];
+    return rec && rec.presentedView && findFrameEl(geomTargetFrameId(fid)) ? cloneFrameView(rec.presentedView) : null;
+  }
+
+  // Static retained Frames use the same updateGeomFrame path as ordinary UI
+  // controls. This fence is registered before requesting the draw, including
+  // the first draw while renderer initialization is still pending.
+  function requestGeomFramePresentation(fid, options) {
+    fid = String(fid);
+    options = options || {};
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!geom || !findFrameEl(geomTargetFrameId(fid))) { return false; }
+    var rec = frameViewRecord(fid);
+    if (options.signal && options.signal.aborted) { return false; }
+    var serial = Number(rec.viewSerial || 0) + 1;
+    var signature = JSON.stringify(captureFrameViewSnapshot(geom));
+    if (typeof options.afterPresented === "function") {
+      function cancel() {
+        unlisten();
+        if (options.signal) { options.signal.removeEventListener("abort", cancel); }
+      }
+      var unlisten = listenFrameView(rec, function (presented) {
+        if (presented.serial < serial) { return; }
+        cancel();
+        // A superseded pose has no success callback.
+        if (JSON.stringify(presented.snapshot) === signature) { options.afterPresented(cloneFrameView(presented)); }
+      });
+      if (options.signal) { options.signal.addEventListener("abort", cancel, { once: true }); }
+    }
+    if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
+    updateGeomFrame(fid, geom);
+    return true;
+  }
+
+  function disposeGeomFrame(fid) {
+    fid = String(fid);
+    var rec = frameRecs[fid];
+    if (!rec) { return; }
+    if (rec.viewTransition) { rec.viewTransition.cancel(); }
+    var frameEl = findFrameEl(geomTargetFrameId(fid));
+    cancelFrameViewHistoryCommit(frameEl && geomFrameHost(frameEl, fid));
+    if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
+    ["axis3DOverlayRaf", "textOverlayRaf"].forEach(function (key) {
+      if (rec[key]) { global.cancelAnimationFrame(rec[key]); rec[key] = 0; }
+    });
+    rec.viewListeners = [];
+    stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
+    delete frameRecs[fid];
+    if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
+    if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
+  }
+
+  function updateGeomFrameCamera(fid, camera, options) {
+    fid = String(fid);
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!geom || !camera || typeof camera !== "object") { return false; }
+    interruptFrameViewTransition(fid);
+    geom.camera = normalizeGeomCamera(cloneFrameView(camera));
+    geom.camera.__vf_live_mutated = true;
+    return requestGeomFramePresentation(fid, options);
+  }
+
+  function cancelFrameViewHistoryCommit(body) {
+    if (!body) { return; }
+    if (body.__vfViewHistoryTimer) { global.clearTimeout(body.__vfViewHistoryTimer); }
+    body.__vfViewHistoryTimer = 0;
+    if (body.__vfViewHistoryUnlisten) { body.__vfViewHistoryUnlisten(); }
+    body.__vfViewHistoryUnlisten = null;
+  }
+
+  function interruptFrameViewTransition(fid) {
+    var rec = frameRecs[String(fid)];
+    if (!rec || !rec.viewTransition) { return false; }
+    rec.viewTransition.cancel();
+    rec.viewTransition = null;
+    if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); _plotCameraRaf[fid] = 0; }
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (geom && rec.presentedView) { applyFrameViewSnapshot(geom, rec.presentedView.snapshot); }
+    return true;
+  }
+
+  function interpolateFrameView(from, to, a, geom) {
+    if (a <= 0) { return cloneFrameView(from); }
+    if (a >= 1) { return cloneFrameView(to); }
+    function fields(start, end, cfg) {
+      var out = cloneFrameView(start || {});
+      Object.keys(end || {}).forEach(function (key) {
+        var x = start && start[key], y = end[key];
+        if (typeof x === "number" && Number.isFinite(x) && typeof y === "number" && Number.isFinite(y)) {
+          var axis = key.charAt(0);
+          out[key] = cfg && /^(x|y|z)_(min|max)$/.test(key) && isLogTickMode(cfg[axis + "_mode"]) && x > 0 && y > 0
+            ? Math.exp(Math.log(x) + (Math.log(y) - Math.log(x)) * a) : x + (y - x) * a;
+        } else if (Array.isArray(x) && Array.isArray(y) && x.length === y.length) {
+          out[key] = x.map(function (v, i) { return typeof v === "number" && typeof y[i] === "number" ? v + (y[i] - v) * a : v; });
+        }
+      });
+      return out;
+    }
+    function cameraFields(start, end) {
+      var out = fields(start, end);
+      if (!Array.isArray(start.pos) || !Array.isArray(end.pos) ||
+          !Array.isArray(start.target) || !Array.isArray(end.target) ||
+          start.view_matrix || end.view_matrix) { return out; }
+      // Interpolate the existing look-at representation without allowing an
+      // orbit restore to collapse eye onto target halfway through the move.
+      var d0 = geomVec3Sub(start.pos, start.target), d1 = geomVec3Sub(end.pos, end.target);
+      var r0 = geomVec3Len(d0), r1 = geomVec3Len(d1);
+      if (!(r0 > 1e-9 && r1 > 1e-9)) { return out; }
+      var b0 = normalizeVec3Local(d0), b1 = normalizeVec3Local(d1);
+      var cosine = Math.max(-1, Math.min(1, dot3(b0, b1)));
+      var axis = crossVec3(b0, b1), angle = Math.acos(cosine);
+      if (geomVec3Len(axis) < 1e-9) {
+        var basis = Math.abs(b0[0]) <= Math.abs(b0[1]) && Math.abs(b0[0]) <= Math.abs(b0[2])
+          ? [1, 0, 0] : Math.abs(b0[1]) <= Math.abs(b0[2]) ? [0, 1, 0] : [0, 0, 1];
+        axis = crossVec3(b0, basis);
+      }
+      axis = normalizeVec3Local(axis);
+      var backward = rotateVec3AroundAxis(b0, axis, angle * a);
+      function projectedUp(camera, backward) {
+        var up = vec3Array(camera.up, [0, 0, 1]);
+        var right = normalizeVec3Local(crossVec3(up, backward), axis);
+        return normalizeVec3Local(crossVec3(backward, right));
+      }
+      var up0 = projectedUp(start, b0), up1 = projectedUp(end, b1);
+      var transported = rotateVec3AroundAxis(up0, axis, angle);
+      var rollSine = dot3(b1, crossVec3(transported, up1));
+      var rollCosine = dot3(transported, up1);
+      var roll = Math.atan2(rollSine, rollCosine);
+      if (Math.abs(rollSine) < 1e-12 && rollCosine < -1 + 1e-12) {
+        // atan2(±0,-1) alone does not specify a reversible half-turn.
+        // Endpoint ordering chooses the tie and changes sign on reversal.
+        var startKey = start.pos.concat(start.target, start.up || []);
+        var endKey = end.pos.concat(end.target, end.up || []);
+        for (var ki = 0; ki < Math.min(startKey.length, endKey.length); ki += 1) {
+          if (startKey[ki] === endKey[ki]) { continue; }
+          roll = endKey[ki] < startKey[ki] ? -Math.PI : Math.PI;
+          break;
+        }
+      }
+      out.up = rotateVec3AroundAxis(rotateVec3AroundAxis(up0, axis, angle * a), backward, roll * a);
+      out.pos = out.target.map(function (v, i) { return v + backward[i] * (r0 + (r1 - r0) * a); });
+      if (Array.isArray(out.position)) { out.position = out.pos.slice(); }
+      if (Array.isArray(out.p)) { out.p = out.pos.slice(); }
+      if (Array.isArray(out.look_at)) { out.look_at = out.target.slice(); }
+      return out;
+    }
+    return { camera: from.camera && to.camera ? cameraFields(from.camera, to.camera) : cloneFrameView(from.camera),
+      axis3d: fields(from.axis3d, to.axis3d, geom.axis3d_runtime),
+      axes: to.axes.map(function (axis) {
+        var prior = from.axes.filter(function (item) { return item.index === axis.index; })[0];
+        return { index: axis.index, fields: fields(prior && prior.fields, axis.fields,
+          geom.meshes[axis.index] && geom.meshes[axis.index].axis_ticks) };
+      }) };
+  }
+
+  function animateFrameViewSnapshot(fid, body, destination, duration, commit) {
+    fid = String(fid);
+    interruptFrameViewTransition(fid);
+    cancelFrameViewHistoryCommit(body);
+    var rec = frameViewRecord(fid);
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!geom) { return false; }
+    // Continuous renderers need not become globally idle. Drain only the
+    // already-requested pose frontier, then start at its actual completed pose.
+    var frontier = Number(rec.viewSerial || 0);
+    var cancelled = false, stopAnimation = null, unlisten = null;
+    var transition = { cancel: function () {
+      cancelled = true;
+      if (stopAnimation) { stopAnimation(); }
+      if (unlisten) { unlisten(); unlisten = null; }
+      if (rec.viewTransition === transition) { rec.viewTransition = null; }
+    } };
+    rec.viewTransition = transition;
+    function current() { return !cancelled && frameRecs[fid] === rec && rec.viewTransition === transition &&
+      _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid] === geom && body.isConnected !== false; }
+    function start() {
+      if (!current()) { transition.cancel(); return; }
+      if (!rec.presentedView || rec.presentedView.serial < frontier) { return; }
+      if (unlisten) { unlisten(); unlisten = null; }
+      var from = cloneFrameView(rec.presentedView.snapshot);
+      applyFrameViewSnapshot(geom, from);
+      stopAnimation = animateAxisRanges(duration, function (a, advance) {
+        if (!current()) { transition.cancel(); return; }
+        applyFrameViewSnapshot(geom, interpolateFrameView(from, destination, a, geom));
+        // One shared clock for camera and all ranges; the next sample is not
+        // requested until this actual draw completes. No nested easing/writers.
+        var serial = Number(rec.viewSerial || 0) + 1;
+        unlisten = listenFrameView(rec, function (presented) {
+          if (!current()) { transition.cancel(); return; }
+          if (presented.serial < serial || JSON.stringify(presented.snapshot) !== JSON.stringify(captureFrameViewSnapshot(geom))) { return; }
+          unlisten(); unlisten = null;
+          advance();
+        });
+        updateGeomFrame(fid, geom);
+      }, function () {
+        if (!current()) { return; }
+        rec.viewTransition = null;
+        if (commit) { body.__vfViewHistory.commit(destination); }
+        notifyViewHistoryState(body, body.__vfViewHistory);
+      });
+    }
+    unlisten = listenFrameView(rec, start);
+    start();
+    if (!rec.presentedView) { requestGeomFramePresentation(fid); }
+    return true;
+  }
+
+  function navigateFrameView(fid, body, command) {
+    var history = ensureFrameViewHistory(fid, body);
+    if (!history || ["back", "forward", "home"].indexOf(command) < 0) { return false; }
+    var rec = frameRecs[String(fid)];
+    // Flush a completed gesture before moving the cursor, never an intermediate
+    // sample of a pending history restore.
+    if (!rec || !rec.viewTransition) {
+      if ((body.__vfViewHistoryTimer || body.__vfViewHistoryUnlisten) && rec && rec.presentedView) {
+        history.commit(rec.presentedView.snapshot);
+      }
+    }
+    cancelFrameViewHistoryCommit(body);
+    var snapshot = command === "back" ? history.back() : command === "forward" ? history.forward() : body.__vfViewInitial;
+    if (!snapshot) { return false; }
+    animateFrameViewSnapshot(fid, body, snapshot, 300, command === "home");
+    notifyViewHistoryState(body, history);
     return true;
   }
 
@@ -5673,9 +5990,20 @@
     if (typeof factory !== "function") { return null; }
     var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
     var history = factory({ limit: 100 });
-    history.reset(captureFrameViewSnapshot(geom));
     body.__vfViewHistory = history;
-    body.__vfViewInitial = captureFrameViewSnapshot(geom);
+    var rec = frameViewRecord(String(fid));
+    var unlistenInitial = null;
+    function seedHistory(presented) {
+      if (history.current() != null) { return; }
+      history.reset(presented.snapshot);
+      body.__vfViewInitial = cloneFrameView(presented.snapshot);
+      if (unlistenInitial) { unlistenInitial(); }
+      notifyViewHistoryState(body, history);
+    }
+    if (rec.presentedView) { seedHistory(rec.presentedView); }
+    else { unlistenInitial = listenFrameView(rec, seedHistory); }
+    body.addEventListener("pointerdown", function () { interruptFrameViewTransition(fid); }, true);
+    body.addEventListener("wheel", function () { interruptFrameViewTransition(fid); }, { capture: true, passive: true });
     notifyViewHistoryState(body, history);
     return history;
   }
@@ -5684,8 +6012,18 @@
     var history = ensureFrameViewHistory(fid, body);
     var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
     if (!history || !geom) { return; }
-    history.commit(captureFrameViewSnapshot(geom));
-    notifyViewHistoryState(body, history);
+    var rec = frameViewRecord(String(fid));
+    if (rec.viewTransition) { return; }
+    cancelFrameViewHistoryCommit(body);
+    var signature = JSON.stringify(captureFrameViewSnapshot(geom));
+    function commit(presented) {
+      if (rec.viewTransition || JSON.stringify(presented.snapshot) !== signature) { return; }
+      if (body.__vfViewHistoryUnlisten) { body.__vfViewHistoryUnlisten(); body.__vfViewHistoryUnlisten = null; }
+      history.commit(presented.snapshot);
+      notifyViewHistoryState(body, history);
+    }
+    if (rec.presentedView && JSON.stringify(rec.presentedView.snapshot) === signature) { commit(rec.presentedView); }
+    else { body.__vfViewHistoryUnlisten = listenFrameView(rec, commit); schedulePlotCameraUpdate(fid); }
   }
 
   function scheduleFrameViewHistoryCommit(fid, body) {
@@ -6280,6 +6618,7 @@
   }
 
   function applyAxis2DSelectionZoom(fid, body, drag) {
+    interruptFrameViewTransition(fid);
     if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
     var geom = _lastDisplayPayload.geom[fid];
     var meshes = Array.isArray(geom.meshes) ? geom.meshes : [];
@@ -6343,48 +6682,40 @@
       });
     }
     if (!plans.length) { return; }
-    animateAxisRanges(260, function (a) {
-      for (var pi = 0; pi < plans.length; pi += 1) {
-        var p = plans[pi];
-        if (p.polar === true) {
-          applyPolarRadialRange(
-            p.cfg,
-            p.start.r_min + (p.target.r_min - p.start.r_min) * a,
-            p.start.r_max + (p.target.r_max - p.start.r_max) * a
-          );
-          p.cfg.__vf_live_mutated = true;
-          continue;
-        }
-        p.cfg.x_min = p.start.x_min + (p.target.x_min - p.start.x_min) * a;
-        p.cfg.x_max = p.start.x_max + (p.target.x_max - p.start.x_max) * a;
-        p.cfg.y_min = p.start.y_min + (p.target.y_min - p.start.y_min) * a;
-        p.cfg.y_max = p.start.y_max + (p.target.y_max - p.start.y_max) * a;
-        p.cfg.__vf_live_mutated = true;
-      }
-      drawSimple2DMarkerLineMeshes(fid, findFrameEl(geomTargetFrameId(fid)), meshes);
-      renderGeomTextOverlay(fid, findFrameEl(geomTargetFrameId(fid)), geom);
-    }, function () { schedulePlotCameraUpdate(fid); });
+    var before = captureFrameViewSnapshot(geom);
+    for (var pi = 0; pi < plans.length; pi += 1) {
+      var p = plans[pi];
+      if (p.polar === true) { applyPolarRadialRange(p.cfg, p.target.r_min, p.target.r_max); }
+      else { Object.assign(p.cfg, p.target); }
+    }
+    var destination = captureFrameViewSnapshot(geom);
+    applyFrameViewSnapshot(geom, before);
+    animateFrameViewSnapshot(fid, body, destination, 260, true);
   }
 
   function smooth01(t) {
     t = Math.max(0, Math.min(1, Number(t) || 0));
-    var s = Math.sin(t * Math.PI * 0.5);
-    return s * s;
+    // Symmetric C1 quadratic clock; acceleration changes sign at the midpoint.
+    return t <= 0.5 ? 2 * t * t : 1 - 2 * (1 - t) * (1 - t);
   }
 
   function animateAxisRanges(durationMs, stepFn, doneFn) {
-    var start = global.performance && typeof global.performance.now === "function" ? global.performance.now() : Date.now();
+    var start = null, raf = 0, cancelled = false;
     function tick(now) {
-      now = Number(now) || Date.now();
+      if (cancelled) { return; }
+      if (start == null) { start = now; }
       var a = smooth01((now - start) / Math.max(1, Number(durationMs) || 240));
-      stepFn(a);
-      if (a < 1) {
-        global.requestAnimationFrame(tick);
-      } else if (typeof doneFn === "function") {
-        doneFn();
+      var advanced = false;
+      function advance() {
+        if (cancelled || advanced) { return; }
+        advanced = true;
+        if (a < 1) { raf = global.requestAnimationFrame(tick); }
+        else if (typeof doneFn === "function") { doneFn(); }
       }
+      stepFn(a, advance);
     }
-    global.requestAnimationFrame(tick);
+    raf = global.requestAnimationFrame(tick);
+    return function () { cancelled = true; if (raf) { global.cancelAnimationFrame(raf); } };
   }
 
   function plotGestureEvent(point) {
@@ -6562,11 +6893,16 @@
   // Gesture recognition transports pointer geometry to the existing viewport
   // controls. It never creates a camera, scene, or second renderer.
   function attachPlotTouchGestures(body, handlers) {
+    var kind = handlers.controlKind || "camera";
+    if (!body.__vfPlotTouchHandlers) { body.__vfPlotTouchHandlers = {}; }
+    body.__vfPlotTouchHandlers[kind] = handlers;
+    function activeHandlers() { return body.__vfPlotTouchHandlers[body.__vfPlotControlKind || kind] || {}; }
     if (body.__vfPlotTouchGestures) { return; }
     body.__vfPlotTouchGestures = true;
     var points = new Map();
     var probeContact = null;
     var probeOrigin = null;
+    body.__vfPlotTouchReset = function () { points.clear(); probeContact = null; probeOrigin = null; };
     // The browser decides touch ownership before pointerdown. Restrict this
     // rule to the interactive plot; never change document scrolling styles.
     body.style.touchAction = "none";
@@ -6603,8 +6939,9 @@
       if (!probeContact) { beginProbe(point); }
       body.__vfTouchProbe = [probeOrigin[0] + point[0] - probeContact[0], probeOrigin[1] + point[1] - probeContact[1]];
       showProbeMarker(body.__vfTouchProbe);
-      if (handlers.hover) {
-        handlers.hover(Object.assign(plotGestureEvent(body.__vfTouchProbe), {
+      var active = activeHandlers();
+      if (active.hover) {
+        active.hover(Object.assign(plotGestureEvent(body.__vfTouchProbe), {
           pointerType: "touch", pointerId: event.pointerId, buttons: 0, pressure: event.pressure,
           isPrimary: event.isPrimary, ctrlKey: event.ctrlKey, shiftKey: event.shiftKey,
           altKey: event.altKey, metaKey: event.metaKey
@@ -6629,7 +6966,8 @@
       points.set(event.pointerId, [event.clientX, event.clientY]);
       var after = pair();
       if (before && after && before.distance > 0 && after.distance > 0) {
-        handlers.transform(before.center, after.center, before.distance / after.distance);
+        var active = activeHandlers();
+        if (active.transform) { active.transform(before.center, after.center, before.distance / after.distance); }
       } else if (points.size === 1) { inspect(event); }
       claim(event);
     }, { capture: true, passive: false });
@@ -6646,7 +6984,25 @@
     body.addEventListener("lostpointercapture", release, { capture: true, passive: false });
   }
 
+  function plotControlKind(geom) {
+    if (!geom) { return ""; }
+    if (geom.axis3d_controls === true) { return "axis3d"; }
+    if ((geom.meshes || []).some(function (mesh) {
+      return mesh && mesh.mode3d !== true && mesh.axis_ticks && mesh.axis_interactive !== false;
+    })) { return "axis2d"; }
+    return geom.plot_controls === true ? "camera" : "";
+  }
+
+  function addOwnedPlotListener(body, fid, geom, kind, type, callback, options) {
+    body.addEventListener(type, function (event) {
+      var live = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+      if (plotControlKind(live || geom) !== kind) { return; }
+      callback(event);
+    }, options);
+  }
+
   function ensureAxis2DControls(fid, frameEl, geomSpec) {
+    if (plotControlKind(geomSpec) !== "axis2d") { return; }
     var meshes = geomSpec && Array.isArray(geomSpec.meshes) ? geomSpec.meshes : [];
     var enabled = false;
     for (var i = 0; i < meshes.length; i += 1) {
@@ -6657,10 +7013,11 @@
     }
     if (!enabled) { return; }
     var body = geomFrameHost(frameEl, fid);
+    if (body) { body.__vfPlotControlKind = "axis2d"; }
     if (!body || body.__vfAxis2DControlsAttached) { return; }
     body.__vfAxis2DControlsAttached = true;
     body.__vfAxis2DDragState = null;
-    body.addEventListener("contextmenu", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "contextmenu", function (e) {
       if (body.__vfAxis2DDragState) {
         e.preventDefault();
         e.stopPropagation();
@@ -6752,7 +7109,7 @@
       });
     }
     ensureFrameViewHistory(fid, body);
-    body.addEventListener("vf-view-command", function (event) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "vf-view-command", function (event) {
       var command = String(event && event.detail && event.detail.command || "");
       var history = ensureFrameViewHistory(fid, body);
       var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
@@ -6765,25 +7122,18 @@
         ]), command === "zoom-in" ? 0.8 : 1.25);
         commitFrameViewHistory(fid, body);
       } else {
-        var snapshot = command === "back" ? history.back()
-          : command === "forward" ? history.forward()
-          : command === "home" ? body.__vfViewInitial
-          : null;
-        if (snapshot && applyFrameViewSnapshot(geom, snapshot)) {
-          renderAxis2DInteractiveFrame(fid, frameEl, geom.meshes || [], geom);
-          schedulePlotCameraUpdate(fid);
-          if (command === "home") { history.commit(snapshot); }
-          notifyViewHistoryState(body, history);
-        }
+        navigateFrameView(fid, body, command);
       }
       if (event && typeof event.preventDefault === "function") { event.preventDefault(); }
     });
-    body.addEventListener("wheel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "wheel", function (e) {
+      interruptFrameViewTransition(fid);
       zoomAt(e);
       scheduleFrameViewHistoryCommit(fid, body);
     }, { passive: false });
 
     function axis2DDown(e) {
+      interruptFrameViewTransition(fid);
       if (e.pointerType === "touch") { return; }
       var button = Number(e.button || 0);
       var action = e.ctrlKey && button === 0 ? "rotate" : e.ctrlKey && button === 2 ? "scale" : button === 0 ? "pan" : button === 2 ? "select" : "";
@@ -6826,7 +7176,7 @@
       e.preventDefault();
       e.stopPropagation();
     }
-    body.addEventListener("pointerdown", axis2DDown);
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "pointerdown", axis2DDown);
     function axis2DUp(e) {
       if (e.pointerType === "touch") { return; }
       var drag = body.__vfAxis2DDragState;
@@ -6843,8 +7193,8 @@
       hideAxisSelectionOverlay(body);
       if (!e.plotGesture) { try { body.releasePointerCapture(e.pointerId); } catch (_) {} }
     }
-    body.addEventListener("pointerup", axis2DUp);
-    body.addEventListener("pointercancel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "pointerup", axis2DUp);
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "pointercancel", function (e) {
       var drag = body.__vfAxis2DDragState;
       if (drag) {
         schedulePlotCameraUpdate(fid);
@@ -7058,8 +7408,9 @@
         scheduleTextOverlay: true
       });
     }
-    body.addEventListener("pointermove", axis2DMove);
+    addOwnedPlotListener(body, fid, geomSpec, "axis2d", "pointermove", axis2DMove);
     attachPlotTouchGestures(body, {
+      controlKind: "axis2d",
       hover: function (event) {
         var liveGeom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : geomSpec;
         publishPlotPointerCoordinates(liveGeom, body, event);
@@ -7078,15 +7429,17 @@
   }
 
   function ensurePlotCameraControls(fid, frameEl, geomSpec) {
+    if (plotControlKind(geomSpec) !== "camera") { return; }
     if (!geomSpec || geomSpec.plot_controls !== true) { return; }
     var body = geomFrameHost(frameEl, fid);
+    if (body) { body.__vfPlotControlKind = "camera"; }
     if (!body || body.__vfPlotCameraControlsAttached) { return; }
     body.__vfPlotCameraControlsAttached = true;
     body.__vfPlotDragState = null;
-    var standaloneCamera = !geomSpec.axis3d_controls && !(geomSpec.meshes || []).some(function (mesh) { return mesh.axis_ticks; });
+    var standaloneCamera = plotControlKind(geomSpec) === "camera";
     if (standaloneCamera) {
       ensureFrameViewHistory(fid, body);
-      body.addEventListener("vf-view-command", function (event) {
+      addOwnedPlotListener(body, fid, geomSpec, "camera", "vf-view-command", function (event) {
         var command = String(event && event.detail && event.detail.command || "");
         var history = ensureFrameViewHistory(fid, body);
         var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
@@ -7102,19 +7455,12 @@
           });
           commitFrameViewHistory(fid, body);
         } else {
-          var snapshot = command === "back" ? history.back()
-            : command === "forward" ? history.forward()
-            : command === "home" ? body.__vfViewInitial
-            : null;
-          if (snapshot && applyFrameViewSnapshot(geom, snapshot)) {
-            schedulePlotCameraUpdate(fid);
-            if (command === "home") { history.commit(snapshot); }
-            notifyViewHistoryState(body, history);
-          }
+          navigateFrameView(fid, body, command);
         }
         if (event && typeof event.preventDefault === "function") { event.preventDefault(); }
       });
       attachPlotTouchGestures(body, {
+      controlKind: "camera",
         hover: function (event) {
           var liveGeom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : geomSpec;
           publishPlotPointerCoordinates(liveGeom, body, event);
@@ -7127,7 +7473,8 @@
       });
     }
 
-    body.addEventListener("wheel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "camera", "wheel", function (e) {
+      interruptFrameViewTransition(fid);
       if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
       e.preventDefault();
       e.stopPropagation();
@@ -7139,24 +7486,24 @@
       if (standaloneCamera) { scheduleFrameViewHistoryCommit(fid, body); }
     }, { passive: false });
 
-    body.addEventListener("pointerdown", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "camera", "pointerdown", function (e) {
       if (e.pointerType === "touch") { return; }
       if (Number(e.button || 0) !== 0) { return; }
       body.__vfPlotDragState = { x: Number(e.clientX) || 0, y: Number(e.clientY) || 0 };
       try { body.setPointerCapture(e.pointerId); } catch (_) {}
       e.stopPropagation();
     });
-    body.addEventListener("pointerup", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "camera", "pointerup", function (e) {
       var changed = !!body.__vfPlotDragState;
       body.__vfPlotDragState = null;
       if (changed && standaloneCamera) { commitFrameViewHistory(fid, body); }
       try { body.releasePointerCapture(e.pointerId); } catch (_) {}
     });
-    body.addEventListener("pointercancel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "camera", "pointercancel", function (e) {
       body.__vfPlotDragState = null;
       try { body.releasePointerCapture(e.pointerId); } catch (_) {}
     });
-    body.addEventListener("pointermove", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "camera", "pointermove", function (e) {
       var drag = body.__vfPlotDragState;
       if (!drag) { return; }
       var x = Number(e.clientX) || 0;
@@ -7197,14 +7544,16 @@
   }
 
   function ensureAxis3DControls(fid, frameEl, geomSpec) {
+    if (plotControlKind(geomSpec) !== "axis3d") { return; }
     if (!geomSpec || geomSpec.axis3d_controls !== true) { return; }
     var body = geomFrameHost(frameEl, fid);
+    if (body) { body.__vfPlotControlKind = "axis3d"; }
     if (!body || body.__vfAxis3DControlsAttached) { return; }
     body.__vfAxis3DControlsAttached = true;
     body.__vfAxis3DDragState = null;
     body.__vfAxis3DWheelState = null;
     ensureFrameViewHistory(fid, body);
-    body.addEventListener("vf-view-command", function (event) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "vf-view-command", function (event) {
       var command = String(event && event.detail && event.detail.command || "");
       var history = ensureFrameViewHistory(fid, body);
       var geom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : null;
@@ -7229,20 +7578,11 @@
         }
         commitFrameViewHistory(fid, body);
       } else {
-        var snapshot = command === "back" ? history.back()
-          : command === "forward" ? history.forward()
-          : command === "home" ? body.__vfViewInitial
-          : null;
-        if (snapshot && applyFrameViewSnapshot(geom, snapshot)) {
-          resetAxis3DVisualLayers(fid);
-          refreshAxis3DRuntimeFrame(fid, true);
-          if (command === "home") { history.commit(snapshot); }
-          notifyViewHistoryState(body, history);
-        }
+        navigateFrameView(fid, body, command);
       }
       if (event && typeof event.preventDefault === "function") { event.preventDefault(); }
     });
-    body.addEventListener("contextmenu", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "contextmenu", function (e) {
       if (body.__vfAxis3DDragState) {
         e.preventDefault();
         e.stopPropagation();
@@ -7464,7 +7804,8 @@
       scheduleFrameViewHistoryCommit(fid, body);
     }
 
-    body.addEventListener("wheel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "wheel", function (e) {
+      interruptFrameViewTransition(fid);
       if (!_lastDisplayPayload || !_lastDisplayPayload.geom || !_lastDisplayPayload.geom[fid]) { return; }
       claimAxis3DEvent(e);
       try { e.__vfHandledWheel = true; } catch (_) {}
@@ -7493,7 +7834,7 @@
       }
     }, { passive: false, capture: true });
 
-    body.addEventListener("pointerdown", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "pointerdown", function (e) {
       if (e.pointerType === "touch") { return; }
       var button = Number(e.button || 0);
       var action = button === 0 ? (e.shiftKey ? "pan" : "rotate") : e.ctrlKey && button === 2 ? "scale" : button === 2 ? "select" : "";
@@ -7534,7 +7875,7 @@
       try { body.setPointerCapture(e.pointerId); } catch (_) {}
       claimAxis3DEvent(e);
     }, true);
-    body.addEventListener("pointerup", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "pointerup", function (e) {
       if (e.pointerType === "touch") { return; }
       var drag = body.__vfAxis3DDragState;
       cancelAxis3DDragRaf(body.__vfAxis3DDragState);
@@ -7549,7 +7890,7 @@
       try { body.releasePointerCapture(e.pointerId); } catch (_) {}
       claimAxis3DEvent(e);
     }, true);
-    body.addEventListener("pointercancel", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "pointercancel", function (e) {
       if (e.pointerType === "touch") { return; }
       cancelAxis3DDragRaf(body.__vfAxis3DDragState);
       cancelAxis3DWheelRaf(body.__vfAxis3DWheelState);
@@ -7562,7 +7903,7 @@
       try { body.releasePointerCapture(e.pointerId); } catch (_) {}
       claimAxis3DEvent(e);
     }, true);
-    body.addEventListener("pointermove", function (e) {
+    addOwnedPlotListener(body, fid, geomSpec, "axis3d", "pointermove", function (e) {
       var coordinateGeom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : geomSpec;
       publishPlotPointerCoordinates(coordinateGeom, body, e);
       if (e.pointerType === "touch") { return; }
@@ -7591,6 +7932,7 @@
       }
     }, true);
     attachPlotTouchGestures(body, {
+      controlKind: "axis3d",
       hover: function (event) {
         var liveGeom = _lastDisplayPayload && _lastDisplayPayload.geom ? _lastDisplayPayload.geom[fid] : geomSpec;
         publishPlotPointerCoordinates(liveGeom, body, event);
@@ -7728,6 +8070,9 @@
       canvasCount: Number(canvases) || 0,
       initFailures: initFailures,
       runtimeFailures: collectRendererErrors(entries),
+      presentedViewSerial: rec && rec.presentedView ? rec.presentedView.serial : 0,
+      presentationEndpoint: rec && rec.presentedView ? rec.presentedView.endpoint : null,
+      viewTransitionActive: !!(rec && rec.viewTransition),
       lastWgpuError: global.__vfGeomWgpuLastError || "",
       lastWgpuLog: global.__vfGeomWgpuLastLog || ""
     };
@@ -8093,6 +8438,7 @@
     var opts = options || {};
     var rec = frameRecs[fid];
     if (!rec || !rec.entries) { return; }
+    releaseNativeLabelLayer(rec);
     releaseGeomTextOverlayTracking(fid);
     for (var j = 0; j < rec.entries.length; j += 1) {
       try {
@@ -9752,6 +10098,12 @@
       ctx.stroke();
       ctx.restore();
     }
+    var viewGeom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    var rec = frameViewRecord(String(fid));
+    if (viewGeom && rec.simple2DCanvas) {
+      var view = tagFrameView(String(fid), viewGeom);
+      Promise.resolve().then(function () { publishFrameView(String(fid), rec, view, "canvas-command-completed"); });
+    }
     return true;
   }
 
@@ -11338,6 +11690,93 @@
     return rotateAxis2DLabelSpecs(out, mesh, cfg, w, h);
   }
 
+  function releaseNativeLabelLayer(rec) {
+    if (!rec || !rec.nativeLabelLayer) return Promise.resolve();
+    var joined = Promise.resolve(rec.nativeLabelLayer.destroy());
+    _nativeLabelCleanup.add(joined);
+    joined.then(function() {_nativeLabelCleanup.delete(joined);}, function() {});
+    rec.nativeLabelLayer = null;
+    rec.nativeLabelReady = null;
+    return joined;
+  }
+
+  function joinNativeLabelCleanup() { return Promise.all(Array.from(_nativeLabelCleanup)); }
+
+  function setNativeLabelRendererFactory(factory) {
+    if (factory !== null && typeof factory !== "function") throw new TypeError("native label renderer factory required");
+    var closes = Object.keys(frameRecs).map(function(fid) { return releaseNativeLabelLayer(frameRecs[fid]); });
+    _nativeLabelRendererFactory = factory;
+    return Promise.all(closes);
+  }
+
+  function nativeLabelFrameStatus(fid) {
+    var rec = frameRecs[String(fid)];
+    return rec ? {
+      ready: rec.nativeLabelReady,
+      statistics: rec.nativeLabelLayer ? rec.nativeLabelLayer.statistics() : {status:rec.nativeLabelError ? "FAILED" : "UNMOUNTED",error:rec.nativeLabelError || null},
+      canvas: rec.nativeLabelLayer && rec.nativeLabelLayer.canvas
+    } : null;
+  }
+
+  function updateNativeLabelFrameView(fid, camera) {
+    fid = String(fid);
+    var rec = frameRecs[fid];
+    if (!rec || !rec.nativeLabelLayer) throw new Error("current native label frame is not mounted");
+    if (!Array.isArray(camera) || camera.length !== 6 || !camera.every(Number.isFinite))
+      throw new TypeError("native label view requires six finite affine values");
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!geom || !geom.native_labels) throw new Error("current native label scene is unavailable");
+    // The view changes, while the layer retains its own validated content snapshot.
+    geom.native_labels.camera = camera.slice();
+    rec.nativeLabelReady = rec.nativeLabelLayer.updateView({camera:camera});
+    rec.nativeLabelReady.catch(function(error) {vlog("error", "native label view ["+fid+"]: "+String(error.stack || error));});
+    return rec.nativeLabelReady;
+  }
+
+  function updateNativeLabelFrameAnimation(fid, transform) {
+    fid = String(fid); var rec = frameRecs[fid];
+    if (!rec || !rec.nativeLabelLayer) throw new Error("current native label frame is not mounted");
+    rec.nativeLabelReady = rec.nativeLabelLayer.updateAnimation(transform);
+    rec.nativeLabelReady.catch(function(error) {vlog("error","native label animation ["+fid+"]: "+String(error.stack || error));});
+    return rec.nativeLabelReady;
+  }
+
+  function updateNativeLabelFrameColor(fid, color) {
+    fid = String(fid); var rec = frameRecs[fid];
+    if (!rec || !rec.nativeLabelLayer) throw new Error("current native label frame is not mounted");
+    rec.nativeLabelReady = rec.nativeLabelLayer.updateColor(color);
+    rec.nativeLabelReady.catch(function(error) {vlog("error","native label color ["+fid+"]: "+String(error.stack || error));});
+    return rec.nativeLabelReady;
+  }
+
+  function renderNativeLabelOverlay(fid, content, geomSpec, w, h) {
+    var request = geomSpec.native_labels;
+    if (!_nativeLabelRendererFactory) throw new Error("current native label provider is unavailable");
+    if ((geomSpec.texts || []).length || (geomSpec.meshes || []).some(function(m) {return !!m.axis_ticks;}))
+      throw new Error("native label layer requires explicit native specs without mixed DOM labels");
+    if (!frameRecs[String(fid)]) frameRecs[String(fid)] = {entries: []};
+    var rec = frameRecs[String(fid)];
+    if (!rec.nativeLabelLayer) {
+      content.textContent = "";
+      rec.textOverlayPool = [];
+      rec.nativeLabelLayer = _nativeLabelRendererFactory({container: content});
+    }
+    var camera = request.camera;
+    if (!camera) {
+      if (geomSpec.camera && String(geomSpec.camera.projection || "perspective").toLowerCase() !== "orthographic")
+        throw new Error("native label layer requires an affine camera");
+      var project = function(x,y) {return geomTextToPx({world:true,x:x,y:y,z:0},w,h,geomSpec.camera || null,geomSpec);};
+      var o = project(0,0), x = project(1,0), y = project(0,1);
+      if (!o || !x || !y) throw new Error("native label camera projection is unavailable");
+      camera = [x[0]-o[0],x[1]-o[1],y[0]-o[0],y[1]-o[1],o[0],o[1]];
+    }
+    rec.nativeLabelError = null;
+    rec.nativeLabelReady = rec.nativeLabelLayer.update({specs:request.specs,camera:camera,width:w,height:h});
+    rec.nativeLabelReady.catch(function(error) {
+      vlog("error", "native labels [" + fid + "]: " + String(error.stack || error));
+    });
+  }
+
   function renderGeomTextOverlay(fid, frameEl, geomSpec) {
     try {
       var incomingTexts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts.length : 0;
@@ -11356,6 +11795,16 @@
       var contentLayer = layer.__vfGeomTextContent || layer;
       contentLayer.style.transform = "";
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
+      if (geomSpec && geomSpec.native_labels) {
+        layer.style.visibility = "visible";
+        renderNativeLabelOverlay(fid, contentLayer, geomSpec, w, h);
+        return;
+      }
+      var priorNative = frameRecs[String(fid)];
+      if (priorNative && priorNative.nativeLabelLayer) {
+        releaseNativeLabelLayer(priorNative);
+        contentLayer.textContent = "";
+      }
       var items = [];
       var texts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts : [];
       for (var ti = 0; ti < texts.length; ti += 1) {
@@ -11447,6 +11896,13 @@
       layer.style.visibility = used > 0 ? "visible" : "hidden";
       updateAxis3DBoundaryLabels(fid);
     } catch (err) {
+      if (geomSpec && geomSpec.native_labels) {
+        if (layer) layer.style.visibility = "hidden";
+        if (!frameRecs[String(fid)]) frameRecs[String(fid)] = {entries:[]};
+        frameRecs[String(fid)].nativeLabelError = String(err.stack || err);
+        frameRecs[String(fid)].nativeLabelReady = Promise.reject(err);
+        frameRecs[String(fid)].nativeLabelReady.catch(function() {});
+      }
       vlog("error", "renderGeomTextOverlay [" + fid + "] failed: " + (err && err.stack ? err.stack : err && err.message ? err.message : String(err)));
     }
   }
@@ -11584,6 +12040,8 @@
       canvas.setAttribute("data-vf-rendered-primitives", String(primitives.length));
       renderGeomLineOverlay(fid, frameEl, geomSpec, w, h);
       renderGeomTextOverlay(fid, frameEl, geomSpec);
+      var rec = frameViewRecord(String(fid)), view = tagFrameView(String(fid), geomSpec);
+      Promise.resolve().then(function () { publishFrameView(String(fid), rec, view, "canvas-command-completed"); });
     }
     var observer = typeof ResizeObserver === "function" ? new ResizeObserver(draw) : null;
     var handler = function (event) {
@@ -11676,6 +12134,24 @@
       vlog("warn", "updateGeomFrame [" + fid + "]: no DOM element .vf-frame[data-vf-frame-id=" + fid + "] found — frame not placed yet?");
       return;
     }
+    var controlBody = geomFrameHost(frameEl, fid);
+    var controlKind = plotControlKind(geomSpec);
+    if (controlBody && controlBody.__vfPlotControlKind && controlBody.__vfPlotControlKind !== controlKind) {
+      // A new representation owns its authored state; cancel the old writer
+      // without restoring the old representation into this incoming payload.
+      var oldView = frameRecs[fid];
+      if (oldView && oldView.viewTransition) { oldView.viewTransition.cancel(); }
+      if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
+      cancelFrameViewHistoryCommit(controlBody);
+      cancelAxis3DDragRaf(controlBody.__vfAxis3DDragState);
+      cancelAxis3DWheelRaf(controlBody.__vfAxis3DWheelState);
+      controlBody.__vfAxis3DDragState = null;
+      controlBody.__vfAxis3DWheelState = null;
+      controlBody.__vfAxis2DDragState = null;
+      controlBody.__vfPlotDragState = null;
+      if (controlBody.__vfPlotTouchReset) { controlBody.__vfPlotTouchReset(); }
+    }
+    if (controlBody) { controlBody.__vfPlotControlKind = controlKind; }
     ensurePlotCameraControls(String(fid), frameEl, geomSpec);
     ensureAxis3DControls(String(fid), frameEl, geomSpec);
     ensureAxis2DControls(String(fid), frameEl, geomSpec);
@@ -11690,6 +12166,7 @@
       }
     }
 
+    var frameView = tagFrameView(String(fid), geomSpec);
     var specs   = geomSpec.meshes || [];
     var renderableSpecs = renderableGeomSpecs(specs);
     var camera  = geomSpec.camera || null;
@@ -11712,6 +12189,10 @@
 
     if (!frameRecs[fid]) { frameRecs[fid] = { entries: [] }; }
     frameRecs[fid].latestGeomSpec = geomSpec;
+    if (!renderableSpecs.length) {
+      renderGeomTextOverlay(fid, frameEl, geomSpec);
+      return;
+    }
     if ((!(global.navigator && global.navigator.gpu) ||
          frameRecs[fid].software3DFrameEl === frameEl) &&
         mountSoftware3DRenderer(fid, frameEl, geomSpec, renderableSpecs)) {
@@ -11780,11 +12261,16 @@
         continue;
       }
 
+      mesh.__vfFrameView = frameView;
       if (i < rec.entries.length) {
         var existingEntry = rec.entries[i] || null;
         if (!existingEntry) { continue; }
         if (!existingEntry.ref) { existingEntry.ref = { mesh: null }; }
         existingEntry.ref.mesh = mesh;
+        if (existingEntry.renderer) {
+          observeFrameViewRenderer(String(fid), rec, existingEntry);
+          existingEntry.renderer.requestFrame();
+        }
         if (existingEntry.canvas) {
           existingEntry.canvas.style.opacity = String(mesh.alpha == null ? 1 : mesh.alpha);
         }
@@ -11818,6 +12304,7 @@
           rec.entries.push(entry);
           var r = new Ctor(canvas, function() { return rh.mesh; });
           entry.renderer = r;
+          observeFrameViewRenderer(String(fidInner), rec, entry);
           r._frameId = String(fidInner);
           global.__vfFrameRenderers[String(fidInner)] = r;
           entry.canvas = cv;
@@ -12007,13 +12494,24 @@
   }
 
   function patchDisplaySpecColor(fid, objectId, color) {
-    if (!_lastDisplayPayload || !_lastDisplayPayload.geom) { return; }
+    if (!_lastDisplayPayload || !_lastDisplayPayload.geom) { return false; }
     var geom = _lastDisplayPayload.geom[String(fid)];
-    if (!geom || !Array.isArray(geom.meshes)) { return; }
-    var spec = geom.meshes[objectId - 1];
-    if (!spec) { return; }
-    spec.color = color.slice();
-    paintVertexBufferColor(spec.vertices, color);
+    if (!geom || !Array.isArray(geom.meshes)) { return false; }
+    // The same filtered order/explicit IDs used by updateGeomFrame and
+    // buildUnifiedFrameScene. Axis helpers do not consume rendered object IDs.
+    var specs = renderableGeomSpecs(geom.meshes);
+    var unified = geom.unified_renderer === true || specs.some(geomSpecNeedsUnifiedRenderer);
+    var changed = false;
+    for (var i = 0; i < specs.length; i += 1) {
+      var spec = specs[i];
+      var id = unified ? Number(spec.object_id) || (i + 1) : i + 1;
+      if (id !== objectId) { continue; }
+      spec.color = color.slice();
+      paintVertexBufferColor(spec.vertices, color);
+      spec.__dataRevision = Number(spec.__dataRevision || 0) + 1;
+      changed = true;
+    }
+    return changed;
   }
 
   function patchRendererPartColor(entry, objectId, color) {
@@ -12061,7 +12559,7 @@
       throw new Error("geom.color.patch requires frame_id and positive object_id");
     }
     var color = parseRuntimeColor(payload.color);
-    patchDisplaySpecColor(fid, objectId, color);
+    var changedSpec = patchDisplaySpecColor(fid, objectId, color);
     var rec = frameRecs[fid];
     if (!rec || !Array.isArray(rec.entries)) {
       vlog("warn", "geom.color.patch [" + fid + "]: frame renderer not ready for object_id=" + objectId);
@@ -12074,6 +12572,10 @@
     if (!patched) {
       vlog("warn", "geom.color.patch [" + fid + "]: object_id=" + objectId + " was not present in live GPU parts");
     }
+    // Ordinary static retained packets must redraw on their own. Point/line
+    // impostor RGBA lives in the derived instance buffer, not the proxy quad VB.
+    // Reuse the normal rebuild/upload path; dynamic providers keep ownership.
+    if (changedSpec && !rec.dynamicAdapter) { schedulePlotCameraUpdate(fid); }
   }
 
   function _buildDynamicGeomScene(geomSpec) {
@@ -13685,9 +14187,15 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     return api;
   }
 
-  function renderRetainedSceneArena(packet) {
+  function renderRetainedSceneArena(packet, options) {
     var display = materializeRetainedSceneArena(packet);
-    renderFromJson(display);
+    var frames = Object.assign({}, _lastDisplayPayload && _lastDisplayPayload.geom || {});
+    Object.keys(frames).forEach(function (fid) { if (!findFrameEl(geomTargetFrameId(fid))) { delete frames[fid]; } });
+    Object.assign(frames, display.geom);
+    renderFromJson(Object.assign({}, _lastDisplayPayload || {}, display, { geom: frames }));
+    if (options && typeof options.afterPresented === "function") {
+      requestGeomFramePresentation(Object.keys(display.geom)[0], options);
+    }
     return display;
   }
 
@@ -14247,8 +14755,18 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
   installGlobalWheelBridge();
   installGlobalDragBridge();
   global.VfDisplay = {
+    setNativeLabelRendererFactory: setNativeLabelRendererFactory,
+    joinNativeLabelCleanup: joinNativeLabelCleanup,
+    nativeLabelFrameStatus: nativeLabelFrameStatus,
+    updateNativeLabelFrameView: updateNativeLabelFrameView,
+    updateNativeLabelFrameAnimation: updateNativeLabelFrameAnimation,
+    updateNativeLabelFrameColor: updateNativeLabelFrameColor,
     renderFromJson: renderFromJson,
     renderRetainedSceneArena: renderRetainedSceneArena,
+    requestGeomFramePresentation: requestGeomFramePresentation,
+    disposeGeomFrame: disposeGeomFrame,
+    updateGeomFrameCamera: updateGeomFrameCamera,
+    getGeomFramePresentedView: getGeomFramePresentedView,
     createRetainedFrameSceneV1: createRetainedFrameSceneV1,
     loadAndRender: loadAndRender,
     applyRuntimePacket: applyRuntimePacket,
@@ -14273,6 +14791,12 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     createAxisVisualStateApplier: createAxisVisualStateApplier,
     createAxisTickModeStateApplier: createAxisTickModeStateApplier,
     __test: {
+      smooth01: smooth01,
+      captureFrameViewSnapshot: captureFrameViewSnapshot,
+      applyFrameViewSnapshot: applyFrameViewSnapshot,
+      interpolateFrameView: interpolateFrameView,
+      navigateFrameView: navigateFrameView,
+      animateFrameViewSnapshot: animateFrameViewSnapshot,
       attachPlotTouchGestures: attachPlotTouchGestures,
       axis3DCursorPlanePoint: axis3DCursorPlanePoint,
       transformPlotCameraAt: transformPlotCameraAt,

@@ -3438,16 +3438,22 @@ _symbolic_katex_parenthesize(value:str, precedence:num, parent_precedence:num) -
         @: "\\left(" & value & "\\right)"
     value
 
+_symbolic_katex_number(value:num, parent_precedence:num) -> str:
+    # Keep a negative factor or power base distinct from a subtraction.
+    value < 0 /\ parent_precedence >= 3?
+        @: "\\left(" & str(value) & "\\right)"
+    str(value)
+
 _symbolic_katex_at(value:symbolic, parent_precedence:num) -> str:
     _symbolic_storage_kind(_symbolic_clone(value)) != 10?
         kind: _symbolic_root_kind(_symbolic_clone(value))
         kind = 1? @: _symbolic_symbol_latex(value)
-        kind = 2? @: str(_symbolic_number_value(value))
+        kind = 2? @: _symbolic_katex_number(_symbolic_number_value(value), parent_precedence)
         @: _symbolic_katex_at(_symbolic_as_dag(value), parent_precedence)
 
     operation: _symbolic_dag_operation(_symbolic_clone(value))
     operation = 1? @: _symbolic_symbol_latex(value)
-    operation = 2? @: str(_symbolic_number_value(value))
+    operation = 2? @: _symbolic_katex_number(_symbolic_number_value(value), parent_precedence)
     precedence: _symbolic_katex_precedence(operation)
     left: _symbolic_left(_symbolic_clone(value))
     right: _symbolic_clone(left)

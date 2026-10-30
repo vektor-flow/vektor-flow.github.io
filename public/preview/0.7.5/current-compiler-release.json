@@ -4,18 +4,18 @@
   "complete": false,
   "release_version": "0.7.5",
   "preview": true,
-  "compiler_source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "release_source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "library_source": "90abc5f4c13523a5603b6f7a4ca7290d002a8968e0928b6fcf724c9efcba446a",
+  "compiler_source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
+  "release_source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
+  "library_source": "ba9edf4d57148c160e0d5ba136326c914b9395c95f33a9f3a9499ad94ae1d88e",
   "package": {
-    "module": "./playground/canonical/compiler.mjs?sha256=df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
-    "data": "./playground/canonical/compiler.data?sha256=31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+    "module": "./playground/canonical/compiler.mjs?sha256=dc0a258a71a5ce71ddaf1c196eb3d97dbd48220a61221757686d9eddbecbad64",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=e91525d99caebc787724ffe173e7baf671b2794a135b2f55757df8b446b80c42",
+    "data": "./playground/canonical/compiler.data?sha256=529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
   },
   "sha256": {
-    "compiler.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-    "compiler.wasm": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
-    "compiler.data": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+    "compiler.mjs": "dc0a258a71a5ce71ddaf1c196eb3d97dbd48220a61221757686d9eddbecbad64",
+    "compiler.wasm": "e91525d99caebc787724ffe173e7baf671b2794a135b2f55757df8b446b80c42",
+    "compiler.data": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
   },
   "verification": {
     "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
@@ -35,13 +35,20 @@
       "total": 57,
       "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
       "oldPassCarry": false,
-      "evidence": "./verification/e1625-current-qualification.json"
+      "evidence": "./verification/e1625-current-qualification.json",
+      "newExecution": false,
+      "reusedByExplicitComponentImpact": true,
+      "componentImpactEvidence": "./verification/e1642-symbolic-renderer-library.json"
+    },
+    "normalSymbolicRendererLibrary": {
+      "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
+      "evidence": "./verification/e1642-symbolic-renderer-library.json"
     }
   },
   "physical_gpu_tested": true,
   "stable_release": false,
   "website_default": true,
-  "browser_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "browser_binding": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
   "publication_status": "PUBLISHED_CORRECTNESS_CHECKED_SUPPORTED_EMBEDDING_SCOPE",
   "download_packages_offered": false,
   "historical_verification": {
@@ -49,38 +56,38 @@
     "previous_website_wasm": "9e26acdc161ebfa6c4795181e0c666d587a726d3b1221b8b9f859c5309a36ac4",
     "oldPassCarry": false
   },
-  "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "source": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
   "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "frontend_binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+  "frontend_binding": "46686da7a3bf0a111a486a8b84da23efad90ae25531e03479714adcd2354c2a0",
   "stable": false,
   "files": {
     "compiler.mjs": {
-      "bytes": 756,
-      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
-    },
-    "compiler-base.mjs": {
-      "bytes": 184876,
-      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302"
+      "bytes": 828,
+      "sha256": "dc0a258a71a5ce71ddaf1c196eb3d97dbd48220a61221757686d9eddbecbad64"
     },
     "compiler.wasm": {
-      "bytes": 65390139,
-      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740"
-    },
-    "compiler.data": {
-      "bytes": 610088,
-      "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
-    },
-    "formatter.mjs": {
-      "bytes": 62804,
-      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      "bytes": 65390459,
+      "sha256": "e91525d99caebc787724ffe173e7baf671b2794a135b2f55757df8b446b80c42"
     },
     "formatter.wasm": {
       "bytes": 1118687,
       "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
     },
+    "formatter.mjs": {
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+    },
     "README.txt": {
-      "bytes": 2789,
-      "sha256": "ebfaf2120110526fa57caf70ac35e296e493d10ed1e9b5c6d9b04d55fe6f7f45"
+      "bytes": 3641,
+      "sha256": "04a975f00db34a74f0360435efb11be369437f6e22a3b8c99305936489ddecdf"
+    },
+    "compiler.data": {
+      "bytes": 610405,
+      "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+    },
+    "compiler-base.mjs": {
+      "bytes": 184915,
+      "sha256": "26e3ccb9f36656650bd5b164a32c4788cb5ecb754bacef506a90c1a0ef82c0ba"
     }
   },
   "published": true,
@@ -98,11 +105,30 @@
     "existingBrowserPrograms": {
       "passed": 57,
       "total": 57,
-      "oldPassCarry": false
+      "newExecution": false,
+      "reusedByExplicitComponentImpact": true,
+      "evidence": "./verification/e1625-current-qualification.json"
     },
-    "evidence": "./verification/e1625-current-qualification.json",
+    "evidence": "./verification/e1642-symbolic-renderer-library.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
-    "comparativeBenchmarksQualified": false
+    "comparativeBenchmarksQualified": false,
+    "originalAffectedSymbolicRows": {
+      "passed": 2,
+      "total": 48,
+      "unrun": 46,
+      "parityPassed": 1,
+      "parityTotal": 24
+    },
+    "normalBrowserLoaderCase": {
+      "passed": 1,
+      "total": 1
+    },
+    "normalNodeEsmStdout": "7\n"
+  },
+  "library_update": {
+    "sourceCommit": "3ef02b76fcc9de3a32b8693544afba54c12b830c",
+    "changed": "Normal symbolic.vkf numeric-leaf KaTeX renderer and corresponding generated embedded table; one unchanged-code API provider rebuilt,139 objects and formatter retained",
+    "evidence": "./verification/e1642-symbolic-renderer-library.json"
   }
 }

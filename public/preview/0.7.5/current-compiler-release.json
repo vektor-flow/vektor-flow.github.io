@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "private-candidate",
+  "status": "published-scoped-embedding",
   "complete": false,
   "release_version": "0.7.5",
   "preview": true,
@@ -29,13 +29,20 @@
     "nativeLiveEngineEntry": true,
     "native8OriginalWitnessesPassed": 8,
     "native8OriginalWitnessesTotal": 8,
-    "nativeLabelEvidence": "./verification/e1623-current-native-mesh.json"
+    "nativeLabelEvidence": "./verification/e1623-current-native-mesh.json",
+    "currentCanonical57": {
+      "passed": 57,
+      "total": 57,
+      "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+      "oldPassCarry": false,
+      "evidence": "./verification/e1625-current-qualification.json"
+    }
   },
   "physical_gpu_tested": true,
   "stable_release": false,
   "website_default": true,
   "browser_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "publication_status": "PUBLISHED_EXPERIMENTAL_CURRENT_BROWSER_CANDIDATE",
+  "publication_status": "PUBLISHED_CORRECTNESS_CHECKED_SUPPORTED_EMBEDDING_SCOPE",
   "download_packages_offered": false,
   "historical_verification": {
     "previous_website_compiler": "bac7ceb2c243c1e9b31420a4f1984d1e654f64e0baaa8d1162915ed93eef6216",
@@ -48,36 +55,54 @@
   "stable": false,
   "files": {
     "compiler.mjs": {
-      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-      "bytes": 756
+      "bytes": 756,
+      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
     },
     "compiler-base.mjs": {
-      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302",
-      "bytes": 184876
+      "bytes": 184876,
+      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302"
     },
     "compiler.wasm": {
-      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
-      "bytes": 65390139
+      "bytes": 65390139,
+      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740"
     },
     "compiler.data": {
-      "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
-      "bytes": 610088
+      "bytes": 610088,
+      "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
     },
     "formatter.mjs": {
-      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
-      "bytes": 62804
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
     },
     "formatter.wasm": {
-      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
-      "bytes": 1118687
+      "bytes": 1118687,
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
     },
     "README.txt": {
-      "sha256": "48890d95fc1a613f1e58f7883869cc1369e2aced6cc52e4b8b3cad572f6a433e",
-      "bytes": 2122
+      "bytes": 2789,
+      "sha256": "ebfaf2120110526fa57caf70ac35e296e493d10ed1e9b5c6d9b04d55fe6f7f45"
     }
   },
   "published": true,
   "release_qualified": false,
   "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-  "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
+  "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7",
+  "scoped_release": {
+    "version": "0.7.5",
+    "components": [
+      "browser-WASM compiler and formatter",
+      "browser retained plotting",
+      "Node ESM compiler/guest/formatter embedding"
+    ],
+    "qualification": "Named supported controls only; full release remains unqualified.",
+    "existingBrowserPrograms": {
+      "passed": 57,
+      "total": 57,
+      "oldPassCarry": false
+    },
+    "evidence": "./verification/e1625-current-qualification.json",
+    "linuxCompilerSDKQualified": false,
+    "crossTargetParityQualified": false,
+    "comparativeBenchmarksQualified": false
+  }
 }

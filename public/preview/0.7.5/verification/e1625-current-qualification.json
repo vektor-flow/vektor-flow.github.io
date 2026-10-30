@@ -1,0 +1,3041 @@
+{
+  "status": "PASS_EXISTING57_CURRENT_NORMAL_BROWSER_SUPPORTED_EMBEDDING_SCOPE",
+  "previousPublication": "78e7dc04f44b72b543d7b077bd6630da0565697b",
+  "compilerSource": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "frontendBinding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+  "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "compilerFiles": {
+    "compiler.mjs": {
+      "bytes": 756,
+      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+    },
+    "compiler-base.mjs": {
+      "bytes": 184876,
+      "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302"
+    },
+    "compiler.wasm": {
+      "bytes": 65390139,
+      "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740"
+    },
+    "compiler.data": {
+      "bytes": 610088,
+      "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f"
+    },
+    "formatter.mjs": {
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+    },
+    "formatter.wasm": {
+      "bytes": 1118687,
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    }
+  },
+  "existingCanonical57": {
+    "passed": 57,
+    "total": 57,
+    "oldPassCarry": false,
+    "originalPlanSHA256": "9c6f5b341f03756b5bac369fdc3254b2a403374f230fc17ba4541bade1c00373",
+    "sourceAndOraclesUnchanged": true,
+    "cases": [
+      {
+        "id": "stdlib-example-23",
+        "source": ": .units\n: .math\n\n:: sin(90deg)\n:: exp(num(0, 1) * 180deg)",
+        "source_sha256": "24baef4de3e910108b1a6c13200f1a1d98ef42199752d0e0e72d5035d78c908a",
+        "expected": {
+          "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-7215e2b22a5fd1bb",
+        "source": "la: .linalg\n\n:: la.solve([[2, 1], [1, 3]], [5, 5])",
+        "source_sha256": "4ad7fc5a84e142952a4dc06d8bbc030f47bea5e7961dce56e39b7331e0c805cd",
+        "expected": {
+          "stdout": "[2, 1]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-19",
+        "source": ": .units\n\n:: 2m + 30cm\n:: 30cm + 2m\n:: ([1, 2, 3]m).to(cm)",
+        "source_sha256": "25acab4ae269c71a36466ec8360d244a9f273d1803fe7ad21c0c599d871a3dca",
+        "expected": {
+          "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-20",
+        "source": ": .units\n\nconvert(x): x.to(cm)\n\nx: [1, 2, 3]m\n\n:: convert(x)\n:: x",
+        "source_sha256": "c005e86d29b6741ad617011ba3ee4f939ef6e2da99ccfcffe2dd06451497f82b",
+        "expected": {
+          "stdout": "[100, 200, 300] cm\n[1, 2, 3] m\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-21",
+        "source": ": .units\n\nrun(n: int):\n    y:\n        x: [2m: n]\n        x.to(cm)\n    :: y\n    @: 0\n\nrun(0)\nrun(2)",
+        "source_sha256": "ec7b078fcfd7aa0094606865b15405e552424ffbfcb603cd1e9b6eaa789860dd",
+        "expected": {
+          "stdout": "[] cm\n[200, 200] cm\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-22",
+        "source": ": .units\n\narea(side): side ^ 2\n\n:: area(3m).to(m ^ 2)\n:: (6m / 2s).to(m / s)",
+        "source_sha256": "c809f8bd7af0b08bbe463d630b81e486e6118ef4657f45f20a77cd59aa241a01",
+        "expected": {
+          "stdout": "9 m^2\n3 m/s\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-24",
+        "source": ": .units\n\nposition(t): 2m * (t / 1s) ^ 2\n\nvelocity: deriv_t(position)\nacceleration: deriv_t(velocity)\n\n:: position(3s).to(m)\n:: velocity(3s).to(m / s)\n:: acceleration(3s).to(m / s ^ 2)",
+        "source_sha256": "849f495735b8891d55c7664c6856584f26fee724779bb253a94b1877cfbbc821",
+        "expected": {
+          "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-28",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: u_u ^ 2, color: [0.25, 0.72, 1, 1])\nframe.show()",
+        "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c",
+        "expected": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            }
+          ]
+        }
+      },
+      {
+        "id": "stdlib-example-31",
+        "source": "u: 0.0009765625 * [0..1024]\ny: u ^ 2\nfront: .ui.viewport\nside: .ui.viewport\n\nfront.add(x: u_u, y: y_u, color: [0.25, 0.72, 1, 1])\nside.add(x: y_u, y: u_u, color: [0.25, 0.72, 1, 1])\nfront.show()\nside.show()",
+        "source_sha256": "f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a",
+        "expected": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "fec5f10cf6596665c7ab802f664756cf115a6ba970e2af4ad8122ad0ab8d8c3d"
+            }
+          ]
+        }
+      },
+      {
+        "id": "stdlib-example-32",
+        "source": "concurrent: .concurrent\n\nworker(events): events.get()\n\nevents: concurrent.queue()\np: concurrent.process(worker, events)\nevents.put(42)\n\n:: p.join()",
+        "source_sha256": "3791d47654f2cd1c7d3b73ca24feb80a92b03870559c949677caf16a4a2e27f6",
+        "expected": {
+          "stdout": "42\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-33",
+        "source": "concurrent: .concurrent\n\nupdates: concurrent.broadcast()\nui_updates: updates.subscribe()\nlog_updates: updates.subscribe()\nupdates.put(\"ready\")\n\n:: ui_updates.get()\n:: log_updates.get()\n\nstate: concurrent.shared((p: [1, 2, 3], mode: \"run\"))",
+        "source_sha256": "d3d0eada94203e1464de9be3133c31752c9a00315b816467d3534e762ac4636b",
+        "expected": {
+          "stdout": "ready\nready\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-29",
+        "source": ": .units\n\nadvance(p, v, a, dt): (p: p + v * dt + a * dt ^ 2 / 2, v: v + a * dt)\nstate: advance(0m, 2m / 1s, 1m / 1s ^ 2, 2s)\n\n:: state.p\n:: state.v.to(m / s)",
+        "source_sha256": "77d1545313e4b74a6ec867d4fc391c95a63451e1ac5a4b8d64bb89a8910b16e7",
+        "expected": {
+          "stdout": "6 m\n4 m/s\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "stdlib-example-30",
+        "source": ": .physics.units\n\nadvance(p, v, dt): (p: p + v * dt, v: v)\n\nstate:\n    p_ic: [[0, 0, 0], [1, 0, 0]]m\n    v_ic: [[0, 1, 0], [0, 2, 0]]m / 1s\n    advance_ic(p, v, 2s)\n\n:: state.p\n:: state.v.to(m / s)",
+        "source_sha256": "a6ccf768e1b842df5b252dcbb97493c9af403bf6afcb21220ced003432981244",
+        "expected": {
+          "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-7333ae9d0046d4ef",
+        "source": "stat: .stat\n\nspectra:\n    site: [0..3]_p\n    profile:\n        energy: (-1.0 + 0.0078125 * [0..256])_u\n        1.0 / (1.0 + 100.0 * energy ^ 2)\n    1.0 + (1.0 + site_p) * profile_u\n\nspan(x): stat.max(x) - stat.min(x)\n\n:: span_u(spectra)\n\ncurve_energy: -1.0 + 0.00390625 * [0..512]\nselected:\n    selected_site: 2\n    1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)\n\n:: selected.(256)\n\nview: .ui.viewport\n\nview.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])\nview.push(x_lim: [-1, 1], y_lim: [0, 5])\nview.show()",
+        "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
+        "expected": {
+          "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": -1,
+                        "y_label": "y",
+                        "y_max": 5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 20520,
+                        "length": 1024,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 5130,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24616,
+              "arenaHash": "d84c6e0173cc6ecaeb28d3f3c22193981a125ea4cd460ea2b3a38968008a450a"
+            }
+          ]
+        }
+      },
+      {
+        "id": "motion-design",
+        "source": "la: .linalg\n\nc: la.solve([[1, 0, 0, 0], [1, 1, 1, 1], [0, 1, 0, 0], [0, 1, 2, 3]], [0, 1, 0, 0])\n\npath(t, a, b, d, e): a + b * t + d * t ^ 2 + e * t ^ 3\n\nslope: deriv_t(path)\n\n:: c\n:: path(0.5, c.0, c.1, c.2, c.3)\n:: slope(0.5, c.0, c.1, c.2, c.3)\n\nt: 0.00390625 * [0..256]\n\ncurves: .ui.viewport\n\ncurves.add(x: t_u, y: path(t_u, c.0, c.1, c.2, c.3), color: [0.25, 0.72, 1, 1])\ncurves.add(x: t_u, y: slope(t_u, c.0, c.1, c.2, c.3), color: [1, 0.45, 0.18, 1])\ncurves.show()\n\nphase: .ui.viewport\n\nphase.add(x: path(t_u, c.0, c.1, c.2, c.3), y: slope(t_u, c.0, c.1, c.2, c.3), color: [0.3, 0.9, 0.55, 1])\nphase.show()",
+        "source_sha256": "251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78",
+        "expected": {
+          "stdout": "[0, 0, 3, -2]\n0.5\n1.5\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    },
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        1,
+                        0.45,
+                        0.18,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 22608,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 12328,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24656,
+              "arenaHash": "f2543ae1a713e2e08b68055645276aedc0b03d7a3048f2bae440f6d281c3ebe8"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.3,
+                        0.9,
+                        0.55,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_2",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 2,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 12328,
+              "arenaHash": "a4676fae437e22ccbd2451002ec24ec3c21d82fb156db81169bafc7bb0f37b56"
+            }
+          ]
+        }
+      },
+      {
+        "id": "syntax-example-3",
+        "source": "identity(x: T) -> T: x\nfirst(x: [T: n]) -> T: x.(0)\npair_sum(x: (num, num)) -> num: x.0 + x.1\n\n:: identity(3)\n:: first([1, 2])\n:: pair_sum((3, 4))",
+        "source_sha256": "6dd856d1b3975d3c09ecbc98a0f06b766378021ece6159cd39ef4686537eea84",
+        "expected": {
+          "stdout": "3\n1\n7\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-extra-values-and-types-0",
+        "source": "pairs: [(1, 2), (3, 4)]_a\nmatrix: [[1, 2], [3, 4]]_ab\n\n:: pairs\n:: matrix",
+        "source_sha256": "ee6d89f972da2a9a3e1e07e7fe9b88cbb7a9f75ee2588716c22f50874ffd17f2",
+        "expected": {
+          "stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-1",
+        "source": "x: 3\n.x: x + 1\nnum y: x / 2\n\n:: x\n:: y",
+        "source_sha256": "5ac2086d1e7ae67c266ee1af946f3167b8bf1aaf7679c3527452cd1b8cfa9ac6",
+        "expected": {
+          "stdout": "4\n2\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-2",
+        "source": "make(x):\n    y: x + 1\n    @: (x: x, y: y)\n\nresult: make(2)\n\n:: result.y",
+        "source_sha256": "e556b59b12140569c77100464a453898f4ca5e494d5a87575b24e57960c76e5f",
+        "expected": {
+          "stdout": "3\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-10",
+        "source": "make(c): ((x): str(c) & str(x))\n\nf: make(2)\ng: make(\"A\")\n\n:: f(3)\n:: g(4)",
+        "source_sha256": "7ead44ab681d3a605d2077526c7af7415b67398fec769cd17c559ca4ec2ce07e",
+        "expected": {
+          "stdout": "23\nA4\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-11",
+        "source": "run(i: int):\n    :: [+, *].(i)(2, 3)\n    @: 0\n\nrun(0)\nrun(1)",
+        "source_sha256": "dbae261fd7422948ff9088213a4315afcb6f938743defda585aa01013c65e376",
+        "expected": {
+          "stdout": "5\n6\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-12",
+        "source": "f: make(2)\n\n:: f(3)\n\nmake(c: int): ((x): x + c)",
+        "source_sha256": "cf98682fd99ae2abf9bbb7ee8bd0fbedd43c0ed533c8023b186c9f8747be90bc",
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-4",
+        "source": "add(x, y = 1): x + y\nf(x: int) -> int: x + 1\n\ntwice: ((x): 2 * x)\n\n:: add(2, y: 3)\n:: f(2)\n:: twice(3)",
+        "source_sha256": "6ca83c1fddfb182bdcae9dc5779f7627d95b6f12da104ce9cb17969bda6cd3b1",
+        "expected": {
+          "stdout": "5\n3\n6\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-6",
+        "source": "result:\n    L(x, n, m): x + n + m\n    G: L[n: 0, m: 3]\n    G(4)\n\n:: result\n\nf(x): x\n\n:: f(4)",
+        "source_sha256": "c4a053fa29503a2e77026a766b05c6866f22f7c0b149a9550c0573a2c7edf053",
+        "expected": {
+          "stdout": "7\n4\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-3",
+        "source": "result:\n    f(x, step): x + step\n    g: f[step: 2]\n    g(3)\n\n:: result",
+        "source_sha256": "dde137e47e69a2b67b8d16de228e954973e51b44c3d0702f61f77905f49b930a",
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-26",
+        "source": "result:\n    power(x, n): x ^ n\n    cube: power[n: 3]\n    cube(2)\n\n:: result",
+        "source_sha256": "67cf29f82de6abb1ecd2b6bbde4c3e998aa287ace0e02914b9c3fec52cfc13db",
+        "expected": {
+          "stdout": "8\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-5",
+        "source": "f(x, n, step): x + n * step\n\ng: f[step: 2]\n\n:: g(3, 4)\n\nh: f[x: 3, n: 4, step: 2]\n\n:: h()",
+        "source_sha256": "6f03c253eafdea9a59a535711aa737b2e3b0c5350fa295aabfce8da18f203ff0",
+        "expected": {
+          "stdout": "11\n11\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-e83d4f83254551e1",
+        "source": "record: (x: 2, y: 3)\n: record\n\n:: x + y",
+        "source_sha256": "77ff79a7dd8f5fdaa89e1fc8e45c72af0ed15224d87020dbb05a2215f9e47072",
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-6206bcee611fe4c3",
+        "source": "m: .math\n\n:: m.sqrt(81)",
+        "source_sha256": "6eed0e2b16ed356df0151969dea61475c30b8f44f1f1932e2c83b6b3e548eeec",
+        "expected": {
+          "stdout": "9\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-extra-index-access-and-ranges-1",
+        "source": "A: [[1, 2], [3, 4]]\n\n:: A.(1, :)\n:: A.(..., 0)\n:: A.(:: , :, :)",
+        "source_sha256": "585b710fc8a08a00de9caa76f135fd546db5417ad5f0d573b5385da2d797077a",
+        "expected": {
+          "stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-1",
+        "source": "A: [[1, 2], [3, 4]]_ij\n\n:: sum_j(A)\n:: A_ii",
+        "source_sha256": "612041530a0f79c870de96c382619de5ee340e76b53a667a233b964215b915b9",
+        "expected": {
+          "stdout": "[3, 7]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-2",
+        "source": "A: [[1, 2], [3, 4]]_ij\nB: [[5, 6], [7, 8]]_jk\n\n:: sum_j(A * B)",
+        "source_sha256": "8af9a3a10a898c7321d1f860e4127b880b4d9f6047c4444a76dc0df2e495fecf",
+        "expected": {
+          "stdout": "[[19, 22], [43, 50]]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-13",
+        "source": "run():\n    C_ik:\n        A_ij: [[num(1, 1), num(2, -1), num(3, 0)], [num(4, 2), num(5, 0), num(6, -2)]]\n        B_jk: [[7, 8], [9, 10], [11, 12]]\n        sum_j(A_ij * B_jk)\n    :: C\n    @: 0\n\nrun()",
+        "source_sha256": "55c142de7552a618ba5936f62a1604a5352f36eb46ca7a2439b75b6becab48a6",
+        "expected": {
+          "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-15",
+        "source": "A: [[1, 2], [3, 4]]_ij\n\n:: A\n\nB: [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]_i...k\n\n:: B",
+        "source_sha256": "7543df4f0a5fb95567c7ddb5806fe0955bb2597964cdf190a26388fd669aa6c0",
+        "expected": {
+          "stdout": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-7",
+        "source": "A: [[1, 2], [3, 4]]_ij\nC:\n    B: [[5, 6], [7, 8]]_jk\n    sum_j(A * B)\ndiagonal: A_ii\n\n:: C\n:: diagonal",
+        "source_sha256": "9cc4f6e86c7d2a2beab77e37c4969c20aeb66c1c97946accd094f40ae10242b6",
+        "expected": {
+          "stdout": "[[19, 22], [43, 50]]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-8",
+        "source": "ReLU(x: num) -> num:\n    max(a: num, b: num) -> num:\n        a > b? @: a\n        @: b\n    @: max(0, x)\n\n:: ReLU([-1, 2, 3]_i)",
+        "source_sha256": "f36dcb09ad6a30cae86464fb110ef0f2f1446589f96b9d9450c3fa7782706643",
+        "expected": {
+          "stdout": "[0, 2, 3]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-extra-lifting-and-structural-calls-0",
+        "source": "stat: .stat\n\nspan(x): stat.max(x) - stat.min(x)\n\nA: [[1, 4], [2, 8]]_ij\n\n:: span_i(A)",
+        "source_sha256": "efcaa4dfac45626b1539a524808380a6840ba1e97b9c8c71aa4d233bd925f4bc",
+        "expected": {
+          "stdout": "[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-18",
+        "source": "left: [1, 2]_i\nright: [3, 4]_i\n\n:: left &_i right",
+        "source_sha256": "bbeaa367c1b6d1aabd0dc157665a45845783887e16dfc635322d12c54bd0ac85",
+        "expected": {
+          "stdout": "[1, 2, 3, 4]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-extra-operators-0",
+        "source": "add(x): x + 1\ndouble(x): 2 * x\n\nF_i: [add, double]_i\n\n:: F_i(3)\n\nh: add & double\n\n:: h(3)",
+        "source_sha256": "6fe237987aa850984349eee6fe6bd6d2f0380eec4a53852662153253f00308ce",
+        "expected": {
+          "stdout": "[4, 6]\n8\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-extra-index-access-and-ranges-0",
+        "source": "values: ..\n\nvalues.(0..3) >> :: $",
+        "source_sha256": "2305d695de3dcbce88b51d64092d99034c71236cce725222d446aa990959e594",
+        "expected": {
+          "stdout": "0\n1\n2\n3\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-4",
+        "source": "step(z, c): z + c\n\nc: [1, 2, 3]_i\n\n:: reduce_i(step, c, 0)",
+        "source_sha256": "f8518c881082a1a1a8007030b67ba8d60bb5b466c06e5f2acfef3e201e9c6954",
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-9",
+        "source": "step(z, c): z + c\n\n:: reduce_i(step, [1, 2, 3]_i, 0)",
+        "source_sha256": "3dc0b0a4849174aed54a9ba1883fbfd2ce6d4fe2ee3e91d47845f5477efbefe9",
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-10",
+        "source": "step(z, n, c): z ^ 2 + c\n\nresult:\n    n_i: ..10\n    F_i: step[n: n_i, c: num(0.1, 0.2)]\n    chain_i(F)(0)\n\n:: result",
+        "source_sha256": "de8bd7cab3f01c5bcc8872d61736bca6dae4c5b460cbcd187e20282b21bb881a",
+        "expected": {
+          "stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-11",
+        "source": "[10, 20]_i >>\n    :: $i\n    :: $0\n    :: $",
+        "source_sha256": "3f68720c21e1c025c21318f0c4401a235d1afd0834e7bd2ed12e3c336be20d6c",
+        "expected": {
+          "stdout": "0\n0\n10\n1\n1\n20\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-e8bd7c70ff69b7fb",
+        "source": "x: 0\nx < 3 ?>\n    :: x\n    .x: x + 1",
+        "source_sha256": "cb1280ad7bd7e8fdc7e8183dda221f433233e678877d88f4fb8e81b7a7f20f1f",
+        "expected": {
+          "stdout": "0\n1\n2\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-12",
+        "source": "value: 2\nlabel: value ??\n    0 => \"zero\"\n    1 => \"one\"\n    \"many\"\n\n:: label",
+        "source_sha256": "5323ae262177673e3b56f3be5a0f6ded6cc3f5298a47aa9355bc28e52d25ca8b",
+        "expected": {
+          "stdout": "many\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-13",
+        "source": ": .errors\n\n(Error(\"message\")!)!?\n    Error => :: $.message",
+        "source_sha256": "66c8ae4e343f7b5519cae06c739153056241de1b876d841d06fb18d919ab3265",
+        "expected": {
+          "stdout": "message\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-9",
+        "source": "Point(x: num, y: num): : [x, y]\n\nq:\n    p: Point(1, 2)\n    p + 1\n\n:: q.x\n:: q.y",
+        "source_sha256": "a255975dbc45e341adcbdc98329046aecc316d8700d7d26d946937a227ab46a2",
+        "expected": {
+          "stdout": "2\n3\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-14",
+        "source": "Point(x: num, y: num): : [x, y]\n\np: Point(1, 2)\n\n:: (p + 1).x",
+        "source_sha256": "d76c747e08e79d91acb2ed5516eedb6a9877dfe9e2ffb4fa32df29d855c1bccc",
+        "expected": {
+          "stdout": "2\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-6",
+        "source": "square(x): x ^ 2\n\nslope: square'x\n\n:: slope(3)",
+        "source_sha256": "b69870e0302d1d2f39826e8553cf14184f1c1a430374fa6a61ad3907a63e40c1",
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-15",
+        "source": "f(x): x ^ 2\n\nslope: f'x\n\n:: slope(3)\n\nintegral:\n    I: integ_x(f)\n    F: I[from: 0]\n    F(3)\n\n:: integral",
+        "source_sha256": "27d3d0cce51fe4820e7eba24a6aad622ecdf357272d778e52ccbe9db5f0c2890",
+        "expected": {
+          "stdout": "6\n9\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-16",
+        "source": ": .units\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+        "source_sha256": "6d97e79be03f91d2ecc95da7508bf365c82b64c03204f4c3dc254792b919e107",
+        "expected": {
+          "stdout": "230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "more-example-25",
+        "source": "x: 1.26\n\n:: \"x = $x.1f\"\n\ns: (x: 1.26, y: 2.5)\n\n:: '[$x.1f, $y.1f]'.format(: s)",
+        "source_sha256": "af8158ce42e31b20dd9e5231069d5d3481ccf3885bd2f3cce87a4c8c59ee890b",
+        "expected": {
+          "stdout": "x = 1.3\n[1.3, 2.5]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-17",
+        "source": "s: (x: 1.23, y: 4.56)\n\n:: '[$x.1f, $y.1f]'.format(: s)",
+        "source_sha256": "c0df54bf8f8de4485ceaecd153bf05754870c9acd1668e0ec77fbc46e7f4df14",
+        "expected": {
+          "stdout": "[1.2, 4.6]\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "syntax-example-18",
+        "source": "concurrent: .concurrent\n\nMouseEvent: 1\nKeyEvent: 2\nStop: 0\nhandle_mouse(event): :: event\nhandle_key(event): :: event\nproduce(events, key: int, stop: int):\n    events.put(key)\n    @: events.put(stop)\n\nevents: concurrent.queue()\nevents.put(MouseEvent)\np: concurrent.process(produce, events, KeyEvent, Stop)\n(event: events.get()) ??>\n    MouseEvent => handle_mouse(event)\n    KeyEvent => handle_key(event)\n    Stop => @|\n\np.join()",
+        "source_sha256": "13280141c26a567d3afa585f5ca3f734f495e26a2952a9408902922b429f3b2d",
+        "expected": {
+          "stdout": "1\n2\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "source-932849d09e71acfe",
+        "source": "p(t): 3 * t ^ 2 - 2 * t ^ 3\n\n(p(0) = 0) ?! \"start\"\n(p(1) = 1) ?! \"end\"\n(p(0.5) = 0.5) ?! \"midpoint\"\n\n:: \"passed\"",
+        "source_sha256": "f40dddcb434e3c663ae14b40654544ffe867862ccbe02b996dfcbcab213b22d4",
+        "expected": {
+          "stdout": "passed\n",
+          "stderr": "",
+          "packets": []
+        }
+      },
+      {
+        "id": "embed-form",
+        "source": "square(x): x ^ 2\n\n:: square(5)",
+        "source_sha256": "70d9cec7b4369e4f16cf53d3bbd3e9de5489e0e90bb58bf5186cac3b9f12bc11",
+        "expected": {
+          "stdout": "25\n",
+          "stderr": "",
+          "packets": []
+        }
+      }
+    ],
+    "actual": [
+      {
+        "id": "stdlib-example-23",
+        "source_sha256": "24baef4de3e910108b1a6c13200f1a1d98ef42199752d0e0e72d5035d78c908a",
+        "actual": {
+          "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 17.933391453989316
+      },
+      {
+        "id": "source-7215e2b22a5fd1bb",
+        "source_sha256": "4ad7fc5a84e142952a4dc06d8bbc030f47bea5e7961dce56e39b7331e0c805cd",
+        "actual": {
+          "stdout": "[2, 1]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[2, 1]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 39.49558942200383
+      },
+      {
+        "id": "stdlib-example-19",
+        "source_sha256": "25acab4ae269c71a36466ec8360d244a9f273d1803fe7ad21c0c599d871a3dca",
+        "actual": {
+          "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 8.328642431995831
+      },
+      {
+        "id": "stdlib-example-20",
+        "source_sha256": "c005e86d29b6741ad617011ba3ee4f939ef6e2da99ccfcffe2dd06451497f82b",
+        "actual": {
+          "stdout": "[100, 200, 300] cm\n[1, 2, 3] m\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[100, 200, 300] cm\n[1, 2, 3] m\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 8.328663913009223
+      },
+      {
+        "id": "stdlib-example-21",
+        "source_sha256": "ec7b078fcfd7aa0094606865b15405e552424ffbfcb603cd1e9b6eaa789860dd",
+        "actual": {
+          "stdout": "[] cm\n[200, 200] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[] cm\n[200, 200] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 8.28460911102593
+      },
+      {
+        "id": "stdlib-example-22",
+        "source_sha256": "c809f8bd7af0b08bbe463d630b81e486e6118ef4657f45f20a77cd59aa241a01",
+        "actual": {
+          "stdout": "9 m^2\n3 m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "9 m^2\n3 m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 8.567481108999345
+      },
+      {
+        "id": "stdlib-example-24",
+        "source_sha256": "849f495735b8891d55c7664c6856584f26fee724779bb253a94b1877cfbbc821",
+        "actual": {
+          "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 29.02020948700374
+      },
+      {
+        "id": "stdlib-example-28",
+        "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c",
+        "actual": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            }
+          ]
+        },
+        "expected": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            }
+          ]
+        },
+        "passed": true,
+        "seconds": 0.8233149360166863
+      },
+      {
+        "id": "stdlib-example-31",
+        "source_sha256": "f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a",
+        "actual": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "fec5f10cf6596665c7ab802f664756cf115a6ba970e2af4ad8122ad0ab8d8c3d"
+            }
+          ]
+        },
+        "expected": {
+          "stdout": "",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 41000,
+                        "length": 2048,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 10250,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 49192,
+              "arenaHash": "fec5f10cf6596665c7ab802f664756cf115a6ba970e2af4ad8122ad0ab8d8c3d"
+            }
+          ]
+        },
+        "passed": true,
+        "seconds": 1.0539750400348566
+      },
+      {
+        "id": "stdlib-example-32",
+        "source_sha256": "3791d47654f2cd1c7d3b73ca24feb80a92b03870559c949677caf16a4a2e27f6",
+        "actual": {
+          "stdout": "42\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "42\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.2433578330092132
+      },
+      {
+        "id": "stdlib-example-33",
+        "source_sha256": "d3d0eada94203e1464de9be3133c31752c9a00315b816467d3534e762ac4636b",
+        "actual": {
+          "stdout": "ready\nready\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "ready\nready\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.2563943060231395
+      },
+      {
+        "id": "stdlib-example-29",
+        "source_sha256": "77d1545313e4b74a6ec867d4fc391c95a63451e1ac5a4b8d64bb89a8910b16e7",
+        "actual": {
+          "stdout": "6 m\n4 m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "6 m\n4 m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 9.320669426990207
+      },
+      {
+        "id": "stdlib-example-30",
+        "source_sha256": "a6ccf768e1b842df5b252dcbb97493c9af403bf6afcb21220ced003432981244",
+        "actual": {
+          "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 9.08843630400952
+      },
+      {
+        "id": "source-7333ae9d0046d4ef",
+        "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
+        "actual": {
+          "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": -1,
+                        "y_label": "y",
+                        "y_max": 5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 20520,
+                        "length": 1024,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 5130,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24616,
+              "arenaHash": "d84c6e0173cc6ecaeb28d3f3c22193981a125ea4cd460ea2b3a38968008a450a"
+            }
+          ]
+        },
+        "expected": {
+          "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": -1,
+                        "y_label": "y",
+                        "y_max": 5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 20520,
+                        "length": 1024,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 5130,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24616,
+              "arenaHash": "d84c6e0173cc6ecaeb28d3f3c22193981a125ea4cd460ea2b3a38968008a450a"
+            }
+          ]
+        },
+        "passed": true,
+        "seconds": 40.20852779998677
+      },
+      {
+        "id": "motion-design",
+        "source_sha256": "251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78",
+        "actual": {
+          "stdout": "[0, 0, 3, -2]\n0.5\n1.5\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    },
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        1,
+                        0.45,
+                        0.18,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 22608,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 12328,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24656,
+              "arenaHash": "f2543ae1a713e2e08b68055645276aedc0b03d7a3048f2bae440f6d281c3ebe8"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.3,
+                        0.9,
+                        0.55,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_2",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 2,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 12328,
+              "arenaHash": "a4676fae437e22ccbd2451002ec24ec3c21d82fb156db81169bafc7bb0f37b56"
+            }
+          ]
+        },
+        "expected": {
+          "stdout": "[0, 0, 3, -2]\n0.5\n1.5\n",
+          "stderr": "",
+          "packets": [
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_0",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.25,
+                        0.72,
+                        1,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_0",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 0,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    },
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        1,
+                        0.45,
+                        0.18,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_1",
+                      "indices": {
+                        "byte_offset": 22608,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 1,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 12328,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 24656,
+              "arenaHash": "f2543ae1a713e2e08b68055645276aedc0b03d7a3048f2bae440f6d281c3ebe8"
+            },
+            {
+              "metadata": {
+                "scene": {
+                  "container_kind": "viewport",
+                  "frame": "frame_1",
+                  "lights": [],
+                  "meshes": [
+                    {
+                      "axis_ticks": {
+                        "enabled": true,
+                        "x_label": "x",
+                        "x_max": 1,
+                        "x_min": 0,
+                        "y_label": "y",
+                        "y_max": 1.5,
+                        "y_min": 0
+                      },
+                      "casts_shadow": false,
+                      "color": [
+                        0.3,
+                        0.9,
+                        0.55,
+                        1
+                      ],
+                      "coordinate_labels": {
+                        "x": "x",
+                        "y": "y"
+                      },
+                      "curve_path": "open-continuous",
+                      "depth_write": true,
+                      "edge_width": 1,
+                      "id": "layer_2",
+                      "indices": {
+                        "byte_offset": 10280,
+                        "length": 512,
+                        "storage": "uint32"
+                      },
+                      "layer_id": 2,
+                      "marker_space": "pixel",
+                      "mode3d": false,
+                      "no_lighting": true,
+                      "render_mode": "line",
+                      "spatial_axes": [
+                        "x",
+                        "y"
+                      ],
+                      "topology": "line-list",
+                      "transparent": false,
+                      "type": "field_mesh",
+                      "vertices": {
+                        "byte_offset": 0,
+                        "length": 2570,
+                        "storage": "float32"
+                      }
+                    }
+                  ],
+                  "pos": [
+                    0,
+                    0
+                  ],
+                  "size": [
+                    1,
+                    1
+                  ],
+                  "texts": [],
+                  "toolbar": null
+                },
+                "schema": "vektor-flow/retained-scene-arena",
+                "version": 1
+              },
+              "arenaBytes": 12328,
+              "arenaHash": "a4676fae437e22ccbd2451002ec24ec3c21d82fb156db81169bafc7bb0f37b56"
+            }
+          ]
+        },
+        "passed": true,
+        "seconds": 101.6662361290073
+      },
+      {
+        "id": "syntax-example-3",
+        "source_sha256": "6dd856d1b3975d3c09ecbc98a0f06b766378021ece6159cd39ef4686537eea84",
+        "actual": {
+          "stdout": "3\n1\n7\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "3\n1\n7\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.6336503640050068
+      },
+      {
+        "id": "syntax-extra-values-and-types-0",
+        "source_sha256": "ee6d89f972da2a9a3e1e07e7fe9b88cbb7a9f75ee2588716c22f50874ffd17f2",
+        "actual": {
+          "stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.2513901140191592
+      },
+      {
+        "id": "syntax-example-1",
+        "source_sha256": "5ac2086d1e7ae67c266ee1af946f3167b8bf1aaf7679c3527452cd1b8cfa9ac6",
+        "actual": {
+          "stdout": "4\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "4\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.15506113896844909
+      },
+      {
+        "id": "syntax-example-2",
+        "source_sha256": "e556b59b12140569c77100464a453898f4ca5e494d5a87575b24e57960c76e5f",
+        "actual": {
+          "stdout": "3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3275323060224764
+      },
+      {
+        "id": "more-example-10",
+        "source_sha256": "7ead44ab681d3a605d2077526c7af7415b67398fec769cd17c559ca4ec2ce07e",
+        "actual": {
+          "stdout": "23\nA4\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "23\nA4\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 1.2483983610291034
+      },
+      {
+        "id": "more-example-11",
+        "source_sha256": "dbae261fd7422948ff9088213a4315afcb6f938743defda585aa01013c65e376",
+        "actual": {
+          "stdout": "5\n6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "5\n6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.8945654470007867
+      },
+      {
+        "id": "more-example-12",
+        "source_sha256": "cf98682fd99ae2abf9bbb7ee8bd0fbedd43c0ed533c8023b186c9f8747be90bc",
+        "actual": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.4057603239780292
+      },
+      {
+        "id": "syntax-example-4",
+        "source_sha256": "6ca83c1fddfb182bdcae9dc5779f7627d95b6f12da104ce9cb17969bda6cd3b1",
+        "actual": {
+          "stdout": "5\n3\n6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "5\n3\n6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.4696541540324688
+      },
+      {
+        "id": "syntax-example-6",
+        "source_sha256": "c4a053fa29503a2e77026a766b05c6866f22f7c0b149a9550c0573a2c7edf053",
+        "actual": {
+          "stdout": "7\n4\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "7\n4\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.5869004460400902
+      },
+      {
+        "id": "more-example-3",
+        "source_sha256": "dde137e47e69a2b67b8d16de228e954973e51b44c3d0702f61f77905f49b930a",
+        "actual": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.4151457329862751
+      },
+      {
+        "id": "more-example-26",
+        "source_sha256": "67cf29f82de6abb1ecd2b6bbde4c3e998aa287ace0e02914b9c3fec52cfc13db",
+        "actual": {
+          "stdout": "8\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "8\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.45292647602036595
+      },
+      {
+        "id": "syntax-example-5",
+        "source_sha256": "6f03c253eafdea9a59a535711aa737b2e3b0c5350fa295aabfce8da18f203ff0",
+        "actual": {
+          "stdout": "11\n11\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "11\n11\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.7193600160535425
+      },
+      {
+        "id": "source-e83d4f83254551e1",
+        "source_sha256": "77ff79a7dd8f5fdaa89e1fc8e45c72af0ed15224d87020dbb05a2215f9e47072",
+        "actual": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "5\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.13099775201408193
+      },
+      {
+        "id": "source-6206bcee611fe4c3",
+        "source_sha256": "6eed0e2b16ed356df0151969dea61475c30b8f44f1f1932e2c83b6b3e548eeec",
+        "actual": {
+          "stdout": "9\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "9\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 4.371552341035567
+      },
+      {
+        "id": "syntax-extra-index-access-and-ranges-1",
+        "source_sha256": "585b710fc8a08a00de9caa76f135fd546db5417ad5f0d573b5385da2d797077a",
+        "actual": {
+          "stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.25690322899026796
+      },
+      {
+        "id": "more-example-1",
+        "source_sha256": "612041530a0f79c870de96c382619de5ee340e76b53a667a233b964215b915b9",
+        "actual": {
+          "stdout": "[3, 7]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[3, 7]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.529087002039887
+      },
+      {
+        "id": "more-example-2",
+        "source_sha256": "8af9a3a10a898c7321d1f860e4127b880b4d9f6047c4444a76dc0df2e495fecf",
+        "actual": {
+          "stdout": "[[19, 22], [43, 50]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[[19, 22], [43, 50]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.8591409579967149
+      },
+      {
+        "id": "more-example-13",
+        "source_sha256": "55c142de7552a618ba5936f62a1604a5352f36eb46ca7a2439b75b6becab48a6",
+        "actual": {
+          "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 2.469065996003337
+      },
+      {
+        "id": "more-example-15",
+        "source_sha256": "7543df4f0a5fb95567c7ddb5806fe0955bb2597964cdf190a26388fd669aa6c0",
+        "actual": {
+          "stdout": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3351767610292882
+      },
+      {
+        "id": "syntax-example-7",
+        "source_sha256": "9cc4f6e86c7d2a2beab77e37c4969c20aeb66c1c97946accd094f40ae10242b6",
+        "actual": {
+          "stdout": "[[19, 22], [43, 50]]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[[19, 22], [43, 50]]\n[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.8428230729768984
+      },
+      {
+        "id": "syntax-example-8",
+        "source_sha256": "f36dcb09ad6a30cae86464fb110ef0f2f1446589f96b9d9450c3fa7782706643",
+        "actual": {
+          "stdout": "[0, 2, 3]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[0, 2, 3]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.4401551660266705
+      },
+      {
+        "id": "syntax-extra-lifting-and-structural-calls-0",
+        "source_sha256": "efcaa4dfac45626b1539a524808380a6840ba1e97b9c8c71aa4d233bd925f4bc",
+        "actual": {
+          "stdout": "[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[1, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 19.723586064996198
+      },
+      {
+        "id": "more-example-18",
+        "source_sha256": "bbeaa367c1b6d1aabd0dc157665a45845783887e16dfc635322d12c54bd0ac85",
+        "actual": {
+          "stdout": "[1, 2, 3, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[1, 2, 3, 4]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.24832673196215183
+      },
+      {
+        "id": "syntax-extra-operators-0",
+        "source_sha256": "6fe237987aa850984349eee6fe6bd6d2f0380eec4a53852662153253f00308ce",
+        "actual": {
+          "stdout": "[4, 6]\n8\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[4, 6]\n8\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.5492327940301038
+      },
+      {
+        "id": "syntax-extra-index-access-and-ranges-0",
+        "source_sha256": "2305d695de3dcbce88b51d64092d99034c71236cce725222d446aa990959e594",
+        "actual": {
+          "stdout": "0\n1\n2\n3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "0\n1\n2\n3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.16570160700939596
+      },
+      {
+        "id": "more-example-4",
+        "source_sha256": "f8518c881082a1a1a8007030b67ba8d60bb5b466c06e5f2acfef3e201e9c6954",
+        "actual": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3804578490089625
+      },
+      {
+        "id": "syntax-example-9",
+        "source_sha256": "3dc0b0a4849174aed54a9ba1883fbfd2ce6d4fe2ee3e91d47845f5477efbefe9",
+        "actual": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3716252479935065
+      },
+      {
+        "id": "syntax-example-10",
+        "source_sha256": "de8bd7cab3f01c5bcc8872d61736bca6dae4c5b460cbcd187e20282b21bb881a",
+        "actual": {
+          "stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.6308294669725001
+      },
+      {
+        "id": "syntax-example-11",
+        "source_sha256": "3f68720c21e1c025c21318f0c4401a235d1afd0834e7bd2ed12e3c336be20d6c",
+        "actual": {
+          "stdout": "0\n0\n10\n1\n1\n20\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "0\n0\n10\n1\n1\n20\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.15744891302892938
+      },
+      {
+        "id": "source-e8bd7c70ff69b7fb",
+        "source_sha256": "cb1280ad7bd7e8fdc7e8183dda221f433233e678877d88f4fb8e81b7a7f20f1f",
+        "actual": {
+          "stdout": "0\n1\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "0\n1\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.14286831096978858
+      },
+      {
+        "id": "syntax-example-12",
+        "source_sha256": "5323ae262177673e3b56f3be5a0f6ded6cc3f5298a47aa9355bc28e52d25ca8b",
+        "actual": {
+          "stdout": "many\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "many\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.15424680395517498
+      },
+      {
+        "id": "syntax-example-13",
+        "source_sha256": "66c8ae4e343f7b5519cae06c739153056241de1b876d841d06fb18d919ab3265",
+        "actual": {
+          "stdout": "message\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "message\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.41472483798861504
+      },
+      {
+        "id": "more-example-9",
+        "source_sha256": "a255975dbc45e341adcbdc98329046aecc316d8700d7d26d946937a227ab46a2",
+        "actual": {
+          "stdout": "2\n3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "2\n3\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3675480759702623
+      },
+      {
+        "id": "syntax-example-14",
+        "source_sha256": "d76c747e08e79d91acb2ed5516eedb6a9877dfe9e2ffb4fa32df29d855c1bccc",
+        "actual": {
+          "stdout": "2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.3397852780180983
+      },
+      {
+        "id": "more-example-6",
+        "source_sha256": "b69870e0302d1d2f39826e8553cf14184f1c1a430374fa6a61ad3907a63e40c1",
+        "actual": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "6\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.49576836405321956
+      },
+      {
+        "id": "syntax-example-15",
+        "source_sha256": "27d3d0cce51fe4820e7eba24a6aad622ecdf357272d778e52ccbe9db5f0c2890",
+        "actual": {
+          "stdout": "6\n9\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "6\n9\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 1.6399308539694175
+      },
+      {
+        "id": "syntax-example-16",
+        "source_sha256": "6d97e79be03f91d2ecc95da7508bf365c82b64c03204f4c3dc254792b919e107",
+        "actual": {
+          "stdout": "230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "230 cm\n[100, 200, 300] cm\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 8.029059362015687
+      },
+      {
+        "id": "more-example-25",
+        "source_sha256": "af8158ce42e31b20dd9e5231069d5d3481ccf3885bd2f3cce87a4c8c59ee890b",
+        "actual": {
+          "stdout": "x = 1.3\n[1.3, 2.5]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "x = 1.3\n[1.3, 2.5]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.19473142095375806
+      },
+      {
+        "id": "syntax-example-17",
+        "source_sha256": "c0df54bf8f8de4485ceaecd153bf05754870c9acd1668e0ec77fbc46e7f4df14",
+        "actual": {
+          "stdout": "[1.2, 4.6]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "[1.2, 4.6]\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.15347081300569698
+      },
+      {
+        "id": "syntax-example-18",
+        "source_sha256": "13280141c26a567d3afa585f5ca3f734f495e26a2952a9408902922b429f3b2d",
+        "actual": {
+          "stdout": "1\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "1\n2\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.5431302869692445
+      },
+      {
+        "id": "source-932849d09e71acfe",
+        "source_sha256": "f40dddcb434e3c663ae14b40654544ffe867862ccbe02b996dfcbcab213b22d4",
+        "actual": {
+          "stdout": "passed\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "passed\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.7622537940042093
+      },
+      {
+        "id": "embed-form",
+        "source_sha256": "70d9cec7b4369e4f16cf53d3bbd3e9de5489e0e90bb58bf5186cac3b9f12bc11",
+        "actual": {
+          "stdout": "25\n",
+          "stderr": "",
+          "packets": []
+        },
+        "expected": {
+          "stdout": "25\n",
+          "stderr": "",
+          "packets": []
+        },
+        "passed": true,
+        "seconds": 0.20477090601343662
+      }
+    ],
+    "sourceBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "execution": "current normal shipping inline runner / browser worker / guest WASM / compiler-owned formatter",
+    "caseLimitMs": 180000,
+    "serialWorkers": 1,
+    "browserAndServerJoined": true
+  },
+  "nodeESM": {
+    "result": {
+      "status": "PASS_NORMAL_NODE_ESM_PACKAGE_COMPILE_EXECUTE_STDOUT",
+      "stdout": "7\n",
+      "frontendBinding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+      "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+      "wasmBytes": 36339,
+      "scope": "Actual normal ESM package/import/compile/guest/formatter transport control; no retained Node DOM/GPU claim"
+    },
+    "inputFilesExactlyUnchanged": true,
+    "evidenceOrigin": "Accepted actual e1612 normal Node ESM package control; same six exact compiler/formatter file bytes and bindings. No Node DOM/GPU claim."
+  },
+  "acceptedUnchangedEvidence": [
+    {
+      "scope": "Current full5M packet, pointUI/view/color/history/multi-renderer controls",
+      "evidence": "./e1615-current-renderer-queue.json",
+      "reexecuted": false
+    },
+    {
+      "scope": "Same original native8 witnesses 8/8; full10000 all30 views; generic live source/reuse/edit/complex/unsupported controls",
+      "evidence": "./e1623-current-native-mesh.json",
+      "source": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7",
+      "reexecuted": false
+    }
+  ],
+  "qualificationScope": "Existing current 57 browser semantic/output/scene-byte cases, supported retained plotting and browser/Node ESM embedding controls only.",
+  "nativeLabelTransport": "Application supplies its maintained native engine transport. Native executables and an automatic browser-WASM LaTeX provider are not included.",
+  "limitations": [
+    "A source-matched current Linux compiler SDK and its applicable Linux/WASM semantic parity are not qualified by this browser/Node embedding package.",
+    "The 57 named cases do not establish whole-language/index/named-argument/window/view completeness or all-platform coverage.",
+    "Native glyph/subpixel/all-font accuracy remains scoped and uncertified beyond the accepted controls.",
+    "Complete LaTeX and nonlinear GPU physics/Morphing world remain incomplete and are outside this scoped release.",
+    "LOCAL48 matched preflights/parity and comparative timing remain UNRUN; no ratios or speed qualification."
+  ],
+  "historicalFailuresPreserved": true,
+  "stable": false,
+  "complete": false,
+  "releaseQualified": false,
+  "full075Qualified": false,
+  "observedMonotonic": 273742.181817541
+}

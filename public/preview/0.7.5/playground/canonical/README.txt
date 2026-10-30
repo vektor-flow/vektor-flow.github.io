@@ -6,3 +6,5 @@ Finite quadratic history, pan/zoom/retarget and source-edit plot checks are scop
 The required native ten-thousand-label current-component output and full nonlinear GPU world remain unverified/incomplete. No stable 0.7.5, full-native or all-platform qualification. Timings are informational.
 See ../../verification/e1615-current-renderer-queue.json for exact source, artifacts, failures, scope and endpoints.
 Ordinary same-Frame multi-entry GPU admission and continuous-Frame fairness checked with completed callbacks, current views and visible output.
+
+Current native-label application entry: vf-ui/native-labels/vf-native-label-layer.mjs exports installCurrentNativeLabelEngine({bundle, typeset, renderingPolicy}). The application supplies its actual maintained native engine transport. Cache misses invoke typeset(run, identity); source, engine/catalog/resources, complete diagnostics and physical font bindings are validated before reuse. The checked working mesh uses the explicit adaptive-candidate policy; broader native quality remains scoped in verification/e1619-current-native10000.json. No JavaScript typesetter or native executable is included by this wrapper.

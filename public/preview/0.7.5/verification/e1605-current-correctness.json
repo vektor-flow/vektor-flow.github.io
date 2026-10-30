@@ -1,0 +1,1067 @@
+{
+  "schema": 1,
+  "date": "2026-10-30",
+  "status": "CURRENT_CORRECTNESS_BLOCKED",
+  "releaseQualified": false,
+  "compilerCandidatePublished": false,
+  "completeGpuPipeline": false,
+  "physicalGpuExecuted": false,
+  "fullWorkload10ms": "UNMEASURED",
+  "broadSpeedReleaseGates": "Retired; exact required workload correctness remains required",
+  "outcome": "Recursive snapshot allocation trap repaired by retaining persistent descendants; required complete-output and full GPU integration status are recorded separately below. No comparable completed before/after speed improvement measured.",
+  "sourceCommits": {
+    "rows": [
+      {
+        "message": "fix: retain persistent UI operands and emit complete vertex rows",
+        "commit": "a44428e00a180b7e2d3dc106cf9068857e319837",
+        "files": {
+          "compiler/native/wasm_emitter/calls_5.cpp": "c3e4432f6d4e2a9f1084dbbd340a07f9153a8eee68a1b28dd72ec54da3361325",
+          "compiler/native/wasm_lowering/lower_expression_impl_stages_1.cpp": "bd58f7096c553b18031ad21fe9417c751bf5a53476bfe8a427310e34d5b46e90",
+          "tests/fixtures/retained-captured-nested-snapshot-alias-gc.vkf": "d50604a4884943ea815f4efeadaf7a83e5c6052f7a133041c5e077ee1427e93c"
+        }
+      },
+      {
+        "message": "fix: lower runtime GPU helper loops and numerical absolute values",
+        "commit": "bef255d73b50207c81b664aa727604b20e2c963e",
+        "files": {
+          "compiler/native/vkf_section_zero_gpu_lowering.hpp": "dc2f92c30c6f6454835bf518559672bae01b823215b4e1c7e09c009bc05669b2",
+          "tests/gpu-field-record-bool/runtime-helper-loop.vkf": "edb396c650e6697ed82fff6082f083dd02a4a582d7af0da5aa559d6454ac7fc6",
+          "tests/gpu-field-record-bool/runtime-helper-abs-loop.vkf": "2cd6445e121562ce637a85af996da0637818d690be0ac3d084ccd0e064caedd7",
+          "tests/gpu-field-record-bool/runtime-helper-real-guard-loop.vkf": "31a5c52a4c4541c76e0e2ea7034bcb789077275dc06aa099501dfaabff06cf9e"
+        }
+      }
+    ],
+    "status": "",
+    "observedMonotonic": 257584.129452214,
+    "remotePushed": false
+  },
+  "privateBrowserCandidate": {
+    "binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+    "files": {
+      "compiler.mjs": {
+        "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302",
+        "bytes": 184876
+      },
+      "compiler.wasm": {
+        "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+        "bytes": 65390139
+      },
+      "compiler.data": {
+        "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
+        "bytes": 610088
+      },
+      "README.txt": {
+        "sha256": "639f65b5f699a169007476340a3a51a4559b710d1f91d87835c6766b3b64bb2a",
+        "bytes": 331
+      }
+    },
+    "stableQualified": false,
+    "published": false,
+    "oldPassCarry": false
+  },
+  "snapshotOnlyRequired5M": {
+    "status": "FAIL_CURRENT_EXACT_5M",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 255916.567470504,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [],
+    "phases": [
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":84.88999998569489}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1256.925000011921,\"ms\":1172.0399999916553}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":1731.9399999976158,\"bytes\":80786,\"sha256\":\"5f7a92ee308a51936cb3e7db8fc959466246fbe661cafd33ebaa1fa72bfe7eb4\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1734.6749999821186}",
+      "VKF_PHASE {\"name\":\"window-failure\",\"at\":180179.68500000238,\"error\":\"AbortError: VKF execution owner closed\",\"stack\":\"\",\"state\":{\"heap\":1018523728,\"heapBase\":13210752,\"heapLimit\":1086952576,\"memoryBytes\":1086980096,\"control\":4822112,\"words\":[4822144,4822480,1846519,1018523728,0,0,0,35428512],\"frame\":4822144,\"count\":67,\"locals\":[{\"i\":59,\"p\":226415000,\"tag\":4,\"length\":11,\"number\":1.11863881e-315},{\"i\":63,\"p\":818518384,\"tag\":4,\"length\":50000000,\"number\":4.04401822e-315},{\"i\":64,\"p\":816796784,\"tag\":2,\"length\":0,\"number\":39100351}]}}"
+    ],
+    "cases": [],
+    "error": "page.evaluate: Error: VKF execution timed out\n    at http://127.0.0.1:33419/preview/0.7.5/inline-runner.mjs:74:41\n    at /mnt/development/VektorFlow-e1605-20261030/required-current-exact5m.mjs:20:103",
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2244388,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "rowEmissionRequired5M": {
+    "status": "FAIL_CURRENT_EXACT_5M",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 256912.150594908,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [
+      "[vf-geom-wgpu] requestAdapter() null"
+    ],
+    "phases": [
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":87.55500000715256}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1252.2849999964237,\"ms\":1164.7450000047684}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":1789.4500000178814,\"bytes\":82069,\"sha256\":\"8804716a6a544ab05d95bdfd6f67f0acdada78ad21811ea719e1531c3fef8a00\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1792.4099999964237}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":98099.80500000715}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":98586.59999999404}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":98207.81499999762,\"ms\":96955.5149999857}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":98207.95499998331,\"used\":1038526432}"
+    ],
+    "cases": [],
+    "error": "page.evaluate: Error: std::bad_alloc\n    at owned.onmessage (http://127.0.0.1:44435/preview/0.7.5/inline-runner.mjs:84:55)\n    at /mnt/development/VektorFlow-e1605-20261030/required-row-exact5m.mjs:20:103",
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+      "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2252090,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "formatterMemoryDiagnosis": {
+    "status": "SOURCE_LOCALIZED_MEMORY_AMPLIFICATION_CANDIDATE_NOT_REPAIRED",
+    "observedFailure": "Exact unchanged5M source, same1GiBguest request; newguest8804716a...82069B completes96955.515ms, format-begin used1038526432 thenstd::bad_alloc; normalouterjob122.943869094s, no completepacket/render/view/color",
+    "normalCompilerLimitBytes": 2147418112,
+    "source": "/mnt/development/VektorFlow-e1605-20261030/row-build/source/compiler/native/vkf_ui_effect_packets.hpp",
+    "sourceSha256": "69a904977cd7001a3b18a0acd74b6c85109520acc23f4aef79a8c0278a5aa955",
+    "stages": [
+      {
+        "line": 262,
+        "operation": "Dimension-promotion prepass callsvalue() for every capturedadd operand, includingcompletep_ic array."
+      },
+      {
+        "line": 290,
+        "operation": "Main effect pass callsvalue() for every operandagain, constructingrecursiveJsonValue arrays."
+      },
+      {
+        "line": 568,
+        "operation": "Normal material_mesh creates complete JSONgeometry before native_scene::pack_scene_geometry emits binary bytes."
+      }
+    ],
+    "precisionBoundary": "Exactfirstfailingallocation/CAPIcall notstack-localized. Existingstdoutreader skips UiEffect7; current UIreader is a strong source-level amplification candidate, not a verified allocation-stack repair. No newformat rerun or performanceprofiling campaign.",
+    "nextCausalImplementation": "Read/validate existing evaluated point/line/tensor values directly into existing compiler-owned binary scene packing while preserving actualcaptureonce/sourceorder/shape/bounds/finitechecks/style/metadata and originaloutput snapshots; preserve genericfallback forothercases. No sourceevaluationreplay/populationcut/heapraise/CPUreferencepacket or tinyprototype-derivedmetadata. Reuse acceptedcandidate, only causallyaffectedformatter/API/link/coalesce onrealchange."
+  },
+  "snapshotOwnershipControls": [
+    {
+      "status": "FINITE_PACKET_SNAPSHOT_SEMANTICS_COMPLETE",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 256882.805793851,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [],
+      "phases": [
+        "VKF_PHASE {\"name\":\"compile-begin\",\"at\":79.16500002145767}",
+        "VKF_PHASE {\"name\":\"compile-end\",\"at\":1507.3499999940395,\"ms\":1428.1949999928474}",
+        "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":1982.1500000059605,\"bytes\":91353,\"sha256\":\"3f87d194b384a815f5e321aaad46ffb1402e92febfa52bfb7db6305891aa99aa\"}",
+        "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1984.594999998808}",
+        "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":2022.050000011921}",
+        "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":2036.7849999964237}",
+        "VKF_PHASE {\"name\":\"guest-end\",\"at\":1725.969999998808,\"ms\":218.61500000953674}",
+        "VKF_PHASE {\"name\":\"format-begin\",\"at\":1726.080000013113,\"used\":14989424}",
+        "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1753.5600000023842}"
+      ],
+      "cases": [],
+      "result": {
+        "status": "PASS_SELECTED_FINITE_RETAINED_SEMANTICS",
+        "results": [
+          {
+            "name": "retained-captured-snapshot-alias-gc",
+            "source": "viewport:.ui.viewport\npoints:[[0.0:3]:4]\npoints.(0):[1,2,3]\nold:points\nrow:points.(0)\nviewport.add(p:points_ic,s:2,color:[0.1,0.3,0.7,0.5],id:\"snapshot-before\")\npoints.(0):[9,8,7]\nviewport.add(p:points_ic,s:2,color:[0.9,0.3,0.7,0.5],id:\"snapshot-after\")\ni:0\ntotal:0\ni<8192?>\n    scratch:[i,i+1,i+2]\n    .total:total+scratch.(0)\n    .i:i+1\n::old.(0)\n::row\n::points.(0)\n::total\nviewport.show()\n",
+            "binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+            "guestArenaBytes": 67108864,
+            "stdout": "[1, 2, 3]\n[1, 2, 3]\n[9, 8, 7]\n33550336\n",
+            "rows": [
+              {
+                "id": "snapshot-before",
+                "count": 4,
+                "maxError": 1.1920928966180355e-08,
+                "allTenChannelsChecked": true
+              },
+              {
+                "id": "snapshot-after",
+                "count": 4,
+                "maxError": 2.384185793236071e-08,
+                "allTenChannelsChecked": true
+              }
+            ],
+            "timing": {
+              "formatProfile": {
+                "binaryRetained": true,
+                "usedBytes": 14989424,
+                "packetJSONChars": 1746,
+                "allocateMs": 0.04500001668930054,
+                "heapCopyMs": 8.025000005960464,
+                "stdoutMs": 1.5499999821186066,
+                "retainedFormatMs": 17.890000015497208,
+                "packetReadMs": 0.03999999165534973,
+                "jsonParseMs": 0.050000011920928955,
+                "arenaReconstructionMs": 0.1850000023841858
+              },
+              "compileProfile": {
+                "native": {
+                  "bridge_stages": [
+                    {
+                      "milliseconds": 0.21,
+                      "stage": "bridge-source-copy"
+                    },
+                    {
+                      "milliseconds": 1330.155,
+                      "stage": "bridge-compiler-call"
+                    },
+                    {
+                      "milliseconds": 36.59,
+                      "stage": "bridge-response-json-parse"
+                    },
+                    {
+                      "milliseconds": 28.755,
+                      "stage": "bridge-ir-json"
+                    },
+                    {
+                      "milliseconds": 1.189999,
+                      "stage": "bridge-manifest-json"
+                    },
+                    {
+                      "milliseconds": 18.200001,
+                      "stage": "bridge-wasm-hex-decode"
+                    },
+                    {
+                      "milliseconds": 2.959999,
+                      "stage": "bridge-formatter-ir-copy"
+                    },
+                    {
+                      "milliseconds": 4.055001,
+                      "stage": "bridge-output-plan"
+                    }
+                  ],
+                  "browser_ir_json_bytes": 64186,
+                  "browser_manifest_json_bytes": 2379,
+                  "browser_wasm_bytes": 91353,
+                  "compiler": {
+                    "sizes": {
+                      "argument_slot_capacity": 16,
+                      "artifact_cache_hit": 0,
+                      "bytecode_constants": 38,
+                      "bytecode_functions": 1,
+                      "default_argument_slots": 16,
+                      "document_arena_bytes": 541728,
+                      "execution_body_statements": 16,
+                      "frontend_compile_calls": 1,
+                      "mount_arena_bytes": 4198720,
+                      "mutable_compile_input": 0,
+                      "packaged_module_parse_calls": 0,
+                      "required_argument_slots": 0,
+                      "response_json_bytes": 249482,
+                      "typed_functions": 1,
+                      "wasm_bytes": 91353
+                    },
+                    "stages": [
+                      {
+                        "milliseconds": 1.015001,
+                        "stage": "provider-frontend"
+                      },
+                      {
+                        "milliseconds": 1.294999,
+                        "stage": "source-prepare"
+                      },
+                      {
+                        "milliseconds": 41.700001,
+                        "stage": "source-lex"
+                      },
+                      {
+                        "milliseconds": 49.81,
+                        "stage": "source-parse"
+                      },
+                      {
+                        "milliseconds": 10.7,
+                        "stage": "source-link"
+                      },
+                      {
+                        "milliseconds": 575.819999,
+                        "stage": "source-semantic-lower"
+                      },
+                      {
+                        "milliseconds": 356.120001,
+                        "stage": "source-private-browser-lower"
+                      },
+                      {
+                        "milliseconds": 34.115,
+                        "stage": "source-context-identity"
+                      },
+                      {
+                        "milliseconds": 0.06,
+                        "stage": "provider-execution-ir"
+                      },
+                      {
+                        "milliseconds": 6.87,
+                        "stage": "canonical-ir-copy"
+                      },
+                      {
+                        "milliseconds": 3.315,
+                        "stage": "executable-ir-copy"
+                      },
+                      {
+                        "milliseconds": 38.769999,
+                        "stage": "typed-program-lowering"
+                      },
+                      {
+                        "milliseconds": 30.465001,
+                        "stage": "bytecode-lowering"
+                      },
+                      {
+                        "milliseconds": 56.02,
+                        "stage": "wasm-emission"
+                      },
+                      {
+                        "milliseconds": 16.165,
+                        "stage": "wasm-hex-transport"
+                      },
+                      {
+                        "milliseconds": 6.995,
+                        "stage": "manifest"
+                      },
+                      {
+                        "milliseconds": 96.585,
+                        "stage": "compile-response-json"
+                      }
+                    ]
+                  }
+                },
+                "compilerCallMs": 1423.7399999797344,
+                "transportReadMs": 1.0349999964237213,
+                "jsParseMs": 0.36500000953674316,
+                "wasmCopyMs": 0.09999999403953552,
+                "profileReadMs": 2.5850000083446503,
+                "typedIRChars": 64186,
+                "manifestChars": 2379,
+                "guestWasmBytes": 91353
+              },
+              "compileMs": 1428.1949999928474,
+              "executeMs": 218.61500000953674,
+              "formatMs": 27.96000000834465
+            },
+            "requestToCheckedPacketMs": 1913.1150000095367,
+            "gcObserved": false,
+            "gcQualification": "No collector-cycle observer in this oracle; semantic control only",
+            "renderQualified": false,
+            "releaseQualified": false
+          }
+        ],
+        "full5MCapacityQualified": false,
+        "renderQualified": false,
+        "releaseQualified": false
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+        "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+        "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2251522,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    },
+    {
+      "status": "FINITE_PACKET_SNAPSHOT_SEMANTICS_COMPLETE",
+      "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+      "startedMonotonic": 256897.314053567,
+      "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+      "pageErrors": [
+        "[vf-geom-wgpu] requestAdapter() null"
+      ],
+      "phases": [
+        "VKF_PHASE {\"name\":\"compile-begin\",\"at\":78.9699999988079}",
+        "VKF_PHASE {\"name\":\"compile-end\",\"at\":1583.9149999916553,\"ms\":1504.9549999833107}",
+        "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":2060.030000001192,\"bytes\":104505,\"sha256\":\"1b58e7fe88a18a83dafcbb80587db5649e872b39e6ccaca91992a50a0e9578dc\"}",
+        "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":2062.4950000047684}",
+        "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":2090.3700000047684}",
+        "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":2101.2450000047684}",
+        "VKF_PHASE {\"name\":\"guest-end\",\"at\":1786.7549999952316,\"ms\":202.83500000834465}",
+        "VKF_PHASE {\"name\":\"format-begin\",\"at\":1786.9600000083447,\"used\":14992456}",
+        "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1818.1949999928474}"
+      ],
+      "cases": [],
+      "result": {
+        "status": "PASS_SELECTED_FINITE_RETAINED_SEMANTICS",
+        "results": [
+          {
+            "name": "retained-captured-snapshot-alias-gc",
+            "source": "viewport:.ui.viewport\npoints:[[0.0:3]:4]\npoints.(0):[1,2,3]\nold:points\nrow:points.(0)\nviewport.add(p:points_ic,s:2,color:[0.1,0.3,0.7,0.5],id:\"snapshot-before\")\npoints.(0).(0):9\npoints.(0).(1):8\npoints.(0).(2):7\nviewport.add(p:points_ic,s:2,color:[0.9,0.3,0.7,0.5],id:\"snapshot-after\")\ni:0\ntotal:0\ni<8192?>\n    scratch:[i,i+1,i+2]\n    .total:total+scratch.(0)\n    .i:i+1\n::old.(0)\n::row\n::points.(0)\n::total\nviewport.show()\n",
+            "binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+            "guestArenaBytes": 67108864,
+            "stdout": "[1, 2, 3]\n[1, 2, 3]\n[9, 8, 7]\n33550336\n",
+            "rows": [
+              {
+                "id": "snapshot-before",
+                "count": 4,
+                "maxError": 1.1920928966180355e-08,
+                "allTenChannelsChecked": true
+              },
+              {
+                "id": "snapshot-after",
+                "count": 4,
+                "maxError": 2.384185793236071e-08,
+                "allTenChannelsChecked": true
+              }
+            ],
+            "timing": {
+              "formatProfile": {
+                "binaryRetained": true,
+                "usedBytes": 14992456,
+                "packetJSONChars": 1746,
+                "allocateMs": 0.05500000715255737,
+                "heapCopyMs": 8.145000010728836,
+                "stdoutMs": 1.6299999952316284,
+                "retainedFormatMs": 21.46500000357628,
+                "packetReadMs": 0.0949999988079071,
+                "jsonParseMs": 0.06999999284744263,
+                "arenaReconstructionMs": 0.2199999988079071
+              },
+              "compileProfile": {
+                "native": {
+                  "bridge_stages": [
+                    {
+                      "milliseconds": 0.144999,
+                      "stage": "bridge-source-copy"
+                    },
+                    {
+                      "milliseconds": 1399.605001,
+                      "stage": "bridge-compiler-call"
+                    },
+                    {
+                      "milliseconds": 40.405,
+                      "stage": "bridge-response-json-parse"
+                    },
+                    {
+                      "milliseconds": 30.35,
+                      "stage": "bridge-ir-json"
+                    },
+                    {
+                      "milliseconds": 1.164999,
+                      "stage": "bridge-manifest-json"
+                    },
+                    {
+                      "milliseconds": 20,
+                      "stage": "bridge-wasm-hex-decode"
+                    },
+                    {
+                      "milliseconds": 3.095,
+                      "stage": "bridge-formatter-ir-copy"
+                    },
+                    {
+                      "milliseconds": 4.230001,
+                      "stage": "bridge-output-plan"
+                    }
+                  ],
+                  "browser_ir_json_bytes": 66997,
+                  "browser_manifest_json_bytes": 2379,
+                  "browser_wasm_bytes": 104505,
+                  "compiler": {
+                    "sizes": {
+                      "argument_slot_capacity": 16,
+                      "artifact_cache_hit": 0,
+                      "bytecode_constants": 38,
+                      "bytecode_functions": 1,
+                      "default_argument_slots": 16,
+                      "document_arena_bytes": 541728,
+                      "execution_body_statements": 18,
+                      "frontend_compile_calls": 1,
+                      "mount_arena_bytes": 4198720,
+                      "mutable_compile_input": 0,
+                      "packaged_module_parse_calls": 0,
+                      "required_argument_slots": 0,
+                      "response_json_bytes": 278597,
+                      "typed_functions": 1,
+                      "wasm_bytes": 104505
+                    },
+                    "stages": [
+                      {
+                        "milliseconds": 1.019999,
+                        "stage": "provider-frontend"
+                      },
+                      {
+                        "milliseconds": 1.285,
+                        "stage": "source-prepare"
+                      },
+                      {
+                        "milliseconds": 45.495001,
+                        "stage": "source-lex"
+                      },
+                      {
+                        "milliseconds": 54.11,
+                        "stage": "source-parse"
+                      },
+                      {
+                        "milliseconds": 10.97,
+                        "stage": "source-link"
+                      },
+                      {
+                        "milliseconds": 597.815,
+                        "stage": "source-semantic-lower"
+                      },
+                      {
+                        "milliseconds": 376.019999,
+                        "stage": "source-private-browser-lower"
+                      },
+                      {
+                        "milliseconds": 39.695001,
+                        "stage": "source-context-identity"
+                      },
+                      {
+                        "milliseconds": 0.03,
+                        "stage": "provider-execution-ir"
+                      },
+                      {
+                        "milliseconds": 7.035,
+                        "stage": "canonical-ir-copy"
+                      },
+                      {
+                        "milliseconds": 5.66,
+                        "stage": "executable-ir-copy"
+                      },
+                      {
+                        "milliseconds": 27.169999,
+                        "stage": "typed-program-lowering"
+                      },
+                      {
+                        "milliseconds": 31.900001,
+                        "stage": "bytecode-lowering"
+                      },
+                      {
+                        "milliseconds": 62.89,
+                        "stage": "wasm-emission"
+                      },
+                      {
+                        "milliseconds": 18.644999,
+                        "stage": "wasm-hex-transport"
+                      },
+                      {
+                        "milliseconds": 7.38,
+                        "stage": "manifest"
+                      },
+                      {
+                        "milliseconds": 108.265001,
+                        "stage": "compile-response-json"
+                      }
+                    ]
+                  }
+                },
+                "compilerCallMs": 1500.3950000107288,
+                "transportReadMs": 0.9599999785423279,
+                "jsParseMs": 0.375,
+                "wasmCopyMs": 0.12000000476837158,
+                "profileReadMs": 2.7549999952316284,
+                "typedIRChars": 66997,
+                "manifestChars": 2379,
+                "guestWasmBytes": 104505
+              },
+              "compileMs": 1504.9549999833107,
+              "executeMs": 202.83500000834465,
+              "formatMs": 31.935000002384186
+            },
+            "requestToCheckedPacketMs": 1975.6299999952316,
+            "gcObserved": false,
+            "gcQualification": "No collector-cycle observer in this oracle; semantic control only",
+            "renderQualified": false,
+            "releaseQualified": false
+          }
+        ],
+        "full5MCapacityQualified": false,
+        "renderQualified": false,
+        "releaseQualified": false
+      },
+      "browserClosed": true,
+      "serverClosed": true,
+      "requests": [
+        "/preview/0.7.5/release-status.html",
+        "/preview/0.7.5/site.css",
+        "/preview/0.7.5/website-layout.css",
+        "/preview/0.7.5/code-highlight.mjs",
+        "/preview/0.7.5/reference-navigation.mjs",
+        "/preview/0.7.5/website-controls.mjs",
+        "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "/preview/0.7.5/current-compiler-release.json",
+        "/preview/0.7.5/inline-runner.mjs",
+        "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "/preview/0.7.5/inline-renderer-loader.mjs",
+        "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "/preview/0.7.5/playground/canonical/compiler.data",
+        "/preview/0.7.5/canonical-inline-worker.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "/preview/0.7.5/vf-ui/vf-frame.css",
+        "/preview/0.7.5/vf-ui/katex/katex.min.js",
+        "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+        "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+        "/preview/0.7.5/vf-ui/vf-html-components.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+        "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+        "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-render-clock.js",
+        "/preview/0.7.5/vf-ui/vf-frame.js",
+        "/preview/0.7.5/vf-ui/vf-widgets.js",
+        "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+        "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+        "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+        "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+        "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "/preview/0.7.5/vf-ui/vf-display.js",
+        "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+        "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+        "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs"
+      ],
+      "ownedChildren": [
+        {
+          "pid": 2251747,
+          "command": "/opt/google/chrome/chrome"
+        }
+      ]
+    }
+  ],
+  "nativeGpuHelperResult": {
+    "rows": [
+      {
+        "name": "loop",
+        "argv": [
+          "/mnt/development/VektorFlow-e1605-20261030/native-cli/vkf-native-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/loop.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/loop.native",
+          "--diagnostics",
+          "--optimizer-policy",
+          "scalar",
+          "--emit-vulkan-field",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/loop.comp",
+          "--vulkan-field-entry",
+          "run",
+          "--vulkan-field-runtime-inputs"
+        ],
+        "exit": 0,
+        "elapsedSeconds": 1.115026826999383,
+        "stderr": "",
+        "compilerSha256": "91cc3fef84e8000edd646be613fe9bd9c0bc733a2a493ca7aa7904865de08577",
+        "sourceSha256": "31a5c52a4c4541c76e0e2ea7034bcb789077275dc06aa099501dfaabff06cf9e",
+        "shaderProduced": true,
+        "spirvValidation": {
+          "exit": 0,
+          "stdout": "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/loop.comp\n",
+          "stderr": ""
+        },
+        "native": {
+          "exit": 0,
+          "stdout": "[[5.25, 2.25, 0.75], [2.25, 0.75, 3.75], [0.75, 3.75, 6.75]]\n",
+          "stderr": ""
+        },
+        "nativeExactOracle": true,
+        "runtimeLoopPresent": true
+      },
+      {
+        "name": "combined-library",
+        "argv": [
+          "/mnt/development/VektorFlow-e1605-20261030/native-cli/vkf-native-0.7.5",
+          "-b",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/combined-library.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/combined-library.native",
+          "--diagnostics",
+          "--optimizer-policy",
+          "scalar",
+          "--emit-vulkan-field",
+          "/mnt/development/VektorFlow-e1605-20261030/gpu-loop-probes-real-guard/combined-library.comp",
+          "--vulkan-field-entry",
+          "run",
+          "--vulkan-field-runtime-inputs"
+        ],
+        "exit": 1,
+        "elapsedSeconds": 21.737974404997658,
+        "stderr": "<driver-smoke>:1:1: statement update_index [helper=__vkf_module_s__prepare]\n",
+        "compilerSha256": "91cc3fef84e8000edd646be613fe9bd9c0bc733a2a493ca7aa7904865de08577",
+        "sourceSha256": "09754dc632ae4d04ddd5e4922869afca942c6c47b0ff478859208290db3d2840",
+        "shaderProduced": false
+      }
+    ],
+    "physicalGpuExecuted": false,
+    "fullWorld": false,
+    "normalF32WGSL": false
+  },
+  "worldSourceIntake": {
+    "rows": [
+      {
+        "repo": "project-world",
+        "source": "/mnt/development/VektorFlow-e1603-20261030/project-world",
+        "commit": "d9f6df2f82c0983395d1cf22896fe97072e87906",
+        "instructions": [],
+        "status": ""
+      },
+      {
+        "repo": "world-engine",
+        "source": "/mnt/development/VektorFlow-e1603-20261030/world-engine",
+        "commit": "f1113c7646d7b5fde359bcbdf6c73c5cd02be3b2",
+        "instructions": [],
+        "status": ""
+      }
+    ],
+    "backendNeeds": {
+      "sourceTransaction": "examples/cuvami-world/gpu-transaction.vkf kernel(index:int,params:[num],values:[num])->[num] ONE invocation index0",
+      "route": "normal current real-f32 --wgsl-field-entry kernel --wgsl-field-count 1 --wgsl-field-output-width N; retain real four bindings params/values/results/errors and summaryOffset4",
+      "N": "22*B + 4*81920 + 1 + 32*T + 4",
+      "observe": "gpu-observe.vkf kernel -> num, fixed count8+8*B/outputwidth1",
+      "blocking": "Current matching real-f32 emitter remains unidentified. Current selected VulkanF64 is NOT compatible. Current normal helper loop/mutable-array/large returned numeric vector support required; source adapter lifts old gallery256 width limit to actual selected device binding limits. No compiler branch edits by1603. No recomputing whole world per triangle to fit256.",
+      "cost": "Single invocation reference transaction includes fullgeometry/topology loops; not optimized or measured, no10ms or scalable performance claim. Needs actual compile/correctness/resource evaluation, possibly normal compiler cooperative/storage lowering, never host simulation.",
+      "params": "7f32: livecount/time/nexttime/dt/B/T/continuousSweepCapability0",
+      "graph": "gpu-graph.vkf outputwidth10 fixedcount2*historyCapacity; count u32 width1/count4; status u32 width1/count1. Existing four-binding manifest ABI, actual new generation required.",
+      "currentFinalSourceEntries": "examples/cuvami-world/BUILD-INPUTS.json and RESIDENT-ABI.json in worldd9f6df2; final pairednormalruntimef1113c7",
+      "activation": "Adapter hardcodes sweep capability0; active morph intervals fail explicitly until real normalengine deformation hook. Do not enable a label."
+    },
+    "observedMonotonic": 257403.355414644,
+    "productPass": false
+  },
+  "worldNormalNativeCompile": {
+    "world": "d9f6df2f82c0983395d1cf22896fe97072e87906",
+    "engine": "f1113c7646d7b5fde359bcbdf6c73c5cd02be3b2",
+    "argv": [
+      "/mnt/development/VektorFlow-e1605-20261030/native-cli/vkf-native-0.7.5",
+      "-b",
+      "/mnt/development/VektorFlow-e1605-20261030/world-stage/gpu-transaction.vkf",
+      "-o",
+      "/mnt/development/VektorFlow-e1605-20261030/world-stage/transaction.native",
+      "--diagnostics",
+      "--optimizer-policy",
+      "scalar"
+    ],
+    "exit": 1,
+    "elapsedSeconds": 1.265628952998668,
+    "stderr": "<driver-smoke>:1:1: could not resolve linked module import m\n",
+    "compilerSha256": "91cc3fef84e8000edd646be613fe9bd9c0bc733a2a493ca7aa7904865de08577",
+    "executedWorld": false,
+    "physicalGpu": false,
+    "emittedWGSL": false
+  },
+  "worldRealFileStageCompile": {
+    "world": "d9f6df2f82c0983395d1cf22896fe97072e87906",
+    "engine": "f1113c7646d7b5fde359bcbdf6c73c5cd02be3b2",
+    "argv": [
+      "/mnt/development/VektorFlow-e1605-20261030/native-cli/vkf-native-0.7.5",
+      "-b",
+      "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/gpu-transaction.vkf",
+      "-o",
+      "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/transaction.native",
+      "--diagnostics",
+      "--optimizer-policy",
+      "scalar"
+    ],
+    "exit": 0,
+    "elapsedSeconds": 20.865684252989013,
+    "stderr": "",
+    "compilerSha256": "91cc3fef84e8000edd646be613fe9bd9c0bc733a2a493ca7aa7904865de08577",
+    "executedWorld": false,
+    "physicalGpu": false,
+    "emittedWGSL": false,
+    "summary": {
+      "artifact_fallback": false,
+      "artifact_ms": 2425.897209,
+      "artifact_path": "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/transaction.native",
+      "ast_path": "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/.vkfbuild/gpu-transaction/ast.json",
+      "diagnostics_emitted": true,
+      "empirical_tuning": {
+        "cache_hit": false,
+        "candidates": [],
+        "composition_cache_hit": false,
+        "elapsed_ms": 0,
+        "eligible": true,
+        "fingerprint": "1a56c93e89ac9b15",
+        "function_landscape_reused_count": 0,
+        "function_landscape_search_count": 0,
+        "function_policies": [],
+        "landscape_runs": 0,
+        "module_abi_policy": "not-applicable",
+        "parallel_eligible": false,
+        "parallel_selected": false,
+        "parallel_thread_handles_closed": 0,
+        "parallel_threads_created": 0,
+        "parallel_threads_joined": 0,
+        "parallel_width": 0,
+        "requested_policy": "scalar",
+        "selected_policy": "scalar",
+        "total_runs": 0,
+        "tuned": false
+      },
+      "frontend_mode": "integrated",
+      "ir_ms": 14762.639814,
+      "lexer_ms": 1.140015,
+      "machine_code_fingerprint": "b4de40efc0dc062b",
+      "manifest_path": "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/.vkfbuild/gpu-transaction/x64-manifest.json",
+      "optimizer_cache_hit": false,
+      "optimizer_ms": 0,
+      "optimizer_policy": "mask-0",
+      "parser_ms": 2063.373213,
+      "ran": false,
+      "run_ms": 0,
+      "status": "compiled",
+      "stderr": "",
+      "stdlib_ast_cache_hits": 0,
+      "stdlib_ast_cache_misses": 0,
+      "stdout": "",
+      "token_path": "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/.vkfbuild/gpu-transaction/tokens.json",
+      "total_ms": 19257.143428,
+      "typed_ir_path": "/mnt/development/VektorFlow-e1605-20261030/world-copy-stage/.vkfbuild/gpu-transaction/typed-ir.json"
+    }
+  },
+  "projectLibrary": {
+    "name": "Morphing",
+    "ownership": "Project/application library, not standard library",
+    "cohorts": 10,
+    "endpointObjects": [
+      12,
+      17
+    ],
+    "grid": 65,
+    "fieldGrid": 33,
+    "fps": 24,
+    "substeps": 2,
+    "durationSeconds": 10
+  },
+  "remaining": [
+    "A matching current normal WGSL real-f32 emitter, mutable arrays/wide numeric output and actual generated artifacts for the resident four-binding ABI are still required; selected VulkanF64 is incompatible.",
+    "Actual complete authored physics/Morphing/geometry/nativeLaTeX/measurement graph/marker execution remains unproved.",
+    "Source1603 final explicitly refuses deforming intervals with capability0 until the existing engine boundary sweep and contact surface velocity consume matching interval geometry. Source1606 owns that narrow hook; no fake capability or endpoint geometry swap is accepted.",
+    "No physical GPU full-scene result or complete-workload timing; previous SwiftShader engine admission checks remain software-only evidence."
+  ],
+  "publicationScope": "Report-only update. Public compiler assets stay unchanged. This does not qualify075 or promote the private compiler."
+}

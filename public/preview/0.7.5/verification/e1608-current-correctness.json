@@ -1,0 +1,1433 @@
+{
+  "schema": 1,
+  "date": "2026-10-30",
+  "status": "CURRENT_CORRECTNESS_PROGRESS_FULL_GPU_INCOMPLETE",
+  "releaseQualified": false,
+  "compilerCandidatePublished": false,
+  "completeGpuPipeline": false,
+  "physicalGpuExecuted": false,
+  "fullWorkload10ms": "UNMEASURED_FULL_WORLD",
+  "broadSpeedReleaseGates": "Retired; required workload correctness remains required",
+  "outcome": "Current compiler-owned bounded evaluated-point packing and unchanged compiler/VM artifact reuse; exact results below. Full GPU physics/Morphing world remains incomplete.",
+  "required5M": {
+    "status": "FAIL_CURRENT_EXACT_5M",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 260621.843471872,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [],
+    "phases": [
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":97.49000000953674}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1311.3650000095367,\"ms\":1213.875}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":1757.2099999785423,\"bytes\":82069,\"sha256\":\"8804716a6a544ab05d95bdfd6f67f0acdada78ad21811ea719e1531c3fef8a00\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1762.7049999833107}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":99339.375}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":99831.09999999404}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":99539.54000002146,\"ms\":98228.16999998689}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":99539.68000000715,\"used\":1038526432}",
+      "VKF_PHASE {\"name\":\"physical-adapter\",\"available\":true,\"vendor\":\"nvidia\",\"architecture\":\"pascal\",\"isFallbackAdapter\":false}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":107554.03000000119}"
+    ],
+    "cases": [],
+    "error": "page.evaluate: Error: INITIAL_5M_VISIBLE_OUTPUT\n    at need (eval at evaluate (:290:30), <anonymous>:5:110)\n    at focusedControls (eval at evaluate (:290:30), <anonymous>:17:708)\n    at async <anonymous>:316:30\n    at /mnt/development/VektorFlow-e1608-20261030/required-row-exact5m.mjs:20:103",
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+      "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs",
+      "/preview/0.7.5/vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+      "/preview/0.7.5/inline-retained-scene-view.mjs"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2288145,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "all50MChannelsAlreadyVerified": {
+    "phase": "GENUINE_EXACT_5M_PACKET",
+    "count": 5000000,
+    "maxError": 2.9790396705031696e-08,
+    "timing": {
+      "formatProfile": {
+        "binaryRetained": true,
+        "usedBytes": 1038526432,
+        "packetJSONChars": 1068,
+        "allocateMs": 8.265000015497208,
+        "heapCopyMs": 523.9099999964237,
+        "stdoutMs": 0.33500000834465027,
+        "retainedFormatMs": 7532.17999997735,
+        "packetReadMs": 0.0949999988079071,
+        "jsonParseMs": 0.050000011920928955,
+        "arenaReconstructionMs": 118.625
+      },
+      "compileProfile": {
+        "native": {
+          "bridge_stages": [
+            {
+              "milliseconds": 0.16,
+              "stage": "bridge-source-copy"
+            },
+            {
+              "milliseconds": 1116.735,
+              "stage": "bridge-compiler-call"
+            },
+            {
+              "milliseconds": 29.545,
+              "stage": "bridge-response-json-parse"
+            },
+            {
+              "milliseconds": 20.05,
+              "stage": "bridge-ir-json"
+            },
+            {
+              "milliseconds": 1.180001,
+              "stage": "bridge-manifest-json"
+            },
+            {
+              "milliseconds": 17.024999,
+              "stage": "bridge-wasm-hex-decode"
+            },
+            {
+              "milliseconds": 2.115,
+              "stage": "bridge-formatter-ir-copy"
+            },
+            {
+              "milliseconds": 2.415,
+              "stage": "bridge-output-plan"
+            }
+          ],
+          "browser_ir_json_bytes": 42717,
+          "browser_manifest_json_bytes": 2381,
+          "browser_wasm_bytes": 82069,
+          "compiler": {
+            "sizes": {
+              "argument_slot_capacity": 16,
+              "artifact_cache_hit": 0,
+              "bytecode_constants": 42,
+              "bytecode_functions": 1,
+              "default_argument_slots": 16,
+              "document_arena_bytes": 541728,
+              "execution_body_statements": 10,
+              "frontend_compile_calls": 1,
+              "mount_arena_bytes": 4198720,
+              "mutable_compile_input": 0,
+              "packaged_module_parse_calls": 0,
+              "required_argument_slots": 0,
+              "response_json_bytes": 209447,
+              "typed_functions": 1,
+              "wasm_bytes": 82069
+            },
+            "stages": [
+              {
+                "milliseconds": 1.06,
+                "stage": "provider-frontend"
+              },
+              {
+                "milliseconds": 8.75,
+                "stage": "source-prepare"
+              },
+              {
+                "milliseconds": 28.609999,
+                "stage": "source-lex"
+              },
+              {
+                "milliseconds": 43.34,
+                "stage": "source-parse"
+              },
+              {
+                "milliseconds": 7.59,
+                "stage": "source-link"
+              },
+              {
+                "milliseconds": 499.925,
+                "stage": "source-semantic-lower"
+              },
+              {
+                "milliseconds": 290.775,
+                "stage": "source-private-browser-lower"
+              },
+              {
+                "milliseconds": 23.71,
+                "stage": "source-context-identity"
+              },
+              {
+                "milliseconds": 0.025,
+                "stage": "provider-execution-ir"
+              },
+              {
+                "milliseconds": 4.895,
+                "stage": "canonical-ir-copy"
+              },
+              {
+                "milliseconds": 2.205,
+                "stage": "executable-ir-copy"
+              },
+              {
+                "milliseconds": 19.23,
+                "stage": "typed-program-lowering"
+              },
+              {
+                "milliseconds": 28.14,
+                "stage": "bytecode-lowering"
+              },
+              {
+                "milliseconds": 52.36,
+                "stage": "wasm-emission"
+              },
+              {
+                "milliseconds": 15.075001,
+                "stage": "wasm-hex-transport"
+              },
+              {
+                "milliseconds": 5.919999,
+                "stage": "manifest"
+              },
+              {
+                "milliseconds": 80.8,
+                "stage": "compile-response-json"
+              }
+            ]
+          }
+        },
+        "compilerCallMs": 1190.5850000083447,
+        "transportReadMs": 0.824999988079071,
+        "jsParseMs": 0.3050000071525574,
+        "wasmCopyMs": 0.125,
+        "profileReadMs": 4.269999980926514,
+        "typedIRChars": 42717,
+        "manifestChars": 2381,
+        "guestWasmBytes": 82069
+      },
+      "compileMs": 1220.7249999940395,
+      "executeMs": 98418.34000000358,
+      "formatMs": 8183.80499997735
+    },
+    "requestToPacketMs": 108481.25
+  },
+  "stackedViewRouting": {
+    "status": "PASS_READER_STACKED_VIEW_OVERLAY_ROUTING",
+    "scope": "Compiler-owned evaluated-graph transport unit with valid runtime memory and operation plan; not whole source/VM/GPU proof",
+    "views": [
+      {
+        "title": "A",
+        "meshIds": [
+          "base",
+          "overlay"
+        ]
+      },
+      {
+        "title": "B",
+        "meshIds": [
+          "base",
+          "overlay"
+        ]
+      }
+    ],
+    "topLevelMeshes": [
+      "base",
+      "overlay"
+    ],
+    "bindings": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03"
+  },
+  "nodeEsmCompatibility": {
+    "status": "PASS_NORMAL_NODE_ESM_PACKAGE_COMPILE_EXECUTE_STDOUT",
+    "stdout": "7\n",
+    "frontendBinding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+    "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "wasmBytes": 36339,
+    "scope": "Actual normal ESM package/import/compile/guest/formatter transport control; no retained Node DOM/GPU claim"
+  },
+  "compilerCommit": {
+    "commit": "bb400e112295bc990147735c22d9a69f518c2196",
+    "parent": "bef255d73b50207c81b664aa727604b20e2c963e",
+    "files": {
+      "compiler/native/vkf_ui_effect_packets.hpp": "dc99e3d152d84be6454f26f803fa764b9393d85ecac8c3f31558be7c6ec76ecb",
+      "compiler/native/vkf_retained_scene_arena.hpp": "308a94b91d0347f14617878f02d7b5f4cefbc9b8795e8fa18c65c9cca48851b6",
+      "evaluated-output-formatter.cpp": "d51fec7cc40d99d516c8a6742081f7a163818951894dea94dfcc38da74d67c97",
+      "compiler-package.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+      "vkf-canonical-execution.mjs": "01b505c66dd746fb17e720a9cbc18d1f7cde30906f916d73c03e42d1dffbf64b",
+      "tests/retained-stacked-view-overlay.mjs": "1696dca5e5d7bbdfd0c51a89d8c0761420b529b9dff84a9ea339d96e0271d937"
+    },
+    "remotePushed": false,
+    "scope": "Compiler-owned bounded evaluatedgraph packing, modular output formatter reusing currentfrontend/VM, selectedviewrouting guard and exact transport regression"
+  },
+  "finiteMetadataArenaStdoutParity": {
+    "status": "FINITE_PACKET_SNAPSHOT_SEMANTICS_COMPLETE",
+    "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+    "startedMonotonic": 260348.525338225,
+    "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+    "pageErrors": [
+      "[vf-geom-wgpu] requestAdapter() null",
+      "[vf-geom-wgpu] requestAdapter() null",
+      "[vf-geom-wgpu] requestAdapter() null",
+      "[vf-geom-wgpu] requestAdapter() null"
+    ],
+    "phases": [
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":82.81000000238419}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1502.8100000023842,\"ms\":1420.0100000202656}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":1959.0150000154972,\"bytes\":91353,\"sha256\":\"3f87d194b384a815f5e321aaad46ffb1402e92febfa52bfb7db6305891aa99aa\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":1961.6299999952316}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":1988.9450000226498}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":2001.5150000154972}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":1674.3400000035763,\"ms\":171.5199999809265}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":1674.4950000047684,\"used\":14989424}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1703.6899999976158}",
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":94.99499997496605}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1548.9099999964237,\"ms\":1453.9149999916553}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":3750.189999997616,\"bytes\":91353,\"sha256\":\"3f87d194b384a815f5e321aaad46ffb1402e92febfa52bfb7db6305891aa99aa\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":3751.675000011921}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":3758.7150000035763}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":3768.935000002384}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":1570.7099999785423,\"ms\":21.7950000166893}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":1570.7749999761581,\"used\":14989424}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1601.949999988079}",
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":86.62000000476837}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1597.7950000166893,\"ms\":1511.1800000071526}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":5584.180000007153,\"bytes\":104505,\"sha256\":\"1b58e7fe88a18a83dafcbb80587db5649e872b39e6ccaca91992a50a0e9578dc\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":5585.760000020266}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":5599.07000002265}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":5617.490000009537}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":1635.4750000238419,\"ms\":37.685000002384186}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":1635.5400000214577,\"used\":14992456}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1665.0200000107288}",
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":89.74000000953674}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":1597.125,\"ms\":1507.3900000154972}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":7414.7750000059605,\"bytes\":104505,\"sha256\":\"1b58e7fe88a18a83dafcbb80587db5649e872b39e6ccaca91992a50a0e9578dc\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":7416.490000009537}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":7429.625}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":7448.110000014305}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":1634.3149999976158,\"ms\":37.19999998807907}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":1634.3799999952316,\"used\":14992456}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":1665.5150000154972}",
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":83.99500000476837}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":755.8650000095367,\"ms\":671.8799999952316}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":8412.165000021458,\"bytes\":53374,\"sha256\":\"fcd77c1aa3925fe252ea9923eb1e703ee2f36cd2bba82383c229a47903aa98b5\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":8413.770000010729}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":8428.415000021458}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":8444.550000011921}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":790.5550000071526,\"ms\":34.695000022649765}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":790.6349999904633,\"used\":13207296}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":812.2899999916553}",
+      "VKF_PHASE {\"name\":\"compile-begin\",\"at\":93.20500001311302}",
+      "VKF_PHASE {\"name\":\"compile-end\",\"at\":792.4600000083447,\"ms\":699.2399999797344}",
+      "VKF_PHASE {\"name\":\"window-guest-identity\",\"at\":9419.284999996424,\"bytes\":53374,\"sha256\":\"fcd77c1aa3925fe252ea9923eb1e703ee2f36cd2bba82383c229a47903aa98b5\"}",
+      "VKF_PHASE {\"name\":\"window-invoke-begin\",\"at\":9421.155000001192}",
+      "VKF_PHASE {\"name\":\"window-invoke-end\",\"at\":9424.689999997616}",
+      "VKF_PHASE {\"name\":\"window-memory-copy-end\",\"at\":9441.034999996424}",
+      "VKF_PHASE {\"name\":\"guest-end\",\"at\":816.6000000238419,\"ms\":24.15999999642372}",
+      "VKF_PHASE {\"name\":\"format-begin\",\"at\":816.6800000071526,\"used\":13207296}",
+      "VKF_PHASE {\"name\":\"retained-format-end\",\"at\":842.0550000071526}"
+    ],
+    "cases": [],
+    "result": {
+      "rows": [
+        {
+          "name": "retained-captured-snapshot-alias-gc",
+          "exactMetadataAndArenaParity": true,
+          "stdout": "[1, 2, 3]\n[1, 2, 3]\n[9, 8, 7]\n33550336\n",
+          "meshes": [
+            {
+              "id": "snapshot-before",
+              "axes": [
+                "x",
+                "y",
+                "z"
+              ],
+              "vertexCount": 4,
+              "ticks": {
+                "enabled": true,
+                "x_label": "x",
+                "x_max": 1,
+                "x_min": 0,
+                "y_label": "y",
+                "y_max": 2,
+                "y_min": 0,
+                "z_label": "z",
+                "z_max": 3,
+                "z_min": 0
+              },
+              "color": [
+                0.1,
+                0.3,
+                0.7,
+                0.5
+              ]
+            },
+            {
+              "id": "snapshot-after",
+              "axes": [
+                "x",
+                "y",
+                "z"
+              ],
+              "vertexCount": 4,
+              "ticks": {
+                "enabled": true,
+                "x_label": "x",
+                "x_max": 9,
+                "x_min": 0,
+                "y_label": "y",
+                "y_max": 8,
+                "y_min": 0,
+                "z_label": "z",
+                "z_max": 7,
+                "z_min": 0
+              },
+              "color": [
+                0.9,
+                0.3,
+                0.7,
+                0.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "nested-alias",
+          "exactMetadataAndArenaParity": true,
+          "stdout": "[1, 2, 3]\n[1, 2, 3]\n[9, 8, 7]\n33550336\n",
+          "meshes": [
+            {
+              "id": "snapshot-before",
+              "axes": [
+                "x",
+                "y",
+                "z"
+              ],
+              "vertexCount": 4,
+              "ticks": {
+                "enabled": true,
+                "x_label": "x",
+                "x_max": 1,
+                "x_min": 0,
+                "y_label": "y",
+                "y_max": 2,
+                "y_min": 0,
+                "z_label": "z",
+                "z_max": 3,
+                "z_min": 0
+              },
+              "color": [
+                0.1,
+                0.3,
+                0.7,
+                0.5
+              ]
+            },
+            {
+              "id": "snapshot-after",
+              "axes": [
+                "x",
+                "y",
+                "z"
+              ],
+              "vertexCount": 4,
+              "ticks": {
+                "enabled": true,
+                "x_label": "x",
+                "x_max": 9,
+                "x_min": 0,
+                "y_label": "y",
+                "y_max": 8,
+                "y_min": 0,
+                "z_label": "z",
+                "z_max": 7,
+                "z_min": 0
+              },
+              "color": [
+                0.9,
+                0.3,
+                0.7,
+                0.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "points-2d",
+          "exactMetadataAndArenaParity": true,
+          "stdout": "",
+          "meshes": [
+            {
+              "id": "two-d",
+              "axes": [
+                "x",
+                "y"
+              ],
+              "vertexCount": 3,
+              "ticks": {
+                "enabled": true,
+                "x_label": "x",
+                "x_max": 2,
+                "x_min": -5,
+                "y_label": "y",
+                "y_max": 9,
+                "y_min": 3
+              },
+              "color": [
+                1,
+                0.5,
+                0,
+                0.5
+              ]
+            }
+          ]
+        }
+      ],
+      "renderQualified": false
+    },
+    "browserClosed": true,
+    "serverClosed": true,
+    "requests": [
+      "/preview/0.7.5/release-status.html",
+      "/preview/0.7.5/site.css",
+      "/preview/0.7.5/website-layout.css",
+      "/preview/0.7.5/code-highlight.mjs",
+      "/preview/0.7.5/reference-navigation.mjs",
+      "/preview/0.7.5/website-controls.mjs",
+      "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+      "/preview/0.7.5/editor/prism-vektorflow.mjs",
+      "/preview/0.7.5/vendor/prism/prism-python.min.js",
+      "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+      "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+      "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+      "/preview/0.7.5/inline-runner.mjs",
+      "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "/preview/0.7.5/vkf-browser-isolation.mjs",
+      "/preview/0.7.5/inline-renderer-loader.mjs",
+      "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+      "/baseline/preview/0.7.5/current-compiler-release.json",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/vf-ui/vf-frame.css",
+      "/preview/0.7.5/vf-ui/katex/katex.min.js",
+      "/preview/0.7.5/vf-ui/vf-startup-gate.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-packet-contract.js",
+      "/preview/0.7.5/vf-ui/vf-retained-event-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-source.js",
+      "/preview/0.7.5/vf-ui/vf-html-components.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-scene.js",
+      "/preview/0.7.5/vf-ui/vf-runtime-flow.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-runtime-bridge.js",
+      "/preview/0.7.5/vf-ui/vf-compiled-webgpu-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-render-clock.js",
+      "/preview/0.7.5/vf-ui/vf-frame.js",
+      "/preview/0.7.5/vf-ui/vf-widgets.js",
+      "/preview/0.7.5/vf-ui/vf-static-html-loader.js",
+      "/preview/0.7.5/vf-ui/vf-shared-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-gpu-runtime.js",
+      "/preview/0.7.5/vf-ui/vf-axis2d-ticks.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel.js",
+      "/preview/0.7.5/vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-math.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-core.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-material-arena.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-layout.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger-transport.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-ledger.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-parametric-surface.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-frame-adapter.js",
+      "/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "/preview/0.7.5/vf-ui/vf-display.js",
+      "/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "/preview/0.7.5/vf-ui/geom/vf-clustered-light-plan.mjs",
+      "/preview/0.7.5/vf-ui/geom/vf-light-view-bounds.mjs",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm",
+      "/baseline/preview/0.7.5/current-compiler-release.json",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm",
+      "/baseline/preview/0.7.5/current-compiler-release.json",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/baseline/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/current-compiler-release.json",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.wasm",
+      "/preview/0.7.5/playground/canonical/compiler.data",
+      "/preview/0.7.5/canonical-inline-worker.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+      "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+      "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+      "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+      "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+      "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+      "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+      "/preview/0.7.5/playground/canonical/compiler.mjs",
+      "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.mjs",
+      "/preview/0.7.5/playground/canonical/formatter.wasm"
+    ],
+    "ownedChildren": [
+      {
+        "pid": 2284520,
+        "command": "/opt/google/chrome/chrome"
+      }
+    ]
+  },
+  "privateFormatterPackage": {
+    "binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+    "files": {
+      "compiler.mjs": {
+        "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+        "bytes": 756
+      },
+      "compiler-base.mjs": {
+        "sha256": "aa7f7a65508be5272488c2048b56dde9938b9c15829b6dbf9869f352786e6302",
+        "bytes": 184876
+      },
+      "compiler.wasm": {
+        "sha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+        "bytes": 65390139
+      },
+      "compiler.data": {
+        "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
+        "bytes": 610088
+      },
+      "formatter.mjs": {
+        "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
+        "bytes": 62804
+      },
+      "formatter.wasm": {
+        "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+        "bytes": 1118687
+      },
+      "README.txt": {
+        "sha256": "639f65b5f699a169007476340a3a51a4559b710d1f91d87835c6766b3b64bb2a",
+        "bytes": 331
+      }
+    },
+    "stableQualified": false,
+    "published": false,
+    "reuseFrontendWasmExact": true
+  },
+  "formatterBinding": {
+    "inputs": {
+      "evaluated-output-formatter.cpp": "d51fec7cc40d99d516c8a6742081f7a163818951894dea94dfcc38da74d67c97",
+      "compiler-package.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
+      "vkf-canonical-execution.mjs": "01b505c66dd746fb17e720a9cbc18d1f7cde30906f916d73c03e42d1dffbf64b",
+      "compiler/native/vkf_ui_effect_packets.hpp": "dc99e3d152d84be6454f26f803fa764b9393d85ecac8c3f31558be7c6ec76ecb",
+      "compiler/native/vkf_retained_scene_arena.hpp": "308a94b91d0347f14617878f02d7b5f4cefbc9b8795e8fa18c65c9cca48851b6"
+    },
+    "modularFormatter": {
+      "reuseCompilerWasm": "/mnt/development/VektorFlow-e1605-20261030/release-site/public/preview/0.7.5/playground/canonical/compiler.wasm",
+      "compilerSha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+      "bindingParent": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+      "noGuestVmOrFrontendChange": true,
+      "noUnchangedCoalesce": true
+    },
+    "binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03"
+  },
+  "frontendArtifactReuse": {
+    "binding": "4b2eaa19fa54dcfbf165dc3da18571b3efa1363606b8296a0a1277ba1b204cef",
+    "wasmSha256": "306005113a1e4ee298e214a777c81f1aba76ad4a0fc3ac57e1b0d8ee33dad740",
+    "guestSha256": "8804716a6a544ab05d95bdfd6f67f0acdada78ad21811ea719e1531c3fef8a00",
+    "newVmCoalesce": false
+  },
+  "normalGpuMutableArrayDiagnosis": {
+    "source": "actual current combined09754dc typedIR from maintained current native compiler91cc3fef",
+    "firstMutableStatements": [
+      [
+        "/body/53/body/body/9/body/body/1/body/body/3",
+        {
+          "base_name": "upper",
+          "indices": [
+            {
+              "kind": "load",
+              "name": "i",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "int"
+              },
+              "semantic_id": 304,
+              "type": "int"
+            }
+          ],
+          "kind": "update_index",
+          "value": {
+            "kind": "binary_op",
+            "left": {
+              "kind": "load",
+              "name": "right",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "semantic_id": 342,
+              "type": "num"
+            },
+            "left_type": "num",
+            "op": "SLASH",
+            "ordinary_source_type_identity": {
+              "kind": "ordinary_source_type_identity",
+              "owner": "ordinary_expression_typing",
+              "resolved_type": "num"
+            },
+            "right": {
+              "kind": "load",
+              "name": "diagonal",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "semantic_id": 362,
+              "type": "num"
+            },
+            "right_type": "num",
+            "semantic_id": 366,
+            "type": "num"
+          }
+        }
+      ],
+      [
+        "/body/53/body/body/9/body/body/1/body/body/5/body/body/1",
+        {
+          "base_name": "second",
+          "indices": [
+            {
+              "kind": "binary_op",
+              "left": {
+                "kind": "binary_op",
+                "left": {
+                  "kind": "load",
+                  "name": "i",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "semantic_id": 304,
+                  "type": "int"
+                },
+                "left_type": "int",
+                "op": "STAR",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "int"
+                },
+                "right": {
+                  "kind": "load",
+                  "name": "width",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "semantic_id": 445,
+                  "type": "int"
+                },
+                "right_type": "int",
+                "semantic_id": 448,
+                "type": "int"
+              },
+              "left_type": "int",
+              "op": "PLUS",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "int"
+              },
+              "right": {
+                "kind": "load",
+                "name": "j",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "int"
+                },
+                "semantic_id": 368,
+                "type": "int"
+              },
+              "right_type": "int",
+              "semantic_id": 451,
+              "type": "int"
+            }
+          ],
+          "kind": "update_index",
+          "value": {
+            "kind": "binary_op",
+            "left": {
+              "kind": "binary_op",
+              "left": {
+                "kind": "load",
+                "name": "rhs",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "num"
+                },
+                "semantic_id": 443,
+                "type": "num"
+              },
+              "left_type": "num",
+              "op": "MINUS",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "right": {
+                "kind": "binary_op",
+                "left": {
+                  "kind": "load",
+                  "name": "left",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "num"
+                  },
+                  "semantic_id": 327,
+                  "type": "num"
+                },
+                "left_type": "num",
+                "op": "STAR",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "num"
+                },
+                "right": {
+                  "base": {
+                    "kind": "load",
+                    "name": "second",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "[num]"
+                    },
+                    "semantic_id": 292,
+                    "type": "[num]"
+                  },
+                  "expanded_index_count": 1,
+                  "indices": [
+                    {
+                      "kind": "binary_op",
+                      "left": {
+                        "kind": "binary_op",
+                        "left": {
+                          "kind": "binary_op",
+                          "left": {
+                            "kind": "load",
+                            "name": "i",
+                            "ordinary_source_type_identity": {
+                              "kind": "ordinary_source_type_identity",
+                              "owner": "ordinary_expression_typing",
+                              "resolved_type": "int"
+                            },
+                            "semantic_id": 304,
+                            "type": "int"
+                          },
+                          "left_type": "int",
+                          "op": "MINUS",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "int"
+                          },
+                          "right": {
+                            "kind": "const",
+                            "ordinary_source_type_identity": {
+                              "kind": "ordinary_source_type_identity",
+                              "owner": "ordinary_expression_typing",
+                              "resolved_type": "int"
+                            },
+                            "semantic_id": 453,
+                            "type": "int",
+                            "value": 1
+                          },
+                          "right_type": "int",
+                          "semantic_id": 456,
+                          "type": "int"
+                        },
+                        "left_type": "int",
+                        "op": "STAR",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "right": {
+                          "kind": "load",
+                          "name": "width",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "int"
+                          },
+                          "semantic_id": 458,
+                          "type": "int"
+                        },
+                        "right_type": "int",
+                        "semantic_id": 460,
+                        "type": "int"
+                      },
+                      "left_type": "int",
+                      "op": "PLUS",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "int"
+                      },
+                      "right": {
+                        "kind": "load",
+                        "name": "j",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "semantic_id": 368,
+                        "type": "int"
+                      },
+                      "right_type": "int",
+                      "semantic_id": 463,
+                      "type": "int"
+                    }
+                  ],
+                  "kind": "dotted_index",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "num"
+                  },
+                  "semantic_id": 465,
+                  "type": "num"
+                },
+                "right_type": "num",
+                "semantic_id": 468,
+                "type": "num"
+              },
+              "right_type": "num",
+              "semantic_id": 471,
+              "type": "num"
+            },
+            "left_type": "num",
+            "op": "SLASH",
+            "ordinary_source_type_identity": {
+              "kind": "ordinary_source_type_identity",
+              "owner": "ordinary_expression_typing",
+              "resolved_type": "num"
+            },
+            "right": {
+              "kind": "load",
+              "name": "diagonal",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "semantic_id": 362,
+              "type": "num"
+            },
+            "right_type": "num",
+            "semantic_id": 473,
+            "type": "num"
+          }
+        }
+      ],
+      [
+        "/body/53/body/body/9/body/body/3/body/body/1/body/body/0",
+        {
+          "base_name": "second",
+          "indices": [
+            {
+              "kind": "binary_op",
+              "left": {
+                "kind": "binary_op",
+                "left": {
+                  "kind": "load",
+                  "name": "i",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "semantic_id": 488,
+                  "type": "int"
+                },
+                "left_type": "int",
+                "op": "STAR",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "int"
+                },
+                "right": {
+                  "kind": "load",
+                  "name": "width",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "semantic_id": 502,
+                  "type": "int"
+                },
+                "right_type": "int",
+                "semantic_id": 505,
+                "type": "int"
+              },
+              "left_type": "int",
+              "op": "PLUS",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "int"
+              },
+              "right": {
+                "kind": "load",
+                "name": "j",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "int"
+                },
+                "semantic_id": 495,
+                "type": "int"
+              },
+              "right_type": "int",
+              "semantic_id": 508,
+              "type": "int"
+            }
+          ],
+          "kind": "update_index",
+          "value": {
+            "kind": "binary_op",
+            "left": {
+              "base": {
+                "kind": "load",
+                "name": "second",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "[num]"
+                },
+                "semantic_id": 292,
+                "type": "[num]"
+              },
+              "expanded_index_count": 1,
+              "indices": [
+                {
+                  "kind": "binary_op",
+                  "left": {
+                    "kind": "binary_op",
+                    "left": {
+                      "kind": "load",
+                      "name": "i",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "int"
+                      },
+                      "semantic_id": 488,
+                      "type": "int"
+                    },
+                    "left_type": "int",
+                    "op": "STAR",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "right": {
+                      "kind": "load",
+                      "name": "width",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "int"
+                      },
+                      "semantic_id": 510,
+                      "type": "int"
+                    },
+                    "right_type": "int",
+                    "semantic_id": 513,
+                    "type": "int"
+                  },
+                  "left_type": "int",
+                  "op": "PLUS",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "int"
+                  },
+                  "right": {
+                    "kind": "load",
+                    "name": "j",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 495,
+                    "type": "int"
+                  },
+                  "right_type": "int",
+                  "semantic_id": 516,
+                  "type": "int"
+                }
+              ],
+              "kind": "dotted_index",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "semantic_id": 518,
+              "type": "num"
+            },
+            "left_type": "num",
+            "op": "MINUS",
+            "ordinary_source_type_identity": {
+              "kind": "ordinary_source_type_identity",
+              "owner": "ordinary_expression_typing",
+              "resolved_type": "num"
+            },
+            "right": {
+              "kind": "binary_op",
+              "left": {
+                "base": {
+                  "kind": "load",
+                  "name": "upper",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "[num]"
+                  },
+                  "semantic_id": 296,
+                  "type": "[num]"
+                },
+                "expanded_index_count": 1,
+                "indices": [
+                  {
+                    "kind": "load",
+                    "name": "i",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "semantic_id": 488,
+                    "type": "int"
+                  }
+                ],
+                "kind": "dotted_index",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "num"
+                },
+                "semantic_id": 520,
+                "type": "num"
+              },
+              "left_type": "num",
+              "op": "STAR",
+              "ordinary_source_type_identity": {
+                "kind": "ordinary_source_type_identity",
+                "owner": "ordinary_expression_typing",
+                "resolved_type": "num"
+              },
+              "right": {
+                "base": {
+                  "kind": "load",
+                  "name": "second",
+                  "ordinary_source_type_identity": {
+                    "kind": "ordinary_source_type_identity",
+                    "owner": "ordinary_expression_typing",
+                    "resolved_type": "[num]"
+                  },
+                  "semantic_id": 292,
+                  "type": "[num]"
+                },
+                "expanded_index_count": 1,
+                "indices": [
+                  {
+                    "kind": "binary_op",
+                    "left": {
+                      "kind": "binary_op",
+                      "left": {
+                        "kind": "binary_op",
+                        "left": {
+                          "kind": "load",
+                          "name": "i",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "int"
+                          },
+                          "semantic_id": 488,
+                          "type": "int"
+                        },
+                        "left_type": "int",
+                        "op": "PLUS",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "right": {
+                          "kind": "const",
+                          "ordinary_source_type_identity": {
+                            "kind": "ordinary_source_type_identity",
+                            "owner": "ordinary_expression_typing",
+                            "resolved_type": "int"
+                          },
+                          "semantic_id": 522,
+                          "type": "int",
+                          "value": 1
+                        },
+                        "right_type": "int",
+                        "semantic_id": 525,
+                        "type": "int"
+                      },
+                      "left_type": "int",
+                      "op": "STAR",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "int"
+                      },
+                      "right": {
+                        "kind": "load",
+                        "name": "width",
+                        "ordinary_source_type_identity": {
+                          "kind": "ordinary_source_type_identity",
+                          "owner": "ordinary_expression_typing",
+                          "resolved_type": "int"
+                        },
+                        "semantic_id": 527,
+                        "type": "int"
+                      },
+                      "right_type": "int",
+                      "semantic_id": 529,
+                      "type": "int"
+                    },
+                    "left_type": "int",
+                    "op": "PLUS",
+                    "ordinary_source_type_identity": {
+                      "kind": "ordinary_source_type_identity",
+                      "owner": "ordinary_expression_typing",
+                      "resolved_type": "int"
+                    },
+                    "right": {
+                      "kind": "load",
+                      "name": "j",
+                      "ordinary_source_type_identity": {
+                        "kind": "ordinary_source_type_identity",
+                        "owner": "ordinary_expression_typing",
+                        "resolved_type": "int"
+                      },
+                      "semantic_id": 495,
+                      "type": "int"
+                    },
+                    "right_type": "int",
+                    "semantic_id": 532,
+                    "type": "int"
+                  }
+                ],
+                "kind": "dotted_index",
+                "ordinary_source_type_identity": {
+                  "kind": "ordinary_source_type_identity",
+                  "owner": "ordinary_expression_typing",
+                  "resolved_type": "num"
+                },
+                "semantic_id": 534,
+                "type": "num"
+              },
+              "right_type": "num",
+              "semantic_id": 536,
+              "type": "num"
+            },
+            "right_type": "num",
+            "semantic_id": 538,
+            "type": "num"
+          }
+        }
+      ]
+    ],
+    "count": 203,
+    "physicalGpuExecuted": false,
+    "normalF32WGSL": false
+  },
+  "projectLibrary": {
+    "name": "Morphing",
+    "ownership": "Project/application library, not standard library",
+    "cohorts": 10,
+    "endpointObjects": [
+      12,
+      17
+    ],
+    "grid": 65,
+    "fieldGrid": 33,
+    "fps": 24,
+    "substeps": 2,
+    "durationSeconds": 10
+  },
+  "remaining": [
+    "Normal current real-f32 WGSL compiler/helper indexed-array/wide output connection for actual resident world remains unresolved. VulkanF64 controls are a different route.",
+    "Exact current prepared helper mutable statement updates upper[i] and second[i*width+j] in the actual cubic preparation branch. No branch, validation or library was removed.",
+    "Current project-world deformation source remains partial and unrun; nonlinear continuous solver boundary/topology ownership is not established.",
+    "No complete physics/Morphing/direct geometry/nativeLaTeX/measurement graph/marker GPU scene or complete-workload10ms result."
+  ],
+  "publicationScope": "Report-only evidence update. Public compiler/package/runner assets unchanged; no private compiler promotion or qualified075 claim."
+}

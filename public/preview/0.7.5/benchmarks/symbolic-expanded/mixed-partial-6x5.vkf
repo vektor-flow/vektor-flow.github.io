@@ -1,0 +1,34 @@
+# SOURCE candidate: fresh compiler/runtime qualification required.
+s: .symbolic
+t: .time
+
+x: R
+y: R
+
+expression: x ^ 6 * y ^ 5 + 3 * x ^ 4 * y ^ 3 + x * y
+
+first_started: t.monotonic()
+first_result: s.differentiate(s.differentiate(expression, x), y)
+first_elapsed: (t.monotonic() - first_started) * 1000
+
+started: t.monotonic()
+result: s.differentiate(s.differentiate(expression, x), y)
+elapsed: (t.monotonic() - started) * 1000
+
+:: elapsed
+:: first_elapsed
+
+# Exact coefficient serialization is outside the measured operation.
+polynomial: s.expand(result)
+:: s.term_count(polynomial)
+..5 >>
+    x_power: $
+    ..4 >>
+        :: s.coefficient(polynomial, [x_power, $])
+
+first_polynomial: s.expand(first_result)
+:: s.term_count(first_polynomial)
+..5 >>
+    first_x_power: $
+    ..4 >>
+        :: s.coefficient(first_polynomial, [first_x_power, $])

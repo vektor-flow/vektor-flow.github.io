@@ -1,0 +1,20 @@
+# SOURCE candidate: fresh compiler/runtime qualification required.
+s: .symbolic
+t: .time
+
+x: R
+
+expression: (x ^ 2 + 1) / (x + 2)
+
+first_started: t.monotonic()
+first_result: s.differentiate(expression, x)
+first_elapsed: (t.monotonic() - first_started) * 1000
+
+started: t.monotonic()
+result: s.differentiate(expression, x)
+elapsed: (t.monotonic() - started) * 1000
+
+:: elapsed
+:: first_elapsed
+:: s.katex(result)
+:: s.katex(first_result)

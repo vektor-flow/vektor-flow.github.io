@@ -1,0 +1,31 @@
+{
+  "id": "substitute-transcendental",
+  "operation": "substitute",
+  "input": "exp(x)*sin(y) + cos(x + y)",
+  "replacement": "z + 1",
+  "expected": "exp(z + 1)*sin(y) + cos(z + 1 + y)",
+  "vkf": "s.substitute(expression, x, replacement)",
+  "variables": [
+    "x",
+    "y",
+    "z"
+  ],
+  "bounds": null,
+  "profile": "medium",
+  "work": "One structural substitution x -> z+1, including function arguments; no transcendental rewrite or evaluation.",
+  "complexity": "Bounded traversal; exp/sin/cos remain exact symbolic functions",
+  "status": "UNRUN",
+  "timing": "UNMEASURED",
+  "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+  "domain": "all declared variables real",
+  "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+  "peer_versions": {
+    "symengine": "0.15.0",
+    "sympy": "1.14.0",
+    "symbolics": "7.31.0",
+    "julia": "1.12.6",
+    "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+  },
+  "input_ast_node_estimate": 10,
+  "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression"
+}

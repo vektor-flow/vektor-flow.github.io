@@ -1,0 +1,30 @@
+# SOURCE candidate: fresh compiler/runtime qualification required.
+s: .symbolic
+t: .time
+
+x: R
+
+expression: (x + 2) ^ 12 + x ^ 7 - 3 * x
+replacement: x + 1
+
+first_started: t.monotonic()
+first_result: s.substitute(expression, x, replacement)
+first_elapsed: (t.monotonic() - first_started) * 1000
+
+started: t.monotonic()
+result: s.substitute(expression, x, replacement)
+elapsed: (t.monotonic() - started) * 1000
+
+:: elapsed
+:: first_elapsed
+
+# Exact coefficient serialization is outside the measured operation.
+polynomial: s.expand(result)
+:: s.term_count(polynomial)
+..12 >>
+    :: s.coefficient(polynomial, [$])
+
+first_polynomial: s.expand(first_result)
+:: s.term_count(first_polynomial)
+..12 >>
+    :: s.coefficient(first_polynomial, [$])

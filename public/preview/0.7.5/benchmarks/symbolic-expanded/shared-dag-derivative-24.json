@@ -1,0 +1,32 @@
+{
+  "id": "shared-dag-derivative-24",
+  "operation": "differentiate-shared",
+  "input": "(x^2 + 1)^1 + (x^2 + 1)^2 + (x^2 + 1)^3 + (x^2 + 1)^4 + (x^2 + 1)^5 + (x^2 + 1)^6 + (x^2 + 1)^7 + (x^2 + 1)^8 + (x^2 + 1)^9 + (x^2 + 1)^10 + (x^2 + 1)^11 + (x^2 + 1)^12 + (x^2 + 1)^13 + (x^2 + 1)^14 + (x^2 + 1)^15 + (x^2 + 1)^16 + (x^2 + 1)^17 + (x^2 + 1)^18 + (x^2 + 1)^19 + (x^2 + 1)^20 + (x^2 + 1)^21 + (x^2 + 1)^22 + (x^2 + 1)^23 + (x^2 + 1)^24",
+  "expected": "2*x*(1*(x^2 + 1)^0 + 2*(x^2 + 1)^1 + 3*(x^2 + 1)^2 + 4*(x^2 + 1)^3 + 5*(x^2 + 1)^4 + 6*(x^2 + 1)^5 + 7*(x^2 + 1)^6 + 8*(x^2 + 1)^7 + 9*(x^2 + 1)^8 + 10*(x^2 + 1)^9 + 11*(x^2 + 1)^10 + 12*(x^2 + 1)^11 + 13*(x^2 + 1)^12 + 14*(x^2 + 1)^13 + 15*(x^2 + 1)^14 + 16*(x^2 + 1)^15 + 17*(x^2 + 1)^16 + 18*(x^2 + 1)^17 + 19*(x^2 + 1)^18 + 20*(x^2 + 1)^19 + 21*(x^2 + 1)^20 + 22*(x^2 + 1)^21 + 23*(x^2 + 1)^22 + 24*(x^2 + 1)^23)",
+  "vkf": "s.differentiate(expression, x)",
+  "variables": [
+    "x"
+  ],
+  "bounds": [
+    47
+  ],
+  "profile": "bounded-large",
+  "work": "Build shared h=x^2+1 once, sum h^k for k=1..24, then one cached first derivative; construction outside timing.",
+  "complexity": "24 power uses of shared h; max degree48 input/47 output,48 exact coefficient cells; physical sharing engine-specific, no exponential-size claim",
+  "status": "UNRUN",
+  "timing": "UNMEASURED",
+  "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+  "domain": "all declared variables real",
+  "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+  "peer_versions": {
+    "symengine": "0.15.0",
+    "sympy": "1.14.0",
+    "symbolics": "7.31.0",
+    "julia": "1.12.6",
+    "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+  },
+  "input_ast_node_estimate": 191,
+  "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+  "exact_expected_terms": 24,
+  "max_abs_expected_integer_coefficient": 124807200
+}

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "diff-polynomial-16",
+    "operation": "differentiate",
+    "input": "(x + 1)^16 + x^9 + 3*x",
+    "expected": "16*(x + 1)^15 + 9*x^8 + 3",
+    "vkf": "s.differentiate(expression, x)",
+    "variables": [
+      "x"
+    ],
+    "bounds": [
+      15
+    ],
+    "profile": "small",
+    "work": "One exact first derivative of a degree-16 unexpanded polynomial; no expansion in timed region.",
+    "complexity": "O(input DAG nodes + derivative output); degree15 output,16 coefficients",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 13,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+    "exact_expected_terms": 16,
+    "max_abs_expected_integer_coefficient": 102969
+  },
+  {
+    "id": "mixed-partial-6x5",
+    "operation": "mixed-partial",
+    "input": "x^6*y^5 + 3*x^4*y^3 + x*y",
+    "expected": "30*x^5*y^4 + 36*x^3*y^2 + 1",
+    "vkf": "s.differentiate(s.differentiate(expression, x), y)",
+    "variables": [
+      "x",
+      "y"
+    ],
+    "bounds": [
+      5,
+      4
+    ],
+    "profile": "small",
+    "work": "Differentiate first in x then in y, both operations inside the boundary.",
+    "complexity": "Two derivative traversals; 3 sparse result terms;30 coefficient cells",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 21,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+    "exact_expected_terms": 3,
+    "max_abs_expected_integer_coefficient": 36
+  },
+  {
+    "id": "diff-rational",
+    "operation": "differentiate",
+    "input": "(x^2 + 1)/(x + 2)",
+    "expected": "(x^2 + 4*x - 1)/(x + 2)^2",
+    "vkf": "s.differentiate(expression, x)",
+    "variables": [
+      "x"
+    ],
+    "bounds": null,
+    "profile": "small",
+    "work": "Exact quotient-rule derivative over real x except x=-2. No timed cancel/simplify.",
+    "complexity": "Bounded quotient DAG; rational identity checked by exact cross multiplication",
+    "domain": "real x; x != -2",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 9,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression"
+  },
+  {
+    "id": "diff-transcendental",
+    "operation": "differentiate",
+    "input": "exp(x)*sin(x) + cos(x^2)",
+    "expected": "exp(x)*(sin(x) + cos(x)) - 2*x*sin(x^2)",
+    "vkf": "s.differentiate(expression, x)",
+    "variables": [
+      "x"
+    ],
+    "bounds": null,
+    "profile": "medium",
+    "work": "Product and chain rules involving exp, sin and cos; exact functional atoms, no floating evaluation.",
+    "complexity": "Bounded product/chain-rule DAG; transcendental atoms retain normalized exact arguments",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 10,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression"
+  },
+  {
+    "id": "substitute-polynomial-12",
+    "operation": "substitute",
+    "input": "(x + 2)^12 + x^7 - 3*x",
+    "replacement": "x + 1",
+    "expected": "(x + 3)^12 + (x + 1)^7 - 3*(x + 1)",
+    "vkf": "s.substitute(expression, x, replacement)",
+    "variables": [
+      "x"
+    ],
+    "bounds": [
+      12
+    ],
+    "profile": "medium",
+    "work": "One simultaneous structural substitution x -> x+1 in an unexpanded polynomial; replacement is not recursively substituted.",
+    "complexity": "O(input DAG/tree traversal + copied replacement nodes);13 exact output coefficients",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 13,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+    "exact_expected_terms": 13,
+    "max_abs_expected_integer_coefficient": 4330295
+  },
+  {
+    "id": "substitute-transcendental",
+    "operation": "substitute",
+    "input": "exp(x)*sin(y) + cos(x + y)",
+    "replacement": "z + 1",
+    "expected": "exp(z + 1)*sin(y) + cos(z + 1 + y)",
+    "vkf": "s.substitute(expression, x, replacement)",
+    "variables": [
+      "x",
+      "y",
+      "z"
+    ],
+    "bounds": null,
+    "profile": "medium",
+    "work": "One structural substitution x -> z+1, including function arguments; no transcendental rewrite or evaluation.",
+    "complexity": "Bounded traversal; exp/sin/cos remain exact symbolic functions",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 10,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression"
+  },
+  {
+    "id": "collect-polynomial-24",
+    "operation": "collect",
+    "input": "(x + 1)^24 + (x - 1)^23 + x*(x + 2)^12",
+    "expected": "(x + 1)^24 + (x - 1)^23 + x*(x + 2)^12",
+    "vkf": "s.collect(expression)",
+    "variables": [
+      "x"
+    ],
+    "bounds": [
+      24
+    ],
+    "profile": "medium",
+    "work": "VKF collect is full polynomial expansion/like-term collection; peers explicitly expand, not variable-grouped collect.",
+    "complexity": "Degree24,25 exact coefficient cells; bounded dense polynomial arithmetic",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 19,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+    "exact_expected_terms": 24,
+    "max_abs_expected_integer_coefficient": 3848486
+  },
+  {
+    "id": "shared-dag-derivative-24",
+    "operation": "differentiate-shared",
+    "input": "(x^2 + 1)^1 + (x^2 + 1)^2 + (x^2 + 1)^3 + (x^2 + 1)^4 + (x^2 + 1)^5 + (x^2 + 1)^6 + (x^2 + 1)^7 + (x^2 + 1)^8 + (x^2 + 1)^9 + (x^2 + 1)^10 + (x^2 + 1)^11 + (x^2 + 1)^12 + (x^2 + 1)^13 + (x^2 + 1)^14 + (x^2 + 1)^15 + (x^2 + 1)^16 + (x^2 + 1)^17 + (x^2 + 1)^18 + (x^2 + 1)^19 + (x^2 + 1)^20 + (x^2 + 1)^21 + (x^2 + 1)^22 + (x^2 + 1)^23 + (x^2 + 1)^24",
+    "expected": "2*x*(1*(x^2 + 1)^0 + 2*(x^2 + 1)^1 + 3*(x^2 + 1)^2 + 4*(x^2 + 1)^3 + 5*(x^2 + 1)^4 + 6*(x^2 + 1)^5 + 7*(x^2 + 1)^6 + 8*(x^2 + 1)^7 + 9*(x^2 + 1)^8 + 10*(x^2 + 1)^9 + 11*(x^2 + 1)^10 + 12*(x^2 + 1)^11 + 13*(x^2 + 1)^12 + 14*(x^2 + 1)^13 + 15*(x^2 + 1)^14 + 16*(x^2 + 1)^15 + 17*(x^2 + 1)^16 + 18*(x^2 + 1)^17 + 19*(x^2 + 1)^18 + 20*(x^2 + 1)^19 + 21*(x^2 + 1)^20 + 22*(x^2 + 1)^21 + 23*(x^2 + 1)^22 + 24*(x^2 + 1)^23)",
+    "vkf": "s.differentiate(expression, x)",
+    "variables": [
+      "x"
+    ],
+    "bounds": [
+      47
+    ],
+    "profile": "bounded-large",
+    "work": "Build shared h=x^2+1 once, sum h^k for k=1..24, then one cached first derivative; construction outside timing.",
+    "complexity": "24 power uses of shared h; max degree48 input/47 output,48 exact coefficient cells; physical sharing engine-specific, no exponential-size claim",
+    "status": "UNRUN",
+    "timing": "UNMEASURED",
+    "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+    "domain": "all declared variables real",
+    "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+    "peer_versions": {
+      "symengine": "0.15.0",
+      "sympy": "1.14.0",
+      "symbolics": "7.31.0",
+      "julia": "1.12.6",
+      "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+    },
+    "input_ast_node_estimate": 191,
+    "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+    "exact_expected_terms": 24,
+    "max_abs_expected_integer_coefficient": 124807200
+  }
+]

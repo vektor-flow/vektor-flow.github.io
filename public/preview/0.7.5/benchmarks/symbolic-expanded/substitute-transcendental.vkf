@@ -1,0 +1,23 @@
+# SOURCE candidate: fresh compiler/runtime qualification required.
+s: .symbolic
+t: .time
+
+x: R
+y: R
+z: R
+
+expression: s.exp(x) * s.sin(y) + s.cos(x + y)
+replacement: z + 1
+
+first_started: t.monotonic()
+first_result: s.substitute(expression, x, replacement)
+first_elapsed: (t.monotonic() - first_started) * 1000
+
+started: t.monotonic()
+result: s.substitute(expression, x, replacement)
+elapsed: (t.monotonic() - started) * 1000
+
+:: elapsed
+:: first_elapsed
+:: s.katex(result)
+:: s.katex(first_result)

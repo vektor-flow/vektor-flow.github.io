@@ -1,0 +1,32 @@
+{
+  "id": "collect-polynomial-24",
+  "operation": "collect",
+  "input": "(x + 1)^24 + (x - 1)^23 + x*(x + 2)^12",
+  "expected": "(x + 1)^24 + (x - 1)^23 + x*(x + 2)^12",
+  "vkf": "s.collect(expression)",
+  "variables": [
+    "x"
+  ],
+  "bounds": [
+    24
+  ],
+  "profile": "medium",
+  "work": "VKF collect is full polynomial expansion/like-term collection; peers explicitly expand, not variable-grouped collect.",
+  "complexity": "Degree24,25 exact coefficient cells; bounded dense polynomial arithmetic",
+  "status": "UNRUN",
+  "timing": "UNMEASURED",
+  "expected_is": "SOURCE mathematical contract, not peer capture or runtime PASS",
+  "domain": "all declared variables real",
+  "coefficient_model": "exact integer coefficients representable in binary64; no coefficient exceeds 2^53; no float tolerance",
+  "peer_versions": {
+    "symengine": "0.15.0",
+    "sympy": "1.14.0",
+    "symbolics": "7.31.0",
+    "julia": "1.12.6",
+    "symengine_commit": "0c183629a35dd9d8123fafcc47b0e0283bbae80d"
+  },
+  "input_ast_node_estimate": 19,
+  "size_measure": "lexical expression tokens, not measured runtime nodes; shared case is logical unfolded source expression",
+  "exact_expected_terms": 24,
+  "max_abs_expected_integer_coefficient": 3848486
+}

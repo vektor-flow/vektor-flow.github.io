@@ -1,0 +1,71 @@
+{
+  "scope": "STAT_ONLY_NO_IMPORT_EXECUTION_OR_CORPUS_REHASH",
+  "frozenManifest": "/mnt/development/VektorFlow-e1201-20261026/config/symbolic-peer-dependencies.json",
+  "inputCount": 15974,
+  "presentCount": 1,
+  "missingCount": 15973,
+  "groups": {
+    "adapter-source": 1,
+    "symengine-build": 4,
+    "symengine-runner": 1,
+    "boost_1_86_0": 15793,
+    "symengine": 175
+  },
+  "missingGroups": {
+    "symengine-build": 4,
+    "symengine-runner": 1,
+    "boost_1_86_0": 15793,
+    "symengine": 175
+  },
+  "missingExamples": {
+    "symengine-build": [
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine-build/symengine/libsymengine.a",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine-build/symengine/symengine_config.h",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine-build/symengine/symengine_export.h"
+    ],
+    "symengine-runner": [
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine-runner/build.ninja"
+    ],
+    "boost_1_86_0": [
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/boost_1_86_0/boost/accumulators/accumulators.hpp",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/boost_1_86_0/boost/accumulators/accumulators_fwd.hpp",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/boost_1_86_0/boost/yap/yap.hpp"
+    ],
+    "symengine": [
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine/symengine/add.h",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine/symengine/assumptions.h",
+      "/dev/shm/vkf-architecture-0136/symbolic-peers105/symengine/symengine/visitor.h"
+    ]
+  },
+  "presentPaths": [
+    "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_symengine.cpp"
+  ],
+  "symbolicsEnvironment": [
+    {
+      "path": "/dev/shm/vkf-architecture-0136/symbolic-peers105/julia-project/Project.toml",
+      "bytes": 107,
+      "sha256": "04dd883aa58f7e7cd7f8f837772613d1c2f8b1f7d06c749d5b3d3baaa95a440b",
+      "present": false
+    },
+    {
+      "path": "/dev/shm/vkf-architecture-0136/symbolic-peers105/julia-project/Manifest.toml",
+      "bytes": 21796,
+      "sha256": "29730a454c32ddc793b8a0f97d88e3648d61b7f9b12b55002ddcd3f7fb0c11c4",
+      "present": false
+    },
+    {
+      "path": "/dev/shm/vkf-architecture-0136/symbolic-peers105/julia-depot/packages/Symbolics/BnIK0/Project.toml",
+      "bytes": 5665,
+      "sha256": "cf39ca4a257a3e47ac7d09fe09baf66babbebcffae7652ae921a30447ef1bcde",
+      "present": false
+    },
+    {
+      "path": "/dev/shm/vkf-architecture-0136/symbolic-peers105/julia-depot/packages/Symbolics/BnIK0/src/diff.jl",
+      "bytes": 40792,
+      "sha256": "b74bed4a756b66fcee33161a5140219813e6745339acd3b66555dfa3b79def1d",
+      "present": false
+    }
+  ],
+  "conclusion": "Restoring the static library alone does not unlock frozen peers. All Boost/SymEngine header/config and Symbolics project/depot inputs are also prerequisites; fresh tool/version and peer correctness remain required.",
+  "observedMonotonic": 221315.893109548
+}

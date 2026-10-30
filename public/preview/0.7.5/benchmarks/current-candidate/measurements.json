@@ -1,0 +1,27 @@
+{
+  "scope": "Separately tested current candidate; not stable release, LOCAL48 comparison or current published compiler qualification",
+  "sourceBinding": "edb5885977f8b4980186a6ee6ab8a38eac36b5877cbfbf76e53fdbb33324581b",
+  "wasmSha256": "183d97b6e8b6e54411dec82a19e7a0079133c059d3533e85890c009b4510856b",
+  "units": "ms",
+  "timingBoundary": "Request through compilation, guest evaluation, data/bridge, shipping Canvas2D 798x326 complete getImageData raster; app navigation excluded, no hidden prewarm",
+  "cases": [
+    {
+      "name": "unprimed",
+      "requestToCompleteRasterMs": 1542.25
+    },
+    {
+      "name": "initialized-repeat",
+      "requestToCompleteRasterMs": 211.41499999165535
+    },
+    {
+      "name": "real-source-edit",
+      "requestToCompleteRasterMs": 745.9699999988079
+    }
+  ],
+  "observationsPerCase": 1,
+  "thresholdMs": 400,
+  "coldAndRealEditMeetThreshold": false,
+  "benchmarkComparisons": "UNRUN: preserved all48 preflight+24 parity prerequisites not met; no timing or peer ratios",
+  "rawResultSha256": "fee3dc5fdf8609aec1dd7452bec0e3bade7828880fcac2b4198c4c099789b893",
+  "prerequisiteScope": "15973/15974 missing at frozen logical paths. Exact original SymEngine/Boost source headers recovered elsewhere; no current library/generated-header/runtime-environment or LOCAL48 PASS."
+}

@@ -1,0 +1,3211 @@
+{
+  "schema": 1,
+  "owner": "e1697",
+  "status": "SEPARATE_ARRAYLENGTH_REPAIR_ORIGINAL_PARALLEL_CORRECTNESS",
+  "benchmarkSelection": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+  "selection": {
+    "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/selection.json",
+    "bytes": 1949957,
+    "sha256": "12d4ce46e9ba0daa8488695d9305ba3314c32c85b599b0aa482536e8515927c1"
+  },
+  "boundManifest": {
+    "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/bound.json",
+    "bytes": 1125221,
+    "sha256": "cc184ad21e218ac4d17df00f6d2ad392b8b96c07499872f06545f939db20670c"
+  },
+  "sourceCommit": "5b5093b4ffa6e5efc91f77d636e91a233b3378ae",
+  "sourceRepair": {
+    "worker": "e1696",
+    "status": "GIT_DURABLE_SOURCE_READY_STATIC_REVIEW_PENDING",
+    "worktree": "/mnt/development/VektorFlow-e1696-20261031/compiler-source",
+    "branch": "e1696-arraylength-result",
+    "coherentBase": "39896120e9290659c33e914246b7d9db0b9285c0",
+    "exactPreimageImportCommit": "0cb1edacf9d4b9b79c241ff6ee6c6704c8c50607",
+    "repairCommit": "5b5093b4ffa6e5efc91f77d636e91a233b3378ae",
+    "repairParent": "0cb1edacf9d4b9b79c241ff6ee6c6704c8c50607",
+    "importParent": "39896120e9290659c33e914246b7d9db0b9285c0",
+    "repositoryPath": "compiler/native/wasm_emitter/calls_2.cpp",
+    "selectedPreimage": {
+      "path": "/mnt/development/VektorFlow-e1223-20261026/source-overlay/compiler/native/wasm_emitter/calls_2.cpp",
+      "bytes": 91079,
+      "sha256": "90b341348638baefe1fc898207fdc161aa1f9418c4da1883c394ae393465b245"
+    },
+    "preimage": {
+      "path": "/mnt/development/VektorFlow-e1696-20261031/PREIMAGE-calls_2.cpp",
+      "bytes": 91079,
+      "sha256": "90b341348638baefe1fc898207fdc161aa1f9418c4da1883c394ae393465b245"
+    },
+    "postimage": {
+      "path": "/mnt/development/VektorFlow-e1696-20261031/compiler-source/compiler/native/wasm_emitter/calls_2.cpp",
+      "bytes": 91083,
+      "sha256": "2b6071566876a8abe92387f00e236ddec524aab69addba89994b78d2b25d37a3"
+    },
+    "minimalDiff": {
+      "path": "/mnt/development/VektorFlow-e1696-20261031/ARRAYLENGTH-MINIMAL.diff",
+      "bytes": 845,
+      "sha256": "53591cc0ce547fa91c18df513de77cd57c6ca70cefaf0d0ac727d900bedd3a4e"
+    },
+    "preimageGitBlob": "7a847bbc6d207a8d2775d485c06964b213ba7376",
+    "postimageGitBlob": "202eaaf1684e9d68c852cd955d656b49d55f4c81",
+    "onlyBehaviorDelta": "ArrayLength concurrent-host value-producing if: empty0x40 -> wasm_i32/0x7f",
+    "exactSelectedBodyImport": true,
+    "allOtherSourceBytesUnchanged": true,
+    "worktreeClean": true,
+    "built": false,
+    "run": false,
+    "productPASS": false,
+    "independentStaticReview": "PENDING",
+    "failure": {
+      "path": "/mnt/development/VektorFlow-e1694-20261031/ORIGINAL-VALIDATION-FAILURE.json",
+      "bytes": 4974,
+      "sha256": "7f21d76e0e2fb44c0aacc6dc4807dfa732e9eb32fb13a7fab5961bb722f0b9d1"
+    },
+    "priorDiagnosisReview": {
+      "path": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1695/NEW1694-MINIMUM-CAUSAL-DATA-REVIEW.json",
+      "bytes": 3225,
+      "sha256": "504e8313a9e02b5e87c696220aeaceb560e001156c067f5943bbaf0cce00b724"
+    },
+    "observedMonotonic": 317961.52494042
+  },
+  "build": {
+    "status": "ACTUAL_NORMAL_COMPILER_BUILD_COMPLETE_RUNTIME_UNRUN",
+    "sourceCommit": "5b5093b4ffa6e5efc91f77d636e91a233b3378ae",
+    "binding": "d614de8b4f4bec650d5b2caf3e7a6d91654c72af4f77f7d0739e71c71ee19765",
+    "buildReady": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/BUILD-READY.json",
+      "bytes": 117345,
+      "sha256": "7e619c12b18785e2ff5c4ed7abf334d538c67d583bcdf29c60f47cf11153b3e7"
+    },
+    "dependencyConsumption": [
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/EMITTER-DEPENDENCY-CONSUMPTION.json",
+        "bytes": 365158,
+        "sha256": "a485846a2c80dc8ab8250577ff625e365c4934b8457e683319da07caa8c62922"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/API-DEPENDENCY-CONSUMPTION.json",
+        "bytes": 423996,
+        "sha256": "2315467107b6a16c29f1eade052251284c54b0dc6d444f262e29d095014b764c"
+      }
+    ],
+    "normalStageJoins": [
+      {
+        "name": "compile-emitter",
+        "command": [
+          "python3",
+          "/mnt/development/VektorFlow-e1697-20261031/run-build-stage.py",
+          "emitter"
+        ],
+        "limit": 1200,
+        "cleanupReserve": 540,
+        "env": {
+          "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        },
+        "pid": 3015523,
+        "start": 318413.96028148,
+        "exit": 0,
+        "end": 318415.469673263,
+        "elapsedSeconds": 1.5093919530045241,
+        "childJoined": true,
+        "reserveRefusal": null
+      },
+      {
+        "name": "compile-api",
+        "command": [
+          "python3",
+          "/mnt/development/VektorFlow-e1697-20261031/run-build-stage.py",
+          "api"
+        ],
+        "limit": 1200,
+        "cleanupReserve": 540,
+        "env": {
+          "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        },
+        "pid": 3015909,
+        "start": 318490.744295872,
+        "exit": 0,
+        "end": 318499.7741704,
+        "elapsedSeconds": 9.029874708037823,
+        "childJoined": true,
+        "reserveRefusal": null
+      },
+      {
+        "name": "normal-link",
+        "command": [
+          "python3",
+          "/mnt/development/VektorFlow-e1697-20261031/run-build-stage.py",
+          "link"
+        ],
+        "limit": 600,
+        "cleanupReserve": 1620,
+        "env": {
+          "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        },
+        "pid": 3016125,
+        "start": 318529.792021092,
+        "exit": 0,
+        "end": 318537.516977603,
+        "elapsedSeconds": 7.72495668096235,
+        "childJoined": true,
+        "reserveRefusal": null
+      },
+      {
+        "name": "normal-coalescer",
+        "command": [
+          "python3",
+          "/mnt/development/VektorFlow-e1697-20261031/run-build-stage.py",
+          "coalesce"
+        ],
+        "limit": 600,
+        "cleanupReserve": 1020,
+        "env": {
+          "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        },
+        "pid": 3016291,
+        "start": 318544.765191311,
+        "exit": 0,
+        "end": 318974.629315936,
+        "elapsedSeconds": 429.8641247449559,
+        "childJoined": true,
+        "reserveRefusal": null
+      }
+    ],
+    "reusedObjects": 138,
+    "rebuiltObjects": 2,
+    "objectOrder": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/affected-build/objects.rsp",
+      "bytes": 9348,
+      "sha256": "0c4bf208c371ff4d73f33a3409182c03207de5dc5cd080b2050a5ebb5d7558f6"
+    },
+    "files": [
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/compiler-base.mjs",
+        "bytes": 185440,
+        "sha256": "1b2f83aaa7d73e6af15fe607178a7d73bb84ea3e1979c52d78cd80e777170d70"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/compiler.data",
+        "bytes": 610405,
+        "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/compiler.mjs",
+        "bytes": 756,
+        "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/compiler.wasm",
+        "bytes": 65581586,
+        "sha256": "6ed499765e3af0c6b90d822f6e83ba1d1de4cc3127ed079e4e668064a198eab1"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/formatter.mjs",
+        "bytes": 62804,
+        "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/formatter.wasm",
+        "bytes": 1118687,
+        "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+      }
+    ],
+    "rawLinkedWasm": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/affected-build/compiler.wasm",
+      "bytes": 71357823,
+      "sha256": "3172d9fc9d0e894cea0e8a4f029c3d60eed1cc78f9e52f2abfba37a9e2d0fc5f"
+    },
+    "coalescedWasm": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/canonical/compiler.wasm",
+      "bytes": 65581586,
+      "sha256": "6ed499765e3af0c6b90d822f6e83ba1d1de4cc3127ed079e4e668064a198eab1"
+    },
+    "productionBehaviorPASS": false,
+    "originalFullParallel": "UNRUN",
+    "noPublicActivation": true
+  },
+  "dependencyConsumption": [
+    {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/EMITTER-DEPENDENCY-CONSUMPTION.json",
+      "bytes": 365158,
+      "sha256": "a485846a2c80dc8ab8250577ff625e365c4934b8457e683319da07caa8c62922"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/API-DEPENDENCY-CONSUMPTION.json",
+      "bytes": 423996,
+      "sha256": "2315467107b6a16c29f1eade052251284c54b0dc6d444f262e29d095014b764c"
+    }
+  ],
+  "coherentSiteSource": {
+    "status": "PRECISE_GIT_CHERRY_PICK_COMMENT_CONFLICTS_RESOLVED_PENDING_INDEPENDENT_REVIEW",
+    "repository": "/mnt/development/VektorFlow-e1694-20261031/site",
+    "parent": "eb4e4196886412c60da707b39517f9db390d6503",
+    "appliedCommit": "fee2b33b18f08c305596ef70329df34d65bc7fbd",
+    "commit": "d81fc9d5030421477300deb60f32074665824071",
+    "preimages": {
+      "scripts/release-local48/peer_commands.py": {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/peer_commands.py.preimage",
+        "bytes": 7958,
+        "sha256": "6722fe107c7effdbd1de2e8376335069066d2e784080fdb6a5e63b9791f73196"
+      },
+      "scripts/release-local48/bench-node.mjs": {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/bench-node.mjs.preimage",
+        "bytes": 8539,
+        "sha256": "3b942dbb76446fe40bccd53ee5d448787ed453ba74952e2c3cd8aac9dd0feb04"
+      }
+    },
+    "conflictPreimages": {
+      "path": "/mnt/development/VektorFlow-e1694-20261031/SITE-MERGE-CONFLICT-PREIMAGES.json",
+      "bytes": 17596,
+      "sha256": "2cfc2851f8b7f31b6ba42da9e526bb78a3ff9a0f98bedffdac8ab7f2cc4bfa52"
+    },
+    "changedFiles": {
+      "scripts/release-local48/peer_commands.py": {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/site/scripts/release-local48/peer_commands.py",
+        "bytes": 8267,
+        "sha256": "22361654fc424bb97e5300b6423c40438f1e12918eaa66d5f5ea12a43ed0ac38"
+      },
+      "scripts/release-local48/bench-node.mjs": {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/site/scripts/release-local48/bench-node.mjs",
+        "bytes": 8779,
+        "sha256": "10da62581059f2c4c640623e4c012539e0e39cc8f767bc468fddc3708273e9f7"
+      }
+    },
+    "diff": {
+      "path": "/mnt/development/VektorFlow-e1694-20261031/COHERENT-SITE.diff",
+      "bytes": 3158,
+      "sha256": "14e66bd8928a8c07e2a91f615b06dd1d7c7f9c61332cfbe6898c52bdfa010190"
+    },
+    "symbolicPrefixByteExactPreserved": true,
+    "originalSerialPeersPreserved": true,
+    "originalVKFWorkerAssertionBodyPreserved": true,
+    "productActivation": false,
+    "reason": "Current published main already removes the obsolete core peer-host guard. Cherry-pick applies the separate bench-node VKF-only condition with the original assertion body unchanged; conflicts occur only on two explanatory comment blocks. Full1693 symbolic prefix retained."
+  },
+  "authoredSemanticControls": {
+    "status": "PASS_ACTUAL_ORDINARY_WORKER_BRIDGE_CONTROLS",
+    "source_binding": "d614de8b4f4bec650d5b2caf3e7a6d91654c72af4f77f7d0739e71c71ee19765",
+    "rows": [
+      {
+        "name": "closed-independent-owned-work",
+        "parallel": true,
+        "receipt": {
+          "workers_created": 2,
+          "workers_closed": 2,
+          "operations": {
+            "6": 2,
+            "7": 2
+          }
+        },
+        "value": [
+          -1
+        ]
+      },
+      {
+        "name": "same-work-cap-one",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          -1
+        ]
+      },
+      {
+        "name": "entry-loop-retains-existing-lifetime",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          -1,
+          -1
+        ]
+      },
+      {
+        "name": "tiny-cap-two",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          18
+        ]
+      },
+      {
+        "name": "ordered-effect",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          7,
+          -1
+        ]
+      },
+      {
+        "name": "dependent-argument",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          -131072
+        ]
+      },
+      {
+        "name": "recursive-call-graph",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "value": [
+          2
+        ]
+      },
+      {
+        "name": "first-error-serial-reference",
+        "parallel": false,
+        "receipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        },
+        "diagnostic": {
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "version": 1,
+          "phase": "runtime",
+          "languageClass": "IndexError",
+          "mask": 545,
+          "message": "vector index out of range",
+          "payload": {
+            "message": "vector index out of range"
+          },
+          "status": 4
+        }
+      },
+      {
+        "name": "first-error-cancels-nonterminating-later-root",
+        "parallel": true,
+        "receipt": {
+          "workers_created": 2,
+          "workers_closed": 2,
+          "operations": {
+            "6": 2,
+            "7": 1,
+            "8": 1
+          }
+        },
+        "diagnostic": {
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "version": 1,
+          "phase": "runtime",
+          "languageClass": "IndexError",
+          "mask": 545,
+          "message": "vector index out of range",
+          "payload": {
+            "message": "vector index out of range"
+          },
+          "status": 4
+        }
+      }
+    ],
+    "join": {
+      "name": "authored-ordinary-worker-semantic-controls",
+      "command": [
+        "python3",
+        "/mnt/development/VektorFlow-e1697-20261031/run-authored-controls.py"
+      ],
+      "limit": 600,
+      "cleanupReserve": 420,
+      "env": {
+        "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      "pid": 3018985,
+      "start": 319070.549292614,
+      "exit": 0,
+      "end": 319088.799506001,
+      "elapsedSeconds": 18.250213537015952,
+      "childJoined": true,
+      "reserveRefusal": null
+    },
+    "rawStdout": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/authored-ordinary-worker-semantic-controls.stdout",
+      "bytes": 1817,
+      "sha256": "e870a25713576b7427d542a1d45648bfc141110f897a19b2e469293086e50e34"
+    },
+    "rawStderr": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/authored-ordinary-worker-semantic-controls.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "controlsOnlyNotOriginalProof": true
+  },
+  "sourceCommandControls": {
+    "status": "PASS_SOURCE_COMMAND_ADMISSION_CONTROLS_ONLY",
+    "driver": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/driver/peer_commands.py",
+      "sha256": "22361654fc424bb97e5300b6423c40438f1e12918eaa66d5f5ea12a43ed0ac38",
+      "bytes": 8267
+    },
+    "checks": [
+      {
+        "check": "selected-symengine",
+        "admitted": true,
+        "selectedSource": {
+          "path": "/mnt/development/VektorFlow-e1627-20261030/local48-source/symbolic_symengine.cpp",
+          "sha256": "aa1037c585cf3df364183bd91bb035d868736944167dce79f8f3100d5ad31fb1",
+          "bytes": 3322
+        },
+        "argv": [
+          "/mnt/development/VektorFlow-e1625-20261030/peers-fixed/symengine-e1201",
+          "diff-polynomial-16"
+        ],
+        "peerSpawned": false
+      },
+      {
+        "check": "selected-sympy",
+        "admitted": true,
+        "selectedSource": {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_sympy.py",
+          "bytes": 2302,
+          "sha256": "a231f8d3b3197e61eee040964fd7cab7f7e61f9862eedde7217f6d422940ee67"
+        },
+        "argv": [
+          "/usr/bin/python3.14",
+          "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_sympy.py",
+          "diff-polynomial-16"
+        ],
+        "peerSpawned": false
+      },
+      {
+        "check": "selected-symbolics",
+        "admitted": true,
+        "selectedSource": {
+          "path": "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_symbolics.jl",
+          "bytes": 2263,
+          "sha256": "bdd13500a5b106578b908ccc418d546703436f9827384f402d1fb299c2f06077"
+        },
+        "argv": [
+          "/mnt/development/VektorFlow-e1625-20261030/julia-setup/julia-1.12.6/bin/julia",
+          "--project=/mnt/development/VektorFlow-e1625-20261030/julia-setup/project",
+          "--startup-file=no",
+          "--history-file=no",
+          "/mnt/development/VektorFlow-e1201-20261026/overlay/scripts/local-overnight/source/symbolic_symbolics.jl",
+          "diff-polynomial-16"
+        ],
+        "peerSpawned": false
+      },
+      {
+        "check": "different-original-path",
+        "rejected": true,
+        "error": "symbolic adapter original source mismatch"
+      },
+      {
+        "check": "modified-adapted-pin",
+        "rejected": true,
+        "error": "changed/missing immutable input: /mnt/development/VektorFlow-e1627-20261030/local48-source/symbolic_symengine.cpp"
+      },
+      {
+        "check": "missing-adapter",
+        "rejected": true,
+        "error": "UNRUN matching expanded SymEngine adapter build receipt missing"
+      },
+      {
+        "check": "wrong-binary-selected-source",
+        "rejected": true,
+        "error": "UNRUN matching expanded SymEngine adapter build receipt missing"
+      },
+      {
+        "check": "wrong-original-build-path",
+        "rejected": true,
+        "error": "matching SymEngine original build source required"
+      },
+      {
+        "check": "ambiguous-original-source",
+        "rejected": true,
+        "error": "unique original symbolic peer source required"
+      },
+      {
+        "check": "valid-pin-arbitrary-source-change",
+        "rejected": true,
+        "error": "adapter semantic/source delta"
+      },
+      {
+        "check": "same-bytes-unbound-binary-source-path",
+        "rejected": true,
+        "error": "UNRUN matching expanded SymEngine adapter build receipt missing"
+      }
+    ],
+    "peerProcessesSpawned": 0,
+    "productQualification": false
+  },
+  "independentSourceReview": {
+    "reviewer": "e1695",
+    "subject": "e1697",
+    "status": "ACCEPTED_COMBINED_MINIMAL_EMITTER_BUILD_AND_EXACT_PREVIOUS_COHERENT_DRIVER_FOR_FRESH_CANDIDATE_PREPARATION",
+    "accepted": true,
+    "acceptedForCandidatePreparation": true,
+    "compilerCommit": "5b5093b4ffa6e5efc91f77d636e91a233b3378ae",
+    "binding": "d614de8b4f4bec650d5b2caf3e7a6d91654c72af4f77f7d0739e71c71ee19765",
+    "sourceReview": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1695/SOURCE1696-STATIC-REVIEW.json",
+    "buildPackageReview": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1695/NEW1697-BUILD-PACKAGE-REVIEW.json",
+    "priorExactDriverReview": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1695/NEW1694-CANDIDATE-BINDING-REVIEW.json",
+    "currentPublishedSourceHead": "905a82b1fc9ab21a3ed2a8e08772b685ab3ca08a",
+    "combinedPrivateSiteCommit": "d81fc9d5030421477300deb60f32074665824071",
+    "existingReviewedMergeReceiptReusedNotNewMerge": true,
+    "symbolicMappingByteExact": true,
+    "originalSerialPeerOperationalCodeByteExact": true,
+    "VKFWorkerAssertionBodyByteExact": true,
+    "hostRuntimeUnchanged": true,
+    "freshCandidateOwnChatNormalBinderEmptyQueueRequired": true,
+    "noOldPASSCarry": true,
+    "runtimeControlsAndFullOriginal": "UNRUN_FOR_THIS_REPAIR",
+    "publicationActivationApproved": false,
+    "productPASS": false,
+    "checkedPins": [
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/actual-peer32.py",
+        "bytes": 864,
+        "sha256": "22661ea858e2d85663426050f6258f0a712f768b9758180537d2da1ab3792973"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/bench-driver.py",
+        "bytes": 13145,
+        "sha256": "11e3622c7dd02f02f114c184ed0c666631fee9702df3bda87e8342fb238cd3ed"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/bench-job.py",
+        "bytes": 1399,
+        "sha256": "82cc8acc20290400e79b6579090dda56df02054d49f2bf4a177addc5b813c98f"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/bench-node.mjs",
+        "bytes": 8779,
+        "sha256": "10da62581059f2c4c640623e4c012539e0e39cc8f767bc468fddc3708273e9f7"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/bench-oracle-worker.mjs",
+        "bytes": 1945,
+        "sha256": "4506af62de37dcb6718e566cdcc3a7044c67fb1388f8f3f4193c1845ab9b49ff"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/bench_protocol.py",
+        "bytes": 6400,
+        "sha256": "bb1fd5f1f907f27a4576eedcf1daa883e5865eec3dca2adc60e360885ac7399c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/benchmark-oracle.mjs",
+        "bytes": 5474,
+        "sha256": "81d117b943fde4666d8c62690019ba168c22b9810411b3099d950ffb579f2b41"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/benchmark_jobs.py",
+        "bytes": 11248,
+        "sha256": "b839c802d8339ab2bbff7c9edcbcbee5ce46474f40c66acd0e6e2cfc13511a29"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/benchmark_stage.py",
+        "bytes": 3994,
+        "sha256": "a76697f456e15bb8ede4a940cd37d7325a70b2e3d113702c16c21699547ec5cc"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/build-plan.py",
+        "bytes": 2377,
+        "sha256": "d0ab24b9fed6b6d88b08da2e1c60e7ba1a9d31e0f59289634155e0602c453a45"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/caller.py",
+        "bytes": 4098,
+        "sha256": "86c256448ec2730a195630c5f9b3a9795de2095eb98f126bee971d281cb3cd0f"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/check-field.py",
+        "bytes": 477,
+        "sha256": "03d0c5cbf987950b8df5810063741e886d4715afbd19770fdddf5135be0ad463"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/check-symbolic-source-bindings.py",
+        "bytes": 4055,
+        "sha256": "4df4e7367fe4af711f90a262ca78be84a80607c1a8179729ad1b0d352a612850"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/chrome-launch.py",
+        "bytes": 259,
+        "sha256": "69c0513cac0b2051ecd3fd8e099a1fb7b56944875228bcfb7fda54a388a486e5"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/compile-clock.py",
+        "bytes": 548,
+        "sha256": "9d56a494bf12e1e448070ff8937fc8c87c6c0990dcc9a7d2e2447dd575c380c8"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/compile-packaged-node.mjs",
+        "bytes": 3390,
+        "sha256": "e50f757636e835d33ed5d7dd8a81f25102d056147b8f9cc9f0e131f0817a1705"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/compile_packaged.py",
+        "bytes": 4873,
+        "sha256": "45c889272eb00817c1dbb186858c163826c7a62cd27d0d61dace9bda8f481ae2"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/component-gate.py",
+        "bytes": 465,
+        "sha256": "6803ca178aca0c51998cec6056994127b5961ec10fd81426288bb96d98f20c7e"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/disk_tracker_r2.py",
+        "bytes": 3669,
+        "sha256": "5bf81bfaa8c1a24a1e3180e29175d01943ee84f9f185193731831506dbed3ed9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/dryrun-site.py",
+        "bytes": 4632,
+        "sha256": "d83aad56c5f6342573d76a2584224b5f8397fa43fbd75c71568e714add45e391"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/failure-control.py",
+        "bytes": 330,
+        "sha256": "89cf4220b29643fac872b1d7b87be32b1f18ccf262853de23dc58f0bd931f2c6"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/gpu-case.mjs",
+        "bytes": 6995,
+        "sha256": "e9719317466eb2bf3af15d9dd8849e1d6551ed0ac229e72a225d11dfd4deecb8"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/gpu-run-html.mjs",
+        "bytes": 6386,
+        "sha256": "61941fbab442198106b8668884a3612cce2ff237821c909fc6c789effc3c6992"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/gpu-run-preflight.mjs",
+        "bytes": 6226,
+        "sha256": "5998403fa36632f25f2a100d89984144ed6bbc75890e66752e82e5696d6de86c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/gpu-run-shorttmp.mjs",
+        "bytes": 6329,
+        "sha256": "3a46950fea98c5ad04053bf43b68a685de191c47014358609ea7afb50aab4074"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/gpu-run.mjs",
+        "bytes": 4684,
+        "sha256": "a5a43398dd69804cdf274c5fd69ac392dc230eb178cf370c19e687f0deb121ca"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/hardware-config.json",
+        "bytes": 450,
+        "sha256": "f8f150519f1bc09d02167f479bc60c6fb8675c9b9262a89ff02424e31af0a762"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/launch.py",
+        "bytes": 1309,
+        "sha256": "a76955e39886b6c9bcf54888505bb6f2972c105004c4a3e42502c98262a0488d"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/memory_watch.py",
+        "bytes": 2760,
+        "sha256": "a40ae10dbdb464e06e168b379096e2dfff26787d5bee76f187cf4135270af9fe"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/moving-animation.py",
+        "bytes": 6403,
+        "sha256": "ca0383a2d31d45cb64e0c1cb467bff6bae3c9d253c31cd4ef9102521e3deeaf2"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/outer-seal.py",
+        "bytes": 2017,
+        "sha256": "a5413c7c9a1183f160a178c9c5f66fd9b1daf7608c89e30138be662a5a16cf72"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/overnight.py",
+        "bytes": 25344,
+        "sha256": "5621cd56ac542bd852eb195f3002e19a792c327263658683e20d3dafcc923343"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/peer_commands.py",
+        "bytes": 8267,
+        "sha256": "22361654fc424bb97e5300b6423c40438f1e12918eaa66d5f5ea12a43ed0ac38"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/playback-contract.py",
+        "bytes": 8056,
+        "sha256": "194e04f62b4efd44f4091d61fd300fd9eaf2f51f77493518d1a72538d992e033"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/point-renderer.mjs",
+        "bytes": 16265,
+        "sha256": "599f227ba8829c6809aae3619329094d779f046ff7b593609ddf0106485df427"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/prepare-bench.py",
+        "bytes": 2101,
+        "sha256": "97105ed32a114a6ab5fdca53122c3361cb468181305521bf39bace9417f55b69"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/ready-bench.py",
+        "bytes": 1044,
+        "sha256": "bc2c6125f8ab32d9b7029dd7b4f63c631bd11eb0c555d4f3c8673cdf43e6406d"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/release-intake.py",
+        "bytes": 5815,
+        "sha256": "53760b5204949bced929db03f8a06071938a355bc966a7cc95fa33a72651093a"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/release_adapter.py",
+        "bytes": 17683,
+        "sha256": "aa1310a195fb4fd9e1214f755c1c1c466585ae15fb8601341a189640c3c1caca"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/retained-demo.py",
+        "bytes": 2584,
+        "sha256": "9ff97c44de1fad926660bd125971dc7eecfd29cf4b848e5d6fb31544e4325dae"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/reuse-e1077.py",
+        "bytes": 4697,
+        "sha256": "65f2538edd0603a19c7325fa5cea0701917b41fd6c12605aa5e731b1b92bea36"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/reuse-e1078.py",
+        "bytes": 3686,
+        "sha256": "c4a764e48480ffe0f6d7139ee32eca52cdad1d8ecbac32403ea26fb81a105eb9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/run-peer32.py",
+        "bytes": 1956,
+        "sha256": "a58894a2ad00acbe0f0fc44d412a2fb6c9f913b4e6d6853ee6885655ccf85427"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/scientific-comparison.py",
+        "bytes": 7326,
+        "sha256": "eebee8c1bfe98bf5256c8ea78e5657c01addc70bee2e712faa2313b247e7099e"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/seal-candidate.py",
+        "bytes": 990,
+        "sha256": "3b87da8efa82ef021a510b41860c3e66ad03c8fbbbb53e8d8f9bc989193d8eb5"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/setup-bench-tools.py",
+        "bytes": 6111,
+        "sha256": "c3223fb27409f85b9abbdd9e9c6bc3cef79da8f0494caed42a75de2832d13459"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/site_bindings.py",
+        "bytes": 3876,
+        "sha256": "4e43497358055a635b6237e64b54f159acf89d46b534cb1a8b57f42ab05d76e0"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/supervise.py",
+        "bytes": 1158,
+        "sha256": "3d3f1aa5320b0c6ac8699cef253cf90e9286398a318ee35900d26bf750c2d569"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/symbolic_exact.py",
+        "bytes": 12453,
+        "sha256": "f8bb661270336f09c39182967e74eb04ba52eeea10f92fab67058df05f384910"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/symbolic_symbolics.jl",
+        "bytes": 2263,
+        "sha256": "bdd13500a5b106578b908ccc418d546703436f9827384f402d1fb299c2f06077"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/symbolic_symengine.cpp",
+        "bytes": 3322,
+        "sha256": "aa1037c585cf3df364183bd91bb035d868736944167dce79f8f3100d5ad31fb1"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/symbolic_sympy.py",
+        "bytes": 2302,
+        "sha256": "a231f8d3b3197e61eee040964fd7cab7f7e61f9862eedde7217f6d422940ee67"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/vf-spatial-ranges.mjs",
+        "bytes": 2950,
+        "sha256": "c334479249df213149cfe51e467f35d51333c62e19f01250a87cf284cade7f33"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/driver/worker.py",
+        "bytes": 3995,
+        "sha256": "24e895d32a8d2d8660b8f3db6b3903a65191c3268c99171cc26fcef0a638b633"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/site/scripts/release-local48/peer_commands.py",
+        "bytes": 8267,
+        "sha256": "22361654fc424bb97e5300b6423c40438f1e12918eaa66d5f5ea12a43ed0ac38"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1694-20261031/site/scripts/release-local48/bench-node.mjs",
+        "bytes": 8779,
+        "sha256": "10da62581059f2c4c640623e4c012539e0e39cc8f767bc468fddc3708273e9f7"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/web/vf-ui/vf-emitted-program-consumer.mjs",
+        "sha256": "43852af380e4a380a4033a4cee3e1c8adf5d6ae715eb46e0f174df151528608c",
+        "bytes": 5517
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/diagnostic-codec.mjs",
+        "sha256": "4d40e856adb14ea683a501aa199a8a3ebcee57eaf809304774f47b9555f09a3a",
+        "bytes": 6868
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/runtime-value-codec.mjs",
+        "sha256": "5ae390063e559179a605980349286e69b32a43f2742c1469280c2a3f8d9cbe7d",
+        "bytes": 5949
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/program-capabilities.mjs",
+        "sha256": "e63e4c63d553e856ad73ffad09b4e8617ed12b036c13391f235d4cf3fb2b9e67",
+        "bytes": 2176
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/node-concurrent.mjs",
+        "sha256": "c8bda8c1f657a69502afb2455051cfd823b254ba8c4c478358eccd75d1d89b8c",
+        "bytes": 2086
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/immutable-host-documents.mjs",
+        "sha256": "6390a6778c5cd55867c9fd21a702ab3f97160dc8beb450adeedf0eaf482f8f13",
+        "bytes": 3461
+      }
+    ],
+    "noProductExecutionByReviewer": true,
+    "observedMonotonic": 319041.946372151
+  },
+  "independentCandidateControlsReview": {
+    "reviewer": "e1695",
+    "subject": "e1697",
+    "status": "ACCEPTED_ACTUAL_AUTHORED_ORDINARY_WORKER_CONTROLS_NOT_FULL_WORKLOAD",
+    "acceptedForOriginalFullValidation": true,
+    "selectionIdentity": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+    "sourceBinding": "d614de8b4f4bec650d5b2caf3e7a6d91654c72af4f77f7d0739e71c71ee19765",
+    "candidateReview": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1695/NEW1697-CANDIDATE-BINDING-REVIEW.json",
+    "controlResult": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/AUTHORED-CONTROLS-RESULT.json",
+      "bytes": 4011,
+      "sha256": "653f0a3ea0f97b5a64c3aaf2e8070f3479e227c52e16362b285d5b3c0357ff39"
+    },
+    "outerJoin": {
+      "name": "authored-ordinary-worker-semantic-controls",
+      "command": [
+        "python3",
+        "/mnt/development/VektorFlow-e1697-20261031/run-authored-controls.py"
+      ],
+      "limit": 600,
+      "cleanupReserve": 420,
+      "env": {
+        "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      "pid": 3018985,
+      "start": 319070.549292614,
+      "exit": 0,
+      "end": 319088.799506001,
+      "elapsedSeconds": 18.250213537015952,
+      "childJoined": true,
+      "reserveRefusal": null
+    },
+    "independentExpectedOutputsAndReceipts": [
+      {
+        "name": "closed-independent-owned-work",
+        "expectedValue": [
+          -1
+        ],
+        "parallel": true,
+        "actualReceipt": {
+          "workers_created": 2,
+          "workers_closed": 2,
+          "operations": {
+            "6": 2,
+            "7": 2
+          }
+        }
+      },
+      {
+        "name": "same-work-cap-one",
+        "expectedValue": [
+          -1
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "entry-loop-retains-existing-lifetime",
+        "expectedValue": [
+          -1,
+          -1
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "tiny-cap-two",
+        "expectedValue": [
+          18
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "ordered-effect",
+        "expectedValue": [
+          7,
+          -1
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "dependent-argument",
+        "expectedValue": [
+          -131072
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "recursive-call-graph",
+        "expectedValue": [
+          2
+        ],
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "first-error-serial-reference",
+        "expectedValue": null,
+        "parallel": false,
+        "actualReceipt": {
+          "workers_created": 0,
+          "workers_closed": 0,
+          "operations": {}
+        }
+      },
+      {
+        "name": "first-error-cancels-nonterminating-later-root",
+        "expectedValue": null,
+        "parallel": true,
+        "actualReceipt": {
+          "workers_created": 2,
+          "workers_closed": 2,
+          "operations": {
+            "6": 2,
+            "7": 1,
+            "8": 1
+          }
+        }
+      }
+    ],
+    "exactAcceptedFinalSourcePins": [
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/README.txt",
+        "bytes": 3920,
+        "sha256": "8d2192f442f3e736cd26559acb9db021928c9dc43b56ea9f43b56b03cd4b6dda"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-dependent.vkf",
+        "bytes": 311,
+        "sha256": "104dd74ca8373a9f04d725a48f84a976b79b3861125bf6b28a52d40534d97083"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-effectful.vkf",
+        "bytes": 315,
+        "sha256": "e7c748b14a18941d4920a3e4a340f15cf3ca2c4cdca815894e474ab38407bde9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-error-cancel.vkf",
+        "bytes": 458,
+        "sha256": "32426bc009eca31d0ab8c3f0e298b7f4d4ac89cbc5d3dd9c5d7c568f16c56d73"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-pair.vkf",
+        "bytes": 299,
+        "sha256": "d7f4106b2f4fa5ee9eb2670bdd3860f5c6147e3260176f409d6355879b68e482"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-recursive.vkf",
+        "bytes": 371,
+        "sha256": "562da333efef2c8ce6ef2b315fc5bfe4b52cce22b40e32a957af89b7a7995b59"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1692-20261031/compiler-source/tests/parallel-wasm-boundary/ordinary-worker-bridge.mjs",
+        "bytes": 4998,
+        "sha256": "ade90f80e72f2979f640260df9a81cc0f88bfcc35357d70366fdaaadc199bf52"
+      }
+    ],
+    "controlsOnlyNotFullOriginalProof": true,
+    "wholeNormalOriginalAdmissionRequiredBeforeSpawn": true,
+    "fullOriginalStageBudgetSeconds": 2100,
+    "noClockResetNoCapCuts": true,
+    "priorFrozenParallelFAILPreserved": true,
+    "noProductExecutionByReviewer": true,
+    "observedMonotonic": 319144.49605386
+  },
+  "independentOriginalResultReview": {
+    "reviewer": "e1698",
+    "subject": "e1697",
+    "status": "PASS_INDEPENDENT_NEW_SELECTION_FULL_ORIGINAL_PARALLEL_AND_SERIAL_PEERS",
+    "acceptedOutcome": "PASS",
+    "selectionIdentity": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+    "job": "preflight.wasm.core.combined-kernels-parallel-large",
+    "receipt": {
+      "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large.json",
+      "bytes": 6879,
+      "sha256": "6ad7226df252d9c3f6699b1db0b9d1a98c866bd508f74e0c8dae5c8582994857"
+    },
+    "fullOriginalSourceAndThreePeerPinsVerified": true,
+    "independentNumericalComparison": [
+      {
+        "language": "vkf",
+        "value": 1725861.452170343,
+        "freshCppReference": 1725861.452170343,
+        "error": 0.0,
+        "originalAllowedBound": 1e-08
+      },
+      {
+        "language": "cpp",
+        "value": 1725861.452170343,
+        "freshCppReference": 1725861.452170343,
+        "error": 0.0,
+        "originalAllowedBound": 1e-08
+      },
+      {
+        "language": "rust",
+        "value": 1725861.452170343,
+        "freshCppReference": 1725861.452170343,
+        "error": 0.0,
+        "originalAllowedBound": 1e-08
+      },
+      {
+        "language": "zig",
+        "value": 1725861.452170343,
+        "freshCppReference": 1725861.452170343,
+        "error": 0.0,
+        "originalAllowedBound": 1e-08
+      }
+    ],
+    "realVKFWorkerReceipt": {
+      "workers_created": 4,
+      "workers_closed": 4,
+      "operations": {
+        "6": 4,
+        "7": 4
+      }
+    },
+    "originalSerialPeersUnchangedAndWorkerFree": true,
+    "allSavedInnerAndControllerJoins": [
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.join.json",
+          "bytes": 845,
+          "sha256": "f723ffe1931a035caef55a11286f8d1430817f8ec475775a4b2f88470119e742"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/node",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/benchmark-oracle.mjs",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle-request.json"
+          ],
+          "pid": 3020876,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stdout",
+            "sha256": "a6563c226757b485cbdc57b73bd8857eb2b10ba9cb149c06e34b6e6584c9531c",
+            "bytes": 81
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.join.json",
+          "bytes": 818,
+          "sha256": "3c1ef0f353f0a7bea9763132bfb87bff60edf932f4a207cf4902874b200dcb6e"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/python3",
+            "-B",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-driver.py",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/request.json"
+          ],
+          "pid": 3019737,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.join.json",
+          "bytes": 1170,
+          "sha256": "4521f3cc0f5328066b73695ba24c186bf2e70ff32ae284413038f0291ba15911"
+        },
+        "join": {
+          "argv": [
+            "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+            "--sysroot",
+            "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot",
+            "--target",
+            "wasm32-unknown-unknown",
+            "-C",
+            "opt-level=3",
+            "-C",
+            "panic=abort",
+            "--crate-type=cdylib",
+            "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+            "-o",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/rust.wasm"
+          ],
+          "pid": 3020757,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stderr",
+            "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69",
+            "bytes": 365
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.join.json",
+          "bytes": 1168,
+          "sha256": "1871c821643b2adec80f2280c6bdc08c87afe35dbca509254db92272efb35ec1"
+        },
+        "join": {
+          "argv": [
+            "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+            "--sysroot",
+            "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot",
+            "--target",
+            "wasm32-unknown-unknown",
+            "-C",
+            "opt-level=3",
+            "-C",
+            "panic=abort",
+            "--crate-type=cdylib",
+            "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+            "-o",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/rust.wasm"
+          ],
+          "pid": 3020783,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stderr",
+            "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69",
+            "bytes": 365
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.join.json",
+          "bytes": 1088,
+          "sha256": "231196f0d31ce25623523c76c1ff6f4091ac337481d428e71000bb92bf5274cd"
+        },
+        "join": {
+          "argv": [
+            "/home/viktor/.local/share/zig/zig-x86_64-linux-0.16.0/zig",
+            "build-exe",
+            "-j1",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig-library.zig",
+            "-target",
+            "wasm32-freestanding",
+            "-O",
+            "ReleaseFast",
+            "-fno-entry",
+            "--export=vkf_benchmark",
+            "-femit-bin=/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig.wasm"
+          ],
+          "pid": 3020816,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.join.json",
+          "bytes": 1086,
+          "sha256": "e0f564581ba8ae010ee8591e33e9947a04ef1abb59877896d255706900e134f5"
+        },
+        "join": {
+          "argv": [
+            "/home/viktor/.local/share/zig/zig-x86_64-linux-0.16.0/zig",
+            "build-exe",
+            "-j1",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig-library.zig",
+            "-target",
+            "wasm32-freestanding",
+            "-O",
+            "ReleaseFast",
+            "-fno-entry",
+            "--export=vkf_benchmark",
+            "-femit-bin=/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig.wasm"
+          ],
+          "pid": 3020834,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.join.json",
+          "bytes": 1089,
+          "sha256": "b56c8e18544d4035d3789ae6d2490d5d51e8c114254398b5c97829496ec3a7fd"
+        },
+        "join": {
+          "argv": [
+            "/usr/share/emscripten/em++",
+            "-O3",
+            "-ffp-contract=off",
+            "-fno-fast-math",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp-library.cpp",
+            "-sSTANDALONE_WASM=1",
+            "--no-entry",
+            "-sEXPORTED_FUNCTIONS=[\"_vkf_benchmark\"]",
+            "-sSTACK_SIZE=1048576",
+            "-o",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp.wasm"
+          ],
+          "pid": 3020620,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.join.json",
+          "bytes": 1087,
+          "sha256": "c426e5d3cfe2ace6eb9a5ef16c6a00b38412d67fe7021fecc48306a2bec3967b"
+        },
+        "join": {
+          "argv": [
+            "/usr/share/emscripten/em++",
+            "-O3",
+            "-ffp-contract=off",
+            "-fno-fast-math",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp-library.cpp",
+            "-sSTANDALONE_WASM=1",
+            "--no-entry",
+            "-sEXPORTED_FUNCTIONS=[\"_vkf_benchmark\"]",
+            "-sSTACK_SIZE=1048576",
+            "-o",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp.wasm"
+          ],
+          "pid": 3020686,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.join.json",
+          "bytes": 819,
+          "sha256": "a141cc71dde3892b3eabf49f5383e7876751b4d0e3b7d067b14675864a73c28f"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/node",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node-request.json"
+          ],
+          "pid": 3019739,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stdout",
+            "sha256": "3559f97482e08bfb9a1f4aef55dcd0ccb243f195b42079c191c3339a6e8572f2",
+            "bytes": 736
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.join.json",
+          "bytes": 843,
+          "sha256": "62b1af23c64dc563a5ca969977f526987188228f8f2565143f274de707648892"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/node",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node-request.json"
+          ],
+          "pid": 3020750,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stdout",
+            "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+            "bytes": 548
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.join.json",
+          "bytes": 843,
+          "sha256": "381ecde4ecf366133ae2c6269236e7228ecbfdf1049fad24102f35460f7463f2"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/node",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node-request.json"
+          ],
+          "pid": 3020850,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stdout",
+            "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+            "bytes": 548
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.join.json",
+          "bytes": 846,
+          "sha256": "807f54964ca3dbfaac3590a7fd797108cd82392f4e41407b4fbefac8b255f76b"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/node",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node-request.json"
+          ],
+          "pid": 3020809,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stdout",
+            "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+            "bytes": 548
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.join.json",
+        "pin": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.join.json",
+          "bytes": 856,
+          "sha256": "ed1a56dbdb5b442a744be3852dc633f3b24bf7dc500068777712cbc3591c2104"
+        },
+        "join": {
+          "argv": [
+            "/usr/bin/python3",
+            "-B",
+            "/mnt/development/VektorFlow-e1697-20261031/driver/bench-job.py",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/bound.json",
+            "preflight.wasm.core.combined-kernels-parallel-large",
+            "/mnt/development/VektorFlow-e1697-20261031/candidate/queue"
+          ],
+          "pid": 3019734,
+          "exit": 0,
+          "waited": true,
+          "stdout": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "stderr": {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        }
+      }
+    ],
+    "normalOuterJoin": {
+      "name": "original-full-parallel",
+      "command": [
+        "python3",
+        "/mnt/development/VektorFlow-e1697-20261031/run-original-full-parallel.py"
+      ],
+      "limit": 780,
+      "cleanupReserve": 1320,
+      "env": {
+        "PATH": "/home/viktor/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      "pid": 3019731,
+      "start": 319172.774613009,
+      "exit": 0,
+      "end": 319332.42474737,
+      "elapsedSeconds": 159.65013453096617,
+      "childJoined": true,
+      "reserveRefusal": null
+    },
+    "wholeOriginalAdmission": {
+      "stage": "ORIGINAL-FULL-PARALLEL",
+      "budgetSeconds": {
+        "originalWasmOuter": 780,
+        "independentReview": 120,
+        "publicationChecks": 120,
+        "push": 120,
+        "pagesAndServedBytes": 660,
+        "cleanup": 300
+      },
+      "requiredSeconds": 2100,
+      "remainingOriginalSeconds": 2136.3688943390152,
+      "observedMonotonic": 319173.351598123,
+      "normalCapsUnchanged": true,
+      "firstFD": {
+        "pid": 3015277,
+        "fd": 9,
+        "inode": 8915659,
+        "acquiredMonotonic": 318371.731771885
+      },
+      "publicBinaryPublication": false
+    },
+    "emittedProgram": {
+      "program": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.json",
+        "bytes": 1909164,
+        "sha256": "34f2958c7277191c1f6c821c774b75e1e63a4fe5ae2da33444b54c4ef2cc054b"
+      },
+      "wasm": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.wasm",
+        "bytes": 401749,
+        "sha256": "d0cfd258a7093866b551c94a7e5bb670bdb6852cd86ba7149511a8841c57203a"
+      },
+      "compilerReportedOK": true,
+      "sourceBinding": "d614de8b4f4bec650d5b2caf3e7a6d91654c72af4f77f7d0739e71c71ee19765",
+      "runtimeValidationPASS": true
+    },
+    "rawFailureReason": null,
+    "rawNodeStderr": "",
+    "workerStartsJoinsAndAllThreePeerOutputsNotEstablished": false,
+    "acceptedTimingSamples": 0,
+    "controlsNotUsedAsFullProof": true,
+    "oldFrozenParallelFAILRetainedSeparately": true,
+    "noOldReceiptCarry": true,
+    "functionalClaimScope": "This exact new candidate and original WASM parallel preflight only; no complete language/SDK/world/GPU claim.",
+    "checkedPins": [
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/combined-kernels-parallel-large.vkf",
+        "bytes": 5633,
+        "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+        "bytes": 97379,
+        "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+        "bytes": 543,
+        "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/cpp.cpp",
+        "bytes": 6852,
+        "sha256": "9e4a70f8911e21d25d43ff7cc42e98c6df6d833939938506f197598fcc3651f0"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+        "bytes": 4691,
+        "sha256": "2c1bf0eb7c93ae6b46449682b508eb634e6605a44fa2af47863904197770c0e6"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/zig.zig",
+        "bytes": 4432,
+        "sha256": "5382e36eceb705deff842b2b10bb54f5c5fc8bfb34c52adf0dd0a31529e09cf9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf.raw.json",
+        "bytes": 1130,
+        "sha256": "21418c50fb748acf35d1bf8d648d51835a7271639e4296db3d37b365ed612e00"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp.raw.json",
+        "bytes": 918,
+        "sha256": "75989cc41126b4e48692514f24820d487a6dc08478db7c0aaac105f1c0e33574"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust.raw.json",
+        "bytes": 918,
+        "sha256": "ed4694a4ddc7b1a6d338f492357b1a129e8e07311dc39e0e9fe66d7d74963ea8"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig.raw.json",
+        "bytes": 918,
+        "sha256": "660983229e03f024b06649ee896dd649d616ab25a980df5a6ec3ff7e12bf984e"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.json",
+        "bytes": 1909164,
+        "sha256": "34f2958c7277191c1f6c821c774b75e1e63a4fe5ae2da33444b54c4ef2cc054b"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.wasm",
+        "bytes": 401749,
+        "sha256": "d0cfd258a7093866b551c94a7e5bb670bdb6852cd86ba7149511a8841c57203a"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.join.json",
+        "bytes": 819,
+        "sha256": "a141cc71dde3892b3eabf49f5383e7876751b4d0e3b7d067b14675864a73c28f"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.join.json",
+        "bytes": 843,
+        "sha256": "62b1af23c64dc563a5ca969977f526987188228f8f2565143f274de707648892"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.join.json",
+        "bytes": 846,
+        "sha256": "807f54964ca3dbfaac3590a7fd797108cd82392f4e41407b4fbefac8b255f76b"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.join.json",
+        "bytes": 843,
+        "sha256": "381ecde4ecf366133ae2c6269236e7228ecbfdf1049fad24102f35460f7463f2"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.join.json",
+        "bytes": 845,
+        "sha256": "f723ffe1931a035caef55a11286f8d1430817f8ec475775a4b2f88470119e742"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stdout",
+        "bytes": 81,
+        "sha256": "a6563c226757b485cbdc57b73bd8857eb2b10ba9cb149c06e34b6e6584c9531c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stderr",
+        "bytes": 365,
+        "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stderr",
+        "bytes": 365,
+        "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stdout",
+        "bytes": 736,
+        "sha256": "3559f97482e08bfb9a1f4aef55dcd0ccb243f195b42079c191c3339a6e8572f2"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stdout",
+        "bytes": 548,
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stdout",
+        "bytes": 548,
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stdout",
+        "bytes": 548,
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "noProductExecutionByReviewer": true,
+    "observedMonotonic": 319382.500860045,
+    "accepted": true,
+    "acceptanceMeaning": "Faithful current full-workload outcome and raw failure custody, not product qualification.",
+    "productQualified": true
+  },
+  "operation": {
+    "id": "preflight.wasm.core.combined-kernels-parallel-large",
+    "status": "PASS",
+    "start": 319173.352509226,
+    "end": 319332.356790393
+  },
+  "matchedPreflights": {
+    "passed": 1,
+    "failed": 0,
+    "unrun": 47,
+    "total": 48
+  },
+  "nativeWasmParity": {
+    "passed": 0,
+    "failed": 0,
+    "unrun": 24,
+    "total": 24
+  },
+  "ledger": [
+    {
+      "id": "preflight.linux.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.core.n-body-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand1",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.n-body-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "PASS"
+    },
+    {
+      "id": "preflight.wasm.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand1",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.spectral-norm-large",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.series",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "phase": "parity",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "phase": "parity",
+      "status": "UNRUN"
+    }
+  ],
+  "receipts": {
+    "preflight.wasm.core.combined-kernels-parallel-large": {
+      "pin": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large.json",
+        "bytes": 6879,
+        "sha256": "6ad7226df252d9c3f6699b1db0b9d1a98c866bd508f74e0c8dae5c8582994857"
+      },
+      "receipt": {
+        "expectation": {
+          "job": "preflight.wasm.core.combined-kernels-parallel-large",
+          "phase": "preflight",
+          "rows": [
+            {
+              "target": "wasm",
+              "suite": "core",
+              "workload": "combined-kernels-parallel-large",
+              "required_samples": 10,
+              "peers": [
+                "cpp",
+                "rust",
+                "zig"
+              ],
+              "status": "UNRUN",
+              "accepted_samples": 0,
+              "evidence": [],
+              "id": "wasm.core.combined-kernels-parallel-large",
+              "engine": "compiler-VM-WASM32",
+              "artifact": "wasm/node/vkf-0.7.5.wasm",
+              "source_pins": [
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/combined-kernels-parallel-large.vkf",
+                  "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+                  "bytes": 5633
+                }
+              ],
+              "fixture_pins": [],
+              "oracle_pins": [
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+                  "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+                  "bytes": 97379
+                },
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+                  "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+                  "bytes": 543
+                }
+              ],
+              "peer_source_pins": [
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/cpp.cpp",
+                  "sha256": "9e4a70f8911e21d25d43ff7cc42e98c6df6d833939938506f197598fcc3651f0",
+                  "bytes": 6852
+                },
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+                  "sha256": "2c1bf0eb7c93ae6b46449682b508eb634e6605a44fa2af47863904197770c0e6",
+                  "bytes": 4691
+                },
+                {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/zig.zig",
+                  "sha256": "5382e36eceb705deff842b2b10bb54f5c5fc8bfb34c52adf0dd0a31529e09cf9",
+                  "bytes": 4432
+                }
+              ],
+              "oracle": {
+                "kind": "original-valuesAgree",
+                "historical_reference": {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+                  "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+                  "bytes": 543
+                },
+                "original_definition": {
+                  "id": "combined-kernels-parallel-large",
+                  "tolerance": 1e-09,
+                  "absoluteTolerance": 1e-08
+                },
+                "current_reference": "REQUIRES_FRESH_MATCHING_PEER_PREFLIGHT_NOT_HISTORICAL_TIMING"
+              },
+              "runtime_boundary": "original Node V8 emitted-WASM invocation; instance/owner cold load separate",
+              "compile_boundary": "original API compile call+JSON decode; owner cold load separate",
+              "warmup_contract": {
+                "runs": 10,
+                "compile_runs": 10,
+                "compile_warmups": 1,
+                "runtime_warmups": 1,
+                "timer": "Existing original helper performance.now compile boundary and invocation boundary",
+                "oracle": "Fresh same-contract peer result; original valuesAgree tolerances; never historical 072 benchmark value"
+              },
+              "new_timing_cell": "-",
+              "pooling": "preserve original suite/target owner, module and instance lifecycle; never merge cold/warm",
+              "reference_artifacts": "fresh source-matched peer outputs required before timing; original algorithms/oracles frozen",
+              "parallel_contract": "two real workers/cores and original joins required; HOST_REQUIRED stays UNRUN",
+              "timing_acceptance": {
+                "relative_limit": 1.5,
+                "authority": {
+                  "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+                  "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+                  "bytes": 97379
+                },
+                "scope": "original strict peer ratio gate; retain valid raw samples and report failure separately"
+              }
+            }
+          ],
+          "component_plan": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+          "timing_contract": {
+            "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/TIMING-CONTRACT.json",
+            "sha256": "f85250ef7ca15fe3d143f38e43e6b8356d8f8cdace40c1ed3ec484a26d023654",
+            "bytes": 2079
+          }
+        },
+        "actual": true,
+        "harness_only": false,
+        "status": "PASS",
+        "source_only": false,
+        "oracle_unchanged": true,
+        "accepted_samples": 0,
+        "observations": [
+          {
+            "row_id": "wasm.core.combined-kernels-parallel-large",
+            "language": "vkf",
+            "value": 1725861.452170343
+          },
+          {
+            "row_id": "wasm.core.combined-kernels-parallel-large",
+            "language": "cpp",
+            "value": 1725861.452170343
+          },
+          {
+            "row_id": "wasm.core.combined-kernels-parallel-large",
+            "language": "rust",
+            "value": 1725861.452170343
+          },
+          {
+            "row_id": "wasm.core.combined-kernels-parallel-large",
+            "language": "zig",
+            "value": 1725861.452170343
+          }
+        ],
+        "raw_evidence": [
+          {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf.raw.json",
+            "sha256": "21418c50fb748acf35d1bf8d648d51835a7271639e4296db3d37b365ed612e00",
+            "bytes": 1130
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp.raw.json",
+            "sha256": "75989cc41126b4e48692514f24820d487a6dc08478db7c0aaac105f1c0e33574",
+            "bytes": 918
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust.raw.json",
+            "sha256": "ed4694a4ddc7b1a6d338f492357b1a129e8e07311dc39e0e9fe66d7d74963ea8",
+            "bytes": 918
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig.raw.json",
+            "sha256": "660983229e03f024b06649ee896dd649d616ab25a980df5a6ec3ff7e12bf984e",
+            "bytes": 918
+          }
+        ],
+        "component_selection": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+        "original_oracle_join": {
+          "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.join.json",
+          "sha256": "f723ffe1931a035caef55a11286f8d1430817f8ec475775a4b2f88470119e742",
+          "bytes": 845
+        }
+      },
+      "executionOwner": "e1697",
+      "oldCandidateReceipt": false
+    }
+  },
+  "programs": {
+    "preflight.wasm.core.combined-kernels-parallel-large": {
+      "program": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.json",
+        "bytes": 1909164,
+        "sha256": "34f2958c7277191c1f6c821c774b75e1e63a4fe5ae2da33444b54c4ef2cc054b"
+      },
+      "wasm": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/program.wasm",
+        "bytes": 401749,
+        "sha256": "d0cfd258a7093866b551c94a7e5bb670bdb6852cd86ba7149511a8841c57203a"
+      },
+      "manifest": {
+        "backend": "bytecode-vm-concurrent",
+        "functions": {
+          "$vkf_main": {
+            "index": 11,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "advance": {
+            "index": 6,
+            "parameters": 2,
+            "resultType": 6
+          },
+          "fannkuch": {
+            "index": 4,
+            "parameters": 1,
+            "resultType": 1
+          },
+          "left_root": {
+            "index": 9,
+            "parameters": 0,
+            "resultType": 2
+          },
+          "multiply_at_av": {
+            "index": 2,
+            "parameters": 1,
+            "resultType": 5
+          },
+          "multiply_atv": {
+            "index": 1,
+            "parameters": 1,
+            "resultType": 5
+          },
+          "multiply_av": {
+            "index": 0,
+            "parameters": 1,
+            "resultType": 5
+          },
+          "n_body": {
+            "index": 8,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "offset_momentum": {
+            "index": 5,
+            "parameters": 2,
+            "resultType": 6
+          },
+          "right_root": {
+            "index": 10,
+            "parameters": 0,
+            "resultType": 2
+          },
+          "spectral_norm": {
+            "index": 3,
+            "parameters": 0,
+            "resultType": 2
+          },
+          "system_kinetic_checksum": {
+            "index": 7,
+            "parameters": 1,
+            "resultType": 2
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 598784,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 52840,
+          "bytecodeLength": 52838,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 53224
+        },
+        "requiredHost": {
+          "handleLifetime": "execution-context",
+          "importModule": "vkf.concurrent",
+          "importName": "invoke",
+          "sharedMemory": true,
+          "webWorkers": true
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13254528,
+          "heapLimit": 80363392,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 53248,
+          "staticEnd": 57016,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      },
+      "hostPins": {
+        "consumer": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/web/vf-ui/vf-emitted-program-consumer.mjs",
+          "sha256": "43852af380e4a380a4033a4cee3e1c8adf5d6ae715eb46e0f174df151528608c",
+          "bytes": 5517
+        },
+        "diagnostic": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/diagnostic-codec.mjs",
+          "sha256": "4d40e856adb14ea683a501aa199a8a3ebcee57eaf809304774f47b9555f09a3a",
+          "bytes": 6868
+        },
+        "codec": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/runtime-value-codec.mjs",
+          "sha256": "5ae390063e559179a605980349286e69b32a43f2742c1469280c2a3f8d9cbe7d",
+          "bytes": 5949
+        },
+        "capabilities": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/program-capabilities.mjs",
+          "sha256": "e63e4c63d553e856ad73ffad09b4e8617ed12b036c13391f235d4cf3fb2b9e67",
+          "bytes": 2176
+        },
+        "concurrent": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/node-concurrent.mjs",
+          "sha256": "c8bda8c1f657a69502afb2455051cfd823b254ba8c4c478358eccd75d1d89b8c",
+          "bytes": 2086
+        },
+        "documents": {
+          "path": "/mnt/development/VektorFlow-e1684-20261031/local48-source-guest-documents/host/immutable-host-documents.mjs",
+          "sha256": "6390a6778c5cd55867c9fd21a702ab3f97160dc8beb450adeedf0eaf482f8f13",
+          "bytes": 3461
+        }
+      }
+    }
+  },
+  "innerControllerJoins": {
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.join.json": {
+      "argv": [
+        "/usr/bin/node",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/benchmark-oracle.mjs",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle-request.json"
+      ],
+      "pid": 3020876,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stdout",
+        "sha256": "a6563c226757b485cbdc57b73bd8857eb2b10ba9cb149c06e34b6e6584c9531c",
+        "bytes": 81
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/original-oracle.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.join.json": {
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-driver.py",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/request.json"
+      ],
+      "pid": 3019737,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/driver.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.join.json": {
+      "argv": [
+        "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+        "--sysroot",
+        "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot",
+        "--target",
+        "wasm32-unknown-unknown",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "panic=abort",
+        "--crate-type=cdylib",
+        "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+        "-o",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/rust.wasm"
+      ],
+      "pid": 3020757,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.-1.stderr",
+        "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69",
+        "bytes": 365
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.join.json": {
+      "argv": [
+        "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot/bin/rustc",
+        "--sysroot",
+        "/mnt/development/VektorFlow-e1627-20261030/rust-wasm/sysroot",
+        "--target",
+        "wasm32-unknown-unknown",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "panic=abort",
+        "--crate-type=cdylib",
+        "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+        "-o",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/rust.wasm"
+      ],
+      "pid": 3020783,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/compile.0.stderr",
+        "sha256": "f7c236abe15963f3699c610307bd55f1e43d5dc3f64dd92ee95034fea3b9ea69",
+        "bytes": 365
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.join.json": {
+      "argv": [
+        "/home/viktor/.local/share/zig/zig-x86_64-linux-0.16.0/zig",
+        "build-exe",
+        "-j1",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig-library.zig",
+        "-target",
+        "wasm32-freestanding",
+        "-O",
+        "ReleaseFast",
+        "-fno-entry",
+        "--export=vkf_benchmark",
+        "-femit-bin=/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig.wasm"
+      ],
+      "pid": 3020816,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.-1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.join.json": {
+      "argv": [
+        "/home/viktor/.local/share/zig/zig-x86_64-linux-0.16.0/zig",
+        "build-exe",
+        "-j1",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig-library.zig",
+        "-target",
+        "wasm32-freestanding",
+        "-O",
+        "ReleaseFast",
+        "-fno-entry",
+        "--export=vkf_benchmark",
+        "-femit-bin=/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/zig.wasm"
+      ],
+      "pid": 3020834,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/compile.0.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.join.json": {
+      "argv": [
+        "/usr/share/emscripten/em++",
+        "-O3",
+        "-ffp-contract=off",
+        "-fno-fast-math",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp-library.cpp",
+        "-sSTANDALONE_WASM=1",
+        "--no-entry",
+        "-sEXPORTED_FUNCTIONS=[\"_vkf_benchmark\"]",
+        "-sSTACK_SIZE=1048576",
+        "-o",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp.wasm"
+      ],
+      "pid": 3020620,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.-1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.join.json": {
+      "argv": [
+        "/usr/share/emscripten/em++",
+        "-O3",
+        "-ffp-contract=off",
+        "-fno-fast-math",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp-library.cpp",
+        "-sSTANDALONE_WASM=1",
+        "--no-entry",
+        "-sEXPORTED_FUNCTIONS=[\"_vkf_benchmark\"]",
+        "-sSTACK_SIZE=1048576",
+        "-o",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/cpp.wasm"
+      ],
+      "pid": 3020686,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/compile.0.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.join.json": {
+      "argv": [
+        "/usr/bin/node",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node-request.json"
+      ],
+      "pid": 3019739,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stdout",
+        "sha256": "3559f97482e08bfb9a1f4aef55dcd0ccb243f195b42079c191c3339a6e8572f2",
+        "bytes": 736
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/vkf/node.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.join.json": {
+      "argv": [
+        "/usr/bin/node",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node-request.json"
+      ],
+      "pid": 3020750,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stdout",
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+        "bytes": 548
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/cpp/runtime/node.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.join.json": {
+      "argv": [
+        "/usr/bin/node",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node-request.json"
+      ],
+      "pid": 3020850,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stdout",
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+        "bytes": 548
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/zig/runtime/node.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.join.json": {
+      "argv": [
+        "/usr/bin/node",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-node.mjs",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node-request.json"
+      ],
+      "pid": 3020809,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stdout",
+        "sha256": "7ccc25fb4d5d15038490563a24da16ff41e49317bcab3a88bb5575f0bf4fce0c",
+        "bytes": 548
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/candidate/queue/preflight.wasm.core.combined-kernels-parallel-large/rust/runtime/node.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "controller/preflight.wasm.core.combined-kernels-parallel-large.join.json": {
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-job.py",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/bound.json",
+        "preflight.wasm.core.combined-kernels-parallel-large",
+        "/mnt/development/VektorFlow-e1697-20261031/candidate/queue"
+      ],
+      "pid": 3019734,
+      "exit": 0,
+      "waited": true,
+      "stdout": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/mnt/development/VektorFlow-e1697-20261031/controller/preflight.wasm.core.combined-kernels-parallel-large.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  "originalContract": {
+    "job": {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "needs": [],
+      "expectation": {
+        "job": "preflight.wasm.core.combined-kernels-parallel-large",
+        "phase": "preflight",
+        "rows": [
+          {
+            "target": "wasm",
+            "suite": "core",
+            "workload": "combined-kernels-parallel-large",
+            "required_samples": 10,
+            "peers": [
+              "cpp",
+              "rust",
+              "zig"
+            ],
+            "status": "UNRUN",
+            "accepted_samples": 0,
+            "evidence": [],
+            "id": "wasm.core.combined-kernels-parallel-large",
+            "engine": "compiler-VM-WASM32",
+            "artifact": "wasm/node/vkf-0.7.5.wasm",
+            "source_pins": [
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/selected/wasm/combined-kernels-parallel-large.vkf",
+                "sha256": "2d0d9e0a6b2d7a6e99cc46fea9ab15f0006bda5fa3602bd8609ba1b452316e48",
+                "bytes": 5633
+              }
+            ],
+            "fixture_pins": [],
+            "oracle_pins": [
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+                "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+                "bytes": 97379
+              },
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+                "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+                "bytes": 543
+              }
+            ],
+            "peer_source_pins": [
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/cpp.cpp",
+                "sha256": "9e4a70f8911e21d25d43ff7cc42e98c6df6d833939938506f197598fcc3651f0",
+                "bytes": 6852
+              },
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/rust.rs",
+                "sha256": "2c1bf0eb7c93ae6b46449682b508eb634e6605a44fa2af47863904197770c0e6",
+                "bytes": 4691
+              },
+              {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/published/combined-kernels-large/zig.zig",
+                "sha256": "5382e36eceb705deff842b2b10bb54f5c5fc8bfb34c52adf0dd0a31529e09cf9",
+                "bytes": 4432
+              }
+            ],
+            "oracle": {
+              "kind": "original-valuesAgree",
+              "historical_reference": {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/references/combined-kernels-parallel-large.json",
+                "sha256": "d7006cbf028b3ff1e8c6a0b82d09f2f87f678a470171ee89fc62ee0f3a5be0c9",
+                "bytes": 543
+              },
+              "original_definition": {
+                "id": "combined-kernels-parallel-large",
+                "tolerance": 1e-09,
+                "absoluteTolerance": 1e-08
+              },
+              "current_reference": "REQUIRES_FRESH_MATCHING_PEER_PREFLIGHT_NOT_HISTORICAL_TIMING"
+            },
+            "runtime_boundary": "original Node V8 emitted-WASM invocation; instance/owner cold load separate",
+            "compile_boundary": "original API compile call+JSON decode; owner cold load separate",
+            "warmup_contract": {
+              "runs": 10,
+              "compile_runs": 10,
+              "compile_warmups": 1,
+              "runtime_warmups": 1,
+              "timer": "Existing original helper performance.now compile boundary and invocation boundary",
+              "oracle": "Fresh same-contract peer result; original valuesAgree tolerances; never historical 072 benchmark value"
+            },
+            "new_timing_cell": "-",
+            "pooling": "preserve original suite/target owner, module and instance lifecycle; never merge cold/warm",
+            "reference_artifacts": "fresh source-matched peer outputs required before timing; original algorithms/oracles frozen",
+            "parallel_contract": "two real workers/cores and original joins required; HOST_REQUIRED stays UNRUN",
+            "timing_acceptance": {
+              "relative_limit": 1.5,
+              "authority": {
+                "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/harness/benchmarks/core-comparison/run.mjs",
+                "sha256": "4b09abee5994995630b4564857c20afb92385f7598e5952c793df59fe22c825d",
+                "bytes": 97379
+              },
+              "scope": "original strict peer ratio gate; retain valid raw samples and report failure separately"
+            }
+          }
+        ],
+        "component_plan": "fa91cb7b68209cce1371ce18a3f003579ece6ecc1681004fc9b3e746cd10fab7",
+        "timing_contract": {
+          "path": "/mnt/development/VektorFlow-e1118-20261026/corpus/TIMING-CONTRACT.json",
+          "sha256": "f85250ef7ca15fe3d143f38e43e6b8356d8f8cdace40c1ed3ec484a26d023654",
+          "bytes": 2079
+        }
+      },
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/development/VektorFlow-e1697-20261031/driver/bench-job.py",
+        "{bound_manifest}",
+        "preflight.wasm.core.combined-kernels-parallel-large",
+        "{queue}"
+      ],
+      "status": "UNRUN"
+    },
+    "normalCaps": {
+      "defaultChild": 600,
+      "compile": 1200,
+      "nativeStage": 1290,
+      "nativeOuter": 1380,
+      "wasmStage": 690,
+      "wasmOuter": 780,
+      "parity": 90,
+      "driver": 2400
+    },
+    "sourceAlgorithmPopulationIterationsAndOutputUnchanged": true,
+    "peersRemainSerial": true,
+    "comparativeTiming": false
+  },
+  "originalAdmission": {
+    "stage": "ORIGINAL-FULL-PARALLEL",
+    "budgetSeconds": {
+      "originalWasmOuter": 780,
+      "independentReview": 120,
+      "publicationChecks": 120,
+      "push": 120,
+      "pagesAndServedBytes": 660,
+      "cleanup": 300
+    },
+    "requiredSeconds": 2100,
+    "remainingOriginalSeconds": 2136.3688943390152,
+    "observedMonotonic": 319173.351598123,
+    "normalCapsUnchanged": true,
+    "firstFD": {
+      "pid": 3015277,
+      "fd": 9,
+      "inode": 8915659,
+      "acquiredMonotonic": 318371.731771885
+    },
+    "publicBinaryPublication": false
+  },
+  "originalClock": {
+    "worker": "e1697",
+    "originalChat": {
+      "name": "e1697",
+      "threadId": "01a18fca-cec0-7081-b46d-38be4e4849fc",
+      "cwd": "/home/viktor/Projects/Vektor Flow",
+      "verifiedServerProject": "/home/viktor/Projects/Vektor Flow",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high",
+      "modelAuthority": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "config": {
+          "model_reasoning_effort": "high"
+        },
+        "authority_id": "user-e1390-20261027T213253.062166Z",
+        "effective": true,
+        "effective_epoch": 1793136773.0621665,
+        "effective_utc": "2026-10-27T21:32:53.062166+00:00",
+        "policy_path": "/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json",
+        "worker_transition": "Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption."
+      },
+      "returnedModel": "gpt-6.1-sol",
+      "status": "RUNNING",
+      "role": "SOLE_ACTUAL_MINIMAL_ARRAYLENGTH_AFFECTED_COMPILER_BUILD_AND_WORKER_VALIDATION",
+      "executionAuthority": "SOLE_PRODUCT_EXECUTION_FRESH_CONTINUOUS_FIRST_FD",
+      "order": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/ORDER-e1697.txt",
+      "handover": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/HANDOVER-TO-e1697.txt",
+      "started": "2026-10-31T02:29:55.657889+00:00",
+      "started_epoch": 1793413795.6578887,
+      "started_monotonic": 318309.720489642
+    },
+    "authority": {
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "config": {
+        "model_reasoning_effort": "high"
+      },
+      "authority_id": "user-e1390-20261027T213253.062166Z",
+      "effective": true,
+      "effective_epoch": 1793136773.0621665,
+      "effective_utc": "2026-10-27T21:32:53.062166+00:00",
+      "policy_path": "/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json",
+      "worker_transition": "Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption."
+    },
+    "server": {
+      "thread": {
+        "id": "01a18fca-cec0-7081-b46d-38be4e4849fc",
+        "environments": [
+          {
+            "environmentId": "local",
+            "cwd": "/home/viktor/Projects/Vektor Flow",
+            "runtimeWorkspaceRoots": [
+              "/home/viktor/Projects/Vektor Flow"
+            ]
+          }
+        ],
+        "extra": null,
+        "sessionId": "01a18fca-cec0-7081-b46d-38be4e4849fc",
+        "forkedFromId": null,
+        "parentThreadId": null,
+        "preview": "Read /home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/HANDOVER-TO-e1697.txt. SOLE ACTUAL freshclock/root/FIRSTFD: minimal1696ArrayLength repair affected13+API130 normalbuild/138validreuse; meaningful9controls then FULLoriginal ONLYwhole normalstage fit. Valid affectedobject/build-onlypartial authorized, no capcuts/unsafecombinedadmission/oldPASScarry/PDF/newquota. Final only Done e1697 genuinefinish.\n\nLatest user model authority (/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json): exactly gpt-6.1-sol, reasoning effort high, thread config model_reasoning_effort=high. At 2026-10-27T21:32:53.062166+00:00 authority returns from gpt-6-astra High to gpt-6.1-sol High; this timed user direction supersedes earlier permanent Astra wording. Resolve policy again for every fresh thread/resume/turn via admin_runtime.connect; never hardcode the earlier model. Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption.Latest user model authority (/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json): exactly gpt-6.1-sol, reasoning effort high, thread config model_reasoning_effort=high. At 2026-10-27T21:32:53.062166+00:00 authority returns from gpt-6-astra High to gpt-6.1-sol High; this timed user direction supersedes earlier permanent Astra wording. Resolve policy again for every fresh thread/resume/turn via admin_runtime.connect; never hardcode the earlier model. Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption.",
+        "ephemeral": false,
+        "section": null,
+        "sectionEnteredAt": null,
+        "projectId": null,
+        "historyMode": "paginated",
+        "modelProvider": "openai",
+        "model": "gpt-6.1-sol",
+        "reasoningEffort": "high",
+        "createdAt": 1793413795,
+        "updatedAt": 1793413857,
+        "recencyAt": 1793413795,
+        "status": {
+          "type": "active",
+          "activeFlags": []
+        },
+        "path": "/home/viktor/snap/codex/34/sessions/2026/10/31/rollout-2026-10-31T03-29-55-01a18fca-cec0-7081-b46d-38be4e4849fc.jsonl",
+        "cwd": "/home/viktor/Projects/Vektor Flow",
+        "cliVersion": "0.166.0",
+        "originator": "vkf_existing_worker_supervisor",
+        "source": "vscode",
+        "canAcceptDirectInput": true,
+        "threadSource": null,
+        "agentNickname": null,
+        "agentRole": null,
+        "gitInfo": null,
+        "name": "Vektor Flow e1697 affected ArrayLength compiler build and full workload validation",
+        "daybreakEnabled": null,
+        "turns": []
+      },
+      "readState": {
+        "firstUnread": null,
+        "revision": "initial:01a18fca-cec0-7081-b46d-38be4e4849fc"
+      }
+    },
+    "operationStop": 321309.720489642,
+    "physicalDeadline": 321789.720489642,
+    "finalDeadline": 321909.720489642,
+    "observedMonotonic": 318371.705160864,
+    "adminClientsAfterCall": 0
+  },
+  "firstFD": {
+    "pid": 3015277,
+    "fd": 9,
+    "inode": 8915659,
+    "acquiredMonotonic": 318371.731771885
+  },
+  "oldReceiptsCarried": 0,
+  "comparativeSamples": 0,
+  "ratios": {},
+  "measureJobsExecuted": false,
+  "originalSourcePopulationIterationsOutputOracleUnchanged": true,
+  "originalComparisonPeersRemainSerial": true,
+  "previousReport": "e1694-ordinary-wasm-worker.json",
+  "priorFailuresPreserved": true,
+  "publicCompilerAndUIPackagesUnchanged": true,
+  "privateCompilerBinaryPublished": false,
+  "full075Qualified": false,
+  "stable": false,
+  "complete": false,
+  "observedMonotonic": 319471.46413779
+}

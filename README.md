@@ -5,6 +5,16 @@ The public compiler remains the reviewed 0.7.2 package, pinned byte for byte in
 website changes. Browser checks use explicit software rendering; preserve the
 physical GPU stop.
 
+The 0.7.5 descriptor in `public/preview/0.7.5/current-compiler-release.json`
+designates only its named UI, ordinary retained plotting and browser/Node ESM
+embedding scope as stable. `scoped_release` carries that designation; broad
+preview and full compiler/platform qualification flags remain unchanged. Current
+e1677/e1678 evidence and explicitly accepted unchanged components support this
+scope. The existing archive and all runtime bytes remain unchanged; its bundled
+calculation form is outside the stable scope. The main descriptor uses the
+existing `verified-examples` consumer status. No native SDK, complete language,
+full LaTeX/all-font support, full GPU world or comparative timing is qualified.
+
 ## Current text example
 
 `public/previews/morphing-current/` contains one real-time LaTeX text-unfolding

@@ -33,7 +33,31 @@ for name,digest in expected.items():assert hashlib.sha256((root/'playground/cano
 preview=root/'preview/0.7.5'
 if preview.exists():
  manifest=json.loads((preview/'preview-manifest.json').read_text())
+ # Broad compiler/platform qualification stays false; only the named scope is stable.
  assert manifest['preview'] is True and manifest['stable'] is False
+ current_release=json.loads((preview/'current-compiler-release.json').read_text())
+ assert current_release['preview'] is True and current_release['complete'] is False
+ assert all(current_release[k] is False for k in ['stable','stable_release','release_qualified'])
+ # Both existing website consumers enable this status; package runtime bytes stay pinned.
+ assert current_release['status']=='verified-examples'
+ assert current_release['release_version']=='0.7.5'
+ assert current_release['compiler_source_commit']=='ae0e200708a660b965a98e17e5ed8e1f2c5420a6'
+ assert current_release['frontend_binding']=='4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf'
+ assert current_release['formatter_binding']=='3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03'
+ assert manifest['publication']==current_release['publication_status']=='PUBLISHED_SCOPED_STABLE_UI_PLOTTING_EMBEDDING'
+ scope=current_release['scoped_release']
+ assert scope['version']=='0.7.5' and scope['status']=='stable' and scope['stable'] is True
+ assert scope['components']==['browser-WASM compiler and independent formatter','ordinary retained plotting','Node ESM compiler/guest/formatter embedding']
+ assert all(scope[k] is False for k in ['linuxCompilerSDKQualified','crossTargetParityQualified','comparativeBenchmarksQualified','fullGpuWorldQualified'])
+ assert scope['evidence']=='./verification/e1677-ordinary-ui-compiler-propagation.json'
+ assert scope['additional_evidence']==['./verification/e1678-current-mutable5m-output.json']
+ for name,digest in {
+  'verification/e1677-ordinary-ui-compiler-propagation.json':'23e335aa91e9e3e94860d4b97d38c04262f2cae81058e2e6cd63f295d93f12b1',
+  'verification/e1678-current-mutable5m-output.json':'2a13d8366f36d8a2c60d3db0b4eb21fb45b1a2bd0e974ca5c06ca66b94cf416c',
+  'playground/canonical/formatter.mjs':'e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9',
+  'playground/canonical/formatter.wasm':'14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39',
+  'downloads/vkf-embedding-starter-0.7.5-candidate.tar.gz':'c67ad08e9f3a7840d33324f7ddddc523b35869d56e96678f267c1aa20e1500d6'
+ }.items():assert hashlib.sha256((preview/name).read_bytes()).hexdigest()==digest,name
  assert {str(p.relative_to(preview)) for p in preview.rglob('*') if p.is_file()}=={r['path'] for r in manifest['files']}|{'preview-manifest.json'}
  for row in manifest['files']:
   data=(preview/row['path']).read_bytes()

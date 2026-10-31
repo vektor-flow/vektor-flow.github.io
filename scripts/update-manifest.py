@@ -4,7 +4,8 @@ preview=Path(__file__).resolve().parents[1]/'public/preview/0.7.5'
 if preview.exists():
  p=preview/'preview-manifest.json';m=json.loads(p.read_text())
  compiler=json.loads((preview/'current-compiler-release.json').read_text())
- m['source']='Current candidate preview; selected compiler source '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'; compiler bytes may differ from the historical published source. Qualification is limited to the named evidence in current-compiler-release.json and published result records; no stable release or scale acceptance follows from this inventory.'
+ m['publication']=compiler['publication_status']
+ m['source']='Scoped stable 0.7.5 UI, ordinary retained plotting and browser/Node ESM embedding; selected compiler source '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Stable qualification is limited to scoped_release in current-compiler-release.json and its named current evidence, including explicitly accepted unchanged components. Broad preview/stable flags describe the incomplete full compiler/platform release; this inventory does not extend qualification.'
  m['source_sha256_meaning']='Retained per-row source_sha256 values describe historical source inputs; sha256 describes the current deployed bytes.'
  previous={r['path']:r for r in m['files']};rows=[]
  for f in sorted(preview.rglob('*')):

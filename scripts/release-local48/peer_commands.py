@@ -8,7 +8,16 @@ def commands(row,language,tools,work,source_variants=None):
     def tool(k):
         p=tools.get(k);require(p is not None,'UNRUN unavailable installed peer '+k);verify_pin(p);return p['path']
     if row.get('oracle',{}).get('kind')=='e1201-exact-symbolic':
-        source=Path(__file__).with_name('symbolic_'+language+{'symengine':'.cpp','sympy':'.py','symbolics':'.jl'}[language])
+        # Use the exact selected original/adapted pin, independent of driver relocation.
+        filename='symbolic_'+language+{'symengine':'.cpp','sympy':'.py','symbolics':'.jl'}[language]
+        originals=[p for p in row['peer_source_pins'] if Path(p['path']).name==filename]
+        require(len(originals)==1,'unique original symbolic peer source required')
+        original_source=originals[0];verify_pin(original_source)
+        variant=(source_variants or {}).get(language)
+        if variant:
+            require(variant['original']==original_source,'symbolic adapter original source mismatch')
+        selected_source=variant['adapted'] if variant else original_source
+        source=verify_pin(selected_source)
         actual_source=pin(source)
         if actual_source not in row['peer_source_pins']:
             variant=(source_variants or {}).get(language)
@@ -24,6 +33,14 @@ def commands(row,language,tools,work,source_variants=None):
         if language=='symengine':
             receipt=tools.get('symengine-e1201')
             require(receipt and receipt.get('source')==pin(source),'UNRUN matching expanded SymEngine adapter build receipt missing')
+            variant=(source_variants or {}).get(language)
+            if variant:
+                build_source=variant.get('actual_build_source')
+                require(build_source and receipt.get('original_build_source')==build_source,
+                        'matching SymEngine original build source required')
+                verify_pin(build_source)
+                require(Path(build_source['path']).read_bytes()==source.read_bytes(),
+                        'SymEngine selected adapter/build source bytes differ')
             argv=[tool('symengine-e1201'),id]
         elif language=='sympy':argv=[tool('python-peer-e1201'),str(source),id]
         else:

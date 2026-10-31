@@ -30,7 +30,10 @@ def native_compile(row,selection,run,owner,label):
     run.mkdir(parents=True,exist_ok=False);package=Path(selection['native_package']);cli=package/'bin/vkf-0.7.5'
     shutil.copyfile(verify_pin(row['source_pins'][0]),run/'program.vkf')
     shutil.copyfile(D/'compile-clock.py',run/'compile-clock.py')
-    argv=native_namespace(row,selection,run)+['/usr/bin/python3','-B',str(run/'compile-clock.py'),str(cli),'-b',str(run/'program.vkf'),'-o',str(run/'program'),'--diagnostics']
+    # Preserve the original core helper's auto-policy measurement budget. The
+    # CLI's default total compile budget can expire during frontend work.
+    optimizer_args=['--optimizer-policy','auto','--optimizer-runs','1000','--optimizer-time-limit-ms','60000'] if row['suite']=='core' else []
+    argv=native_namespace(row,selection,run)+['/usr/bin/python3','-B',str(run/'compile-clock.py'),str(cli),'-b',str(run/'program.vkf'),'-o',str(run/'program'),'--diagnostics',*optimizer_args]
     out,elapsed,j=execute(argv,run,label,owner,timeout=1200);clock=__import__('json').loads(out);require(clock['waited'] and clock['exit']==0,'CLI child join');elapsed=clock['compile_ms'];summary=__import__('json').loads(clock['stdout'])
     require(summary.get('artifact_fallback') is False and summary.get('ran') is False,'fallback or implicit run')
     require((run/'program').read_bytes()[:4]==b'\x7fELF','native ELF required')

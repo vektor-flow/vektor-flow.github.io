@@ -12,6 +12,9 @@ assert.equal(fs.fstatSync(Number(process.env.VKF_HEAVY_LOCK_FD)).ino,8915659);
 const require=createRequire(import.meta.url),hash=b=>createHash('sha256').update(b).digest('hex');
 function bytes(p){const b=fs.readFileSync(p.path);assert.equal(hash(b),p.sha256);assert.equal(b.length,p.bytes);return b;}
 const {row,phase,component,host}=req;for(const p of component.files)bytes(p);for(const p of Object.values(host))bytes(p);
+// Original run.mjs's parallel-combined plan keeps matching peers serial.
+// The real worker/start/join/close prerequisite applies to VKF only (e1692
+// explicit user scope correction); all peer output/oracle checks still apply.
 const {diagnosticBoundary}=await import(pathToFileURL(host.diagnostic.path));
 const {decodeOutputStream}=await import(pathToFileURL(host.codec.path));
 const {executeEmittedProgramV1}=await import(pathToFileURL(host.consumer.path));
@@ -88,6 +91,6 @@ finally {
     }
   }
 }
-if(row.parallel_contract){assert.ok(concurrent?.receipt.workers_created>0);assert.equal(concurrent.receipt.workers_created,concurrent.receipt.workers_closed);assert.ok(concurrent.receipt.operations[6]>0);assert.equal(concurrent.receipt.operations[6],concurrent.receipt.operations[7]);}
+if(row.parallel_contract&&!req.peer){assert.ok(concurrent?.receipt.workers_created>0);assert.equal(concurrent.receipt.workers_created,concurrent.receipt.workers_closed);assert.ok(concurrent.receipt.operations[6]>0);assert.equal(concurrent.receipt.operations[6],concurrent.receipt.operations[7]);}
 assert.equal(result.samples_ms.length,count);result.accepted_samples=count;
 fs.writeFileSync(path.join(req.run,'node-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

@@ -48,6 +48,10 @@ def commands(row,language,tools,work,source_variants=None):
             argv=[tool('symbolics-e1201'),'--project='+tools['julia_project'],'--startup-file=no','--history-file=no',str(source),id]
         return dict(run=argv,engine='Linux-native-peer-operation-timer',env={'JULIA_DEPOT_PATH':tools.get('julia_depot',''),'JULIA_PKG_OFFLINE':'true'})
     if suite=='core':
+        # Original core-comparison/run.mjs: the exact two-thread contract is
+        # VKF-only; comparison peers retain their matched SERIAL source/ABI.
+        # User e1692 scope correction restores that authored contract. This
+        # does not grant a VKF worker PASS or alter any peer numerical source.
         extension={'cpp':'cpp','rust':'rs','zig':'zig'}[language]
         src=next(p['path'] for p in row['peer_source_pins'] if Path(p['path']).name==language+'.'+extension)
         original=next(p for p in row['peer_source_pins'] if p['path']==src);verify_pin(original)

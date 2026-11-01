@@ -25,7 +25,15 @@ export async function createAdaptiveNativeLabelBatches({typography,specs,coordin
    need(!input.color||JSON.stringify(input.color)==='[0,0,0,1]','ADAPTIVE_NATIVE_COLOR_PROFILE');
    const spec=Object.freeze({...input,anchor:Object.freeze([...input.anchor])}),run={kind:spec.kind,source:spec.source,display:spec.display??false,...(spec.font_size===undefined?{}:{font_size:spec.font_size})},key=JSON.stringify([typography.engineIdentity,typography.resourceIdentity,run]);
    let g=groups.get(key);if(!g){const lease=await typography.prepare(run);g={id:groups.size,key,lease,labels:[],meshes:new Map(),maxScale:0,bounds:nativeControlBounds(lease,typography.vectors)};groups.set(key,g);}
-   const label={spec,group:g,index:g.labels.length};g.labels.push(label);g.maxScale=Math.max(g.maxScale,spec.scale);labels.push(label);byId.set(spec.id,label);
+   let placed=spec;
+   if(input.anchorFraction!==undefined){
+    need(input.anchorFraction.length===2&&input.anchorFraction.every(x=>Number.isFinite(x)&&x>=0&&x<=1),'ADAPTIVE_NATIVE_ANCHOR');
+    const [ax,ay]=input.anchorFraction,b=g.lease.box,z=spec.scale;
+    // Native item y is down; the instance transform reverses it. Convert
+    // the logical top-left alignment into that renderer's baseline anchor.
+    placed=Object.freeze({...spec,anchor:Object.freeze([spec.anchor[0]-ax*b.width*z,spec.anchor[1]+(ay*(b.height+b.depth)-b.height)*z])});
+   }
+   const label={spec:placed,group:g,index:g.labels.length};g.labels.push(label);g.maxScale=Math.max(g.maxScale,spec.scale);labels.push(label);byId.set(spec.id,label);
    if(labels.length%1000===0)await onProgress({labels:labels.length,distinct:groups.size});
   }
   for(const g of groups.values()){g.instances=new Float32Array(g.labels.length*4);

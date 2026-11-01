@@ -1,4 +1,4 @@
-import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
+import {highlightVkf} from './code-highlight.mjs?v=e04597c91a14531f';
 import {createInlineRunner} from './inline-runner.mjs?v=100ee98814b65a23';
 const form = document.querySelector('#calculation');
 const input = document.querySelector('#number');

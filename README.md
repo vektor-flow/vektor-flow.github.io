@@ -192,7 +192,7 @@ copy together; retain exact source hashes and require fresh qualification.
   order; do not invent block syntax or shorten an escaping callable’s lifetime.
   The homepage spectral calculation and Examples motion solve demonstrate this.
 - A one-line function stays on one line, with no return-channel notation.
-  Multiline functions use explicit return channels. Indented value-binding
+  End a function with its meaningful final expression. Use @: for conditional or early returns and match arms. Indented value-binding
   blocks remain expressions: their last expression supplies the value.
   Preserve spill constructor semantics; a single spill body stays on one line.
 - Treat VKF as VKF. Never run a Python formatter over it. Dots encode spacing
@@ -211,3 +211,59 @@ records keep their original source hashes. Namespace aliases stay in the import
 scope supported by the compiler; computational helper values use the narrowest
 qualified local block. Callable intermediates may share the enclosing value
 computation when the compiler cannot return them from a tighter binding block.
+
+## Current package preparation (2026-11-01, e1816)
+
+The local release preparation branch selects the frozen 4ee3a748 / b459ecbc
+compiler, baf21e1e WASM and independent formatter through
+`scripts/current-package-selection.json`. The matching maintained assembly
+recipe is bootstrap `compositions/current-0.7.5.json`; it preserves all 35 base
+exports and 12 existing explicit component exports. The ba640 color fix and
+original 53 mapping entries are retained; the existing actual math-page mapping
+has 61 entries with the same physical font closure. No component identity
+supplies a whole-package release receipt.
+
+`scripts/current-release-draft.json` is nondeployable source data. The current
+published descriptor and assets have not been promoted. The ordinary actual
+owner must assemble a new root, run the existing archive/install/kernel/gallery,
+current whole-root consumer and applicable native/WASM/browser/Node controls,
+then supply real current evidence and archive pins to the existing verifier.
+The previous 1677/1678 website proofs do not qualify this changed compiler.
+
+The existing starter scripts accept `--preview 0.7.5`; the verifier also takes a
+new extraction directory. They retain the normal example, runtime, worker, style,
+editor and third-party files. The archive's internal runtime descriptor is an
+unqualified snapshot; the final website descriptor carries qualification and
+archive checksum separately, avoiding a checksum cycle. The extracted form
+needs its existing browser check before any form usability claim. The form
+remains outside the established scoped stable designation. Both scripts remain
+unrun by source.
+
+Use the existing main Pages workflow/domain after independent review and actual
+checks, immediately verifying target permissions and current refs. Preserve newer
+remote assets and exact unchanged qualified components. No tag, npm publication,
+new hosting, general native SDK, full GPU world or comparative timing completion
+is inferred from this preparation. The source checkout is sparse and contains
+no assembled package/site or archive. The actual owner materializes its own
+complete site before intake, rather than publishing this source checkout.
+
+## Website review without downloads (2026-11-01)
+
+The user requested a website review before a complete compiler release.
+`scripts/review-site-policy.json` selects this explicit mode. The current-site
+verifier retains runtime identities, all file manifests, retired-asset checks
+and local dependencies. It requires actual affected web, output, copy/edit,
+index-color, mobile and current-copy review evidence. Full package, archive,
+starter, SDK and comparative benchmark qualification belongs to the later
+release path, which remains intact. No download is offered by this review.
+
+`example-output-seeds.json` binds saved output to each exact editable source.
+Source preparation leaves current checks pending. The actual owner must check
+those bytes through the normal compiler and formatter, preserve precision and
+errors, and supply genuine renderer captures for visual output before publishing.
+Browsing does not compile examples. Editing clears saved output; Run replaces it.
+
+Three examples now compare pinned NumPy documentation with VKF. Their upstream
+paths, adaptation notes and BSD license are in `example-sources.json` and
+`numpy-examples-LICENSE.txt`. Other example provenance remains work in progress;
+this first batch does not complete the all-example authoring goal.

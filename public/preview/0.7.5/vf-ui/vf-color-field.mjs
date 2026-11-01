@@ -400,7 +400,9 @@ function sameNumbers(left, right) {
 
 function normalizedWeightedRgb(weights, colors) {
   const total = weights.reduce((sum, weight) => sum + weight, 0);
-  if (total <= 0) return [...(colors[0] || FALLBACK_RGB)];
+  if (!Number.isFinite(total) || total <= 0) {
+    throw new RangeError('Color-field weights must have a finite positive total');
+  }
   return [0, 1, 2].map((channel) => Math.round(colors.reduce(
     (sum, color, index) => sum + (color?.[channel] ?? FALLBACK_RGB[channel]) * weights[index],
     0,
@@ -408,13 +410,14 @@ function normalizedWeightedRgb(weights, colors) {
 }
 
 function positiveWeight(evaluator, variables) {
-  if (typeof evaluator !== 'function') return 0;
-  try {
-    const value = Number(evaluator(variables));
-    return Number.isFinite(value) && value > 0 ? value : 0;
-  } catch {
-    return 0;
+  if (typeof evaluator !== 'function') {
+    throw new TypeError('Color-field weightEvaluator must be a function');
   }
+  const value = Number(evaluator(variables));
+  if (!Number.isFinite(value)) {
+    throw new RangeError('Color-field weight must be finite');
+  }
+  return value > 0 ? value : 0;
 }
 
 function pointToSegmentDistance(point, [from, to]) {

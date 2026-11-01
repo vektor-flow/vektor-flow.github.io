@@ -1,0 +1,465 @@
+{
+  "identity": {
+    "compilerSha256": "03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960",
+    "programSha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+    "compilerSourceBinding": "da110a26af2ed48222b3276b9f22839c5476d8a34a63a8bb1b3332b3ed6594ad",
+    "entrySourceSha256": "2c5ddded9cc1c670b97ff0c3190c5cd8777eb3c6cad0e6d2204b9d2fc45aef67",
+    "catalogSha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
+    "resourceClosureSha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+    "sourceClosureSha256": "aeb5c14dab45a113615377ea3fa5f8120ab3767699f2dce4b1b3aa688d086173",
+    "wasmSha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+    "manifestSha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e",
+    "target": "wasm"
+  },
+  "files": {
+    "wasm": {
+      "url": "labels.wasm",
+      "bytes": 7582475,
+      "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
+    },
+    "manifest": {
+      "url": "labels.json",
+      "bytes": 34892,
+      "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
+    },
+    "catalog": {
+      "url": "catalog.vkfont",
+      "bytes": 16871821,
+      "sha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4"
+    }
+  },
+  "sourceClosure": [
+    {
+      "name": "binary_decimal.vkf",
+      "sha256": "4d8953679f3e72a9c21615233c0f607b44b48514e3e3995a96dbea9d58394e0c"
+    },
+    {
+      "name": "color_numbers.vkf",
+      "sha256": "d021d4b37f3ecb78cb72b1b6892c6725b091268afab1dac0737dbe90b0c2fd01"
+    },
+    {
+      "name": "font_catalog.vkf",
+      "sha256": "aa3017c53ba6df047af4065b70e47fa5774cee705e7e25f4b878ebab1d468408"
+    },
+    {
+      "name": "json_numbers.vkf",
+      "sha256": "12744a9c3d9d70b2bc946f84448bfda9b24eeb9fb5e389b635f505360ee3335a"
+    },
+    {
+      "name": "latex_diagnostics.vkf",
+      "sha256": "78b2223378143daceee600b2218d2a506a46d12ff7b2b6c19bd929bb3b4c0df8"
+    },
+    {
+      "name": "math_arena_import.vkf",
+      "sha256": "2fd88649d78a11fbd72ee78e36f8fe47a179eda377067e1926b2a6d749d15be5"
+    },
+    {
+      "name": "math_arrows.vkf",
+      "sha256": "eabb4a866f5d6da2dca5df07f4f94cab589960ef5afbd1ab41a15d4e36ad167b"
+    },
+    {
+      "name": "math_assembly.vkf",
+      "sha256": "c1a6f9ff1b9b283e795cec7418e241ffdd0445024a3095752827336a54a13b37"
+    },
+    {
+      "name": "math_colors.vkf",
+      "sha256": "12575dd6adba5e4494a6d6f7aaca16aee8ac5ccd56691d35aea4bb41681375d3"
+    },
+    {
+      "name": "math_command_pages.vkf",
+      "sha256": "c012a8476e29ec521f7ad8fe370536e5d5a34bdeee16de3caa456209f0b8d794"
+    },
+    {
+      "name": "math_commands.vkf",
+      "sha256": "21d68396af61847ee9ea420f52e8cf417dc245fe6e13da33b2ef51bbd1841717"
+    },
+    {
+      "name": "math_decorations.vkf",
+      "sha256": "6c6ef9aef439ed5eb4cd067d1bf9b08d3e2b18848cff7af354a4be4f8cece77e"
+    },
+    {
+      "name": "math_destinations.vkf",
+      "sha256": "da05fc8d468852f08c0b39deceb1bf8d2662f42d9f9ccd2a3350662513b25617"
+    },
+    {
+      "name": "math_dimensions.vkf",
+      "sha256": "125cb346b7a56498a3f5b8f03fc6c0540da0e674c4dc24f0d49c210f84044b5b"
+    },
+    {
+      "name": "math_display_width.vkf",
+      "sha256": "5b55820c360a997d6bf510a46021fc631398f396ffab00895d6c36949d494d1a"
+    },
+    {
+      "name": "math_dots.vkf",
+      "sha256": "5463f5e5be60d84d22202804dfd947e0d2b8b4933ed7f15b725ed1ccfd18f6ec"
+    },
+    {
+      "name": "math_draw.vkf",
+      "sha256": "d15f996337965b1f71cbee27dff1101180900b1bef9a2a7cea3d7385c22f1db6"
+    },
+    {
+      "name": "math_effects.vkf",
+      "sha256": "ed4a41ea5713a2fb6a04ac690727d011496bda9befb32ed3db09f80ee482eb28"
+    },
+    {
+      "name": "math_enclosures.vkf",
+      "sha256": "0b40afff342b7a057190e0d11eb7cb9b93b6402bf21e4dff36a0d68918a14058"
+    },
+    {
+      "name": "math_environments.vkf",
+      "sha256": "a5833483b2626a731801a42eadb9960a6603be88395cef5ed9ba0c846ff4b30c"
+    },
+    {
+      "name": "math_equations.vkf",
+      "sha256": "f4bc92796f621699bf8e7544fa7b2cfa63fd331a76416830e93191e0caab9086"
+    },
+    {
+      "name": "math_geometry.vkf",
+      "sha256": "5ca293ed68bd02135ed19cc2d60ecd3896d0a4bbf88a9357ac2ef112522f8bf5"
+    },
+    {
+      "name": "math_glyphs.vkf",
+      "sha256": "e82384b6ad4ceff98542b7d42f6cdeadd573aedda7e0c942cc93f529e1a84b62"
+    },
+    {
+      "name": "math_layout.vkf",
+      "sha256": "e47a9c9d4259c0427f712d6f37fb45fe874abbf68d108b5f664ff06c54d362ea"
+    },
+    {
+      "name": "math_layout_kernel.vkf",
+      "sha256": "2c5ddded9cc1c670b97ff0c3190c5cd8777eb3c6cad0e6d2204b9d2fc45aef67"
+    },
+    {
+      "name": "math_matrices.vkf",
+      "sha256": "eddfa1aba6de3fd937e4a5979237414e7db693db3925bcba152985781d657c32"
+    },
+    {
+      "name": "math_measurements.vkf",
+      "sha256": "03088936c35f59735abf814acf9016460d02f9d4ffd638c1a29529f5ed4dca58"
+    },
+    {
+      "name": "math_metadata.vkf",
+      "sha256": "5833b7717e38efc9f4a0a132e8fe64f3ef98cf3965b4058d962e5bc8870d2726"
+    },
+    {
+      "name": "math_middle.vkf",
+      "sha256": "a4f908a915d4fbe31fe6f31272aaa2ba8e0579db48fe48c991c6f568be9ed041"
+    },
+    {
+      "name": "math_modulo.vkf",
+      "sha256": "b38454eddc4bba130c2fc1e14d1b8c8d8d1f3645b6364bd12b89d320f8bcbd13"
+    },
+    {
+      "name": "math_package_fragments.vkf",
+      "sha256": "be427dd7d82814813800efc42708d7485dd9c63ca468b0c58636fbe6442d8212"
+    },
+    {
+      "name": "math_packages.vkf",
+      "sha256": "b86177a64818f016fa6a58b4d52e1d1155667a16fb3713a89e07ff769baaa134"
+    },
+    {
+      "name": "math_paragraph_nodes.vkf",
+      "sha256": "5bdce4e208d6acd7a6aef8b9ba15456bebfeece60697c5a8e33ec0a960547fa3"
+    },
+    {
+      "name": "math_parser.vkf",
+      "sha256": "4f33269f1c912b9cb71aec0e4044ac18db3a020c0f2f757508db58cec3f3176b"
+    },
+    {
+      "name": "math_profiles.vkf",
+      "sha256": "4adfa90e31390ee4f21ca4be1f3f4cbec5d4b9f9a9a50f0a7b83589391c39cff"
+    },
+    {
+      "name": "math_qed.vkf",
+      "sha256": "5b0660d62ffaf96bc91b8d8d8b531d4041aae32967727f4a9081c771adabc143"
+    },
+    {
+      "name": "math_qed_actions.vkf",
+      "sha256": "23583d1464da263ce20c54b5f469cdb2a264c0cbf54637ea5cf2f4c53c09bb41"
+    },
+    {
+      "name": "math_qed_tag_leaves.vkf",
+      "sha256": "d03c7fa6b74b90198083194a18714fd5b4e6655060e650d9423a89c023cb5d38"
+    },
+    {
+      "name": "math_quotient.vkf",
+      "sha256": "cefed04787eb83a4982f80c48a40ef59244ce11a9cde235975cac1ca358c624e"
+    },
+    {
+      "name": "math_references.vkf",
+      "sha256": "6e6ffbb4e4682860692101f23e9b4dd820be430deac5e57ab08afe07c0a7c3d6"
+    },
+    {
+      "name": "math_retained_directory.vkf",
+      "sha256": "a10f57e95f43bbe0e3468570b29eb4960ebf431cded1c4e907e75158e3063022"
+    },
+    {
+      "name": "math_subtrees.vkf",
+      "sha256": "34217b79947230b366d34d066e57e082290cc925c3263d9d52126026259adf6a"
+    },
+    {
+      "name": "math_tags.vkf",
+      "sha256": "3ae8de18cac4fadef02c0e2b4e2b572b5d12b10c9a8937e293c2d59f73d42792"
+    },
+    {
+      "name": "math_tex_origins.vkf",
+      "sha256": "25af6ebe974bd8100563dbf86eb52456e5f6d5eb10094b4e4c6517a1471a5fe8"
+    },
+    {
+      "name": "math_text.vkf",
+      "sha256": "001aacbdbd5ea5b8c262871a8ddaf4a506376f06f6e58419fb394229597d9d42"
+    },
+    {
+      "name": "math_text_layout.vkf",
+      "sha256": "8510f7327895fb1a45903ec2ca768db90e01aae6375abd473ae8d5db338c6782"
+    },
+    {
+      "name": "math_tokens.vkf",
+      "sha256": "117e4e399c39df80316485d953f13318eeeaf56d964cea323c24abd125fdc08b"
+    },
+    {
+      "name": "pdf_resources.vkf",
+      "sha256": "0eca420890a61125983b27abae36a8e89c37b2b50b1a02dc7f788d4455b7e0c0"
+    },
+    {
+      "name": "pdf_syntax.vkf",
+      "sha256": "509e1d9c2d543341ed1d18668b86cfdeb7231dcc3e83c050cecb6c028494df9e"
+    },
+    {
+      "name": "resource_json.vkf",
+      "sha256": "283dd0b93f3c8d97346b3f747d670fdc223724efc390f54ef9798afcc7ce4e77"
+    },
+    {
+      "name": "resource_numbers.vkf",
+      "sha256": "c30cbe6f62cc1122d3d2936ba96f63a667514632a22c0cd40d7d4860efe0091b"
+    },
+    {
+      "name": "tex_groups.vkf",
+      "sha256": "62301635aca14445af6956a08172980f19d901d972afc1198afddfc40207d32e"
+    },
+    {
+      "name": "tex_numeric.vkf",
+      "sha256": "d13951d7d7cb222adc794d193c5459ad785c76a6956a28c5f2ff4df66991d8f6"
+    },
+    {
+      "name": "tex_origin_tape.vkf",
+      "sha256": "5190460976d2b3b06d296e6a3b932f0cdb535caf54678cdcbb3f97f96409958e"
+    },
+    {
+      "name": "tex_text.vkf",
+      "sha256": "f9f2b4f2cac750c1a108f86ce88a40fdff1da77885989857280bb98bebcd14ea"
+    },
+    {
+      "name": "text_chunks.vkf",
+      "sha256": "bf2090bbb16e49f94b603773da6a661fe6f17e89f784da63ec84886b92c7dca3"
+    },
+    {
+      "name": "unit_factors.vkf",
+      "sha256": "1fac1f140f973509333e1279a0b527829e782b6db5abcd7ebb0edbcd49d3b622"
+    },
+    {
+      "name": "unit_numbers.vkf",
+      "sha256": "1fb92623339814db4657977fad1864a47e94519e8942c73bb18cdc0a2cb17944"
+    },
+    {
+      "name": "unit_stream.vkf",
+      "sha256": "9ddf14158b502895411224e18985bf1f40a56dc6f88edbfee49e83e305f15089"
+    },
+    {
+      "name": "unit_symbols.vkf",
+      "sha256": "e594bac7036c3005f65dfb89b78c865184ba6f93787b1b3cd726113199c3c05e"
+    },
+    {
+      "name": "unit_syntax.vkf",
+      "sha256": "3c920ef709874414826439d4522d9ac2ed63cc4f722f68c340bbe44db2484a76"
+    }
+  ],
+  "compilerInputs": {
+    "directory": "/mnt/development/VektorFlow-e1779-20261031/canonical",
+    "sourceBinding": "da110a26af2ed48222b3276b9f22839c5476d8a34a63a8bb1b3332b3ed6594ad",
+    "files": [
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/compiler-base.mjs",
+        "bytes": 186707,
+        "sha256": "8e6e049b841096a0d838bfed7090f8611b1c8c26b61ba23a77b0c7c39f907f59"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/compiler.data",
+        "bytes": 610405,
+        "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/compiler.mjs",
+        "bytes": 756,
+        "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/compiler.wasm",
+        "bytes": 65687663,
+        "sha256": "03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/formatter.mjs",
+        "bytes": 62804,
+        "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e1779-20261031/canonical/formatter.wasm",
+        "bytes": 1118687,
+        "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+      }
+    ],
+    "bridge": {
+      "path": "/mnt/development/VektorFlow-e1711-20261031/site/public/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+      "bytes": 4014,
+      "sha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493"
+    },
+    "bridgeDependencies": [
+      {
+        "path": "/mnt/development/VektorFlow-e1711-20261031/site/public/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "bytes": 15776,
+        "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+      }
+    ]
+  },
+  "compileProfile": {
+    "native": {
+      "bridge_stages": [
+        {
+          "milliseconds": 2.444046,
+          "stage": "bridge-source-copy"
+        },
+        {
+          "milliseconds": 373941.876454,
+          "stage": "bridge-compiler-call"
+        },
+        {
+          "milliseconds": 12749.837237,
+          "stage": "bridge-response-json-parse"
+        },
+        {
+          "milliseconds": 12789.511433,
+          "stage": "bridge-ir-json"
+        },
+        {
+          "milliseconds": 15.696308,
+          "stage": "bridge-manifest-json"
+        },
+        {
+          "milliseconds": 2075.617311,
+          "stage": "bridge-wasm-hex-decode"
+        },
+        {
+          "milliseconds": 2079.889017,
+          "stage": "bridge-formatter-ir-copy"
+        },
+        {
+          "milliseconds": 1578.34067,
+          "stage": "bridge-output-plan"
+        }
+      ],
+      "browser_ir_json_bytes": 40123668,
+      "browser_manifest_json_bytes": 36248,
+      "browser_wasm_bytes": 7582475,
+      "compiler": {
+        "sizes": {
+          "argument_slot_capacity": 17,
+          "artifact_cache_hit": 0,
+          "bytecode_constants": 2119,
+          "bytecode_functions": 461,
+          "default_argument_slots": 16,
+          "document_arena_bytes": 541728,
+          "execution_body_statements": 1157,
+          "frontend_compile_calls": 1,
+          "mount_arena_bytes": 4198720,
+          "mutable_compile_input": 1,
+          "ordinary_flow_worker_pair": 0,
+          "packaged_module_parse_calls": 358,
+          "required_argument_slots": 17,
+          "response_json_bytes": 55325077,
+          "typed_functions": 430,
+          "wasm_bytes": 7582475
+        },
+        "stages": [
+          {
+            "milliseconds": 4.177565,
+            "stage": "provider-frontend"
+          },
+          {
+            "milliseconds": 2.853884,
+            "stage": "source-prepare"
+          },
+          {
+            "milliseconds": 64.860357,
+            "stage": "source-lex"
+          },
+          {
+            "milliseconds": 68.319153,
+            "stage": "source-parse"
+          },
+          {
+            "milliseconds": 48899.107253,
+            "stage": "source-link"
+          },
+          {
+            "milliseconds": 247626.743637,
+            "stage": "source-semantic-lower"
+          },
+          {
+            "milliseconds": 16875.415788,
+            "stage": "source-context-identity"
+          },
+          {
+            "milliseconds": 0.176042,
+            "stage": "provider-execution-ir"
+          },
+          {
+            "milliseconds": 4680.497309,
+            "stage": "canonical-ir-copy"
+          },
+          {
+            "milliseconds": 2116.293312,
+            "stage": "executable-ir-copy"
+          },
+          {
+            "milliseconds": 13111.307946,
+            "stage": "typed-program-lowering"
+          },
+          {
+            "milliseconds": 16738.110604,
+            "stage": "bytecode-lowering"
+          },
+          {
+            "milliseconds": 0.483208,
+            "stage": "ordinary-flow-worker-bridge"
+          },
+          {
+            "milliseconds": 5642.90084,
+            "stage": "wasm-emission"
+          },
+          {
+            "milliseconds": 1630.582347,
+            "stage": "wasm-hex-transport"
+          },
+          {
+            "milliseconds": 1852.54195,
+            "stage": "manifest"
+          },
+          {
+            "milliseconds": 14146.349004,
+            "stage": "compile-response-json"
+          }
+        ]
+      }
+    },
+    "compilerCallMs": 405709.102251,
+    "transportReadMs": 195.38639900001,
+    "jsParseMs": 326.93421300000045,
+    "wasmCopyMs": 2.797432999999728,
+    "profileReadMs": 3.4504820000147447,
+    "typedIRChars": 40123386,
+    "manifestChars": 36248,
+    "guestWasmBytes": 7582475
+  },
+  "status": "BUILT_NOT_TYPESET_OR_QUALIFIED"
+}

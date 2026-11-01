@@ -1,5 +1,5 @@
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {highlightVkf} from './code-highlight.mjs?v=26542dbe4b226163';
+import {highlightVkf} from './code-highlight.mjs?v=e04597c91a14531f';
 import {createInlineRunner} from './inline-runner.mjs?v=100ee98814b65a23';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
@@ -12,15 +12,9 @@ const runner = ['verified-examples','private-candidate'].includes(release?.statu
 
 // Pages may reload once to establish shared memory. Restore drafts before a
 // Run records its revision, so the first result cannot be mistaken for stale.
-let ready = false;
-if (runner && document.querySelector('.readme-example')) {
-  try { await runner.prewarm(); ready = true; }
-  catch (error) {
-    for (const label of document.querySelectorAll('.readme-example-bar > span')) {
-      label.textContent = error.message;
-    }
-  }
-}
+// Browsing uses source-bound saved output. Package preparation belongs to Run;
+// createInlineRunner.run already performs its normal prewarm when requested.
+const ready = Boolean(runner);
 
 for (const example of document.querySelectorAll('.readme-example')) {
   const source = example.querySelector('.readme-example-source');
@@ -32,10 +26,16 @@ for (const example of document.querySelectorAll('.readme-example')) {
   const workspace = example.querySelector('.readme-example-workspace');
   const resultContainer = example.querySelector('[data-example-result]') ?? workspace;
   const resultHint = example.querySelector('[data-result-hint]');
-  if (output && source.value !== source.defaultValue) output.textContent = '';
+  const savedVisual = example.querySelector('[data-saved-visual]');
+  if (output && source.value !== source.defaultValue) {
+    output.textContent = '';
+    savedVisual?.remove();
+    delete output.dataset.outputOrigin;
+  }
   let revision = 0, busy = false, dispose;
-  const clearScene = () => {
+  const clearScene = (clearSaved = true) => {
     dispose?.(); dispose = undefined;
+    if (clearSaved) savedVisual?.remove();
     if (resultHint) resultHint.hidden = false;
   };
 
@@ -50,14 +50,14 @@ for (const example of document.querySelectorAll('.readme-example')) {
     clearScene();
     refresh();
     if (output) output.textContent = '';
+    if (output) delete output.dataset.outputOrigin;
   });
   source.addEventListener('scroll', refresh);
   if (ready && button && output && workspace) {
     example.dataset.compilerStatus = release.status==='private-candidate' ? 'private-candidate' : example.dataset.verification === 'pending'
       ? 'package-ready-example-unverified' : 'verified-examples';
     const label = example.querySelector('.readme-example-bar > span');
-    if (label) label.textContent = release.status==='private-candidate' ? 'Candidate preview · verification in progress' : example.dataset.verification === 'pending'
-      ? 'New example · interactive verification pending' : 'Editable example';
+    if (label) label.textContent = 'Editable example';
     button.disabled = false;
     button.setAttribute('aria-disabled', 'false');
     button.title = 'Run with the browser compiler';
@@ -70,6 +70,7 @@ for (const example of document.querySelectorAll('.readme-example')) {
       example.setAttribute('aria-busy', 'true');
       clearScene();
       output.textContent = '';
+      output.dataset.outputOrigin = 'run';
       output.dataset.outputKind = 'stdout';
       try {
         const result = await runner.run(source.value);
@@ -95,7 +96,7 @@ for (const example of document.querySelectorAll('.readme-example')) {
       }
     });
   }
-  window.addEventListener('pagehide', clearScene);
+  window.addEventListener('pagehide', () => clearScene(false));
   refresh();
 }
 

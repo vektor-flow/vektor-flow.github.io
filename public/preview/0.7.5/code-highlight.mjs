@@ -1,5 +1,5 @@
 import './vendor/prism/prism-core-1.30.0.min.js';
-import {registerVektorFlowPrism} from './editor/prism-vektorflow.mjs?v=78001a75dd9f8155';
+import {registerVektorFlowPrism} from './editor/prism-vektorflow.mjs?v=81eaa821cb05d661';
 const Prism=globalThis.Prism;
 registerVektorFlowPrism(Prism);
 await Promise.all(['python','javascript','bash'].map(async name=>{

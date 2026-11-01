@@ -133,24 +133,33 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
    stats.newGeometryNodes+=contour.nodes;need(stats.newGeometryNodes<=maxGeometryNodes,'OUTLINE_CACHE_GEOMETRY_WORK');stats.geometryBuilds++;
    insert(geometry,gKey,contour,estimate(contour)+gKey.length*2+256);
   }
-  const phase=samplePhase(s.matrix),key=exactKey([s.shapeKey,phase.matrix,pixelRatio,maxDepth,'exact-dyadic-AA16-region/1']);let template=hit(samples,key);
+  let phase=samplePhase(s.matrix);
+  const points=s.commands.flatMap(c=>{const out=[];for(let k=1;k<c.length;k+=2)out.push([c[k],c[k+1]]);return out;});
+  const coordinates=m=>points.map(p=>[m[0]*p[0]+m[2]*p[1]+m[4],m[1]*p[0]+m[3]*p[1]+m[5]]);
+  let coords=coordinates(phase.matrix),pad=[0,1].map(k=>2-Math.floor(Math.min(...coords.map(p=>p[k]))));
+  let canonical=[...phase.matrix.slice(0,4),phase.matrix[4]+pad[0],phase.matrix[5]+pad[1]];
+  let fullPose=false;
+  if(!canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4]))){
+   // A known numeric limit of translation reuse: adding an integer pad may
+   // lose low terms of the exact binary64 phase. Certify the ORIGINAL pose
+   // instead. Its entire positive hull is still compulsory; no rounded pose,
+   // missing sample proof, or clipped local template is accepted.
+   phase={matrix:[...s.matrix],shift:[0,0],normalized:false};coords=coordinates(s.matrix);pad=[0,0];canonical=[...s.matrix];fullPose=true;
+  }
+  const key=exactKey([s.shapeKey,phase.matrix,pixelRatio,maxDepth,fullPose?'exact-dyadic-AA16-full-pose/1':'exact-dyadic-AA16-region/1']);let template=hit(samples,key);
   if(!template){
    need(stats.sampleBuilds<maxNewProofs,'OUTLINE_CACHE_NEW_PROOF_BUDGET');
    // Shift the canonical physical curve into a positive viewport, certify the
    // ENTIRE hull, and let the real GPU viewport clip translated sample cells.
    // No cache key depends on which part happened to be visible last frame.
-   const points=s.commands.flatMap(c=>{const out=[];for(let k=1;k<c.length;k+=2)out.push([c[k],c[k+1]]);return out;});
-   const coords=points.map(p=>[phase.matrix[0]*p[0]+phase.matrix[2]*p[1]+phase.matrix[4],phase.matrix[1]*p[0]+phase.matrix[3]*p[1]+phase.matrix[5]]);
-   const pad=[0,1].map(k=>2-Math.floor(Math.min(...coords.map(p=>p[k]))));
-   const canonical=[...phase.matrix.slice(0,4),phase.matrix[4]+pad[0],phase.matrix[5]+pad[1]];
    need(canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
    const extent=[0,1].map(k=>Math.ceil(Math.max(...coords.map(p=>p[k]))+pad[k])+2);
    const nodes=maxNewNodes-stats.newNodes,pixels=maxNewPixels-stats.newPixels;need(nodes>0&&pixels>0,'OUTLINE_CACHE_NEW_WORK_BUDGET');
    const mesh=certifiedNativeRegionMesh(s.commands,canonical,{width:extent[0],height:extent[1],pixelRatio,maxPixels:pixels,maxNodes:nodes,maxDepth,maxTriangles:Math.min(maxTriangles,Math.max(1,Math.floor((maxBytes-bytes)/1024)))});
-   const [x0,y0,x1,y1]=mesh.bounds;need(x0>0&&y0>0&&x1<extent[0]*pixelRatio&&y1<extent[1]*pixelRatio,'OUTLINE_CACHE_UNCLIPPED_PROOF');
+   const [x0,y0,x1,y1]=mesh.bounds;need(x0>0&&y0>0&&x1<extent[0]*pixelRatio&&y1<extent[1]*pixelRatio,'OUTLINE_CACHE_UNCLIPPED_PROOF:'+JSON.stringify({fullPose,bounds:mesh.bounds,extent,canonical,source:s.matrix}));
    need(mesh.triangles.length<=maxTriangles,'OUTLINE_CACHE_TRIANGLES');
    stats.newNodes+=mesh.stats.nodes;stats.newPixels+=(x1-x0)*(y1-y0);stats.sampleBuilds++;
-   template=freeze({commands:s.commands,shapeKey:s.shapeKey,triangles:mesh.triangles,rows:mesh.rows,pad,canonical,pixelRatio,bounds:mesh.bounds,stats:mesh.stats,contour,proof:'exact original cubic/nonzero/AA16'});
+   template=freeze({commands:s.commands,shapeKey:s.shapeKey,triangles:mesh.triangles,rows:mesh.rows,pad,canonical,pixelRatio,bounds:mesh.bounds,stats:mesh.stats,contour,proof:'exact original cubic/nonzero/AA16',fullPose});
    insert(samples,key,template,estimate(template)+key.length*2+256);
   }
   const translation=phase.shift.map((v,k)=>v-template.pad[k]);

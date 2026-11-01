@@ -1,0 +1,10 @@
+# Few Math Labels: new current VKF example.
+view: .ui.viewport
+p0: [[60,80],[65,80]]
+view.add(p: p0_ic, text: "\$x_i^2+a^{n+1}+e^{i\\pi}=0\$", color: [0,0,0,1], label_color: [0,0,0,1], anchor: [0,0])
+p1: [[60,200],[65,200]]
+view.add(p: p1_ic, text: "\$\\frac{a}{b}\$", color: [0,0,0,1], label_color: [0,0,0,1], anchor: [0,0])
+p2: [[60,320],[65,320]]
+view.add(p: p2_ic, text: "\$\\alpha+x_i\$", color: [0,0,0,1], label_color: [0,0,0,1], anchor: [0,0])
+view.push()
+view.show()

@@ -75,6 +75,7 @@
   var _geomTextFollow = Object.create(null);
   var _mathTextHtmlCache = Object.create(null);
   var _nativeLabelRendererFactory = null;
+  var _nativeMathLabelInstaller = null;
   var _nativeLabelCleanup = new Set();
   var _vfPointerStreamInflight = false;
   var _vfPointerStreamPending = null;
@@ -11696,6 +11697,8 @@
     _nativeLabelCleanup.add(joined);
     joined.then(function() {_nativeLabelCleanup.delete(joined);}, function() {});
     rec.nativeLabelLayer = null;
+    rec.compiledMathRequest = null;
+    if (rec.compiledMathHost) {rec.compiledMathHost.remove();rec.compiledMathHost=null;}
     rec.nativeLabelReady = null;
     return joined;
   }
@@ -11714,6 +11717,7 @@
     return rec ? {
       ready: rec.nativeLabelReady,
       statistics: rec.nativeLabelLayer ? rec.nativeLabelLayer.statistics() : {status:rec.nativeLabelError ? "FAILED" : "UNMOUNTED",error:rec.nativeLabelError || null},
+      sourceSnapshot: rec.nativeLabelLayer ? function() {return rec.nativeLabelLayer.renderer.nativeSourceSnapshot();} : null,
       canvas: rec.nativeLabelLayer && rec.nativeLabelLayer.canvas
     } : null;
   }
@@ -11725,9 +11729,10 @@
     if (!Array.isArray(camera) || camera.length !== 6 || !camera.every(Number.isFinite))
       throw new TypeError("native label view requires six finite affine values");
     var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
-    if (!geom || !geom.native_labels) throw new Error("current native label scene is unavailable");
+    var request = geom && (geom.native_labels || rec.compiledMathRequest);
+    if (!request) throw new Error("current native label scene is unavailable");
     // The view changes, while the layer retains its own validated content snapshot.
-    geom.native_labels.camera = camera.slice();
+    request.camera = camera.slice();
     rec.nativeLabelReady = rec.nativeLabelLayer.updateView({camera:camera});
     rec.nativeLabelReady.catch(function(error) {vlog("error", "native label view ["+fid+"]: "+String(error.stack || error));});
     return rec.nativeLabelReady;
@@ -11758,7 +11763,6 @@
     var rec = frameRecs[String(fid)];
     if (!rec.nativeLabelLayer) {
       content.textContent = "";
-      rec.textOverlayPool = [];
       rec.nativeLabelLayer = _nativeLabelRendererFactory({container: content});
     }
     var camera = request.camera;
@@ -11795,20 +11799,58 @@
       var contentLayer = layer.__vfGeomTextContent || layer;
       contentLayer.style.transform = "";
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
+      // Standalone math strings are evaluated by the normal compiler, then
+      // passed unchanged to the current VKF math producer. No host typesetter.
+      function standaloneMath(t) {return typeof t.text === "string" && t.text.length > 2 && t.text[0] === "$" && t.text[t.text.length-1] === "$";}
+      var mathTexts = (geomSpec && geomSpec.texts || []).filter(standaloneMath);
+      var hasCompiledMath = !geomSpec.native_labels && mathTexts.length > 0;
+      if (hasCompiledMath) {
+        if (!_nativeMathLabelInstaller) throw new Error("current VKF math label installer is unavailable");
+        var mathRec = frameRecs[String(fid)] || (frameRecs[String(fid)] = {entries:[]});
+        var mathGeneration = mathRec.nativeMathGeneration = (mathRec.nativeMathGeneration || 0) + 1;
+        var snapshot = mathTexts.map(function(t,index) {
+          if ((t.z || 0) !== 0 || t.rotate || t.font_size !== undefined ||
+              (t.color && JSON.stringify(t.color) !== "[0,0,0,1]"))
+            throw new Error("current native math text profile requires black unrotated default-size 2D text");
+          var point = geomTextToPx(t,w,h,geomSpec.camera || null,geomSpec);
+          if (!point) throw new Error("current native math text position is unavailable");
+          var ha = String(t.ha || "center").toLowerCase(), va = String(t.va || "center").toLowerCase();
+          var ap = geomTextAnchorPercent(t,ha,va);
+          return {id:"compiled-math-"+index,kind:"math",source:t.text.slice(1,-1),anchor:[point[0],-point[1]],
+            scale:12/(10*7200/7227),sizeSpace:"world",anchorFraction:[-ap[0]/100,-ap[1]/100]};
+        });
+        mathRec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function() {
+          if (frameRecs[String(fid)] !== mathRec || mathRec.nativeMathGeneration !== mathGeneration || !findFrameEl(String(fid))) return;
+          if (!mathRec.compiledMathHost) {
+            mathRec.compiledMathHost = document.createElement("div");
+            mathRec.compiledMathHost.style.cssText = "position:absolute;inset:0;pointer-events:none";
+            contentLayer.appendChild(mathRec.compiledMathHost);
+          }
+          // Native math owns a sibling overlay. Axis decorations and ordinary
+          // text keep their existing DOM lifecycle and are never discarded.
+          var nativeGeom = {meshes:[],texts:[],native_labels:{specs:snapshot,camera:[1,0,0,-1,0,0]}};
+          mathRec.compiledMathRequest = nativeGeom.native_labels;
+          renderNativeLabelOverlay(fid,mathRec.compiledMathHost,nativeGeom,w,h);
+          return frameRecs[String(fid)].nativeLabelReady;
+        });
+        mathRec.nativeLabelReady.catch(function(error) {mathRec.nativeLabelError=String(error.stack || error);});
+        layer.style.visibility = "visible";
+      }
       if (geomSpec && geomSpec.native_labels) {
         layer.style.visibility = "visible";
         renderNativeLabelOverlay(fid, contentLayer, geomSpec, w, h);
         return;
       }
       var priorNative = frameRecs[String(fid)];
-      if (priorNative && priorNative.nativeLabelLayer) {
+      if (!hasCompiledMath && priorNative) priorNative.nativeMathGeneration = (priorNative.nativeMathGeneration || 0) + 1;
+      if (!hasCompiledMath && priorNative && priorNative.nativeLabelLayer) {
         releaseNativeLabelLayer(priorNative);
         contentLayer.textContent = "";
       }
       var items = [];
       var texts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts : [];
       for (var ti = 0; ti < texts.length; ti += 1) {
-        items.push(texts[ti]);
+        if (!hasCompiledMath || !standaloneMath(texts[ti])) items.push(texts[ti]);
       }
       var meshes = geomSpec && Array.isArray(geomSpec.meshes) ? geomSpec.meshes : [];
       for (var mi = 0; mi < meshes.length; mi += 1) {
@@ -11893,7 +11935,7 @@
       for (var pi = used; pi < pool.length; pi += 1) {
         if (pool[pi]) { pool[pi].style.display = "none"; }
       }
-      layer.style.visibility = used > 0 ? "visible" : "hidden";
+      layer.style.visibility = used > 0 || hasCompiledMath ? "visible" : "hidden";
       updateAxis3DBoundaryLabels(fid);
     } catch (err) {
       if (geomSpec && geomSpec.native_labels) {
@@ -13977,7 +14019,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         scene.meshes = active.meshes.slice();
         scene.texts = active.texts;
         scene.camera = active.camera;
-      } else { scene.meshes = pending.slice(); }
+      } else { scene.meshes = pending.slice(); scene.texts = pending.flatMap(function(m){return m.texts || [];}); }
       if (axisHelper && scene.meshes.indexOf(axisHelper)<0) scene.meshes.unshift(axisHelper);
       if (!_lastDisplayPayload) _lastDisplayPayload = {};
       if (!_lastDisplayPayload.geom) _lastDisplayPayload.geom = {};
@@ -14011,7 +14053,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       constructor(properties, world) {
         this.title = properties.title === undefined ? "" : properties.title;
         if (typeof this.title !== "string") throw new TypeError("View title requires str");
-        this.meshes = pending.slice(); this.texts = []; this.coordinates = Object.create(null);
+        this.meshes = pending.slice(); this.texts = this.meshes.flatMap(function(m){return m.texts || [];}); this.coordinates = Object.create(null);
         this.keys = Object.create(null); this.camera = null;
         own(this, "parent", frameRoot); own(this, "viewport", viewport);
         own(this, "world", world); own(this, "selection", new Set());
@@ -14041,6 +14083,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         var allowed = line ? ["x_u", "y_u", "c", "c_ic", "c_uc", "w", "pickable", "id", "__renderer_line_packet_v1"] :
           ["p_ic", "p_u", "x_i", "y_i", "x", "y", "c", "c_ic", "c_uc", "s", "s_u", "s_mode", "pickable", "id", "__renderer_point_packet_v1"];
         if (v2) allowed = allowed.concat(["p_ic", "p_uc", "edge_bm", "color", "__renderer_line_packet_v2", "__renderer_point_packet_v2"]);
+        allowed = allowed.concat(["text", "label_color", "anchor"]);
         for (var key of Object.keys(args)) if (!allowed.includes(key))
           throw new TypeError("unsupported retained Layer channel " + key);
         var packet = v2 ? (line ? args.__renderer_line_packet_v2 : args.__renderer_point_packet_v2) : (line ? args.__renderer_line_packet_v1 : args.__renderer_point_packet_v1);
@@ -14079,8 +14122,8 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           throw new TypeError("compiled World point packet requires s_mode:data and matching sizes");
         this.type = "field_mesh"; this.topology = line ? "line-list" : "point-list";
         this.render_mode = line ? "line" : "marker_impostor";
-        if (line) { this.edge_width = size; this.curve_path = "open-continuous";
-          this.axis_ticks = evaluatedAxisRanges([{vertices: vertices, mode3d:dimension === 3}]); }
+        this.axis_ticks = evaluatedAxisRanges([{vertices: vertices, mode3d:dimension === 3}]);
+        if (line) { this.edge_width = size; this.curve_path = "open-continuous"; }
         this.marker_space = packet[1]; this.mode3d = dimension === 3;
         this.no_lighting = true; this.casts_shadow = false;
         this.vertex_size = size; this.vertex_scale = sizes.length ? sizes : 1;
@@ -14091,6 +14134,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           this.color = themeDefaultGeometryColor("viridis");
           paintVertexBufferColor(this.vertices, this.color);
         }
+        this.texts = [];
+        if (args.text !== undefined && typeof args.text !== "string") throw new TypeError("retained text requires str");
+        if (args.anchor !== undefined && (!Array.isArray(args.anchor) || args.anchor.length !== 2 || args.anchor.some(function(x){return !Number.isFinite(x) || x<0 || x>1;})))
+          throw new TypeError("retained text anchor requires two values in 0..1");
+        var addText = (text,index) => this.texts.push({text:text,world:line || !!world,pixel:!line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
+          ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.label_color===undefined?{}:{color:args.label_color})});
+        if (args.text !== undefined) addText(args.text,0);
         own(this, "parent", frameRoot); own(this, "viewport", viewport); own(this, "world", world);
         if (args.id !== undefined) own(this, "id", sourceId(args.id));
         own(this, "sourceOperands", Object.freeze({...args}));
@@ -14758,6 +14808,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     setNativeLabelRendererFactory: setNativeLabelRendererFactory,
     joinNativeLabelCleanup: joinNativeLabelCleanup,
     nativeLabelFrameStatus: nativeLabelFrameStatus,
+    setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     updateNativeLabelFrameView: updateNativeLabelFrameView,
     updateNativeLabelFrameAnimation: updateNativeLabelFrameAnimation,
     updateNativeLabelFrameColor: updateNativeLabelFrameColor,

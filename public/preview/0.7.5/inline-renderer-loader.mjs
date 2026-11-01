@@ -31,7 +31,9 @@ const scripts = [
   "vf-ui/geom/vf-geom-wgpu.js",
   "vf-ui/vf-display.js"
 ];
-let pending;
+let pending, mathInstallation;
+export function currentInlineMathLabelEngine() {return mathInstallation;}
+export async function closeInlineMathLabels() {if(mathInstallation){const p=mathInstallation;mathInstallation=undefined;await (await p).close();}}
 export function ensureInlineRenderer() {
   return pending ??= (async () => {
     window.__vfInlineRetainedScene = true;
@@ -50,5 +52,6 @@ export function ensureInlineRenderer() {
         document.head.append(script);
       });
     }
+    VfDisplay.setNativeMathLabelInstaller(() => mathInstallation ??= import('./vf-ui/native-labels/vf-current-wasm-math-labels.mjs').then(m=>m.installCurrentWasmMathLabels()));
   })();
 }

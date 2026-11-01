@@ -1,3 +1,19 @@
+// Native disclosure keeps the phone header in one row and its links reachable.
+for (const menu of document.querySelectorAll('.site-menu')) {
+  const compact = matchMedia('(max-width: 1024px)');
+  const setMode = () => { menu.open = !compact.matches; };
+  setMode();
+  compact.addEventListener('change', setMode);
+  menu.addEventListener('click', event => {
+    if (compact.matches && event.target.closest('nav a')) menu.open = false;
+  });
+  menu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && compact.matches && menu.open) {
+      menu.open = false;
+      menu.querySelector('summary').focus();
+    }
+  });
+}
 // Extend the retained editor with a source-copy control; Run/highlighting stay in their original module.
 for (const example of document.querySelectorAll('.readme-example')) {
   const bar=example.querySelector('.readme-example-bar');

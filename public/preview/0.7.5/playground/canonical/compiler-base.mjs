@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmpdlx5lfpj.js
+// include: /tmp/tmps89js4pc.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -78,7 +78,7 @@ if (ENVIRONMENT_IS_NODE) {
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data';
+      var PACKAGE_NAME = '/mnt/development/VektorFlow-e1812-semantic-demand-identity-actual-20261101/affected-build/compiler.data';
       var REMOTE_PACKAGE_BASE = 'compiler.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
@@ -223,10 +223,10 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data');
+          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e1812-semantic-demand-identity-actual-20261101/affected-build/compiler.data');
 
       };
-      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e1675-20261030/repair-build/compiler.data');
+      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e1812-semantic-demand-identity-actual-20261101/affected-build/compiler.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
@@ -251,7 +251,7 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
 
   })();
 
-// end include: /tmp/tmpdlx5lfpj.js
+// end include: /tmp/tmps89js4pc.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -827,6 +827,11 @@ var tempI64;
 // include: runtime_debug.js
 // end include: runtime_debug.js
 // === Body ===
+
+var ASM_CONSTS = {
+  886048: () => { return Module['vkf075StructuralFlowDiagnostic'] === true; }
+};
+
 // end include: preamble.js
 
 
@@ -3847,6 +3852,37 @@ var tempI64;
       }
     };
 
+  var readEmAsmArgsArray = [];
+  var readEmAsmArgs = (sigPtr, buf) => {
+      readEmAsmArgsArray.length = 0;
+      var ch;
+      // Most arguments are i32s, so shift the buffer pointer so it is a plain
+      // index into HEAP32.
+      while (ch = HEAPU8[sigPtr++]) {
+        // Floats are always passed as doubles, so all types except for 'i'
+        // are 8 bytes and require alignment.
+        var wide = (ch != 105);
+        wide &= (ch != 112);
+        buf += wide && (buf % 8) ? 4 : 0;
+        readEmAsmArgsArray.push(
+          // Special case for pointers under wasm64 or CAN_ADDRESS_2GB mode.
+          ch == 112 ? HEAPU32[((buf)>>2)] :
+          ch == 105 ?
+            HEAP32[((buf)>>2)] :
+            HEAPF64[((buf)>>3)]
+        );
+        buf += wide ? 8 : 4;
+      }
+      return readEmAsmArgsArray;
+    };
+  var runEmAsmFunction = (code, sigPtr, argbuf) => {
+      var args = readEmAsmArgs(sigPtr, argbuf);
+      return ASM_CONSTS[code](...args);
+    };
+  var _emscripten_asm_const_int = (code, sigPtr, argbuf) => {
+      return runEmAsmFunction(code, sigPtr, argbuf);
+    };
+
   var _emscripten_date_now = () => Date.now();
 
   function jsStackTrace() {
@@ -4399,6 +4435,8 @@ var wasmImports = {
   /** @export */
   _tzset_js: __tzset_js,
   /** @export */
+  emscripten_asm_const_int: _emscripten_asm_const_int,
+  /** @export */
   emscripten_date_now: _emscripten_date_now,
   /** @export */
   emscripten_get_callstack: _emscripten_get_callstack,
@@ -4525,6 +4563,8 @@ var wasmImports = {
   /** @export */
   invoke_viiiijii,
   /** @export */
+  invoke_viiiijijii,
+  /** @export */
   invoke_viiij,
   /** @export */
   invoke_viiiji,
@@ -4590,6 +4630,7 @@ var dynCall_jii = Module['dynCall_jii'] = (a0, a1, a2) => (dynCall_jii = Module[
 var dynCall_viiji = Module['dynCall_viiji'] = (a0, a1, a2, a3, a4, a5) => (dynCall_viiji = Module['dynCall_viiji'] = wasmExports['dynCall_viiji'])(a0, a1, a2, a3, a4, a5);
 var dynCall_viiiji = Module['dynCall_viiiji'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viiiji = Module['dynCall_viiiji'] = wasmExports['dynCall_viiiji'])(a0, a1, a2, a3, a4, a5, a6);
 var dynCall_vijiiiiii = Module['dynCall_vijiiiiii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) => (dynCall_vijiiiiii = Module['dynCall_vijiiiiii'] = wasmExports['dynCall_vijiiiiii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+var dynCall_viiiijijii = Module['dynCall_viiiijijii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) => (dynCall_viiiijijii = Module['dynCall_viiiijijii'] = wasmExports['dynCall_viiiijijii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 var dynCall_viiiijii = Module['dynCall_viiiijii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8) => (dynCall_viiiijii = Module['dynCall_viiiijii'] = wasmExports['dynCall_viiiijii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8);
 var dynCall_jiji = Module['dynCall_jiji'] = (a0, a1, a2, a3, a4) => (dynCall_jiji = Module['dynCall_jiji'] = wasmExports['dynCall_jiji'])(a0, a1, a2, a3, a4);
 var dynCall_j = Module['dynCall_j'] = (a0) => (dynCall_j = Module['dynCall_j'] = wasmExports['dynCall_j'])(a0);
@@ -5028,6 +5069,17 @@ function invoke_viidi(index,a1,a2,a3,a4) {
   }
 }
 
+function invoke_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
 function invoke_diid(index,a1,a2,a3) {
   var sp = stackSave();
   try {
@@ -5076,17 +5128,6 @@ function invoke_iiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -5219,6 +5260,17 @@ function invoke_vijiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
   var sp = stackSave();
   try {
     dynCall_vijiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiijijii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
+  var sp = stackSave();
+  try {
+    dynCall_viiiijijii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

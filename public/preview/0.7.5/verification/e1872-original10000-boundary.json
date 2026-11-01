@@ -1,0 +1,133 @@
+{
+  "status": "FAILED_CURRENT_REQUIRED_RENDERER_BEFORE_FIRST_FRAME",
+  "full10000Qualified": false,
+  "firstFailure": "CURRENT_NATIVE_FONT_MAPPING",
+  "afterMappingFailure": "NATIVE_SAMPLE_NODE_BUDGET",
+  "actualNormalAttempt": {
+    "name": "original10000-current-mapped",
+    "command": [
+      "node",
+      "/mnt/development/VektorFlow-e1872-remaining075-actual-20261101/labels10000-mapped-driver.mjs"
+    ],
+    "limit": 1200,
+    "cleanupReserve": 600,
+    "pid": 102663,
+    "start": 451042.501287491,
+    "nestedChildrenJoined": [
+      {
+        "pid": 102698,
+        "status": 0,
+        "joined": true
+      },
+      {
+        "pid": 102700,
+        "status": 0,
+        "joined": true
+      },
+      {
+        "pid": 102722,
+        "status": 15,
+        "joined": true
+      }
+    ],
+    "exit": 1,
+    "end": 451110.280088617,
+    "elapsedSeconds": 67.77880127599929,
+    "childJoined": true,
+    "reserveRefusal": null
+  },
+  "actualNormalError": "Error: NATIVE_SAMPLE_NODE_BUDGET\n    at fail (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:4:32)\n    at require (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:5:35)\n    at regionSegment (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:68:3)\n    at Object.region (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:87:23)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:109:31)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:59)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (http://127.0.0.1:34945/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)",
+  "all200CurrentLayoutsComplete": true,
+  "allOriginalSpecsRetained": true,
+  "diagnostic": {
+    "owner": "e1872",
+    "scope": "Diagnostic replay of actual collected current200 layouts into unchanged required source certifier; not another cold normal path or a full10k pass",
+    "limitsChanged": false,
+    "preparedCensus": {
+      "labels": 10000,
+      "distinctSources": 200,
+      "glyphInstances": 34100,
+      "ruleInstances": 1000,
+      "meshBuilds": 0,
+      "meshBuildMs": 0,
+      "maxMeshLevels": 4,
+      "maxMeshBytes": 134217728,
+      "meshCPUBytes": 0,
+      "toleranceDevice": 0.04,
+      "profile": "default-native9a86-inline10/7/5",
+      "font_size": "explicit unsupported until independent profile qualification",
+      "downsampling": false,
+      "last": null
+    },
+    "outlines": 35100,
+    "status": "REPRODUCED_CURRENT_REQUIRED_CERTIFICATION_FAILURE",
+    "completedOutlines": 625,
+    "failedProvenance": {
+      "kind": "fresh-current-vkf-native-layout",
+      "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+      "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+      "compilerSha256": "03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960",
+      "programSha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+      "catalogSha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
+      "fontRevision": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+      "source": "-7.7",
+      "elementId": "native-label:1203",
+      "itemIndex": 1,
+      "glyphKey": "f1497c2a00516950335fb369bbd64d54fbc0b6cf9722ad11828efac5a1a79008",
+      "nativeItemKey": "text/7",
+      "sourceGeneration": null,
+      "size": [
+        1,
+        1
+      ],
+      "placement": [
+        7.748742216687424,
+        0
+      ],
+      "sourceBounds": [
+        20.47883437110835,
+        6.4203636363636365,
+        0.8302166874221669
+      ]
+    },
+    "failedMatrix": [
+      0.9,
+      0,
+      0,
+      0.9000000000000002,
+      405.49659526774593,
+      590.909090909091
+    ],
+    "error": "Error: NATIVE_SAMPLE_NODE_BUDGET\n    at fail (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:4:32)\n    at require (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:5:35)\n    at regionSegment (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:68:3)\n    at Object.region (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:87:23)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:109:31)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:59)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:113:52)\n    at visit (file:///mnt/development/VektorFlow-e1872-remaining075-actual-20261101/site/public/preview/0.7.5/vf-ui/native-labels/vf-native-certified-samples.mjs:112:44)",
+    "code": "NATIVE_SAMPLE_NODE_BUDGET",
+    "completedStats": {
+      "instances": 626,
+      "geometryBuilds": 6,
+      "sampleBuilds": 373,
+      "hits": 872,
+      "newNodes": 1999903,
+      "newPixels": 8119,
+      "newGeometryNodes": 889,
+      "entries": 379,
+      "bytes": 65417170,
+      "maxEntries": 4096,
+      "maxBytes": 134217728,
+      "maxNewProofs": 4096,
+      "maxNewNodes": 2000000,
+      "maxNewPixels": 1048576
+    },
+    "typographyBeforeClose": {
+      "leases": 0,
+      "cachedFormulas": 200,
+      "closed": false
+    },
+    "joined": true
+  },
+  "unrun": [
+    "first completed10000 frame",
+    "all30 original views and full raster",
+    "original color updates",
+    "full original currentpath ownership/raster correctness"
+  ],
+  "next": "Improve bounded source certification work/cache while retaining exact physical paths, placements and AA16 proof. No budget raise, population reduction or adaptive-candidate substitution."
+}

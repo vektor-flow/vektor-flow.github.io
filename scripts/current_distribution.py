@@ -106,4 +106,7 @@ def verify_current_distribution(preview, release):
     pages = read(pinned(preview, evidence['pagesMode']))
     need(pages['status'] == 'PASS_ACTUAL_PAGES_MODE_RUN_RELOAD_DRAFT_EDIT_COPY_MOBILE' and pages['binding'] == binding and pages['browserClosed'] and pages['serverClosed'] and not pages['pageErrors'], 'actual Pages isolation/Run/reload control')
     need(evidence['firstCaptureWrapperTimeoutPreserved'], 'first failure omitted')
+    if release.get('current_source_progress'):
+        from current_source_progress import verify_current_source_progress
+        verify_current_source_progress(preview, release)
     return {Path(row['path']).name: row['sha256'] for row in compiler['files'] if '/' not in row['path'].removeprefix('playground/canonical/')}

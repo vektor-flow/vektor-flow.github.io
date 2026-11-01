@@ -4,6 +4,9 @@ for (const menu of document.querySelectorAll('.site-menu')) {
   const setMode = () => { menu.open = !compact.matches; };
   setMode();
   compact.addEventListener('change', setMode);
+  document.addEventListener('click', event => {
+    if (compact.matches && menu.open && !menu.contains(event.target)) menu.open = false;
+  });
   menu.addEventListener('click', event => {
     if (compact.matches && event.target.closest('nav a')) menu.open = false;
   });

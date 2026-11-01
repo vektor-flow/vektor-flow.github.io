@@ -37,31 +37,31 @@ num y: x / 2
 :: x
 :: y</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Historical output · Output</span><pre aria-live="polite" class="readme-example-output" data-output-origin="saved" data-seed-source-sha256="5ac2086d1e7ae67c266ee1af946f3167b8bf1aaf7679c3527452cd1b8cfa9ac6">4
 2
-</pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><p class="source-note">Specific example sources are checked separately from the complete category. <a href="syntax-inventory.json">Coverage and specification mapping</a></p></div></details><details class="reference-group" id="functions-calls-and-specialization" open=""><summary><span class="group-number">03</span><span>Scopes, functions and bound arguments</span><small>Shared calculation + callable forms</small></summary><div class="group-body"><h3 id="bound-arguments-and-structural-selectors">Calibrate a reading</h3><p>Keep the helpers for one result inside a directly evaluated scope. This calibration uses <code>g</code> for gain and <code>o</code> for offset; its final record holds three readings.</p><p><code>cal(3, o: 2)</code> calls the function with the default gain and a new offset. <code>cal[g: 2, o: 1]</code> binds the settings, leaving the raw reading open in <code>fit</code>. Binding that last argument gives <code>fixed</code>, called with <code>()</code>.</p><span id="example-syntax-example-2"></span><span id="example-syntax-example-4"></span><span id="example-more-example-3"></span><span id="example-more-example-26"></span><span id="example-syntax-example-5"></span><section class="readme-example" data-compiler-status="loading" data-verification="unrun-latest-compiler" data-vkf-example-id="syntax-example-6" id="example-syntax-example-6"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">result:
-    cal(x, g = 2, o = 1):
-        x * g + o
-    fit: cal[g: 2, o: 1]
-    fixed: fit[x: 3]
-    a: cal(3, o: 2)
-    b: fit(3)
-    c: fixed()
-    (a: a, b: b, c: c)
+</pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><p class="source-note">Specific example sources are checked separately from the complete category. <a href="syntax-inventory.json">Coverage and specification mapping</a></p></div></details><details class="reference-group" id="functions-calls-and-specialization" open=""><summary><span class="group-number">03</span><span>Scopes, functions and bound arguments</span><small>Shared calculation + callable forms</small></summary><div class="group-body"><h3 id="bound-arguments-and-structural-selectors">Calibrate a reading</h3><p>Keep the helpers for one result inside a directly evaluated scope. The <code>calibrate</code> function scales a <code>reading</code> by <code>gain</code>, then adds <code>offset</code>. Its final record holds three readings.</p><p><code>calibrate(3, offset: 2)</code> calls the function with the default gain and a new offset. <code>calibrate[gain: 2, offset: 1]</code> binds the settings in <code>calibration</code>, leaving <code>reading</code> open. Binding that last argument gives <code>fixedReading</code>, called with <code>()</code>.</p><span id="example-syntax-example-2"></span><span id="example-syntax-example-4"></span><span id="example-more-example-3"></span><span id="example-more-example-26"></span><span id="example-syntax-example-5"></span><section class="readme-example" data-compiler-status="loading" data-verification="unrun-latest-compiler" data-vkf-example-id="syntax-example-6" id="example-syntax-example-6"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">result:
+    calibrate(reading, gain = 2, offset = 1):
+        reading * gain + offset
+    calibration: calibrate[gain: 2, offset: 1]
+    fixedReading: calibration[reading: 3]
+    direct: calibrate(3, offset: 2)
+    reused: calibration(3)
+    bound: fixedReading()
+    (direct: direct, reused: reused, bound: bound)
 
-:: result.a
-:: result.b
-:: result.c</code></pre><textarea aria-label="Editable VKF source: Calibrate a reading with a reusable function" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="syntax-example-6" spellcheck="false">result:
-    cal(x, g = 2, o = 1):
-        x * g + o
-    fit: cal[g: 2, o: 1]
-    fixed: fit[x: 3]
-    a: cal(3, o: 2)
-    b: fit(3)
-    c: fixed()
-    (a: a, b: b, c: c)
+:: result.direct
+:: result.reused
+:: result.bound</code></pre><textarea aria-label="Editable VKF source: Calibrate a reading with a reusable function" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="syntax-example-6" spellcheck="false">result:
+    calibrate(reading, gain = 2, offset = 1):
+        reading * gain + offset
+    calibration: calibrate[gain: 2, offset: 1]
+    fixedReading: calibration[reading: 3]
+    direct: calibrate(3, offset: 2)
+    reused: calibration(3)
+    bound: fixedReading()
+    (direct: direct, reused: reused, bound: bound)
 
-:: result.a
-:: result.b
-:: result.c</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p>The final expression supplies <code>result</code>. Its fields <code>a</code>, <code>b</code> and <code>c</code> hold the direct call, reusable calibration and fully bound call. <code>result.a</code> reaches into that record; the helpers stay local. A one-expression function needs no return channel; use <code>@:</code> when returning early.</p><p class="fine-print">This consolidated source is unrun with the latest compiler. Its output will be checked before Run is enabled.</p><h3>Returning a callable</h3><p>A function may return another callable that retains a parameter from its enclosing call. This example also places the function declaration after its first use.</p><span id="example-more-example-10"></span><section class="readme-example" data-compiler-status="loading" data-vkf-example-id="more-example-12" id="example-more-example-12"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf"><span class="token binding variable">f</span><span class="token operator">:</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+:: result.direct
+:: result.reused
+:: result.bound</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p>The final expression supplies <code>result</code>. Its fields <code>direct</code>, <code>reused</code> and <code>bound</code> hold the direct call, reused calibration and fully bound call. <code>result.direct</code> reaches into that record; the helpers stay local. A one-expression function needs no return channel; use <code>@:</code> when returning early.</p><p class="fine-print">This consolidated source is unrun with the latest compiler. Its output will be checked before Run is enabled.</p><h3>Returning a callable</h3><p>A function may return another callable that retains a parameter from its enclosing call. This example also places the function declaration after its first use.</p><span id="example-more-example-10"></span><section class="readme-example" data-compiler-status="loading" data-vkf-example-id="more-example-12" id="example-more-example-12"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf"><span class="token binding variable">f</span><span class="token operator">:</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
 
 <span class="token operator">::</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
 

@@ -144,6 +144,19 @@ def verify_current_review_site(preview, release):
     need(mode['enabled'] is True and mode['downloadsOffered'] is False, 'explicit no-download review mode required')
     need(release['download_packages_offered'] is False and release['release_qualified'] is False, 'review mode cannot claim release/download qualification')
     report = read(pinned(preview, release['current_review_site_evidence']))
+    if mode.get('runEnabled') is False:
+        need(mode.get('latestCompilerRequired') is True and mode.get('latestCompilerRunStatus') == 'UNRUN', 'latest compiler must remain deferred')
+        need(report['status'] == 'PASS_FOCUSED_DISABLED_REVIEW_SITE_WEB_CHECKS', 'disabled review-site controls incomplete')
+        need(report['browserClosed'] and report['serverClosed'] and report['noNewDownloads'], 'disabled review cleanup/download checks incomplete')
+        need(report['latestCompilerRunStatus'] == 'UNRUN', 'disabled review cannot qualify compiler execution')
+        need(all(report['disabledControls'][key] is True for key in ['nativeDisabled', 'keyboardAndSyntheticBlocked', 'pendingRunCleared', 'noWorkerOrCompilerInit', 'copyAndEdit', 'phoneMenuAndFlow', 'anchors']), 'disabled review controls incomplete')
+        for row in report['sourceFreeze']['files']:
+            pinned(preview, row)
+        baseline = read(Path(__file__).with_name('review-site-download-baseline.json'))
+        root = preview.parents[1]
+        actual = {p.relative_to(root).as_posix(): identity(p) for p in root.rglob('*') if p.is_file() and 'downloads' in p.relative_to(root).parts}
+        need(actual == baseline['files'], 'review iteration must preserve existing downloads without adding artifacts')
+        return {Path(row['install']).name: row['sha256'] for row in compiler['files']}
     need(report['status'] == 'PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS', 'current focused review-site controls incomplete')
     need(report['frontendBinding'] == binding and report['sourceCommit'] == source, 'review evidence runtime mismatch')
     need(report['browserClosed'] and report['serverClosed'] and report['noNewDownloads'], 'review browser/download checks incomplete')

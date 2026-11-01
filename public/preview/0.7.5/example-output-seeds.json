@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "SOURCE_BOUND_SAVED_OUTPUT_NEW_COMBINED_SOURCE_ACTUALLY_RUN",
+  "status": "HISTORICAL_UNCHANGED_OUTPUTS_ONLY_NEW_SOURCE_UNRUN_LATEST_COMPILER",
   "seeds": [
     {
       "page": "stdlib.html",
@@ -498,16 +498,6 @@
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
       "visualOutputPending": false,
       "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "syntax.html",
-      "id": "syntax-example-6",
-      "source_sha256": "4a55c96c934f7e4376333652cc91252c608225b2f44455eddeb7ccde85812f97",
-      "stdout": "8\n7\n7\n",
-      "origin": "Observed ordinary current browser Run; full source/output/edit receipt in verification/e1840-editorial-flow-and-examples.json",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
     }
   ],
   "embeddingForm": {
@@ -517,5 +507,5 @@
     "stdout": "25\n",
     "status": "PENDING_CURRENT_ACTUAL_VERIFICATION"
   },
-  "editorial_note": "Retained examples keep unchanged source-bound saved output. The combined syntax-example-6 is bound to the actual e1840 ordinary Run receipt; removed redundant editors have no active seeds."
+  "editorial_note": "Saved outputs for unchanged examples are historical. New consolidated calibration has no saved output or latest compiler proof; all Run controls are disabled before release."
 }

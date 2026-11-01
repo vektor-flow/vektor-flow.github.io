@@ -1,0 +1,44 @@
+{
+  "owner": "e1840",
+  "status": "PENDING_ACTUAL_DISABLED_REVIEW_SITE_WEB_CHECKS",
+  "latestCompilerRunStatus": "UNRUN",
+  "browserClosed": true,
+  "serverClosed": true,
+  "noNewDownloads": true,
+  "disabledControls": {
+    "nativeDisabled": false,
+    "keyboardAndSyntheticBlocked": false,
+    "pendingRunCleared": false,
+    "noWorkerOrCompilerInit": false,
+    "copyAndEdit": false,
+    "phoneMenuAndFlow": false,
+    "anchors": false
+  },
+  "sourceFreeze": {
+    "files": []
+  },
+  "source": {
+    "id": "syntax-example-6",
+    "source": "result:\n    cal(x, g = 2, o = 1):\n        x * g + o\n    fit: cal[g: 2, o: 1]\n    fixed: fit[x: 3]\n    a: cal(3, o: 2)\n    b: fit(3)\n    c: fixed()\n    (a: a, b: b, c: c)\n\n:: result.a\n:: result.b\n:: result.c",
+    "source_sha256": "5f7c825ef03b819f3356d19243e8c8c0a2aec456d0257b6f959f1e2ec5d51172",
+    "status": "UNRUN_LATEST_COMPILER",
+    "maximumLineCharacters": 25,
+    "runtimeProof": null,
+    "observedOutput": null
+  },
+  "historicalOldRuntimeReceipt": {
+    "path": "verification/e1840-editorial-flow-and-examples.json",
+    "bytes": 16841,
+    "sha256": "e59f7ee7f6c7d3eb8244ef0e503cbd012c4d46365a623405de596a9e4a52619b",
+    "use": "Historical only; before latest compiler/disabled-mode authority. Does not qualify current source, controls or latest compiler."
+  },
+  "normalDisabledBrowser": "NOT_RUN_ADMISSION_REFUSED_FULL1200_PLUS600_DOES_NOT_FIT",
+  "normalDisabledBrowserScript": "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/check-disabled.mjs",
+  "requiredActual": [
+    "Native disabled/ARIA/explanation, synthetic click/keyboard, reload pending Run and no compiler/Worker init",
+    "Copy/edit/highlight and actual phone intro/menu/newcombined OPEN+CLOSED at393 and320/desktop",
+    "Current source policy/normalmanifest+verifier/exactindependentreview/nonforcePages/hosted"
+  ],
+  "noPublicationApproval": true,
+  "observedMonotonic": 428167.843201049
+}

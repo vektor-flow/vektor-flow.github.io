@@ -1,13 +1,14 @@
 {
   "schema": "vektor-flow.current-composition/1",
   "qualification": "IDENTITY_ONLY_NOT_A_TEST_RECEIPT",
-  "scope": "Current canonical19, retained browser host/runtime and separately qualified native CLI; not the former assembled root package",
+  "scope": "Current canonical compiler with exact reviewed Node package-owner host delta; retained browser host/runtime and separately qualified native CLI; full release incomplete",
   "components": [
     {
       "id": "browser-node-compiler",
       "identity": {
         "sourceCommit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
-        "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+        "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87"
       },
       "files": [
         {
@@ -47,8 +48,8 @@
         },
         {
           "path": "playground/canonical/package-tools/cli.mjs",
-          "bytes": 4905,
-          "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+          "bytes": 4907,
+          "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
         },
         {
           "path": "playground/canonical/package-tools/git-source.mjs",
@@ -76,6 +77,11 @@
           "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
         },
         {
+          "path": "playground/canonical/package-tools/owner-protection.mjs",
+          "bytes": 2234,
+          "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+        },
+        {
           "path": "playground/canonical/package-tools/ownership.mjs",
           "bytes": 2891,
           "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
@@ -92,8 +98,8 @@
         },
         {
           "path": "playground/canonical/package-tools/publish.mjs",
-          "bytes": 5701,
-          "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+          "bytes": 5939,
+          "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
         },
         {
           "path": "playground/canonical/package-tools/resolve.mjs",
@@ -1167,5 +1173,5 @@
       ]
     }
   ],
-  "inputSha256": "3903eb1d5aefb6da7fef61e01a2c5730ea898da6d9a4938def9694fbff40b0e7"
+  "inputSha256": "afdcc12f72fa60aa21344a91eb28881d3df71e0e201a098dd9f593fd99afe0de"
 }

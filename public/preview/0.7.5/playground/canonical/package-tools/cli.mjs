@@ -25,7 +25,7 @@ refs again. Personal repositories need no shared-registry approval. Ordinary com
 compile emits WASM through the maintained canonical compiler/paired formatter;
 run executes console-only canonical WASM and prints canonical formatted output.
 Programs needing retained/concurrent host capabilities use the existing browser.
-publish sends actual source commit + branch + PR to the existing private repo;
+publish sends source commit + branch + PR to the existing public libraries repo;
 authenticated actor must own the package in the trusted default-branch policy.
 Registration/ownership transfer is a separate maintainer-controlled change.
 Required branch enforcement must be enabled; no direct main write/auto-merge.

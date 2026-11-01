@@ -3,7 +3,7 @@
   "publication": "PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS",
   "preview": true,
   "stable": false,
-  "source": "Current exact canonical compiler, retained browser host/runtime and separately checked Linux CLI downloads. Named correctness evidence is in current_distribution_evidence; shared upload, 3D text overlay, complete SDK/platform and comparative timing remain unqualified.",
+  "source": "Current exact canonical compiler, retained browser host/runtime and separately checked Linux CLI downloads. Named correctness evidence is in current_distribution_evidence; owner-source PR publication is verified separately in current_owner_host when present; original10k renderer, broad 3D text, complete SDK/platform and comparative timing remain unqualified.",
   "files": [
     {
       "path": ".nojekyll",
@@ -28,9 +28,9 @@
     },
     {
       "path": "CURRENT-COMPOSITION.json",
-      "bytes": 44908,
-      "sha256": "61955cfd2dbb2b3597cf386078f3660fb0ee9abb721e36c94a130b35dbd83d51",
-      "previous_sha256": "61955cfd2dbb2b3597cf386078f3660fb0ee9abb721e36c94a130b35dbd83d51"
+      "bytes": 45244,
+      "sha256": "0a1aa77682ce58856aaa4cc82cc34b3ce354ea4c86cc047fa8688830a1d9ca4d",
+      "previous_sha256": "0a1aa77682ce58856aaa4cc82cc34b3ce354ea4c86cc047fa8688830a1d9ca4d"
     },
     {
       "path": "about.html",
@@ -414,10 +414,10 @@
     },
     {
       "path": "current-compiler-release.json",
-      "bytes": 7734,
-      "sha256": "9e60178b246daa4d4c47bc35215e59ee41a4bdc9de8b97d67dccb036b7fa2442",
+      "bytes": 8180,
+      "sha256": "f6473eebd08108f37a9fe975d8fef447714258be0da8c5eb6d9a55a705ce0aa0",
       "source_sha256": "cd4b5405f7d91d0d8ff1fd67c1a76ff70789b6abfcde68ad0cd6f158b889ace5",
-      "previous_sha256": "40f71dfeadc23c1b44f7740641abb8ce604053fffe286b1290646174087228ac"
+      "previous_sha256": "f6473eebd08108f37a9fe975d8fef447714258be0da8c5eb6d9a55a705ce0aa0"
     },
     {
       "path": "current-documentation-examples.mjs",
@@ -428,15 +428,21 @@
     },
     {
       "path": "downloads/current075-checksums.json",
-      "bytes": 1505,
-      "sha256": "252e06b424c992f2b4d4c4eeef0962956014222d2a73f5843d2724ff7f76ab38",
-      "previous_sha256": "252e06b424c992f2b4d4c4eeef0962956014222d2a73f5843d2724ff7f76ab38"
+      "bytes": 1581,
+      "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57",
+      "previous_sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
     },
     {
       "path": "downloads/vkf-canonical-0.7.5-ffca-host63553cc-notices.tar.gz",
       "bytes": 6126822,
       "sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049",
       "previous_sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049"
+    },
+    {
+      "path": "downloads/vkf-canonical-0.7.5-ffca-host96d0ff98-owner.tar.gz",
+      "bytes": 6126786,
+      "sha256": "b54e9d483a2ec1bbe362a4e221df5a991e9e9f3fb8c5c9376e87be452a873433",
+      "previous_sha256": "b54e9d483a2ec1bbe362a4e221df5a991e9e9f3fb8c5c9376e87be452a873433"
     },
     {
       "path": "downloads/vkf-embedding-starter-0.7.5-candidate.tar.gz",
@@ -625,10 +631,10 @@
     },
     {
       "path": "install.html",
-      "bytes": 5370,
-      "sha256": "9660d6d9adf968ecd39aef40c998a2aa203232dc4eb8652bb022da2c90038c45",
+      "bytes": 5618,
+      "sha256": "bbad3fd5eaf0d17a4d91f780361b4353600c1a48cedefdf8e0763a6da1d90a98",
       "source_sha256": "1aecf4ef5e4b45e67f74e940a69cbca38c7de99cea7da59e982df810fba7a2e5",
-      "previous_sha256": "9660d6d9adf968ecd39aef40c998a2aa203232dc4eb8652bb022da2c90038c45"
+      "previous_sha256": "bbad3fd5eaf0d17a4d91f780361b4353600c1a48cedefdf8e0763a6da1d90a98"
     },
     {
       "path": "language.html",
@@ -803,9 +809,9 @@
     },
     {
       "path": "playground/canonical/package-tools/cli.mjs",
-      "bytes": 4905,
-      "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04",
-      "previous_sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+      "bytes": 4907,
+      "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
+      "previous_sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
     },
     {
       "path": "playground/canonical/package-tools/git-source.mjs",
@@ -838,6 +844,12 @@
       "previous_sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
     },
     {
+      "path": "playground/canonical/package-tools/owner-protection.mjs",
+      "bytes": 2234,
+      "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
+      "previous_sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+    },
+    {
       "path": "playground/canonical/package-tools/ownership.mjs",
       "bytes": 2891,
       "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
@@ -857,9 +869,9 @@
     },
     {
       "path": "playground/canonical/package-tools/publish.mjs",
-      "bytes": 5701,
-      "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f",
-      "previous_sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+      "bytes": 5939,
+      "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
+      "previous_sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
     },
     {
       "path": "playground/canonical/package-tools/resolve.mjs",
@@ -26145,10 +26157,10 @@
     },
     {
       "path": "release-status.html",
-      "bytes": 5285,
-      "sha256": "dd492aa1644ca6d6043d041714e1e2c036dd927ac031924162880fab1c793412",
+      "bytes": 5404,
+      "sha256": "7e0067870c7743f9898637b71bf37739a485d22256ee2443b0b22b45813aa9f7",
       "source_sha256": "acc98f0fea8566dd64975b82e002934e24bf61326c358797ba31ba6eb9f4a0b0",
-      "previous_sha256": "dd492aa1644ca6d6043d041714e1e2c036dd927ac031924162880fab1c793412"
+      "previous_sha256": "7e0067870c7743f9898637b71bf37739a485d22256ee2443b0b22b45813aa9f7"
     },
     {
       "path": "releases.html",
@@ -26987,7 +26999,7 @@
       "path": "verification/e1872-current-distribution.json",
       "bytes": 56968,
       "sha256": "754899d7ab453eb157152b923b7d8addc42550ec74e2a76bb6475fef13b83083",
-      "previous_sha256": "a26f0a95fb1d0597c0d2bf6651bd2ae70379219dc55e514a01c4063da378b40e"
+      "previous_sha256": "754899d7ab453eb157152b923b7d8addc42550ec74e2a76bb6475fef13b83083"
     },
     {
       "path": "verification/e1872-current200-layouts.json",
@@ -26999,7 +27011,7 @@
       "path": "verification/e1872-numeric-math.json",
       "bytes": 5153,
       "sha256": "c42efeefcdd91ccd58fc48f5b1163e12d3449488bae2e80b4b50575a2dd79894",
-      "previous_sha256": "2bb865086e0b15fed7fcfe51073b5283b3dd7532dbb7304bf1450e177ebc4a3c"
+      "previous_sha256": "c42efeefcdd91ccd58fc48f5b1163e12d3449488bae2e80b4b50575a2dd79894"
     },
     {
       "path": "verification/e1872-original10000-boundary.json",
@@ -27017,7 +27029,19 @@
       "path": "verification/e1872-source-progress.json",
       "bytes": 11885,
       "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070",
-      "previous_sha256": "744e8ac342f4877debaf60f88a2b494847d344ac3d4af79c63a77551af4ff05b"
+      "previous_sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
+    },
+    {
+      "path": "verification/e1878-current-distribution.json",
+      "bytes": 57692,
+      "sha256": "94ee80f98030c15b372ba836df3d331141e70bd1e33f2cf26f370ef57dcf424c",
+      "previous_sha256": "94ee80f98030c15b372ba836df3d331141e70bd1e33f2cf26f370ef57dcf424c"
+    },
+    {
+      "path": "verification/e1878-owner-host.json",
+      "bytes": 45824,
+      "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487",
+      "previous_sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
     },
     {
       "path": "verification/exact-package-arithmetic-e1087.json",

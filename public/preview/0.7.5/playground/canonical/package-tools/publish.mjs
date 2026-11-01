@@ -4,6 +4,7 @@ import {randomUUID} from 'node:crypto';
 import {packageBundle} from './host.mjs';
 import {githubClient} from './github.mjs';
 import {ownerPolicy, authorizePackage} from './ownership.mjs';
+import {requireMaintainerPRProtection} from './owner-protection.mjs';
 import {repository, fail, SHA, canonical} from './metadata.mjs';
 
 export async function publishPackage(packageDir, {repository: repo = 'vektor-flow/libraries', gh = 'gh', api = githubClient(gh)} = {}) {
@@ -11,7 +12,7 @@ export async function publishPackage(packageDir, {repository: repo = 'vektor-flo
   if (repo.toLowerCase() !== 'vektor-flow/libraries') fail('this uploader targets the existing shared vektor-flow/libraries repository; personal imports need no shared registration');
   const {value, document} = await packageBundle(packageDir), id = value.manifest.name, folder = `packages/${id}`;
   const actor = await api('user'), meta = await api(`repos/${repo}`);
-  if (typeof actor?.login !== 'string' || meta.full_name?.toLowerCase() !== repo.toLowerCase() || !meta.permissions?.push || !meta.private) fail('package upload requires authenticated write access to the existing private library repository');
+  if (typeof actor?.login !== 'string' || meta.full_name?.toLowerCase() !== repo.toLowerCase() || !meta.permissions?.push || meta.private !== false || meta.visibility !== 'public') fail('package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR');
   const branch = meta.default_branch;
   if (typeof branch !== 'string') fail('missing repository default branch');
   const base = await api(`repos/${repo}/branches/${encodeURIComponent(branch)}`), parent = base.commit?.sha;
@@ -20,18 +21,13 @@ export async function publishPackage(packageDir, {repository: repo = 'vektor-flo
   if (policyFile.type !== 'file' || policyFile.encoding !== 'base64') fail('trusted base ownership policy unavailable');
   const policy = ownerPolicy(JSON.parse(Buffer.from(policyFile.content, 'base64').toString('utf8')));
   authorizePackage(policy, actor.login, id);
-  // Read branch protection before writes. Private repositories without supported
-  // required checks fail honestly; neither an optional client check nor
-  // CODEOWNERS alone provides repository enforcement.
+  // Read actual server controls before proposal writes. The sole known owner is
+  // also a maintainer: PR count zero supports their inspected, SHA-bound manual
+  // merge. A non-null PR requirement still blocks direct pushes. Server main
+  // restrictions, not the original author or an Actions status, authorize merge.
   if (!base.protected) fail('default branch lacks enforced owner policy; maintainer must enable required repository controls');
   const protection = await api(`repos/${repo}/branches/${encodeURIComponent(branch)}/protection`);
-  const checks = protection.required_status_checks;
-  const ownerCheck = checks?.checks?.find(c => c.context === 'package-ownership' && Number.isSafeInteger(c.app_id) && c.app_id > 0);
-  const reviews = protection.required_pull_request_reviews;
-  if (!ownerCheck || checks?.strict !== true || !protection.enforce_admins?.enabled ||
-      (reviews && !reviews.dismiss_stale_reviews) ||
-      (reviews?.bypass_pull_request_allowances?.users?.length ?? 0) || (reviews?.bypass_pull_request_allowances?.teams?.length ?? 0) ||
-      (reviews?.bypass_pull_request_allowances?.apps?.length ?? 0)) fail('required app-bound owner check, current review policy and branch protection are not enforced');
+  requireMaintainerPRProtection(policy, protection);
   const baseCommit = await api(`repos/${repo}/git/commits/${parent}`), baseTree = baseCommit.tree?.sha;
   if (!SHA.test(baseTree)) fail('missing base source tree');
   // Only replace this package subtree. Removed source files are removed too;
@@ -49,11 +45,16 @@ export async function publishPackage(packageDir, {repository: repo = 'vektor-flo
   const head = `vkf-package/${id}/${randomUUID()}`;
   try { await api(`repos/${repo}/git/refs`, 'POST', {ref: `refs/heads/${head}`, sha: commit.sha}); }
   catch { fail(`source commit ${commit.sha} created; branch ${head} creation was not confirmed; inspect before retrying`); }
-  // If the default advances, the PR remains based on the original parent and
-  // required up-to-date checks/review handle it; no force/default-branch write.
+  // Do not create a proposal against an ownership/control snapshot that already
+  // changed during upload. Retain the commit/branch recovery pointer on refusal.
+  // Later edits never inherit publication authority: only a trusted maintainer
+  // may inspect and merge the actual current head, naming its expected SHA.
   try {
+    const currentBase = await api(`repos/${repo}/branches/${encodeURIComponent(branch)}`);
+    if (currentBase.commit?.sha !== parent || !currentBase.protected) fail('trusted base changed during upload');
+    requireMaintainerPRProtection(policy, await api(`repos/${repo}/branches/${encodeURIComponent(branch)}/protection`));
     const pr = await api(`repos/${repo}/pulls`, 'POST', {title: `Update ${id}`, head, base: branch,
-      body: `Package source upload by @${actor.login}.\n\nPackage: ${id}\nSource commit: ${commit.sha}\nTrusted ownership base: ${parent}\n\nRequires the repository owner check and normal maintainer review. This upload is not a published version until merged into ${branch}.`, maintainer_can_modify: true});
+      body: `Package source upload by @${actor.login}.\n\nPackage: ${id}\nSource commit: ${commit.sha}\nTrusted ownership base: ${parent}\n\nA trusted maintainer must inspect the current head and merge explicitly with its expected SHA. Original authors, later pushers and Actions checks cannot publish this proposal. It becomes a version only when merged into ${branch}.`, maintainer_can_modify: false});
     if (pr.state !== 'open' || pr.merged_at || !Number.isSafeInteger(pr.number) || pr.head?.sha !== commit.sha || pr.base?.ref !== branch ||
         pr.base?.repo?.full_name?.toLowerCase() !== repo.toLowerCase() || pr.html_url !== `https://github.com/${repo}/pull/${pr.number}`) fail('unexpected pull request state');
     return {status: 'PULL_REQUEST_OPEN', published: false, repository: repo, package: id, actor: actor.login,

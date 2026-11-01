@@ -1,12 +1,13 @@
 {
   "schema": 2,
-  "inputSha256": "3903eb1d5aefb6da7fef61e01a2c5730ea898da6d9a4938def9694fbff40b0e7",
+  "inputSha256": "afdcc12f72fa60aa21344a91eb28881d3df71e0e201a098dd9f593fd99afe0de",
   "components": {
     "browser-node-compiler": {
       "id": "browser-node-compiler",
       "identity": {
         "sourceCommit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
-        "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+        "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87"
       },
       "files": [
         {
@@ -46,8 +47,8 @@
         },
         {
           "path": "playground/canonical/package-tools/cli.mjs",
-          "bytes": 4905,
-          "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+          "bytes": 4907,
+          "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
         },
         {
           "path": "playground/canonical/package-tools/git-source.mjs",
@@ -75,6 +76,11 @@
           "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
         },
         {
+          "path": "playground/canonical/package-tools/owner-protection.mjs",
+          "bytes": 2234,
+          "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+        },
+        {
           "path": "playground/canonical/package-tools/ownership.mjs",
           "bytes": 2891,
           "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
@@ -91,8 +97,8 @@
         },
         {
           "path": "playground/canonical/package-tools/publish.mjs",
-          "bytes": 5701,
-          "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+          "bytes": 5939,
+          "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
         },
         {
           "path": "playground/canonical/package-tools/resolve.mjs",
@@ -1168,6 +1174,36 @@
   },
   "installedFiles": [
     {
+      "path": "canonical-inline-worker.mjs",
+      "bytes": 804,
+      "sha256": "aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6"
+    },
+    {
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+    },
+    {
+      "path": "inline-renderer-loader.mjs",
+      "bytes": 2336,
+      "sha256": "52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729"
+    },
+    {
+      "path": "inline-retained-scene-view.mjs",
+      "bytes": 15639,
+      "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
+    },
+    {
+      "path": "inline-runner.mjs",
+      "bytes": 7290,
+      "sha256": "cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f"
+    },
+    {
+      "path": "playground/browser-copy-retained-packets.mjs",
+      "bytes": 1480,
+      "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
+    },
+    {
       "path": "playground/canonical/compiler-base.mjs",
       "bytes": 188024,
       "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
@@ -1204,8 +1240,8 @@
     },
     {
       "path": "playground/canonical/package-tools/cli.mjs",
-      "bytes": 4905,
-      "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+      "bytes": 4907,
+      "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
     },
     {
       "path": "playground/canonical/package-tools/git-source.mjs",
@@ -1233,6 +1269,11 @@
       "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
     },
     {
+      "path": "playground/canonical/package-tools/owner-protection.mjs",
+      "bytes": 2234,
+      "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+    },
+    {
       "path": "playground/canonical/package-tools/ownership.mjs",
       "bytes": 2891,
       "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
@@ -1249,8 +1290,8 @@
     },
     {
       "path": "playground/canonical/package-tools/publish.mjs",
-      "bytes": 5701,
-      "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+      "bytes": 5939,
+      "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
     },
     {
       "path": "playground/canonical/package-tools/resolve.mjs",
@@ -1261,31 +1302,6 @@
       "path": "playground/canonical/prepare-formatter-ir.mjs",
       "bytes": 693,
       "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
-    },
-    {
-      "path": "canonical-inline-worker.mjs",
-      "bytes": 804,
-      "sha256": "aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6"
-    },
-    {
-      "path": "inline-renderer-loader.mjs",
-      "bytes": 2336,
-      "sha256": "52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729"
-    },
-    {
-      "path": "inline-retained-scene-view.mjs",
-      "bytes": 15639,
-      "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
-    },
-    {
-      "path": "inline-runner.mjs",
-      "bytes": 7290,
-      "sha256": "cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f"
-    },
-    {
-      "path": "playground/browser-copy-retained-packets.mjs",
-      "bytes": 1480,
-      "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
     },
     {
       "path": "playground/interpolation-tests/browser.mjs",
@@ -1406,11 +1422,6 @@
       "path": "playground/vkf-retained-worker-execution.mjs",
       "bytes": 682,
       "sha256": "4cb2bd0a9c915bbe6a7ccebe5e45579c8e6a5a69cf276c5ec781446f065fefc2"
-    },
-    {
-      "path": "vkf-browser-isolation.mjs",
-      "bytes": 1816,
-      "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
     },
     {
       "path": "vf-ui/.gitignore",
@@ -2288,18 +2299,18 @@
       "sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e"
     },
     {
-      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
-      "bytes": 9803445,
-      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+      "path": "vkf-browser-isolation.mjs",
+      "bytes": 1816,
+      "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
     }
   ],
   "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
   "archives": [
     {
       "target": "canonical",
-      "path": "downloads/vkf-canonical-0.7.5-ffca-host63553cc-notices.tar.gz",
-      "bytes": 6126822,
-      "sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049"
+      "path": "downloads/vkf-canonical-0.7.5-ffca-host96d0ff98-owner.tar.gz",
+      "bytes": 6126786,
+      "sha256": "b54e9d483a2ec1bbe362a4e221df5a991e9e9f3fb8c5c9376e87be452a873433"
     },
     {
       "target": "native",

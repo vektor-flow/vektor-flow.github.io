@@ -29,11 +29,11 @@ def verify_current_distribution(preview, release):
     for row in compiler['files']:
         name = row['path'].removeprefix('playground/canonical/')
         need(release['sha256'][name] == row['sha256'] and release['files'][name] == {k: row[k] for k in ('bytes', 'sha256')}, 'compiler closure identity ' + name)
-    need(len(compiler['files']) == 19, 'incomplete established canonical closure')
+    need(len(compiler['files']) == (20 if release.get('current_owner_host') else 19), 'incomplete established canonical closure')
     for key, name in [('module', 'compiler.mjs'), ('wasm', 'compiler.wasm'), ('data', 'compiler.data')]:
         need(release['package'][key] == './playground/canonical/' + name + '?sha256=' + release['sha256'][name], 'package URL/cache identity')
     mode = release['current_distribution']
-    need(mode['enabled'] and mode['runEnabled'] and mode['downloadsOffered'] and not mode['fullReleaseQualified'] and not mode['sharedUploadAvailable'], 'incoherent named distribution mode')
+    need(mode['enabled'] and mode['runEnabled'] and mode['downloadsOffered'] and not mode['fullReleaseQualified'] and mode['sharedUploadAvailable'] == bool(release.get('current_owner_host')), 'incoherent named distribution mode')
     need(release['download_packages_offered'] and not any(release[k] for k in ['complete', 'stable', 'stable_release', 'release_qualified']), 'overstated full release')
     checksums = read(pinned(preview, release['current_distribution_checksums']))
     need(checksums['archives'] == expected['archives'] and checksums['compilerBinding'] == binding and not checksums['fullReleaseQualified'], 'download checksum selection')
@@ -44,7 +44,7 @@ def verify_current_distribution(preview, release):
             need(all(m.isfile() and not m.name.startswith('/') and '..' not in Path(m.name).parts for m in members), 'archive paths/type')
             if row['target'] == 'canonical':
                 expected_members = {'vkf-canonical-0.7.5-current/' + f['path'].removeprefix('playground/canonical/'): f for f in compiler['files']}
-                need(set(m.name for m in members) == set(expected_members) | {'vkf-canonical-0.7.5-current/README.txt', 'vkf-canonical-0.7.5-current/VERIFICATION.json'} | {'vkf-canonical-0.7.5-current/third-party/' + Path(n['path']).name for n in expected['notices']}, 'canonical archive closure')
+                need(set(m.name for m in members) == set(expected_members) | {'vkf-canonical-0.7.5-current/README.txt', 'vkf-canonical-0.7.5-current/VERIFICATION.json'} | ({'vkf-canonical-0.7.5-current/OWNER-HOST.json'} if release.get('current_owner_host') else set()) | {'vkf-canonical-0.7.5-current/third-party/' + Path(n['path']).name for n in expected['notices']}, 'canonical archive closure')
                 for name, pin in expected_members.items():
                     data = tar.extractfile(name).read()
                     need(len(data) == pin['bytes'] and hashlib.sha256(data).hexdigest() == pin['sha256'], 'archive member mismatch ' + name)
@@ -100,12 +100,15 @@ def verify_current_distribution(preview, release):
     need(len(result['generatedAxisOverlayRows']) == 5 and all(all(any(n['text'] == name for n in labels) for name in ['$x$', '$y$', '$z$']) for labels in result['generatedAxisOverlayRows']), 'complete generated axis labels missing')
     authored = read(pinned(preview, evidence['authoredNativeMath']))
     need(authored['result']['status'] == 'PASS_SUPPORTED_AUTHORED_MATH_STILL_USES_CURRENT_NATIVE_PRODUCER' and authored['result']['binding'] == binding and authored['result']['labels'] == 3 and authored['result']['nonblankPixels'] > 0 and authored['browserClosed'] and authored['serverClosed'], 'supported authored native-math routing regression')
-    need(evidence['limitations']['generated3dAxisRoutingFixed'] is True and evidence['limitations']['sharedOwnerPRQualified'] is False and evidence['limitations']['fullReleaseQualified'] is False, 'known limits must be explicit')
+    need(evidence['limitations']['generated3dAxisRoutingFixed'] is True and evidence['limitations']['sharedOwnerPRQualified'] == bool(release.get('current_owner_host')) and evidence['limitations']['fullReleaseQualified'] is False, 'known limits must be explicit')
     for row in evidence['normalJoins']:
         need(row['childJoined'] and row.get('reserveRefusal') is None and (row['exit'] == 0 or row['name'] == 'current-exact5m' and row['exit'] == 124), 'unclosed or unexpected command failure')
     pages = read(pinned(preview, evidence['pagesMode']))
     need(pages['status'] == 'PASS_ACTUAL_PAGES_MODE_RUN_RELOAD_DRAFT_EDIT_COPY_MOBILE' and pages['binding'] == binding and pages['browserClosed'] and pages['serverClosed'] and not pages['pageErrors'], 'actual Pages isolation/Run/reload control')
     need(evidence['firstCaptureWrapperTimeoutPreserved'], 'first failure omitted')
+    if release.get('current_owner_host'):
+        from current_owner_host import verify_current_owner_host
+        verify_current_owner_host(preview, release, expected, evidence)
     if release.get('current_source_progress'):
         from current_source_progress import verify_current_source_progress
         verify_current_source_progress(preview, release)

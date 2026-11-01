@@ -277,7 +277,30 @@
         "runtimeSHA256": "379714f7a2ed5b4e4a8a056b88ae2f9b0eb537b79b17a6344683e373e058c68b",
         "baseRuntimeSHA256": "6d211126a8244fcf9e943cb2cf3fe422de3b33a287eb9994e7de6492ac97851b",
         "repairSHA256": "c132ddcc82f05a62132a1749e444a071c3c0e63307a23a411ee981e89a09fa76",
-        "usedGlyphMappingSHA256": "7ce94c2344e83c51ff2e0a1f115fce4843d413e115c416d34ccf71006b0b2ed6"
+        "usedGlyphMappingSHA256": "7ce94c2344e83c51ff2e0a1f115fce4843d413e115c416d34ccf71006b0b2ed6",
+        "requiredNativeRendererSourceCommit": "ff122a25493f6c8fca7995713116ac12387d735b",
+        "requiredNativeRendererRuntimeFiles": [
+          {
+            "path": "vf-ui/native-labels/vf-native-accuracy-scene.mjs",
+            "bytes": 3613,
+            "sha256": "ebbd542056251d03a6a3e58aeb1b05e3c6b54d89743e18d4532371312b7baf70"
+          },
+          {
+            "path": "vf-ui/native-labels/vf-native-certified-samples.mjs",
+            "bytes": 14692,
+            "sha256": "08030f1a27c6de537950ca35afa2118f17a5cd29942a43954fa75e8b528cb29e"
+          },
+          {
+            "path": "vf-ui/native-labels/vf-native-outline-cache.mjs",
+            "bytes": 17149,
+            "sha256": "25329e4ce249b85f4bb926f135f689df4edbf7ffe38eee37f5e82b6f93b22189"
+          },
+          {
+            "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+            "bytes": 28168,
+            "sha256": "c5f487dc0cffe703aceef8b91aadda20ad90c8341a3b933b48da8e8cedd424fa"
+          }
+        ]
       },
       "files": [
         {
@@ -672,8 +695,8 @@
         },
         {
           "path": "vf-ui/native-labels/vf-native-accuracy-scene.mjs",
-          "bytes": 2570,
-          "sha256": "3d8a5bfdc3d6cd568c1840682555b96b2ab22a18b1f4de3a4564a30eaa64505b"
+          "bytes": 3613,
+          "sha256": "ebbd542056251d03a6a3e58aeb1b05e3c6b54d89743e18d4532371312b7baf70"
         },
         {
           "path": "vf-ui/native-labels/vf-native-accuracy-source.mjs",
@@ -682,8 +705,8 @@
         },
         {
           "path": "vf-ui/native-labels/vf-native-certified-samples.mjs",
-          "bytes": 10553,
-          "sha256": "ad434b466b79dcf93d3966c4f04968a16c7dc20467f93518f93c44419bc2c6e4"
+          "bytes": 14692,
+          "sha256": "08030f1a27c6de537950ca35afa2118f17a5cd29942a43954fa75e8b528cb29e"
         },
         {
           "path": "vf-ui/native-labels/vf-native-curve-program.mjs",
@@ -712,8 +735,8 @@
         },
         {
           "path": "vf-ui/native-labels/vf-native-outline-cache.mjs",
-          "bytes": 13934,
-          "sha256": "3a0b9ce7d77d22148e7c821291ad504bf91084d5a326a792371b260889ad8c47"
+          "bytes": 17149,
+          "sha256": "25329e4ce249b85f4bb926f135f689df4edbf7ffe38eee37f5e82b6f93b22189"
         },
         {
           "path": "vf-ui/native-labels/vf-native-plot-labels.mjs",
@@ -752,8 +775,8 @@
         },
         {
           "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
-          "bytes": 28034,
-          "sha256": "d2e281e77896ed85a6b682d9abb63b53eae8e1c252890f6a77a0f56294c5b08d"
+          "bytes": 28168,
+          "sha256": "c5f487dc0cffe703aceef8b91aadda20ad90c8341a3b933b48da8e8cedd424fa"
         },
         {
           "path": "vf-ui/native-labels/vf-spatial-ranges.mjs",
@@ -1173,5 +1196,5 @@
       ]
     }
   ],
-  "inputSha256": "afdcc12f72fa60aa21344a91eb28881d3df71e0e201a098dd9f593fd99afe0de"
+  "inputSha256": "f647747271e3eb0858dd15a74211cd7723100ebf8edceb9df3237fb1bec8546b"
 }

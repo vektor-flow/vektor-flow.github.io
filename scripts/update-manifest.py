@@ -14,6 +14,8 @@ if preview.exists():
    m['source']='Pre-release website review with Run disabled. Stored runtime assets retain their existing reviewed identity. Separate current candidate browser/native verification is pinned in current_candidate_verification; its declared scopes do not qualify the public runtime or complete release.'
  if compiler.get('current_distribution', {}).get('enabled'):
   m['source']='Current exact canonical compiler, retained browser host/runtime and separately checked Linux CLI downloads. Named correctness evidence is in current_distribution_evidence; owner-source PR publication is verified separately in current_owner_host when present; original10k renderer, broad 3D text, complete SDK/platform and comparative timing remain unqualified.'
+ if compiler.get('current_renderer_correctness'):
+  m['source']='Current exact compiler downloads, owner-source PR route and original10k current renderer correctness are qualified in their named evidence. The original renderer completes all30 views, two opaque colors and supported ownership cleanup under unchanged limits. Broad 3D text, all-font coverage, full SDK/platform and comparative timing remain unqualified.'
  m['source_sha256_meaning']='Retained per-row source_sha256 values describe historical source inputs; sha256 describes the current deployed bytes.'
  previous={r['path']:r for r in m['files']};rows=[]
  for f in sorted(preview.rglob('*')):

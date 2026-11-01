@@ -108,7 +108,12 @@ def verify_current_distribution(preview, release):
     need(evidence['firstCaptureWrapperTimeoutPreserved'], 'first failure omitted')
     if release.get('current_owner_host'):
         from current_owner_host import verify_current_owner_host
-        verify_current_owner_host(preview, release, expected, evidence)
+        if release.get('current_renderer_correctness'):
+            from current_renderer import verify_current_renderer
+            verified = verify_current_renderer(preview, release, expected, evidence)
+            verify_current_owner_host(preview, release, verified['priorSelection'], read(pinned(preview, verified['priorDistributionEvidence'])))
+        else:
+            verify_current_owner_host(preview, release, expected, evidence)
     if release.get('current_source_progress'):
         from current_source_progress import verify_current_source_progress
         verify_current_source_progress(preview, release)

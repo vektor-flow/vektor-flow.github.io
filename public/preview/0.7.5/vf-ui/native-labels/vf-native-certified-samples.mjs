@@ -25,7 +25,7 @@ function crossing(a,b,x,y){
  // Strict ray x_intersection > x; exact equality follows that convention.
  return ((dy>0n&&lhs>0n)||(dy<0n&&lhs<0n))?(dy>0n?1:-1):0;
 }
-export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=48,maxNodes=2000000}={}){
+export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=48,maxNodes=2000000,onNode=()=>{},onAllocate=()=>{},onQuery=()=>{},coordinateExponent=-3}={}){
  require(Array.isArray(commands)&&matrix?.length===6&&matrix.every(Number.isFinite)&&Number.isInteger(pixelRatio)&&pixelRatio>=1&&pixelRatio<=3,'NATIVE_SAMPLE_TRANSFORM');
  require(Number.isInteger(maxDepth)&&maxDepth>=0&&maxDepth<=64&&Number.isSafeInteger(maxNodes)&&maxNodes>0,'NATIVE_SAMPLE_LIMIT');
  const pending=[];let current,origin,open=false;
@@ -39,14 +39,15 @@ export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=
   else throw fail('NATIVE_SAMPLE_OPERATOR');
  }
  require(!open&&pending.length>0&&pending.length<=4096,'NATIVE_SAMPLE_UNCLOSED_OR_LIMIT');
- const exponent=Math.min(-3,...pending.flat(2).map(d=>d.e));
+ const exponent=Math.min(coordinateExponent,-3,...pending.flat(2).map(d=>d.e));
  const segments=pending.map(s=>s.map(p=>p.map(v=>v.n<<BigInt(v.e-exponent))));
  const unit=1n<<BigInt(-exponent),eighth=unit/8n;
  const bounds=[0,1].map(k=>{const all=segments.flat().map(p=>p[k]);return [Number(floorDiv(lo(all),unit)),Number(-floorDiv(-hi(all),unit))];});
  require(bounds.flat().every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=65536),'NATIVE_SAMPLE_COORDINATE_LIMIT');
- const stats={samples:0,nodes:0,splits:0,maxDepth:0,exactDyadic:true,ambiguous:0};
+ const stats={samples:0,nodes:0,splits:0,maxDepth:0,exactDyadic:true,ambiguous:0,queryNodes:0};
+ const node=()=>{onNode();require(++stats.nodes<=maxNodes,'NATIVE_SAMPLE_NODE_BUDGET');};
  function cubic(p,x,y,depth){
-  require(++stats.nodes<=maxNodes,'NATIVE_SAMPLE_NODE_BUDGET');stats.maxDepth=Math.max(stats.maxDepth,depth);
+  node();stats.maxDepth=Math.max(stats.maxDepth,depth);
   const xs=p.map(q=>q[0]),ys=p.map(q=>q[1]);
   if(hi(ys)<=y||lo(ys)>y||hi(xs)<=x)return 0;
   // The whole Bezier convex hull is right of the ray origin: algebraic
@@ -57,7 +58,7 @@ export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=
  }
  function winding(ix,iy){require(Number.isSafeInteger(ix)&&Number.isSafeInteger(iy),'NATIVE_SAMPLE_INDEX');stats.samples++;
   const x=BigInt(2*ix+1)*eighth,y=BigInt(2*iy+1)*eighth;let w=0;
-  for(const s of segments){if(s.length===2){require(++stats.nodes<=maxNodes,'NATIVE_SAMPLE_NODE_BUDGET');w+=crossing(s[0],s[1],x,y);}else w+=cubic(s,x,y,0);}return w;
+  for(const s of segments){if(s.length===2){node();w+=crossing(s[0],s[1],x,y);}else w+=cubic(s,x,y,0);}return w;
  }
  // A region is the inclusive rectangle of sample CENTERS, not pixel edges.
  // Return null unless EVERY segment has the same signed ray contribution
@@ -65,7 +66,7 @@ export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=
  const regionChildren=new WeakMap();
  stats.regionSplits=0;
  function regionSegment(s,x0,y0,x1,y1,depth=0){
-  require(++stats.nodes<=maxNodes,'NATIVE_SAMPLE_NODE_BUDGET');
+  node();
   const xs=s.map(p=>p[0]),ys=s.map(p=>p[1]);
   if(hi(ys)<=y0||lo(ys)>y1||hi(xs)<=x0)return 0;
   if(lo(xs)>x1){
@@ -88,7 +89,38 @@ export function compileNativeSampleProof(commands,matrix,{pixelRatio=1,maxDepth=
   }
   return w;
  }
- return {winding,region,stats,bounds,policy:'nonzero; strict +x ray; centered 4x4; exact input binary64 affine product/sum, no float32 contour'};
+ // An exact source decision node certifies its complete ray-domain
+ // predicates, not one rounded phase. De Casteljau children and their integer
+ // hulls are immutable source geometry. Arbitrary translated sample queries
+ // evaluate that same certified decision DAG. Charge every newly constructed
+ // node, including lines, once; separately report EVERY predicate evaluation.
+ // Query population remains bounded by the owner's existing pixel budget.
+ const decisions=new WeakMap();
+ const allocationBytes=2048+32*Math.ceil((Math.abs(exponent)+256)/8);
+ function shared(s,x,y,depth=0){
+  stats.queryNodes++;onQuery();let d=decisions.get(s);
+  if(!d){
+   node();onAllocate(allocationBytes);const xs=s.map(p=>p[0]),ys=s.map(p=>p[1]);
+   d={minX:lo(xs),maxX:hi(xs),minY:lo(ys),maxY:hi(ys)};decisions.set(s,d);
+  }
+  if(s.length===2)return crossing(s[0],s[1],x,y);
+  stats.maxDepth=Math.max(stats.maxDepth,depth);
+  if(d.maxY<=y||d.minY>y||d.maxX<=x)return 0;
+  if(d.minX>x)return (s[0][1]<=y?1:0)-(s[3][1]<=y?1:0);
+  if(depth===maxDepth){stats.ambiguous++;throw fail('NATIVE_SAMPLE_UNRESOLVED_BOUNDARY');}
+  if(!d.children){onAllocate(allocationBytes);d.children=split(s);stats.splits++;}
+  return shared(d.children[0],x*8n,y*8n,depth+1)+shared(d.children[1],x*8n,y*8n,depth+1);
+ }
+ function translated(next){
+  require(next?.length===6&&next.every(Number.isFinite)&&next.slice(0,4).every((v,i)=>Object.is(v,matrix[i])),'NATIVE_SAMPLE_ATLAS_MATRIX');
+  const shift=next.slice(4).map(v=>mul(dyad(v),dyad(pixelRatio)));
+  require(shift.every(v=>v.e>=exponent),'NATIVE_SAMPLE_ATLAS_EXPONENT');
+  const [dx,dy]=shift.map(v=>v.n<<BigInt(v.e-exponent));
+  const movedBounds=[0,1].map(k=>{const all=segments.flat().map(p=>p[k]+[dx,dy][k]);return [Number(floorDiv(lo(all),unit)),Number(-floorDiv(-hi(all),unit))];});
+  require(movedBounds.flat().every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=65536),'NATIVE_SAMPLE_COORDINATE_LIMIT');
+  return {bounds:movedBounds,winding(ix,iy){require(Number.isSafeInteger(ix)&&Number.isSafeInteger(iy),'NATIVE_SAMPLE_INDEX');stats.samples++;const x=BigInt(2*ix+1)*eighth-dx,y=BigInt(2*iy+1)*eighth-dy;let w=0;for(const s of segments)w+=shared(s,x,y);return w;}};
+ }
+ return {winding,region,translated,stats,bounds,policy:'nonzero; strict +x ray; centered 4x4; exact input binary64 affine product/sum, no float32 contour'};
 }
 
 /** Share exact ray decisions over convex-hull-separated sample regions.
@@ -145,4 +177,30 @@ export function certifiedNativeSampleMesh(commands,matrix,{pixelRatio=1,width,he
   rows.push({iy,runs});
  }
  return {triangles,rows,stats:{...proof.stats},policy:proof.policy,sourceCommands:commands,sourceMatrix:matrix,pixelRatio,displayOnly:true,bounds:[x0,y0,x1,y1]};
+}
+/** One exact source/linear-map proof atlas can serve arbitrary translations.
+ * Spatial decisions are proven against the source cubics, not a fitted mesh.
+ * The owner charges every new region/curve decision and retained allocation.
+ */
+export function createNativeSampleAtlas(commands,linear,limits={}){
+ require(Array.isArray(linear)&&linear.length===4,'NATIVE_SAMPLE_ATLAS_MATRIX');
+ return compileNativeSampleProof(commands,[...linear,0,0],{coordinateExponent:-1074,...limits});
+}
+export function certifiedNativeAtlasMesh(atlas,commands,matrix,{pixelRatio=1,width,height,maxPixels=4096,maxTriangles=131072}={}){
+ require(Number.isSafeInteger(width)&&width>0&&Number.isSafeInteger(height)&&height>0&&width*pixelRatio<=65536&&height*pixelRatio<=65536,'NATIVE_SAMPLE_VIEWPORT');
+ require(Number.isSafeInteger(maxPixels)&&maxPixels>0&&Number.isSafeInteger(maxTriangles)&&maxTriangles>0,'NATIVE_SAMPLE_PIXEL_LIMIT');
+ const proof=atlas.translated(matrix),[[lx,hx],[ly,hy]]=proof.bounds;
+ const x0=Math.max(0,lx),x1=Math.min(width*pixelRatio,hx),y0=Math.max(0,ly),y1=Math.min(height*pixelRatio,hy);
+ const pixels=Math.max(0,x1-x0)*Math.max(0,y1-y0);require(pixels<=maxPixels,'NATIVE_SAMPLE_PIXEL_BUDGET');
+ const rows=[],triangles=[],step=4*pixelRatio;
+ for(let iy=y0*4;iy<y1*4;iy++){
+  const runs=[];let start=null;
+  for(let ix=x0*4;ix<=x1*4;ix++){
+   const inside=ix<x1*4&&proof.winding(ix,iy)!==0;
+   if(inside&&start===null)start=ix;
+   if(!inside&&start!==null){const a=[start/step,iy/step],b=[ix/step,iy/step],c=[ix/step,(iy+1)/step],d=[start/step,(iy+1)/step];require(triangles.length+2<=maxTriangles,'NATIVE_SAMPLE_TRIANGLE_BUDGET');triangles.push([a,b,c],[a,c,d]);runs.push([start,ix]);start=null;}
+  }
+  rows.push({iy,runs});
+ }
+ return {triangles,rows,stats:{...atlas.stats},policy:atlas.policy,sourceCommands:commands,sourceMatrix:matrix,pixelRatio,displayOnly:true,bounds:[x0,y0,x1,y1]};
 }

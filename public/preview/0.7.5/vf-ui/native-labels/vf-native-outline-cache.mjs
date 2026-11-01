@@ -1,10 +1,11 @@
-import {certifiedNativeRegionMesh} from './vf-native-certified-samples.mjs';
+import {createNativeSampleAtlas,certifiedNativeAtlasMesh} from './vf-native-certified-samples.mjs';
 
 const need=(v,code)=>{if(!v)throw Object.assign(Error(code),{code,status:'BLOCKED'});};
 const freeze=v=>{if(v&&typeof v==='object'&&!Object.isFrozen(v)){for(const x of Object.values(v))freeze(x);Object.freeze(v);}return v;};
 const numberKey=n=>Object.is(n,-0)?'-0':String(n);
 const exactKey=v=>JSON.stringify(v,(_,x)=>typeof x==='number'?{binary64:numberKey(x)}:x);
 const immutableCommands=new WeakMap();
+const copy=v=>Array.isArray(v)?v.map(copy):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k,x])=>[k,copy(x)])):v;
 function commandSnapshot(input){
  let known=immutableCommands.get(input);if(known)return known;
  const commands=input.map(c=>{need(Array.isArray(c)&&['M','L','C','Z'].includes(c[0])&&c.length===({M:3,L:3,C:7,Z:1}[c[0]])&&c.slice(1).every(Number.isFinite),'OUTLINE_CACHE_COMMAND');return [...c];});
@@ -48,7 +49,7 @@ export function snapshotOutline(input){
  need((input.clips===undefined||(Array.isArray(input.clips)&&input.clips.length===0))&&(input.fillRule===undefined||input.fillRule==='nonzero'),'NATIVE_ACCURACY_CLIP_OR_FILL_PROFILE');
  const color=[...(input.color??[0,0,0,1])];need(['[0,0,0,1]','[1,0,0,0.5]'].includes(JSON.stringify(color)),'NATIVE_ACCURACY_COLOR_PROFILE');
  need(Array.isArray(input.matrix)&&input.matrix.length===6&&input.matrix.every(Number.isFinite),'OUTLINE_CACHE_MATRIX');
- const provenance=structuredClone(p),physical=structuredClone(input.physicalIdentity??null);
+ const provenance=copy(p),physical=copy(input.physicalIdentity??null);
  const shapeKey=exactKey([physicalCommands.key,p.engineIdentity,p.resourceIdentity,p.fontProgramSha256??null,p.fontMetricsSha256??null,p.fontRevision??null,physical]);
  return {commands,matrix:[...input.matrix],color,provenance,physicalIdentity:physical,shapeKey};
 }
@@ -108,15 +109,17 @@ export function deviceScaleBound(matrix,pixelRatio){
 export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,maxNewProofs=4096,maxNewNodes=2000000,maxNewPixels=1048576,maxGeometryNodes=2000000,maxTriangles=131072,maxDepth=48,toleranceDevice=.04}={}){
  for(const n of [maxEntries,maxBytes,maxNewProofs,maxNewNodes,maxNewPixels,maxGeometryNodes,maxTriangles])need(Number.isSafeInteger(n)&&n>0,'OUTLINE_CACHE_LIMIT');
  need(Number.isInteger(maxDepth)&&maxDepth>=0&&maxDepth<=64,'NATIVE_SAMPLE_LIMIT');
- const geometry=new Map(),samples=new Map(),pinned=new Set();let bytes=0,closed=false,clock=0,stats={};
- function reset(){stats={instances:0,geometryBuilds:0,sampleBuilds:0,hits:0,newNodes:0,newPixels:0,newGeometryNodes:0};}
+ const geometry=new Map(),samples=new Map(),atlases=new Map(),poses=new Map(),pinned=new Set();let bytes=0,closed=false,clock=0,stats={};
+ function reset(){stats={instances:0,geometryBuilds:0,sampleBuilds:0,meshBuilds:0,queryNodes:0,poseSkips:0,hits:0,newNodes:0,newPixels:0,newGeometryNodes:0};}
  reset();
  function live(){need(!closed,'OUTLINE_CACHE_CLOSED');}
- function insert(map,key,value,size){
+ function insert(map,key,value,size,{optional=false}={}){
+  if(optional&&size>maxBytes)return;
   need(size<=maxBytes,'OUTLINE_CACHE_BYTES');
-  while(geometry.size+samples.size>=maxEntries||bytes+size>maxBytes){
-   let victim;for(const m of [geometry,samples])for(const [k,v] of m)if(!pinned.has(v.value)&&(!victim||v.used<victim.value.used))victim={m,k,value:v};
-   need(victim,'OUTLINE_CACHE_BYTES');victim.m.delete(victim.k);bytes-=victim.value.bytes;
+  while(geometry.size+samples.size+atlases.size+poses.size>=maxEntries||bytes+size>maxBytes){
+   let victim;for(const m of [geometry,samples,atlases,poses])for(const [k,v] of m)if(!pinned.has(v.value)&&(!victim||v.used<victim.value.used))victim={m,k,value:v};
+   if(optional&&!victim)return;
+   need(victim,'OUTLINE_CACHE_BYTES');victim.m.delete(victim.k);bytes-=victim.value.bytes;if(victim.m===samples)for(const [k,v] of poses)if(v.value.template===victim.value.value){poses.delete(k);bytes-=v.bytes;}
   }
   map.set(key,{value,bytes:size,used:++clock});bytes+=size;pinned.add(value);return value;
  }
@@ -131,7 +134,7 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
    const remaining=maxGeometryNodes-stats.newGeometryNodes;need(remaining>0,'OUTLINE_CACHE_GEOMETRY_WORK');
    contour=certifyOutlineGeometry(s.commands,{scaleBound,toleranceDevice,maxSegments:Math.max(1,Math.floor(remaining/2))});
    stats.newGeometryNodes+=contour.nodes;need(stats.newGeometryNodes<=maxGeometryNodes,'OUTLINE_CACHE_GEOMETRY_WORK');stats.geometryBuilds++;
-   insert(geometry,gKey,contour,estimate(contour)+gKey.length*2+256);
+   insert(geometry,gKey,contour,estimate(contour)+gKey.length*2+256);geometry.get(gKey).identity=++clock;
   }
   let phase=samplePhase(s.matrix);
   const points=s.commands.flatMap(c=>{const out=[];for(let k=1;k<c.length;k+=2)out.push([c[k],c[k+1]]);return out;});
@@ -146,25 +149,58 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
    // missing sample proof, or clipped local template is accepted.
    phase={matrix:[...s.matrix],shift:[0,0],normalized:false};coords=coordinates(s.matrix);pad=[0,0];canonical=[...s.matrix];fullPose=true;
   }
-  const key=exactKey([s.shapeKey,phase.matrix,pixelRatio,maxDepth,fullPose?'exact-dyadic-AA16-full-pose/1':'exact-dyadic-AA16-region/1']);let template=hit(samples,key);
-  if(!template){
+  const coordinateExponent=canonical.slice(4).some(v=>dyad(v).e < -64)?-1074:-64;
+  const atlasKey=exactKey([s.shapeKey,phase.matrix.slice(0,4),pixelRatio,maxDepth,coordinateExponent,'exact-source-decision-DAG/1']);
+  let atlas=hit(atlases,atlasKey);
+  if(!atlas){
    need(stats.sampleBuilds<maxNewProofs,'OUTLINE_CACHE_NEW_PROOF_BUDGET');
-   // Shift the canonical physical curve into a positive viewport, certify the
-   // ENTIRE hull, and let the real GPU viewport clip translated sample cells.
-   // No cache key depends on which part happened to be visible last frame.
-   need(canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
-   const extent=[0,1].map(k=>Math.ceil(Math.max(...coords.map(p=>p[k]))+pad[k])+2);
-   const nodes=maxNewNodes-stats.newNodes,pixels=maxNewPixels-stats.newPixels;need(nodes>0&&pixels>0,'OUTLINE_CACHE_NEW_WORK_BUDGET');
-   const mesh=certifiedNativeRegionMesh(s.commands,canonical,{width:extent[0],height:extent[1],pixelRatio,maxPixels:pixels,maxNodes:nodes,maxDepth,maxTriangles:Math.min(maxTriangles,Math.max(1,Math.floor((maxBytes-bytes)/1024)))});
-   const [x0,y0,x1,y1]=mesh.bounds;need(x0>0&&y0>0&&x1<extent[0]*pixelRatio&&y1<extent[1]*pixelRatio,'OUTLINE_CACHE_UNCLIPPED_PROOF:'+JSON.stringify({fullPose,bounds:mesh.bounds,extent,canonical,source:s.matrix}));
-   need(mesh.triangles.length<=maxTriangles,'OUTLINE_CACHE_TRIANGLES');
-   stats.newNodes+=mesh.stats.nodes;stats.newPixels+=(x1-x0)*(y1-y0);stats.sampleBuilds++;
-   template=freeze({commands:s.commands,shapeKey:s.shapeKey,triangles:mesh.triangles,rows:mesh.rows,pad,canonical,pixelRatio,bounds:mesh.bounds,stats:mesh.stats,contour,proof:'exact original cubic/nonzero/AA16',fullPose});
-   insert(samples,key,template,estimate(template)+key.length*2+256);
+   let entry;
+   atlas=createNativeSampleAtlas(s.commands,phase.matrix.slice(0,4),{pixelRatio,maxDepth,coordinateExponent,maxNodes:Number.MAX_SAFE_INTEGER,
+    onNode(){need(++stats.newNodes<=maxNewNodes,'NATIVE_SAMPLE_NODE_BUDGET');},
+    onQuery(){stats.queryNodes++;},
+    onAllocate(size){
+     // The mutable proof tree never escapes this owner. Account conservative
+     // retained bounds/children/BigInts BEFORE allocation, under the same LRU.
+     while(bytes+size>maxBytes){let victim;for(const m of [geometry,samples,atlases,poses])for(const [k,v] of m)if(!pinned.has(v.value)&&(!victim||v.used<victim.value.used))victim={m,k,value:v};need(victim,'OUTLINE_CACHE_BYTES');victim.m.delete(victim.k);bytes-=victim.value.bytes;if(victim.m===samples)for(const [k,v] of poses)if(v.value.template===victim.value.value){poses.delete(k);bytes-=v.bytes;}}
+     entry.bytes+=size;bytes+=size;
+    }});
+   insert(atlases,atlasKey,atlas,8192+s.commands.length*4096+atlasKey.length*2);entry=atlases.get(atlasKey);atlas.cacheId=++clock;stats.sampleBuilds++;
   }
-  const translation=phase.shift.map((v,k)=>v-template.pad[k]);
-  need(translation.every((v,k)=>differenceIs(s.matrix[k+4],v,template.canonical[k+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
-  return freeze({template,translation,color:s.color,provenance:s.provenance,commands:template.commands,matrix:s.matrix,shapeKey:template.shapeKey,contour});
+  need(canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
+  const extent=[0,1].map(k=>Math.ceil(Math.max(...coords.map(p=>p[k]))+pad[k])+2);
+  // Every request certifies its actual phase against the source atlas. Only
+  // resulting identical AA sample cells share resident draw geometry.
+  const poseKey=exactKey([atlas.cacheId,phase.matrix,pixelRatio,maxDepth,fullPose]);
+  const pose=poses.get(poseKey);let template=pose?.value.template;
+  if(pose){pose.used=++clock;stats.hits++;pinned.add(template);}
+  else{
+   const mesh=certifiedNativeAtlasMesh(atlas,s.commands,canonical,{width:extent[0],height:extent[1],pixelRatio,maxPixels:maxNewPixels-stats.newPixels,maxTriangles});
+   const [x0,y0,x1,y1]=mesh.bounds;need(x0>0&&y0>0&&x1<extent[0]*pixelRatio&&y1<extent[1]*pixelRatio,'OUTLINE_CACHE_UNCLIPPED_PROOF');
+   stats.newPixels+=(x1-x0)*(y1-y0);
+   const cells=mesh.rows.flatMap(({iy,runs})=>[iy,runs.length,...runs.flat()]);
+   const key=JSON.stringify([geometry.get(gKey).identity,pixelRatio,cells,'exact-AA16-cells/1']);template=hit(samples,key);
+   if(!template){
+    stats.meshBuilds++;
+    const value={triangleCount:mesh.triangles.length,cells,pad,canonical,pixelRatio,bounds:mesh.bounds,stats:mesh.stats,proof:'exact original cubic/nonzero/AA16',fullPose};
+    // Retain exact integer sample runs, not duplicated nested point arrays.
+    // Expansion is an observational copy used once at GPU upload. Mutating it
+    // cannot change the frozen source/run authority or another owner's cells.
+    Object.defineProperty(value,'rows',{enumerable:false,get(){const rows=[];for(let i=0;i<cells.length;){const iy=cells[i++],n=cells[i++],runs=[];for(let j=0;j<n;j++)runs.push([cells[i++],cells[i++]]);rows.push({iy,runs});}return rows;}});
+    Object.defineProperty(value,'triangles',{enumerable:false,get(){const out=[],step=4*pixelRatio;for(let i=0;i<cells.length;){const iy=cells[i++],n=cells[i++];for(let j=0;j<n;j++){const a=cells[i++],b=cells[i++],p=[a/step,iy/step],q=[b/step,iy/step],r=[b/step,(iy+1)/step],t=[a/step,(iy+1)/step];out.push([p,q,r],[p,r,t]);}}return out;}});
+    template=freeze(value);
+    insert(samples,key,template,estimate(template)+key.length*2+256);
+   }
+   const value={template};if(!insert(poses,poseKey,value,512+poseKey.length*2,{optional:true}))stats.poseSkips++;pinned.delete(value);
+  }
+  const translation=phase.shift.map((v,k)=>v-pad[k]);
+  need(translation.every((v,k)=>differenceIs(s.matrix[k+4],v,canonical[k+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
+  pinned.delete(atlas); // Draws own immutable sample cells, not the mutable proof accelerator.
+  return freeze({template,translation,color:s.color,provenance:s.provenance,commands:s.commands,matrix:s.matrix,shapeKey:s.shapeKey,contour});
  }
- return Object.freeze({get,begin(){live();reset();pinned.clear();},statistics(){return {...stats,entries:geometry.size+samples.size,bytes,maxEntries,maxBytes,maxNewProofs,maxNewNodes,maxNewPixels};},clear(){live();geometry.clear();samples.clear();pinned.clear();bytes=0;},close(){geometry.clear();samples.clear();pinned.clear();bytes=0;closed=true;}});
+ return Object.freeze({get,
+  // Synchronous consumers may release ONLY after copying/submitting the exact
+  // cells and dropping all template/contour references. Source snapshots have
+  // their separate scene-owned byte bound. This never resets work counters.
+  release(entry){live();pinned.delete(entry.template);pinned.delete(entry.contour);},
+  begin(){live();reset();pinned.clear();},statistics(){return {...stats,pinnedEntries:pinned.size,entries:geometry.size+samples.size+atlases.size+poses.size,bytes,atlasBytes:[...atlases.values()].reduce((n,v)=>n+v.bytes,0),sampleBytes:[...samples.values()].reduce((n,v)=>n+v.bytes,0),poseBytes:[...poses.values()].reduce((n,v)=>n+v.bytes,0),maxEntries,maxBytes,maxNewProofs,maxNewNodes,maxNewPixels};},clear(){live();geometry.clear();samples.clear();atlases.clear();poses.clear();pinned.clear();bytes=0;},close(){geometry.clear();samples.clear();atlases.clear();poses.clear();pinned.clear();bytes=0;closed=true;}});
 }

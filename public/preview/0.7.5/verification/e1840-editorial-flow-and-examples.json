@@ -1,0 +1,443 @@
+{
+  "owner": "e1840",
+  "status": "PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS",
+  "frontendBinding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
+  "sourceCommit": "4ee3a74808dcbc23234173a5b67bc9c909d7df3c",
+  "browserClosed": true,
+  "serverClosed": true,
+  "noNewDownloads": true,
+  "changedSourceChecks": [
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-6",
+      "label": "first-Run-after-isolation",
+      "source": "result:\n    calibrate(raw, gain = 2, offset = 1): raw * gain + offset\n    sensor: calibrate[gain: 2, offset: 1]\n    fixed: calibrate[raw: 3, gain: 2, offset: 1]\n    (direct: calibrate(3, offset: 2), reusable: sensor(3), fixed: fixed())\n\n:: result.direct\n:: result.reusable\n:: result.fixed",
+      "source_sha256": "4a55c96c934f7e4376333652cc91252c608225b2f44455eddeb7ccde85812f97",
+      "stdout": "8\n7\n7\n",
+      "expected": "8\n7\n7\n",
+      "kind": "stdout",
+      "passed": true
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-6",
+      "label": "real-edit",
+      "source": "result:\n    calibrate(raw, gain = 2, offset = 1): raw * gain + offset\n    sensor: calibrate[gain: 2, offset: 1]\n    fixed: calibrate[raw: 3, gain: 2, offset: 1]\n    (direct: calibrate(4, offset: 2), reusable: sensor(3), fixed: fixed())\n\n:: result.direct\n:: result.reusable\n:: result.fixed",
+      "source_sha256": "cc2dbb5e82f08505bfc14e19375cb16dd883e3370622f95b79e7fc3bbfa7a8ba",
+      "stdout": "10\n7\n7\n",
+      "expected": "10\n7\n7\n",
+      "kind": "stdout",
+      "passed": true
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-6",
+      "label": "fresh-original-rerun",
+      "source": "result:\n    calibrate(raw, gain = 2, offset = 1): raw * gain + offset\n    sensor: calibrate[gain: 2, offset: 1]\n    fixed: calibrate[raw: 3, gain: 2, offset: 1]\n    (direct: calibrate(3, offset: 2), reusable: sensor(3), fixed: fixed())\n\n:: result.direct\n:: result.reusable\n:: result.fixed",
+      "source_sha256": "4a55c96c934f7e4376333652cc91252c608225b2f44455eddeb7ccde85812f97",
+      "stdout": "8\n7\n7\n",
+      "expected": "8\n7\n7\n",
+      "kind": "stdout",
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "id": "scientific-spectrum",
+      "label": "homepage-smoke",
+      "source": "stat: .stat\n\nspectra:\n    site: [0..3]_p\n    profile:\n        energy: (-1.0 + 0.0078125 * [0..256])_u\n        1.0 / (1.0 + 100.0 * energy ^ 2)\n    1.0 + (1.0 + site_p) * profile_u\n\nspan(x): stat.max(x) - stat.min(x)\n\n:: span_u(spectra)\n\ncurve_energy: -1.0 + 0.00390625 * [0..512]\nselected:\n    selected_site: 2\n    1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)\n\n:: selected.(256)\n\nview: .ui.viewport\n\nview.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])\nview.push(x_lim: [-1, 1], y_lim: [0, 5])\nview.show()",
+      "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+      "expected": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+      "kind": "stdout",
+      "passed": true
+    }
+  ],
+  "presentation": {
+    "initialOutputs": true,
+    "runReplacesOutput": true,
+    "prismIndices": true,
+    "plainCopy": true,
+    "realEdit": true,
+    "mobileOneRowMenu": true,
+    "anchors": true,
+    "noDownloads": true
+  },
+  "sourceFreeze": {
+    "files": [
+      {
+        "path": "build.html",
+        "bytes": 17208,
+        "sha256": "5659bc0a0b471df2979729f1edf370da4751059fe841a884f6d4cd20a0887d30"
+      },
+      {
+        "path": "code-highlight.mjs",
+        "bytes": 1162,
+        "sha256": "e04597c91a14531f0ae351594248135fff632b4ff686364fc8f2a9c4614442dc"
+      },
+      {
+        "path": "current-documentation-examples.mjs",
+        "bytes": 6258,
+        "sha256": "f0ecfd2bc7639d1166df7bd69853eb20992dc5c8af94d17731a873bba37f6b5a"
+      },
+      {
+        "path": "editor/prism-vektorflow.mjs",
+        "bytes": 5762,
+        "sha256": "81eaa821cb05d661debb37db30d76d7152696a66bf601f66be12e04ca999d712"
+      },
+      {
+        "path": "embed-example.html",
+        "bytes": 3750,
+        "sha256": "3878175d49141b0176590ae43503bc6f14368a86510d8506f6d5abccd978e556"
+      },
+      {
+        "path": "embed-example.mjs",
+        "bytes": 2570,
+        "sha256": "c7bb211d8319e4a46fa9eed078aefe82eecb28a603dfa96b72ea575afa5a66d5"
+      },
+      {
+        "path": "example-output-seeds.json",
+        "bytes": 26739,
+        "sha256": "f9b82162482459eb4ae181a78871fcc1a3ac811bc176c3f0c46f963b83e0a2c4"
+      },
+      {
+        "path": "example-previews/251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78.png",
+        "bytes": 11214,
+        "sha256": "bd507155cf682f27274f291ea54aa8b97a9d3fd861a2e447edefb8ac651ad1fd"
+      },
+      {
+        "path": "example-previews/28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463.png",
+        "bytes": 7323,
+        "sha256": "1edf4ac34a7e3ad4d17e10ed3ac02f3c048d45cd430107fcc008685699b9602c"
+      },
+      {
+        "path": "example-previews/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c.png",
+        "bytes": 3830,
+        "sha256": "6050b113135c21da8d1dbabe7be289a2c4a41419077d3b917411d93955161958"
+      },
+      {
+        "path": "example-previews/f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a.png",
+        "bytes": 5042,
+        "sha256": "0fbd0c966ad4edb4caa74b3b0f2c5dfa7098cec92ebacf2a009e05d3a335dbe8"
+      },
+      {
+        "path": "example-sources.json",
+        "bytes": 6758,
+        "sha256": "b3dd3f5a7ef404bd5353b1fdc7ab91e4587e3e7b8406a845bd3ace67173b2879"
+      },
+      {
+        "path": "examples.html",
+        "bytes": 45958,
+        "sha256": "b3fd8640ed7ef03810571a1692c4486e187553e06beab317beabecff52ae7982"
+      },
+      {
+        "path": "experiments.html",
+        "bytes": 3636,
+        "sha256": "d6899c40d04b07f910d05018870830e7d43e49fe66e2add5d3690de45cc84fb5"
+      },
+      {
+        "path": "features.html",
+        "bytes": 5822,
+        "sha256": "dcd7a0f0aa41a6989f8634ae111195142e0b871d5bd5c19ffd115284eb38fe13"
+      },
+      {
+        "path": "index.html",
+        "bytes": 15382,
+        "sha256": "7961694f73cde9da09bed476d91fb75198272437a645657aeef219c7199350a2"
+      },
+      {
+        "path": "install.html",
+        "bytes": 2345,
+        "sha256": "d04e1b3f99bbd5ac64deaa4a5e1ac39fdd5f4800069ea1668cf29f74b114edb5"
+      },
+      {
+        "path": "numpy-examples-LICENSE.txt",
+        "bytes": 1543,
+        "sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491"
+      },
+      {
+        "path": "performance.html",
+        "bytes": 73259,
+        "sha256": "4510d0ecf3898ad37d02a2214b39bafc3ad4b4c6f6eef8ff79cd1b5eef470b26"
+      },
+      {
+        "path": "reference-navigation.mjs",
+        "bytes": 2031,
+        "sha256": "ab40075949bcf82be36f151d67514975b9bde1775cb580744dc5ede8c3d5645f"
+      },
+      {
+        "path": "release-status.html",
+        "bytes": 2285,
+        "sha256": "edf2ac1623b8253ed90c2bb2aae7b844a2e2a61afe552dc1cc1e1f9ce6f06c4e"
+      },
+      {
+        "path": "stdlib.html",
+        "bytes": 321216,
+        "sha256": "f200964117a1cf3b60b7dc97f07b51a783eb3703d99151c7888cf717ca3ec472"
+      },
+      {
+        "path": "syntax.html",
+        "bytes": 127695,
+        "sha256": "c1bc61346b8885c35363c00e87b215de364c7d9bd8e5d1f1f3e1b7ac5466f0da"
+      },
+      {
+        "path": "vkf-browser-isolation.mjs",
+        "bytes": 1816,
+        "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
+      },
+      {
+        "path": "website-controls.mjs",
+        "bytes": 2267,
+        "sha256": "a98562b84c2800a1b36724f2ff61f5ed698c31986af6a610f263fbfc7747f06c"
+      },
+      {
+        "path": "website-layout.css",
+        "bytes": 13973,
+        "sha256": "68bbf5809769f89bcfea2817e37d03dc38c02ab43fc643578417d39fc22085a8"
+      },
+      {
+        "path": "syntax-inventory.json",
+        "bytes": 115600,
+        "sha256": "2134b76c3daec21689e5d1bd605a9a716a802a005b8fbaaae47eefd79e934389"
+      }
+    ]
+  },
+  "priorVerifiedUnchangedRuntime": {
+    "path": "verification/e1838-operator-storage-copy.json",
+    "bytes": 24853,
+    "sha256": "c1eb142992a33551fc076a3f8b979254c59805a4bba5103bbef3f8e383b5f004",
+    "use": "Historical by reference for unchanged runtime/design/retained programs only; new combined source uses current runs"
+  },
+  "browserReport": {
+    "path": "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-CHECK.json",
+    "bytes": 31907,
+    "sha256": "8ca6f3a33b127355df821b5863e42c1a045d7a01aee481d2f6a6517ac315e8f3"
+  },
+  "screenshots": [
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-HOME-PHONE-CLOSED.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-HOME-PHONE-OPEN.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-HOME-FLOW.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-HOME-CONCEPTS.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-SYNTAX-PHONE-CLOSED.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-SYNTAX-PHONE-OPEN.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-COMBINED-BEFORE.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-COMBINED-ACTUAL.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-COMBINED-PHONE.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-HOME-ACTUAL-SPECTRUM.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-320-index.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-320-syntax.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-393-index.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-393-syntax.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-1440-index.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-1440-syntax.png",
+    "/mnt/development/VektorFlow-e1840-editorial-publication-actual-20261101/EDITORIAL-COMBINED-DARK.png"
+  ],
+  "unchangedAffectedPagePrograms": [
+    {
+      "page": "index.html",
+      "id": "scientific-spectrum",
+      "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-3",
+      "source_sha256": "6dd856d1b3975d3c09ecbc98a0f06b766378021ece6159cd39ef4686537eea84"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-values-and-types-0",
+      "source_sha256": "ee6d89f972da2a9a3e1e07e7fe9b88cbb7a9f75ee2588716c22f50874ffd17f2"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-1",
+      "source_sha256": "5ac2086d1e7ae67c266ee1af946f3167b8bf1aaf7679c3527452cd1b8cfa9ac6"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-12",
+      "source_sha256": "cf98682fd99ae2abf9bbb7ee8bd0fbedd43c0ed533c8023b186c9f8747be90bc"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-11",
+      "source_sha256": "dbae261fd7422948ff9088213a4315afcb6f938743defda585aa01013c65e376"
+    },
+    {
+      "page": "syntax.html",
+      "id": "spill-record",
+      "source_sha256": "77ff79a7dd8f5fdaa89e1fc8e45c72af0ed15224d87020dbb05a2215f9e47072"
+    },
+    {
+      "page": "syntax.html",
+      "id": "import-module",
+      "source_sha256": "6eed0e2b16ed356df0151969dea61475c30b8f44f1f1932e2c83b6b3e548eeec"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-index-access-and-ranges-1",
+      "source_sha256": "585b710fc8a08a00de9caa76f135fd546db5417ad5f0d573b5385da2d797077a"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-1",
+      "source_sha256": "e9ca89d695f5bf63837447e985c858c2f88186610d9b2cfc5d41be9361ac3ab7"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-2",
+      "source_sha256": "d277779afa702f69ba714a235d917e94a689fa8b944b936e9ab962f63f9243f6"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-13",
+      "source_sha256": "fc6681767ba9f4989c08c6de8fb5f3a7236bbc4f3b2bd0d80024649b0527345c"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-15",
+      "source_sha256": "7543df4f0a5fb95567c7ddb5806fe0955bb2597964cdf190a26388fd669aa6c0"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-8",
+      "source_sha256": "f36dcb09ad6a30cae86464fb110ef0f2f1446589f96b9d9450c3fa7782706643"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-lifting-and-structural-calls-0",
+      "source_sha256": "efcaa4dfac45626b1539a524808380a6840ba1e97b9c8c71aa4d233bd925f4bc"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-18",
+      "source_sha256": "bbeaa367c1b6d1aabd0dc157665a45845783887e16dfc635322d12c54bd0ac85"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-operators-0",
+      "source_sha256": "6fe237987aa850984349eee6fe6bd6d2f0380eec4a53852662153253f00308ce"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-index-access-and-ranges-0",
+      "source_sha256": "2305d695de3dcbce88b51d64092d99034c71236cce725222d446aa990959e594"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-4",
+      "source_sha256": "f8518c881082a1a1a8007030b67ba8d60bb5b466c06e5f2acfef3e201e9c6954"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-10",
+      "source_sha256": "f20b7bb6aa1b2337d3d7ae890c47971f7fe0af92c31dc5c194ea013e4cf14384"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-11",
+      "source_sha256": "3f68720c21e1c025c21318f0c4401a235d1afd0834e7bd2ed12e3c336be20d6c"
+    },
+    {
+      "page": "syntax.html",
+      "id": "conditional-loop",
+      "source_sha256": "cb1280ad7bd7e8fdc7e8183dda221f433233e678877d88f4fb8e81b7a7f20f1f"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-12",
+      "source_sha256": "5323ae262177673e3b56f3be5a0f6ded6cc3f5298a47aa9355bc28e52d25ca8b"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-13",
+      "source_sha256": "66c8ae4e343f7b5519cae06c739153056241de1b876d841d06fb18d919ab3265"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-9",
+      "source_sha256": "a255975dbc45e341adcbdc98329046aecc316d8700d7d26d946937a227ab46a2"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-15",
+      "source_sha256": "27d3d0cce51fe4820e7eba24a6aad622ecdf357272d778e52ccbe9db5f0c2890"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-16",
+      "source_sha256": "6d97e79be03f91d2ecc95da7508bf365c82b64c03204f4c3dc254792b919e107"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-25",
+      "source_sha256": "af8158ce42e31b20dd9e5231069d5d3481ccf3885bd2f3cce87a4c8c59ee890b"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-geometry-views-and-physics-0",
+      "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-18",
+      "source_sha256": "13280141c26a567d3afa585f5ca3f734f495e26a2952a9408902922b429f3b2d"
+    }
+  ],
+  "removedRedundantEditors": [
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-2"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-10"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-4"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-3"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-26"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-5"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-7"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-9"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-14"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-6"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-17"
+    }
+  ],
+  "activeConstructMetadataUpdated": [
+    "named call arguments",
+    "default arguments",
+    "partial application",
+    "fully bound zero-argument calls",
+    "operator specialization"
+  ],
+  "cacheIdentityUrls": 50,
+  "localFragments": 242,
+  "noFullReleaseQualification": true,
+  "observedMonotonic": 427364.92882768
+}

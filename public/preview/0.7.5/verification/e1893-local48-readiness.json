@@ -1,0 +1,2543 @@
+{
+  "schema": "vkf-current075-local48-readiness/1",
+  "owner": "e1893",
+  "selectionIdentity": "aac2af3be83c4207f67c5e437abfbe28fc8437438cf4f6c2615edb7c0585e0f5",
+  "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+  "wasmBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "matched": {
+    "passed": 26,
+    "total": 48
+  },
+  "parity": {
+    "passed": 13,
+    "total": 24
+  },
+  "failed": 0,
+  "unrun": 33,
+  "stopReason": "Original clock: next full test cap + review/cleanup does not fit",
+  "comparativeSamples": 0,
+  "comparativeTimingEligible": false,
+  "acceptedPriorOwners": [
+    "e1890",
+    "e1891"
+  ],
+  "acceptedPriorReceipts": 33,
+  "newlyPassedInOwnScope": 6,
+  "originalClockPreserved": true,
+  "originalWorkloadsOraclesCapsPreserved": true,
+  "jobs": [
+    {
+      "id": "preflight.linux.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "a4123b8eabcc4686e3ae6896c7a81e6d29697e3967a09020559d7ccfb6d29a30",
+      "receiptBytes": 6566,
+      "rawEvidence": [
+        {
+          "bytes": 1844,
+          "sha256": "a022c0c3293dfa2932ad92828febf4826befda06677bc0931836f4cf793e599d"
+        },
+        {
+          "bytes": 2817,
+          "sha256": "88ddce444ea3d4146526d50181b996403082d02eccd4b257ef15a0420543321c"
+        },
+        {
+          "bytes": 2635,
+          "sha256": "b53322a1c2e9bea1f32144172ed400a52a8483e252618069780f9cad18c63e82"
+        },
+        {
+          "bytes": 2780,
+          "sha256": "9b4c5cc522b9d204beb786ff71a50544a6dadf50973e7f85a20daac9e6b64503"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.wasm.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "33b960f6f28402d3828b6c0501a50dad1e14b82b49377c1c868181532531b447",
+      "receiptBytes": 6652,
+      "rawEvidence": [
+        {
+          "bytes": 1110,
+          "sha256": "c6f79660d245e8300bf04073f0fc5504f944defe9ebeb619d03e2707097cfe80"
+        },
+        {
+          "bytes": 924,
+          "sha256": "c1775eb74c2fea56bfe598b17117f66e8509d625c81a2eb9ea98dd8c41d630df"
+        },
+        {
+          "bytes": 925,
+          "sha256": "3b11c1be3dfc114f3468c525ad6823b9ddf652c8955ca0f15119c5b5d8d0a234"
+        },
+        {
+          "bytes": 924,
+          "sha256": "778b680f5a6dcbeb76492eeadc93ed93be34e2fd472422b4f47cafd335527807"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "parity.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "a670787231c3ad6261c52eba4c1be41d63b4bb13768f7c55b87cbe3f59bee2b6",
+      "receiptBytes": 12187,
+      "rawEvidence": [
+        {
+          "bytes": 1844,
+          "sha256": "a022c0c3293dfa2932ad92828febf4826befda06677bc0931836f4cf793e599d"
+        },
+        {
+          "bytes": 2817,
+          "sha256": "88ddce444ea3d4146526d50181b996403082d02eccd4b257ef15a0420543321c"
+        },
+        {
+          "bytes": 2635,
+          "sha256": "b53322a1c2e9bea1f32144172ed400a52a8483e252618069780f9cad18c63e82"
+        },
+        {
+          "bytes": 2780,
+          "sha256": "9b4c5cc522b9d204beb786ff71a50544a6dadf50973e7f85a20daac9e6b64503"
+        },
+        {
+          "bytes": 1110,
+          "sha256": "c6f79660d245e8300bf04073f0fc5504f944defe9ebeb619d03e2707097cfe80"
+        },
+        {
+          "bytes": 924,
+          "sha256": "c1775eb74c2fea56bfe598b17117f66e8509d625c81a2eb9ea98dd8c41d630df"
+        },
+        {
+          "bytes": 925,
+          "sha256": "3b11c1be3dfc114f3468c525ad6823b9ddf652c8955ca0f15119c5b5d8d0a234"
+        },
+        {
+          "bytes": 924,
+          "sha256": "778b680f5a6dcbeb76492eeadc93ed93be34e2fd472422b4f47cafd335527807"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.linux.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "afedf2d80e53ff1bbe6f3c01d87b701e88de1c44eda8b66c499a075477cb78c8",
+      "receiptBytes": 6545,
+      "rawEvidence": [
+        {
+          "bytes": 1815,
+          "sha256": "e4fd6bf618110b21ea72bf8da63bbecb19226f028f1e470973fb978971cf4f4f"
+        },
+        {
+          "bytes": 2795,
+          "sha256": "285dc4f8c225e654077ad54820828fbe8f1979490410bf3f07d2af5e2e0c5df1"
+        },
+        {
+          "bytes": 2610,
+          "sha256": "506c9867f048b11b0c4e3ca2aff94048a9a8467e9de5883d2a0c2209215dad96"
+        },
+        {
+          "bytes": 2751,
+          "sha256": "dfde823710fece72b493397188448dd783b15b823bb5fecab882c6c48a490e10"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.wasm.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "23d1b24951f0a3f5591cab5103940042fb8daeb23c54fa5fdf530c0a461be9ed",
+      "receiptBytes": 6623,
+      "rawEvidence": [
+        {
+          "bytes": 1097,
+          "sha256": "7a11b36c4a730cb4295d5f505ee8517a270e4cc8874226c3c1ca3f7ecf5061c3"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e4fdf389b1bef1e3f8275c0400a424864ea3ec3d536652cc3e91c70e0b9ee39f"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e9faf13d5d4c1f82927cb93843b9eea9f368c75cdd8e0feaaecd2da23a8c64b8"
+        },
+        {
+          "bytes": 914,
+          "sha256": "8085b1040d3181ba288c16a1f4b0f90b5a10da2a8022c966a84c394adc3c36f4"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "24e368bfc6e2450d5645a53c7e4f29939ed9dfbd8fcf147c83c831c55c0d026f",
+      "receiptBytes": 12135,
+      "rawEvidence": [
+        {
+          "bytes": 1815,
+          "sha256": "e4fd6bf618110b21ea72bf8da63bbecb19226f028f1e470973fb978971cf4f4f"
+        },
+        {
+          "bytes": 2795,
+          "sha256": "285dc4f8c225e654077ad54820828fbe8f1979490410bf3f07d2af5e2e0c5df1"
+        },
+        {
+          "bytes": 2610,
+          "sha256": "506c9867f048b11b0c4e3ca2aff94048a9a8467e9de5883d2a0c2209215dad96"
+        },
+        {
+          "bytes": 2751,
+          "sha256": "dfde823710fece72b493397188448dd783b15b823bb5fecab882c6c48a490e10"
+        },
+        {
+          "bytes": 1097,
+          "sha256": "7a11b36c4a730cb4295d5f505ee8517a270e4cc8874226c3c1ca3f7ecf5061c3"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e4fdf389b1bef1e3f8275c0400a424864ea3ec3d536652cc3e91c70e0b9ee39f"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e9faf13d5d4c1f82927cb93843b9eea9f368c75cdd8e0feaaecd2da23a8c64b8"
+        },
+        {
+          "bytes": 914,
+          "sha256": "8085b1040d3181ba288c16a1f4b0f90b5a10da2a8022c966a84c394adc3c36f4"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.linux.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "80b4f5821e3296b09dfb661db6b1cdd8ff288a09200b35b0bc7c1f26acf46732",
+      "receiptBytes": 6434,
+      "rawEvidence": [
+        {
+          "bytes": 1817,
+          "sha256": "704c26fce1ba79cf5b599ff96d20205dc03dc67655f8a6c694a37a28efbeb87f"
+        },
+        {
+          "bytes": 2760,
+          "sha256": "775622f415f74037ac232fb17068d00df77c6d8fb7f91585ce5836e7cdbdc3a4"
+        },
+        {
+          "bytes": 2560,
+          "sha256": "0f30ec10bf12df233997ce8b5fb898df9926670f5fa08713aec62ea055a3fa80"
+        },
+        {
+          "bytes": 2721,
+          "sha256": "a80a614cadd9095ccb5d8aca7017e947daebb477807021f63fdef3f2a4f6c1ed"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.wasm.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "65cf58ea78017bae8d4fd938783b7dd2cefe103d5379b38ce180c8ce29735b77",
+      "receiptBytes": 6520,
+      "rawEvidence": [
+        {
+          "bytes": 1111,
+          "sha256": "283dc595d312177d300e164eefce1c89d4734fd183a972c4a12714337fb8162a"
+        },
+        {
+          "bytes": 917,
+          "sha256": "538573c27353a5a95fa8cc8ce8827ef629ef3a3ff7b0e46a0ea520f914c0ed7e"
+        },
+        {
+          "bytes": 918,
+          "sha256": "4600f0d8e6cbc85b3e58c313d8358c1fe295e51a9fe75781d16accfc980ae897"
+        },
+        {
+          "bytes": 917,
+          "sha256": "e2473547977e83a63019c515c90a413d9d8fdbb6552a75a2b7bf891e9cbbfb51"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "bf0147d745a7564addf6cb33a085bfe657d2be696342f108b030d7687b87690f",
+      "receiptBytes": 11937,
+      "rawEvidence": [
+        {
+          "bytes": 1817,
+          "sha256": "704c26fce1ba79cf5b599ff96d20205dc03dc67655f8a6c694a37a28efbeb87f"
+        },
+        {
+          "bytes": 2760,
+          "sha256": "775622f415f74037ac232fb17068d00df77c6d8fb7f91585ce5836e7cdbdc3a4"
+        },
+        {
+          "bytes": 2560,
+          "sha256": "0f30ec10bf12df233997ce8b5fb898df9926670f5fa08713aec62ea055a3fa80"
+        },
+        {
+          "bytes": 2721,
+          "sha256": "a80a614cadd9095ccb5d8aca7017e947daebb477807021f63fdef3f2a4f6c1ed"
+        },
+        {
+          "bytes": 1111,
+          "sha256": "283dc595d312177d300e164eefce1c89d4734fd183a972c4a12714337fb8162a"
+        },
+        {
+          "bytes": 917,
+          "sha256": "538573c27353a5a95fa8cc8ce8827ef629ef3a3ff7b0e46a0ea520f914c0ed7e"
+        },
+        {
+          "bytes": 918,
+          "sha256": "4600f0d8e6cbc85b3e58c313d8358c1fe295e51a9fe75781d16accfc980ae897"
+        },
+        {
+          "bytes": 917,
+          "sha256": "e2473547977e83a63019c515c90a413d9d8fdbb6552a75a2b7bf891e9cbbfb51"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "8dab5bf34f2296782a254561b6e4dddfe7c94a1055baf55c919645bd5f4a42b0",
+      "receiptBytes": 6659,
+      "rawEvidence": [
+        {
+          "bytes": 1862,
+          "sha256": "228f07f294d69591ae6a2d9cd593ec745b199ea4cc94099bb4a5f4077a9181d9"
+        },
+        {
+          "bytes": 2853,
+          "sha256": "08cb8c2855d9875707354309cc2c23a289c37dd25c01306172516751f3b62450"
+        },
+        {
+          "bytes": 2665,
+          "sha256": "a5ca89e42fa8370803bba0b92254c9f3802249688a459294c1c58b30625a9288"
+        },
+        {
+          "bytes": 2803,
+          "sha256": "35ac5f9c83ad8718ebd52f2060fec85f1392cbf922e4d941e7524cfdcc2aebad"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "47acbff6d8e853f49808297bbf9f7cacd5a77d414d33e3ccbed418ab744c57bd",
+      "receiptBytes": 6745,
+      "rawEvidence": [
+        {
+          "bytes": 1111,
+          "sha256": "7982ca2b4829220f894e23a821a5f7a28460ff09f79d1fd590d4a0b947e402fd"
+        },
+        {
+          "bytes": 926,
+          "sha256": "fd63c081ef9ebe6828bcf9f92d990f17478b5526e45fec5158eacf8c74c497ea"
+        },
+        {
+          "bytes": 927,
+          "sha256": "318b97e4750b0f39678ac973b3c0ce08a0dd55a486f46d330fb3f9ac4918e61d"
+        },
+        {
+          "bytes": 926,
+          "sha256": "a72b3614a3667d77ea25377fe5a49a90c8ff467518b18a8d8368ff6de8a5b3cb"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "2cfb35e2c730a8661d6cfef1748014980e0146a7c75a08ad3f92c77a7164a91e",
+      "receiptBytes": 12367,
+      "rawEvidence": [
+        {
+          "bytes": 1862,
+          "sha256": "228f07f294d69591ae6a2d9cd593ec745b199ea4cc94099bb4a5f4077a9181d9"
+        },
+        {
+          "bytes": 2853,
+          "sha256": "08cb8c2855d9875707354309cc2c23a289c37dd25c01306172516751f3b62450"
+        },
+        {
+          "bytes": 2665,
+          "sha256": "a5ca89e42fa8370803bba0b92254c9f3802249688a459294c1c58b30625a9288"
+        },
+        {
+          "bytes": 2803,
+          "sha256": "35ac5f9c83ad8718ebd52f2060fec85f1392cbf922e4d941e7524cfdcc2aebad"
+        },
+        {
+          "bytes": 1111,
+          "sha256": "7982ca2b4829220f894e23a821a5f7a28460ff09f79d1fd590d4a0b947e402fd"
+        },
+        {
+          "bytes": 926,
+          "sha256": "fd63c081ef9ebe6828bcf9f92d990f17478b5526e45fec5158eacf8c74c497ea"
+        },
+        {
+          "bytes": 927,
+          "sha256": "318b97e4750b0f39678ac973b3c0ce08a0dd55a486f46d330fb3f9ac4918e61d"
+        },
+        {
+          "bytes": 926,
+          "sha256": "a72b3614a3667d77ea25377fe5a49a90c8ff467518b18a8d8368ff6de8a5b3cb"
+        }
+      ],
+      "receiptOwner": "e1890"
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-parallel-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "56a45b924776430c22e7442387d6da220d7a9e1d26798281442899bcab4d95b4",
+      "receiptBytes": 6883,
+      "rawEvidence": [
+        {
+          "bytes": 1902,
+          "sha256": "7e6d95404a5ac4a0f8a6ccc7e2bd8f9ade12da240aa46ac505c3a06cd264e68e"
+        },
+        {
+          "bytes": 2932,
+          "sha256": "9db385a3aa4925eb61ebe617fdd541fa9cc9a076e97621b737848d1caf53ebe2"
+        },
+        {
+          "bytes": 2706,
+          "sha256": "754820550aa16a62aef4db77124a93959b900c692b5d93f7ed0fe59ea5ead40e"
+        },
+        {
+          "bytes": 2841,
+          "sha256": "d953cc2c6f1f8e9591ac8e63fb2d999624400a970d98164e732e749843adf6e8"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "2adb6822726ef35eebf039d260e7201b4f22465bccfc271065f991a7730e31c5",
+      "receiptBytes": 6969,
+      "rawEvidence": [
+        {
+          "bytes": 1154,
+          "sha256": "e69ab47b309310530340a950056c0a0afc0abfee25ba10ee0f59a2c7b802f1ac"
+        },
+        {
+          "bytes": 936,
+          "sha256": "a3816b6257fb98aaa4c97609540ed45f6427dd1f7eca641e5b41775416fd3a4e"
+        },
+        {
+          "bytes": 937,
+          "sha256": "76a1ea67d171b5d84fdde7fbad79c0b57a6368813fd10dc3e9c5ca0f3fbaed80"
+        },
+        {
+          "bytes": 936,
+          "sha256": "d03c2123971074517529d17e68657013656ebca4cb79a218311197f3c765da54"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "735c3ed24a0f4002ef6341f5a736cec53ca717897ca9c807a332d81fdcae1d1b",
+      "receiptBytes": 12796,
+      "rawEvidence": [
+        {
+          "bytes": 1902,
+          "sha256": "7e6d95404a5ac4a0f8a6ccc7e2bd8f9ade12da240aa46ac505c3a06cd264e68e"
+        },
+        {
+          "bytes": 2932,
+          "sha256": "9db385a3aa4925eb61ebe617fdd541fa9cc9a076e97621b737848d1caf53ebe2"
+        },
+        {
+          "bytes": 2706,
+          "sha256": "754820550aa16a62aef4db77124a93959b900c692b5d93f7ed0fe59ea5ead40e"
+        },
+        {
+          "bytes": 2841,
+          "sha256": "d953cc2c6f1f8e9591ac8e63fb2d999624400a970d98164e732e749843adf6e8"
+        },
+        {
+          "bytes": 1154,
+          "sha256": "e69ab47b309310530340a950056c0a0afc0abfee25ba10ee0f59a2c7b802f1ac"
+        },
+        {
+          "bytes": 936,
+          "sha256": "a3816b6257fb98aaa4c97609540ed45f6427dd1f7eca641e5b41775416fd3a4e"
+        },
+        {
+          "bytes": 937,
+          "sha256": "76a1ea67d171b5d84fdde7fbad79c0b57a6368813fd10dc3e9c5ca0f3fbaed80"
+        },
+        {
+          "bytes": 936,
+          "sha256": "d03c2123971074517529d17e68657013656ebca4cb79a218311197f3c765da54"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.solve-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.9391310331412\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.10408199999999999\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12607199999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.175092\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "2471324c74001b96651244e49593c2ed9092f1dceca0f954b01d174a3cce56f1",
+      "receiptBytes": 9604,
+      "rawEvidence": [
+        {
+          "bytes": 1666,
+          "sha256": "d5ec5358014656a608c26f8225cb19fc8114f02d032e51763834d7c123322a80"
+        },
+        {
+          "bytes": 410,
+          "sha256": "f8e792074f56bb111d546def0a9047a10bf85009dc9ec5c6077f12231c7f649e"
+        },
+        {
+          "bytes": 494,
+          "sha256": "8211ae2591ad7e5b5af45fc9a2ed53328349ea85e3a05c1aab1c257cd20e2969"
+        },
+        {
+          "bytes": 437,
+          "sha256": "ef7c1870ec7f9c9c3e209c2221cfde113df02dcbae78fa3af11dfb2df1a4d2de"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.solve-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=506.599534999999\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067981\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12218200000000000\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.16489300000000001\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "2ba5627a7ff36ce0b0aa220ed9918dbf326234561ec59bf539707de1ae508ed4",
+      "receiptBytes": 9599,
+      "rawEvidence": [
+        {
+          "bytes": 1311,
+          "sha256": "565f681ff7266b41ff2cf42214713122694211b07bf708c7010bb97676261b1c"
+        },
+        {
+          "bytes": 399,
+          "sha256": "cab7066fb068ec7959665918404f3ce2d96ccb9e33d9de80105416a6c1df062a"
+        },
+        {
+          "bytes": 494,
+          "sha256": "6bc110e20052bc640b8f46b882d01806c608c1987d258104e17ad89a39abce68"
+        },
+        {
+          "bytes": 448,
+          "sha256": "a54d4071d8ed465bb3cb68ae943fd09162ed4e4742e1ae8f89fc7fdded5aaddf"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.9391310331412\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.10408199999999999\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12607199999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.175092\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=506.599534999999\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067981\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12218200000000000\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.16489300000000001\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "0cb8b5c65e23dc26c3d7c69a2c3d644cad81320a330e33fa27de7a175b206ebc",
+      "receiptBytes": 18173,
+      "rawEvidence": [
+        {
+          "bytes": 1666,
+          "sha256": "d5ec5358014656a608c26f8225cb19fc8114f02d032e51763834d7c123322a80"
+        },
+        {
+          "bytes": 410,
+          "sha256": "f8e792074f56bb111d546def0a9047a10bf85009dc9ec5c6077f12231c7f649e"
+        },
+        {
+          "bytes": 494,
+          "sha256": "8211ae2591ad7e5b5af45fc9a2ed53328349ea85e3a05c1aab1c257cd20e2969"
+        },
+        {
+          "bytes": 437,
+          "sha256": "ef7c1870ec7f9c9c3e209c2221cfde113df02dcbae78fa3af11dfb2df1a4d2de"
+        },
+        {
+          "bytes": 1311,
+          "sha256": "565f681ff7266b41ff2cf42214713122694211b07bf708c7010bb97676261b1c"
+        },
+        {
+          "bytes": 399,
+          "sha256": "cab7066fb068ec7959665918404f3ce2d96ccb9e33d9de80105416a6c1df062a"
+        },
+        {
+          "bytes": 494,
+          "sha256": "6bc110e20052bc640b8f46b882d01806c608c1987d258104e17ad89a39abce68"
+        },
+        {
+          "bytes": 448,
+          "sha256": "a54d4071d8ed465bb3cb68ae943fd09162ed4e4742e1ae8f89fc7fdded5aaddf"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.least-squares-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.0104279778898\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.083560999999999996\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10625100000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14464199999999999\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "8a19b5e74d8cd9338ad2ab1e1b5e960f02fd5adfd4e606db35fa6e0080c97ae3",
+      "receiptBytes": 9722,
+      "rawEvidence": [
+        {
+          "bytes": 1701,
+          "sha256": "80401c2d45029c68b0218fa9652cc64f2100520f3ef2082448a5f11ce5830d5e"
+        },
+        {
+          "bytes": 410,
+          "sha256": "9321617b32e43aef494050cd8ced04c98e180106016a5a03121e58826e832530"
+        },
+        {
+          "bytes": 488,
+          "sha256": "f71a7c2c95fb554c0e25d6d81f7a89bac9dc73c311a5b8f6c7cb47465b8ef87b"
+        },
+        {
+          "bytes": 449,
+          "sha256": "a30aa91811005bc5822ed167a8c17a6b046efd5484a43aeee5b50f7d6ff2531c"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.least-squares-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=212.625526999993\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.054670999999999997\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.06557100000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.141372\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "7d81f92b12e2afc5a535f0f874ee2710b15c1e61660548c606f4ede477b6b8e8",
+      "receiptBytes": 9706,
+      "rawEvidence": [
+        {
+          "bytes": 1321,
+          "sha256": "fdd67aa875ddbdf1dfabfa61305eb771a1cf1540928664dbce7d6aabcc6b0768"
+        },
+        {
+          "bytes": 410,
+          "sha256": "029f2095d57e7e862cdbb6f1b49e40111665ab5c4eb62e148ed779011a4cf488"
+        },
+        {
+          "bytes": 488,
+          "sha256": "69c3b6b8088c10be9caac35448268efaaa11fbbcca29c83c1178df4d41bd11af"
+        },
+        {
+          "bytes": 438,
+          "sha256": "f3ff165d384bc4aaa1f5216bb7d9975882844f157507c94e6ea02cbc208d6785"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.0104279778898\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.083560999999999996\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10625100000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14464199999999999\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=212.625526999993\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.054670999999999997\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.06557100000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.141372\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "276115bee6ed36ed842f3e8a8dc1beb2c5db74c1f357d54b2fd0edd2d67db027",
+      "receiptBytes": 18382,
+      "rawEvidence": [
+        {
+          "bytes": 1701,
+          "sha256": "80401c2d45029c68b0218fa9652cc64f2100520f3ef2082448a5f11ce5830d5e"
+        },
+        {
+          "bytes": 410,
+          "sha256": "9321617b32e43aef494050cd8ced04c98e180106016a5a03121e58826e832530"
+        },
+        {
+          "bytes": 488,
+          "sha256": "f71a7c2c95fb554c0e25d6d81f7a89bac9dc73c311a5b8f6c7cb47465b8ef87b"
+        },
+        {
+          "bytes": 449,
+          "sha256": "a30aa91811005bc5822ed167a8c17a6b046efd5484a43aeee5b50f7d6ff2531c"
+        },
+        {
+          "bytes": 1321,
+          "sha256": "fdd67aa875ddbdf1dfabfa61305eb771a1cf1540928664dbce7d6aabcc6b0768"
+        },
+        {
+          "bytes": 410,
+          "sha256": "029f2095d57e7e862cdbb6f1b49e40111665ab5c4eb62e148ed779011a4cf488"
+        },
+        {
+          "bytes": 488,
+          "sha256": "69c3b6b8088c10be9caac35448268efaaa11fbbcca29c83c1178df4d41bd11af"
+        },
+        {
+          "bytes": 438,
+          "sha256": "f3ff165d384bc4aaa1f5216bb7d9975882844f157507c94e6ea02cbc208d6785"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.lu-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=33.0226870137267\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.100701\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10508100000000001\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.107151\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "9210db033fe29483de6dc3d4258acce43130c7f257cd6ffcbd376231905d75df",
+      "receiptBytes": 9390,
+      "rawEvidence": [
+        {
+          "bytes": 1609,
+          "sha256": "7c0911bbf1b3dda7c035278413b889f0eb64ae0cb5f765bb1e1b1dd47f7d0ec8"
+        },
+        {
+          "bytes": 365,
+          "sha256": "161b0537c9add6348338dbd2a4e73a812d88e8f1898ed1b8e87bd1afc0344caa"
+        },
+        {
+          "bytes": 441,
+          "sha256": "c84422ba967397eaf0732ee5e3f4e6a68920415b6976a0c4c9f8aa549f9c10c4"
+        },
+        {
+          "bytes": 406,
+          "sha256": "810bed12734aa03c0316d770018913b2334641531e425e6c0dda7ef002251a68"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.lu-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=4170.217604\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.071310999999999999\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10288200000000000\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.106951\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "f74babce2f7962b6835038a1fc0f55e6d061aa61532d01928a90f5f1ab336ea5",
+      "receiptBytes": 9392,
+      "rawEvidence": [
+        {
+          "bytes": 1254,
+          "sha256": "5e4eaeab5b714dfa672fad7a8c4a931eb4a69a40f5c1a09df1f8c0ca20d6bfae"
+        },
+        {
+          "bytes": 377,
+          "sha256": "5e8734a8c28f89075005beae188683926dac232a5bd380b11b704745be8eeec9"
+        },
+        {
+          "bytes": 441,
+          "sha256": "2d36c1a9831765fd5d1576e29f87b0eb087580f902f50e199311fb724e895b2e"
+        },
+        {
+          "bytes": 406,
+          "sha256": "6ec1ad520a25c7cc20a8e411345edf84763ee0b8a32c7661a70250d377f4cf39"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=33.0226870137267\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.100701\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10508100000000001\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.107151\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=4170.217604\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.071310999999999999\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10288200000000000\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.106951\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "ee99f0e46c45b55a6d7d5563373d5e74fbbb6c586ccb5e6641452dbe5bec0de1",
+      "receiptBytes": 17758,
+      "rawEvidence": [
+        {
+          "bytes": 1609,
+          "sha256": "7c0911bbf1b3dda7c035278413b889f0eb64ae0cb5f765bb1e1b1dd47f7d0ec8"
+        },
+        {
+          "bytes": 365,
+          "sha256": "161b0537c9add6348338dbd2a4e73a812d88e8f1898ed1b8e87bd1afc0344caa"
+        },
+        {
+          "bytes": 441,
+          "sha256": "c84422ba967397eaf0732ee5e3f4e6a68920415b6976a0c4c9f8aa549f9c10c4"
+        },
+        {
+          "bytes": 406,
+          "sha256": "810bed12734aa03c0316d770018913b2334641531e425e6c0dda7ef002251a68"
+        },
+        {
+          "bytes": 1254,
+          "sha256": "5e4eaeab5b714dfa672fad7a8c4a931eb4a69a40f5c1a09df1f8c0ca20d6bfae"
+        },
+        {
+          "bytes": 377,
+          "sha256": "5e8734a8c28f89075005beae188683926dac232a5bd380b11b704745be8eeec9"
+        },
+        {
+          "bytes": 441,
+          "sha256": "2d36c1a9831765fd5d1576e29f87b0eb087580f902f50e199311fb724e895b2e"
+        },
+        {
+          "bytes": 406,
+          "sha256": "6ec1ad520a25c7cc20a8e411345edf84763ee0b8a32c7661a70250d377f4cf39"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.qr-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=10.4911779635586\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.139542\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.08699100000000000\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.23284299999999999\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "8a39498e8585d4af3e6f7c19ab8398e937ea537563ab731b96a36ccb19a91ed6",
+      "receiptBytes": 9574,
+      "rawEvidence": [
+        {
+          "bytes": 1658,
+          "sha256": "d2a8997c0ce922606745fed48482ae77b4a3324b724f08c29de1a25b5b441edf"
+        },
+        {
+          "bytes": 404,
+          "sha256": "7f60a828a266df5666671fa833336872af3d12326d03b813f37e728b1b90d6bd"
+        },
+        {
+          "bytes": 495,
+          "sha256": "7c953dd718314a97e24972f067081fe6c4f3eeb33eff1f6fd9bdba0d446560b1"
+        },
+        {
+          "bytes": 450,
+          "sha256": "3aabb1a57fe15c5bfd6c6531e2a583181ed9a940c463cfd6f797754622f3e860"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.qr-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=169.289714999998\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.28134399999999998\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13445199999999999\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.192333\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "6d7ec75a8e5aa597c89ae6716df8692eedd0c8caae905da5fd1c86ab42ec8fcd",
+      "receiptBytes": 9569,
+      "rawEvidence": [
+        {
+          "bytes": 1308,
+          "sha256": "81934da2544c905fcbacee92edb7cd72797a0cd8db4d335e4884b374a09b96d4"
+        },
+        {
+          "bytes": 415,
+          "sha256": "be5788f5ed856bd7dc60fd939cbaa2040f686339e63f6989b7159d4bb39c4ef8"
+        },
+        {
+          "bytes": 495,
+          "sha256": "02065876420a25fc93d3f9049a9a6efa4bbaa48011193f65136cee218a22f1ea"
+        },
+        {
+          "bytes": 439,
+          "sha256": "3fce47a445ccbb4966f9b269461fab218eb2f3cbb5359ae54e475589610bd5f6"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=10.4911779635586\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.139542\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.08699100000000000\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.23284299999999999\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=169.289714999998\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.28134399999999998\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13445199999999999\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.192333\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "84fdc3943039409a327527abaec5d33dc5f8222562511cb645fe85053ccf8812",
+      "receiptBytes": 18119,
+      "rawEvidence": [
+        {
+          "bytes": 1658,
+          "sha256": "d2a8997c0ce922606745fed48482ae77b4a3324b724f08c29de1a25b5b441edf"
+        },
+        {
+          "bytes": 404,
+          "sha256": "7f60a828a266df5666671fa833336872af3d12326d03b813f37e728b1b90d6bd"
+        },
+        {
+          "bytes": 495,
+          "sha256": "7c953dd718314a97e24972f067081fe6c4f3eeb33eff1f6fd9bdba0d446560b1"
+        },
+        {
+          "bytes": 450,
+          "sha256": "3aabb1a57fe15c5bfd6c6531e2a583181ed9a940c463cfd6f797754622f3e860"
+        },
+        {
+          "bytes": 1308,
+          "sha256": "81934da2544c905fcbacee92edb7cd72797a0cd8db4d335e4884b374a09b96d4"
+        },
+        {
+          "bytes": 415,
+          "sha256": "be5788f5ed856bd7dc60fd939cbaa2040f686339e63f6989b7159d4bb39c4ef8"
+        },
+        {
+          "bytes": 495,
+          "sha256": "02065876420a25fc93d3f9049a9a6efa4bbaa48011193f65136cee218a22f1ea"
+        },
+        {
+          "bytes": 439,
+          "sha256": "3fce47a445ccbb4966f9b269461fab218eb2f3cbb5359ae54e475589610bd5f6"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.cholesky-spd-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=13.2423469913192\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062811000000000006\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02949100000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.087320999999999996\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "809a0a09c507a27523a848756f8da237daa2c9fb1d065c03d811373c54d1c55d",
+      "receiptBytes": 9422,
+      "rawEvidence": [
+        {
+          "bytes": 1615,
+          "sha256": "b99b74fc5c829f846335dc0039855e7c08175430648851eff202d5a2e22295f5"
+        },
+        {
+          "bytes": 377,
+          "sha256": "5284bdf0bb48c26f1d86fe4808acb2aaaa818e565ab83384989ad3eb8dd9ecd8"
+        },
+        {
+          "bytes": 437,
+          "sha256": "14465e9dacfe08489ce724c4e757dd4cced8556511e7eb7b03df4c6bbcc42c8a"
+        },
+        {
+          "bytes": 416,
+          "sha256": "d345cd1be4f95b052f2c718beb91452954d42faf25a8454aaf10140706701c90"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.cholesky-spd-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=96.0927720000058\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062601000000000004\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02970000000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.073080999999999993\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "8a2887597c1c841b8e56f13cda4c760a1113b6ec4268189854c8a0db618b0136",
+      "receiptBytes": 9417,
+      "rawEvidence": [
+        {
+          "bytes": 1259,
+          "sha256": "e2dc83f6f12a16dfc2a843d3193dfe0f4f0289d7b4da1b309713f21cc2ed8dd1"
+        },
+        {
+          "bytes": 377,
+          "sha256": "840a2050d3207f4f387321922094690a8c33f89a6f2fb4206d564c95910057c8"
+        },
+        {
+          "bytes": 437,
+          "sha256": "d5020d052b2405e8ed44d8ecc748ea169de90234b3c7d61db7dd9f3daecaf84c"
+        },
+        {
+          "bytes": 416,
+          "sha256": "6eebd48e51fa20f4e2ad184b765302b5025ff1b62fd5b277527cd5bd43107690"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=13.2423469913192\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062811000000000006\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02949100000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.087320999999999996\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=96.0927720000058\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062601000000000004\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02970000000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.073080999999999993\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "24873a27fc5e9ee82228ab428ae872a37709496cc1d73b2641ad4a6ce0b31ba6",
+      "receiptBytes": 17811,
+      "rawEvidence": [
+        {
+          "bytes": 1615,
+          "sha256": "b99b74fc5c829f846335dc0039855e7c08175430648851eff202d5a2e22295f5"
+        },
+        {
+          "bytes": 377,
+          "sha256": "5284bdf0bb48c26f1d86fe4808acb2aaaa818e565ab83384989ad3eb8dd9ecd8"
+        },
+        {
+          "bytes": 437,
+          "sha256": "14465e9dacfe08489ce724c4e757dd4cced8556511e7eb7b03df4c6bbcc42c8a"
+        },
+        {
+          "bytes": 416,
+          "sha256": "d345cd1be4f95b052f2c718beb91452954d42faf25a8454aaf10140706701c90"
+        },
+        {
+          "bytes": 1259,
+          "sha256": "e2dc83f6f12a16dfc2a843d3193dfe0f4f0289d7b4da1b309713f21cc2ed8dd1"
+        },
+        {
+          "bytes": 377,
+          "sha256": "840a2050d3207f4f387321922094690a8c33f89a6f2fb4206d564c95910057c8"
+        },
+        {
+          "bytes": 437,
+          "sha256": "d5020d052b2405e8ed44d8ecc748ea169de90234b3c7d61db7dd9f3daecaf84c"
+        },
+        {
+          "bytes": 416,
+          "sha256": "6eebd48e51fa20f4e2ad184b765302b5025ff1b62fd5b277527cd5bd43107690"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.svd-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=135.592192993499\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.60691799999999996\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.58745900000000006\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.59199800000000002\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "53eb302a48c8bb867de1d337c1f4a80950790b9dd6d86b7e66359dadc95f8a62",
+      "receiptBytes": 9564,
+      "rawEvidence": [
+        {
+          "bytes": 1660,
+          "sha256": "c800809019a4de5eb556c3c61f4ec7b444a65305746c07d4c33dbf3a16cb2be6"
+        },
+        {
+          "bytes": 414,
+          "sha256": "6ddcaf45415bdc53706df3f3775784518d00ac0d131e42cf26eebee2c8980de4"
+        },
+        {
+          "bytes": 468,
+          "sha256": "d68d50ee943c03f657c39b7f3159457e5667fe5a53838eaf246289b5b09f38e6"
+        },
+        {
+          "bytes": 453,
+          "sha256": "e2503855b3600417f058c0be452b9275edbf997ff58685448ac4bbc386e4840e"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.wasm.linalg.svd-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=3449.73906499999\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.59689800000000004\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.57821800000000001\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.58480799999999999\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "d5adade277e65feaab6dd8bd407acf1ce6069833d870ce8a9325d2ba597fbb59",
+      "receiptBytes": 9559,
+      "rawEvidence": [
+        {
+          "bytes": 1307,
+          "sha256": "913185bb466215649f9074d7db3434b82b377c7ca86ffcfb4e3b252fc135b347"
+        },
+        {
+          "bytes": 414,
+          "sha256": "182bc6d3534e9e2fe0f94a45959f7a67fcf9fa2421361fa18d199326e67dda41"
+        },
+        {
+          "bytes": 468,
+          "sha256": "ebfaddec3984174607a308a402e10728237fe952e510af7fefef748fed1c691f"
+        },
+        {
+          "bytes": 453,
+          "sha256": "6a01621198121ffaa3fbdb49abbbb11514702eebca3acea8c9f66a2690d9659c"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=135.592192993499\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.60691799999999996\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.58745900000000006\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.59199800000000002\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=3449.73906499999\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.59689800000000004\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.57821800000000001\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "wasm.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.58480799999999999\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "36365ee798a5ae6a088a7f7e8fd9122fb583bd91a072a78e9d1bb89507a38a7e",
+      "receiptBytes": 18097,
+      "rawEvidence": [
+        {
+          "bytes": 1660,
+          "sha256": "c800809019a4de5eb556c3c61f4ec7b444a65305746c07d4c33dbf3a16cb2be6"
+        },
+        {
+          "bytes": 414,
+          "sha256": "6ddcaf45415bdc53706df3f3775784518d00ac0d131e42cf26eebee2c8980de4"
+        },
+        {
+          "bytes": 468,
+          "sha256": "d68d50ee943c03f657c39b7f3159457e5667fe5a53838eaf246289b5b09f38e6"
+        },
+        {
+          "bytes": 453,
+          "sha256": "e2503855b3600417f058c0be452b9275edbf997ff58685448ac4bbc386e4840e"
+        },
+        {
+          "bytes": 1307,
+          "sha256": "913185bb466215649f9074d7db3434b82b377c7ca86ffcfb4e3b252fc135b347"
+        },
+        {
+          "bytes": 414,
+          "sha256": "182bc6d3534e9e2fe0f94a45959f7a67fcf9fa2421361fa18d199326e67dda41"
+        },
+        {
+          "bytes": 468,
+          "sha256": "ebfaddec3984174607a308a402e10728237fe952e510af7fefef748fed1c691f"
+        },
+        {
+          "bytes": 453,
+          "sha256": "6a01621198121ffaa3fbdb49abbbb11514702eebca3acea8c9f66a2690d9659c"
+        }
+      ],
+      "receiptOwner": "e1891"
+    },
+    {
+      "id": "preflight.linux.linalg.eigen-symmetric-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=818.377634044737\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.75520799999999999\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.76912800000000003\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1311420000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "e281282854b6d94930686db3d7b12d0ac82f1c4bc81e8a3011f0d87351c3aa68",
+      "receiptBytes": 9787,
+      "rawEvidence": [
+        {
+          "bytes": 1729,
+          "sha256": "b39a8ccaffe0a9a9379f0f556e9ea9fb50b92ce030d6911a2e1e84e1f97bfd3b"
+        },
+        {
+          "bytes": 446,
+          "sha256": "827231876ac8dff0fc29127f5fd2ad14e0362d5cea1b60459694832db7f2e104"
+        },
+        {
+          "bytes": 521,
+          "sha256": "e09eb45533485ef47e4c2275466e0049fdeb3404621ab278a8d6094469fd3413"
+        },
+        {
+          "bytes": 489,
+          "sha256": "4dfc65c9ef6d5bab7a5bac9050604987bb9a1a9ae83eaa94e2e7f32087776300"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "preflight.wasm.linalg.eigen-symmetric-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=80189.574269\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.75389799999999996\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.77349899999999994\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1451420000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "162a1e8d5b059f73823d56aaa554fa572a0b1ba67b06c8c9e727fc6cbfdbede9",
+      "receiptBytes": 9778,
+      "rawEvidence": [
+        {
+          "bytes": 1354,
+          "sha256": "1821e1796b7d400792df68549ae401bb2d3d7435fe8aeb4c795bbea9526a5ba1"
+        },
+        {
+          "bytes": 446,
+          "sha256": "13e5d46de627d2f180a37a00a7182d0c421641e84d56947df01525160706e371"
+        },
+        {
+          "bytes": 521,
+          "sha256": "f53e583a3c6d434103cc6b6ca011c020451d64550ee7e34d4a935c0d6c693012"
+        },
+        {
+          "bytes": 489,
+          "sha256": "05d9c66cae9f020f6b37c9a90c772168d85411199676e7b11e7aee93253508d4"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=818.377634044737\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.75520799999999999\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.76912800000000003\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1311420000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=80189.574269\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.75389799999999996\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.77349899999999994\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1451420000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "16a42ef72f5203ac872ef264c4252644dc16818bae1e1cbc60f1b75dc9b4f5d7",
+      "receiptBytes": 18531,
+      "rawEvidence": [
+        {
+          "bytes": 1729,
+          "sha256": "b39a8ccaffe0a9a9379f0f556e9ea9fb50b92ce030d6911a2e1e84e1f97bfd3b"
+        },
+        {
+          "bytes": 446,
+          "sha256": "827231876ac8dff0fc29127f5fd2ad14e0362d5cea1b60459694832db7f2e104"
+        },
+        {
+          "bytes": 521,
+          "sha256": "e09eb45533485ef47e4c2275466e0049fdeb3404621ab278a8d6094469fd3413"
+        },
+        {
+          "bytes": 489,
+          "sha256": "4dfc65c9ef6d5bab7a5bac9050604987bb9a1a9ae83eaa94e2e7f32087776300"
+        },
+        {
+          "bytes": 1354,
+          "sha256": "1821e1796b7d400792df68549ae401bb2d3d7435fe8aeb4c795bbea9526a5ba1"
+        },
+        {
+          "bytes": 446,
+          "sha256": "13e5d46de627d2f180a37a00a7182d0c421641e84d56947df01525160706e371"
+        },
+        {
+          "bytes": 521,
+          "sha256": "f53e583a3c6d434103cc6b6ca011c020451d64550ee7e34d4a935c0d6c693012"
+        },
+        {
+          "bytes": 489,
+          "sha256": "05d9c66cae9f020f6b37c9a90c772168d85411199676e7b11e7aee93253508d4"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand1",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "vkf",
+          "stdout": "45814.438366971444\n39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symengine",
+          "stdout": "elapsed_ms=55.4438\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "sympy",
+          "stdout": "sympy=1.14.0\nelapsed_ms=9095.953546000\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symbolics",
+          "stdout": "julia=1.12.6\nsymbolics=7.31.0\nelapsed_ms=160613.379932\noutput=39711\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "acfeff64281d171934f21f1f4b861043da5572ed5e53985358f2dab19628b9d2",
+      "receiptBytes": 6804,
+      "rawEvidence": [
+        {
+          "bytes": 1345,
+          "sha256": "0d525f3db4ae7d092dcf9919eea6483c9cea555a6d66680c880946201ddb3669"
+        },
+        {
+          "bytes": 187,
+          "sha256": "2afaae597f02fc553131d608f85d36df5423b0b0ffddd3ce67938365ad62adbe"
+        },
+        {
+          "bytes": 208,
+          "sha256": "6d919006e53cff6de23c3a2d69999fd6b55d65ef64877840fc819626a1d7981f"
+        },
+        {
+          "bytes": 225,
+          "sha256": "1f39e5cc89c16d30f425e285421ae97afb797b25904e681d0c3d65c551804db5"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand1",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "vkf",
+          "stdout": "27047.288103000028\n39711"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "symengine",
+          "stdout": "elapsed_ms=54.8491\noutput=39711\n"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "sympy",
+          "stdout": "sympy=1.14.0\nelapsed_ms=9024.086964000\noutput=39711\n"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "symbolics",
+          "stdout": "julia=1.12.6\nsymbolics=7.31.0\nelapsed_ms=160761.382656\noutput=39711\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "72f752605952b6f330ccabd14455132eee2abbe47d2a52d084ac7e8cc9574855",
+      "receiptBytes": 6799,
+      "rawEvidence": [
+        {
+          "bytes": 1007,
+          "sha256": "6079626df8ac272edfb8607f52e94101410e0529d766e642ef37a489613f6623"
+        },
+        {
+          "bytes": 187,
+          "sha256": "fce711b2e68675857ac175e1b240c6122209f762d24e27cebaef41afcad8e31c"
+        },
+        {
+          "bytes": 208,
+          "sha256": "c0855b11e4186984b8da894e72211eed87c0e74f606e2a191fb741f8cdafa06b"
+        },
+        {
+          "bytes": 225,
+          "sha256": "3dae1bdd86cc96bd332eea40ef63796fdd6835436391a23a6f5caec057a7d083"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "vkf",
+          "stdout": "45814.438366971444\n39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symengine",
+          "stdout": "elapsed_ms=55.4438\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "sympy",
+          "stdout": "sympy=1.14.0\nelapsed_ms=9095.953546000\noutput=39711\n"
+        },
+        {
+          "row_id": "linux.symbolic.expand1",
+          "language": "symbolics",
+          "stdout": "julia=1.12.6\nsymbolics=7.31.0\nelapsed_ms=160613.379932\noutput=39711\n"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "vkf",
+          "stdout": "27047.288103000028\n39711"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "symengine",
+          "stdout": "elapsed_ms=54.8491\noutput=39711\n"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "sympy",
+          "stdout": "sympy=1.14.0\nelapsed_ms=9024.086964000\noutput=39711\n"
+        },
+        {
+          "row_id": "wasm.symbolic.expand1",
+          "language": "symbolics",
+          "stdout": "julia=1.12.6\nsymbolics=7.31.0\nelapsed_ms=160761.382656\noutput=39711\n"
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "56bd204bcf8988c2a0109237ba483e4ceb82bf08c6b9457f040e637aa8090fcf",
+      "receiptBytes": 12587,
+      "rawEvidence": [
+        {
+          "bytes": 1345,
+          "sha256": "0d525f3db4ae7d092dcf9919eea6483c9cea555a6d66680c880946201ddb3669"
+        },
+        {
+          "bytes": 187,
+          "sha256": "2afaae597f02fc553131d608f85d36df5423b0b0ffddd3ce67938365ad62adbe"
+        },
+        {
+          "bytes": 208,
+          "sha256": "6d919006e53cff6de23c3a2d69999fd6b55d65ef64877840fc819626a1d7981f"
+        },
+        {
+          "bytes": 225,
+          "sha256": "1f39e5cc89c16d30f425e285421ae97afb797b25904e681d0c3d65c551804db5"
+        },
+        {
+          "bytes": 1007,
+          "sha256": "6079626df8ac272edfb8607f52e94101410e0529d766e642ef37a489613f6623"
+        },
+        {
+          "bytes": 187,
+          "sha256": "fce711b2e68675857ac175e1b240c6122209f762d24e27cebaef41afcad8e31c"
+        },
+        {
+          "bytes": 208,
+          "sha256": "c0855b11e4186984b8da894e72211eed87c0e74f606e2a191fb741f8cdafa06b"
+        },
+        {
+          "bytes": 225,
+          "sha256": "3dae1bdd86cc96bd332eea40ef63796fdd6835436391a23a6f5caec057a7d083"
+        }
+      ],
+      "receiptOwner": "e1893"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    }
+  ],
+  "errors": [],
+  "evidenceScope": "Same exact compiler selection; 33 accepted e1890/e1891 controls retained by reference with original provenance, plus newly executed e1893 controls. No comparative timing samples or ratios."
+}

@@ -1,0 +1,994 @@
+{
+  "schema": "vkf-current075-local48-readiness/1",
+  "owner": "e1890",
+  "selectionIdentity": "aac2af3be83c4207f67c5e437abfbe28fc8437438cf4f6c2615edb7c0585e0f5",
+  "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+  "wasmBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "matched": {
+    "passed": 8,
+    "total": 48
+  },
+  "parity": {
+    "passed": 4,
+    "total": 24
+  },
+  "failed": 0,
+  "unrun": 60,
+  "stopReason": "Original clock: next full test cap + review/cleanup does not fit",
+  "comparativeSamples": 0,
+  "comparativeTimingEligible": false,
+  "retainedToolsRevalidated": 15,
+  "runtimeVersions": {
+    "python": "1.14.0\n1.16.3\n2.3.5",
+    "julia": "julia version 1.12.6",
+    "symbolics": "1.12.6\n7.31.0",
+    "symengine-e1201": "symengine=0.15.0"
+  },
+  "jobs": [
+    {
+      "id": "preflight.linux.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "a4123b8eabcc4686e3ae6896c7a81e6d29697e3967a09020559d7ccfb6d29a30",
+      "receiptBytes": 6566,
+      "rawEvidence": [
+        {
+          "bytes": 1844,
+          "sha256": "a022c0c3293dfa2932ad92828febf4826befda06677bc0931836f4cf793e599d"
+        },
+        {
+          "bytes": 2817,
+          "sha256": "88ddce444ea3d4146526d50181b996403082d02eccd4b257ef15a0420543321c"
+        },
+        {
+          "bytes": 2635,
+          "sha256": "b53322a1c2e9bea1f32144172ed400a52a8483e252618069780f9cad18c63e82"
+        },
+        {
+          "bytes": 2780,
+          "sha256": "9b4c5cc522b9d204beb786ff71a50544a6dadf50973e7f85a20daac9e6b64503"
+        }
+      ]
+    },
+    {
+      "id": "preflight.wasm.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "33b960f6f28402d3828b6c0501a50dad1e14b82b49377c1c868181532531b447",
+      "receiptBytes": 6652,
+      "rawEvidence": [
+        {
+          "bytes": 1110,
+          "sha256": "c6f79660d245e8300bf04073f0fc5504f944defe9ebeb619d03e2707097cfe80"
+        },
+        {
+          "bytes": 924,
+          "sha256": "c1775eb74c2fea56bfe598b17117f66e8509d625c81a2eb9ea98dd8c41d630df"
+        },
+        {
+          "bytes": 925,
+          "sha256": "3b11c1be3dfc114f3468c525ad6823b9ddf652c8955ca0f15119c5b5d8d0a234"
+        },
+        {
+          "bytes": 924,
+          "sha256": "778b680f5a6dcbeb76492eeadc93ed93be34e2fd472422b4f47cafd335527807"
+        }
+      ]
+    },
+    {
+      "id": "parity.core.spectral-norm-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "a670787231c3ad6261c52eba4c1be41d63b4bb13768f7c55b87cbe3f59bee2b6",
+      "receiptBytes": 12187,
+      "rawEvidence": [
+        {
+          "bytes": 1844,
+          "sha256": "a022c0c3293dfa2932ad92828febf4826befda06677bc0931836f4cf793e599d"
+        },
+        {
+          "bytes": 2817,
+          "sha256": "88ddce444ea3d4146526d50181b996403082d02eccd4b257ef15a0420543321c"
+        },
+        {
+          "bytes": 2635,
+          "sha256": "b53322a1c2e9bea1f32144172ed400a52a8483e252618069780f9cad18c63e82"
+        },
+        {
+          "bytes": 2780,
+          "sha256": "9b4c5cc522b9d204beb786ff71a50544a6dadf50973e7f85a20daac9e6b64503"
+        },
+        {
+          "bytes": 1110,
+          "sha256": "c6f79660d245e8300bf04073f0fc5504f944defe9ebeb619d03e2707097cfe80"
+        },
+        {
+          "bytes": 924,
+          "sha256": "c1775eb74c2fea56bfe598b17117f66e8509d625c81a2eb9ea98dd8c41d630df"
+        },
+        {
+          "bytes": 925,
+          "sha256": "3b11c1be3dfc114f3468c525ad6823b9ddf652c8955ca0f15119c5b5d8d0a234"
+        },
+        {
+          "bytes": 924,
+          "sha256": "778b680f5a6dcbeb76492eeadc93ed93be34e2fd472422b4f47cafd335527807"
+        }
+      ]
+    },
+    {
+      "id": "preflight.linux.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "afedf2d80e53ff1bbe6f3c01d87b701e88de1c44eda8b66c499a075477cb78c8",
+      "receiptBytes": 6545,
+      "rawEvidence": [
+        {
+          "bytes": 1815,
+          "sha256": "e4fd6bf618110b21ea72bf8da63bbecb19226f028f1e470973fb978971cf4f4f"
+        },
+        {
+          "bytes": 2795,
+          "sha256": "285dc4f8c225e654077ad54820828fbe8f1979490410bf3f07d2af5e2e0c5df1"
+        },
+        {
+          "bytes": 2610,
+          "sha256": "506c9867f048b11b0c4e3ca2aff94048a9a8467e9de5883d2a0c2209215dad96"
+        },
+        {
+          "bytes": 2751,
+          "sha256": "dfde823710fece72b493397188448dd783b15b823bb5fecab882c6c48a490e10"
+        }
+      ]
+    },
+    {
+      "id": "preflight.wasm.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "23d1b24951f0a3f5591cab5103940042fb8daeb23c54fa5fdf530c0a461be9ed",
+      "receiptBytes": 6623,
+      "rawEvidence": [
+        {
+          "bytes": 1097,
+          "sha256": "7a11b36c4a730cb4295d5f505ee8517a270e4cc8874226c3c1ca3f7ecf5061c3"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e4fdf389b1bef1e3f8275c0400a424864ea3ec3d536652cc3e91c70e0b9ee39f"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e9faf13d5d4c1f82927cb93843b9eea9f368c75cdd8e0feaaecd2da23a8c64b8"
+        },
+        {
+          "bytes": 914,
+          "sha256": "8085b1040d3181ba288c16a1f4b0f90b5a10da2a8022c966a84c394adc3c36f4"
+        }
+      ]
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "24e368bfc6e2450d5645a53c7e4f29939ed9dfbd8fcf147c83c831c55c0d026f",
+      "receiptBytes": 12135,
+      "rawEvidence": [
+        {
+          "bytes": 1815,
+          "sha256": "e4fd6bf618110b21ea72bf8da63bbecb19226f028f1e470973fb978971cf4f4f"
+        },
+        {
+          "bytes": 2795,
+          "sha256": "285dc4f8c225e654077ad54820828fbe8f1979490410bf3f07d2af5e2e0c5df1"
+        },
+        {
+          "bytes": 2610,
+          "sha256": "506c9867f048b11b0c4e3ca2aff94048a9a8467e9de5883d2a0c2209215dad96"
+        },
+        {
+          "bytes": 2751,
+          "sha256": "dfde823710fece72b493397188448dd783b15b823bb5fecab882c6c48a490e10"
+        },
+        {
+          "bytes": 1097,
+          "sha256": "7a11b36c4a730cb4295d5f505ee8517a270e4cc8874226c3c1ca3f7ecf5061c3"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e4fdf389b1bef1e3f8275c0400a424864ea3ec3d536652cc3e91c70e0b9ee39f"
+        },
+        {
+          "bytes": 914,
+          "sha256": "e9faf13d5d4c1f82927cb93843b9eea9f368c75cdd8e0feaaecd2da23a8c64b8"
+        },
+        {
+          "bytes": 914,
+          "sha256": "8085b1040d3181ba288c16a1f4b0f90b5a10da2a8022c966a84c394adc3c36f4"
+        }
+      ]
+    },
+    {
+      "id": "preflight.linux.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "80b4f5821e3296b09dfb661db6b1cdd8ff288a09200b35b0bc7c1f26acf46732",
+      "receiptBytes": 6434,
+      "rawEvidence": [
+        {
+          "bytes": 1817,
+          "sha256": "704c26fce1ba79cf5b599ff96d20205dc03dc67655f8a6c694a37a28efbeb87f"
+        },
+        {
+          "bytes": 2760,
+          "sha256": "775622f415f74037ac232fb17068d00df77c6d8fb7f91585ce5836e7cdbdc3a4"
+        },
+        {
+          "bytes": 2560,
+          "sha256": "0f30ec10bf12df233997ce8b5fb898df9926670f5fa08713aec62ea055a3fa80"
+        },
+        {
+          "bytes": 2721,
+          "sha256": "a80a614cadd9095ccb5d8aca7017e947daebb477807021f63fdef3f2a4f6c1ed"
+        }
+      ]
+    },
+    {
+      "id": "preflight.wasm.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "65cf58ea78017bae8d4fd938783b7dd2cefe103d5379b38ce180c8ce29735b77",
+      "receiptBytes": 6520,
+      "rawEvidence": [
+        {
+          "bytes": 1111,
+          "sha256": "283dc595d312177d300e164eefce1c89d4734fd183a972c4a12714337fb8162a"
+        },
+        {
+          "bytes": 917,
+          "sha256": "538573c27353a5a95fa8cc8ce8827ef629ef3a3ff7b0e46a0ea520f914c0ed7e"
+        },
+        {
+          "bytes": 918,
+          "sha256": "4600f0d8e6cbc85b3e58c313d8358c1fe295e51a9fe75781d16accfc980ae897"
+        },
+        {
+          "bytes": 917,
+          "sha256": "e2473547977e83a63019c515c90a413d9d8fdbb6552a75a2b7bf891e9cbbfb51"
+        }
+      ]
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "bf0147d745a7564addf6cb33a085bfe657d2be696342f108b030d7687b87690f",
+      "receiptBytes": 11937,
+      "rawEvidence": [
+        {
+          "bytes": 1817,
+          "sha256": "704c26fce1ba79cf5b599ff96d20205dc03dc67655f8a6c694a37a28efbeb87f"
+        },
+        {
+          "bytes": 2760,
+          "sha256": "775622f415f74037ac232fb17068d00df77c6d8fb7f91585ce5836e7cdbdc3a4"
+        },
+        {
+          "bytes": 2560,
+          "sha256": "0f30ec10bf12df233997ce8b5fb898df9926670f5fa08713aec62ea055a3fa80"
+        },
+        {
+          "bytes": 2721,
+          "sha256": "a80a614cadd9095ccb5d8aca7017e947daebb477807021f63fdef3f2a4f6c1ed"
+        },
+        {
+          "bytes": 1111,
+          "sha256": "283dc595d312177d300e164eefce1c89d4734fd183a972c4a12714337fb8162a"
+        },
+        {
+          "bytes": 917,
+          "sha256": "538573c27353a5a95fa8cc8ce8827ef629ef3a3ff7b0e46a0ea520f914c0ed7e"
+        },
+        {
+          "bytes": 918,
+          "sha256": "4600f0d8e6cbc85b3e58c313d8358c1fe295e51a9fe75781d16accfc980ae897"
+        },
+        {
+          "bytes": 917,
+          "sha256": "e2473547977e83a63019c515c90a413d9d8fdbb6552a75a2b7bf891e9cbbfb51"
+        }
+      ]
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "8dab5bf34f2296782a254561b6e4dddfe7c94a1055baf55c919645bd5f4a42b0",
+      "receiptBytes": 6659,
+      "rawEvidence": [
+        {
+          "bytes": 1862,
+          "sha256": "228f07f294d69591ae6a2d9cd593ec745b199ea4cc94099bb4a5f4077a9181d9"
+        },
+        {
+          "bytes": 2853,
+          "sha256": "08cb8c2855d9875707354309cc2c23a289c37dd25c01306172516751f3b62450"
+        },
+        {
+          "bytes": 2665,
+          "sha256": "a5ca89e42fa8370803bba0b92254c9f3802249688a459294c1c58b30625a9288"
+        },
+        {
+          "bytes": 2803,
+          "sha256": "35ac5f9c83ad8718ebd52f2060fec85f1392cbf922e4d941e7524cfdcc2aebad"
+        }
+      ]
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "47acbff6d8e853f49808297bbf9f7cacd5a77d414d33e3ccbed418ab744c57bd",
+      "receiptBytes": 6745,
+      "rawEvidence": [
+        {
+          "bytes": 1111,
+          "sha256": "7982ca2b4829220f894e23a821a5f7a28460ff09f79d1fd590d4a0b947e402fd"
+        },
+        {
+          "bytes": 926,
+          "sha256": "fd63c081ef9ebe6828bcf9f92d990f17478b5526e45fec5158eacf8c74c497ea"
+        },
+        {
+          "bytes": 927,
+          "sha256": "318b97e4750b0f39678ac973b3c0ce08a0dd55a486f46d330fb3f9ac4918e61d"
+        },
+        {
+          "bytes": 926,
+          "sha256": "a72b3614a3667d77ea25377fe5a49a90c8ff467518b18a8d8368ff6de8a5b3cb"
+        }
+      ]
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "acceptedComparativeSamples": 0,
+      "oracleUnchanged": true,
+      "receiptSHA256": "2cfb35e2c730a8661d6cfef1748014980e0146a7c75a08ad3f92c77a7164a91e",
+      "receiptBytes": 12367,
+      "rawEvidence": [
+        {
+          "bytes": 1862,
+          "sha256": "228f07f294d69591ae6a2d9cd593ec745b199ea4cc94099bb4a5f4077a9181d9"
+        },
+        {
+          "bytes": 2853,
+          "sha256": "08cb8c2855d9875707354309cc2c23a289c37dd25c01306172516751f3b62450"
+        },
+        {
+          "bytes": 2665,
+          "sha256": "a5ca89e42fa8370803bba0b92254c9f3802249688a459294c1c58b30625a9288"
+        },
+        {
+          "bytes": 2803,
+          "sha256": "35ac5f9c83ad8718ebd52f2060fec85f1392cbf922e4d941e7524cfdcc2aebad"
+        },
+        {
+          "bytes": 1111,
+          "sha256": "7982ca2b4829220f894e23a821a5f7a28460ff09f79d1fd590d4a0b947e402fd"
+        },
+        {
+          "bytes": 926,
+          "sha256": "fd63c081ef9ebe6828bcf9f92d990f17478b5526e45fec5158eacf8c74c497ea"
+        },
+        {
+          "bytes": 927,
+          "sha256": "318b97e4750b0f39678ac973b3c0ce08a0dd55a486f46d330fb3f9ac4918e61d"
+        },
+        {
+          "bytes": 926,
+          "sha256": "a72b3614a3667d77ea25377fe5a49a90c8ff467518b18a8d8368ff6de8a5b3cb"
+        }
+      ]
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-parallel-large",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.solve-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.solve-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.least-squares-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.least-squares-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.lu-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.lu-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.qr-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.qr-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.cholesky-spd-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.cholesky-spd-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.svd-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.svd-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.linalg.eigen-symmetric-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.linalg.eigen-symmetric-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.series",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.linux.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "preflight.wasm.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "status": "UNRUN"
+    }
+  ],
+  "newDependencyIdentity": "Pinned source versions restored durably in prior1625/1627 setup and revalidated; rebuilt SymEngine library8dd89418 is a different binary from historical3ed74. Historical manifest unchanged.",
+  "originalClockPreserved": true,
+  "originalWorkloadsOraclesCapsPreserved": true,
+  "errors": [],
+  "evidenceScope": "Fresh existing source-matched correctness controls; no comparative timing result or ratio."
+}

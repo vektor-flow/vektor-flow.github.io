@@ -1,3 +1,4 @@
+import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?v=07f4803c17a1a66b';
 // Keep editable sources and output together; only a reviewed package enables Run.
 import {highlightVkf} from './code-highlight.mjs?v=e04597c91a14531f';
 import {createInlineRunner} from './inline-runner.mjs?v=100ee98814b65a23';
@@ -15,6 +16,16 @@ const runner = ['verified-examples','private-candidate'].includes(release?.statu
 // Browsing uses source-bound saved output. Package preparation belongs to Run;
 // createInlineRunner.run already performs its normal prewarm when requested.
 const ready = Boolean(runner);
+// Continue only a Run the reader explicitly requested before isolation reloaded
+// this page. Ordinary browsing still never initializes the compiler.
+const RUN_STATE = 'vkf-requested-run:' + location.pathname;
+let requestedRun;
+try {
+  requestedRun = JSON.parse(sessionStorage.getItem(RUN_STATE) ?? 'null');
+  sessionStorage.removeItem(RUN_STATE);
+} catch {}
+if (crossOriginIsolated) restoreBrowserDrafts();
+
 
 for (const example of document.querySelectorAll('.readme-example')) {
   const source = example.querySelector('.readme-example-source');
@@ -63,6 +74,11 @@ for (const example of document.querySelectorAll('.readme-example')) {
     button.title = 'Run with the browser compiler';
     button.addEventListener('click', async () => {
       if (busy) return;
+      if (!crossOriginIsolated && !sessionStorage.getItem(RUN_STATE)) {
+        sessionStorage.setItem(RUN_STATE, JSON.stringify({
+          id: example.dataset.vkfExampleId, source: source.value, requestedAt: Date.now()
+        }));
+      }
       busy = true;
       const runRevision = revision;
       button.disabled = true;
@@ -89,6 +105,11 @@ for (const example of document.querySelectorAll('.readme-example')) {
           output.textContent = error.message;
         }
       } finally {
+        // pagehide closes the old runner during the isolation reload. Keep the
+        // explicit request until the isolated replacement page consumes it.
+        if (crossOriginIsolated || !sessionStorage.getItem('vkf-isolation-drafts:' + location.pathname)) {
+          sessionStorage.removeItem(RUN_STATE);
+        }
         busy = false;
         button.disabled = false;
         button.textContent = 'Run';
@@ -101,3 +122,14 @@ for (const example of document.querySelectorAll('.readme-example')) {
 }
 
 window.addEventListener('pagehide',event=>{if(!event.persisted)void runner?.dispose();});
+
+if (ready && crossOriginIsolated && requestedRun &&
+    Number.isFinite(requestedRun.requestedAt) &&
+    Date.now() - requestedRun.requestedAt >= 0 &&
+    Date.now() - requestedRun.requestedAt < 60000) {
+  const example = [...document.querySelectorAll('.readme-example')].find(
+    item => item.dataset.vkfExampleId === requestedRun.id);
+  if (example?.querySelector('textarea')?.value === requestedRun.source) {
+    example.querySelector('.readme-example-play')?.click();
+  }
+}

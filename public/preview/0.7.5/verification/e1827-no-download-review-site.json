@@ -429,7 +429,7 @@
       {
         "path": "build.html",
         "bytes": 17216,
-        "sha256": "d00d3fb62c5e3d6d93ae261d3904b68e0ff626bf2d0f2f3ec58d1d220e62ab95"
+        "sha256": "1667f5a41e2cc7b9e15780b6edb5bb297da2694de4f5c35c91366566e7666cb0"
       },
       {
         "path": "code-highlight.mjs",
@@ -438,8 +438,8 @@
       },
       {
         "path": "current-documentation-examples.mjs",
-        "bytes": 4719,
-        "sha256": "9a0959850a1867059acad6574a7192c01a71a3f4d47741a8e8fa0bd45974e003"
+        "bytes": 6258,
+        "sha256": "f0ecfd2bc7639d1166df7bd69853eb20992dc5c8af94d17731a873bba37f6b5a"
       },
       {
         "path": "editor/prism-vektorflow.mjs",
@@ -489,7 +489,7 @@
       {
         "path": "examples.html",
         "bytes": 45966,
-        "sha256": "6e9dd4dc2a429e19edcfb32b4d7f23a3d4ae1b538c208a262655e5b573a1429e"
+        "sha256": "86e375ac027df4b0b2f6a3f9b53e59b2c91340090b5e6bdd3e31e883e1bef75b"
       },
       {
         "path": "experiments.html",
@@ -504,7 +504,7 @@
       {
         "path": "index.html",
         "bytes": 27080,
-        "sha256": "2e5a7120fc92237143b6ee92a1576e83bff777e1c0cdb991f83e2c72879689d4"
+        "sha256": "91900909b7dcb668099e06b1f75847da625b33163ac148fd18586782e7a0b6d5"
       },
       {
         "path": "install.html",
@@ -534,12 +534,17 @@
       {
         "path": "stdlib.html",
         "bytes": 321224,
-        "sha256": "495a1ae45757495053ed621aa16e463beb9f220fa0a5264fd4aa60560e62221c"
+        "sha256": "05f4a4dfb5641a304e0c93e952ecfeb82a3dd2447bf24fb79fd15e644f27e1a2"
       },
       {
         "path": "syntax.html",
         "bytes": 155995,
-        "sha256": "cd0bc184cc659d1d3ca151e834b2794f6d5234a688dbb4e376dbcdb1722437df"
+        "sha256": "a5b5822f895864317a6c3fd4cb9b5d70ffd2dd2e83f81598495797c23dbf59ae"
+      },
+      {
+        "path": "vkf-browser-isolation.mjs",
+        "bytes": 1816,
+        "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
       },
       {
         "path": "website-controls.mjs",
@@ -554,20 +559,22 @@
     ]
   },
   "currentBrowserReport": {
-    "path": "/mnt/development/VektorFlow-e1827-no-download-review-site-publication-actual-20261101/FINAL-REVIEW-SITE-BROWSER.json",
-    "bytes": 46091,
-    "sha256": "f16caf9979311dec46bcb105cf380103c58f5c92bcc26691d6bd760f5028a780"
+    "path": "/mnt/development/VektorFlow-e1827-no-download-review-site-publication-actual-20261101/RELOAD-FIX-REVIEW-SITE-BROWSER.json",
+    "bytes": 49228,
+    "sha256": "b4e4a2fccdc053b351eeaa2c3593243a657b005ef6b971d135a8ef4c69484d88"
   },
   "currentRunChecks": [
     {
       "id": "more-example-13",
       "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
-      "passed": true
+      "passed": true,
+      "isolationAfter": true
     },
     {
       "id": "stdlib-linalg-solve",
       "stdout": "[-0.999999999999999, 1]\n",
-      "passed": true
+      "passed": true,
+      "isolationAfter": true
     }
   ],
   "mobile": [
@@ -805,7 +812,7 @@
     },
     {
       "page": "stdlib.html",
-      "url": "./current-documentation-examples.mjs?v=9a0959850a186705"
+      "url": "./current-documentation-examples.mjs?v=f0ecfd2bc7639d11"
     },
     {
       "page": "stdlib.html",
@@ -825,7 +832,7 @@
     },
     {
       "page": "examples.html",
-      "url": "./current-documentation-examples.mjs?v=9a0959850a186705"
+      "url": "./current-documentation-examples.mjs?v=f0ecfd2bc7639d11"
     },
     {
       "page": "examples.html",
@@ -845,7 +852,7 @@
     },
     {
       "page": "syntax.html",
-      "url": "./current-documentation-examples.mjs?v=9a0959850a186705"
+      "url": "./current-documentation-examples.mjs?v=f0ecfd2bc7639d11"
     },
     {
       "page": "syntax.html",
@@ -865,7 +872,7 @@
     },
     {
       "page": "index.html",
-      "url": "./current-documentation-examples.mjs?v=9a0959850a186705"
+      "url": "./current-documentation-examples.mjs?v=f0ecfd2bc7639d11"
     },
     {
       "page": "index.html",
@@ -933,7 +940,7 @@
     },
     {
       "page": "build.html",
-      "url": "./current-documentation-examples.mjs?v=9a0959850a186705"
+      "url": "./current-documentation-examples.mjs?v=f0ecfd2bc7639d11"
     },
     {
       "page": "build.html",
@@ -958,5 +965,298 @@
   ],
   "fragmentChecks": 290,
   "noFullReleaseQualification": true,
-  "observedMonotonic": 417824.940632835
+  "observedMonotonic": 418894.571087301,
+  "realIsolationReload": {
+    "owner": "e1827",
+    "status": "PASS_ONE_EXPLICIT_FIRST_EDITED_RUN_SURVIVES_REAL_SERVICE_WORKER_RELOAD",
+    "scope": "Three changed sources, full original/new stdout, actual Run/copy/edit/mobile and eight-index Prism presentation. No whole-example inventory or performance qualification.",
+    "rows": [],
+    "checks": [],
+    "errors": [],
+    "requests": [
+      {
+        "url": "/preview/0.7.5/syntax.html",
+        "bytes": 155995
+      },
+      {
+        "url": "/preview/0.7.5/site.css",
+        "bytes": 11121
+      },
+      {
+        "url": "/preview/0.7.5/website-layout.css",
+        "bytes": 8932
+      },
+      {
+        "url": "/preview/0.7.5/code-highlight.mjs",
+        "bytes": 1162
+      },
+      {
+        "url": "/preview/0.7.5/reference-navigation.mjs",
+        "bytes": 2031
+      },
+      {
+        "url": "/preview/0.7.5/current-documentation-examples.mjs",
+        "bytes": 6258
+      },
+      {
+        "url": "/preview/0.7.5/website-controls.mjs",
+        "bytes": 2124
+      },
+      {
+        "url": "/preview/0.7.5/example-previews/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c.png",
+        "bytes": 3830
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "bytes": 7519
+      },
+      {
+        "url": "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "bytes": 5762
+      },
+      {
+        "url": "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "bytes": 1816
+      },
+      {
+        "url": "/preview/0.7.5/inline-runner.mjs",
+        "bytes": 7219
+      },
+      {
+        "url": "/preview/0.7.5/inline-retained-scene-view.mjs",
+        "bytes": 15639
+      },
+      {
+        "url": "/preview/0.7.5/inline-renderer-loader.mjs",
+        "bytes": 2288
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "bytes": 2113
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "bytes": 708
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "bytes": 6143
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "bytes": 5573
+      },
+      {
+        "url": "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "bytes": 1816
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "bytes": 4611
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "bytes": 1338
+      },
+      {
+        "url": "/preview/0.7.5/current-compiler-release.json",
+        "bytes": 3339
+      },
+      {
+        "url": "/preview/0.7.5/vkf-coep-sw.js",
+        "bytes": 660
+      },
+      {
+        "url": "/preview/0.7.5/syntax.html",
+        "bytes": 155995
+      },
+      {
+        "url": "/preview/0.7.5/site.css",
+        "bytes": 11121
+      },
+      {
+        "url": "/preview/0.7.5/website-layout.css",
+        "bytes": 8932
+      },
+      {
+        "url": "/preview/0.7.5/example-previews/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c.png",
+        "bytes": 3830
+      },
+      {
+        "url": "/preview/0.7.5/code-highlight.mjs",
+        "bytes": 1162
+      },
+      {
+        "url": "/preview/0.7.5/reference-navigation.mjs",
+        "bytes": 2031
+      },
+      {
+        "url": "/preview/0.7.5/current-documentation-examples.mjs",
+        "bytes": 6258
+      },
+      {
+        "url": "/preview/0.7.5/website-controls.mjs",
+        "bytes": 2124
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-core-1.30.0.min.js",
+        "bytes": 7519
+      },
+      {
+        "url": "/preview/0.7.5/editor/prism-vektorflow.mjs",
+        "bytes": 5762
+      },
+      {
+        "url": "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "bytes": 1816
+      },
+      {
+        "url": "/preview/0.7.5/inline-runner.mjs",
+        "bytes": 7219
+      },
+      {
+        "url": "/preview/0.7.5/inline-retained-scene-view.mjs",
+        "bytes": 15639
+      },
+      {
+        "url": "/preview/0.7.5/inline-renderer-loader.mjs",
+        "bytes": 2288
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-python.min.js",
+        "bytes": 2113
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-clike.min.js",
+        "bytes": 708
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-bash.min.js",
+        "bytes": 6143
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "bytes": 5573
+      },
+      {
+        "url": "/preview/0.7.5/vkf-browser-isolation.mjs",
+        "bytes": 1816
+      },
+      {
+        "url": "/preview/0.7.5/vendor/prism/prism-javascript.min.js",
+        "bytes": 4611
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-retained-execution-control.mjs",
+        "bytes": 1338
+      },
+      {
+        "url": "/preview/0.7.5/current-compiler-release.json",
+        "bytes": 3339
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "bytes": 756
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/compiler.wasm",
+        "bytes": 65797495
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/compiler.data",
+        "bytes": 610405
+      },
+      {
+        "url": "/preview/0.7.5/canonical-inline-worker.mjs",
+        "bytes": 804
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-canonical-execution.mjs",
+        "bytes": 6678
+      },
+      {
+        "url": "/preview/0.7.5/playground/browser-copy-retained-packets.mjs",
+        "bytes": 1480
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-retained-worker-execution.mjs",
+        "bytes": 682
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-canonical-browser-compiler.mjs",
+        "bytes": 4014
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-concurrent-host.mjs",
+        "bytes": 16437
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-prepared-workers.mjs",
+        "bytes": 2604
+      },
+      {
+        "url": "/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs",
+        "bytes": 15776
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-concurrent-broker-client.mjs",
+        "bytes": 6983
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-concurrent-process.mjs",
+        "bytes": 4653
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-concurrent-values.mjs",
+        "bytes": 7622
+      },
+      {
+        "url": "/preview/0.7.5/playground/vkf-concurrent-shared-graph.mjs",
+        "bytes": 3650
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/compiler.mjs",
+        "bytes": 756
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/compiler-base.mjs",
+        "bytes": 186803
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/formatter.mjs",
+        "bytes": 62804
+      },
+      {
+        "url": "/preview/0.7.5/playground/canonical/formatter.wasm",
+        "bytes": 1118687
+      },
+      {
+        "url": "/preview/0.7.5/vkf-coep-sw.js",
+        "bytes": 660
+      }
+    ],
+    "phase": "one explicit edited Run triggers real isolation reload",
+    "progress": [
+      {
+        "name": "fresh context navigate/edit before first Run",
+        "at": "2026-11-01T06:24:51.015Z"
+      },
+      {
+        "name": "one explicit edited Run triggers real isolation reload",
+        "at": "2026-11-01T06:24:51.244Z"
+      }
+    ],
+    "singleClick": true,
+    "editedSourcePreserved": true,
+    "realIsolation": true,
+    "browserClosed": true,
+    "serverClosed": true,
+    "ownedChildren": [
+      {
+        "pid": 3972400,
+        "cmd": "/home/viktor/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell"
+      }
+    ]
+  },
+  "priorHostedFailurePreserved": "/mnt/development/VektorFlow-e1827-no-download-review-site-publication-actual-20261101/HOSTED-REVIEW-SITE-BROWSER.json"
 }

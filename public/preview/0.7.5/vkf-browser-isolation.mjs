@@ -25,3 +25,5 @@ export function ensureBrowserIsolation(){
   })();
   return pending;
 }
+
+export {restoreDrafts as restoreBrowserDrafts};

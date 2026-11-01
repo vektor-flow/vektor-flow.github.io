@@ -45,7 +45,7 @@ export function ensureInlineRenderer() {
       await new Promise((resolve, reject) => {
         const script = document.createElement("script");
         const url = new URL(path, import.meta.url);
-        url.searchParams.set('v', '2eaf4972b0800b1e');
+        url.searchParams.set('v', '4e31155215b0353416e19dfd3243033f2c482580a8be082d2c271f314f059623');
         script.src = url;
         script.onload = resolve;
         script.onerror = () => reject(new Error("The example renderer could not be loaded"));

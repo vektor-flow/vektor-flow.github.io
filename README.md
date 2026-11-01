@@ -267,3 +267,9 @@ Three examples now compare pinned NumPy documentation with VKF. Their upstream
 paths, adaptation notes and BSD license are in `example-sources.json` and
 `numpy-examples-LICENSE.txt`. Other example provenance remains work in progress;
 this first batch does not complete the all-example authoring goal.
+
+## Current named distribution (2026-11-01, e1870)
+
+The 0.7.5 preview now selects canonical compiler ffca / source 74cfd17c, host 63553cc and runtime 6d211126. Exact browser and Node/core qualification is reused from e1865/e1866 and e1868/e1867/e1869; native f376 / source 89f64c is a separate target. Current affected site controls and required-scale evidence must pass before publication. The current composition and selection record this named distribution, not the older b459 assembled root package. Its old 1500/210 whole-root bank is retained in the historical verifier, not relabeled as evidence for these artifacts. Shared uploads and full-release qualification remain unavailable.
+
+The current renderer is 379714f7, a three-hunk generated-axis ownership fix over accepted base6d211126. The compiler/API/retained arena are unchanged. Current required5M point/view/color/generated-text checks use the saved genuine current220MB packet; authored native math keeps its original profile/producer. First capture124 and the pre-fix axis errors remain in evidence. Public archives add only the existing four third-party notice texts, with every frozen payload member byte verified.

@@ -1,10 +1,11 @@
+import {prepareFormatterIr} from './prepare-formatter-ir.mjs';
 import {copyCanonicalRetainedPackets} from './browser-copy-retained-packets.mjs';
 import {executeRetainedViaWindow} from './vkf-retained-worker-execution.mjs';
 import {createCanonicalBrowserCompiler} from './vkf-canonical-browser-compiler.mjs';
 import {createBrowserConcurrentImport} from './vkf-concurrent-host.mjs';
 import {prepareConcurrentWorkerType} from './vkf-prepared-workers.mjs';
 const now=()=>performance.now();
-export async function createCanonicalExecution(packageDescriptor,packageAssets){
+export async function createCanonicalExecution(packageDescriptor,packageAssets,resolvedPackageInputs){
   if(!packageDescriptor||typeof packageDescriptor.moduleURL!=='string'||
      typeof packageDescriptor.wasmURL!=='string'||typeof packageDescriptor.dataURL!=='string'){
     throw new TypeError('Canonical compiler package descriptor is unavailable');
@@ -17,6 +18,13 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets){
   let owner;
   const compiler=await createCanonicalBrowserCompiler({factory:async options=>owner=await factory(options),
     wasmBinary,getPreloadedPackage:()=>data});
+  let packageEntry;
+  if(resolvedPackageInputs!==undefined){
+    if(typeof owner._vkf075_package_source_inputs_version!=='function'||owner._vkf075_package_source_inputs_version()<(resolvedPackageInputs.addressInputs?2:1))
+      throw new TypeError('Compiler lacks the explicit package SourceProvider adapter');
+    const {mountInputs}=await import('./package-tools/inputs.mjs');
+    packageEntry=mountInputs(owner,resolvedPackageInputs);
+  }
   const formatter=owner.formatterOwner??owner;
   const checked=(operation,pointer,length,outputPointer)=>{
     const status=formatter.ccall(operation,'number',['number','number','number'],[pointer,length,outputPointer]);
@@ -28,7 +36,7 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets){
   let pending=Promise.resolve();
   const execute=async(source,filename,options)=>{
       const began=now();const program=compiler.compileSource(source,filename,options);
-      if(owner.formatterOwner){const prepared=formatter.ccall('vkf_formatter_prepare_ir','number',['string'],[program.typedIRText]);if(prepared!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));}
+      if(owner.formatterOwner){const prepared=prepareFormatterIr(formatter,program.typedIRText);if(prepared!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));}
       const compiled=now();const module=await WebAssembly.compile(program.wasm);
       const imports=WebAssembly.Module.imports(module);let prepared,host,api,retained;
       try{
@@ -73,7 +81,7 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets){
   };
   return Object.freeze({
     sourceBinding,
-    run(source,filename='<browser>',options={}){
+    run(source,filename=packageEntry??'<browser>',options={}){
       // One compiler owner holds the typed IR used by both native formatters.
       // Keep that entire transaction exclusive, including asynchronous setup.
       const result=pending.then(()=>execute(source,filename,options));

@@ -1,0 +1,19 @@
+# Real interpolation PARAMETER consumer. No explicit x/y/p input coordinates.
+curve_math:.interpolation
+viewport:.ui.viewport
+PlotCurve:(sample_x:[num],sample_y:[num])
+height:2
+
+plot_color()->[num]:
+    ::11
+    @:[0.2,0.7,1,1]
+plot_value(height:num)->PlotCurve:
+    ::17
+    plan:curve_math.prepare_bezier([0,0,1,height,2,height,3,0],2)
+    @:curve_math.plot_curve(plan,[0,0.25,0.5,0.75,1])
+plot_width()->num:
+    ::23
+    @:1
+
+viewport.add(color:plot_color(),interp:plot_value(height),w:plot_width(),id:"shared-curve",interpolation:true)
+viewport.show()

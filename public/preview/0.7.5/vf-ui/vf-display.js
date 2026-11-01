@@ -76,6 +76,8 @@
   var _mathTextHtmlCache = Object.create(null);
   var _nativeLabelRendererFactory = null;
   var _nativeMathLabelInstaller = null;
+  // Renderer-owned axis decorations keep their established text/style path.
+  var _generatedAxisMathTexts = new WeakSet();
   var _nativeLabelCleanup = new Set();
   var _vfPointerStreamInflight = false;
   var _vfPointerStreamPending = null;
@@ -11150,6 +11152,9 @@
             }
           }
           ctx.stroke();
+          axisNameLabelSpecs.concat(tickLabelSpecs).forEach(function(item) {
+            _generatedAxisMathTexts.add(item);
+          });
           geomSpec.texts = preservedAxis3DTexts.concat(axisNameLabelSpecs, tickLabelSpecs);
         }
         ctx.restore();
@@ -11801,7 +11806,7 @@
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
       // Standalone math strings are evaluated by the normal compiler, then
       // passed unchanged to the current VKF math producer. No host typesetter.
-      function standaloneMath(t) {return typeof t.text === "string" && t.text.length > 2 && t.text[0] === "$" && t.text[t.text.length-1] === "$";}
+      function standaloneMath(t) {return !_generatedAxisMathTexts.has(t) && typeof t.text === "string" && t.text.length > 2 && t.text[0] === "$" && t.text[t.text.length-1] === "$";}
       var mathTexts = (geomSpec && geomSpec.texts || []).filter(standaloneMath);
       var hasCompiledMath = !geomSpec.native_labels && mathTexts.length > 0;
       if (hasCompiledMath) {
@@ -14083,7 +14088,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         var allowed = line ? ["x_u", "y_u", "c", "c_ic", "c_uc", "w", "pickable", "id", "__renderer_line_packet_v1"] :
           ["p_ic", "p_u", "x_i", "y_i", "x", "y", "c", "c_ic", "c_uc", "s", "s_u", "s_mode", "pickable", "id", "__renderer_point_packet_v1"];
         if (v2) allowed = allowed.concat(["p_ic", "p_uc", "edge_bm", "color", "__renderer_line_packet_v2", "__renderer_point_packet_v2"]);
-        allowed = allowed.concat(["text", "label_color", "anchor"]);
+        allowed = allowed.concat(["text", "label_color", "anchor", "interp", "interpolation"]);
+        for (var flag of ["interp", "interpolation"]) if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean")
+          throw new TypeError("retained Layer " + flag + " requires bit");
         for (var key of Object.keys(args)) if (!allowed.includes(key))
           throw new TypeError("unsupported retained Layer channel " + key);
         var packet = v2 ? (line ? args.__renderer_line_packet_v2 : args.__renderer_point_packet_v2) : (line ? args.__renderer_line_packet_v1 : args.__renderer_point_packet_v1);
@@ -14126,6 +14133,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (line) { this.edge_width = size; this.curve_path = "open-continuous"; }
         this.marker_space = packet[1]; this.mode3d = dimension === 3;
         this.no_lighting = true; this.casts_shadow = false;
+        this.interpolation = args.interpolation === true;
         this.vertex_size = size; this.vertex_scale = sizes.length ? sizes : 1;
         this.pickable = packet[6]; this.use_vertex_color = true;
         this.vertices = vertices; this.indices = indices; this.selected = false;

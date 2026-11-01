@@ -1,0 +1,970 @@
+{
+  "status": "CURRENT_SMALL_SIN_COMPLETE",
+  "scopeScale": "Exact current VKF pointprimitive controls, no hostgenerator/replay, no warm10ms credit",
+  "startedMonotonic": 448610.186134152,
+  "scope": "Current accepted browser compiler -> actual shipping runner -> genuine guestWASM -> retained packet -> unchanged shipping UI; scale gates separate",
+  "pageErrors": [
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-source-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-source-copy elapsed_ms=13.725",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-compiler-call",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=1.330",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-prepare",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=1.380",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-lex",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=13.235",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-parse",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=15.815",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-link",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=7.515",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=1.860",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.040",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.305",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.530",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=2.560",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=3.120",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=3.725",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=4.445",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=5.625",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=6.015",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=6.570",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=26.155",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=26.660",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=27.080",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=33.285",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=33.935",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=34.065",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=34.420",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=34.960",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=38.715",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=38.820",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=38.935",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=39.610",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=u elapsed_ms=39.730",
+    "[vkf075-semantic-lower] step=statement-lower name=u elapsed_ms=39.950",
+    "[vkf075-semantic-lower] step=statement-complete name=u elapsed_ms=126.710",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=126.955",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=127.055",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=129.935",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=130.075",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=130.330",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=193.285",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=193.505",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=193.615",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=197.450",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=197.550",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=206.480",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=209.460",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=210.305",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=210.890",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=211.640",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=214.690",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=214.835",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=214.935",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=215.085",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=215.200",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=215.335",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=215.445",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=215.570",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=215.685",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=255.460",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=255.785",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=273.505",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-private-browser-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.000",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.095",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.250",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.440",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.820",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=2.100",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=2.330",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=2.605",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=2.795",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.960",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=14.765",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=15.150",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=15.360",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=16.855",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=17.085",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=17.180",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=17.285",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=17.470",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=18.085",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=18.170",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=18.260",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=18.370",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=u elapsed_ms=18.460",
+    "[vkf075-semantic-lower] step=statement-lower name=u elapsed_ms=18.580",
+    "[vkf075-semantic-lower] step=statement-complete name=u elapsed_ms=35.795",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=36.020",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=36.120",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=36.675",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=36.800",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=37.755",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=54.825",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=55.165",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=55.270",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=57.565",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=57.685",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=58.295",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=59.310",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=59.675",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=60.055",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=60.500",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=60 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=62.505",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=62.620",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=62.730",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=62.830",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=62.930",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=63.020",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=63.110",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=63.205",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=63.485",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=98.025",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=98.355",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-private-browser-lower elapsed_ms=109.200",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=12.230",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.355",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=5.045",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=2.410",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=21.925",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=25.185",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.550",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=46.455",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=13.460",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=manifest",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=6.280",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=12.985",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-compiler-call elapsed_ms=576.595",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-response-json-parse",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-response-json-parse elapsed_ms=26.210",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-ir-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-ir-json elapsed_ms=8.530",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-manifest-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-manifest-json elapsed_ms=0.645",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-wasm-hex-decode",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-wasm-hex-decode elapsed_ms=15.615",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-formatter-ir-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-formatter-ir-copy elapsed_ms=2.200",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-output-plan",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-output-plan elapsed_ms=3.420",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-source-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-source-copy elapsed_ms=0.145",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-compiler-call",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-cache-lookup elapsed_ms=0.095",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-restore",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-cache-restore elapsed_ms=0.300",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-compiler-call elapsed_ms=0.805",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-response-json-parse",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-response-json-parse elapsed_ms=24.580",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-ir-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-ir-json elapsed_ms=6.870",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-manifest-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-manifest-json elapsed_ms=0.675",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-wasm-hex-decode",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-wasm-hex-decode elapsed_ms=8.265",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-formatter-ir-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-formatter-ir-copy elapsed_ms=2.120",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-output-plan",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-output-plan elapsed_ms=2.155",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-source-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-source-copy elapsed_ms=0.155",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-compiler-call",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.130",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-prepare",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.440",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-lex",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=4.090",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-parse",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=5.745",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-link",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=1.840",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.725",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.000",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.125",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.245",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.410",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.705",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.945",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=2.130",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=2.370",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=2.500",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.630",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=14.635",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=14.970",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=15.150",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=16.775",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=16.995",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=17.085",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=17.190",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=17.345",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=17.825",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=17.900",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=18.005",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=18.115",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=u elapsed_ms=18.205",
+    "[vkf075-semantic-lower] step=statement-lower name=u elapsed_ms=18.300",
+    "[vkf075-semantic-lower] step=statement-complete name=u elapsed_ms=31.840",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=32.090",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=32.215",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=32.905",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=35.785",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=35.915",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=60.410",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=60.665",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=60.800",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=62.835",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=62.965",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=71.500",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=72.625",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=73.050",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=73.405",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=73.865",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=75.880",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=75.970",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=76.050",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=76.125",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=76.215",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=76.295",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=76.380",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=76.455",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=76.535",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=116.205",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=116.390",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=122.295",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-private-browser-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.005",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.100",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.205",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.385",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.660",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.895",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=2.075",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=2.335",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=2.475",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.600",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=14.895",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=15.240",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=15.420",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=17.010",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=17.225",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=17.305",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=17.400",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=17.555",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=18.030",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=18.115",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=18.200",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=18.300",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=u elapsed_ms=18.380",
+    "[vkf075-semantic-lower] step=statement-lower name=u elapsed_ms=18.470",
+    "[vkf075-semantic-lower] step=statement-complete name=u elapsed_ms=31.425",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=31.550",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=31.640",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=32.100",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=32.200",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=32.320",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=53.390",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=53.520",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=53.610",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=55.625",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=55.760",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=56.410",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=57.420",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=57.770",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=58.120",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=58.595",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=74 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=60.605",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=60.720",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=60.820",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=60.915",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=61.015",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=61.120",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=61.220",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=61.320",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=61.420",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=101.605",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=101.895",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-private-browser-lower elapsed_ms=112.935",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=12.705",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.205",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=4.605",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=2.110",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=14.605",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=8.575",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.180",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=29.575",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=10.815",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=manifest",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=4.280",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=14.475",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-compiler-call elapsed_ms=351.300",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-response-json-parse",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-response-json-parse elapsed_ms=25.650",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-ir-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-ir-json elapsed_ms=7.915",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-manifest-json",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-manifest-json elapsed_ms=0.540",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-wasm-hex-decode",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-wasm-hex-decode elapsed_ms=8.375",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-formatter-ir-copy",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-formatter-ir-copy elapsed_ms=2.065",
+    "[vkf075-compile-stage] boundary=bridge event=start stage=bridge-output-plan",
+    "[vkf075-compile-stage] boundary=bridge event=interval-end stage=bridge-output-plan elapsed_ms=2.020"
+  ],
+  "cases": [],
+  "result": {
+    "rows": [
+      {
+        "name": "unprimed",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "requestToPacketMs": 1201.3899999856949,
+        "requestToCompleteRasterMs": 1240.050000011921,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 14820688,
+            "packetJSONChars": 978,
+            "allocateMs": 0.014999985694885254,
+            "heapCopyMs": 7.2049999833106995,
+            "stdoutMs": 0.36000001430511475,
+            "retainedFormatMs": 38.31999999284744,
+            "packetReadMs": 0.07500004768371582,
+            "jsonParseMs": 0.039999961853027344,
+            "arenaReconstructionMs": 0.2200000286102295
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 13.725,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 576.595,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 26.21,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 8.53,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 0.645,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 15.615,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 2.2,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 3.42,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 41492,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 70117,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 1,
+                  "imported_function_candidates": 0,
+                  "imported_function_retained": 0,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "ordinary_flow_worker_pair": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 184311,
+                  "source_execution_projection_limit": 5,
+                  "source_fast_path": 0,
+                  "source_route_capability_limit": 2,
+                  "source_semantic_lowering_passes": 2,
+                  "typed_functions": 1,
+                  "wasm_bytes": 70117
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1.33,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.38,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 13.235,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 15.815,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 7.515,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 1.86,
+                    "stage": "source-function-demand"
+                  },
+                  {
+                    "milliseconds": 273.505,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 109.200001,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 12.229999,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.355,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 5.045001,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 2.409999,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 21.925,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 25.185,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 0.55,
+                    "stage": "ordinary-flow-worker-bridge"
+                  },
+                  {
+                    "milliseconds": 46.455,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 13.46,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 6.28,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 12.985001,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 648.2099999785423,
+            "transportReadMs": 0.5900000333786011,
+            "jsParseMs": 0.2849999666213989,
+            "wasmCopyMs": 0.08500003814697266,
+            "profileReadMs": 2,
+            "typedIRChars": 41492,
+            "manifestChars": 2374,
+            "guestWasmBytes": 70117
+          },
+          "compileMs": 672.5949999690056,
+          "executeMs": 218.41000002622604,
+          "formatMs": 46.24000000953674
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "normal static presented callback then full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2771,
+            "draws": 6,
+            "presented": [
+              {
+                "frameId": "vf-inline-result-1--frame_0",
+                "serial": 4,
+                "snapshot": {
+                  "camera": null,
+                  "axis3d": {},
+                  "axes": [
+                    {
+                      "index": 0,
+                      "fields": {
+                        "x_min": 0,
+                        "x_max": 1,
+                        "y_min": 0,
+                        "y_max": 0.8414709848078965
+                      }
+                    }
+                  ]
+                },
+                "endpoint": "canvas-command-completed",
+                "renderCameras": []
+              }
+            ]
+          }
+        ],
+        "rasterHashes": [
+          "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-08,
+        "maxXError": 0,
+        "arenaHashes": [
+          "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+        ]
+      },
+      {
+        "name": "initialized-repeat",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "requestToPacketMs": 134.86500000953674,
+        "requestToCompleteRasterMs": 145.7699999809265,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 14820688,
+            "packetJSONChars": 978,
+            "allocateMs": 0.004999995231628418,
+            "heapCopyMs": 1.6949999928474426,
+            "stdoutMs": 0.0350000262260437,
+            "retainedFormatMs": 13.084999978542328,
+            "packetReadMs": 0.025000035762786865,
+            "jsonParseMs": 0.02499997615814209,
+            "arenaReconstructionMs": 0.06499999761581421
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.145,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 0.805,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 24.580001,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 6.869999,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 0.675,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 8.265001,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 2.119999,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 2.155,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 41492,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 70117,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 1,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 0,
+                  "imported_function_candidates": 0,
+                  "imported_function_retained": 0,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "ordinary_flow_worker_pair": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 184311,
+                  "source_execution_projection_limit": 5,
+                  "source_fast_path": 0,
+                  "source_route_capability_limit": 2,
+                  "source_semantic_lowering_passes": 2,
+                  "typed_functions": 1,
+                  "wasm_bytes": 70117
+                },
+                "stages": [
+                  {
+                    "milliseconds": 0.095,
+                    "stage": "compile-response-cache-lookup"
+                  },
+                  {
+                    "milliseconds": 0.300001,
+                    "stage": "compile-response-cache-restore"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 49.15000003576279,
+            "transportReadMs": 0.3700000047683716,
+            "jsParseMs": 0.14499998092651367,
+            "wasmCopyMs": 0.04500001668930054,
+            "profileReadMs": 0.8700000047683716,
+            "typedIRChars": 41492,
+            "manifestChars": 2374,
+            "guestWasmBytes": 70117
+          },
+          "compileMs": 61.605000019073486,
+          "executeMs": 57.844999969005585,
+          "formatMs": 14.939999997615814
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "normal static presented callback then full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2771,
+            "draws": 6,
+            "presented": [
+              {
+                "frameId": "vf-inline-result-2--frame_0",
+                "serial": 4,
+                "snapshot": {
+                  "camera": null,
+                  "axis3d": {},
+                  "axes": [
+                    {
+                      "index": 0,
+                      "fields": {
+                        "x_min": 0,
+                        "x_max": 1,
+                        "y_min": 0,
+                        "y_max": 0.8414709848078965
+                      }
+                    }
+                  ]
+                },
+                "endpoint": "canvas-command-completed",
+                "renderCameras": []
+              }
+            ]
+          }
+        ],
+        "rasterHashes": [
+          "d257ca70fe686500f06706f81ce56d24a417c26ab52eaa2f47cbc8c4318feb18"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-08,
+        "maxXError": 0,
+        "arenaHashes": [
+          "083c0bd8ae488b0d40d806feb5b263464432b5fdfc12dd21859f9b8b2fdf115b"
+        ]
+      },
+      {
+        "name": "real-source-edit",
+        "source": "u: 0.0009765625 * [0..1024]\nframe: .ui.viewport\n\nframe.add(x: u_u, y: sin(2 * u_u), color: [0.25, 0.72, 1, 1])\nframe.show()\n",
+        "actualBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "requestToPacketMs": 492.93000000715256,
+        "requestToCompleteRasterMs": 501.4500000476837,
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 14919624,
+            "packetJSONChars": 979,
+            "allocateMs": 0.004999995231628418,
+            "heapCopyMs": 1.4500000476837158,
+            "stdoutMs": 0.02499997615814209,
+            "retainedFormatMs": 13.2950000166893,
+            "packetReadMs": 0.019999980926513672,
+            "jsonParseMs": 0.029999971389770508,
+            "arenaReconstructionMs": 0.0350000262260437
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 0.155001,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 351.299999,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 25.65,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 7.915,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 0.54,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 8.375,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 2.065,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 2.02,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 49954,
+              "browser_manifest_json_bytes": 2374,
+              "browser_wasm_bytes": 72149,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 33,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 7,
+                  "frontend_compile_calls": 1,
+                  "imported_function_candidates": 0,
+                  "imported_function_retained": 0,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 0,
+                  "ordinary_flow_worker_pair": 0,
+                  "packaged_module_parse_calls": 0,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 196837,
+                  "source_execution_projection_limit": 5,
+                  "source_fast_path": 0,
+                  "source_route_capability_limit": 2,
+                  "source_semantic_lowering_passes": 2,
+                  "typed_functions": 1,
+                  "wasm_bytes": 72149
+                },
+                "stages": [
+                  {
+                    "milliseconds": 0.13,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 0.44,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 4.09,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 5.745,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 1.84,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 0.725,
+                    "stage": "source-function-demand"
+                  },
+                  {
+                    "milliseconds": 122.295,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 112.935,
+                    "stage": "source-private-browser-lower"
+                  },
+                  {
+                    "milliseconds": 12.705,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.205001,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 4.604999,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 2.11,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 14.605,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 8.575,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 0.18,
+                    "stage": "ordinary-flow-worker-bridge"
+                  },
+                  {
+                    "milliseconds": 29.575,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 10.815,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 4.280001,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 14.474999,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 400.7800000309944,
+            "transportReadMs": 0.41499996185302734,
+            "jsParseMs": 0.26500004529953003,
+            "wasmCopyMs": 0.009999990463256836,
+            "profileReadMs": 1.534999966621399,
+            "typedIRChars": 49954,
+            "manifestChars": 2374,
+            "guestWasmBytes": 72149
+          },
+          "compileMs": 413.71499997377396,
+          "executeMs": 63.93000000715256,
+          "formatMs": 14.865000009536743
+        },
+        "observations": [
+          {
+            "backend": "Canvas2D",
+            "completion": "normal static presented callback then full-canvas getImageData",
+            "width": 798,
+            "height": 326,
+            "nonblankPixels": 2814,
+            "draws": 6,
+            "presented": [
+              {
+                "frameId": "vf-inline-result-3--frame_0",
+                "serial": 4,
+                "snapshot": {
+                  "camera": null,
+                  "axis3d": {},
+                  "axes": [
+                    {
+                      "index": 0,
+                      "fields": {
+                        "x_min": 0,
+                        "x_max": 1,
+                        "y_min": 0,
+                        "y_max": 0.9999998829558185
+                      }
+                    }
+                  ]
+                },
+                "endpoint": "canvas-command-completed",
+                "renderCameras": []
+              }
+            ]
+          }
+        ],
+        "rasterHashes": [
+          "afe7310cc5effed71378dfa487c29e2f21eac15d87567f3dc19c7f6494bd50ea"
+        ],
+        "pointCount": 1025,
+        "maxNumericalError": 2.9772385223836295e-08,
+        "maxXError": 0,
+        "arenaHashes": [
+          "95ae9ca96bf6cf631cc6fb4a9417da0539686444788e5a19638d872b9f3c0c3f"
+        ]
+      }
+    ],
+    "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+    "endpoint": "ordinary InlineRunner request including compile/eval/data/bridge through shipping same Canvas2D complete getImageData raster; app navigation excluded; unprimed lazy initialization inside request; console endpoint separately"
+  },
+  "browserClosed": true,
+  "serverClosed": true,
+  "ownedChildren": [
+    {
+      "pid": 73976,
+      "command": "/opt/google/chrome/chrome"
+    }
+  ]
+}

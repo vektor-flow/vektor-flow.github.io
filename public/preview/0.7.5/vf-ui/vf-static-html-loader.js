@@ -53,9 +53,14 @@
     return { parsed, stylesheets, assets, entry: baseUrl };
   }
 
-  async function fetchOk(url) {
-    const response = await global.fetch(url);
+  async function fetchOk(url, options) {
+    const admitted = options && options.resourceUrls;
+    if (admitted !== undefined && (!Array.isArray(admitted) || !admitted.includes(String(url))))
+      throw new Error("static HTML resource is outside the admitted package");
+    const response = await global.fetch(url, {signal: options && options.signal});
     if (!response.ok) throw new Error("static HTML resource could not be loaded");
+    if (admitted !== undefined && !admitted.includes(response.url))
+      throw new Error("static HTML redirect is outside the admitted package");
     return response;
   }
 
@@ -80,7 +85,7 @@
     return { imports, assets };
   }
 
-  async function preflightStaticGraph(prepared, root) {
+  async function preflightStaticGraph(prepared, root, options) {
     const visiting = new Set();
     const visited = new Set();
     const fetchedAssets = new Set();
@@ -97,7 +102,7 @@
       if (fetchedAssets.has(url)) return;
       claim(url);
       fetchedAssets.add(url);
-      await fetchOk(url);
+      await fetchOk(url, options);
     }
     async function visitCss(url, depth) {
       if (depth > 64) throw new Error("static HTML CSS graph exceeds depth 64");
@@ -105,7 +110,7 @@
       if (visited.has(url)) return;
       claim(url);
       visiting.add(url);
-      const response = await fetchOk(url);
+      const response = await fetchOk(url, options);
       const references = cssReferences(await response.text());
       for (const reference of references.imports) {
         await visitCss(resolveLocal(reference, response.url, root, "static HTML CSS import"), depth + 1);
@@ -161,7 +166,7 @@
     }
   }
 
-  async function mountFrameHtml(frameRoot, resourcePath) {
+  async function mountFrameHtml(frameRoot, resourcePath, options) {
     if (!(frameRoot instanceof global.Element)) {
       throw new Error("static HTML requires a Frame root");
     }
@@ -173,10 +178,11 @@
       throw new Error("static HTML already has a Frame mount root");
     }
 
-    const response = await fetchOk(resourcePath);
+    const response = await fetchOk(resourcePath, options);
     const rootBoundary = bundleRoot(response.url);
     const prepared = staticDocument(await response.text(), response.url, rootBoundary);
-    await preflightStaticGraph(prepared, rootBoundary);
+    await preflightStaticGraph(prepared, rootBoundary, options);
+    options?.signal?.throwIfAborted();
 
     const root = global.document.createElement("div");
     root.setAttribute("data-vf-static-html-root", "");
@@ -195,7 +201,10 @@
         throw new Error("static HTML retained lookup runtime is unavailable");
       }
       global.VfHtmlComponents.__internal.adoptTree(frameRoot, [root]);
-      bindRetainedEvents(root, String(frameRoot.dataset.vfFrameId || ""));
+      // Compiled sessions deliver through the instance-owned retained import.
+      // Legacy native/server staging keeps its existing vf_event transport.
+      if (!options || !options.compiledOwnerEvents)
+        bindRetainedEvents(root, String(frameRoot.dataset.vfFrameId || ""));
     } catch (error) {
       frameBody.removeChild(root);
       throw error;
@@ -231,7 +240,13 @@
     });
   }
 
-  global.VfStaticHtmlLoader = { mountFrameHtml, mountManifest };
+  async function mountFrameHtmlForOwnerV1(frameRoot, resourcePath, bridge, options) {
+    const original = bridge.bindOwner(frameRoot, "Frame<2>");
+    await mountFrameHtml(frameRoot, resourcePath, options);
+    if (bridge.resolve(original) !== frameRoot) throw new Error("static loader changed Frame identity");
+    return original;
+  }
+  global.VfStaticHtmlLoader = { mountFrameHtml, mountFrameHtmlForOwnerV1, mountManifest };
   if (global.document.readyState === "loading") {
     global.document.addEventListener("DOMContentLoaded", boot, { once: true });
   } else {

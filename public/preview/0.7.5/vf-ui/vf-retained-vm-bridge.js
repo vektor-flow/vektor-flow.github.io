@@ -23,6 +23,22 @@
     const records = new Map(), byCapability = new Map(), issuedSlots = new Map();
     let exports = null, bounds = null, disposed = false, closing = false, wireManifest = null;
     const pendingLoads = new Set();
+    const ownerEvents = new Map();
+    let eventSequence = 0;
+    function eventNotice(phase) {
+      if (typeof options.onRetainedEventState === "function")
+        options.onRetainedEventState(Object.freeze({phase, delivered: eventSequence}));
+    }
+    function closeEvents(reason) {
+      for (const queue of ownerEvents.values()) {
+        for (const [type, listener] of queue.listeners) queue.owner.removeEventListener(type, listener);
+        if (queue.waiter) { queue.waiter.reject(reason); queue.waiter = null; }
+        queue.items.length = 0;
+      }
+      ownerEvents.clear();
+    }
+    const abortEvents = () => closeEvents(options.signal.reason || new TypeError("retained owner events aborted"));
+    if (options.signal) options.signal.addEventListener("abort", abortEvents, {once: true});
     const decoder = new global.TextDecoder("utf-8", { fatal: true });
     const encoder = new global.TextEncoder();
     function live() {
@@ -205,6 +221,66 @@
       }
       throw new TypeError("unsupported retained property result");
     }
+    function eventPacket(packet) {
+      // This is a fixed UI wire packet, never a general VKF-value conversion.
+      const fields = [["event", text(packet.event)], ["widget_id", text(packet.widget_id)], ["frame_id", text(packet.frame_id)]];
+      if (packet.event === "SliderValueChanged") fields.push(["value", writeScalar(packet.value)]);
+      const named = fields.map(([name, value]) => [text(name), value]);
+      const pointer = allocate(16 + named.length * 8), view = memory();
+      view.setUint32(pointer, 5, true); view.setUint32(pointer + 4, named.length, true);
+      view.setUint32(pointer + 8, pointer + 16, true);
+      named.forEach(([name, value], index) => {
+        view.setUint32(pointer + 16 + index * 8, name, true);
+        view.setUint32(pointer + 20 + index * 8, value, true);
+      });
+      eventSequence++; eventNotice("delivered");
+      return pointer;
+    }
+    function ownerEvent(pointer, wait, descriptor) {
+      if (wireManifest.events !== "button-slider-v1" || (wait !== 0 && wait !== 1))
+        throw new TypeError("compiled owner-event ABI is not declared");
+      if (wait && wireManifest.suspension !== "jspi-v1")
+        throw new TypeError("owner-event wait requires JSPI suspension");
+      options.signal?.throwIfAborted();
+      const record = requireHandle(pointer); ready(record);
+      const kind = utf8(descriptor);
+      if (kind !== record.kind || !["Button", "Input"].includes(kind) ||
+          !(record.value instanceof global.Element) ||
+          (kind === "Input" && record.value.type !== "range"))
+        throw new TypeError("owner-event receiver must be the original Button or range Input");
+      let queue = ownerEvents.get(record.value);
+      if (!queue) {
+        const owner = record.value;
+        queue = {owner, items: [], waiter: null, error: null, listeners: []};
+        const type = kind === "Button" ? "click" : "input";
+        const listener = () => {
+          if (closing || disposed || queue.error) return;
+          const frame = owner.closest("[data-vf-frame-id]");
+          const packet = {event: kind === "Button" ? "ButtonClicked" : "SliderValueChanged", widget_id: owner.id,
+            frame_id: frame ? String(frame.dataset.vfFrameId || "") : ""};
+          if (kind === "Input") packet.value = Number(owner.value);
+          // No default cancellation or propagation changes. An asynchronous
+          // consumer cannot undo a browser default that already happened.
+          if (queue.waiter) {
+            const waiter = queue.waiter; queue.waiter = null;
+            try { waiter.resolve(eventPacket(packet)); } catch (error) { queue.error = error; waiter.reject(error); }
+          } else if (queue.items.length < 4096) queue.items.push(packet);
+          else queue.error = new RangeError("retained owner-event queue exceeded 4096 packets");
+        };
+        owner.addEventListener(type, listener); queue.listeners.push([type, listener]);
+        ownerEvents.set(owner, queue);
+      }
+      if (queue.error) throw queue.error;
+      if (queue.waiter) throw new TypeError("retained owner queue already has an active consumer");
+      if (queue.items.length) return eventPacket(queue.items.shift());
+      if (!wait) return scalar(0, 0); // existing events.get() remains nonblocking
+      // Only the compiled explicit match-loop waits. Its genuine VM stack,
+      // locals, delegate and state remain suspended in this same instance.
+      return new Promise((resolve, reject) => {
+        queue.waiter = {resolve, reject}; eventNotice("waiting");
+        if (options.signal?.aborted) abortEvents();
+      });
+    }
     function producerCall(parentPointer, operandsPointer, descriptorPointer) {
       if (!wireManifest || wireManifest.producerVersion !== 1)
         throw new TypeError("retained producer ABI is not declared by this instance");
@@ -272,12 +348,17 @@
     function invoke(operation, a, b, c) {
       live();
       if (closing) throw new TypeError("retained execution is closing");
+      if (operation === 8) return ownerEvent(a, b, c);
       if (operation === 3) return producerCall(a, b, c);
       if (operation === 4) {
         if (c !== 0 || !wireManifest || wireManifest.suspension !== "jspi-v1")
           throw new TypeError("Frame.load requires its explicit JSPI suspension ABI");
         const resourcePath = utf8(b);
+        if (!resourcePath || resourcePath.startsWith("/") || /[\\:#?]/.test(resourcePath))
+          throw new TypeError("Frame.load resource must stay source-relative inside its static bundle");
         const path = options.resourceBaseUrl === undefined ? resourcePath : new global.URL(resourcePath, options.resourceBaseUrl).href;
+        if (options.resourceBaseUrl !== undefined && !path.startsWith(new global.URL(".", options.resourceBaseUrl).href))
+          throw new TypeError("Frame.load resource escapes its source bundle directory");
         // Package admission supplies exact reviewed URLs, never a source-id map.
         // A load outside that inventory is an execution failure, not missing/null.
         if (options.resourceUrls !== undefined &&
@@ -368,6 +449,8 @@
         throw new TypeError("unsupported retained producer ABI version");
       if (wire.suspension !== undefined && wire.suspension !== "jspi-v1")
         throw new TypeError("unsupported retained suspension ABI");
+      if (wire.events !== undefined && wire.events !== "button-slider-v1")
+        throw new TypeError("unsupported retained owner-event packet ABI");
       wireManifest = Object.freeze({...wire});
       exports = vmExports;
     }
@@ -404,10 +487,13 @@
     }
     function dispose() {
       if (pendingLoads.size) throw new TypeError("join pending retained loads before disposal/reset/rewind");
+      closeEvents(new TypeError("retained execution disposed"));
+      options.signal?.removeEventListener("abort", abortEvents);
       disposed = true; records.clear(); byCapability.clear(); issuedSlots.clear(); exports = null; wireManifest = null;
     }
     async function close() {
       closing = true;
+      closeEvents(new TypeError("retained execution closing"));
       const joined = await Promise.allSettled([...pendingLoads]);
       dispose();
       if (options.producer && typeof options.producer.dispose === "function") options.producer.dispose();

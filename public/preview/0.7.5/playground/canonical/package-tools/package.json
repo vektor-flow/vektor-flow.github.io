@@ -1,0 +1,27 @@
+{
+  "name": "@vektor-flow/package-toolchain",
+  "version": "0.7.5",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "vkf": "./cli.mjs",
+    "vkf-package": "./cli.mjs"
+  },
+  "exports": {
+    ".": "./project.mjs",
+    "./host": "./host.mjs",
+    "./inputs": "./inputs.mjs",
+    "./metadata": "./metadata.mjs",
+    "./addresses": "./addresses.mjs"
+  },
+  "files": [
+    "*.mjs",
+    "package.json"
+  ],
+  "scripts": {
+    "test": "node --test ../tests/packages/toolchain.test.mjs ../tests/packages/addresses.test.mjs ../tests/packages/publish.test.mjs"
+  }
+}

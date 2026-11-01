@@ -1,0 +1,1636 @@
+{
+  "schema": "vektor-flow.current-named-distribution/1",
+  "owner": "e1870",
+  "status": "PASS_CURRENT_NAMED_DISTRIBUTION_REQUIRED_SCALE_AND_AFFECTED_SITE_CONTROLS",
+  "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "compositionInputSHA256": "30360a8bf04f28979eea0f8fd063647512233531678faed6e33d97dc9e4289ea",
+  "sourceFreeze": [
+    {
+      "path": "playground/canonical/compiler-base.mjs",
+      "bytes": 188024,
+      "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
+    },
+    {
+      "path": "playground/canonical/compiler.data",
+      "bytes": 619872,
+      "sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
+    },
+    {
+      "path": "playground/canonical/compiler.mjs",
+      "bytes": 1248,
+      "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
+    },
+    {
+      "path": "playground/canonical/compiler.wasm",
+      "bytes": 67350513,
+      "sha256": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b"
+    },
+    {
+      "path": "playground/canonical/formatter.mjs",
+      "bytes": 62804,
+      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+    },
+    {
+      "path": "playground/canonical/formatter.wasm",
+      "bytes": 1118687,
+      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    },
+    {
+      "path": "playground/canonical/package-tools/addresses.mjs",
+      "bytes": 22794,
+      "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+    },
+    {
+      "path": "playground/canonical/package-tools/cli.mjs",
+      "bytes": 4905,
+      "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+    },
+    {
+      "path": "playground/canonical/package-tools/git-source.mjs",
+      "bytes": 9262,
+      "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+    },
+    {
+      "path": "playground/canonical/package-tools/github.mjs",
+      "bytes": 1579,
+      "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+    },
+    {
+      "path": "playground/canonical/package-tools/host.mjs",
+      "bytes": 11443,
+      "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+    },
+    {
+      "path": "playground/canonical/package-tools/inputs.mjs",
+      "bytes": 7238,
+      "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+    },
+    {
+      "path": "playground/canonical/package-tools/metadata.mjs",
+      "bytes": 10834,
+      "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+    },
+    {
+      "path": "playground/canonical/package-tools/ownership.mjs",
+      "bytes": 2891,
+      "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+    },
+    {
+      "path": "playground/canonical/package-tools/package.json",
+      "bytes": 602,
+      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+    },
+    {
+      "path": "playground/canonical/package-tools/project.mjs",
+      "bytes": 7058,
+      "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+    },
+    {
+      "path": "playground/canonical/package-tools/publish.mjs",
+      "bytes": 5701,
+      "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+    },
+    {
+      "path": "playground/canonical/package-tools/resolve.mjs",
+      "bytes": 1773,
+      "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+    },
+    {
+      "path": "playground/canonical/prepare-formatter-ir.mjs",
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+    },
+    {
+      "path": "canonical-inline-worker.mjs",
+      "bytes": 804,
+      "sha256": "aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6"
+    },
+    {
+      "path": "inline-renderer-loader.mjs",
+      "bytes": 2336,
+      "sha256": "52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729"
+    },
+    {
+      "path": "inline-retained-scene-view.mjs",
+      "bytes": 15639,
+      "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
+    },
+    {
+      "path": "inline-runner.mjs",
+      "bytes": 7290,
+      "sha256": "cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f"
+    },
+    {
+      "path": "playground/browser-copy-retained-packets.mjs",
+      "bytes": 1480,
+      "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
+    },
+    {
+      "path": "playground/interpolation-tests/browser.mjs",
+      "bytes": 7208,
+      "sha256": "98744c1f5170b1a45da3791a1b9972f424825c6d8d862c25c499a19d8e32c584"
+    },
+    {
+      "path": "playground/interpolation-tests/packaging.test.mjs",
+      "bytes": 2444,
+      "sha256": "f5f59a38b6b201adeaa2d05adda9314307a0d20110739e7d437e2045825543c7"
+    },
+    {
+      "path": "playground/interpolation-tests/plot-parameter.vkf",
+      "bytes": 556,
+      "sha256": "62062a610bda3c13cda00ee198762cf4e41c30bd525ede65a4e14db8554fc782"
+    },
+    {
+      "path": "playground/interpolation-tests/plot-shared-samples.vkf",
+      "bytes": 899,
+      "sha256": "3dcbd2f07eb42a3854aedc935f6ec4feae86a097fd27200696c5aa66be53fe5a"
+    },
+    {
+      "path": "playground/interpolation-tests/verify.py",
+      "bytes": 16030,
+      "sha256": "6533f81b6d4edd3631029b7c5d18d03b9acf4cdf51b2500ab3ae6313b3df6bf7"
+    },
+    {
+      "path": "playground/interpolation-tests/wasm.mjs",
+      "bytes": 3753,
+      "sha256": "20f8c8357732aab1530cf2444f6562792c8e32ef3153359ca9255b08b1b38aae"
+    },
+    {
+      "path": "playground/prepare-formatter-ir.mjs",
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+    },
+    {
+      "path": "playground/vkf-canonical-browser-compiler.mjs",
+      "bytes": 4014,
+      "sha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493"
+    },
+    {
+      "path": "playground/vkf-canonical-execution.mjs",
+      "bytes": 7183,
+      "sha256": "f56592e3eb727d87ebc954575d33022910407dc25d5c2bea55dbced60ac894ee"
+    },
+    {
+      "path": "playground/vkf-concurrent-broker-client.mjs",
+      "bytes": 6983,
+      "sha256": "b039bcca369fbf22cfefb6b8e02054ef2e8c05be3a4ed553edc1623a76d62d4a"
+    },
+    {
+      "path": "playground/vkf-concurrent-broker.mjs",
+      "bytes": 9886,
+      "sha256": "ef5b9ebaf16ce9be4b84a371debbdf8a363b2f5e769375c59e71ca692b58fb14"
+    },
+    {
+      "path": "playground/vkf-concurrent-host.mjs",
+      "bytes": 16437,
+      "sha256": "0974ecfa7847ce8594772c2e1b62aebb03fff3754abfe592887de13a457be0d2"
+    },
+    {
+      "path": "playground/vkf-concurrent-process.mjs",
+      "bytes": 4653,
+      "sha256": "a0ba510be29bcfba5f27badfe761456ced38fe99f9c4f311f4177936ab9dfedd"
+    },
+    {
+      "path": "playground/vkf-concurrent-shared-graph.mjs",
+      "bytes": 3650,
+      "sha256": "160d1acd0fe058254d017530d152199e47af67408c07b901aaa80e677b37c675"
+    },
+    {
+      "path": "playground/vkf-concurrent-shared.mjs",
+      "bytes": 1364,
+      "sha256": "ad14422173e98dffc362b38af328634e88d16d0035e87485d73657ddb7e4550a"
+    },
+    {
+      "path": "playground/vkf-concurrent-transport.mjs",
+      "bytes": 6752,
+      "sha256": "61957e86e9c7786a0d864d8c26944a1f5acd5f4f5dc91c5186508b16940a163a"
+    },
+    {
+      "path": "playground/vkf-concurrent-values.mjs",
+      "bytes": 7622,
+      "sha256": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679"
+    },
+    {
+      "path": "playground/vkf-concurrent-worker.mjs",
+      "bytes": 6455,
+      "sha256": "5526924499fe7b8b3329769c353e337c587c8eb1e71828e8d40dd54219c1ebf7"
+    },
+    {
+      "path": "playground/vkf-prepared-workers.mjs",
+      "bytes": 2604,
+      "sha256": "5a4bec830e66483e0fd35ac5efff661f667c9509548eb1fac03d44de1c886ac1"
+    },
+    {
+      "path": "playground/vkf-ready-broker.mjs",
+      "bytes": 2296,
+      "sha256": "2ed21bb733bf7f8320e909fa98a365371a77c37e30fb7ed530e8880533452bcd"
+    },
+    {
+      "path": "playground/vkf-ready-process.mjs",
+      "bytes": 880,
+      "sha256": "f033d556703d79521a310cc58d336646bd05098c9b8f1277c7e223c929213488"
+    },
+    {
+      "path": "playground/vkf-retained-execution-control.mjs",
+      "bytes": 1338,
+      "sha256": "a1faae2909f21bbefe55a9988eea15fe28d956b121135c838693d9524df61423"
+    },
+    {
+      "path": "playground/vkf-retained-window-execution.mjs",
+      "bytes": 6777,
+      "sha256": "5954874b15113e258841bb82dd8d7abbbba6c17b3267336d0cc54f1a31bb8828"
+    },
+    {
+      "path": "playground/vkf-retained-worker-execution.mjs",
+      "bytes": 682,
+      "sha256": "4cb2bd0a9c915bbe6a7ccebe5e45579c8e6a5a69cf276c5ec781446f065fefc2"
+    },
+    {
+      "path": "vkf-browser-isolation.mjs",
+      "bytes": 1816,
+      "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
+    },
+    {
+      "path": "vf-ui/.gitignore",
+      "bytes": 111,
+      "sha256": "ee94efcf7baedb3f6e8262c6e6f13fc340a24810491339c75fed1d8ca6cebe13"
+    },
+    {
+      "path": "vf-ui/README.md",
+      "bytes": 877,
+      "sha256": "ce4b3309c99e4254d1fa8367703fba6e28e23f822931f7f63bb9145ae0471fdb"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/catalog.vkfont",
+      "bytes": 16871821,
+      "sha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/labels.json",
+      "bytes": 34892,
+      "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/labels.wasm",
+      "bytes": 7582475,
+      "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/EXTENSION.json",
+      "bytes": 2431,
+      "sha256": "49533e8dda604de01c07a51bc321577d6f55d745c95aecaf3c738f9b09448fea"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
+      "bytes": 75434,
+      "sha256": "a957226d2a659e30406aae891d8c3decad5239cf4abc5d2f025e733885718705"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/boxes.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+      "bytes": 4466,
+      "sha256": "070a3ec487f48a82c674a68b79818532232e73a6c25aca3fd84ee8cebb8f7fbd"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/cameras.json",
+      "bytes": 9496,
+      "sha256": "72d87a5c462956f9d9f06241ecccdb894c775b519c4d0975ef08b9c952726418"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/catalog-pin.json",
+      "bytes": 250,
+      "sha256": "760795b8bdfd75db484beb6718330d48e410b8acc84b9d892a415f78aa80e161"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/dataset.json",
+      "bytes": 2509534,
+      "sha256": "0c77927429dfd78ddd53e3854b04941663096d4e5599c0dc62400463baaa6ca5"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/fontClosure.json",
+      "bytes": 3279,
+      "sha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/physical/PHYSICAL-PRODUCTION.json",
+      "bytes": 1179,
+      "sha256": "8656f440e850a6ce50fcda8d0b1800c74823f895d23cc88eb78e9b32340d21fb"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/physical/vectors-000.json",
+      "bytes": 51885,
+      "sha256": "ca92818d0841e2b198106a821e001f414a99f8bbb0b64a55f496cbb298d700d5"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/requirements-pin.json",
+      "bytes": 257,
+      "sha256": "ed228f871873e29e5fb3c264b559899a2dd4ac075c437df5603e2b247a6e2f57"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/requirements.json",
+      "bytes": 9778,
+      "sha256": "63675104f19b6d86ff8332d9caf9fb3db14bfc014f1e64596fc0bf150311f98b"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+      "bytes": 123825,
+      "sha256": "b30cb7479a1628edaeaf243ff0f17f5e1a4f56853ec811ca1b3ba61f9348c96a"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/producer.json",
+      "bytes": 15320,
+      "sha256": "94913ef61d72844962d9b00ce7703bfcbdbf7a9829ead619ff29083e52c8fec2"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.json",
+      "bytes": 51961,
+      "sha256": "159cde98e88c43f9073823bbb0cd14c388470d814fb5f6fba1b4ca228f3e70fb"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.wasm",
+      "bytes": 1354627,
+      "sha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+      "bytes": 9833,
+      "sha256": "00c7570e7e85359f5cfbbddb110d0ee15c906944cfebd3ed56d1e5dce10b00be"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular.ttf",
+      "bytes": 569208,
+      "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
+    },
+    {
+      "path": "vf-ui/demo.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/display-only-star-test.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/donut-hit-test.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/example-gui.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/geom/internal/vf-retained-point-cloud-camera.mjs",
+      "bytes": 967,
+      "sha256": "6cbb8045fc4d08f5b05b94c235baa4a4c2713818749c7385af646100940c9773"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-plan.mjs",
+      "bytes": 8118,
+      "sha256": "ee99f468b0c41513a4486c9af6e82125ee20494f3f148a39056df9d437503110"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-shading-oracle.mjs",
+      "bytes": 9787,
+      "sha256": "a5ad43f16aea25a23f28f8ee4971c389ad2e4b84503a52da6c0fa404db78f655"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-core.js",
+      "bytes": 17860,
+      "sha256": "2c414dedd1dc10da8f553e04ce3fd2de020e7acf00eb48f976d058a5411ab693"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-demo.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-dual.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-frame-adapter.js",
+      "bytes": 14836,
+      "sha256": "db179b3ad2885fe3187735f5e07175a8888e6ecf7263e2a9ed8436404299e459"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-layout.js",
+      "bytes": 13724,
+      "sha256": "17468a185566d6e3b0bc5c8eff749482cb9399e84c97a01c0caeaac59e2c0f2f"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-transport.js",
+      "bytes": 5206,
+      "sha256": "04298dc65b9f691676b3908c400ba45d82800e80d0129bb0fa3831175b62d093"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger.js",
+      "bytes": 37294,
+      "sha256": "89126424637eacc41cecdce57c17ad2326b2e7772dc2978e94948464966b0ef0"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-material-arena.js",
+      "bytes": 7141,
+      "sha256": "5b1441aff2b84fffb1e02eb3d4f4b4dc81ebeaa155519fb7e852db9c22427365"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-math.js",
+      "bytes": 4924,
+      "sha256": "3b91b0d3140162e9579a48f907cc703b77817b9e610ed076483f9375d2ea4023"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-mount.js",
+      "bytes": 9757,
+      "sha256": "908f49e7b6db930056967ed6e190cf76f2a06bfc99ace0691d1e5ec8c148a019"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-parametric-surface.js",
+      "bytes": 16458,
+      "sha256": "06ba6aabdccc3ee1ead00225394f83b79667045de2e8b167ec9657805836e6a7"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-shapes.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-smoke.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-solo.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-wgpu.js",
+      "bytes": 419195,
+      "sha256": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.mjs",
+      "bytes": 405,
+      "sha256": "c6dc27265c8aebf5c7ba1cd8fecd51693835a53aa9bb54002d78f65f3511f0ca"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.test.mjs",
+      "bytes": 697,
+      "sha256": "69eb8124fa9d0e9b59fdd2648b5df7a78b625301a813a57d3434a1f595744b1d"
+    },
+    {
+      "path": "vf-ui/geom/vf-light-view-bounds.mjs",
+      "bytes": 9979,
+      "sha256": "6b4f4bef16dc6f18c7811eee3d00a7b502ade6d5e95f26111f73f50d8f869fc9"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-atlas.mjs",
+      "bytes": 6279,
+      "sha256": "1f0742279d8ed29fbfcce78a003d350287596236b3695ca59b8b1b1c92634fdc"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-planner.mjs",
+      "bytes": 8626,
+      "sha256": "7640ea1281b93d6d69713ba9e5d0d72612557d28b8bc7349b9f72ba605f37715"
+    },
+    {
+      "path": "vf-ui/geom/vf-resident-mesh-renderer.mjs",
+      "bytes": 4736,
+      "sha256": "3279389bc3252e46c325112fcdf7632293f167fb2a3e81e212405c386b467380"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-point-cloud-renderer.mjs",
+      "bytes": 13131,
+      "sha256": "d6345908a21d41d7c75dfafd3a94d482bcb6713e7a262eb80b50a02d7d0aed1c"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-simplex-renderer.mjs",
+      "bytes": 22972,
+      "sha256": "cca6ebe8407c519f1d7d4962f3b04a60a0a366e63817f81a70b6c840dd4a42f9"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.mjs",
+      "bytes": 146808,
+      "sha256": "fa12c47214c64795ddda09514e3f500c27ccba2a800a84de7524dd28793036b4"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.test.mjs",
+      "bytes": 6392,
+      "sha256": "0890fb51ffb84c127c50018c9d5caa753864952579615b67309b4ff67a22381c"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-relation-shader.mjs",
+      "bytes": 17430,
+      "sha256": "71fd03199cfa14e08f0064f6f085ab8b0ed5bff2192c51836846ab8da0b6b848"
+    },
+    {
+      "path": "vf-ui/index.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/katex/LICENSE",
+      "bytes": 1107,
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.css",
+      "bytes": 23335,
+      "sha256": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.js",
+      "bytes": 275414,
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-adaptive-native-labels.mjs",
+      "bytes": 8940,
+      "sha256": "432d06520939bb3fd3fb4e9f6f50b490bb5dc455d5c195be97f7ec496c06b752"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-native-provider.mjs",
+      "bytes": 4764,
+      "sha256": "1bd1b35a58878452355c5c3152419eb08d9c0a4a7eca7aa0107407baeea426ad"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-label-worker.mjs",
+      "bytes": 2179,
+      "sha256": "17545075aba22f7645d2688f9c30f3ad369bbadf1ebb33db624b9d46374c2059"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-math-labels.mjs",
+      "bytes": 2888,
+      "sha256": "14dfd82e3caddb9b662a4c2d5d408165b78504fa905980c432c9fcac2d5d2ee6"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-producer.mjs",
+      "bytes": 5958,
+      "sha256": "4b653b98b42a2c2ff175f30bfb0719765e37eadaaf4c9c3b505a4a09073a0e58"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-accuracy-scene.mjs",
+      "bytes": 2570,
+      "sha256": "3d8a5bfdc3d6cd568c1840682555b96b2ab22a18b1f4de3a4564a30eaa64505b"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-accuracy-source.mjs",
+      "bytes": 4834,
+      "sha256": "be5ccf53fca7bc4b0c66015d975a2f63f50d6d510f65f5449c51a9a1d372a9e1"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-certified-samples.mjs",
+      "bytes": 10553,
+      "sha256": "ad434b466b79dcf93d3966c4f04968a16c7dc20467f93518f93c44419bc2c6e4"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-program.mjs",
+      "bytes": 10966,
+      "sha256": "4bd6e4b514ad1157173cb97a9c94d22448594b85533103871a09d668254505c0"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-renderer.mjs",
+      "bytes": 24859,
+      "sha256": "d61ebcedbdf1fc6996dde159e93ac54783f10b62e069b017643aff208a1a8da5"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-shaders.mjs",
+      "bytes": 9505,
+      "sha256": "fabf7356e8c401cdda438c03feeb0ec08404214adcdea893b35b57de60954f28"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-font-binding.mjs",
+      "bytes": 1869,
+      "sha256": "93f86abdaf0934171aa5bd8b8cc344e12cfafb6ad57fbecaad7ac06793752c21"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-label-layer.mjs",
+      "bytes": 9837,
+      "sha256": "a68afc9dd57e53f737f7c326d5cc4206d20b79ad2eb17b566be299cba506400a"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-outline-cache.mjs",
+      "bytes": 13934,
+      "sha256": "3a0b9ce7d77d22148e7c821291ad504bf91084d5a326a792371b260889ad8c47"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-plot-labels.mjs",
+      "bytes": 18274,
+      "sha256": "8d91c40818bd338a76d22b802371b5e1a843dbe6ccdb40fe0a4104a96dc18d3a"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-residual-shader.mjs",
+      "bytes": 9120,
+      "sha256": "51fc66fecdf731bc794fd9d13cb57172e814a86dd527cd737c540c1c3c9499c0"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-residual.mjs",
+      "bytes": 5363,
+      "sha256": "9644430b5a50e32eb08c2ccf383928a4c896b14a3b89918df5f92a5091b4156e"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-plot-pdf-commands.mjs",
+      "bytes": 5443,
+      "sha256": "935052a7d9c5f7a17ba30e9e32cbb06b6d6ecb93e3335a6f967f985d59a566e9"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-adapters.mjs",
+      "bytes": 5722,
+      "sha256": "a7b630b633f845bed64f709dd32708d25f79968359083ef2a24b6f16ee2c203e"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-contours.mjs",
+      "bytes": 4379,
+      "sha256": "d2ae9ef77ffd39a8dac3260fdcea4ece7aee3e4e9d4ec7579d86645cdba2c448"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-outline.mjs",
+      "bytes": 13876,
+      "sha256": "611949ce243a28d0736e36753fa002aa285d7c973cdac60e330f6e611b56f0a5"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+      "bytes": 28034,
+      "sha256": "d2e281e77896ed85a6b682d9abb63b53eae8e1c252890f6a77a0f56294c5b08d"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-spatial-ranges.mjs",
+      "bytes": 2950,
+      "sha256": "c334479249df213149cfe51e467f35d51333c62e19f01250a87cf284cade7f33"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-stroke-contract.mjs",
+      "bytes": 3788,
+      "sha256": "265e741505aef85f889f91cbf80170e1911be24d41c6c106b484a621c5699a60"
+    },
+    {
+      "path": "vf-ui/shaders/vf-rigid-polygons-2d.wgsl",
+      "bytes": 24793,
+      "sha256": "ded234f8bf841125f5ecb97407ce643fbe55f9ea7b9be1b1d9fceb56a7ddd222"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-1.61.6.min.mjs",
+      "bytes": 693871,
+      "sha256": "cc6f1f3d5e09758eafc15f7c2712439be3f2e25c301d096b11405a2f78a96e8f"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-LICENSE",
+      "bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-NOTICE.txt",
+      "bytes": 487,
+      "sha256": "21fadee3b5815df1ba1e08f77394248688204d2b5a2dee884d939b7dd4565ba1"
+    },
+    {
+      "path": "vf-ui/vf-alpha-hit-mask.js",
+      "bytes": 3220,
+      "sha256": "154ab4417876bdcb1c5ff47761f0bcc9f8f3def105c1bea0cada4750b12deba8"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-label-layout.mjs",
+      "bytes": 5902,
+      "sha256": "338858b9d54f30ed1be9da98cc638b02539ea18c2998398e7db0c637ef51a8cb"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.js",
+      "bytes": 26734,
+      "sha256": "64960b6d2be29343e7a64d0bf209d4c26ae5d305320a0dc347c7c12dcf7dac75"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.mjs",
+      "bytes": 239,
+      "sha256": "9525dab3af29d8a01a38b875fd1cc7e56c43d4f92584d91c55ec57a8d2938221"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.js",
+      "bytes": 1591,
+      "sha256": "e0404f60f661239f453793964273daae100ecfbab7c0658e459146ded7901b22"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.mjs",
+      "bytes": 398,
+      "sha256": "ee40ec5a0a037768b408822db7e521da897813581885deeb4dff00c665b2e6f1"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel.js",
+      "bytes": 13720,
+      "sha256": "ce9309e37d39a8d1bd326af34d43c92b335b0d12945c1896622940ff6b95d911"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "bytes": 1303,
+      "sha256": "547e8ed0bb74760cec9bac2ecd8e2b9d2123dd67f423cb6b999d8eb5027ad199"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel.js",
+      "bytes": 5555,
+      "sha256": "72eb524cc308507a63aebb01915bc75d8f968e2763b7c8967ad3996f347c47b7"
+    },
+    {
+      "path": "vf-ui/vf-chess-piece-animation.js",
+      "bytes": 3009,
+      "sha256": "e6436cf60bef583f2c5a1d8a44cbe93c72d78d9eb29c88d00545592314fd7802"
+    },
+    {
+      "path": "vf-ui/vf-chess.css",
+      "bytes": 4393,
+      "sha256": "265f24326adb9186398cd2cc21d85fa5843b04ec57b72665b9e168ed0e0daca4"
+    },
+    {
+      "path": "vf-ui/vf-color-field.mjs",
+      "bytes": 23870,
+      "sha256": "ba64029f7d57188fc622c02c17748c0820d1faa1f5780c0cc5df5de2cab108fa"
+    },
+    {
+      "path": "vf-ui/vf-color-scale.mjs",
+      "bytes": 2137,
+      "sha256": "48063bae9c140fccc852e5979649a761a631282ba43d23259c1469988e271c42"
+    },
+    {
+      "path": "vf-ui/vf-colorbar-view.mjs",
+      "bytes": 20346,
+      "sha256": "eae52a6ed633fd8d8dc867b7b34b95db1fe976dd1106ab8182e0fea8cf05fdcf"
+    },
+    {
+      "path": "vf-ui/vf-compiled-field-runtime.mjs",
+      "bytes": 4695,
+      "sha256": "dd924f4c5dc4d56cffa9689e9b7e970646c6fb9cf1e359c2d47b063f3416e959"
+    },
+    {
+      "path": "vf-ui/vf-compiled-runtime-bridge.js",
+      "bytes": 19214,
+      "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
+    },
+    {
+      "path": "vf-ui/vf-compiled-ui-module-registry.js",
+      "bytes": 3435,
+      "sha256": "b964c28eb7191e3b39f9681629ecaa65ad31c72373c1eb0631686f254eb33a78"
+    },
+    {
+      "path": "vf-ui/vf-compiled-webgpu-adapter.js",
+      "bytes": 70206,
+      "sha256": "1486c62fdf3f975a9d95df508de1c129d517413f47caa14b222dde0007b0e606"
+    },
+    {
+      "path": "vf-ui/vf-coordinate-grid.mjs",
+      "bytes": 13536,
+      "sha256": "8120049d76d9be2b527360f3c332d63bd9b3c6e56f7832cf92f23edcce01b839"
+    },
+    {
+      "path": "vf-ui/vf-display.js",
+      "bytes": 645148,
+      "sha256": "379714f7a2ed5b4e4a8a056b88ae2f9b0eb537b79b17a6344683e373e058c68b"
+    },
+    {
+      "path": "vf-ui/vf-frame-movie-capture.mjs",
+      "bytes": 3874,
+      "sha256": "a244d3729ceb3bead11b46050245147aab5df35b2025ecaaa5f3067c6f39d95e"
+    },
+    {
+      "path": "vf-ui/vf-frame.css",
+      "bytes": 20433,
+      "sha256": "ea8e9f3cd0fcc7e3cec2b4fc6e2dff394badc0a14d366767c3cdfc0ab92e0690"
+    },
+    {
+      "path": "vf-ui/vf-frame.js",
+      "bytes": 63720,
+      "sha256": "865f43b7cc537de826c3c6dca7114c93f371c6e6d031be725344b197ad8db353"
+    },
+    {
+      "path": "vf-ui/vf-glb-import.mjs",
+      "bytes": 10368,
+      "sha256": "6ffa605bca1a6bffe3b9ea5584be9b03a043692bf2b0152243c3cabf542a2cdd"
+    },
+    {
+      "path": "vf-ui/vf-gpu-runtime.js",
+      "bytes": 33158,
+      "sha256": "9a323546d8e46cce824aac5e999a05c8953e5bf56c77a6a30f8db447793f6508"
+    },
+    {
+      "path": "vf-ui/vf-html-components.js",
+      "bytes": 17079,
+      "sha256": "3bbf2e4aeacf6f2066201105ef0af48e207771e04bad90a4d2da75c08bea9724"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.css",
+      "bytes": 107,
+      "sha256": "f7a862786f6985305d0a839fcc4c7b7abe2a70cd04434907bfcb2d5e4820936f"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.mjs",
+      "bytes": 230,
+      "sha256": "e028e22734c1dce2193f59cec75384c1de1e00b635c109a02dc01c611f3ce96b"
+    },
+    {
+      "path": "vf-ui/vf-interpolation.mjs",
+      "bytes": 18353,
+      "sha256": "c6871183cef5f09aad0586892c05ba432653b6354e5e2ea1546c4c4316d7a12f"
+    },
+    {
+      "path": "vf-ui/vf-layered-screen-scene.mjs",
+      "bytes": 1520,
+      "sha256": "31c9934ec69e292004cd9e2ab1e51cfd159b6e6f5a854abf65078e2cce2ef9cb"
+    },
+    {
+      "path": "vf-ui/vf-log.js",
+      "bytes": 1675,
+      "sha256": "9cc6f6792cd60a20065df4f56d53a42b2d849b14dafec24d312d409ebcb9cd99"
+    },
+    {
+      "path": "vf-ui/vf-media-capture.mjs",
+      "bytes": 9599,
+      "sha256": "feb2a71774258f1b7a89d4f9870f0b2ed44d8ac0f9f68487ba78819fd763e23a"
+    },
+    {
+      "path": "vf-ui/vf-native-scene.js",
+      "bytes": 427234,
+      "sha256": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec"
+    },
+    {
+      "path": "vf-ui/vf-physics-engine.mjs",
+      "bytes": 85813,
+      "sha256": "526b318080c6ba9ec1a115a8e364188b41bab1918db1bbb867443805120f1620"
+    },
+    {
+      "path": "vf-ui/vf-property-program.mjs",
+      "bytes": 9662,
+      "sha256": "dd9169864be924411e70e9c9645f9d3e66712c97e766e28e21ab55b6963aaa35"
+    },
+    {
+      "path": "vf-ui/vf-render-clock.js",
+      "bytes": 2878,
+      "sha256": "c2250bef93b3de6afdff83aa09d1d0e144dc46251db8440a92b4e5660db93b54"
+    },
+    {
+      "path": "vf-ui/vf-retained-event-adapter.js",
+      "bytes": 3773,
+      "sha256": "b7082ab7a277ece450781deb5e4a56f8e3dd33ef5f78c4a921fc47dfae2f001b"
+    },
+    {
+      "path": "vf-ui/vf-retained-vm-bridge.js",
+      "bytes": 32659,
+      "sha256": "b6c841644dd069398a5ac54e899ad88a08c639960e15f30164f1c19cf5c0813e"
+    },
+    {
+      "path": "vf-ui/vf-runtime-flow.js",
+      "bytes": 23897,
+      "sha256": "b7a464edd0e88206d079a19a47259af9a22c9841cac6fdb58e39ca7ed262061f"
+    },
+    {
+      "path": "vf-ui/vf-runtime-packet-contract.js",
+      "bytes": 27244,
+      "sha256": "15072337a9d12f6901593a73e989133387fb182970c8fbc847d585163ab0e7e6"
+    },
+    {
+      "path": "vf-ui/vf-runtime-scene.js",
+      "bytes": 32704,
+      "sha256": "262a1d0b48b7a8d95cd0b5ea74508bf15e2d3e91751c4aa8c733d8b15115f922"
+    },
+    {
+      "path": "vf-ui/vf-runtime-shell.js",
+      "bytes": 51483,
+      "sha256": "c02f5e46835484f2a9f5aa7c01bfbb9cf2509f457beb4b622739e61b08930411"
+    },
+    {
+      "path": "vf-ui/vf-runtime-source.js",
+      "bytes": 7829,
+      "sha256": "bb9c3a5a256f8e294e4fd5b5bc4c65c548b6b717f8c23c03c74e5fba44913feb"
+    },
+    {
+      "path": "vf-ui/vf-selection-interaction.mjs",
+      "bytes": 4890,
+      "sha256": "00f43d50749538e2739357d103f75101a425c743e68c89716ed0002a5b8509fd"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.js",
+      "bytes": 23175,
+      "sha256": "c5c7154ccfd8e03b88b26ce3b316f6e9baaf43f265b0e78e239f0b2e73754250"
+    },
+    {
+      "path": "vf-ui/vf-shared-runtime.js",
+      "bytes": 8646,
+      "sha256": "1725ee7329ac829e922efc8a5b47df433ff7341485a3fca37112f0cebd732ab6"
+    },
+    {
+      "path": "vf-ui/vf-spatial-geometry.mjs",
+      "bytes": 20660,
+      "sha256": "28370cadca8b8bc9c75e3ae3b3971a157a19690d813f3e90a0c5201da9ea9ea0"
+    },
+    {
+      "path": "vf-ui/vf-startup-gate.js",
+      "bytes": 6363,
+      "sha256": "ec551b48249bf6cd10ff9224750e31bd9ea88fb4da99f789f64d2b55d51dc78d"
+    },
+    {
+      "path": "vf-ui/vf-static-html-loader.js",
+      "bytes": 10184,
+      "sha256": "88c63f0392fc4eaf4c988c5b1e427c0b45eac13eb8fca5eeb7fd51fdcb2cd5af"
+    },
+    {
+      "path": "vf-ui/vf-surface-context.mjs",
+      "bytes": 14380,
+      "sha256": "35f48c155414e39bb8c18d99714646b0d4a52e92ee9018dba813069a92162c72"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-constraints.mjs",
+      "bytes": 6816,
+      "sha256": "56ed3ece2af43c204c9a44bb77b6c956a25c1ad1cff01966d77a205ba46204bc"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-document-runtime.mjs",
+      "bytes": 2102,
+      "sha256": "cd729666d69a70ef8afe05db8ced15318efa7aa1289abb6cca80433920d74618"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "bytes": 15776,
+      "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-plot-controller.mjs",
+      "bytes": 60851,
+      "sha256": "2c8de0f8d085c4952837a166f8a202d6006de0380c00c8710105dae24f2a4361"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-surface-constraints.mjs",
+      "bytes": 6757,
+      "sha256": "dbe49f8b7998c9c65c4d57ea0fffb53fc4d37cec42fe0659cd4e38c25aa60095"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-wasm-runtime.mjs",
+      "bytes": 4027,
+      "sha256": "bb7868e5a23421e15d10b1306bf21e03044c56e3c5e744eee68b2a1f0f2d40d0"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.js",
+      "bytes": 1657,
+      "sha256": "2d69ddc63829a1b40418b21661a276077dbd005ef4f61b69279cde89a84cfe2b"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.mjs",
+      "bytes": 239,
+      "sha256": "5ff141d41611185309914558d2ef178f1358ba7ed51e374634048e715f3d2a6d"
+    },
+    {
+      "path": "vf-ui/vf-ui-scene-fps-benchmark.js",
+      "bytes": 12686,
+      "sha256": "c257ea11817b8cdca1a3f645bf5af7123cb9dc47dab01868ae8cf592446dcf81"
+    },
+    {
+      "path": "vf-ui/vf-ui-theme.mjs",
+      "bytes": 4117,
+      "sha256": "8a6435cc4792114ce2667d32f849c262d48dfd72a7d5b6757e156b87de7b2bcd"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel-adapter.js",
+      "bytes": 1072,
+      "sha256": "82db346b4d8d985c7e200bdf0426b6738351cf0ce3884e89ffe8ec39fba461a8"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel.js",
+      "bytes": 4841,
+      "sha256": "0ff1228da41aee81cfbcd4acfe990c63a7f6c9d4be561cfa3487bd9e6e8c3c92"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.js",
+      "bytes": 4339,
+      "sha256": "f2585d1ab1ea9741703b7adae989ac5bbf424f2895b7ea78a1a24934924cfe40"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.mjs",
+      "bytes": 225,
+      "sha256": "5e972b517437e7f5acb941d6d4194d741b9b5fb60b749799f84a76c91f579b9b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-runtime.js",
+      "bytes": 36105,
+      "sha256": "799a2b0bed9bb1af511650bf4ffcf3b4f8eda8b7727a3a10d275afc409b0b142"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-kernel-adapter.js",
+      "bytes": 10486,
+      "sha256": "e09a8e646926c2ca82edbbc204f1c3328759d15716195122180ae19b242e3f6b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-module-factory.js",
+      "bytes": 22568,
+      "sha256": "c97df4998d6eac6fe769ef15cac3164e15d1c1823adcc43fa61ceb5c711613ff"
+    },
+    {
+      "path": "vf-ui/vf-wasm-demo-contract.js",
+      "bytes": 3716,
+      "sha256": "4fa4d0c6bcdaf2804f372ec4f29ed3406e13880ee96c1119acc2ca16fa1a7a43"
+    },
+    {
+      "path": "vf-ui/vf-widgets.js",
+      "bytes": 44424,
+      "sha256": "00251dc4541eabeb2d75b4b2b8eea34061335314d46ca29e849fafafee4715cb"
+    },
+    {
+      "path": "vf-ui/vf-world-exchange.mjs",
+      "bytes": 5811,
+      "sha256": "8876d388e5e06981f231ae23ed248ec3c5b304c1c20c860d45df70ef2264130f"
+    },
+    {
+      "path": "vf-ui/vf-world-step.mjs",
+      "bytes": 5288,
+      "sha256": "35015f129c95dc6c261c740d8e648702bc91f68f977aaa7be7d71754e7181965"
+    },
+    {
+      "path": "vf-ui/vf-world-svg.mjs",
+      "bytes": 6298,
+      "sha256": "bbdc928ddd2c77cb5ea467a30cc5ce790d0614662e5231132d609192c9a63604"
+    },
+    {
+      "path": "vf-ui/vkf-scene.html",
+      "bytes": 98,
+      "sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e"
+    },
+    {
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+    },
+    {
+      "path": "404.html",
+      "bytes": 645,
+      "sha256": "9a5af98c8a8caa746075d66f4bee239fb5e90d16eae2c71a30d604231443e449"
+    },
+    {
+      "path": "about.html",
+      "bytes": 500,
+      "sha256": "336d4a5ee3482bb9e2553c52432b7783cdb9e3109fa2d4f6c4c05829e970615e"
+    },
+    {
+      "path": "browser-architecture.html",
+      "bytes": 494,
+      "sha256": "bb078dd87260072b123a71d5d75b6c743ad3d7d748246fc34009b62d1a875e15"
+    },
+    {
+      "path": "browser.html",
+      "bytes": 497,
+      "sha256": "2c8bdce3c68e8c4e34996325bbaae9a7a8ce6cb25d04ada3b16dc6108539f897"
+    },
+    {
+      "path": "build.html",
+      "bytes": 17591,
+      "sha256": "527d7e05be1977067ce5b96a2415c00a0bf19eeb36ed7108bba28a6af4074d88"
+    },
+    {
+      "path": "coming-soon.html",
+      "bytes": 497,
+      "sha256": "20d801224a5b2e34c868a92dea7623792c01a3b4c8f85c3a94165de4d9e64043"
+    },
+    {
+      "path": "concepts.html",
+      "bytes": 488,
+      "sha256": "555f77a15ae7d9447c9162dd74f423106c1aac7485cb04c2f48cc07d4ce715a0"
+    },
+    {
+      "path": "editor.html",
+      "bytes": 482,
+      "sha256": "f51fac77775217992af32123c219e2d26573045a5fec569c7ec2d1a3717b35aa"
+    },
+    {
+      "path": "embed-example.html",
+      "bytes": 3994,
+      "sha256": "6eea0039661e2c4600f169097bab3bf43dbb1856e566c5c97b366c926bb68a3f"
+    },
+    {
+      "path": "examples.html",
+      "bytes": 46446,
+      "sha256": "d23e959b8b4a294ef9d25d50cb1edbe6084c2ab786f12742ccdad35fa79a1382"
+    },
+    {
+      "path": "experiments.html",
+      "bytes": 3671,
+      "sha256": "a4e13210d26ebe9a9cd1b3d6e1dcc370517e31546a0ba39c68a3565557d72aa4"
+    },
+    {
+      "path": "features.html",
+      "bytes": 5857,
+      "sha256": "7a1a1ad329fccfe4d57d8493e1b5146e43ed8509c5edcfa9f3a23d89f51f5875"
+    },
+    {
+      "path": "few-math-labels.html",
+      "bytes": 1206,
+      "sha256": "a1bf4769aa348f668b95f9fad810e45c33787ee6615b4e56d2f03e640a11079a"
+    },
+    {
+      "path": "getting-started.html",
+      "bytes": 479,
+      "sha256": "b045d60a7e72290e4faf5090d7e5e5f087d6264df901bb021d01c62c2c37ff5c"
+    },
+    {
+      "path": "guide.html",
+      "bytes": 482,
+      "sha256": "f51fac77775217992af32123c219e2d26573045a5fec569c7ec2d1a3717b35aa"
+    },
+    {
+      "path": "index.html",
+      "bytes": 15838,
+      "sha256": "dda1213ad1be42b1e2e7f572c13e96596c1b0c8e265d228beb6532ccba9c0284"
+    },
+    {
+      "path": "install.html",
+      "bytes": 4851,
+      "sha256": "155da6cff51e82e60406439bce595b97179cb6cd1d10e347b0930e6f93f406ff"
+    },
+    {
+      "path": "language.html",
+      "bytes": 482,
+      "sha256": "f51fac77775217992af32123c219e2d26573045a5fec569c7ec2d1a3717b35aa"
+    },
+    {
+      "path": "learn.html",
+      "bytes": 482,
+      "sha256": "f51fac77775217992af32123c219e2d26573045a5fec569c7ec2d1a3717b35aa"
+    },
+    {
+      "path": "origins.html",
+      "bytes": 500,
+      "sha256": "336d4a5ee3482bb9e2553c52432b7783cdb9e3109fa2d4f6c4c05829e970615e"
+    },
+    {
+      "path": "performance.html",
+      "bytes": 73259,
+      "sha256": "4510d0ecf3898ad37d02a2214b39bafc3ad4b4c6f6eef8ff79cd1b5eef470b26"
+    },
+    {
+      "path": "reference.html",
+      "bytes": 482,
+      "sha256": "7754d54e0c1007a32f90f6d56971f80b14dd068f06d81b79f9164337cee1e56c"
+    },
+    {
+      "path": "release-status.html",
+      "bytes": 4472,
+      "sha256": "38b9456eba9fb58e50a7e64fd6d2cba3b0acc8cc3e693af56b609e2afbfd3194"
+    },
+    {
+      "path": "releases.html",
+      "bytes": 485,
+      "sha256": "141e810db2ef324b14522c27e65707c03812ab56187f2ade74904fef67bf9ddf"
+    },
+    {
+      "path": "results.html",
+      "bytes": 497,
+      "sha256": "874fd4b703a5c6579bff586949c9a53d2aca664ae4cfa5d3afa311f9ccc80582"
+    },
+    {
+      "path": "stdlib.html",
+      "bytes": 322185,
+      "sha256": "f02d0e4c8d42c88cf115b55ea17dca39eee5d90c23a49d98fb583008c9637e9b"
+    },
+    {
+      "path": "syntax.html",
+      "bytes": 129847,
+      "sha256": "de24495b9efb5488e9cfe5d6c90ec294c03f28501686c0d0539d025220e375ea"
+    },
+    {
+      "path": "testing.html",
+      "bytes": 497,
+      "sha256": "11fb4f4d308d5b1c705331cd590078b34f50546b51ac82174929bd632c40689d"
+    },
+    {
+      "path": "current-documentation-examples.mjs",
+      "bytes": 6595,
+      "sha256": "0422a57f45ff9f97fee6e387a9d3ed42a33c31d47e1d04134eaf2d10de0b93df"
+    },
+    {
+      "path": "website-controls.mjs",
+      "bytes": 2267,
+      "sha256": "a98562b84c2800a1b36724f2ff61f5ed698c31986af6a610f263fbfc7747f06c"
+    },
+    {
+      "path": "website-layout.css",
+      "bytes": 13973,
+      "sha256": "68bbf5809769f89bcfea2817e37d03dc38c02ab43fc643578417d39fc22085a8"
+    },
+    {
+      "path": "code-highlight.mjs",
+      "bytes": 1162,
+      "sha256": "e04597c91a14531f0ae351594248135fff632b4ff686364fc8f2a9c4614442dc"
+    },
+    {
+      "path": "example-sources.json",
+      "bytes": 7073,
+      "sha256": "119ea7c1b2fdeb2694e82ea30e02181d57b25473ea4c4fd5896f141ad7e2c57e"
+    },
+    {
+      "path": "example-output-seeds.json",
+      "bytes": 26052,
+      "sha256": "f0ae21a454adc77b392a0dd3fdbb95061ca295594cc6469ea9b2b0f062e8385a"
+    },
+    {
+      "path": "CURRENT-COMPOSITION.json",
+      "bytes": 44805,
+      "sha256": "291f3a3cee72c454767440328cbad70d885a00a6abf2afefe070f3bc41180b7a"
+    },
+    {
+      "path": "downloads/current075-checksums.json",
+      "bytes": 1505,
+      "sha256": "252e06b424c992f2b4d4c4eeef0962956014222d2a73f5843d2724ff7f76ab38"
+    }
+  ],
+  "normalJoins": [
+    {
+      "name": "current-exact5m",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/current-exact5m.mjs"
+      ],
+      "exit": 124,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 260.289094096981
+    },
+    {
+      "name": "current-small-sin",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/current-small-sin.mjs"
+      ],
+      "exit": 0,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 3.009214836987667
+    },
+    {
+      "name": "current-static5m-fixed",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/current-static5m-fixed.mjs"
+      ],
+      "exit": 0,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 8.427563217002898
+    },
+    {
+      "name": "current-authored-math-routing3",
+      "command": [
+        "node",
+        "--max-old-space-size=3072",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/current-authored-math3.mjs"
+      ],
+      "exit": 0,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 4.412340655981097
+    },
+    {
+      "name": "current-site-controls-repaired",
+      "command": [
+        "node",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site-controls.mjs"
+      ],
+      "exit": 0,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 34.45945624104934
+    },
+    {
+      "name": "local-pages-mode-controls",
+      "command": [
+        "node",
+        "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/pages-mode-controls.mjs"
+      ],
+      "exit": 0,
+      "childJoined": true,
+      "reserveRefusal": null,
+      "elapsedSeconds": 6.1199046690016985
+    }
+  ],
+  "allOuterJobResults": [
+    {
+      "name": "prepare-site",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "stage-runtime",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-exact5m",
+      "exit": 124,
+      "childJoined": true
+    },
+    {
+      "name": "prepare-distribution-source",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "scale-proof",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-static5m",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-site-controls",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-small-sin",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "finalize-source",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "remote-preflight",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-site-controls-final",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "repair-axis-routing",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-static5m-fixed",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-authored-math-routing",
+      "exit": 1,
+      "childJoined": true
+    },
+    {
+      "name": "notice-packaging",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-authored-math-routing2",
+      "exit": 1,
+      "childJoined": true
+    },
+    {
+      "name": "complete-current-source",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-authored-math-routing3",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "current-site-controls-repaired",
+      "exit": 0,
+      "childJoined": true
+    },
+    {
+      "name": "local-pages-mode-controls",
+      "exit": 0,
+      "childJoined": true
+    }
+  ],
+  "firstCaptureWrapperTimeoutPreserved": true,
+  "firstFailuresAndHarnessCorrections": [
+    {
+      "name": "current-exact5m",
+      "exit": 124,
+      "phase": "Complete genuine numeric/index/220MB packet saved before capture/dispose timeout. Producer phase independently accepted; whole wrapper remains failed."
+    },
+    {
+      "name": "current-static5m",
+      "exit": 0,
+      "phase": "GPU-only checks completed but saved five native axis-overlay errors; invalidated and fixed by exact generated-axis ownership repair."
+    },
+    {
+      "name": "current-authored-math-routing",
+      "exit": 1,
+      "phase": "Harness observed first native readiness before latest generation; corrected by awaiting latest existing native-label ready promise."
+    },
+    {
+      "name": "current-authored-math-routing2",
+      "exit": 1,
+      "phase": "Harness read an already composited transient WebGL buffer. Existing normal updateView/immediate full readback boundary restored; original source/runtime unchanged."
+    }
+  ],
+  "limitations": {
+    "generated3dAxisRoutingFixed": true,
+    "full3dTextQualified": false,
+    "sharedOwnerPRQualified": false,
+    "fullReleaseQualified": false,
+    "nativeSDKQualified": false,
+    "fullGpuWorldQualified": false,
+    "allFontsQualified": false,
+    "comparativeBenchmarksQualified": false,
+    "realRemoteProviderDownloadQualified": false,
+    "native10k": "Retained separate historical native component proof only; no currentWASM equivalence or broad10k accuracy claim"
+  },
+  "acceptedByReference": "Exact e1865/e1866 core and e1868/e1867/e1869 original browser/native results; original6d runtime plus reviewed3797 generated-axis repair and affected evidence. No repeated core/native suites.",
+  "noticePackaging": {
+    "status": "EXACT_FROZEN_PAYLOAD_REUSED_WITH_EXISTING_NOTICES_ONLY",
+    "publicArchives": [
+      {
+        "target": "canonical",
+        "archive": {
+          "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/downloads/vkf-canonical-0.7.5-ffca-host63553cc-notices.tar.gz",
+          "bytes": 6126822,
+          "sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049"
+        },
+        "frozenPayload": {
+          "path": "/mnt/development/VektorFlow-e1868-current075-browser-native-actual-20261101/packages/vkf-canonical-0.7.5-ffca-host63553cc.tar.gz",
+          "bytes": 6360394,
+          "sha256": "a7f576695aa55ce94dc1927db503506181df5b8504ea2013ff66a8d39913e9a8"
+        },
+        "allFrozenMembersUnchanged": true,
+        "addedExistingNotices": [
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/emscripten-musl-copyright.txt",
+            "bytes": 6204,
+            "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/emscripten-toolchain-copyright.txt",
+            "bytes": 131248,
+            "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/trigonometric-source-notices.txt",
+            "bytes": 3359,
+            "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/vkf-runtime-musl-license.txt",
+            "bytes": 6204,
+            "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+          }
+        ]
+      },
+      {
+        "target": "native",
+        "archive": {
+          "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+          "bytes": 9803445,
+          "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+        },
+        "frozenPayload": {
+          "path": "/mnt/development/VektorFlow-e1868-current075-browser-native-actual-20261101/packages/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean.tar.gz",
+          "bytes": 9845976,
+          "sha256": "3b552723baba5392af1823579133ee7be2d61e632ee2943a4e24da98232798b6"
+        },
+        "allFrozenMembersUnchanged": true,
+        "addedExistingNotices": [
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/emscripten-musl-copyright.txt",
+            "bytes": 6204,
+            "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/emscripten-toolchain-copyright.txt",
+            "bytes": 131248,
+            "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/trigonometric-source-notices.txt",
+            "bytes": 3359,
+            "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+          },
+          {
+            "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/site/public/preview/0.7.5/playground/canonical/third-party/vkf-runtime-musl-license.txt",
+            "bytes": 6204,
+            "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+          }
+        ]
+      }
+    ]
+  },
+  "runtimeRepair": {
+    "path": "verification/e1870-axis-routing-repair.json",
+    "bytes": 1178,
+    "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+  },
+  "siteControls": {
+    "path": "verification/e1870-current-site-controls.json",
+    "bytes": 3618,
+    "sha256": "807b19fa53ef3d617d1aeeff3b791b487632c315ddfe2ca22a30f44b404916fe"
+  },
+  "originalSmallSin": {
+    "path": "verification/e1870-current-small-sin.json",
+    "bytes": 54315,
+    "sha256": "0d279399d5e473dbe550513d5d18944c5323a9b2e4670db9a38e3a874af3c16d"
+  },
+  "current5m": {
+    "path": "verification/e1870-current5m.json",
+    "bytes": 9759,
+    "sha256": "00ace852d4a5f0b0c4d2356be1ab8d98169918eb426e3dbc2b6ab6bab35cbd9c"
+  },
+  "current5mRender": {
+    "path": "verification/e1870-current5m-render.json",
+    "bytes": 50680,
+    "sha256": "f3b93a0620658d0ba910ef4e9aae4c4dc0ff9d1f2667b193e658ee800bfe5aec"
+  },
+  "authoredNativeMath": {
+    "path": "verification/e1870-authored-native-math-routing.json",
+    "bytes": 5108,
+    "sha256": "280942babf6b85390c67b8474dfa0665ce55c3b2fdaae50bab16aa8efe2a02ee"
+  },
+  "pagesMode": {
+    "path": "verification/e1870-local-pages-mode.json",
+    "bytes": 698,
+    "sha256": "3efc0223a3dcd9b821d85108998a45722b889429e36f55a6069212aa30da7c48"
+  }
+}

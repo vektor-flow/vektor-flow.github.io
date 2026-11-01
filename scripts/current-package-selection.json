@@ -1,1766 +1,1166 @@
 {
-  "schema": 1,
-  "inputSha256": "d62b15dae2b353c25a6f2e8f1585a83f070657e5b0bc162df0c977077ab2cc99",
+  "schema": 2,
+  "inputSha256": "30360a8bf04f28979eea0f8fd063647512233531678faed6e33d97dc9e4289ea",
   "components": {
     "browser-node-compiler": {
       "id": "browser-node-compiler",
       "identity": {
-        "sourceCommit": "4ee3a74808dcbc23234173a5b67bc9c909d7df3c",
-        "sourceBinding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+        "sourceCommit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
+        "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
       },
-      "role": "Current browser/Node compiler and independent formatter; complete six-file closure, no rebuild.",
       "files": [
         {
-          "name": "web/playground/canonical/compiler-base.mjs",
-          "install": "web/playground/canonical/compiler-base.mjs",
-          "bytes": 186803,
-          "sha256": "ad307eaa8ef5880e73e50733444d0107adc237ba8e7690061f4997474880a6f8"
+          "path": "playground/canonical/compiler-base.mjs",
+          "bytes": 188024,
+          "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
         },
         {
-          "name": "web/playground/canonical/compiler.data",
-          "install": "web/playground/canonical/compiler.data",
-          "bytes": 610405,
-          "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+          "path": "playground/canonical/compiler.data",
+          "bytes": 619872,
+          "sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
         },
         {
-          "name": "web/playground/canonical/compiler.mjs",
-          "install": "web/playground/canonical/compiler.mjs",
-          "bytes": 756,
-          "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+          "path": "playground/canonical/compiler.mjs",
+          "bytes": 1248,
+          "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
         },
         {
-          "name": "web/playground/canonical/compiler.wasm",
-          "install": "web/playground/canonical/compiler.wasm",
-          "bytes": 65797495,
-          "sha256": "baf21e1e9cf44726262ae9fbe66a3b39feeaa92f0776e75104deafd08b4028e4"
+          "path": "playground/canonical/compiler.wasm",
+          "bytes": 67350513,
+          "sha256": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b"
         },
         {
-          "name": "web/playground/canonical/formatter.mjs",
-          "install": "web/playground/canonical/formatter.mjs",
+          "path": "playground/canonical/formatter.mjs",
           "bytes": 62804,
           "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
         },
         {
-          "name": "web/playground/canonical/formatter.wasm",
-          "install": "web/playground/canonical/formatter.wasm",
+          "path": "playground/canonical/formatter.wasm",
           "bytes": 1118687,
           "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+        },
+        {
+          "path": "playground/canonical/package-tools/addresses.mjs",
+          "bytes": 22794,
+          "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+        },
+        {
+          "path": "playground/canonical/package-tools/cli.mjs",
+          "bytes": 4905,
+          "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+        },
+        {
+          "path": "playground/canonical/package-tools/git-source.mjs",
+          "bytes": 9262,
+          "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+        },
+        {
+          "path": "playground/canonical/package-tools/github.mjs",
+          "bytes": 1579,
+          "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+        },
+        {
+          "path": "playground/canonical/package-tools/host.mjs",
+          "bytes": 11443,
+          "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+        },
+        {
+          "path": "playground/canonical/package-tools/inputs.mjs",
+          "bytes": 7238,
+          "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+        },
+        {
+          "path": "playground/canonical/package-tools/metadata.mjs",
+          "bytes": 10834,
+          "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+        },
+        {
+          "path": "playground/canonical/package-tools/ownership.mjs",
+          "bytes": 2891,
+          "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+        },
+        {
+          "path": "playground/canonical/package-tools/package.json",
+          "bytes": 602,
+          "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+        },
+        {
+          "path": "playground/canonical/package-tools/project.mjs",
+          "bytes": 7058,
+          "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+        },
+        {
+          "path": "playground/canonical/package-tools/publish.mjs",
+          "bytes": 5701,
+          "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+        },
+        {
+          "path": "playground/canonical/package-tools/resolve.mjs",
+          "bytes": 1773,
+          "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+        },
+        {
+          "path": "playground/canonical/prepare-formatter-ir.mjs",
+          "bytes": 693,
+          "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
         }
       ]
     },
-    "browser-compiler-source-overlay": {
-      "id": "browser-compiler-source-overlay",
+    "retained-browser-host": {
+      "id": "retained-browser-host",
       "identity": {
-        "commit": "4ee3a74808dcbc23234173a5b67bc9c909d7df3c",
-        "sourceBinding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+        "sourceCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335"
       },
-      "role": "Maintained source overlay of the selected compiler, kept distinct from the bootstrap source and native compiler.",
       "files": [
         {
-          "name": "source-components/browser-compiler/analysis/CANONICAL-BODY-BORROW.txt",
-          "install": "source-components/browser-compiler/analysis/CANONICAL-BODY-BORROW.txt",
-          "bytes": 4518,
-          "sha256": "00822d953e4614ff99f67e2928beba8752bd19c2fdf6970adde974fc7c05ad24"
+          "path": "canonical-inline-worker.mjs",
+          "bytes": 804,
+          "sha256": "aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6"
         },
         {
-          "name": "source-components/browser-compiler/analysis/COMPLEXITY-ANALYSIS.txt",
-          "install": "source-components/browser-compiler/analysis/COMPLEXITY-ANALYSIS.txt",
-          "bytes": 10678,
-          "sha256": "53c23630816305abb58daba1ad3471b8e32f2041e1235d29058f45005c22ee06"
+          "path": "inline-renderer-loader.mjs",
+          "bytes": 2336,
+          "sha256": "52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729"
         },
         {
-          "name": "source-components/browser-compiler/analysis/CURRENT-INPUT-FACTS.json",
-          "install": "source-components/browser-compiler/analysis/CURRENT-INPUT-FACTS.json",
-          "bytes": 1486,
-          "sha256": "ea69c5ff954c17bfc56968dd4e95ad5366d9087e713755d2149903a233699bc9"
+          "path": "inline-retained-scene-view.mjs",
+          "bytes": 15639,
+          "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
         },
         {
-          "name": "source-components/browser-compiler/analysis/HISTORICAL-NATIVE-IR-SIZE-COMPARATOR.json",
-          "install": "source-components/browser-compiler/analysis/HISTORICAL-NATIVE-IR-SIZE-COMPARATOR.json",
-          "bytes": 1610,
-          "sha256": "97dd758ed4545c18a91f4eb571428c3aa11ab1dc3d0d5b54b4f3826740a7a51a"
+          "path": "inline-runner.mjs",
+          "bytes": 7290,
+          "sha256": "cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f"
         },
         {
-          "name": "source-components/browser-compiler/analysis/PAIRED-UI-LOWERING.txt",
-          "install": "source-components/browser-compiler/analysis/PAIRED-UI-LOWERING.txt",
-          "bytes": 5408,
-          "sha256": "0f2a1aa99ebbbfe9b62ae7ec8fd916f4c678ecac144a7ad53fc9e2a17e5acab2"
-        },
-        {
-          "name": "source-components/browser-compiler/analysis/SELECTED-MARKER-REFERENCES.json",
-          "install": "source-components/browser-compiler/analysis/SELECTED-MARKER-REFERENCES.json",
-          "bytes": 3735,
-          "sha256": "6f015270cde93e86b5af1de7a9a269f87c2b0693bbf652cd736835875bad164c"
-        },
-        {
-          "name": "source-components/browser-compiler/analysis/SEMANTIC-DEMAND-IDENTITY.txt",
-          "install": "source-components/browser-compiler/analysis/SEMANTIC-DEMAND-IDENTITY.txt",
-          "bytes": 2203,
-          "sha256": "71009299111b2febb6bdce9a1bad1862145613c6bc441552381fa12b86f39659"
-        },
-        {
-          "name": "source-components/browser-compiler/analysis/UI-EXECUTION-PROJECTION.txt",
-          "install": "source-components/browser-compiler/analysis/UI-EXECUTION-PROJECTION.txt",
-          "bytes": 4663,
-          "sha256": "92b631061dc687231ef6b00993682d2b651c616770a41e921700a3b407121de9"
-        },
-        {
-          "name": "source-components/browser-compiler/browser-bridge.cpp",
-          "install": "source-components/browser-compiler/browser-bridge.cpp",
-          "bytes": 9967,
-          "sha256": "bfcbf285a797cb0b5d69b317be008ec296419d14b824bce981aa4c20fd727721"
-        },
-        {
-          "name": "source-components/browser-compiler/browser-copy-retained-packets.mjs",
-          "install": "source-components/browser-compiler/browser-copy-retained-packets.mjs",
+          "path": "playground/browser-copy-retained-packets.mjs",
           "bytes": 1480,
           "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
         },
         {
-          "name": "source-components/browser-compiler/compiler-api.cpp",
-          "install": "source-components/browser-compiler/compiler-api.cpp",
-          "bytes": 21517,
-          "sha256": "54216142aa152339277e097d8a05ca4f38c5b6fedef3ee97599db7d6ed7e7d5f"
+          "path": "playground/interpolation-tests/browser.mjs",
+          "bytes": 7208,
+          "sha256": "98744c1f5170b1a45da3791a1b9972f424825c6d8d862c25c499a19d8e32c584"
         },
         {
-          "name": "source-components/browser-compiler/compiler-package.mjs",
-          "install": "source-components/browser-compiler/compiler-package.mjs",
-          "bytes": 756,
-          "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+          "path": "playground/interpolation-tests/packaging.test.mjs",
+          "bytes": 2444,
+          "sha256": "f5f59a38b6b201adeaa2d05adda9314307a0d20110739e7d437e2045825543c7"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/expression_binary_op.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/expression_binary_op.cpp",
-          "bytes": 63973,
-          "sha256": "d4f40d20800bb56f7532153b13ea6b5d328d32d9d7a773b698ed9d41473351b3"
+          "path": "playground/interpolation-tests/plot-parameter.vkf",
+          "bytes": 556,
+          "sha256": "62062a610bda3c13cda00ee198762cf4e41c30bd525ede65a4e14db8554fc782"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/expression_dotted_index.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/expression_dotted_index.cpp",
-          "bytes": 92826,
-          "sha256": "add45b3952fec5b254b32dd8778a2ec9f5ef00606112b1f44b487b129d5583e8"
+          "path": "playground/interpolation-tests/plot-shared-samples.vkf",
+          "bytes": 899,
+          "sha256": "3dcbd2f07eb42a3854aedc935f6ec4feae86a097fd27200696c5aa66be53fe5a"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/expression_list_literal.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/expression_list_literal.cpp",
-          "bytes": 25486,
-          "sha256": "91827fb7e61b977a8e5de3ec45647bfa44d0124d396c44d9a6cf6c076090a9b6"
+          "path": "playground/interpolation-tests/verify.py",
+          "bytes": 16030,
+          "sha256": "6533f81b6d4edd3631029b7c5d18d03b9acf4cdf51b2500ab3ae6313b3df6bf7"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/function_lowering.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/function_lowering.cpp",
-          "bytes": 122607,
-          "sha256": "546e89d629fd051e35327e640f1bc485fbb4e1964026c374b9a54d5761b7fec5"
+          "path": "playground/interpolation-tests/wasm.mjs",
+          "bytes": 3753,
+          "sha256": "20f8c8357732aab1530cf2444f6562792c8e32ef3153359ca9255b08b1b38aae"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/module_lowering.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/module_lowering.cpp",
-          "bytes": 119480,
-          "sha256": "e5e52b17377fef88311cc1c37d51c323da6e46497dbb5230f1b287e379ae35b1"
+          "path": "playground/prepare-formatter-ir.mjs",
+          "bytes": 693,
+          "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
         },
         {
-          "name": "source-components/browser-compiler/compiler/native/lowering/record_construction.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/record_construction.cpp",
-          "bytes": 73222,
-          "sha256": "f5755d228bfb6e48cf16aaf46ad7546224a9b1985562725646d8d8af3d6c5987"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/lowering/statement_bind_stages_4.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/statement_bind_stages_4.cpp",
-          "bytes": 189036,
-          "sha256": "e9346704aabc28f58eb225aeea5f42853f2c57626ec1ef8f69c5795503812a42"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/lowering/statement_bind_stages_5.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/statement_bind_stages_5.cpp",
-          "bytes": 25294,
-          "sha256": "a4bbd93493897bdb878d52c1f07d54ddf4a050befade01697bfdc10a73919caa"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/lowering/ui_metadata.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/ui_metadata.cpp",
-          "bytes": 22437,
-          "sha256": "cc6f8253fe815e98f9e5dd65c091658de54678103cd4f9a01c535d6b66d2c997"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/lowering/unit_preferences.cpp",
-          "install": "source-components/browser-compiler/compiler/native/lowering/unit_preferences.cpp",
-          "bytes": 14919,
-          "sha256": "86a4bb612ebc6b6604dca797912a013034f967229ba72730e3210eca0d5d2221"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/machine_lowering/calls_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/machine_lowering/calls_1.cpp",
-          "bytes": 56232,
-          "sha256": "1625e4eedf0c6f26c1a1345ae053c2ac2fce792e615769f08f759bafbd7eeddc"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/machine_lowering/lower_statements_stages_2.cpp",
-          "install": "source-components/browser-compiler/compiler/native/machine_lowering/lower_statements_stages_2.cpp",
-          "bytes": 57743,
-          "sha256": "41d67f301dfb102e25000818f9529687d9bc95c09a60bf3225cccd607143d9c6"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_adaptive_optimizer.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_adaptive_optimizer.hpp",
-          "bytes": 40156,
-          "sha256": "77ca10a6688d474216b9574350e33ef77ac7fd23c59dc71bdb6467225ac94883"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_ast_to_ir_smoke.cpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_ast_to_ir_smoke.cpp",
-          "bytes": 5113,
-          "sha256": "1d4ce84dfd752dbf19d36c9ffc200d7d109235bf8d3cfc894db9717d911dcd79"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_compile_input_observation.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_compile_input_observation.hpp",
-          "bytes": 994,
-          "sha256": "0f2e4805207ea3b6cc05b1366a4b39dc5d2e0beb0585266fa635fdfaa8caeb45"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_compiler_source_stages.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_compiler_source_stages.hpp",
-          "bytes": 11475,
-          "sha256": "0b9a204f64911b104bde35c3826b6e99f6a74ca986d08d04c0b0d7016947750f"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_paired_ui_lowering.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_paired_ui_lowering.hpp",
-          "bytes": 9890,
-          "sha256": "78811adc9ce8196758a561528fd6545c8b1dabc3c3e9d3bbd78a3e13e970d7ef"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_retained_scene_arena.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_retained_scene_arena.hpp",
-          "bytes": 4557,
-          "sha256": "308a94b91d0347f14617878f02d7b5f4cefbc9b8795e8fa18c65c9cca48851b6"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_section_zero_gpu_lowering.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_section_zero_gpu_lowering.hpp",
-          "bytes": 117011,
-          "sha256": "dc2f92c30c6f6454835bf518559672bae01b823215b4e1c7e09c009bc05669b2"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_semantic_demand.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_semantic_demand.hpp",
-          "bytes": 38119,
-          "sha256": "ab1ae69905c6fed432ea3b164b95345abd7083203aabfc71055f431b5706ff0d"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_semantic_graph.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_semantic_graph.hpp",
-          "bytes": 212032,
-          "sha256": "45bfacd88c95894bc656d5da56704f19476d196e2859645db8fda59e2b2620c9"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_ui_effect_packets.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_ui_effect_packets.hpp",
-          "bytes": 73179,
-          "sha256": "dc99e3d152d84be6454f26f803fa764b9393d85ecac8c3f31558be7c6ec76ecb"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_wasm_automatic_flow.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_wasm_automatic_flow.hpp",
-          "bytes": 12836,
-          "sha256": "839752404625387aa90b62aee432d6f05e3b7c6edc48b3328a644e154a7d9349"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/vkf_wasm_compiled_provider_module.hpp",
-          "install": "source-components/browser-compiler/compiler/native/vkf_wasm_compiled_provider_module.hpp",
-          "bytes": 14827,
-          "sha256": "4c905cf24cfed3fedb112e48e6d6b67ffc403086d8a446cca2773d0366147bd8"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_2.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_2.cpp",
-          "bytes": 91083,
-          "sha256": "2b6071566876a8abe92387f00e236ddec524aab69addba89994b78d2b25d37a3"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_3.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_3.cpp",
-          "bytes": 35814,
-          "sha256": "c54479aeca6b861601b5ffc53e48f01fbfa25c11319f7ff59299e0bb225f6ed1"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_5.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_emitter/calls_5.cpp",
-          "bytes": 32456,
-          "sha256": "c3e4432f6d4e2a9f1084dbbd340a07f9153a8eee68a1b28dd72ec54da3361325"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_emitter/emit_tagged_function_stages_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_emitter/emit_tagged_function_stages_1.cpp",
-          "bytes": 52350,
-          "sha256": "49e09fb456db505c757863b29f822b0fbb36f33e8a791a766a84e5a18cefa69b"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_emitter/support_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_emitter/support_1.cpp",
-          "bytes": 51531,
-          "sha256": "43d09b63b3acf976c9218b8276b5874da35f17dd4eac91321a00575eb02e358a"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/control_flow_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/control_flow_1.cpp",
-          "bytes": 45182,
-          "sha256": "6a6ee0df8985fffc16dc20600f208d986a48028364c77387eec76d047c10f7c9"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/expressions_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/expressions_1.cpp",
-          "bytes": 37868,
-          "sha256": "a427f758a6b6031f2350e50a230d3c17ed6423ac8e8f42ea69cc5fd769fe702a"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_1.cpp",
-          "bytes": 89218,
-          "sha256": "bd58f7096c553b18031ad21fe9417c751bf5a53476bfe8a427310e34d5b46e90"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_3.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_3.cpp",
-          "bytes": 68078,
-          "sha256": "9a0dea7b663d22a12ab6ac7e63508e1322d4553e82bb34726b9b4d9cf959bcf5"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_4.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/lower_expression_impl_stages_4.cpp",
-          "bytes": 26154,
-          "sha256": "15728b07b439030518fe906a730def9a2fac96c8a36a8bd6b511ee7a694bccb3"
-        },
-        {
-          "name": "source-components/browser-compiler/compiler/native/wasm_lowering/support_1.cpp",
-          "install": "source-components/browser-compiler/compiler/native/wasm_lowering/support_1.cpp",
-          "bytes": 75524,
-          "sha256": "53fe6b2d2f8588758329586848b1526d0b60aff674bc82dd0832f067eac4ec13"
-        },
-        {
-          "name": "source-components/browser-compiler/diagnostics/observe-symbolic-mutation.mjs",
-          "install": "source-components/browser-compiler/diagnostics/observe-symbolic-mutation.mjs",
-          "bytes": 5038,
-          "sha256": "e404a461148b08c79355322fdc1545259d20b5b7416cd19131e62c464f8cb80b"
-        },
-        {
-          "name": "source-components/browser-compiler/diagnostics/symbolic-mutation-ownership.vkf",
-          "install": "source-components/browser-compiler/diagnostics/symbolic-mutation-ownership.vkf",
-          "bytes": 462,
-          "sha256": "15be5997e95200600b71f1dd4598a348a34fdac6f389dceba62f8bdc2243b0fb"
-        },
-        {
-          "name": "source-components/browser-compiler/evaluated-output-formatter.cpp",
-          "install": "source-components/browser-compiler/evaluated-output-formatter.cpp",
-          "bytes": 5564,
-          "sha256": "d51fec7cc40d99d516c8a6742081f7a163818951894dea94dfcc38da74d67c97"
-        },
-        {
-          "name": "source-components/browser-compiler/expression_call_stages_6.cpp",
-          "install": "source-components/browser-compiler/expression_call_stages_6.cpp",
-          "bytes": 95001,
-          "sha256": "cbc9d57bd3300e5efb7ca7c881b5a011dc30ff763c021585162b81165a604946"
-        },
-        {
-          "name": "source-components/browser-compiler/native/VfOverlay/vf/json.cpp",
-          "install": "source-components/browser-compiler/native/VfOverlay/vf/json.cpp",
-          "bytes": 16350,
-          "sha256": "d0bee8f89433a263351d51c11ab9a2702a41e53a46284724325646b40285c043"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/browser-copy-retained-packets.test.mjs",
-          "install": "source-components/browser-compiler/tests/browser-copy-retained-packets.test.mjs",
-          "bytes": 2316,
-          "sha256": "3f8a0b1ff812437fa3eaff21ae70f232f2d8a5a9317e37b30bac3ea7f09c4157"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/browser-local-module-input.mjs",
-          "install": "source-components/browser-compiler/tests/browser-local-module-input.mjs",
-          "bytes": 3261,
-          "sha256": "6e05440de418a6f0b41b2ebfc7523816fa6c8c7757dddf2b40b757f15f5e9772"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/browser-module-argument-capacity.mjs",
-          "install": "source-components/browser-compiler/tests/browser-module-argument-capacity.mjs",
-          "bytes": 2830,
-          "sha256": "b9e9542e5ecd31669629cd4467a02882abb5f384117238d8365f52831fa35211"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/browser-ui-execution-projection.mjs",
-          "install": "source-components/browser-compiler/tests/browser-ui-execution-projection.mjs",
-          "bytes": 13420,
-          "sha256": "70e8f1b457c07c5be060c80a7744f719bb279420db491fa383022dfe74d0aca0"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/compile-cache-mutable-input.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/compile-cache-mutable-input.vkf",
-          "bytes": 62,
-          "sha256": "0fe5ab7dc2f332be8a00cdc03a57cd034b0cba2adc78f04551c79cdaf5a21df1"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/compile-cache-pure-control.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/compile-cache-pure-control.vkf",
-          "bytes": 43,
-          "sha256": "9666d2257963f90c1bef26a0fdfdf35917631a0813a6a8976a4102031fe86e5d"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/conformance-overload-display-controls.json",
-          "install": "source-components/browser-compiler/tests/fixtures/conformance-overload-display-controls.json",
-          "bytes": 7615,
-          "sha256": "0d83fdbf9562a8bb2265ac95e9e2857fd86c3599249b48042d83356c0af0f801"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/current-lazy-capture-binding-controls.json",
-          "install": "source-components/browser-compiler/tests/fixtures/current-lazy-capture-binding-controls.json",
-          "bytes": 13210,
-          "sha256": "71e67ac89438aa86b612f522d32fbe518af54979ee29d15e71ba7c589e127eb8"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/fixed-tensor-indexed-materialization.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/fixed-tensor-indexed-materialization.expected.txt",
-          "bytes": 70,
-          "sha256": "d46b4b0944dfeedc58027def1d7291b6d8f7febd2bf7d700e92868a2b396dc4d"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/fixed-tensor-indexed-materialization.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/fixed-tensor-indexed-materialization.vkf",
-          "bytes": 171,
-          "sha256": "7ec285b54bd7b9afeb9f69dd6389220e53025f371fef20b0402a04b2407bbbf6"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/native-numeric-property-replacement.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/native-numeric-property-replacement.expected.txt",
-          "bytes": 18,
-          "sha256": "1a72462db343d3b05eb6ee6add6a522f05d2039906b61ceea58ffd1781ad9bba"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/native-numeric-property-replacement.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/native-numeric-property-replacement.vkf",
-          "bytes": 179,
-          "sha256": "f83533abbf9f6fb32f86999ad503cbb1dbb0221a8df08f87f046b5a744eefa7a"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/native-numeric-property-shape-mismatch.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/native-numeric-property-shape-mismatch.vkf",
-          "bytes": 105,
-          "sha256": "b3eb1c6c53d36330ab6cd2b27cf60fc6c591e1d1f1c8ae3ebc5e0a042f98ad2b"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/record-counted-field-scalar-cleanup.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/record-counted-field-scalar-cleanup.expected.txt",
-          "bytes": 5,
-          "sha256": "a17fcf0a2f50e2d495e4f90ce263410edc183add6c62699a2facbccf60410f74"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/record-counted-field-scalar-cleanup.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/record-counted-field-scalar-cleanup.vkf",
-          "bytes": 836,
-          "sha256": "e79defce596d25b30c009db7ea2753a8ab14007ade7f6216c582faa0ed1d28b6"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-captured-nested-snapshot-alias-gc.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-captured-nested-snapshot-alias-gc.vkf",
-          "bytes": 424,
-          "sha256": "d50604a4884943ea815f4efeadaf7a83e5c6052f7a133041c5e077ee1427e93c"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-captured-snapshot-alias-gc.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-captured-snapshot-alias-gc.expected.txt",
-          "bytes": 39,
-          "sha256": "c4582477024673dbb58942e8c6f2d90324e140de92d9b86fdb525bbdbec41173"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-captured-snapshot-alias-gc.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-captured-snapshot-alias-gc.vkf",
-          "bytes": 392,
-          "sha256": "9fac1cd4a62f5341ac775c94d0ee44243c35b81fb09bbac7708be7deeba1fd5c"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-alias-generations.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-alias-generations.expected.txt",
-          "bytes": 90,
-          "sha256": "41d24f0c2ce1df39f02fe948b73ee137b3c35a15c85c68535b837e7d22e31225"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-alias-generations.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-alias-generations.vkf",
-          "bytes": 268,
-          "sha256": "265869eac08df2163023276d6abcd08f2ead89207cf498de2060363e85514c45"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-loop-materialization.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-loop-materialization.expected.txt",
-          "bytes": 30,
-          "sha256": "7d7648453a54c292a047271db011d415961b71872cfb41352ae8768cedb8f504"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-loop-materialization.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-fixed-tensor-loop-materialization.vkf",
-          "bytes": 156,
-          "sha256": "80ca26db7580a728712f98d3668cfa12886c32909a4cc125eb12f7e966950238"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-generated-buffer-gc-small.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-generated-buffer-gc-small.vkf",
-          "bytes": 200,
-          "sha256": "3f4a8c81f800896d5734f47dad22b4d78e4b20651d4e7cfeb5049dd55682b0ae"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/retained-generated-buffer-gc.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/retained-generated-buffer-gc.vkf",
-          "bytes": 289,
-          "sha256": "9921e4b81636120ae96da401891c0da1b9b0aed56f90923f5d39b9270a4644b3"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/structural-runtime-rank-controls.json",
-          "install": "source-components/browser-compiler/tests/fixtures/structural-runtime-rank-controls.json",
-          "bytes": 14541,
-          "sha256": "be222c44dceca02a20d06d50302f7490400f3a4430492ed5c94f224c9731788e"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-checked-outer-update-controls.json",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-checked-outer-update-controls.json",
-          "bytes": 1409,
-          "sha256": "00015133eb5d163bc4794c92ef24b050b2a03617a19cfcf526c06cdaa7e5ffc5"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-index-rhs-error-order.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-index-rhs-error-order.expected.txt",
-          "bytes": 22,
-          "sha256": "33fa019e3dba5fa9ba33b2ed8558516c44aa5229e0f3f6d9fd463e9ed97a290d"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-index-rhs-error-order.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-index-rhs-error-order.vkf",
-          "bytes": 209,
-          "sha256": "6fad6a69a91c126a72451d8e6fcb086d5f2a17d332a82e3afc9974c79c1f8152"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-effects.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-effects.expected.txt",
-          "bytes": 25,
-          "sha256": "28af1709661374fbf6855c293c9985a88117b5ac726f93b0f62fb1a7147da767"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-effects.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-effects.vkf",
-          "bytes": 186,
-          "sha256": "3097ec676e2a8e0662510ab411da2bd544c364a206cd63fce67ab13c669b84e1"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-shape-recovery.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-shape-recovery.expected.txt",
-          "bytes": 9,
-          "sha256": "3a40b3dc989faba8ffca03fd55d70dabbcac4f2e895c2ed3e4f712ed681461ba"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-shape-recovery.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-rank2-replacement-shape-recovery.vkf",
-          "bytes": 220,
-          "sha256": "64a414977ad3eea6f9a00f1d2a9aab0ea04c90f4b3e1f1004669e5442b7039bc"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-row-alias-after-materialization.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-row-alias-after-materialization.expected.txt",
-          "bytes": 20,
-          "sha256": "a7717a23aced26dea754ae45f4f23f0cb481a2b029ed1731cf4e27a628a4e262"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-row-alias-after-materialization.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-row-alias-after-materialization.vkf",
-          "bytes": 87,
-          "sha256": "889207cdfe61fd2bffc2e2cf64272f88744c6b5ce665e18d1bf02d9d93f2557e"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-scalar-pipe-forwarded-alias.expected.txt",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-scalar-pipe-forwarded-alias.expected.txt",
-          "bytes": 20,
-          "sha256": "da5527b8d6e85a74460bbe96d2a470dd69cbbae893e9dde0bd5c8322aff8fc65"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/tensor-scalar-pipe-forwarded-alias.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/tensor-scalar-pipe-forwarded-alias.vkf",
-          "bytes": 80,
-          "sha256": "54fcdd9eee7d6e4ac63b02817d3c637820fd2e2e3e05403c0fb61759bd66c21f"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/fixtures/w-0131-graph-demand-real-field.vkf",
-          "install": "source-components/browser-compiler/tests/fixtures/w-0131-graph-demand-real-field.vkf",
-          "bytes": 113,
-          "sha256": "46dff7ffcc1c8dc3f6cde0826611c70b2f39683c317b921ff2289423cbbbf38f"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/README.txt",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/README.txt",
-          "bytes": 1325,
-          "sha256": "ec83c284e7ac03a9a68074a47541b7054918d9911954453120a38e80fd0c87c0"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/expected.json",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/expected.json",
-          "bytes": 55,
-          "sha256": "055e5d32a08b0c66eeba6aaad8e4d1326e7575fd46afc81e1ff35bf31109746e"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/record-bool.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/record-bool.vkf",
-          "bytes": 236,
-          "sha256": "711bd7a24df118d23e14b79bd5c9557cb2abf9e338f8bae6bfe134d60535aa06"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-abs-loop.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-abs-loop.vkf",
-          "bytes": 352,
-          "sha256": "2cd6445e121562ce637a85af996da0637818d690be0ac3d084ccd0e064caedd7"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-loop.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-loop.vkf",
-          "bytes": 350,
-          "sha256": "edb396c650e6697ed82fff6082f083dd02a4a582d7af0da5aa559d6454ac7fc6"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-real-guard-loop.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/runtime-helper-real-guard-loop.vkf",
-          "bytes": 393,
-          "sha256": "31a5c52a4c4541c76e0e2ea7034bcb789077275dc06aa099501dfaabff06cf9e"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/selected-rhs.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/selected-rhs.vkf",
-          "bytes": 313,
-          "sha256": "d12f3778bf1a568934016b5d59d7e989b94e71e9d68a5f7a7470c7c5ae1f7282"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/gpu-field-record-bool/skipped-rhs.vkf",
-          "install": "source-components/browser-compiler/tests/gpu-field-record-bool/skipped-rhs.vkf",
-          "bytes": 336,
-          "sha256": "d2420ec01bfb76b49e5bfe865f81f948543b913d11ee124f39a2c2a2b0a384e6"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/imported-function-demand.mjs",
-          "install": "source-components/browser-compiler/tests/imported-function-demand.mjs",
-          "bytes": 7887,
-          "sha256": "449a38085b850739c352ede8fcdfbc1bc8198784e0580439c8c50c97ad679463"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/json-scalar-stream.cpp",
-          "install": "source-components/browser-compiler/tests/json-scalar-stream.cpp",
-          "bytes": 2998,
-          "sha256": "049552c2c73bc8ddf9e6e2182a8e5a381e03d27ae2c4994cbfb1a502f94903fb"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/README.txt",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/README.txt",
-          "bytes": 3920,
-          "sha256": "8d2192f442f3e736cd26559acb9db021928c9dc43b56ea9f43b56b03cd4b6dda"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/explicit-process.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/explicit-process.vkf",
-          "bytes": 165,
-          "sha256": "162b9c2bd61d6aef6818fcd99750791aac6f20e0406e82261fece00ab1070744"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/implicit-capacity.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/implicit-capacity.vkf",
-          "bytes": 341,
-          "sha256": "bd0e91e1b10c8c9d480193f527cf36e1072f791ec04c1e8fdf79ee49635c644b"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-dependent.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-dependent.vkf",
-          "bytes": 311,
-          "sha256": "104dd74ca8373a9f04d725a48f84a976b79b3861125bf6b28a52d40534d97083"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-effectful.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-effectful.vkf",
-          "bytes": 315,
-          "sha256": "e7c748b14a18941d4920a3e4a340f15cf3ca2c4cdca815894e474ab38407bde9"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-error-cancel.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-error-cancel.vkf",
-          "bytes": 458,
-          "sha256": "32426bc009eca31d0ab8c3f0e298b7f4d4ac89cbc5d3dd9c5d7c568f16c56d73"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-pair.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-pair.vkf",
-          "bytes": 299,
-          "sha256": "d7f4106b2f4fa5ee9eb2670bdd3860f5c6147e3260176f409d6355879b68e482"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-recursive.vkf",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-recursive.vkf",
-          "bytes": 371,
-          "sha256": "562da333efef2c8ce6ef2b315fc5bfe4b52cce22b40e32a957af89b7a7995b59"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-worker-bridge.mjs",
-          "install": "source-components/browser-compiler/tests/parallel-wasm-boundary/ordinary-worker-bridge.mjs",
-          "bytes": 4998,
-          "sha256": "ade90f80e72f2979f640260df9a81cc0f88bfcc35357d70366fdaaadc199bf52"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/retained-generated-buffer-gc-controls.mjs",
-          "install": "source-components/browser-compiler/tests/retained-generated-buffer-gc-controls.mjs",
-          "bytes": 5264,
-          "sha256": "85b4c044b9561c1cc47e5d52d615ea7ab40c28d7dcd1ae7358c64527e6e6fc74"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/retained-stacked-view-overlay.mjs",
-          "install": "source-components/browser-compiler/tests/retained-stacked-view-overlay.mjs",
-          "bytes": 3010,
-          "sha256": "1696dca5e5d7bbdfd0c51a89d8c0761420b529b9dff84a9ea339d96e0271d937"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/semantic-demand-current-ir.mjs",
-          "install": "source-components/browser-compiler/tests/semantic-demand-current-ir.mjs",
-          "bytes": 2415,
-          "sha256": "1c5cd5ce760ca0b6c90c2b715732e6e38b0b02fa4e4c13253960d0c8c03ce7d5"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/semantic_demand_provenance_contract.cpp",
-          "install": "source-components/browser-compiler/tests/semantic_demand_provenance_contract.cpp",
-          "bytes": 4616,
-          "sha256": "7eb5c8f853d8f2e63834b64a75463b741bbdc9984e6933de47ac185a2a27d806"
-        },
-        {
-          "name": "source-components/browser-compiler/tests/wasm-initial-memory-equivalence.mjs",
-          "install": "source-components/browser-compiler/tests/wasm-initial-memory-equivalence.mjs",
-          "bytes": 4792,
-          "sha256": "e5c6294680744d62efd18e66507b67a569ab775614bd4c69e9c8aedf21f17932"
-        },
-        {
-          "name": "source-components/browser-compiler/vkf-canonical-execution.mjs",
-          "install": "source-components/browser-compiler/vkf-canonical-execution.mjs",
-          "bytes": 6682,
-          "sha256": "01b505c66dd746fb17e720a9cbc18d1f7cde30906f916d73c03e42d1dffbf64b"
-        }
-      ]
-    },
-    "browser-compiler-bridge": {
-      "id": "browser-compiler-bridge",
-      "identity": {
-        "bridgeSha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493",
-        "runtimeSha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
-      },
-      "role": "Accepted bridge and matching symbolic value ABI runtime; normal packaged symbolic-kernel export retained.",
-      "files": [
-        {
-          "name": "web/playground/vkf-canonical-browser-compiler.mjs",
-          "install": "web/playground/vkf-canonical-browser-compiler.mjs",
+          "path": "playground/vkf-canonical-browser-compiler.mjs",
           "bytes": 4014,
           "sha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493"
         },
         {
-          "name": "web/vf-ui/vf-symbolic-kernel-runtime.mjs",
-          "install": "web/vf-ui/vf-symbolic-kernel-runtime.mjs",
-          "bytes": 15776,
-          "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+          "path": "playground/vkf-canonical-execution.mjs",
+          "bytes": 7183,
+          "sha256": "f56592e3eb727d87ebc954575d33022910407dc25d5c2bea55dbced60ac894ee"
+        },
+        {
+          "path": "playground/vkf-concurrent-broker-client.mjs",
+          "bytes": 6983,
+          "sha256": "b039bcca369fbf22cfefb6b8e02054ef2e8c05be3a4ed553edc1623a76d62d4a"
+        },
+        {
+          "path": "playground/vkf-concurrent-broker.mjs",
+          "bytes": 9886,
+          "sha256": "ef5b9ebaf16ce9be4b84a371debbdf8a363b2f5e769375c59e71ca692b58fb14"
+        },
+        {
+          "path": "playground/vkf-concurrent-host.mjs",
+          "bytes": 16437,
+          "sha256": "0974ecfa7847ce8594772c2e1b62aebb03fff3754abfe592887de13a457be0d2"
+        },
+        {
+          "path": "playground/vkf-concurrent-process.mjs",
+          "bytes": 4653,
+          "sha256": "a0ba510be29bcfba5f27badfe761456ced38fe99f9c4f311f4177936ab9dfedd"
+        },
+        {
+          "path": "playground/vkf-concurrent-shared-graph.mjs",
+          "bytes": 3650,
+          "sha256": "160d1acd0fe058254d017530d152199e47af67408c07b901aaa80e677b37c675"
+        },
+        {
+          "path": "playground/vkf-concurrent-shared.mjs",
+          "bytes": 1364,
+          "sha256": "ad14422173e98dffc362b38af328634e88d16d0035e87485d73657ddb7e4550a"
+        },
+        {
+          "path": "playground/vkf-concurrent-transport.mjs",
+          "bytes": 6752,
+          "sha256": "61957e86e9c7786a0d864d8c26944a1f5acd5f4f5dc91c5186508b16940a163a"
+        },
+        {
+          "path": "playground/vkf-concurrent-values.mjs",
+          "bytes": 7622,
+          "sha256": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679"
+        },
+        {
+          "path": "playground/vkf-concurrent-worker.mjs",
+          "bytes": 6455,
+          "sha256": "5526924499fe7b8b3329769c353e337c587c8eb1e71828e8d40dd54219c1ebf7"
+        },
+        {
+          "path": "playground/vkf-prepared-workers.mjs",
+          "bytes": 2604,
+          "sha256": "5a4bec830e66483e0fd35ac5efff661f667c9509548eb1fac03d44de1c886ac1"
+        },
+        {
+          "path": "playground/vkf-ready-broker.mjs",
+          "bytes": 2296,
+          "sha256": "2ed21bb733bf7f8320e909fa98a365371a77c37e30fb7ed530e8880533452bcd"
+        },
+        {
+          "path": "playground/vkf-ready-process.mjs",
+          "bytes": 880,
+          "sha256": "f033d556703d79521a310cc58d336646bd05098c9b8f1277c7e223c929213488"
+        },
+        {
+          "path": "playground/vkf-retained-execution-control.mjs",
+          "bytes": 1338,
+          "sha256": "a1faae2909f21bbefe55a9988eea15fe28d956b121135c838693d9524df61423"
+        },
+        {
+          "path": "playground/vkf-retained-window-execution.mjs",
+          "bytes": 6777,
+          "sha256": "5954874b15113e258841bb82dd8d7abbbba6c17b3267336d0cc54f1a31bb8828"
+        },
+        {
+          "path": "playground/vkf-retained-worker-execution.mjs",
+          "bytes": 682,
+          "sha256": "4cb2bd0a9c915bbe6a7ccebe5e45579c8e6a5a69cf276c5ec781446f065fefc2"
+        },
+        {
+          "path": "vkf-browser-isolation.mjs",
+          "bytes": 1816,
+          "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
         }
       ]
     },
-    "shared-color-errors": {
-      "id": "shared-color-errors",
+    "retained-ui-runtime": {
+      "id": "retained-ui-runtime",
       "identity": {
-        "maintenanceCommit": "87530d83ae243246114a48c0cd624bf62a17f8fd",
-        "tests": "e1783 exact ba640 19/19; whole package UNRUN"
+        "runtimeSHA256": "379714f7a2ed5b4e4a8a056b88ae2f9b0eb537b79b17a6344683e373e058c68b",
+        "baseRuntimeSHA256": "6d211126a8244fcf9e943cb2cf3fe422de3b33a287eb9994e7de6492ac97851b",
+        "repairSHA256": "c132ddcc82f05a62132a1749e444a071c3c0e63307a23a411ee981e89a09fa76"
       },
-      "role": "Maintained 87530 ordered patch; exact unit-qualified JavaScript, no compiler change.",
       "files": [
         {
-          "name": "web/vf-ui/vf-color-field.mjs",
-          "install": "web/vf-ui/vf-color-field.mjs",
-          "bytes": 23870,
-          "sha256": "ba64029f7d57188fc622c02c17748c0820d1faa1f5780c0cc5df5de2cab108fa"
-        }
-      ]
-    },
-    "packaged-symbolic-kernel": {
-      "id": "packaged-symbolic-kernel",
-      "identity": {
-        "seedRevision": "beb8516575c85b49bd6c904da74ffe52cfca51d6",
-        "upstreamVersion": "0.4.7",
-        "scope": "Inherited compatibility artifact, separate from current4ee3/b459 compiler and096a labels guest."
-      },
-      "role": "Inherited normal symbolic package compatibility artifact; unchanged named exports and executable archive oracle.",
-      "files": [
-        {
-          "name": "vkf-symbolic-kernel.wasm",
-          "bytes": 1354627,
-          "sha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+          "path": "vf-ui/.gitignore",
+          "bytes": 111,
+          "sha256": "ee94efcf7baedb3f6e8262c6e6f13fc340a24810491339c75fed1d8ca6cebe13"
         },
         {
-          "name": "vkf-symbolic-kernel.json",
-          "bytes": 51961,
-          "sha256": "159cde98e88c43f9073823bbb0cd14c388470d814fb5f6fba1b4ca228f3e70fb"
-        }
-      ]
-    },
-    "wasm-label-guest": {
-      "id": "wasm-label-guest",
-      "identity": {
-        "compilerSha256": "03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960",
-        "programSha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
-        "compilerSourceBinding": "da110a26af2ed48222b3276b9f22839c5476d8a34a63a8bb1b3332b3ed6594ad",
-        "entrySourceSha256": "2c5ddded9cc1c670b97ff0c3190c5cd8777eb3c6cad0e6d2204b9d2fc45aef67",
-        "catalogSha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
-        "resourceClosureSha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
-        "sourceClosureSha256": "aeb5c14dab45a113615377ea3fa5f8120ab3767699f2dce4b1b3aa688d086173",
-        "wasmSha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
-        "manifestSha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e",
-        "target": "wasm"
-      },
-      "role": "Accepted compiled labels guest, retained byte-for-byte; six ABI/original6/lifecycle/catalog43 evidence accepted by reference.",
-      "files": [
-        {
-          "name": "web/vf-ui/artifacts/current-labels/labels.wasm",
-          "install": "web/vf-ui/artifacts/current-labels/labels.wasm",
-          "bytes": 7582475,
-          "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
+          "path": "vf-ui/README.md",
+          "bytes": 877,
+          "sha256": "ce4b3309c99e4254d1fa8367703fba6e28e23f822931f7f63bb9145ae0471fdb"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/labels.json",
-          "install": "web/vf-ui/artifacts/current-labels/labels.json",
-          "bytes": 34892,
-          "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
-        },
-        {
-          "name": "web/vf-ui/artifacts/current-labels/catalog.vkfont",
-          "install": "web/vf-ui/artifacts/current-labels/catalog.vkfont",
+          "path": "vf-ui/artifacts/current-labels/catalog.vkfont",
           "bytes": 16871821,
           "sha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/producer.json",
-          "install": "web/vf-ui/artifacts/current-labels/producer.json",
-          "bytes": 15320,
-          "sha256": "94913ef61d72844962d9b00ce7703bfcbdbf7a9829ead619ff29083e52c8fec2"
-        }
-      ]
-    },
-    "label-library-source": {
-      "id": "label-library-source",
-      "identity": {
-        "sourceClosureSha256": "aeb5c14dab45a113615377ea3fa5f8120ab3767699f2dce4b1b3aa688d086173",
-        "files": 61
-      },
-      "role": "Exact61 current label source closure; entry and library have different identities from native-label build.",
-      "files": [
-        {
-          "name": "source-components/labels/binary_decimal.vkf",
-          "install": "source-components/labels/binary_decimal.vkf",
-          "bytes": 6690,
-          "sha256": "4d8953679f3e72a9c21615233c0f607b44b48514e3e3995a96dbea9d58394e0c"
+          "path": "vf-ui/artifacts/current-labels/labels.json",
+          "bytes": 34892,
+          "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
         },
         {
-          "name": "source-components/labels/color_numbers.vkf",
-          "install": "source-components/labels/color_numbers.vkf",
-          "bytes": 6153,
-          "sha256": "d021d4b37f3ecb78cb72b1b6892c6725b091268afab1dac0737dbe90b0c2fd01"
+          "path": "vf-ui/artifacts/current-labels/labels.wasm",
+          "bytes": 7582475,
+          "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
         },
         {
-          "name": "source-components/labels/font_catalog.vkf",
-          "install": "source-components/labels/font_catalog.vkf",
-          "bytes": 5637,
-          "sha256": "aa3017c53ba6df047af4065b70e47fa5774cee705e7e25f4b878ebab1d468408"
-        },
-        {
-          "name": "source-components/labels/json_numbers.vkf",
-          "install": "source-components/labels/json_numbers.vkf",
-          "bytes": 3441,
-          "sha256": "12744a9c3d9d70b2bc946f84448bfda9b24eeb9fb5e389b635f505360ee3335a"
-        },
-        {
-          "name": "source-components/labels/latex_diagnostics.vkf",
-          "install": "source-components/labels/latex_diagnostics.vkf",
-          "bytes": 9632,
-          "sha256": "78b2223378143daceee600b2218d2a506a46d12ff7b2b6c19bd929bb3b4c0df8"
-        },
-        {
-          "name": "source-components/labels/math_arena_import.vkf",
-          "install": "source-components/labels/math_arena_import.vkf",
-          "bytes": 4521,
-          "sha256": "2fd88649d78a11fbd72ee78e36f8fe47a179eda377067e1926b2a6d749d15be5"
-        },
-        {
-          "name": "source-components/labels/math_arrows.vkf",
-          "install": "source-components/labels/math_arrows.vkf",
-          "bytes": 3177,
-          "sha256": "eabb4a866f5d6da2dca5df07f4f94cab589960ef5afbd1ab41a15d4e36ad167b"
-        },
-        {
-          "name": "source-components/labels/math_assembly.vkf",
-          "install": "source-components/labels/math_assembly.vkf",
-          "bytes": 7223,
-          "sha256": "c1a6f9ff1b9b283e795cec7418e241ffdd0445024a3095752827336a54a13b37"
-        },
-        {
-          "name": "source-components/labels/math_colors.vkf",
-          "install": "source-components/labels/math_colors.vkf",
-          "bytes": 2457,
-          "sha256": "12575dd6adba5e4494a6d6f7aaca16aee8ac5ccd56691d35aea4bb41681375d3"
-        },
-        {
-          "name": "source-components/labels/math_command_pages.vkf",
-          "install": "source-components/labels/math_command_pages.vkf",
-          "bytes": 2706,
-          "sha256": "c012a8476e29ec521f7ad8fe370536e5d5a34bdeee16de3caa456209f0b8d794"
-        },
-        {
-          "name": "source-components/labels/math_commands.vkf",
-          "install": "source-components/labels/math_commands.vkf",
-          "bytes": 2456,
-          "sha256": "21d68396af61847ee9ea420f52e8cf417dc245fe6e13da33b2ef51bbd1841717"
-        },
-        {
-          "name": "source-components/labels/math_decorations.vkf",
-          "install": "source-components/labels/math_decorations.vkf",
-          "bytes": 6487,
-          "sha256": "6c6ef9aef439ed5eb4cd067d1bf9b08d3e2b18848cff7af354a4be4f8cece77e"
-        },
-        {
-          "name": "source-components/labels/math_destinations.vkf",
-          "install": "source-components/labels/math_destinations.vkf",
-          "bytes": 3598,
-          "sha256": "da05fc8d468852f08c0b39deceb1bf8d2662f42d9f9ccd2a3350662513b25617"
-        },
-        {
-          "name": "source-components/labels/math_dimensions.vkf",
-          "install": "source-components/labels/math_dimensions.vkf",
-          "bytes": 2012,
-          "sha256": "125cb346b7a56498a3f5b8f03fc6c0540da0e674c4dc24f0d49c210f84044b5b"
-        },
-        {
-          "name": "source-components/labels/math_display_width.vkf",
-          "install": "source-components/labels/math_display_width.vkf",
-          "bytes": 2682,
-          "sha256": "5b55820c360a997d6bf510a46021fc631398f396ffab00895d6c36949d494d1a"
-        },
-        {
-          "name": "source-components/labels/math_dots.vkf",
-          "install": "source-components/labels/math_dots.vkf",
-          "bytes": 1558,
-          "sha256": "5463f5e5be60d84d22202804dfd947e0d2b8b4933ed7f15b725ed1ccfd18f6ec"
-        },
-        {
-          "name": "source-components/labels/math_draw.vkf",
-          "install": "source-components/labels/math_draw.vkf",
-          "bytes": 5662,
-          "sha256": "d15f996337965b1f71cbee27dff1101180900b1bef9a2a7cea3d7385c22f1db6"
-        },
-        {
-          "name": "source-components/labels/math_effects.vkf",
-          "install": "source-components/labels/math_effects.vkf",
-          "bytes": 7191,
-          "sha256": "ed4a41ea5713a2fb6a04ac690727d011496bda9befb32ed3db09f80ee482eb28"
-        },
-        {
-          "name": "source-components/labels/math_enclosures.vkf",
-          "install": "source-components/labels/math_enclosures.vkf",
-          "bytes": 2662,
-          "sha256": "0b40afff342b7a057190e0d11eb7cb9b93b6402bf21e4dff36a0d68918a14058"
-        },
-        {
-          "name": "source-components/labels/math_environments.vkf",
-          "install": "source-components/labels/math_environments.vkf",
-          "bytes": 998,
-          "sha256": "a5833483b2626a731801a42eadb9960a6603be88395cef5ed9ba0c846ff4b30c"
-        },
-        {
-          "name": "source-components/labels/math_equations.vkf",
-          "install": "source-components/labels/math_equations.vkf",
-          "bytes": 2856,
-          "sha256": "f4bc92796f621699bf8e7544fa7b2cfa63fd331a76416830e93191e0caab9086"
-        },
-        {
-          "name": "source-components/labels/math_geometry.vkf",
-          "install": "source-components/labels/math_geometry.vkf",
-          "bytes": 6893,
-          "sha256": "5ca293ed68bd02135ed19cc2d60ecd3896d0a4bbf88a9357ac2ef112522f8bf5"
-        },
-        {
-          "name": "source-components/labels/math_glyphs.vkf",
-          "install": "source-components/labels/math_glyphs.vkf",
-          "bytes": 4246,
-          "sha256": "e82384b6ad4ceff98542b7d42f6cdeadd573aedda7e0c942cc93f529e1a84b62"
-        },
-        {
-          "name": "source-components/labels/math_layout.vkf",
-          "install": "source-components/labels/math_layout.vkf",
-          "bytes": 89030,
-          "sha256": "e47a9c9d4259c0427f712d6f37fb45fe874abbf68d108b5f664ff06c54d362ea"
-        },
-        {
-          "name": "source-components/labels/math_layout_kernel.vkf",
-          "install": "source-components/labels/math_layout_kernel.vkf",
-          "bytes": 1449,
-          "sha256": "2c5ddded9cc1c670b97ff0c3190c5cd8777eb3c6cad0e6d2204b9d2fc45aef67"
-        },
-        {
-          "name": "source-components/labels/math_matrices.vkf",
-          "install": "source-components/labels/math_matrices.vkf",
-          "bytes": 15197,
-          "sha256": "eddfa1aba6de3fd937e4a5979237414e7db693db3925bcba152985781d657c32"
-        },
-        {
-          "name": "source-components/labels/math_measurements.vkf",
-          "install": "source-components/labels/math_measurements.vkf",
-          "bytes": 1775,
-          "sha256": "03088936c35f59735abf814acf9016460d02f9d4ffd638c1a29529f5ed4dca58"
-        },
-        {
-          "name": "source-components/labels/math_metadata.vkf",
-          "install": "source-components/labels/math_metadata.vkf",
-          "bytes": 2258,
-          "sha256": "5833b7717e38efc9f4a0a132e8fe64f3ef98cf3965b4058d962e5bc8870d2726"
-        },
-        {
-          "name": "source-components/labels/math_middle.vkf",
-          "install": "source-components/labels/math_middle.vkf",
-          "bytes": 3014,
-          "sha256": "a4f908a915d4fbe31fe6f31272aaa2ba8e0579db48fe48c991c6f568be9ed041"
-        },
-        {
-          "name": "source-components/labels/math_modulo.vkf",
-          "install": "source-components/labels/math_modulo.vkf",
-          "bytes": 3540,
-          "sha256": "b38454eddc4bba130c2fc1e14d1b8c8d8d1f3645b6364bd12b89d320f8bcbd13"
-        },
-        {
-          "name": "source-components/labels/math_package_fragments.vkf",
-          "install": "source-components/labels/math_package_fragments.vkf",
-          "bytes": 2786,
-          "sha256": "be427dd7d82814813800efc42708d7485dd9c63ca468b0c58636fbe6442d8212"
-        },
-        {
-          "name": "source-components/labels/math_packages.vkf",
-          "install": "source-components/labels/math_packages.vkf",
-          "bytes": 5449,
-          "sha256": "b86177a64818f016fa6a58b4d52e1d1155667a16fb3713a89e07ff769baaa134"
-        },
-        {
-          "name": "source-components/labels/math_paragraph_nodes.vkf",
-          "install": "source-components/labels/math_paragraph_nodes.vkf",
-          "bytes": 3984,
-          "sha256": "5bdce4e208d6acd7a6aef8b9ba15456bebfeece60697c5a8e33ec0a960547fa3"
-        },
-        {
-          "name": "source-components/labels/math_parser.vkf",
-          "install": "source-components/labels/math_parser.vkf",
-          "bytes": 80912,
-          "sha256": "4f33269f1c912b9cb71aec0e4044ac18db3a020c0f2f757508db58cec3f3176b"
-        },
-        {
-          "name": "source-components/labels/math_profiles.vkf",
-          "install": "source-components/labels/math_profiles.vkf",
-          "bytes": 3149,
-          "sha256": "4adfa90e31390ee4f21ca4be1f3f4cbec5d4b9f9a9a50f0a7b83589391c39cff"
-        },
-        {
-          "name": "source-components/labels/math_qed.vkf",
-          "install": "source-components/labels/math_qed.vkf",
-          "bytes": 4495,
-          "sha256": "5b0660d62ffaf96bc91b8d8d8b531d4041aae32967727f4a9081c771adabc143"
-        },
-        {
-          "name": "source-components/labels/math_qed_actions.vkf",
-          "install": "source-components/labels/math_qed_actions.vkf",
-          "bytes": 2308,
-          "sha256": "23583d1464da263ce20c54b5f469cdb2a264c0cbf54637ea5cf2f4c53c09bb41"
-        },
-        {
-          "name": "source-components/labels/math_qed_tag_leaves.vkf",
-          "install": "source-components/labels/math_qed_tag_leaves.vkf",
-          "bytes": 2066,
-          "sha256": "d03c7fa6b74b90198083194a18714fd5b4e6655060e650d9423a89c023cb5d38"
-        },
-        {
-          "name": "source-components/labels/math_quotient.vkf",
-          "install": "source-components/labels/math_quotient.vkf",
-          "bytes": 2220,
-          "sha256": "cefed04787eb83a4982f80c48a40ef59244ce11a9cde235975cac1ca358c624e"
-        },
-        {
-          "name": "source-components/labels/math_references.vkf",
-          "install": "source-components/labels/math_references.vkf",
-          "bytes": 955,
-          "sha256": "6e6ffbb4e4682860692101f23e9b4dd820be430deac5e57ab08afe07c0a7c3d6"
-        },
-        {
-          "name": "source-components/labels/math_retained_directory.vkf",
-          "install": "source-components/labels/math_retained_directory.vkf",
-          "bytes": 765,
-          "sha256": "a10f57e95f43bbe0e3468570b29eb4960ebf431cded1c4e907e75158e3063022"
-        },
-        {
-          "name": "source-components/labels/math_subtrees.vkf",
-          "install": "source-components/labels/math_subtrees.vkf",
-          "bytes": 1025,
-          "sha256": "34217b79947230b366d34d066e57e082290cc925c3263d9d52126026259adf6a"
-        },
-        {
-          "name": "source-components/labels/math_tags.vkf",
-          "install": "source-components/labels/math_tags.vkf",
-          "bytes": 9076,
-          "sha256": "3ae8de18cac4fadef02c0e2b4e2b572b5d12b10c9a8937e293c2d59f73d42792"
-        },
-        {
-          "name": "source-components/labels/math_tex_origins.vkf",
-          "install": "source-components/labels/math_tex_origins.vkf",
-          "bytes": 26089,
-          "sha256": "25af6ebe974bd8100563dbf86eb52456e5f6d5eb10094b4e4c6517a1471a5fe8"
-        },
-        {
-          "name": "source-components/labels/math_text.vkf",
-          "install": "source-components/labels/math_text.vkf",
-          "bytes": 5133,
-          "sha256": "001aacbdbd5ea5b8c262871a8ddaf4a506376f06f6e58419fb394229597d9d42"
-        },
-        {
-          "name": "source-components/labels/math_text_layout.vkf",
-          "install": "source-components/labels/math_text_layout.vkf",
-          "bytes": 9956,
-          "sha256": "8510f7327895fb1a45903ec2ca768db90e01aae6375abd473ae8d5db338c6782"
-        },
-        {
-          "name": "source-components/labels/math_tokens.vkf",
-          "install": "source-components/labels/math_tokens.vkf",
-          "bytes": 3240,
-          "sha256": "117e4e399c39df80316485d953f13318eeeaf56d964cea323c24abd125fdc08b"
-        },
-        {
-          "name": "source-components/labels/pdf_resources.vkf",
-          "install": "source-components/labels/pdf_resources.vkf",
-          "bytes": 2871,
-          "sha256": "0eca420890a61125983b27abae36a8e89c37b2b50b1a02dc7f788d4455b7e0c0"
-        },
-        {
-          "name": "source-components/labels/pdf_syntax.vkf",
-          "install": "source-components/labels/pdf_syntax.vkf",
-          "bytes": 2101,
-          "sha256": "509e1d9c2d543341ed1d18668b86cfdeb7231dcc3e83c050cecb6c028494df9e"
-        },
-        {
-          "name": "source-components/labels/resource_json.vkf",
-          "install": "source-components/labels/resource_json.vkf",
-          "bytes": 9203,
-          "sha256": "283dd0b93f3c8d97346b3f747d670fdc223724efc390f54ef9798afcc7ce4e77"
-        },
-        {
-          "name": "source-components/labels/resource_numbers.vkf",
-          "install": "source-components/labels/resource_numbers.vkf",
-          "bytes": 2056,
-          "sha256": "c30cbe6f62cc1122d3d2936ba96f63a667514632a22c0cd40d7d4860efe0091b"
-        },
-        {
-          "name": "source-components/labels/tex_groups.vkf",
-          "install": "source-components/labels/tex_groups.vkf",
-          "bytes": 2149,
-          "sha256": "62301635aca14445af6956a08172980f19d901d972afc1198afddfc40207d32e"
-        },
-        {
-          "name": "source-components/labels/tex_numeric.vkf",
-          "install": "source-components/labels/tex_numeric.vkf",
-          "bytes": 2513,
-          "sha256": "d13951d7d7cb222adc794d193c5459ad785c76a6956a28c5f2ff4df66991d8f6"
-        },
-        {
-          "name": "source-components/labels/tex_origin_tape.vkf",
-          "install": "source-components/labels/tex_origin_tape.vkf",
-          "bytes": 14704,
-          "sha256": "5190460976d2b3b06d296e6a3b932f0cdb535caf54678cdcbb3f97f96409958e"
-        },
-        {
-          "name": "source-components/labels/tex_text.vkf",
-          "install": "source-components/labels/tex_text.vkf",
-          "bytes": 6307,
-          "sha256": "f9f2b4f2cac750c1a108f86ce88a40fdff1da77885989857280bb98bebcd14ea"
-        },
-        {
-          "name": "source-components/labels/text_chunks.vkf",
-          "install": "source-components/labels/text_chunks.vkf",
-          "bytes": 787,
-          "sha256": "bf2090bbb16e49f94b603773da6a661fe6f17e89f784da63ec84886b92c7dca3"
-        },
-        {
-          "name": "source-components/labels/unit_factors.vkf",
-          "install": "source-components/labels/unit_factors.vkf",
-          "bytes": 7341,
-          "sha256": "1fac1f140f973509333e1279a0b527829e782b6db5abcd7ebb0edbcd49d3b622"
-        },
-        {
-          "name": "source-components/labels/unit_numbers.vkf",
-          "install": "source-components/labels/unit_numbers.vkf",
-          "bytes": 3157,
-          "sha256": "1fb92623339814db4657977fad1864a47e94519e8942c73bb18cdc0a2cb17944"
-        },
-        {
-          "name": "source-components/labels/unit_stream.vkf",
-          "install": "source-components/labels/unit_stream.vkf",
-          "bytes": 3172,
-          "sha256": "9ddf14158b502895411224e18985bf1f40a56dc6f88edbfee49e83e305f15089"
-        },
-        {
-          "name": "source-components/labels/unit_symbols.vkf",
-          "install": "source-components/labels/unit_symbols.vkf",
-          "bytes": 2323,
-          "sha256": "e594bac7036c3005f65dfb89b78c865184ba6f93787b1b3cd726113199c3c05e"
-        },
-        {
-          "name": "source-components/labels/unit_syntax.vkf",
-          "install": "source-components/labels/unit_syntax.vkf",
-          "bytes": 5709,
-          "sha256": "3c920ef709874414826439d4522d9ac2ed63cc4f722f68c340bbe44db2484a76"
-        }
-      ]
-    },
-    "physical-label-mapping": {
-      "id": "physical-label-mapping",
-      "identity": {
-        "nativeProducer": {
-          "compilerSha256": "fa97c50b9d544c55f641b8926fddd56862cebd08878c3e030bfc3a41672becaf",
-          "programSha256": "cd135079b58efbcbc83d78c71f59393f6f58a35ce9f48ca8fa1311968f85eb16",
-          "catalogSha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
-          "resourceClosureSha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
-          "entrySourceSha256": "8ba79ca5df2a350ceb27f63261ce8371909f510d991d0fccf823db0799280ed6",
-          "sourceClosureSha256": "35688e00a617d91c881f323f57087d2182100b18f130095c89bc755caad04fee",
-          "target": "native"
-        },
-        "mappingKeys": 53,
-        "bindingSha256": "96a4b5da51e5d6ee75e2ea996cd242199771dbd5327ade8d6fb55d736359d22d",
-        "vectorsSha256": "237da2a375d4e06de983f5eb95b243e991e98286c19e6ff3fcc2a7cba69ab664",
-        "originalMappingFiles": [
-          {
-            "name": "bundle.json",
-            "bytes": 2946,
-            "sha256": "0d84cfa6e7779bed2f82f78c1b8c02b11e6a6658eb234f1849a25ad8b939b776"
-          },
-          {
-            "name": "binding.json",
-            "bytes": 65618,
-            "sha256": "96a4b5da51e5d6ee75e2ea996cd242199771dbd5327ade8d6fb55d736359d22d"
-          },
-          {
-            "name": "vectors.json",
-            "bytes": 99660,
-            "sha256": "237da2a375d4e06de983f5eb95b243e991e98286c19e6ff3fcc2a7cba69ab664"
-          },
-          {
-            "name": "boxes.json",
-            "bytes": 3,
-            "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
-          },
-          {
-            "name": "cameras.json",
-            "bytes": 9496,
-            "sha256": "72d87a5c462956f9d9f06241ecccdb894c775b519c4d0975ef08b9c952726418"
-          },
-          {
-            "name": "dataset.json",
-            "bytes": 2509534,
-            "sha256": "0c77927429dfd78ddd53e3854b04941663096d4e5599c0dc62400463baaa6ca5"
-          },
-          {
-            "name": "fontClosure.json",
-            "bytes": 3279,
-            "sha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242"
-          }
-        ],
-        "originalKeys": 53,
-        "currentKeys": 61,
-        "extension": {
-          "usedKeys": [
-            "script/+",
-            "script/1",
-            "script/2",
-            "script/3",
-            "script/\\pi",
-            "script/a",
-            "script/b",
-            "script/i",
-            "script/n",
-            "text/+",
-            "text/0",
-            "text/=",
-            "text/\\alpha",
-            "text/a",
-            "text/e",
-            "text/x"
-          ],
-          "addedKeys": [
-            "script/3",
-            "script/\\pi",
-            "script/a",
-            "script/b",
-            "script/i",
-            "script/n",
-            "text/0",
-            "text/a"
-          ],
-          "originalKeys": 53,
-          "newKeys": 61,
-          "fontClosureUnchanged": true
-        },
-        "fontClosureUnchanged": true
-      },
-      "role": "Original53 authentic mappings retained with the existing1796 exact used-glyph extension (61keys), byte-for-byte from qualified1814 page. No new fonts or layout coverage claimed.",
-      "files": [
-        {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/EXTENSION.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/EXTENSION.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/EXTENSION.json",
           "bytes": 2431,
           "sha256": "49533e8dda604de01c07a51bc321577d6f55d745c95aecaf3c738f9b09448fea"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/binding.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/binding.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
           "bytes": 75434,
           "sha256": "a957226d2a659e30406aae891d8c3decad5239cf4abc5d2f025e733885718705"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/boxes.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/boxes.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/boxes.json",
           "bytes": 3,
           "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/bundle.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
           "bytes": 4466,
           "sha256": "070a3ec487f48a82c674a68b79818532232e73a6c25aca3fd84ee8cebb8f7fbd"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/cameras.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/cameras.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/cameras.json",
           "bytes": 9496,
           "sha256": "72d87a5c462956f9d9f06241ecccdb894c775b519c4d0975ef08b9c952726418"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/catalog-pin.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/catalog-pin.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/catalog-pin.json",
           "bytes": 250,
           "sha256": "760795b8bdfd75db484beb6718330d48e410b8acc84b9d892a415f78aa80e161"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/dataset.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/dataset.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/dataset.json",
           "bytes": 2509534,
           "sha256": "0c77927429dfd78ddd53e3854b04941663096d4e5599c0dc62400463baaa6ca5"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/fontClosure.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/fontClosure.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/fontClosure.json",
           "bytes": 3279,
           "sha256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/physical/PHYSICAL-PRODUCTION.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/physical/PHYSICAL-PRODUCTION.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/physical/PHYSICAL-PRODUCTION.json",
           "bytes": 1179,
           "sha256": "8656f440e850a6ce50fcda8d0b1800c74823f895d23cc88eb78e9b32340d21fb"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/physical/vectors-000.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/physical/vectors-000.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/physical/vectors-000.json",
           "bytes": 51885,
           "sha256": "ca92818d0841e2b198106a821e001f414a99f8bbb0b64a55f496cbb298d700d5"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/requirements-pin.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/requirements-pin.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/requirements-pin.json",
           "bytes": 257,
           "sha256": "ed228f871873e29e5fb3c264b559899a2dd4ac075c437df5603e2b247a6e2f57"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/requirements.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/requirements.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/requirements.json",
           "bytes": 9778,
           "sha256": "63675104f19b6d86ff8332d9caf9fb3db14bfc014f1e64596fc0bf150311f98b"
         },
         {
-          "name": "web/vf-ui/artifacts/current-labels/native-mapping/vectors.json",
-          "install": "web/vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+          "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
           "bytes": 123825,
           "sha256": "b30cb7479a1628edaeaf243ff0f17f5e1a4f56853ec811ca1b3ba61f9348c96a"
+        },
+        {
+          "path": "vf-ui/artifacts/current-labels/producer.json",
+          "bytes": 15320,
+          "sha256": "94913ef61d72844962d9b00ce7703bfcbdbf7a9829ead619ff29083e52c8fec2"
+        },
+        {
+          "path": "vf-ui/artifacts/vkf-symbolic-kernel.json",
+          "bytes": 51961,
+          "sha256": "159cde98e88c43f9073823bbb0cd14c388470d814fb5f6fba1b4ca228f3e70fb"
+        },
+        {
+          "path": "vf-ui/artifacts/vkf-symbolic-kernel.wasm",
+          "bytes": 1354627,
+          "sha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+        },
+        {
+          "path": "vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+          "bytes": 9833,
+          "sha256": "00c7570e7e85359f5cfbbddb110d0ee15c906944cfebd3ed56d1e5dce10b00be"
+        },
+        {
+          "path": "vf-ui/assets/fonts/NotoSans-Regular.ttf",
+          "bytes": 569208,
+          "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
+        },
+        {
+          "path": "vf-ui/demo.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/display-only-star-test.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/donut-hit-test.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/example-gui.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/geom/internal/vf-retained-point-cloud-camera.mjs",
+          "bytes": 967,
+          "sha256": "6cbb8045fc4d08f5b05b94c235baa4a4c2713818749c7385af646100940c9773"
+        },
+        {
+          "path": "vf-ui/geom/vf-clustered-light-plan.mjs",
+          "bytes": 8118,
+          "sha256": "ee99f468b0c41513a4486c9af6e82125ee20494f3f148a39056df9d437503110"
+        },
+        {
+          "path": "vf-ui/geom/vf-clustered-light-shading-oracle.mjs",
+          "bytes": 9787,
+          "sha256": "a5ad43f16aea25a23f28f8ee4971c389ad2e4b84503a52da6c0fa404db78f655"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-core.js",
+          "bytes": 17860,
+          "sha256": "2c414dedd1dc10da8f553e04ce3fd2de020e7acf00eb48f976d058a5411ab693"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-demo.html",
+          "bytes": 478,
+          "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-dual.html",
+          "bytes": 478,
+          "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-frame-adapter.js",
+          "bytes": 14836,
+          "sha256": "db179b3ad2885fe3187735f5e07175a8888e6ecf7263e2a9ed8436404299e459"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-ledger-layout.js",
+          "bytes": 13724,
+          "sha256": "17468a185566d6e3b0bc5c8eff749482cb9399e84c97a01c0caeaac59e2c0f2f"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-ledger-transport.js",
+          "bytes": 5206,
+          "sha256": "04298dc65b9f691676b3908c400ba45d82800e80d0129bb0fa3831175b62d093"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-ledger.js",
+          "bytes": 37294,
+          "sha256": "89126424637eacc41cecdce57c17ad2326b2e7772dc2978e94948464966b0ef0"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-material-arena.js",
+          "bytes": 7141,
+          "sha256": "5b1441aff2b84fffb1e02eb3d4f4b4dc81ebeaa155519fb7e852db9c22427365"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-math.js",
+          "bytes": 4924,
+          "sha256": "3b91b0d3140162e9579a48f907cc703b77817b9e610ed076483f9375d2ea4023"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-mount.js",
+          "bytes": 9757,
+          "sha256": "908f49e7b6db930056967ed6e190cf76f2a06bfc99ace0691d1e5ec8c148a019"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-parametric-surface.js",
+          "bytes": 16458,
+          "sha256": "06ba6aabdccc3ee1ead00225394f83b79667045de2e8b167ec9657805836e6a7"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-shapes.html",
+          "bytes": 478,
+          "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-smoke.html",
+          "bytes": 478,
+          "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-solo.html",
+          "bytes": 478,
+          "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-wgpu.js",
+          "bytes": 419195,
+          "sha256": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314"
+        },
+        {
+          "path": "vf-ui/geom/vf-gpu-backend-probe.mjs",
+          "bytes": 405,
+          "sha256": "c6dc27265c8aebf5c7ba1cd8fecd51693835a53aa9bb54002d78f65f3511f0ca"
+        },
+        {
+          "path": "vf-ui/geom/vf-gpu-backend-probe.test.mjs",
+          "bytes": 697,
+          "sha256": "69eb8124fa9d0e9b59fdd2648b5df7a78b625301a813a57d3434a1f595744b1d"
+        },
+        {
+          "path": "vf-ui/geom/vf-light-view-bounds.mjs",
+          "bytes": 9979,
+          "sha256": "6b4f4bef16dc6f18c7811eee3d00a7b502ade6d5e95f26111f73f50d8f869fc9"
+        },
+        {
+          "path": "vf-ui/geom/vf-reflection-atlas.mjs",
+          "bytes": 6279,
+          "sha256": "1f0742279d8ed29fbfcce78a003d350287596236b3695ca59b8b1b1c92634fdc"
+        },
+        {
+          "path": "vf-ui/geom/vf-reflection-planner.mjs",
+          "bytes": 8626,
+          "sha256": "7640ea1281b93d6d69713ba9e5d0d72612557d28b8bc7349b9f72ba605f37715"
+        },
+        {
+          "path": "vf-ui/geom/vf-resident-mesh-renderer.mjs",
+          "bytes": 4736,
+          "sha256": "3279389bc3252e46c325112fcdf7632293f167fb2a3e81e212405c386b467380"
+        },
+        {
+          "path": "vf-ui/geom/vf-screen-point-cloud-renderer.mjs",
+          "bytes": 13131,
+          "sha256": "d6345908a21d41d7c75dfafd3a94d482bcb6713e7a262eb80b50a02d7d0aed1c"
+        },
+        {
+          "path": "vf-ui/geom/vf-screen-simplex-renderer.mjs",
+          "bytes": 22972,
+          "sha256": "cca6ebe8407c519f1d7d4962f3b04a60a0a366e63817f81a70b6c840dd4a42f9"
+        },
+        {
+          "path": "vf-ui/geom/vf-symbolic-plot-renderer.mjs",
+          "bytes": 146808,
+          "sha256": "fa12c47214c64795ddda09514e3f500c27ccba2a800a84de7524dd28793036b4"
+        },
+        {
+          "path": "vf-ui/geom/vf-symbolic-plot-renderer.test.mjs",
+          "bytes": 6392,
+          "sha256": "0890fb51ffb84c127c50018c9d5caa753864952579615b67309b4ff67a22381c"
+        },
+        {
+          "path": "vf-ui/geom/vf-symbolic-relation-shader.mjs",
+          "bytes": 17430,
+          "sha256": "71fd03199cfa14e08f0064f6f085ab8b0ed5bff2192c51836846ab8da0b6b848"
+        },
+        {
+          "path": "vf-ui/index.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/katex/LICENSE",
+          "bytes": 1107,
+          "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_AMS-Regular.woff2",
+          "bytes": 28076,
+          "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+          "bytes": 6912,
+          "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+          "bytes": 6908,
+          "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+          "bytes": 11316,
+          "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Main-Regular.woff2",
+          "bytes": 26272,
+          "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Math-Italic.woff2",
+          "bytes": 16440,
+          "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+          "bytes": 10344,
+          "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Script-Regular.woff2",
+          "bytes": 9644,
+          "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Size1-Regular.woff2",
+          "bytes": 5468,
+          "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Size2-Regular.woff2",
+          "bytes": 5208,
+          "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Size3-Regular.woff2",
+          "bytes": 3624,
+          "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Size4-Regular.woff2",
+          "bytes": 4928,
+          "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+        },
+        {
+          "path": "vf-ui/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+          "bytes": 13568,
+          "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+        },
+        {
+          "path": "vf-ui/katex/katex.min.css",
+          "bytes": 23335,
+          "sha256": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258"
+        },
+        {
+          "path": "vf-ui/katex/katex.min.js",
+          "bytes": 275414,
+          "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-adaptive-native-labels.mjs",
+          "bytes": 8940,
+          "sha256": "432d06520939bb3fd3fb4e9f6f50b490bb5dc455d5c195be97f7ec496c06b752"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-current-native-provider.mjs",
+          "bytes": 4764,
+          "sha256": "1bd1b35a58878452355c5c3152419eb08d9c0a4a7eca7aa0107407baeea426ad"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-current-wasm-label-worker.mjs",
+          "bytes": 2179,
+          "sha256": "17545075aba22f7645d2688f9c30f3ad369bbadf1ebb33db624b9d46374c2059"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-current-wasm-math-labels.mjs",
+          "bytes": 2888,
+          "sha256": "14dfd82e3caddb9b662a4c2d5d408165b78504fa905980c432c9fcac2d5d2ee6"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-current-wasm-producer.mjs",
+          "bytes": 5958,
+          "sha256": "4b653b98b42a2c2ff175f30bfb0719765e37eadaaf4c9c3b505a4a09073a0e58"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-accuracy-scene.mjs",
+          "bytes": 2570,
+          "sha256": "3d8a5bfdc3d6cd568c1840682555b96b2ab22a18b1f4de3a4564a30eaa64505b"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-accuracy-source.mjs",
+          "bytes": 4834,
+          "sha256": "be5ccf53fca7bc4b0c66015d975a2f63f50d6d510f65f5449c51a9a1d372a9e1"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-certified-samples.mjs",
+          "bytes": 10553,
+          "sha256": "ad434b466b79dcf93d3966c4f04968a16c7dc20467f93518f93c44419bc2c6e4"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-curve-program.mjs",
+          "bytes": 10966,
+          "sha256": "4bd6e4b514ad1157173cb97a9c94d22448594b85533103871a09d668254505c0"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-curve-renderer.mjs",
+          "bytes": 24859,
+          "sha256": "d61ebcedbdf1fc6996dde159e93ac54783f10b62e069b017643aff208a1a8da5"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-curve-shaders.mjs",
+          "bytes": 9505,
+          "sha256": "fabf7356e8c401cdda438c03feeb0ec08404214adcdea893b35b57de60954f28"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-font-binding.mjs",
+          "bytes": 1869,
+          "sha256": "93f86abdaf0934171aa5bd8b8cc344e12cfafb6ad57fbecaad7ac06793752c21"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-label-layer.mjs",
+          "bytes": 9837,
+          "sha256": "a68afc9dd57e53f737f7c326d5cc4206d20b79ad2eb17b566be299cba506400a"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-outline-cache.mjs",
+          "bytes": 13934,
+          "sha256": "3a0b9ce7d77d22148e7c821291ad504bf91084d5a326a792371b260889ad8c47"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-plot-labels.mjs",
+          "bytes": 18274,
+          "sha256": "8d91c40818bd338a76d22b802371b5e1a843dbe6ccdb40fe0a4104a96dc18d3a"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-residual-shader.mjs",
+          "bytes": 9120,
+          "sha256": "51fc66fecdf731bc794fd9d13cb57172e814a86dd527cd737c540c1c3c9499c0"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-residual.mjs",
+          "bytes": 5363,
+          "sha256": "9644430b5a50e32eb08c2ccf383928a4c896b14a3b89918df5f92a5091b4156e"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-plot-pdf-commands.mjs",
+          "bytes": 5443,
+          "sha256": "935052a7d9c5f7a17ba30e9e32cbb06b6d6ecb93e3335a6f967f985d59a566e9"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-selection-adapters.mjs",
+          "bytes": 5722,
+          "sha256": "a7b630b633f845bed64f709dd32708d25f79968359083ef2a24b6f16ee2c203e"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-selection-contours.mjs",
+          "bytes": 4379,
+          "sha256": "d2ae9ef77ffd39a8dac3260fdcea4ece7aee3e4e9d4ec7579d86645cdba2c448"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-selection-outline.mjs",
+          "bytes": 13876,
+          "sha256": "611949ce243a28d0736e36753fa002aa285d7c973cdac60e330f6e611b56f0a5"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+          "bytes": 28034,
+          "sha256": "d2e281e77896ed85a6b682d9abb63b53eae8e1c252890f6a77a0f56294c5b08d"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-spatial-ranges.mjs",
+          "bytes": 2950,
+          "sha256": "c334479249df213149cfe51e467f35d51333c62e19f01250a87cf284cade7f33"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-stroke-contract.mjs",
+          "bytes": 3788,
+          "sha256": "265e741505aef85f889f91cbf80170e1911be24d41c6c106b484a621c5699a60"
+        },
+        {
+          "path": "vf-ui/shaders/vf-rigid-polygons-2d.wgsl",
+          "bytes": 24793,
+          "sha256": "ded234f8bf841125f5ecb97407ce643fbe55f9ea7b9be1b1d9fceb56a7ddd222"
+        },
+        {
+          "path": "vf-ui/vendor/mediabunny-1.61.6.min.mjs",
+          "bytes": 693871,
+          "sha256": "cc6f1f3d5e09758eafc15f7c2712439be3f2e25c301d096b11405a2f78a96e8f"
+        },
+        {
+          "path": "vf-ui/vendor/mediabunny-LICENSE",
+          "bytes": 16726,
+          "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+        },
+        {
+          "path": "vf-ui/vendor/mediabunny-NOTICE.txt",
+          "bytes": 487,
+          "sha256": "21fadee3b5815df1ba1e08f77394248688204d2b5a2dee884d939b7dd4565ba1"
+        },
+        {
+          "path": "vf-ui/vf-alpha-hit-mask.js",
+          "bytes": 3220,
+          "sha256": "154ab4417876bdcb1c5ff47761f0bcc9f8f3def105c1bea0cada4750b12deba8"
+        },
+        {
+          "path": "vf-ui/vf-axis2d-label-layout.mjs",
+          "bytes": 5902,
+          "sha256": "338858b9d54f30ed1be9da98cc638b02539ea18c2998398e7db0c637ef51a8cb"
+        },
+        {
+          "path": "vf-ui/vf-axis2d-ticks.js",
+          "bytes": 26734,
+          "sha256": "64960b6d2be29343e7a64d0bf209d4c26ae5d305320a0dc347c7c12dcf7dac75"
+        },
+        {
+          "path": "vf-ui/vf-axis2d-ticks.mjs",
+          "bytes": 239,
+          "sha256": "9525dab3af29d8a01a38b875fd1cc7e56c43d4f92584d91c55ec57a8d2938221"
+        },
+        {
+          "path": "vf-ui/vf-axis3d-kernel-adapter.js",
+          "bytes": 1591,
+          "sha256": "e0404f60f661239f453793964273daae100ecfbab7c0658e459146ded7901b22"
+        },
+        {
+          "path": "vf-ui/vf-axis3d-kernel-adapter.mjs",
+          "bytes": 398,
+          "sha256": "ee40ec5a0a037768b408822db7e521da897813581885deeb4dff00c665b2e6f1"
+        },
+        {
+          "path": "vf-ui/vf-axis3d-kernel.js",
+          "bytes": 13720,
+          "sha256": "ce9309e37d39a8d1bd326af34d43c92b335b0d12945c1896622940ff6b95d911"
+        },
+        {
+          "path": "vf-ui/vf-axis3d-projection-kernel-adapter.js",
+          "bytes": 1303,
+          "sha256": "547e8ed0bb74760cec9bac2ecd8e2b9d2123dd67f423cb6b999d8eb5027ad199"
+        },
+        {
+          "path": "vf-ui/vf-axis3d-projection-kernel.js",
+          "bytes": 5555,
+          "sha256": "72eb524cc308507a63aebb01915bc75d8f968e2763b7c8967ad3996f347c47b7"
+        },
+        {
+          "path": "vf-ui/vf-chess-piece-animation.js",
+          "bytes": 3009,
+          "sha256": "e6436cf60bef583f2c5a1d8a44cbe93c72d78d9eb29c88d00545592314fd7802"
+        },
+        {
+          "path": "vf-ui/vf-chess.css",
+          "bytes": 4393,
+          "sha256": "265f24326adb9186398cd2cc21d85fa5843b04ec57b72665b9e168ed0e0daca4"
+        },
+        {
+          "path": "vf-ui/vf-color-field.mjs",
+          "bytes": 23870,
+          "sha256": "ba64029f7d57188fc622c02c17748c0820d1faa1f5780c0cc5df5de2cab108fa"
+        },
+        {
+          "path": "vf-ui/vf-color-scale.mjs",
+          "bytes": 2137,
+          "sha256": "48063bae9c140fccc852e5979649a761a631282ba43d23259c1469988e271c42"
+        },
+        {
+          "path": "vf-ui/vf-colorbar-view.mjs",
+          "bytes": 20346,
+          "sha256": "eae52a6ed633fd8d8dc867b7b34b95db1fe976dd1106ab8182e0fea8cf05fdcf"
+        },
+        {
+          "path": "vf-ui/vf-compiled-field-runtime.mjs",
+          "bytes": 4695,
+          "sha256": "dd924f4c5dc4d56cffa9689e9b7e970646c6fb9cf1e359c2d47b063f3416e959"
+        },
+        {
+          "path": "vf-ui/vf-compiled-runtime-bridge.js",
+          "bytes": 19214,
+          "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
+        },
+        {
+          "path": "vf-ui/vf-compiled-ui-module-registry.js",
+          "bytes": 3435,
+          "sha256": "b964c28eb7191e3b39f9681629ecaa65ad31c72373c1eb0631686f254eb33a78"
+        },
+        {
+          "path": "vf-ui/vf-compiled-webgpu-adapter.js",
+          "bytes": 70206,
+          "sha256": "1486c62fdf3f975a9d95df508de1c129d517413f47caa14b222dde0007b0e606"
+        },
+        {
+          "path": "vf-ui/vf-coordinate-grid.mjs",
+          "bytes": 13536,
+          "sha256": "8120049d76d9be2b527360f3c332d63bd9b3c6e56f7832cf92f23edcce01b839"
+        },
+        {
+          "path": "vf-ui/vf-display.js",
+          "bytes": 645148,
+          "sha256": "379714f7a2ed5b4e4a8a056b88ae2f9b0eb537b79b17a6344683e373e058c68b"
+        },
+        {
+          "path": "vf-ui/vf-frame-movie-capture.mjs",
+          "bytes": 3874,
+          "sha256": "a244d3729ceb3bead11b46050245147aab5df35b2025ecaaa5f3067c6f39d95e"
+        },
+        {
+          "path": "vf-ui/vf-frame.css",
+          "bytes": 20433,
+          "sha256": "ea8e9f3cd0fcc7e3cec2b4fc6e2dff394badc0a14d366767c3cdfc0ab92e0690"
+        },
+        {
+          "path": "vf-ui/vf-frame.js",
+          "bytes": 63720,
+          "sha256": "865f43b7cc537de826c3c6dca7114c93f371c6e6d031be725344b197ad8db353"
+        },
+        {
+          "path": "vf-ui/vf-glb-import.mjs",
+          "bytes": 10368,
+          "sha256": "6ffa605bca1a6bffe3b9ea5584be9b03a043692bf2b0152243c3cabf542a2cdd"
+        },
+        {
+          "path": "vf-ui/vf-gpu-runtime.js",
+          "bytes": 33158,
+          "sha256": "9a323546d8e46cce824aac5e999a05c8953e5bf56c77a6a30f8db447793f6508"
+        },
+        {
+          "path": "vf-ui/vf-html-components.js",
+          "bytes": 17079,
+          "sha256": "3bbf2e4aeacf6f2066201105ef0af48e207771e04bad90a4d2da75c08bea9724"
+        },
+        {
+          "path": "vf-ui/vf-interpolation-editor.css",
+          "bytes": 107,
+          "sha256": "f7a862786f6985305d0a839fcc4c7b7abe2a70cd04434907bfcb2d5e4820936f"
+        },
+        {
+          "path": "vf-ui/vf-interpolation-editor.mjs",
+          "bytes": 230,
+          "sha256": "e028e22734c1dce2193f59cec75384c1de1e00b635c109a02dc01c611f3ce96b"
+        },
+        {
+          "path": "vf-ui/vf-interpolation.mjs",
+          "bytes": 18353,
+          "sha256": "c6871183cef5f09aad0586892c05ba432653b6354e5e2ea1546c4c4316d7a12f"
+        },
+        {
+          "path": "vf-ui/vf-layered-screen-scene.mjs",
+          "bytes": 1520,
+          "sha256": "31c9934ec69e292004cd9e2ab1e51cfd159b6e6f5a854abf65078e2cce2ef9cb"
+        },
+        {
+          "path": "vf-ui/vf-log.js",
+          "bytes": 1675,
+          "sha256": "9cc6f6792cd60a20065df4f56d53a42b2d849b14dafec24d312d409ebcb9cd99"
+        },
+        {
+          "path": "vf-ui/vf-media-capture.mjs",
+          "bytes": 9599,
+          "sha256": "feb2a71774258f1b7a89d4f9870f0b2ed44d8ac0f9f68487ba78819fd763e23a"
+        },
+        {
+          "path": "vf-ui/vf-native-scene.js",
+          "bytes": 427234,
+          "sha256": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec"
+        },
+        {
+          "path": "vf-ui/vf-physics-engine.mjs",
+          "bytes": 85813,
+          "sha256": "526b318080c6ba9ec1a115a8e364188b41bab1918db1bbb867443805120f1620"
+        },
+        {
+          "path": "vf-ui/vf-property-program.mjs",
+          "bytes": 9662,
+          "sha256": "dd9169864be924411e70e9c9645f9d3e66712c97e766e28e21ab55b6963aaa35"
+        },
+        {
+          "path": "vf-ui/vf-render-clock.js",
+          "bytes": 2878,
+          "sha256": "c2250bef93b3de6afdff83aa09d1d0e144dc46251db8440a92b4e5660db93b54"
+        },
+        {
+          "path": "vf-ui/vf-retained-event-adapter.js",
+          "bytes": 3773,
+          "sha256": "b7082ab7a277ece450781deb5e4a56f8e3dd33ef5f78c4a921fc47dfae2f001b"
+        },
+        {
+          "path": "vf-ui/vf-retained-vm-bridge.js",
+          "bytes": 32659,
+          "sha256": "b6c841644dd069398a5ac54e899ad88a08c639960e15f30164f1c19cf5c0813e"
+        },
+        {
+          "path": "vf-ui/vf-runtime-flow.js",
+          "bytes": 23897,
+          "sha256": "b7a464edd0e88206d079a19a47259af9a22c9841cac6fdb58e39ca7ed262061f"
+        },
+        {
+          "path": "vf-ui/vf-runtime-packet-contract.js",
+          "bytes": 27244,
+          "sha256": "15072337a9d12f6901593a73e989133387fb182970c8fbc847d585163ab0e7e6"
+        },
+        {
+          "path": "vf-ui/vf-runtime-scene.js",
+          "bytes": 32704,
+          "sha256": "262a1d0b48b7a8d95cd0b5ea74508bf15e2d3e91751c4aa8c733d8b15115f922"
+        },
+        {
+          "path": "vf-ui/vf-runtime-shell.js",
+          "bytes": 51483,
+          "sha256": "c02f5e46835484f2a9f5aa7c01bfbb9cf2509f457beb4b622739e61b08930411"
+        },
+        {
+          "path": "vf-ui/vf-runtime-source.js",
+          "bytes": 7829,
+          "sha256": "bb9c3a5a256f8e294e4fd5b5bc4c65c548b6b717f8c23c03c74e5fba44913feb"
+        },
+        {
+          "path": "vf-ui/vf-selection-interaction.mjs",
+          "bytes": 4890,
+          "sha256": "00f43d50749538e2739357d103f75101a425c743e68c89716ed0002a5b8509fd"
+        },
+        {
+          "path": "vf-ui/vf-shared-rect-demo.html",
+          "bytes": 472,
+          "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+        },
+        {
+          "path": "vf-ui/vf-shared-rect-demo.js",
+          "bytes": 23175,
+          "sha256": "c5c7154ccfd8e03b88b26ce3b316f6e9baaf43f265b0e78e239f0b2e73754250"
+        },
+        {
+          "path": "vf-ui/vf-shared-runtime.js",
+          "bytes": 8646,
+          "sha256": "1725ee7329ac829e922efc8a5b47df433ff7341485a3fca37112f0cebd732ab6"
+        },
+        {
+          "path": "vf-ui/vf-spatial-geometry.mjs",
+          "bytes": 20660,
+          "sha256": "28370cadca8b8bc9c75e3ae3b3971a157a19690d813f3e90a0c5201da9ea9ea0"
+        },
+        {
+          "path": "vf-ui/vf-startup-gate.js",
+          "bytes": 6363,
+          "sha256": "ec551b48249bf6cd10ff9224750e31bd9ea88fb4da99f789f64d2b55d51dc78d"
+        },
+        {
+          "path": "vf-ui/vf-static-html-loader.js",
+          "bytes": 10184,
+          "sha256": "88c63f0392fc4eaf4c988c5b1e427c0b45eac13eb8fca5eeb7fd51fdcb2cd5af"
+        },
+        {
+          "path": "vf-ui/vf-surface-context.mjs",
+          "bytes": 14380,
+          "sha256": "35f48c155414e39bb8c18d99714646b0d4a52e92ee9018dba813069a92162c72"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-constraints.mjs",
+          "bytes": 6816,
+          "sha256": "56ed3ece2af43c204c9a44bb77b6c956a25c1ad1cff01966d77a205ba46204bc"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-document-runtime.mjs",
+          "bytes": 2102,
+          "sha256": "cd729666d69a70ef8afe05db8ced15318efa7aa1289abb6cca80433920d74618"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-kernel-runtime.mjs",
+          "bytes": 15776,
+          "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-plot-controller.mjs",
+          "bytes": 60851,
+          "sha256": "2c8de0f8d085c4952837a166f8a202d6006de0380c00c8710105dae24f2a4361"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-surface-constraints.mjs",
+          "bytes": 6757,
+          "sha256": "dbe49f8b7998c9c65c4d57ea0fffb53fc4d37cec42fe0659cd4e38c25aa60095"
+        },
+        {
+          "path": "vf-ui/vf-symbolic-wasm-runtime.mjs",
+          "bytes": 4027,
+          "sha256": "bb7868e5a23421e15d10b1306bf21e03044c56e3c5e744eee68b2a1f0f2d40d0"
+        },
+        {
+          "path": "vf-ui/vf-ui-modifiers.js",
+          "bytes": 1657,
+          "sha256": "2d69ddc63829a1b40418b21661a276077dbd005ef4f61b69279cde89a84cfe2b"
+        },
+        {
+          "path": "vf-ui/vf-ui-modifiers.mjs",
+          "bytes": 239,
+          "sha256": "5ff141d41611185309914558d2ef178f1358ba7ed51e374634048e715f3d2a6d"
+        },
+        {
+          "path": "vf-ui/vf-ui-scene-fps-benchmark.js",
+          "bytes": 12686,
+          "sha256": "c257ea11817b8cdca1a3f645bf5af7123cb9dc47dab01868ae8cf592446dcf81"
+        },
+        {
+          "path": "vf-ui/vf-ui-theme.mjs",
+          "bytes": 4117,
+          "sha256": "8a6435cc4792114ce2667d32f849c262d48dfd72a7d5b6757e156b87de7b2bcd"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-kernel-adapter.js",
+          "bytes": 1072,
+          "sha256": "82db346b4d8d985c7e200bdf0426b6738351cf0ce3884e89ffe8ec39fba461a8"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-kernel.js",
+          "bytes": 4841,
+          "sha256": "0ff1228da41aee81cfbcd4acfe990c63a7f6c9d4be561cfa3487bd9e6e8c3c92"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-math.js",
+          "bytes": 4339,
+          "sha256": "f2585d1ab1ea9741703b7adae989ac5bbf424f2895b7ea78a1a24934924cfe40"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-math.mjs",
+          "bytes": 225,
+          "sha256": "5e972b517437e7f5acb941d6d4194d741b9b5fb60b749799f84a76c91f579b9b"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-runtime.js",
+          "bytes": 36105,
+          "sha256": "799a2b0bed9bb1af511650bf4ffcf3b4f8eda8b7727a3a10d275afc409b0b142"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-wasm-kernel-adapter.js",
+          "bytes": 10486,
+          "sha256": "e09a8e646926c2ca82edbbc204f1c3328759d15716195122180ae19b242e3f6b"
+        },
+        {
+          "path": "vf-ui/vf-vkf-ui-wasm-module-factory.js",
+          "bytes": 22568,
+          "sha256": "c97df4998d6eac6fe769ef15cac3164e15d1c1823adcc43fa61ceb5c711613ff"
+        },
+        {
+          "path": "vf-ui/vf-wasm-demo-contract.js",
+          "bytes": 3716,
+          "sha256": "4fa4d0c6bcdaf2804f372ec4f29ed3406e13880ee96c1119acc2ca16fa1a7a43"
+        },
+        {
+          "path": "vf-ui/vf-widgets.js",
+          "bytes": 44424,
+          "sha256": "00251dc4541eabeb2d75b4b2b8eea34061335314d46ca29e849fafafee4715cb"
+        },
+        {
+          "path": "vf-ui/vf-world-exchange.mjs",
+          "bytes": 5811,
+          "sha256": "8876d388e5e06981f231ae23ed248ec3c5b304c1c20c860d45df70ef2264130f"
+        },
+        {
+          "path": "vf-ui/vf-world-step.mjs",
+          "bytes": 5288,
+          "sha256": "35015f129c95dc6c261c740d8e648702bc91f68f977aaa7be7d71754e7181965"
+        },
+        {
+          "path": "vf-ui/vf-world-svg.mjs",
+          "bytes": 6298,
+          "sha256": "bbdc928ddd2c77cb5ea467a30cc5ce790d0614662e5231132d609192c9a63604"
+        },
+        {
+          "path": "vf-ui/vkf-scene.html",
+          "bytes": 98,
+          "sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e"
         }
       ]
     },
-    "linux-cli": {
-      "id": "linux-cli",
+    "native-linux-cli": {
+      "id": "native-linux-cli",
       "identity": {
-        "sourceBinding": "native-components:d48529dac47cb46ab8e2a210a04c131db8f8385c3d314d68761018c3aa51f289",
-        "sourceManifest": {
-          "bytes": 3545,
-          "sha256": "c0d24cc31f55244171f708506ef9de96eca7deb143dbd7aa94b02ca901ac068d"
-        },
-        "abi": {
-          "bytes": 351,
-          "sha256": "8787af028d5b7f2de7228da5857400354df9185e13c994ac88af71652c018567"
-        }
+        "sourceCommit": "89f64c311913343cd17ffe4f3329296ed291d229",
+        "sourceBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+        "binarySHA256": "7f039e6ab3ea12c5756a376f64b93c8490d707f94b6f1c98388a3714e4487fcc"
       },
-      "role": "Separate selected native benchmark component; no browser/compiler qualification inherited.",
       "files": [
         {
-          "name": "vkf-0.7.5",
-          "bytes": 31729280,
-          "sha256": "d240c7c5759801ba0380f8d85e6c9c0b2746b34525598894b0da9c896705df39"
-        }
-      ]
-    },
-    "linux-helper": {
-      "id": "linux-helper",
-      "identity": {
-        "sourceBinding": "e1124.native-host.571d2370c8e1ae5caa442a348b863b4134858be0ea259826ea9608f65a68ecd0",
-        "sourceManifest": {
-          "bytes": 3983,
-          "sha256": "a2ee4c87dc57e35182068c8c39c74983b9b868168b0c85c55d5fed659f8bef01"
-        },
-        "abi": {
-          "bytes": 362,
-          "sha256": "f3957c1641517d3ca2c7e417cf0db40df8985d43ca2c41a9e72b82800053f388"
-        }
-      },
-      "role": "Separate selected native benchmark component; no browser/compiler qualification inherited.",
-      "files": [
-        {
-          "name": "vkf-linux-ui-package",
-          "bytes": 1654488,
-          "sha256": "e59cf11fb5ad8d9fc47b53e81afd39c92bd4048364503ff366fdd17d29cf00ea"
-        }
-      ]
-    },
-    "native-runtime": {
-      "id": "native-runtime",
-      "identity": {
-        "sourceBinding": "native-components:ede6b1066e1a793c81695276d788e1f54f3963949cbe2f8803bb72f5beaabd9a",
-        "sourceManifest": {
-          "bytes": 32075,
-          "sha256": "3dd474937f743b094c63c1c2c5f7b913f4302e866aa9f0e292cedc3918c51aa5"
-        },
-        "abi": {
-          "bytes": 9776,
-          "sha256": "6bd1818e6fbeefa4dc9f4637f9e8bed3a40aa8866b680b1d00eeeb5653295c2c"
-        }
-      },
-      "role": "Separate selected native benchmark component; no browser/compiler qualification inherited.",
-      "files": [
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/collections.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/collections.vkf",
-          "bytes": 605,
-          "sha256": "57014c51de253c74998cdeb450771135d434c50e350d0555ebc032b61307a7a1"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/command.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/command.vkf",
-          "bytes": 389,
-          "sha256": "1d7b751e40daaf1689bb78dbac8fb593a998841e6b05de50e49130089ac63d34"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/concurrent.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/concurrent.vkf",
-          "bytes": 1096,
-          "sha256": "0309f6be8a254f1a9282f0ddab9edfdd5f76724bf5870f2bf815fd9883fea8f9"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/errors.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/errors.vkf",
-          "bytes": 592,
-          "sha256": "150851cae3b6b1f2fc275de0d8678435a2e765f6b8f085a2c76c06584b7a7345"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/io.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/io.vkf",
-          "bytes": 543,
-          "sha256": "0df4f64fa1597f619743fb0ff01105f59c1e7883e19bc095f00ba48e9a3e7d80"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/io_direct_smoke.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/io_direct_smoke.vkf",
-          "bytes": 286,
-          "sha256": "400c1f216fe490cc77ac4ddb67b2a3f33b85058382737c17e154b70289d80b74"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/linalg.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/linalg.vkf",
-          "bytes": 44024,
-          "sha256": "5dcd769b40b58738c68774defe032f068b1894b057cc523b4622f3357de9c866"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/math.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/math.vkf",
-          "bytes": 3955,
-          "sha256": "ca670afda7c9edc010ca25428f61f79c0fb45bdf5655a4a240d2162e744a2f3f"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/convex_preparation.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/convex_preparation.vkf",
-          "bytes": 5606,
-          "sha256": "69145d0db315e3d97aff50077fedf7c879be1cdb093b63a7aa3b6a9fbf08ae00"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/preparation.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/preparation.vkf",
-          "bytes": 2830,
-          "sha256": "02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/rigid.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/rigid.vkf",
-          "bytes": 10046,
-          "sha256": "44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/runtime.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/runtime.vkf",
-          "bytes": 340,
-          "sha256": "28ba2b827cb93c24ae0dad07ee56f444a8e1e7d229c3ece6a4f3dbba272e375b"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/supported_contact.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/supported_contact.vkf",
-          "bytes": 7224,
-          "sha256": "9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/units/si.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/units/si.vkf",
-          "bytes": 290,
-          "sha256": "d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/units.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics/units.vkf",
-          "bytes": 214,
-          "sha256": "79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics.vkf",
-          "bytes": 28856,
-          "sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
-          "bytes": 324,
-          "sha256": "7c7fd8b7fe93197cafbe91c769a39be2ef6913c8d734c3706fddf4765025c8e9"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
-          "bytes": 648,
-          "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
-          "bytes": 579,
-          "sha256": "3547a685b765a70d4d68c8cfc1835bfd8bea3564e8e66fc6891977066f64058b"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/random.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/random.vkf",
-          "bytes": 2295,
-          "sha256": "f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/regex.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/regex.vkf",
-          "bytes": 460,
-          "sha256": "748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/stat.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/stat.vkf",
-          "bytes": 9584,
-          "sha256": "a0d3b7c7af273ea8e3f633e9abd24dc6f0494933cd4c22a6c285272b00faf95b"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/symbolic.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/symbolic.vkf",
-          "bytes": 483399,
-          "sha256": "0cfceb3ced5c928d58954c0b8c870760275fdd645a68b9456fa0274d562f88a4"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/system.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/system.vkf",
-          "bytes": 375,
-          "sha256": "5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/time.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/time.vkf",
-          "bytes": 3986,
-          "sha256": "5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/ui/colormaps.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/ui/colormaps.vkf",
-          "bytes": 1396,
-          "sha256": "1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/ui.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/ui.vkf",
-          "bytes": 26,
-          "sha256": "1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/units/si.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/units/si.vkf",
-          "bytes": 286,
-          "sha256": "36a2ce04f5ebff724d5c75a330f7eb42a5d816749557fb9f8b6668a60fd928c1"
-        },
-        {
-          "name": "source-components/native-runtime/compiler/self_hosted/stdlib/units.vkf",
-          "install": "source-components/native-runtime/compiler/self_hosted/stdlib/units.vkf",
-          "bytes": 151,
-          "sha256": "c6eae08570c5fa77548d42c69ab590ebff3956aeb04d519980a225d2897819a5"
-        },
-        {
-          "name": "libX11.so.6",
-          "bytes": 1318648,
-          "sha256": "badd43566333da97d916ab365c61227751d49cd5c0df5d49dabdbd67b8c6fd19"
-        },
-        {
-          "name": "libXau.so.6",
-          "bytes": 18776,
-          "sha256": "2b742de65acd00f154ed156720af66c0c0af9a58360ba041f25a41e2f775fab5"
-        },
-        {
-          "name": "libXdmcp.so.6",
-          "bytes": 26856,
-          "sha256": "24beecbb0faf600d1a646b5edfc8c144da6f2965cb427598f4e17edc1285a733"
-        },
-        {
-          "name": "libXext.so.6",
-          "bytes": 77592,
-          "sha256": "9e358938dc783704b75a8a27f07b9a2cc7dfb7ff73fd05cbcfe634b8c2afc74a"
-        },
-        {
-          "name": "libXrender.so.1",
-          "bytes": 43712,
-          "sha256": "708d1c6a5d8aa5169d61e5b79973bf012047de0fb881d2836d44b3167a1a51a5"
-        },
-        {
-          "name": "libbrotlicommon.so.1",
-          "bytes": 141712,
-          "sha256": "fb353cab2ea4ecd90814b46f872c21e1034c92bd86c3c677415748b4d16b5ad1"
-        },
-        {
-          "name": "libbrotlidec.so.1",
-          "bytes": 55688,
-          "sha256": "eb8768f85e9c367cd74772919b5668bbe0045cb71b65d75aafc32828e7acb1b7"
-        },
-        {
-          "name": "libbz2.so.1.0",
-          "bytes": 83120,
-          "sha256": "7138aeb748f73c150b1d34d67de69139a441910cd7b269076ba3c8b986dea9a7"
-        },
-        {
-          "name": "libcairo.so.2",
-          "bytes": 1366968,
-          "sha256": "f8ed09b8ed35a1c19be81434bf7cb0fde1c1a0355b8ac74b7d3cf97788bdffe6"
-        },
-        {
-          "name": "libexpat.so.1",
-          "bytes": 186704,
-          "sha256": "2e5f66e2784c2746775567ff9916f6e7503182a8f1f2deb8ca729dfc1463849f"
-        },
-        {
-          "name": "libfontconfig.so.1",
-          "bytes": 338080,
-          "sha256": "cabcdfea3d61540e8aa7f93a29642da1d1e35c8f5fd13549f4b8ee2ee0ab28f0"
-        },
-        {
-          "name": "libfreetype.so.6",
-          "bytes": 870552,
-          "sha256": "36be278a8138d3e5773eb3f8491ff3fe73122a3051a9b36d1f86457ce0fad22d"
-        },
-        {
-          "name": "libgcc_s.so.1",
-          "bytes": 187120,
-          "sha256": "9d339ecb409578d6a5d587e6c537a8f9589b8a13fefba30d167433a4b5758bee"
-        },
-        {
-          "name": "libpixman-1.so.0",
-          "bytes": 747768,
-          "sha256": "8740b21b15423da495da1c89e83d0fb64ca871bd4da47341d0422d7afb3b25e3"
-        },
-        {
-          "name": "libpng16.so.16",
-          "bytes": 231648,
-          "sha256": "2a570998f08a406b4083b06888e528fa0c5d6cc3bef77b40026d661c91cbfb90"
-        },
-        {
-          "name": "libstdc++.so.6",
-          "bytes": 2735712,
-          "sha256": "5bb0d21308f123b6ad46c6f35b42cedfcb8d6d439a53aa3dae04d880aaffdde3"
-        },
-        {
-          "name": "libxcb-render.so.0",
-          "bytes": 55608,
-          "sha256": "ee3c4a0893f4d944acbc83433234a97d94556e10c6a238e533f82b7a6bbe821b"
-        },
-        {
-          "name": "libxcb-shm.so.0",
-          "bytes": 14632,
-          "sha256": "58fcb847e2009affbd7eeb1f6d39949f29ccc153f230e0b0d23de00d2b5c1353"
-        },
-        {
-          "name": "libxcb.so.1",
-          "bytes": 170680,
-          "sha256": "6af94be329e17e57f1cc0f5e4afb5bdfe669a5168accdc31b03274110b937b41"
-        },
-        {
-          "name": "libz.so.1",
-          "bytes": 121272,
-          "sha256": "27fa6c6cb94fb5b099ead61758a300dbc392d1dbf307fff6c16a9b8e57fdc9de"
-        }
-      ]
-    },
-    "native-label-producer": {
-      "id": "native-label-producer",
-      "identity": {
-        "compilerSha256": "fa97c50b9d544c55f641b8926fddd56862cebd08878c3e030bfc3a41672becaf",
-        "programSha256": "cd135079b58efbcbc83d78c71f59393f6f58a35ce9f48ca8fa1311968f85eb16",
-        "sourceClosureSha256": "35688e00a617d91c881f323f57087d2182100b18f130095c89bc755caad04fee"
-      },
-      "role": "Separate ownership-repaired native labels compiler and producer; distinct from d240 benchmark CLI and current WASM.",
-      "files": [
-        {
-          "name": "vkf-0.7.5",
-          "bytes": 31729280,
-          "sha256": "fa97c50b9d544c55f641b8926fddd56862cebd08878c3e030bfc3a41672becaf"
-        },
-        {
-          "name": "label-producer",
-          "bytes": 304052680,
-          "sha256": "cd135079b58efbcbc83d78c71f59393f6f58a35ce9f48ca8fa1311968f85eb16"
-        }
-      ]
-    },
-    "libraries-ui": {
-      "id": "libraries-ui",
-      "identity": {
-        "repository": "vektor-flow/libraries",
-        "commit": "31b92edf66a7a1570ab7196563f09a7df78f7f20",
-        "package": "@vektor-flow/ui",
-        "version": "0.1.1-preview.0",
-        "scope": "Separate existingPP dependency, not replaced by this vektor-flow root"
-      },
-      "role": "Separate @vektor-flow/ui identity; not renamed or installed as vektor-flow.",
-      "files": [
-        {
-          "name": "libraries-ui-package.json",
-          "bytes": 1336,
-          "sha256": "20441e57233d3be867296506ea900663ec52e658b3da1cf088a6b0d6a754a8d0"
+          "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+          "bytes": 9803445,
+          "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
         }
       ]
     }
@@ -1768,23 +1168,23 @@
   "installedFiles": [
     {
       "path": "playground/canonical/compiler-base.mjs",
-      "bytes": 186803,
-      "sha256": "ad307eaa8ef5880e73e50733444d0107adc237ba8e7690061f4997474880a6f8"
+      "bytes": 188024,
+      "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
     },
     {
       "path": "playground/canonical/compiler.data",
-      "bytes": 610405,
-      "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      "bytes": 619872,
+      "sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
     },
     {
       "path": "playground/canonical/compiler.mjs",
-      "bytes": 756,
-      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+      "bytes": 1248,
+      "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     {
       "path": "playground/canonical/compiler.wasm",
-      "bytes": 65797495,
-      "sha256": "baf21e1e9cf44726262ae9fbe66a3b39feeaa92f0776e75104deafd08b4028e4"
+      "bytes": 67350513,
+      "sha256": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b"
     },
     {
       "path": "playground/canonical/formatter.mjs",
@@ -1797,29 +1197,229 @@
       "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
     },
     {
+      "path": "playground/canonical/package-tools/addresses.mjs",
+      "bytes": 22794,
+      "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+    },
+    {
+      "path": "playground/canonical/package-tools/cli.mjs",
+      "bytes": 4905,
+      "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+    },
+    {
+      "path": "playground/canonical/package-tools/git-source.mjs",
+      "bytes": 9262,
+      "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+    },
+    {
+      "path": "playground/canonical/package-tools/github.mjs",
+      "bytes": 1579,
+      "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+    },
+    {
+      "path": "playground/canonical/package-tools/host.mjs",
+      "bytes": 11443,
+      "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+    },
+    {
+      "path": "playground/canonical/package-tools/inputs.mjs",
+      "bytes": 7238,
+      "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+    },
+    {
+      "path": "playground/canonical/package-tools/metadata.mjs",
+      "bytes": 10834,
+      "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+    },
+    {
+      "path": "playground/canonical/package-tools/ownership.mjs",
+      "bytes": 2891,
+      "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+    },
+    {
+      "path": "playground/canonical/package-tools/package.json",
+      "bytes": 602,
+      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+    },
+    {
+      "path": "playground/canonical/package-tools/project.mjs",
+      "bytes": 7058,
+      "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+    },
+    {
+      "path": "playground/canonical/package-tools/publish.mjs",
+      "bytes": 5701,
+      "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+    },
+    {
+      "path": "playground/canonical/package-tools/resolve.mjs",
+      "bytes": 1773,
+      "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+    },
+    {
+      "path": "playground/canonical/prepare-formatter-ir.mjs",
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+    },
+    {
+      "path": "canonical-inline-worker.mjs",
+      "bytes": 804,
+      "sha256": "aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6"
+    },
+    {
+      "path": "inline-renderer-loader.mjs",
+      "bytes": 2336,
+      "sha256": "52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729"
+    },
+    {
+      "path": "inline-retained-scene-view.mjs",
+      "bytes": 15639,
+      "sha256": "7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6"
+    },
+    {
+      "path": "inline-runner.mjs",
+      "bytes": 7290,
+      "sha256": "cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f"
+    },
+    {
+      "path": "playground/browser-copy-retained-packets.mjs",
+      "bytes": 1480,
+      "sha256": "c165ee6b830d960e3d5a3b8faf8f90737b2f6d624c0a76431618def73c0bada1"
+    },
+    {
+      "path": "playground/interpolation-tests/browser.mjs",
+      "bytes": 7208,
+      "sha256": "98744c1f5170b1a45da3791a1b9972f424825c6d8d862c25c499a19d8e32c584"
+    },
+    {
+      "path": "playground/interpolation-tests/packaging.test.mjs",
+      "bytes": 2444,
+      "sha256": "f5f59a38b6b201adeaa2d05adda9314307a0d20110739e7d437e2045825543c7"
+    },
+    {
+      "path": "playground/interpolation-tests/plot-parameter.vkf",
+      "bytes": 556,
+      "sha256": "62062a610bda3c13cda00ee198762cf4e41c30bd525ede65a4e14db8554fc782"
+    },
+    {
+      "path": "playground/interpolation-tests/plot-shared-samples.vkf",
+      "bytes": 899,
+      "sha256": "3dcbd2f07eb42a3854aedc935f6ec4feae86a097fd27200696c5aa66be53fe5a"
+    },
+    {
+      "path": "playground/interpolation-tests/verify.py",
+      "bytes": 16030,
+      "sha256": "6533f81b6d4edd3631029b7c5d18d03b9acf4cdf51b2500ab3ae6313b3df6bf7"
+    },
+    {
+      "path": "playground/interpolation-tests/wasm.mjs",
+      "bytes": 3753,
+      "sha256": "20f8c8357732aab1530cf2444f6562792c8e32ef3153359ca9255b08b1b38aae"
+    },
+    {
+      "path": "playground/prepare-formatter-ir.mjs",
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+    },
+    {
       "path": "playground/vkf-canonical-browser-compiler.mjs",
       "bytes": 4014,
       "sha256": "14ac6085e0c8c006ba35196c4b714643bde6f14e8d620782a1b9d0f3be3c9493"
     },
     {
-      "path": "vf-ui/vf-symbolic-kernel-runtime.mjs",
-      "bytes": 15776,
-      "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+      "path": "playground/vkf-canonical-execution.mjs",
+      "bytes": 7183,
+      "sha256": "f56592e3eb727d87ebc954575d33022910407dc25d5c2bea55dbced60ac894ee"
     },
     {
-      "path": "vf-ui/vf-color-field.mjs",
-      "bytes": 23870,
-      "sha256": "ba64029f7d57188fc622c02c17748c0820d1faa1f5780c0cc5df5de2cab108fa"
+      "path": "playground/vkf-concurrent-broker-client.mjs",
+      "bytes": 6983,
+      "sha256": "b039bcca369fbf22cfefb6b8e02054ef2e8c05be3a4ed553edc1623a76d62d4a"
     },
     {
-      "path": "vf-ui/artifacts/current-labels/labels.wasm",
-      "bytes": 7582475,
-      "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
+      "path": "playground/vkf-concurrent-broker.mjs",
+      "bytes": 9886,
+      "sha256": "ef5b9ebaf16ce9be4b84a371debbdf8a363b2f5e769375c59e71ca692b58fb14"
     },
     {
-      "path": "vf-ui/artifacts/current-labels/labels.json",
-      "bytes": 34892,
-      "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
+      "path": "playground/vkf-concurrent-host.mjs",
+      "bytes": 16437,
+      "sha256": "0974ecfa7847ce8594772c2e1b62aebb03fff3754abfe592887de13a457be0d2"
+    },
+    {
+      "path": "playground/vkf-concurrent-process.mjs",
+      "bytes": 4653,
+      "sha256": "a0ba510be29bcfba5f27badfe761456ced38fe99f9c4f311f4177936ab9dfedd"
+    },
+    {
+      "path": "playground/vkf-concurrent-shared-graph.mjs",
+      "bytes": 3650,
+      "sha256": "160d1acd0fe058254d017530d152199e47af67408c07b901aaa80e677b37c675"
+    },
+    {
+      "path": "playground/vkf-concurrent-shared.mjs",
+      "bytes": 1364,
+      "sha256": "ad14422173e98dffc362b38af328634e88d16d0035e87485d73657ddb7e4550a"
+    },
+    {
+      "path": "playground/vkf-concurrent-transport.mjs",
+      "bytes": 6752,
+      "sha256": "61957e86e9c7786a0d864d8c26944a1f5acd5f4f5dc91c5186508b16940a163a"
+    },
+    {
+      "path": "playground/vkf-concurrent-values.mjs",
+      "bytes": 7622,
+      "sha256": "40159185c5ad84750cfbb34c3a272b174c7954671c9e7da90d5c58b6ca2b8679"
+    },
+    {
+      "path": "playground/vkf-concurrent-worker.mjs",
+      "bytes": 6455,
+      "sha256": "5526924499fe7b8b3329769c353e337c587c8eb1e71828e8d40dd54219c1ebf7"
+    },
+    {
+      "path": "playground/vkf-prepared-workers.mjs",
+      "bytes": 2604,
+      "sha256": "5a4bec830e66483e0fd35ac5efff661f667c9509548eb1fac03d44de1c886ac1"
+    },
+    {
+      "path": "playground/vkf-ready-broker.mjs",
+      "bytes": 2296,
+      "sha256": "2ed21bb733bf7f8320e909fa98a365371a77c37e30fb7ed530e8880533452bcd"
+    },
+    {
+      "path": "playground/vkf-ready-process.mjs",
+      "bytes": 880,
+      "sha256": "f033d556703d79521a310cc58d336646bd05098c9b8f1277c7e223c929213488"
+    },
+    {
+      "path": "playground/vkf-retained-execution-control.mjs",
+      "bytes": 1338,
+      "sha256": "a1faae2909f21bbefe55a9988eea15fe28d956b121135c838693d9524df61423"
+    },
+    {
+      "path": "playground/vkf-retained-window-execution.mjs",
+      "bytes": 6777,
+      "sha256": "5954874b15113e258841bb82dd8d7abbbba6c17b3267336d0cc54f1a31bb8828"
+    },
+    {
+      "path": "playground/vkf-retained-worker-execution.mjs",
+      "bytes": 682,
+      "sha256": "4cb2bd0a9c915bbe6a7ccebe5e45579c8e6a5a69cf276c5ec781446f065fefc2"
+    },
+    {
+      "path": "vkf-browser-isolation.mjs",
+      "bytes": 1816,
+      "sha256": "07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029"
+    },
+    {
+      "path": "vf-ui/.gitignore",
+      "bytes": 111,
+      "sha256": "ee94efcf7baedb3f6e8262c6e6f13fc340a24810491339c75fed1d8ca6cebe13"
+    },
+    {
+      "path": "vf-ui/README.md",
+      "bytes": 877,
+      "sha256": "ce4b3309c99e4254d1fa8367703fba6e28e23f822931f7f63bb9145ae0471fdb"
     },
     {
       "path": "vf-ui/artifacts/current-labels/catalog.vkfont",
@@ -1827,9 +1427,14 @@
       "sha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4"
     },
     {
-      "path": "vf-ui/artifacts/current-labels/producer.json",
-      "bytes": 15320,
-      "sha256": "94913ef61d72844962d9b00ce7703bfcbdbf7a9829ead619ff29083e52c8fec2"
+      "path": "vf-ui/artifacts/current-labels/labels.json",
+      "bytes": 34892,
+      "sha256": "7dd783d4693f552a49533d86f8a8b09a9d569c55a56a7d915abbf163b7fd440e"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/labels.wasm",
+      "bytes": 7582475,
+      "sha256": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f"
     },
     {
       "path": "vf-ui/artifacts/current-labels/native-mapping/EXTENSION.json",
@@ -1895,9 +1500,833 @@
       "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
       "bytes": 123825,
       "sha256": "b30cb7479a1628edaeaf243ff0f17f5e1a4f56853ec811ca1b3ba61f9348c96a"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/producer.json",
+      "bytes": 15320,
+      "sha256": "94913ef61d72844962d9b00ce7703bfcbdbf7a9829ead619ff29083e52c8fec2"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.json",
+      "bytes": 51961,
+      "sha256": "159cde98e88c43f9073823bbb0cd14c388470d814fb5f6fba1b4ca228f3e70fb"
+    },
+    {
+      "path": "vf-ui/artifacts/vkf-symbolic-kernel.wasm",
+      "bytes": 1354627,
+      "sha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular-chess-sdf.png",
+      "bytes": 9833,
+      "sha256": "00c7570e7e85359f5cfbbddb110d0ee15c906944cfebd3ed56d1e5dce10b00be"
+    },
+    {
+      "path": "vf-ui/assets/fonts/NotoSans-Regular.ttf",
+      "bytes": 569208,
+      "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
+    },
+    {
+      "path": "vf-ui/demo.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/display-only-star-test.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/donut-hit-test.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/example-gui.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/geom/internal/vf-retained-point-cloud-camera.mjs",
+      "bytes": 967,
+      "sha256": "6cbb8045fc4d08f5b05b94c235baa4a4c2713818749c7385af646100940c9773"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-plan.mjs",
+      "bytes": 8118,
+      "sha256": "ee99f468b0c41513a4486c9af6e82125ee20494f3f148a39056df9d437503110"
+    },
+    {
+      "path": "vf-ui/geom/vf-clustered-light-shading-oracle.mjs",
+      "bytes": 9787,
+      "sha256": "a5ad43f16aea25a23f28f8ee4971c389ad2e4b84503a52da6c0fa404db78f655"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-core.js",
+      "bytes": 17860,
+      "sha256": "2c414dedd1dc10da8f553e04ce3fd2de020e7acf00eb48f976d058a5411ab693"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-demo.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-dual.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-frame-adapter.js",
+      "bytes": 14836,
+      "sha256": "db179b3ad2885fe3187735f5e07175a8888e6ecf7263e2a9ed8436404299e459"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-layout.js",
+      "bytes": 13724,
+      "sha256": "17468a185566d6e3b0bc5c8eff749482cb9399e84c97a01c0caeaac59e2c0f2f"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger-transport.js",
+      "bytes": 5206,
+      "sha256": "04298dc65b9f691676b3908c400ba45d82800e80d0129bb0fa3831175b62d093"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-ledger.js",
+      "bytes": 37294,
+      "sha256": "89126424637eacc41cecdce57c17ad2326b2e7772dc2978e94948464966b0ef0"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-material-arena.js",
+      "bytes": 7141,
+      "sha256": "5b1441aff2b84fffb1e02eb3d4f4b4dc81ebeaa155519fb7e852db9c22427365"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-math.js",
+      "bytes": 4924,
+      "sha256": "3b91b0d3140162e9579a48f907cc703b77817b9e610ed076483f9375d2ea4023"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-mount.js",
+      "bytes": 9757,
+      "sha256": "908f49e7b6db930056967ed6e190cf76f2a06bfc99ace0691d1e5ec8c148a019"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-parametric-surface.js",
+      "bytes": 16458,
+      "sha256": "06ba6aabdccc3ee1ead00225394f83b79667045de2e8b167ec9657805836e6a7"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-shapes.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-smoke.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-solo.html",
+      "bytes": 478,
+      "sha256": "17354aea1a8cc0599283ad2bd8580211cbb40af3f192e806edc147cc48ea910c"
+    },
+    {
+      "path": "vf-ui/geom/vf-geom-wgpu.js",
+      "bytes": 419195,
+      "sha256": "2eaf4972b0800b1e8a3c11a176953111d703f1876dae456a1f7a24e221891314"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.mjs",
+      "bytes": 405,
+      "sha256": "c6dc27265c8aebf5c7ba1cd8fecd51693835a53aa9bb54002d78f65f3511f0ca"
+    },
+    {
+      "path": "vf-ui/geom/vf-gpu-backend-probe.test.mjs",
+      "bytes": 697,
+      "sha256": "69eb8124fa9d0e9b59fdd2648b5df7a78b625301a813a57d3434a1f595744b1d"
+    },
+    {
+      "path": "vf-ui/geom/vf-light-view-bounds.mjs",
+      "bytes": 9979,
+      "sha256": "6b4f4bef16dc6f18c7811eee3d00a7b502ade6d5e95f26111f73f50d8f869fc9"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-atlas.mjs",
+      "bytes": 6279,
+      "sha256": "1f0742279d8ed29fbfcce78a003d350287596236b3695ca59b8b1b1c92634fdc"
+    },
+    {
+      "path": "vf-ui/geom/vf-reflection-planner.mjs",
+      "bytes": 8626,
+      "sha256": "7640ea1281b93d6d69713ba9e5d0d72612557d28b8bc7349b9f72ba605f37715"
+    },
+    {
+      "path": "vf-ui/geom/vf-resident-mesh-renderer.mjs",
+      "bytes": 4736,
+      "sha256": "3279389bc3252e46c325112fcdf7632293f167fb2a3e81e212405c386b467380"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-point-cloud-renderer.mjs",
+      "bytes": 13131,
+      "sha256": "d6345908a21d41d7c75dfafd3a94d482bcb6713e7a262eb80b50a02d7d0aed1c"
+    },
+    {
+      "path": "vf-ui/geom/vf-screen-simplex-renderer.mjs",
+      "bytes": 22972,
+      "sha256": "cca6ebe8407c519f1d7d4962f3b04a60a0a366e63817f81a70b6c840dd4a42f9"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.mjs",
+      "bytes": 146808,
+      "sha256": "fa12c47214c64795ddda09514e3f500c27ccba2a800a84de7524dd28793036b4"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-plot-renderer.test.mjs",
+      "bytes": 6392,
+      "sha256": "0890fb51ffb84c127c50018c9d5caa753864952579615b67309b4ff67a22381c"
+    },
+    {
+      "path": "vf-ui/geom/vf-symbolic-relation-shader.mjs",
+      "bytes": 17430,
+      "sha256": "71fd03199cfa14e08f0064f6f085ab8b0ed5bff2192c51836846ab8da0b6b848"
+    },
+    {
+      "path": "vf-ui/index.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/katex/LICENSE",
+      "bytes": 1107,
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "vf-ui/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.css",
+      "bytes": 23335,
+      "sha256": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258"
+    },
+    {
+      "path": "vf-ui/katex/katex.min.js",
+      "bytes": 275414,
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-adaptive-native-labels.mjs",
+      "bytes": 8940,
+      "sha256": "432d06520939bb3fd3fb4e9f6f50b490bb5dc455d5c195be97f7ec496c06b752"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-native-provider.mjs",
+      "bytes": 4764,
+      "sha256": "1bd1b35a58878452355c5c3152419eb08d9c0a4a7eca7aa0107407baeea426ad"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-label-worker.mjs",
+      "bytes": 2179,
+      "sha256": "17545075aba22f7645d2688f9c30f3ad369bbadf1ebb33db624b9d46374c2059"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-math-labels.mjs",
+      "bytes": 2888,
+      "sha256": "14dfd82e3caddb9b662a4c2d5d408165b78504fa905980c432c9fcac2d5d2ee6"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-producer.mjs",
+      "bytes": 5958,
+      "sha256": "4b653b98b42a2c2ff175f30bfb0719765e37eadaaf4c9c3b505a4a09073a0e58"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-accuracy-scene.mjs",
+      "bytes": 2570,
+      "sha256": "3d8a5bfdc3d6cd568c1840682555b96b2ab22a18b1f4de3a4564a30eaa64505b"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-accuracy-source.mjs",
+      "bytes": 4834,
+      "sha256": "be5ccf53fca7bc4b0c66015d975a2f63f50d6d510f65f5449c51a9a1d372a9e1"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-certified-samples.mjs",
+      "bytes": 10553,
+      "sha256": "ad434b466b79dcf93d3966c4f04968a16c7dc20467f93518f93c44419bc2c6e4"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-program.mjs",
+      "bytes": 10966,
+      "sha256": "4bd6e4b514ad1157173cb97a9c94d22448594b85533103871a09d668254505c0"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-renderer.mjs",
+      "bytes": 24859,
+      "sha256": "d61ebcedbdf1fc6996dde159e93ac54783f10b62e069b017643aff208a1a8da5"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-curve-shaders.mjs",
+      "bytes": 9505,
+      "sha256": "fabf7356e8c401cdda438c03feeb0ec08404214adcdea893b35b57de60954f28"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-font-binding.mjs",
+      "bytes": 1869,
+      "sha256": "93f86abdaf0934171aa5bd8b8cc344e12cfafb6ad57fbecaad7ac06793752c21"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-label-layer.mjs",
+      "bytes": 9837,
+      "sha256": "a68afc9dd57e53f737f7c326d5cc4206d20b79ad2eb17b566be299cba506400a"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-outline-cache.mjs",
+      "bytes": 13934,
+      "sha256": "3a0b9ce7d77d22148e7c821291ad504bf91084d5a326a792371b260889ad8c47"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-plot-labels.mjs",
+      "bytes": 18274,
+      "sha256": "8d91c40818bd338a76d22b802371b5e1a843dbe6ccdb40fe0a4104a96dc18d3a"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-residual-shader.mjs",
+      "bytes": 9120,
+      "sha256": "51fc66fecdf731bc794fd9d13cb57172e814a86dd527cd737c540c1c3c9499c0"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-residual.mjs",
+      "bytes": 5363,
+      "sha256": "9644430b5a50e32eb08c2ccf383928a4c896b14a3b89918df5f92a5091b4156e"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-plot-pdf-commands.mjs",
+      "bytes": 5443,
+      "sha256": "935052a7d9c5f7a17ba30e9e32cbb06b6d6ecb93e3335a6f967f985d59a566e9"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-adapters.mjs",
+      "bytes": 5722,
+      "sha256": "a7b630b633f845bed64f709dd32708d25f79968359083ef2a24b6f16ee2c203e"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-contours.mjs",
+      "bytes": 4379,
+      "sha256": "d2ae9ef77ffd39a8dac3260fdcea4ece7aee3e4e9d4ec7579d86645cdba2c448"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-selection-outline.mjs",
+      "bytes": 13876,
+      "sha256": "611949ce243a28d0736e36753fa002aa285d7c973cdac60e330f6e611b56f0a5"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+      "bytes": 28034,
+      "sha256": "d2e281e77896ed85a6b682d9abb63b53eae8e1c252890f6a77a0f56294c5b08d"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-spatial-ranges.mjs",
+      "bytes": 2950,
+      "sha256": "c334479249df213149cfe51e467f35d51333c62e19f01250a87cf284cade7f33"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-stroke-contract.mjs",
+      "bytes": 3788,
+      "sha256": "265e741505aef85f889f91cbf80170e1911be24d41c6c106b484a621c5699a60"
+    },
+    {
+      "path": "vf-ui/shaders/vf-rigid-polygons-2d.wgsl",
+      "bytes": 24793,
+      "sha256": "ded234f8bf841125f5ecb97407ce643fbe55f9ea7b9be1b1d9fceb56a7ddd222"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-1.61.6.min.mjs",
+      "bytes": 693871,
+      "sha256": "cc6f1f3d5e09758eafc15f7c2712439be3f2e25c301d096b11405a2f78a96e8f"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-LICENSE",
+      "bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "vf-ui/vendor/mediabunny-NOTICE.txt",
+      "bytes": 487,
+      "sha256": "21fadee3b5815df1ba1e08f77394248688204d2b5a2dee884d939b7dd4565ba1"
+    },
+    {
+      "path": "vf-ui/vf-alpha-hit-mask.js",
+      "bytes": 3220,
+      "sha256": "154ab4417876bdcb1c5ff47761f0bcc9f8f3def105c1bea0cada4750b12deba8"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-label-layout.mjs",
+      "bytes": 5902,
+      "sha256": "338858b9d54f30ed1be9da98cc638b02539ea18c2998398e7db0c637ef51a8cb"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.js",
+      "bytes": 26734,
+      "sha256": "64960b6d2be29343e7a64d0bf209d4c26ae5d305320a0dc347c7c12dcf7dac75"
+    },
+    {
+      "path": "vf-ui/vf-axis2d-ticks.mjs",
+      "bytes": 239,
+      "sha256": "9525dab3af29d8a01a38b875fd1cc7e56c43d4f92584d91c55ec57a8d2938221"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.js",
+      "bytes": 1591,
+      "sha256": "e0404f60f661239f453793964273daae100ecfbab7c0658e459146ded7901b22"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel-adapter.mjs",
+      "bytes": 398,
+      "sha256": "ee40ec5a0a037768b408822db7e521da897813581885deeb4dff00c665b2e6f1"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-kernel.js",
+      "bytes": 13720,
+      "sha256": "ce9309e37d39a8d1bd326af34d43c92b335b0d12945c1896622940ff6b95d911"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel-adapter.js",
+      "bytes": 1303,
+      "sha256": "547e8ed0bb74760cec9bac2ecd8e2b9d2123dd67f423cb6b999d8eb5027ad199"
+    },
+    {
+      "path": "vf-ui/vf-axis3d-projection-kernel.js",
+      "bytes": 5555,
+      "sha256": "72eb524cc308507a63aebb01915bc75d8f968e2763b7c8967ad3996f347c47b7"
+    },
+    {
+      "path": "vf-ui/vf-chess-piece-animation.js",
+      "bytes": 3009,
+      "sha256": "e6436cf60bef583f2c5a1d8a44cbe93c72d78d9eb29c88d00545592314fd7802"
+    },
+    {
+      "path": "vf-ui/vf-chess.css",
+      "bytes": 4393,
+      "sha256": "265f24326adb9186398cd2cc21d85fa5843b04ec57b72665b9e168ed0e0daca4"
+    },
+    {
+      "path": "vf-ui/vf-color-field.mjs",
+      "bytes": 23870,
+      "sha256": "ba64029f7d57188fc622c02c17748c0820d1faa1f5780c0cc5df5de2cab108fa"
+    },
+    {
+      "path": "vf-ui/vf-color-scale.mjs",
+      "bytes": 2137,
+      "sha256": "48063bae9c140fccc852e5979649a761a631282ba43d23259c1469988e271c42"
+    },
+    {
+      "path": "vf-ui/vf-colorbar-view.mjs",
+      "bytes": 20346,
+      "sha256": "eae52a6ed633fd8d8dc867b7b34b95db1fe976dd1106ab8182e0fea8cf05fdcf"
+    },
+    {
+      "path": "vf-ui/vf-compiled-field-runtime.mjs",
+      "bytes": 4695,
+      "sha256": "dd924f4c5dc4d56cffa9689e9b7e970646c6fb9cf1e359c2d47b063f3416e959"
+    },
+    {
+      "path": "vf-ui/vf-compiled-runtime-bridge.js",
+      "bytes": 19214,
+      "sha256": "4ff9b30cad45ec0270223852f7d360c51dcce8c0cd1987ad129c27ace48ff70a"
+    },
+    {
+      "path": "vf-ui/vf-compiled-ui-module-registry.js",
+      "bytes": 3435,
+      "sha256": "b964c28eb7191e3b39f9681629ecaa65ad31c72373c1eb0631686f254eb33a78"
+    },
+    {
+      "path": "vf-ui/vf-compiled-webgpu-adapter.js",
+      "bytes": 70206,
+      "sha256": "1486c62fdf3f975a9d95df508de1c129d517413f47caa14b222dde0007b0e606"
+    },
+    {
+      "path": "vf-ui/vf-coordinate-grid.mjs",
+      "bytes": 13536,
+      "sha256": "8120049d76d9be2b527360f3c332d63bd9b3c6e56f7832cf92f23edcce01b839"
+    },
+    {
+      "path": "vf-ui/vf-display.js",
+      "bytes": 645148,
+      "sha256": "379714f7a2ed5b4e4a8a056b88ae2f9b0eb537b79b17a6344683e373e058c68b"
+    },
+    {
+      "path": "vf-ui/vf-frame-movie-capture.mjs",
+      "bytes": 3874,
+      "sha256": "a244d3729ceb3bead11b46050245147aab5df35b2025ecaaa5f3067c6f39d95e"
+    },
+    {
+      "path": "vf-ui/vf-frame.css",
+      "bytes": 20433,
+      "sha256": "ea8e9f3cd0fcc7e3cec2b4fc6e2dff394badc0a14d366767c3cdfc0ab92e0690"
+    },
+    {
+      "path": "vf-ui/vf-frame.js",
+      "bytes": 63720,
+      "sha256": "865f43b7cc537de826c3c6dca7114c93f371c6e6d031be725344b197ad8db353"
+    },
+    {
+      "path": "vf-ui/vf-glb-import.mjs",
+      "bytes": 10368,
+      "sha256": "6ffa605bca1a6bffe3b9ea5584be9b03a043692bf2b0152243c3cabf542a2cdd"
+    },
+    {
+      "path": "vf-ui/vf-gpu-runtime.js",
+      "bytes": 33158,
+      "sha256": "9a323546d8e46cce824aac5e999a05c8953e5bf56c77a6a30f8db447793f6508"
+    },
+    {
+      "path": "vf-ui/vf-html-components.js",
+      "bytes": 17079,
+      "sha256": "3bbf2e4aeacf6f2066201105ef0af48e207771e04bad90a4d2da75c08bea9724"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.css",
+      "bytes": 107,
+      "sha256": "f7a862786f6985305d0a839fcc4c7b7abe2a70cd04434907bfcb2d5e4820936f"
+    },
+    {
+      "path": "vf-ui/vf-interpolation-editor.mjs",
+      "bytes": 230,
+      "sha256": "e028e22734c1dce2193f59cec75384c1de1e00b635c109a02dc01c611f3ce96b"
+    },
+    {
+      "path": "vf-ui/vf-interpolation.mjs",
+      "bytes": 18353,
+      "sha256": "c6871183cef5f09aad0586892c05ba432653b6354e5e2ea1546c4c4316d7a12f"
+    },
+    {
+      "path": "vf-ui/vf-layered-screen-scene.mjs",
+      "bytes": 1520,
+      "sha256": "31c9934ec69e292004cd9e2ab1e51cfd159b6e6f5a854abf65078e2cce2ef9cb"
+    },
+    {
+      "path": "vf-ui/vf-log.js",
+      "bytes": 1675,
+      "sha256": "9cc6f6792cd60a20065df4f56d53a42b2d849b14dafec24d312d409ebcb9cd99"
+    },
+    {
+      "path": "vf-ui/vf-media-capture.mjs",
+      "bytes": 9599,
+      "sha256": "feb2a71774258f1b7a89d4f9870f0b2ed44d8ac0f9f68487ba78819fd763e23a"
+    },
+    {
+      "path": "vf-ui/vf-native-scene.js",
+      "bytes": 427234,
+      "sha256": "c307d6ff02b57620d3345ae73e3b33ba659731237eac3d5846e4b05ff7c948ec"
+    },
+    {
+      "path": "vf-ui/vf-physics-engine.mjs",
+      "bytes": 85813,
+      "sha256": "526b318080c6ba9ec1a115a8e364188b41bab1918db1bbb867443805120f1620"
+    },
+    {
+      "path": "vf-ui/vf-property-program.mjs",
+      "bytes": 9662,
+      "sha256": "dd9169864be924411e70e9c9645f9d3e66712c97e766e28e21ab55b6963aaa35"
+    },
+    {
+      "path": "vf-ui/vf-render-clock.js",
+      "bytes": 2878,
+      "sha256": "c2250bef93b3de6afdff83aa09d1d0e144dc46251db8440a92b4e5660db93b54"
+    },
+    {
+      "path": "vf-ui/vf-retained-event-adapter.js",
+      "bytes": 3773,
+      "sha256": "b7082ab7a277ece450781deb5e4a56f8e3dd33ef5f78c4a921fc47dfae2f001b"
+    },
+    {
+      "path": "vf-ui/vf-retained-vm-bridge.js",
+      "bytes": 32659,
+      "sha256": "b6c841644dd069398a5ac54e899ad88a08c639960e15f30164f1c19cf5c0813e"
+    },
+    {
+      "path": "vf-ui/vf-runtime-flow.js",
+      "bytes": 23897,
+      "sha256": "b7a464edd0e88206d079a19a47259af9a22c9841cac6fdb58e39ca7ed262061f"
+    },
+    {
+      "path": "vf-ui/vf-runtime-packet-contract.js",
+      "bytes": 27244,
+      "sha256": "15072337a9d12f6901593a73e989133387fb182970c8fbc847d585163ab0e7e6"
+    },
+    {
+      "path": "vf-ui/vf-runtime-scene.js",
+      "bytes": 32704,
+      "sha256": "262a1d0b48b7a8d95cd0b5ea74508bf15e2d3e91751c4aa8c733d8b15115f922"
+    },
+    {
+      "path": "vf-ui/vf-runtime-shell.js",
+      "bytes": 51483,
+      "sha256": "c02f5e46835484f2a9f5aa7c01bfbb9cf2509f457beb4b622739e61b08930411"
+    },
+    {
+      "path": "vf-ui/vf-runtime-source.js",
+      "bytes": 7829,
+      "sha256": "bb9c3a5a256f8e294e4fd5b5bc4c65c548b6b717f8c23c03c74e5fba44913feb"
+    },
+    {
+      "path": "vf-ui/vf-selection-interaction.mjs",
+      "bytes": 4890,
+      "sha256": "00f43d50749538e2739357d103f75101a425c743e68c89716ed0002a5b8509fd"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.html",
+      "bytes": 472,
+      "sha256": "c705b7c48f17fccef7b6c13c55a90548c373676f71e11407223985dbac081caf"
+    },
+    {
+      "path": "vf-ui/vf-shared-rect-demo.js",
+      "bytes": 23175,
+      "sha256": "c5c7154ccfd8e03b88b26ce3b316f6e9baaf43f265b0e78e239f0b2e73754250"
+    },
+    {
+      "path": "vf-ui/vf-shared-runtime.js",
+      "bytes": 8646,
+      "sha256": "1725ee7329ac829e922efc8a5b47df433ff7341485a3fca37112f0cebd732ab6"
+    },
+    {
+      "path": "vf-ui/vf-spatial-geometry.mjs",
+      "bytes": 20660,
+      "sha256": "28370cadca8b8bc9c75e3ae3b3971a157a19690d813f3e90a0c5201da9ea9ea0"
+    },
+    {
+      "path": "vf-ui/vf-startup-gate.js",
+      "bytes": 6363,
+      "sha256": "ec551b48249bf6cd10ff9224750e31bd9ea88fb4da99f789f64d2b55d51dc78d"
+    },
+    {
+      "path": "vf-ui/vf-static-html-loader.js",
+      "bytes": 10184,
+      "sha256": "88c63f0392fc4eaf4c988c5b1e427c0b45eac13eb8fca5eeb7fd51fdcb2cd5af"
+    },
+    {
+      "path": "vf-ui/vf-surface-context.mjs",
+      "bytes": 14380,
+      "sha256": "35f48c155414e39bb8c18d99714646b0d4a52e92ee9018dba813069a92162c72"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-constraints.mjs",
+      "bytes": 6816,
+      "sha256": "56ed3ece2af43c204c9a44bb77b6c956a25c1ad1cff01966d77a205ba46204bc"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-document-runtime.mjs",
+      "bytes": 2102,
+      "sha256": "cd729666d69a70ef8afe05db8ced15318efa7aa1289abb6cca80433920d74618"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-kernel-runtime.mjs",
+      "bytes": 15776,
+      "sha256": "eefc2f37d1ee14c83992bc0ef2734a082eacb900a297df5b09c39d2967de1caa"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-plot-controller.mjs",
+      "bytes": 60851,
+      "sha256": "2c8de0f8d085c4952837a166f8a202d6006de0380c00c8710105dae24f2a4361"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-surface-constraints.mjs",
+      "bytes": 6757,
+      "sha256": "dbe49f8b7998c9c65c4d57ea0fffb53fc4d37cec42fe0659cd4e38c25aa60095"
+    },
+    {
+      "path": "vf-ui/vf-symbolic-wasm-runtime.mjs",
+      "bytes": 4027,
+      "sha256": "bb7868e5a23421e15d10b1306bf21e03044c56e3c5e744eee68b2a1f0f2d40d0"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.js",
+      "bytes": 1657,
+      "sha256": "2d69ddc63829a1b40418b21661a276077dbd005ef4f61b69279cde89a84cfe2b"
+    },
+    {
+      "path": "vf-ui/vf-ui-modifiers.mjs",
+      "bytes": 239,
+      "sha256": "5ff141d41611185309914558d2ef178f1358ba7ed51e374634048e715f3d2a6d"
+    },
+    {
+      "path": "vf-ui/vf-ui-scene-fps-benchmark.js",
+      "bytes": 12686,
+      "sha256": "c257ea11817b8cdca1a3f645bf5af7123cb9dc47dab01868ae8cf592446dcf81"
+    },
+    {
+      "path": "vf-ui/vf-ui-theme.mjs",
+      "bytes": 4117,
+      "sha256": "8a6435cc4792114ce2667d32f849c262d48dfd72a7d5b6757e156b87de7b2bcd"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel-adapter.js",
+      "bytes": 1072,
+      "sha256": "82db346b4d8d985c7e200bdf0426b6738351cf0ce3884e89ffe8ec39fba461a8"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-kernel.js",
+      "bytes": 4841,
+      "sha256": "0ff1228da41aee81cfbcd4acfe990c63a7f6c9d4be561cfa3487bd9e6e8c3c92"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.js",
+      "bytes": 4339,
+      "sha256": "f2585d1ab1ea9741703b7adae989ac5bbf424f2895b7ea78a1a24934924cfe40"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-math.mjs",
+      "bytes": 225,
+      "sha256": "5e972b517437e7f5acb941d6d4194d741b9b5fb60b749799f84a76c91f579b9b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-runtime.js",
+      "bytes": 36105,
+      "sha256": "799a2b0bed9bb1af511650bf4ffcf3b4f8eda8b7727a3a10d275afc409b0b142"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-kernel-adapter.js",
+      "bytes": 10486,
+      "sha256": "e09a8e646926c2ca82edbbc204f1c3328759d15716195122180ae19b242e3f6b"
+    },
+    {
+      "path": "vf-ui/vf-vkf-ui-wasm-module-factory.js",
+      "bytes": 22568,
+      "sha256": "c97df4998d6eac6fe769ef15cac3164e15d1c1823adcc43fa61ceb5c711613ff"
+    },
+    {
+      "path": "vf-ui/vf-wasm-demo-contract.js",
+      "bytes": 3716,
+      "sha256": "4fa4d0c6bcdaf2804f372ec4f29ed3406e13880ee96c1119acc2ca16fa1a7a43"
+    },
+    {
+      "path": "vf-ui/vf-widgets.js",
+      "bytes": 44424,
+      "sha256": "00251dc4541eabeb2d75b4b2b8eea34061335314d46ca29e849fafafee4715cb"
+    },
+    {
+      "path": "vf-ui/vf-world-exchange.mjs",
+      "bytes": 5811,
+      "sha256": "8876d388e5e06981f231ae23ed248ec3c5b304c1c20c860d45df70ef2264130f"
+    },
+    {
+      "path": "vf-ui/vf-world-step.mjs",
+      "bytes": 5288,
+      "sha256": "35015f129c95dc6c261c740d8e648702bc91f68f977aaa7be7d71754e7181965"
+    },
+    {
+      "path": "vf-ui/vf-world-svg.mjs",
+      "bytes": 6298,
+      "sha256": "bbdc928ddd2c77cb5ea467a30cc5ce790d0614662e5231132d609192c9a63604"
+    },
+    {
+      "path": "vf-ui/vkf-scene.html",
+      "bytes": 98,
+      "sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e"
+    },
+    {
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
     }
   ],
   "formatterBinding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "nativeCliSha256": "d240c7c5759801ba0380f8d85e6c9c0b2746b34525598894b0da9c896705df39",
-  "symbolicGuestSha256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd"
+  "archives": [
+    {
+      "target": "canonical",
+      "path": "downloads/vkf-canonical-0.7.5-ffca-host63553cc-notices.tar.gz",
+      "bytes": 6126822,
+      "sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049"
+    },
+    {
+      "target": "native",
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+    }
+  ],
+  "notices": [
+    {
+      "path": "playground/canonical/third-party/emscripten-musl-copyright.txt",
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    {
+      "path": "playground/canonical/third-party/emscripten-toolchain-copyright.txt",
+      "bytes": 131248,
+      "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+    },
+    {
+      "path": "playground/canonical/third-party/trigonometric-source-notices.txt",
+      "bytes": 3359,
+      "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+    },
+    {
+      "path": "playground/canonical/third-party/vkf-runtime-musl-license.txt",
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    }
+  ]
 }

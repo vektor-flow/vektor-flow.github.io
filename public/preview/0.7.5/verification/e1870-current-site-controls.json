@@ -1,0 +1,101 @@
+{
+  "owner": "e1870",
+  "status": "PASS_CURRENT_AFFECTED_SITE_RUN_EDIT_COPY_MOBILE_DOWNLOADS",
+  "checks": [
+    {
+      "name": "ordinary-browsing-no-compiler-init",
+      "passed": true
+    },
+    {
+      "name": "existing-three-authored-numpy-comparisons-current-run-exact-stdout",
+      "passed": true,
+      "sources": [
+        "e9ca89d695f5bf63837447e985c858c2f88186610d9b2cfc5d41be9361ac3ab7",
+        "d277779afa702f69ba714a235d917e94a689fa8b944b936e9ab962f63f9243f6",
+        "31cc7191af6b4c774a455f0ee0fddfdfda94df67fae94f304cc722b5e52044da"
+      ]
+    },
+    {
+      "name": "real-editor-edit-invalidates-and-replaces-output-plain-copy-and-prism",
+      "passed": true,
+      "editStdout": "[15, 35, 60, 85, 110]\n[5, 6, 12, 18, 24]\n"
+    },
+    {
+      "name": "current-home-run-retained-canvas",
+      "passed": true,
+      "sourceSHA256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
+      "screenshotSHA256": "beda43eaaa38fa082a8804385420758ea6005164f5f1218a4999c6714f6f87bc"
+    },
+    {
+      "name": "current-home-real-edit-disposes-and-rerenders",
+      "passed": true,
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n1870\n"
+    },
+    {
+      "name": "phone-menu-download-navigation-and-no-overflow",
+      "passed": true
+    },
+    {
+      "name": "frozen-canonical-and-native-clean-download-size-sha-links",
+      "passed": true
+    }
+  ],
+  "executions": [
+    {
+      "id": "more-example-1",
+      "route": "syntax.html",
+      "sourceSHA256": "e9ca89d695f5bf63837447e985c858c2f88186610d9b2cfc5d41be9361ac3ab7",
+      "stdout": "[10, 35, 60, 85, 110]\n[0, 6, 12, 18, 24]\n",
+      "expected": "[10, 35, 60, 85, 110]\n[0, 6, 12, 18, 24]\n",
+      "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+    },
+    {
+      "id": "more-example-2",
+      "route": "syntax.html",
+      "sourceSHA256": "d277779afa702f69ba714a235d917e94a689fa8b944b936e9ab962f63f9243f6",
+      "stdout": "[[10, 28, 46, 64], [13, 40, 67, 94]]\n",
+      "expected": "[[10, 28, 46, 64], [13, 40, 67, 94]]\n",
+      "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+    },
+    {
+      "id": "stdlib-linalg-solve",
+      "route": "stdlib.html",
+      "sourceSHA256": "31cc7191af6b4c774a455f0ee0fddfdfda94df67fae94f304cc722b5e52044da",
+      "stdout": "[-0.999999999999999, 1]\n",
+      "expected": "[-0.999999999999999, 1]\n",
+      "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+    }
+  ],
+  "pageErrors": [],
+  "physicalGPUClaim": false,
+  "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "compilerSource": "74cfd17c3d299069f013c828b27b3581d0c9f197",
+  "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+  "downloads": [
+    {
+      "target": "canonical",
+      "path": "downloads/vkf-canonical-0.7.5-ffca-host63553cc-notices.tar.gz",
+      "bytes": 6126822,
+      "sha256": "6ebb7a32cba3684882f0d631c5772b82b711a384329ced422699678af2268049",
+      "httpStatus": 200,
+      "verified": true
+    },
+    {
+      "target": "native",
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076",
+      "httpStatus": 200,
+      "verified": true
+    }
+  ],
+  "browserClosed": true,
+  "serverClosed": true,
+  "ownedChildren": [
+    {
+      "pid": 81404,
+      "cmd": "/usr/bin/google-chrome"
+    }
+  ]
+}

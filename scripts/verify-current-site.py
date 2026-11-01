@@ -39,7 +39,13 @@ if preview.exists():
  assert current_release['preview'] is True and current_release['complete'] is False
  assert all(current_release[k] is False for k in ['stable','stable_release','release_qualified'])
  review_mode = current_release.get('site_review_iteration', {}).get('enabled') is True
- if review_mode:
+ if current_release.get('current_distribution', {}).get('enabled') is True:
+  assert current_release['status'] == 'verified-examples'
+  assert current_release['release_version'] == '0.7.5'
+  assert manifest['publication'] == current_release['publication_status'] == 'PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS'
+  from current_distribution import verify_current_distribution
+  expected_preview = verify_current_distribution(preview, current_release)
+ elif review_mode:
   assert current_release['status'] == 'private-candidate'
   assert current_release['publication_status'] == manifest['publication'] == 'PUBLISHED_REVIEW_SITE_NO_DOWNLOADS'
   assert current_release['download_packages_offered'] is False

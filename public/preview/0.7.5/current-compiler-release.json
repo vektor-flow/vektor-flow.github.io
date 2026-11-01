@@ -2,36 +2,36 @@
   "schema": 1,
   "release_version": "0.7.5",
   "preview": true,
-  "status": "private-candidate",
+  "status": "verified-examples",
   "complete": false,
-  "published": false,
+  "published": true,
   "stable": false,
   "stable_release": false,
   "release_qualified": false,
-  "qualification": "EDITORIAL_REVIEW_ITERATION_NOT_A_COMPLETE_RELEASE",
-  "compiler_source_commit": "4ee3a74808dcbc23234173a5b67bc9c909d7df3c",
-  "compiler_source": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-  "release_source": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-  "source": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-  "browser_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-  "frontend_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
+  "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
+  "compiler_source_commit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
+  "compiler_source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "release_source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "browser_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "frontend_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
   "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
   "files": {
     "compiler-base.mjs": {
-      "bytes": 186803,
-      "sha256": "ad307eaa8ef5880e73e50733444d0107adc237ba8e7690061f4997474880a6f8"
+      "bytes": 188024,
+      "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
     },
     "compiler.data": {
-      "bytes": 610405,
-      "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      "bytes": 619872,
+      "sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
     },
     "compiler.mjs": {
-      "bytes": 756,
-      "sha256": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f"
+      "bytes": 1248,
+      "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     "compiler.wasm": {
-      "bytes": 65797495,
-      "sha256": "baf21e1e9cf44726262ae9fbe66a3b39feeaa92f0776e75104deafd08b4028e4"
+      "bytes": 67350513,
+      "sha256": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b"
     },
     "formatter.mjs": {
       "bytes": 62804,
@@ -40,44 +40,94 @@
     "formatter.wasm": {
       "bytes": 1118687,
       "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    },
+    "package-tools/addresses.mjs": {
+      "bytes": 22794,
+      "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+    },
+    "package-tools/cli.mjs": {
+      "bytes": 4905,
+      "sha256": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04"
+    },
+    "package-tools/git-source.mjs": {
+      "bytes": 9262,
+      "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+    },
+    "package-tools/github.mjs": {
+      "bytes": 1579,
+      "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+    },
+    "package-tools/host.mjs": {
+      "bytes": 11443,
+      "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+    },
+    "package-tools/inputs.mjs": {
+      "bytes": 7238,
+      "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+    },
+    "package-tools/metadata.mjs": {
+      "bytes": 10834,
+      "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+    },
+    "package-tools/ownership.mjs": {
+      "bytes": 2891,
+      "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+    },
+    "package-tools/package.json": {
+      "bytes": 602,
+      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+    },
+    "package-tools/project.mjs": {
+      "bytes": 7058,
+      "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+    },
+    "package-tools/publish.mjs": {
+      "bytes": 5701,
+      "sha256": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f"
+    },
+    "package-tools/resolve.mjs": {
+      "bytes": 1773,
+      "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+    },
+    "prepare-formatter-ir.mjs": {
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
     }
   },
   "sha256": {
-    "compiler-base.mjs": "ad307eaa8ef5880e73e50733444d0107adc237ba8e7690061f4997474880a6f8",
-    "compiler.data": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7",
-    "compiler.mjs": "df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-    "compiler.wasm": "baf21e1e9cf44726262ae9fbe66a3b39feeaa92f0776e75104deafd08b4028e4",
+    "compiler-base.mjs": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05",
+    "compiler.data": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2",
+    "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
+    "compiler.wasm": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
     "formatter.mjs": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
-    "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+    "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+    "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
+    "package-tools/cli.mjs": "18e053109e2eb172723cf80657ab70eab318b97ac234263f4898483d79073f04",
+    "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
+    "package-tools/github.mjs": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0",
+    "package-tools/host.mjs": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c",
+    "package-tools/inputs.mjs": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20",
+    "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
+    "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
+    "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
+    "package-tools/project.mjs": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25",
+    "package-tools/publish.mjs": "0521ef689f8e1560c93f53ceb145c47c095a890320083b8c5ec7dc01aee9d27f",
+    "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
+    "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
   },
   "package": {
-    "module": "./playground/canonical/compiler.mjs?sha256=df914b4c1a93c7023f4c1e334b62944d7dcb0f0fa54a287cd7f0ca3dd2f1471f",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=baf21e1e9cf44726262ae9fbe66a3b39feeaa92f0776e75104deafd08b4028e4",
-    "data": "./playground/canonical/compiler.data?sha256=529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+    "module": "./playground/canonical/compiler.mjs?sha256=3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
+    "data": "./playground/canonical/compiler.data?sha256=6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
   },
   "current_package_composition": {
     "path": "CURRENT-COMPOSITION.json",
-    "bytes": 236038,
-    "sha256": "d8fdefd64c5f6077397eb96065cd0f6def8cccee556da377f1ab61c2f9cfa29a"
+    "bytes": 44805,
+    "sha256": "291f3a3cee72c454767440328cbad70d885a00a6abf2afefe070f3bc41180b7a"
   },
-  "publication_status": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
-  "download_packages_offered": false,
+  "publication_status": "PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS",
+  "download_packages_offered": true,
   "physical_gpu_tested": false,
-  "site_review_iteration": {
-    "enabled": true,
-    "downloadsOffered": false,
-    "status": "PASS_FOCUSED_DISABLED_REVIEW_SITE_WEB_CHECKS",
-    "runEnabled": false,
-    "latestCompilerRequired": true,
-    "executionStatus": "DISABLED_BEFORE_RELEASE",
-    "latestCompilerRunStatus": "UNRUN",
-    "storedCompilerRole": "Inactive historical assets, not an enabled execution candidate"
-  },
-  "current_review_site_evidence": {
-    "path": "verification/e1845-readable-calibration-names.json",
-    "bytes": 12021,
-    "sha256": "4fad229d9ed51f040a76efdb18002a64d66ccbf523f18d59f792e16c3da62e60"
-  },
   "current_candidate_verification": {
     "path": "verification/e1868-current075-browser-native.json",
     "bytes": 10734,
@@ -86,7 +136,29 @@
     "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
     "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
     "namedBrowserNativeChecksPASS": true,
-    "publicRuntimePromoted": false,
+    "publicRuntimePromoted": true,
     "releaseQualified": false
+  },
+  "current_distribution": {
+    "enabled": true,
+    "runEnabled": true,
+    "downloadsOffered": true,
+    "fullReleaseQualified": false,
+    "sharedUploadAvailable": false
+  },
+  "current_distribution_checksums": {
+    "path": "downloads/current075-checksums.json",
+    "bytes": 1505,
+    "sha256": "252e06b424c992f2b4d4c4eeef0962956014222d2a73f5843d2724ff7f76ab38"
+  },
+  "current_runtime_repair": {
+    "path": "verification/e1870-axis-routing-repair.json",
+    "bytes": 1178,
+    "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+  },
+  "current_distribution_evidence": {
+    "path": "verification/e1870-current-distribution.json",
+    "bytes": 55953,
+    "sha256": "cf140fa032c242324d9a7043c181353e7be9e1845f1eed26245b032d0973aeec"
   }
 }

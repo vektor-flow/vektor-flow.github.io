@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "HISTORICAL_UNCHANGED_OUTPUTS_ONLY_NEW_SOURCE_UNRUN_LATEST_COMPILER",
+  "status": "SOURCE_BOUND_OUTPUTS_WITH_EXPLICIT_PER_ROW_COMPILER_PROVENANCE",
   "seeds": [
     {
       "page": "stdlib.html",
@@ -17,11 +17,11 @@
       "id": "stdlib-linalg-solve",
       "source_sha256": "31cc7191af6b4c774a455f0ee0fddfdfda94df67fae94f304cc722b5e52044da",
       "stdout": "[-0.999999999999999, 1]\n",
-      "origin": "Actual e1823 WEBSITE-FIXES-ACTUAL-RESULT.json, current normal runner; group failed on former ideal-text assertion; affected rerun pending",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual current e1870 ordinary editor exact stdout",
+      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
       "visualOutputPending": false,
       "actualRecord": "/mnt/development/VektorFlow-e1823-normal-label-route-publication-actual-20261101/WEBSITE-FIXES-ACTUAL-RESULT.json",
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
     },
     {
       "page": "stdlib.html",
@@ -262,20 +262,20 @@
       "id": "more-example-1",
       "source_sha256": "e9ca89d695f5bf63837447e985c858c2f88186610d9b2cfc5d41be9361ac3ab7",
       "stdout": "[10, 35, 60, 85, 110]\n[0, 6, 12, 18, 24]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual current e1870 ordinary editor exact stdout",
+      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
       "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
     },
     {
       "page": "syntax.html",
       "id": "more-example-2",
       "source_sha256": "d277779afa702f69ba714a235d917e94a689fa8b944b936e9ab962f63f9243f6",
       "stdout": "[[10, 28, 46, 64], [13, 40, 67, 94]]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual current e1870 ordinary editor exact stdout",
+      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
       "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
     },
     {
       "page": "syntax.html",
@@ -507,5 +507,5 @@
     "stdout": "25\n",
     "status": "PENDING_CURRENT_ACTUAL_VERIFICATION"
   },
-  "editorial_note": "Saved outputs for unchanged examples are historical. New consolidated calibration has no saved output or latest compiler proof; all Run controls are disabled before release."
+  "editorial_note": "Each row retains its actual source and compiler provenance. Historical unchanged seeds are displayed examples, not current compiler qualification. Run compiles the actual edited source with the current selected compiler."
 }

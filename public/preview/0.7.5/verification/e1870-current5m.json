@@ -1,0 +1,332 @@
+{
+  "owner": "e1870",
+  "status": "CURRENT_EXACT5M_FULL_PACKET_CHECKED_RENDERER_APPLICABILITY_PENDING",
+  "source": {
+    "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/points-5000000.vkf",
+    "bytes": 221,
+    "sha256": "0da4371815759460a8b870d8c909c998c5dfd8b87973ca4726fd80973df9d6dc"
+  },
+  "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "phase": {
+    "phase": "GENUINE_COMPLETE_PACKET",
+    "count": 5000000,
+    "indexCount": 5000000,
+    "allChannels": 50000000,
+    "maxError": 2.9790396705031696e-08,
+    "timing": {
+      "formatProfile": {
+        "binaryRetained": true,
+        "usedBytes": 1038526784,
+        "packetJSONChars": 1068,
+        "allocateMs": 2.909999966621399,
+        "heapCopyMs": 522.0400000214577,
+        "stdoutMs": 0.4049999713897705,
+        "retainedFormatMs": 7507.410000026226,
+        "packetReadMs": 0.10000002384185791,
+        "jsonParseMs": 0.0549999475479126,
+        "arenaReconstructionMs": 103.9650000333786
+      },
+      "compileProfile": {
+        "native": {
+          "bridge_stages": [
+            {
+              "milliseconds": 13.95,
+              "stage": "bridge-source-copy"
+            },
+            {
+              "milliseconds": 655.295,
+              "stage": "bridge-compiler-call"
+            },
+            {
+              "milliseconds": 31.695,
+              "stage": "bridge-response-json-parse"
+            },
+            {
+              "milliseconds": 7.850001,
+              "stage": "bridge-ir-json"
+            },
+            {
+              "milliseconds": 0.684999,
+              "stage": "bridge-manifest-json"
+            },
+            {
+              "milliseconds": 18.28,
+              "stage": "bridge-wasm-hex-decode"
+            },
+            {
+              "milliseconds": 2.53,
+              "stage": "bridge-formatter-ir-copy"
+            },
+            {
+              "milliseconds": 2.635001,
+              "stage": "bridge-output-plan"
+            }
+          ],
+          "browser_ir_json_bytes": 42717,
+          "browser_manifest_json_bytes": 2381,
+          "browser_wasm_bytes": 82145,
+          "compiler": {
+            "sizes": {
+              "argument_slot_capacity": 16,
+              "artifact_cache_hit": 0,
+              "bytecode_constants": 42,
+              "bytecode_functions": 1,
+              "default_argument_slots": 16,
+              "document_arena_bytes": 541728,
+              "execution_body_statements": 10,
+              "frontend_compile_calls": 1,
+              "imported_function_candidates": 0,
+              "imported_function_retained": 0,
+              "mount_arena_bytes": 4198720,
+              "mutable_compile_input": 0,
+              "ordinary_flow_worker_pair": 0,
+              "packaged_module_parse_calls": 0,
+              "required_argument_slots": 0,
+              "response_json_bytes": 209599,
+              "source_execution_projection_limit": 0,
+              "source_fast_path": 0,
+              "source_route_capability_limit": 2,
+              "source_semantic_lowering_passes": 1,
+              "typed_functions": 1,
+              "wasm_bytes": 82145
+            },
+            "stages": [
+              {
+                "milliseconds": 1.395001,
+                "stage": "provider-frontend"
+              },
+              {
+                "milliseconds": 2.044999,
+                "stage": "source-prepare"
+              },
+              {
+                "milliseconds": 23.09,
+                "stage": "source-lex"
+              },
+              {
+                "milliseconds": 28.21,
+                "stage": "source-parse"
+              },
+              {
+                "milliseconds": 8.575,
+                "stage": "source-link"
+              },
+              {
+                "milliseconds": 3.140001,
+                "stage": "source-function-demand"
+              },
+              {
+                "milliseconds": 385.324999,
+                "stage": "source-semantic-lower"
+              },
+              {
+                "milliseconds": 32.305001,
+                "stage": "source-private-browser-lower"
+              },
+              {
+                "milliseconds": 14.269999,
+                "stage": "source-context-identity"
+              },
+              {
+                "milliseconds": 0.275,
+                "stage": "provider-execution-ir"
+              },
+              {
+                "milliseconds": 6.260001,
+                "stage": "canonical-ir-copy"
+              },
+              {
+                "milliseconds": 2.875,
+                "stage": "executable-ir-copy"
+              },
+              {
+                "milliseconds": 22.484999,
+                "stage": "typed-program-lowering"
+              },
+              {
+                "milliseconds": 29.695,
+                "stage": "bytecode-lowering"
+              },
+              {
+                "milliseconds": 0.53,
+                "stage": "ordinary-flow-worker-bridge"
+              },
+              {
+                "milliseconds": 52.015,
+                "stage": "wasm-emission"
+              },
+              {
+                "milliseconds": 15.345001,
+                "stage": "wasm-hex-transport"
+              },
+              {
+                "milliseconds": 6.674999,
+                "stage": "manifest"
+              },
+              {
+                "milliseconds": 15.630001,
+                "stage": "compile-response-json"
+              }
+            ]
+          }
+        },
+        "compilerCallMs": 734.2700000405312,
+        "transportReadMs": 0.5600000023841858,
+        "jsParseMs": 0.2999999523162842,
+        "wasmCopyMs": 0.09000003337860107,
+        "profileReadMs": 1.925000011920929,
+        "typedIRChars": 42717,
+        "manifestChars": 2381,
+        "guestWasmBytes": 82145
+      },
+      "compileMs": 762.8449999690056,
+      "executeMs": 97851.72000002861,
+      "formatMs": 8136.899999976158
+    },
+    "requestToPacketMs": 107344.99499994516,
+    "sourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+  },
+  "packet": {
+    "path": "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/fresh-packet-0.arena",
+    "bytes": 220000000,
+    "sha256": "7b399599afa7e69ee508b0c6afe0fb9f0621e971c3d30a7d04a1c434fda00c24"
+  },
+  "metadata": {
+    "scene": {
+      "container_kind": "viewport",
+      "frame": "frame_0",
+      "lights": [],
+      "meshes": [
+        {
+          "axis_ticks": {
+            "enabled": true,
+            "x_label": "x",
+            "x_max": 1,
+            "x_min": -1,
+            "y_label": "y",
+            "y_max": 1,
+            "y_min": -1,
+            "z_label": "z",
+            "z_max": 1,
+            "z_min": -1
+          },
+          "casts_shadow": false,
+          "color": [
+            0.1,
+            0.3,
+            0.7,
+            0.5
+          ],
+          "coordinate_labels": {
+            "x": "x",
+            "y": "y",
+            "z": "z"
+          },
+          "depth_write": false,
+          "id": "release-points",
+          "indices": {
+            "byte_offset": 200000000,
+            "length": 5000000,
+            "storage": "uint32"
+          },
+          "layer_id": 0,
+          "marker_space": "pixel",
+          "mode3d": true,
+          "no_lighting": true,
+          "pickable": true,
+          "render_mode": "marker_impostor",
+          "spatial_axes": [
+            "x",
+            "y",
+            "z"
+          ],
+          "topology": "point-list",
+          "transparent": true,
+          "type": "field_mesh",
+          "vertex_size": 2,
+          "vertices": {
+            "byte_offset": 0,
+            "length": 50000000,
+            "storage": "float32"
+          }
+        }
+      ],
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        1,
+        1
+      ],
+      "texts": [],
+      "toolbar": null
+    },
+    "schema": "vektor-flow/retained-scene-arena",
+    "version": 1
+  },
+  "metadataCompleteEqualToAcceptedInput": true,
+  "arenaEveryByteEqualToAcceptedInput": true,
+  "priorRendererProof": {
+    "path": "/mnt/development/VektorFlow-e1678-20261030/CURRENT5M-OUTPUT-AND-COMPONENT-REUSE.json",
+    "bytes": 64280,
+    "sha256": "a07d41706f3b99409941823cdf01c969f067b5dd86ea142e7eff7900cdb8aac9"
+  },
+  "priorRendererScope": "Same complete5Mpacket with unchanged retained mount/render/view/color components. Accepted historical same-input GPU queue/pixels/color results reused; no fresh GPU measurement or broad claim.",
+  "normalOuterJoin": {
+    "name": "current-exact5m",
+    "command": [
+      "node",
+      "--max-old-space-size=3072",
+      "/mnt/development/VektorFlow-e1870-current075-distribution-actual-20261101/current-exact5m.mjs"
+    ],
+    "limit": 260,
+    "pid": 70257,
+    "start": 448169.182525135,
+    "nestedChildrenJoined": [
+      {
+        "pid": 70272,
+        "status": 0,
+        "joined": true
+      },
+      {
+        "pid": 70274,
+        "status": 0,
+        "joined": true
+      },
+      {
+        "pid": 70297,
+        "status": 9,
+        "joined": true
+      },
+      {
+        "pid": 70299,
+        "status": 9,
+        "joined": true
+      },
+      {
+        "pid": 70311,
+        "status": 9,
+        "joined": true
+      },
+      {
+        "pid": 70340,
+        "status": 9,
+        "joined": true
+      }
+    ],
+    "exit": 124,
+    "end": 448429.471619092,
+    "elapsedSeconds": 260.289094096981,
+    "childJoined": true,
+    "reserveRefusal": null
+  },
+  "normalOriginalLimits": {
+    "guestArenaBytes": 1073741824,
+    "runnerTimeoutMs": 180000,
+    "outerSeconds": 260,
+    "physicalReserveBytes": 4294967296
+  },
+  "performanceQualified": false,
+  "fullReleaseQualified": false
+}

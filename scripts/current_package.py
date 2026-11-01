@@ -41,7 +41,8 @@ def verify_current_runtime(preview, release):
     composition = read(pinned(preview, release['current_package_composition']))
     need(composition['schema'] == 'vektor-flow.current-composition/1', 'wrong package composition')
     need(composition['inputSha256'] == expected['inputSha256'], 'wrong composition input')
-    need(composition['qualification'] == 'ASSEMBLED_UNQUALIFIED', 'identity record must not be a qualification receipt')
+    required_identity_mode = 'IDENTITY_ONLY_NOT_A_TEST_RECEIPT' if expected['schema'] == 2 else 'ASSEMBLED_UNQUALIFIED'
+    need(composition['qualification'] == required_identity_mode, 'identity record must not be a qualification receipt')
     components = {row['id']: row for row in composition['components']}
     need(len(components) == len(composition['components']), 'duplicate component identity')
     need(components == expected['components'], 'component identity or installation changed')
@@ -56,7 +57,7 @@ def verify_current_runtime(preview, release):
     for row in expected['installedFiles']:
         pinned(preview, row)
     for row in compiler['files']:
-        name = PurePosixPath(row['install']).name
+        name = row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else PurePosixPath(row['install']).name
         need(release['sha256'][name] == row['sha256'], 'descriptor compiler checksum mismatch')
         need(release['files'][name] == {k: row[k] for k in ('bytes', 'sha256')},
              'descriptor compiler file identity mismatch')

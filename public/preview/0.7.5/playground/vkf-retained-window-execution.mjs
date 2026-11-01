@@ -13,18 +13,33 @@ function script(name,globalName){
  }));
  return loads.get(url);
 }
-export async function executeRetainedInWindow(wasm,manifest,{signal}={}){
+export async function executeRetainedInWindow(wasm,manifest,{signal,resourceBaseUrl,resourceUrls,mountTarget,onRetainedEventState}={}){
  const scheduling=createRetainedExecutionControl(signal);scheduling.check();
  if(!globalThis.document)throw new TypeError('Retained execution requires the renderer window');
  await ensureInlineRenderer();scheduling.check();
  await script('vf-frame.js','VfFrame');await script('vf-display.js','VfDisplay');
  await script('vf-html-components.js','VfHtmlComponents');await script('vf-runtime-scene.js','VfRuntimeScene');
  await script('vf-retained-vm-bridge.js','VfRetainedVmBridge');
- const root=document.createElement('div');root.className='vkf-retained-execution';root.style.cssText='position:relative;width:900px;height:500px';document.body.append(root);
+ await script('vf-static-html-loader.js','VfStaticHtmlLoader');
+ if(resourceBaseUrl!==undefined){
+  const base=new URL(resourceBaseUrl,document.baseURI);
+  if(base.origin!==location.origin||!Array.isArray(resourceUrls)||!resourceUrls.length||
+     resourceUrls.some(url=>typeof url!=='string'||new URL(url).origin!==base.origin))
+   throw new TypeError('Retained static resources require an admitted same-origin inventory');
+  resourceBaseUrl=base.href;resourceUrls=Object.freeze([...resourceUrls]);
+ }
+ if(mountTarget!==undefined&&(!(mountTarget instanceof Element)||!mountTarget.isConnected))
+  throw new TypeError('Retained execution mount target must be an owned connected Element');
+ const root=document.createElement('div');root.className='vkf-retained-execution';root.style.cssText='position:relative;width:900px;height:500px';(mountTarget??document.body).append(root);
  const adapter=VfRuntimeScene.createAdapter({getLayer:()=>root,createRuntimeDependencies:()=>({frame:VfFrame})});
  const bridge=VfHtmlComponents.__internal.createOwnerLookupBridgeV1();
  const producer=adapter.createRetainedProducerSessionV1(bridge);
- const host=VfRetainedVmBridge.createRetainedVmBridgeV1(bridge,{producer});
+ const loader={mountFrameHtmlForOwnerV1:(frame,url,capabilities)=>{
+  if(resourceBaseUrl===undefined||!Array.isArray(resourceUrls))
+   throw new TypeError('Frame.load requires its source-relative static bundle inventory');
+  return VfStaticHtmlLoader.mountFrameHtmlForOwnerV1(frame,url,capabilities,{resourceUrls,signal,compiledOwnerEvents:true});
+ }};
+ const host=VfRetainedVmBridge.createRetainedVmBridgeV1(bridge,{producer,loader,resourceBaseUrl,resourceUrls,signal,onRetainedEventState});
  try{
   const module=await WebAssembly.compile(wasm),imports=WebAssembly.Module.imports(module);
   if(imports.length!==1||imports[0].kind!=='function'||imports[0].module!=='vkf.retained'||imports[0].name!=='invoke_v1')throw new TypeError('Unsupported retained execution imports');
@@ -54,13 +69,13 @@ export async function cancelRetainedExecutions(worker,reason=new DOMException('V
  // The real guest export must settle and its real host must finish disposal.
  await Promise.allSettled([...scope.active].map(execution=>execution.completion));
 }
-export async function dispatchRetainedExecution(worker,data){
+export async function dispatchRetainedExecution(worker,data,options={}){
  if(data?.type!=='vkf-execute-retained')return false;
  const scope=scopeFor(worker);if(scope.closed)return true;
  const execution={controller:new AbortController(),completion:null};scope.active.add(execution);
  execution.completion=(async()=>{
   try{
-   const result=await executeRetainedInWindow(data.wasm,data.manifest,{signal:execution.controller.signal});
+   const result=await executeRetainedInWindow(data.wasm,data.manifest,{...options,signal:execution.controller.signal});
    if(!scope.closed)worker.postMessage({type:'vkf-retained-result',request:data.request,status:'ok',memory:result.memory,outputPointer:result.outputPointer,receipt:result.receipt},[result.memory.buffer]);
   }catch(error){if(!scope.closed)worker.postMessage({type:'vkf-retained-result',request:data.request,status:'error',message:error.message});}
   finally{scope.active.delete(execution);}

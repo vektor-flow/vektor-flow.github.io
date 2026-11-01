@@ -619,6 +619,18 @@
       function property(capability, name, mutation) {
         live();
         var value = bridge.resolve(capability), kind = bridge.kind(capability);
+        var htmlKind = internal.catalog.some(function(entry) { return entry.identity === kind; });
+        if (name === "textContent" && htmlKind && value instanceof global.Element) {
+          if (mutation) {
+            if (typeof mutation.value !== "string") throw new TypeError("textContent requires str");
+            var previous = value.textContent; value.textContent = mutation.value;
+            // Reconcile owner lookup after replacing children; surviving
+            // aliases still refer to their original detached identities.
+            if (typeof sessionOptions.onRetainedEffect === "function")
+              sessionOptions.onRetainedEffect({object:value, kind:kind, name:name, before:previous, value:value.textContent});
+          }
+          return value.textContent;
+        }
         var disabledKind = ["Button", "Input", "Select", "TextArea", "Option", "OptGroup", "FieldSet"].includes(kind);
         if (name === "disabled" && disabledKind && value instanceof global.Element && "disabled" in value) {
           if (mutation) {

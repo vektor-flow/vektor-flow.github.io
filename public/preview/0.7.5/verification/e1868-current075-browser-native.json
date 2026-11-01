@@ -1,0 +1,312 @@
+{
+  "schema": "vektor-flow.current075-browser-native-verification/1",
+  "date": "2026-11-01",
+  "status": "PASS_CURRENT_NAMED_BROWSER_NATIVE_SCOPES_RELEASE_INCOMPLETE",
+  "browser": {
+    "sourceCommit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
+    "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+    "binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+    "runtimeSHA256": "6d211126a8244fcf9e943cb2cf3fe422de3b33a287eb9994e7de6492ac97851b",
+    "parameterFunctionalPASS": true,
+    "widgetLifecyclePASS": true,
+    "ordinaryEditorPlotPASS": true,
+    "parameterExecutions": 10,
+    "callbacks": "11,17,23 exactly once and in source order",
+    "geometry": "All five vertices, four segments, metadata and every arena byte checked against independent analytic literal",
+    "edits": [
+      "original",
+      "control height 2 to 4",
+      "explicit sample schedule edit"
+    ],
+    "legacyFlagsAndMixedGeometryRefusal": true,
+    "wholeCanvasPNGComparisons": [
+      {
+        "name": "original",
+        "status": "PASS",
+        "wholeCanvasPNGEqual": true,
+        "actualSHA256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56",
+        "referenceSHA256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56",
+        "presentationEndpoint": "canvas-command-completed"
+      },
+      {
+        "name": "control-edit",
+        "status": "PASS",
+        "wholeCanvasPNGEqual": true,
+        "actualSHA256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b",
+        "referenceSHA256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b",
+        "presentationEndpoint": "canvas-command-completed"
+      },
+      {
+        "name": "schedule-edit",
+        "status": "PASS",
+        "wholeCanvasPNGEqual": true,
+        "actualSHA256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225",
+        "referenceSHA256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225",
+        "presentationEndpoint": "canvas-command-completed"
+      }
+    ],
+    "normalCaps": {
+      "driverSeconds": 1200,
+      "workerTimeoutMs": 90000,
+      "editorWaitMs": 360000,
+      "outerSeconds": 1800,
+      "cleanupSeconds": 600
+    },
+    "physicalGPUClaim": false
+  },
+  "native": {
+    "sourceCommit": "89f64c311913343cd17ffe4f3329296ed291d229",
+    "binding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+    "binary": {
+      "bytes": 31905024,
+      "sha256": "7f039e6ab3ea12c5756a376f64b93c8490d707f94b6f1c98388a3714e4487fcc"
+    },
+    "currentObjects": 240,
+    "allEmittedDependenciesChecked": true,
+    "pairedSourcesInstalledAndByteVerified": 32,
+    "programsPassed": 20,
+    "oracleSamples": 83,
+    "scalarOracleComparisons": 1050,
+    "cases": [
+      {
+        "name": "compatibility",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "existing-core-via-interpolation",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "polynomial-patch-oracles",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "basics",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "surface",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "plot-parameter-values",
+        "expected_success": true,
+        "build_returncode": 0,
+        "returncode": 0,
+        "stage": "complete"
+      },
+      {
+        "name": "plot-width",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "plot-count",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "plot-domain",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "bezier-width",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "bezier-layout",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "bezier-empty",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "bezier-magnitude",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "bezier-query",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "hermite-layout",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "patch-layout",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "patch-count",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "patch-query",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "blend-query",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      },
+      {
+        "name": "blend-width",
+        "expected_success": false,
+        "build_returncode": 0,
+        "returncode": 1,
+        "stage": "complete"
+      }
+    ],
+    "addressCLI": {
+      "status": "PASS",
+      "outputs": [
+        21,
+        21,
+        27,
+        15,
+        15
+      ],
+      "checks": [
+        "genuine parser/linker/typed native guest",
+        "unchanged executable-cache reuse",
+        "private dependency edit",
+        "missing dependency and restore",
+        "address map removal and restore",
+        "wrong target rejected"
+      ]
+    },
+    "sourceRepairs": [
+      "Direct include for module extent declarations in native expression lowering",
+      "Restore existing native separate-module extent interface lost during shared source selection"
+    ],
+    "rootStdlibModulePresent": false,
+    "fullSDKQualified": false,
+    "separateModuleFeatureSuiteQualified": false
+  },
+  "core": {
+    "status": "ACCEPTED_EXACT_CANDIDATE_BY_REFERENCE",
+    "source": "e1865 current results and independent e1866/e1867 reviews",
+    "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+    "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+    "scopes": [
+      "source-address compiler and genuine runner",
+      "package host contracts",
+      "large UTF-8 discovery owner-heap cleanup/recovery",
+      "paired32 WASM payload",
+      "both 83-sample/1050-comparison WASM programs and formatter",
+      "assertions and nominal identity controls"
+    ],
+    "rerunForThisBrowserNativeScope": false
+  },
+  "publication": {
+    "fullReleaseQualified": false,
+    "publicRunEnabled": false,
+    "publicRuntimePromoted": false,
+    "nativeSDKOffered": false,
+    "sharedLibraryUpload": "REFUSED_BEFORE_MUTATION",
+    "sharedLibraryDefaultProtected": false,
+    "sharedLibraryProtectionSupported": false,
+    "liveOwnerPRQualified": false,
+    "privateAudienceChanged": false,
+    "comparativeBenchmarksQualified": false,
+    "speedThresholdsAreReleaseGates": false
+  },
+  "firstFailuresAndCorrections": [
+    "Native expression object24 lacked module extent declaration; direct include fixed and failed attempt retained",
+    "Module driver238 exposed lost native extent contract; restored existing native contract and recompiled 200 affected consumers plus failed driver, preserving 39 unchanged current objects",
+    "Clone-local Git author unavailable on first repair; used existing project commit author locally, retaining failed attempts",
+    "Optional root stdlib.vkf copy requested a file absent from selected source; installed and independently verified the complete32 manifest sources; no full SDK claim",
+    "Native20 runner initially pointed at package-policy repository; rebound only library root to frozen interpolation/Morphing fixture source and used fresh output directory"
+  ],
+  "images": [
+    {
+      "path": "verification/e1868-current075/ui-original.png",
+      "bytes": 6120,
+      "sha256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56"
+    },
+    {
+      "path": "verification/e1868-current075/ui-original-literal.png",
+      "bytes": 6120,
+      "sha256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56"
+    },
+    {
+      "path": "verification/e1868-current075/ui-control-edit.png",
+      "bytes": 6219,
+      "sha256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b"
+    },
+    {
+      "path": "verification/e1868-current075/ui-control-edit-literal.png",
+      "bytes": 6219,
+      "sha256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b"
+    },
+    {
+      "path": "verification/e1868-current075/ui-schedule-edit.png",
+      "bytes": 6112,
+      "sha256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225"
+    },
+    {
+      "path": "verification/e1868-current075/ui-schedule-edit-literal.png",
+      "bytes": 6112,
+      "sha256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225"
+    }
+  ],
+  "limits": [
+    "These are exact-candidate named checks; they do not qualify the inactive public runtime or complete compiler/platform release.",
+    "The existing public review remains disabled. Private shared repository owner enforcement remains unavailable; no bypass or live PR proof.",
+    "Native root stdlib umbrella module, complete SDK, full separate-module feature suite, broad language/standards, full GPU physics/Morphing world and native LaTeX scene remain outside this qualification.",
+    "Morphing is project-library compatibility input, not standard-library code.",
+    "No PDF work or additional comparative timing campaign was performed. Missing benchmark rows stay unqualified."
+  ]
+}

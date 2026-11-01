@@ -3,7 +3,7 @@
   "publication": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
   "preview": true,
   "stable": false,
-  "source": "Pre-release website review with Run disabled. Stored compiler assets are inactive historical bytes. Latest compiler execution and enabled release qualification remain UNRUN; current disabled-mode evidence is in current_review_site_evidence.",
+  "source": "Pre-release website review with Run disabled. Stored runtime assets retain their existing reviewed identity. Separate current candidate browser/native verification is pinned in current_candidate_verification; its declared scopes do not qualify the public runtime or complete release.",
   "files": [
     {
       "path": ".nojekyll",
@@ -414,10 +414,10 @@
     },
     {
       "path": "current-compiler-release.json",
-      "bytes": 3586,
-      "sha256": "8c9369ca0ba6b68ec8561ec7927cb9a23aaaba63827e162301451b677b0f1749",
+      "bytes": 4145,
+      "sha256": "57718c2cb6fc2b396652715ec9c69143ca100421ebd4977c25796ad003df6f35",
       "source_sha256": "cd4b5405f7d91d0d8ff1fd67c1a76ff70789b6abfcde68ad0cd6f158b889ace5",
-      "previous_sha256": "eca9660badc05b75af6f9f16f5c9beb9c7b3e7570802e46fed9cf83f7e2e432c"
+      "previous_sha256": "8c9369ca0ba6b68ec8561ec7927cb9a23aaaba63827e162301451b677b0f1749"
     },
     {
       "path": "current-documentation-examples.mjs",
@@ -26007,8 +26007,8 @@
     },
     {
       "path": "release-status.html",
-      "bytes": 2285,
-      "sha256": "edf2ac1623b8253ed90c2bb2aae7b844a2e2a61afe552dc1cc1e1f9ce6f06c4e",
+      "bytes": 2916,
+      "sha256": "5dace3270ce1f42fd6767f6458c78f1d737c5296d1bea2d34ec2582a45dbf812",
       "source_sha256": "acc98f0fea8566dd64975b82e002934e24bf61326c358797ba31ba6eb9f4a0b0",
       "previous_sha256": "edf2ac1623b8253ed90c2bb2aae7b844a2e2a61afe552dc1cc1e1f9ce6f06c4e"
     },
@@ -26276,14 +26276,14 @@
       "bytes": 114688,
       "sha256": "079f5bc8a5c27cd8d2eb5c12d2b3e360637c804bec279fcba47e04846a0040e7",
       "source_sha256": "677d6fc6bb9d1f0b06b4a684cedea324c0579347f89e22e35032b1ed63d5a1ef",
-      "previous_sha256": "c36c11377b43d8d3cb1efaae9cf05b105f6ddf1d8359212b2f5ee21b2cd04c4b"
+      "previous_sha256": "079f5bc8a5c27cd8d2eb5c12d2b3e360637c804bec279fcba47e04846a0040e7"
     },
     {
       "path": "syntax.html",
       "bytes": 129752,
       "sha256": "f3d32c923a147cdcdaf6a1e5b866cbb16b8f11b09b585099d3f3273f986902fa",
       "source_sha256": "f53a3d87d7393841256a0af776ccd50333a840e74e7c3755e7d7ce82478e88bf",
-      "previous_sha256": "95fc3ea17ce5582b5d066d4a147dba366c6b2aa78ee74c8c6fb6d66e9bb58a33"
+      "previous_sha256": "f3d32c923a147cdcdaf6a1e5b866cbb16b8f11b09b585099d3f3273f986902fa"
     },
     {
       "path": "testing.html",
@@ -26746,7 +26746,43 @@
     {
       "path": "verification/e1845-readable-calibration-names.json",
       "bytes": 12021,
-      "sha256": "4fad229d9ed51f040a76efdb18002a64d66ccbf523f18d59f792e16c3da62e60"
+      "sha256": "4fad229d9ed51f040a76efdb18002a64d66ccbf523f18d59f792e16c3da62e60",
+      "previous_sha256": "4fad229d9ed51f040a76efdb18002a64d66ccbf523f18d59f792e16c3da62e60"
+    },
+    {
+      "path": "verification/e1868-current075/ui-control-edit-literal.png",
+      "bytes": 6219,
+      "sha256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b"
+    },
+    {
+      "path": "verification/e1868-current075/ui-control-edit.png",
+      "bytes": 6219,
+      "sha256": "141be1ac2e7d1b1c99833affb9c5f217bd02af38b0974d99ccca46609ee3c77b"
+    },
+    {
+      "path": "verification/e1868-current075/ui-original-literal.png",
+      "bytes": 6120,
+      "sha256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56"
+    },
+    {
+      "path": "verification/e1868-current075/ui-original.png",
+      "bytes": 6120,
+      "sha256": "ddbe9b029b908d27d336663dc9e6c5acf9e6eb719f4853046a65646547a63c56"
+    },
+    {
+      "path": "verification/e1868-current075/ui-schedule-edit-literal.png",
+      "bytes": 6112,
+      "sha256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225"
+    },
+    {
+      "path": "verification/e1868-current075/ui-schedule-edit.png",
+      "bytes": 6112,
+      "sha256": "e25b715a9bd893da598cb7935d70ad991b393ce8d5cbcd6dfa400bc0dab6b225"
+    },
+    {
+      "path": "verification/e1868-current075-browser-native.json",
+      "bytes": 10734,
+      "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1"
     },
     {
       "path": "verification/exact-package-arithmetic-e1087.json",

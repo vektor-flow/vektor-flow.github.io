@@ -7,19 +7,23 @@ spectra:
         1.0 / (1.0 + 100.0 * energy ^ 2)
     1.0 + (1.0 + site_p) * profile_u
 
-span(x): stat.max(x) - stat.min(x)
+contrasts: stat.ptp_u(spectra)
+selected_site: 0
+candidate: 1
+candidate < contrasts.length()?>
+    contrasts.(candidate) > contrasts.(selected_site)?
+        .selected_site: candidate
+    .candidate: candidate + 1
 
-:: span_u(spectra)
+:: contrasts
+:: selected_site
 
 curve_energy: -1.0 + 0.00390625 * [0..512]
-selected:
-    selected_site: 2
-    1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
+selected: 1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
 
 :: selected.(256)
 
 view: .ui.viewport
-
 view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
-view.push(x_lim: [-1, 1], y_lim: [0, 5])
+view.push(x_lim: [-1, 1], y_lim: [0, 6])
 view.show()

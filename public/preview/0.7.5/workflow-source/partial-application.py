@@ -1,7 +1,8 @@
 from functools import partial
 
-def power(x, n):
-    return x ** n
+def calibrate(reading, gain, offset):
+    return reading * gain + offset
 
-cube = partial(power, n=3)
-print(cube(2))
+instrument = partial(calibrate, gain=1.02, offset=-0.3)
+print(instrument(20))
+print(instrument(25))

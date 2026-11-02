@@ -147,6 +147,42 @@ export function mountRetainedSceneResult(container, packets, {
     });
     viewport.append(selector, layer);
   }
+  const cartesianPackets = ownedPackets.filter(packet => (packet.metadata.scene.meshes || [])
+    .some(mesh => mesh.axis_ticks && mesh.axis_ticks.enabled !== false && mesh.mode3d !== true && mesh.axis_polar !== true));
+  const settings = container.closest?.('.readme-example')?.dataset ?? {};
+  const firstAxis = cartesianPackets[0]?.metadata.scene.meshes.find(mesh=>mesh.axis_ticks);
+  let gridMode = settings.gridMode ?? (firstAxis?.axis_ticks.grid === true ? 'lines' : 'off');
+  let axisType = settings.axisType ?? (firstAxis?.axis_box === true ? 'box' : 'crosshair');
+  let requestedGrid = settings.gridMode != null, requestedAxis = settings.axisType != null;
+  const applyPlotSettings = packet => {
+    if (!cartesianPackets.includes(packet)) return;
+    if (requestedAxis) VfDisplay.setPlotAxisType(packet.metadata.scene.frame,axisType);
+    if (requestedGrid) VfDisplay.setPlotGrid(packet.metadata.scene.frame,{mode:gridMode});
+  };
+  if (cartesianPackets.length) {
+    const shell = document.createElement('div');
+    shell.className = 'readme-example-scene-shell';
+    const controls = document.createElement('div');
+    controls.className = 'readme-example-plot-controls';
+    const addChoice = (title,values,current,change) => {
+      const label = document.createElement('label');
+      label.append(title+' ');
+      const select = document.createElement('select');
+      select.setAttribute('aria-label',title);
+      for (const [value,text] of values) {
+        const option = document.createElement('option');option.value=value;option.textContent=text;select.append(option);
+      }
+      select.value=current;
+      select.addEventListener('change',()=>{
+        try {change(select.value);cartesianPackets.forEach(applyPlotSettings);}
+        catch (error) {container.dispatchEvent(new CustomEvent('vf-example-render-error',{bubbles:true,detail:{message:error.message}}));}
+      });
+      label.append(select);controls.append(label);
+    };
+    addChoice('Axes',[['crosshair','Crosshair'],['box','Box']],axisType,value=>{axisType=value;requestedAxis=true;});
+    addChoice('Grid',[['off','Off'],['lines','Lines'],['dots','Dots']],gridMode,value=>{gridMode=value;requestedGrid=true;});
+    shell.append(controls,viewport);viewport=shell;
+  }
   container.append(viewport);
   let disposed = false;
   const presentationAbort = new AbortController();
@@ -283,6 +319,7 @@ export function mountRetainedSceneResult(container, packets, {
         signal: presentationAbort.signal,
         afterPresented: record => firstPresented(packet.metadata.scene.frame, record),
       });
+      applyPlotSettings(packet);
     }
   });
   const enlarge = document.createElement("button");

@@ -2951,6 +2951,7 @@
     if (Object.prototype.hasOwnProperty.call(prevCfg, "__frozen_box_tick_state")) {
       nextCfg.__frozen_box_tick_state = prevCfg.__frozen_box_tick_state;
     }
+    if (prevCfg.grid_options) {nextCfg.grid_options=prevCfg.grid_options;nextCfg.grid=prevCfg.grid;}
     nextCfg.__vf_live_mutated = true;
   }
 
@@ -3008,6 +3009,10 @@
         var prevMeshMatch = prevById[String(nextMesh.id)];
         if (!prevMeshMatch) { continue; }
         copyLiveAxisTickState(nextMesh.axis_ticks, prevMeshMatch.axis_ticks);
+        if (prevMeshMatch.__vf_axis_type) {
+          nextMesh.axis_box=prevMeshMatch.axis_box;nextMesh.axis_full_frame=prevMeshMatch.axis_full_frame;
+          nextMesh.__vf_axis_type=prevMeshMatch.__vf_axis_type;
+        }
       }
     }
   }
@@ -9226,6 +9231,16 @@
     var yMin = Number(cfg.y_min);
     var yMax = Number(cfg.y_max);
     if (!(xMax > xMin) || !(yMax > yMin)) { return null; }
+    if (mesh && mesh.axis_box === true) {
+      var box = axisBoxRect(mesh,w,h);
+      return {vx0:xMin,vx1:xMax,vy0:yMin,vy1:yMax,
+        dataToX:function(x) {return box.left+axisValueToUnit(x,xMin,xMax,cfg.x_mode)*box.width;},
+        dataToY:function(y) {return box.bottom-axisValueToUnit(y,yMin,yMax,cfg.y_mode)*box.height;},
+        dataToPoint:function(x,y) {return rotatePointAround(
+          box.left+axisValueToUnit(x,xMin,xMax,cfg.x_mode)*box.width,
+          box.bottom-axisValueToUnit(y,yMin,yMax,cfg.y_mode)*box.height,
+          w*0.5,h*0.5,axis2DRotationDeg(cfg));}};
+    }
     var xLog = mesh && mesh.axis_box !== true && isLogTickMode(cfg.x_mode) && xMin > 0 && xMax > xMin;
     var yLog = mesh && mesh.axis_box !== true && isLogTickMode(cfg.y_mode) && yMin > 0 && yMax > yMin;
     var x0 = xLog ? Math.log(xMin) / Math.LN10 : xMin;
@@ -9434,6 +9449,128 @@
       : 0;
   }
 
+  function normalizePlotGrid(options) {
+    if (!options || typeof options !== "object" || Array.isArray(options)) throw new TypeError("plot grid options must be an object");
+    var mode = options.mode == null ? "lines" : String(options.mode);
+    if (mode === "spots") mode = "dots";
+    if (["off","lines","dots"].indexOf(mode) < 0) throw new TypeError("plot grid mode must be off, lines or dots");
+    var result = {mode:mode,x:options.x !== false,y:options.y !== false,
+      minor:options.minor == null ? 0 : Number(options.minor),
+      width:options.width == null ? 1 : Number(options.width),
+      alpha:options.alpha == null ? 0.18 : Number(options.alpha),
+      radius:options.radius == null ? 1.5 : Number(options.radius)};
+    if (!Number.isInteger(result.minor) || result.minor < 0 || result.minor > 10 ||
+        !(result.width > 0) || !Number.isFinite(result.width) ||
+        !(result.radius > 0) || !Number.isFinite(result.radius) ||
+        !Number.isFinite(result.alpha) || result.alpha < 0 || result.alpha > 1) throw new RangeError("plot grid style is out of range");
+    ["xStep","yStep"].forEach(function(key) {
+      if (options[key] == null) return;
+      var step = Number(options[key]);
+      if (!(step > 0) || !Number.isFinite(step)) throw new RangeError("plot grid step must be positive and finite");
+      result[key] = step;
+    });
+    return Object.freeze(result);
+  }
+
+  function setPlotAxisType(fid, type) {
+    fid = String(fid);type=String(type).toLowerCase();
+    if (type !== "box" && type !== "crosshair") throw new TypeError("plot axis type must be box or crosshair");
+    var scene = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!scene) throw new Error("plot axis type requires a current renderer Frame");
+    var controllers=(scene.meshes || []).filter(function(mesh) {return mesh.axis_ticks && mesh.mode3d !== true;});
+    if (!controllers.length) throw new Error("axis type control currently requires Cartesian 2D axes");
+    if (controllers.some(function(mesh) {return mesh.axis_polar === true;})) throw new Error("polar/spherical axis conversion is deferred");
+    controllers.forEach(function(mesh) {
+      mesh.axis_box=type === "box";
+      mesh.axis_full_frame=type === "crosshair";
+      mesh.__vf_axis_type=type;
+      mesh.axis_ticks.__vf_live_mutated=true;
+      unfreezeAxis2DBoxTickPlacement(mesh.axis_ticks);
+    });
+    requestGeomFramePresentation(fid);
+    return type;
+  }
+
+  function setPlotGrid(fid, options) {
+    fid = String(fid);
+    var settings = normalizePlotGrid(options);
+    var scene = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!scene) throw new Error("plot grid requires a current renderer Frame");
+    var controllers = (scene.meshes || []).filter(function(mesh) {return !!mesh.axis_ticks && mesh.mode3d !== true;});
+    if (!controllers.length) throw new Error("plot grid requires a 2D axis controller");
+    controllers.forEach(function(mesh) {
+      var cfg = mesh.axis_ticks;
+      if (mesh.axis_polar === true && settings.mode === "dots") throw new Error("grid dots currently require Cartesian axes");
+      ["x","y"].forEach(function(axis) {
+        var logarithmic = isLogTickMode(cfg[axis+"_mode"]);
+        if (settings[axis+"Step"] && logarithmic) throw new Error("explicit grid world steps currently require linear axes");
+      });
+    });
+    controllers.forEach(function(mesh) {
+      mesh.axis_ticks.grid_options = settings;
+      mesh.axis_ticks.grid = settings.mode !== "off";
+      mesh.axis_ticks.__vf_live_mutated = true;
+    });
+    requestGeomFramePresentation(fid);
+    return settings;
+  }
+
+  function drawCartesianPlotGrid(ctx, cfg, xValues, yValues, toX, toY, bounds, ranges) {
+    var options = normalizePlotGrid(cfg.grid_options || {mode:cfg.grid === true ? "lines" : "off",width:cfg.grid_width,alpha:cfg.grid_alpha});
+    if (options.mode === "off" || options.alpha === 0) return;
+    function coordinates(axis, authored, minimum, maximum) {
+      var major = authored.filter(Number.isFinite), step = options[axis+"Step"];
+      if (step) {
+        major = [];
+        var first = Math.ceil(minimum / step), last = Math.floor(maximum / step);
+        if (last-first+1 > 4096) throw new RangeError("plot grid exceeds 4096 positions on one axis");
+        for (var n=first;n<=last;n++) major.push(n*step);
+      }
+      major = major.filter(function(v) {return v>=minimum && v<=maximum;}).sort(function(a,b) {return a-b;});
+      var minor = [];
+      if (options.minor) for (var i=0;i+1<major.length;i++) {
+        for (var j=1;j<=options.minor;j++) {
+          // Existing axis mode transforms supply log/linear interpolation.
+          var unit = j/(options.minor+1);
+          minor.push(axisUnitToValue(unit,major[i],major[i+1],cfg[axis+"_mode"]));
+        }
+      }
+      if (major.length+minor.length>4096) throw new RangeError("plot grid exceeds 4096 positions on one axis");
+      return {major:major,minor:minor};
+    }
+    var xs = coordinates("x",xValues,ranges.x[0],ranges.x[1]);
+    var ys = coordinates("y",yValues,ranges.y[0],ranges.y[1]);
+    var base = parseRuntimeColor(cfg.grid_color || "white");
+    function paint(x,y,minor) {
+      var color = base.slice();color[3]*=options.alpha*(minor?0.5:1);
+      ctx.strokeStyle = runtimeColorCss(color);ctx.fillStyle=runtimeColorCss(color);
+      ctx.lineWidth=options.width*(minor?0.75:1);
+      ctx.beginPath();
+      if (options.mode === "dots") {
+        if (!options.x || !options.y) return;
+        if (x.length*y.length>65536) throw new RangeError("plot grid exceeds 65536 intersections");
+        for (var xi=0;xi<x.length;xi++) for (var yi=0;yi<y.length;yi++) {
+          var px=toX(x[xi]),py=toY(y[yi]),radius=options.radius*(minor?0.7:1);
+          ctx.moveTo(px+radius,py);ctx.arc(px,py,radius,0,Math.PI*2);
+        }
+        ctx.fill();
+      } else {
+        if (options.x) x.forEach(function(value) {var px=toX(value);ctx.moveTo(px,bounds.top);ctx.lineTo(px,bounds.bottom);});
+        if (options.y) y.forEach(function(value) {var py=toY(value);ctx.moveTo(bounds.left,py);ctx.lineTo(bounds.right,py);});
+        ctx.stroke();
+      }
+    }
+    ctx.save();
+    ctx.beginPath();ctx.rect(bounds.left,bounds.top,bounds.right-bounds.left,bounds.bottom-bounds.top);ctx.clip();
+    paint(xs.major,ys.major,false);
+    if (options.minor) {
+      if (options.mode === "dots") {
+        paint(xs.minor,ys.major.concat(ys.minor),true);paint(xs.major,ys.minor,true);
+      } else paint(xs.minor,ys.minor,true);
+    }
+    ctx.restore();
+  }
+
   function drawSimple2DMarkerLineMeshes(fid, frameEl, meshes) {
     var body = geomFrameHost(frameEl, fid);
     var canvas = body ? geomHostCanvas(body, 0) : null;
@@ -9577,30 +9714,12 @@
       var localBounds = state.localBounds;
       var xState = state.tickState && state.tickState.x || null;
       var yState = state.tickState && state.tickState.y || null;
-      var alpha = Math.max(0, Math.min(1, Number(cfg.grid_alpha) || 0.18));
-      var gridColor = parseRuntimeColor(cfg.grid_color || mesh.color || "white");
-      ctx.save();
-      ctx.strokeStyle = "rgba(" +
-        Math.round(gridColor[0] * 255) + "," +
-        Math.round(gridColor[1] * 255) + "," +
-        Math.round(gridColor[2] * 255) + "," +
-        Math.max(0, Math.min(1, gridColor[3] * alpha)) + ")";
-      ctx.lineWidth = Math.max(0.5, Number(cfg.grid_width) || 1);
-      ctx.beginPath();
-      var xs = xState && Array.isArray(xState.values) ? xState.values.slice() : [];
-      for (var xi = 0; xi < xs.length; xi += 1) {
-        var xp = view.dataToX(xs[xi]);
-        ctx.moveTo(xp, localBounds.top);
-        ctx.lineTo(xp, localBounds.bottom);
-      }
-      var ys = yState && Array.isArray(yState.values) ? yState.values.slice() : [];
-      for (var yi = 0; yi < ys.length; yi += 1) {
-        var yp = view.dataToY(ys[yi]);
-        ctx.moveTo(localBounds.left, yp);
-        ctx.lineTo(localBounds.right, yp);
-      }
-      ctx.stroke();
-      ctx.restore();
+      drawCartesianPlotGrid(ctx,cfg,
+        xState && Array.isArray(xState.values) ? xState.values : [],
+        yState && Array.isArray(yState.values) ? yState.values : [],
+        view.dataToX,view.dataToY,localBounds,
+        {x:[xState ? xState.visible_min : view.vx0,xState ? xState.visible_max : view.vx1],
+         y:[yState ? yState.visible_min : view.vy0,yState ? yState.visible_max : view.vy1]});
       void baseColor;
     }
 
@@ -9610,32 +9729,12 @@
       var computed = buildAxisBoxTickState(Object.assign({}, cfg, { width: Math.max(1, box.width), height: Math.max(1, box.height) }));
       var xState = cfg.__frozen_box_tick_state && cfg.__frozen_box_tick_state.x || computed.x || null;
       var yState = cfg.__frozen_box_tick_state && cfg.__frozen_box_tick_state.y || computed.y || null;
-      var alpha = Math.max(0, Math.min(1, Number(cfg.grid_alpha) || 0.18));
-      var gridColor = parseRuntimeColor(cfg.grid_color || mesh.color || "white");
-      var dataToX = function (x) { return box.left + axisValueToUnit(x, cfg.x_min, cfg.x_max, cfg.x_mode) * box.width; };
-      var dataToY = function (y) { return box.bottom - axisValueToUnit(y, cfg.y_min, cfg.y_max, cfg.y_mode) * box.height; };
-      ctx.save();
-      ctx.strokeStyle = "rgba(" +
-        Math.round(gridColor[0] * 255) + "," +
-        Math.round(gridColor[1] * 255) + "," +
-        Math.round(gridColor[2] * 255) + "," +
-        Math.max(0, Math.min(1, gridColor[3] * alpha)) + ")";
-      ctx.lineWidth = Math.max(0.5, Number(cfg.grid_width) || 1);
-      ctx.beginPath();
-      var xs = xState && Array.isArray(xState.values) ? xState.values.slice() : [];
-      for (var xi = 0; xi < xs.length; xi += 1) {
-        var xp = dataToX(xs[xi]);
-        ctx.moveTo(xp, box.top);
-        ctx.lineTo(xp, box.bottom);
-      }
-      var ys = yState && Array.isArray(yState.values) ? yState.values.slice() : [];
-      for (var yi = 0; yi < ys.length; yi += 1) {
-        var yp = dataToY(ys[yi]);
-        ctx.moveTo(box.left, yp);
-        ctx.lineTo(box.right, yp);
-      }
-      ctx.stroke();
-      ctx.restore();
+      var dataToX = function(x) {return box.left+axisValueToUnit(x,cfg.x_min,cfg.x_max,cfg.x_mode)*box.width;};
+      var dataToY = function(y) {return box.bottom-axisValueToUnit(y,cfg.y_min,cfg.y_max,cfg.y_mode)*box.height;};
+      drawCartesianPlotGrid(ctx,cfg,
+        xState && Array.isArray(xState.values) ? xState.values : [],
+        yState && Array.isArray(yState.values) ? yState.values : [],
+        dataToX,dataToY,box,{x:[cfg.x_min,cfg.x_max],y:[cfg.y_min,cfg.y_max]});
     }
 
     function axisPolarMetrics(mesh) {
@@ -9971,7 +10070,7 @@
           drawAxisGrid(mesh, color);
           ctx.beginPath();
           ctx.strokeStyle = runtimeColorCss(visualColors.axis);
-          drawAxisFullFrameLines(mesh);
+          if (mesh.axis_box === true) drawAxisBoxFrame(mesh); else drawAxisFullFrameLines(mesh);
           ctx.stroke();
           ctx.beginPath();
           ctx.strokeStyle = runtimeColorCss(visualColors.tick);
@@ -10021,13 +10120,17 @@
         drawAxisGrid(mesh, color);
         ctx.beginPath();
         ctx.strokeStyle = runtimeColorCss(visualColors.axis);
-        drawAxisFullFrameLines(mesh);
+        if (mesh.axis_box === true) drawAxisBoxFrame(mesh); else drawAxisFullFrameLines(mesh);
         ctx.stroke();
         ctx.beginPath();
         ctx.strokeStyle = runtimeColorCss(visualColors.tick);
         drawAxisTicks(mesh);
         ctx.stroke();
 
+        if (mesh.axis_box === true) {
+          var curveBox=axisBoxRect(mesh,w,h);
+          ctx.beginPath();ctx.rect(curveBox.left,curveBox.top,curveBox.width,curveBox.height);ctx.clip();
+        }
         ctx.beginPath();
         ctx.strokeStyle = runtimeColorCss(color);
         var curvePaths = continuousCurvePaths(mesh.indices, curvePathMode);
@@ -14934,6 +15037,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     nativeLabelFrameStatus: nativeLabelFrameStatus,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
+    setPlotGrid: setPlotGrid,
+    setPlotAxisType: setPlotAxisType,
+    normalizePlotGrid: normalizePlotGrid,
     refreshExamplePlotTheme: function() {
       if (!_lastDisplayPayload || !_lastDisplayPayload.geom) return;
       Object.keys(_lastDisplayPayload.geom).forEach(function(fid) {

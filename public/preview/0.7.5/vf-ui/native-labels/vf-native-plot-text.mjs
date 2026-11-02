@@ -8,8 +8,19 @@ const plainMathSource = value => '\\text{' + String(value).replace(/[\\{}$%&#_^~
 }[c])) + '}';
 export function nativePlotTextSource(text) {
   const source = String(text ?? '');
-  return source.length > 1 && source.startsWith('$') && source.endsWith('$')
-    ? source.slice(1, -1) : plainMathSource(source);
+  let result = '', offset = 0;
+  while (offset < source.length) {
+    let start = source.indexOf('$',offset);
+    while (start > 0 && source[start-1] === '\\') start=source.indexOf('$',start+1);
+    if (start < 0) {result += plainMathSource(source.slice(offset));break;}
+    const marker = source.slice(start,start+2) === '$$' ? '$$' : '$';
+    const end = source.indexOf(marker,start+marker.length);
+    if (end < 0) {result += plainMathSource(source.slice(offset));break;}
+    if (start > offset) result += plainMathSource(source.slice(offset,start));
+    result += source.slice(start+marker.length,end);
+    offset = end+marker.length;
+  }
+  return result;
 }
 
 export function createNativePlotTextLayer({container, createLayer}) {

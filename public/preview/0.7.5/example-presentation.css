@@ -36,3 +36,10 @@
  .readme-example-retained-layer { min-height:320px; }
  .readme-example-viewport .vf-frame__toolbar-controls { flex-wrap:wrap; }
 }
+
+.readme-example-scene-shell { display:flex; flex-direction:column; min-width:0; }
+.readme-example-plot-controls { display:flex; flex-wrap:wrap; gap:8px 24px; padding:8px 12px; border-bottom:1px solid var(--rule); color:var(--example-plot-ink); background:var(--example-plot-paper); }
+.readme-example-plot-controls label { display:flex; gap:8px; align-items:center; font-size:14px; }
+.readme-example-plot-controls select { min-height:44px; font:inherit; padding:4px 8px; color:inherit; background:var(--example-plot-paper); border:1px solid var(--rule); border-radius:6px; }
+.readme-result-dialog>.readme-example-scene-shell { flex:1; min-height:0; width:100%; }
+.readme-result-dialog .readme-example-scene-shell>.readme-example-retained-layer { flex:1; min-height:0; }

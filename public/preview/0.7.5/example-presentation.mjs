@@ -97,14 +97,6 @@ export function prepareExamplePresentation(example) {
   return presentation;
 }
 
-for (const example of document.querySelectorAll('.readme-example')) prepareExamplePresentation(example);
-// Generic VKF blocks converted by the editor adapter share the same presentation.
-const observer = new MutationObserver(()=>{
-  for (const example of document.querySelectorAll('.readme-example:not([data-vkf-presentation])'))
-    prepareExamplePresentation(example);
-});
-observer.observe(document.body,{childList:true,subtree:true});
-window.addEventListener('pagehide',event=>{
-  if (!event.persisted) observer.disconnect();
+window.addEventListener('pagehide',()=>{
   for (const example of document.querySelectorAll('.readme-example')) presentations.get(example)?.clearSaved();
 });

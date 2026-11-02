@@ -1154,5 +1154,38 @@
       "responseBytes": 100,
       "pageResponseHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
+  },
+  "currentTransport": {
+    "status": "ASDATA_ONLY_UNRUN_NON_REAL_PROTOCOL_AND_FAILURE_ORACLES_NOT_MEASUREMENTS",
+    "recipe": "In the EXISTING later-actual protocol heredoc, retain its expanded legacy baseline and all16 cases unchanged. Deep-copy that baseline; add explicit soda3-post and current exporterSource. For each request retain response bytes/hash, add real method/endpoint/query/canonical body/bodySHA/index/transport/socket25/elapsed1. Metadata remains GET with null query/body/boundary. Row query comes from the original URL; boundary uses accepted start, prior page last ID/timestamp, TEST-ONLY coordinates -74/40.75, trailingTies1 (initial null/0). Build full SoQL and exact canonical options. No corpus/source/XY or genuine complete bundle is fabricated.",
+    "exporterSource": {
+      "path": "scripts/release-local48/plotting/fetch-tlc.py",
+      "bytes": 16165,
+      "sha256": "6ab69fe83ccc5163094bb8c6e540c85089f11f8cc10cd924c1a2825cc79c4fc4"
+    },
+    "cases": [
+      {"id":"explicit-current-POST21-shape-only","mutations":[],"expected":"ACCEPT_PROTOCOL_ONLY"},
+      {"id":"self-claimed-unselected-exporter-pin","mutations":[{"path":["exporterSource","bytes"],"set":16166}],"expected":"REJECT"},
+      {"id":"POST-cannot-be-labelled-GET","mutations":[{"path":["requests",1,"method"],"set":"GET"}],"expected":"REJECT"},
+      {"id":"metadata-cannot-be-POST","mutations":[{"path":["requests",0,"method"],"set":"POST"}],"expected":"REJECT"},
+      {"id":"full-original-SoQL-required","mutations":[{"path":["requests",1,"body"],"bodySet":{"query":"SELECT source_row_id LIMIT 1000000"}}],"expected":"REJECT"},
+      {"id":"system-ID-inclusion-required","mutations":[{"path":["requests",1,"body"],"bodySet":{"includeSystem":false}}],"expected":"REJECT"},
+      {"id":"server-total-order-required","mutations":[{"path":["requests",1,"body"],"bodySet":{"orderingSpecifier":"discard"}}],"expected":"REJECT"},
+      {"id":"canonical-body-hash-required","mutations":[{"path":["requests",1,"bodySha256"],"set":"TEST_ONLY_NOT_A_HASH"}],"expected":"REJECT"},
+      {"id":"zero-server-timeout-rejected","mutations":[{"path":["requests",1,"body"],"bodySet":{"timeout":0}}],"expected":"REJECT"},
+      {"id":"noninteger-server-timeout-rejected","mutations":[{"path":["requests",1,"body"],"bodySet":{"timeout":24.5}}],"expected":"REJECT"}
+    ],
+    "diagnosticsASDATA": [
+      {"id":"missing-credentials-no-network","recipe":"Exact FAILED_PREREQUISITE schema/current source pin, fixed exporter error, transport soda3-post, networkRequests0, elapsed1. Retain bounded prerequisite reason and genuine diagnostic link; all3 rows have ALL numeric fields null."},
+      {"id":"HTTP401-and403-normal-failure","recipe":"Each status separately: use current metadata request0 without response fields, successfulRequests[], FAILED_NOT_EXPORTED/headers/HTTPError/reasonType str/elapsedRequest1/elapsedJob2. Retain bounded HTTP status and raw diagnostic; no fallback/success/numeric row."},
+      {"id":"header-timeout-incomplete-prefix","recipe":"Use current row request4 without response fields and current successfulRequests0..3, acceptedRows149998. FAILED_NOT_EXPORTED/headers/TimeoutError/null reason/status, elapsedRequest25/elapsedJob30. This is TEST ONLY, never prior2032 evidence. Keep failure reason/link, all numeric fields null; accepted prefix never qualifies1M."},
+      {"id":"attempt-is-not-success","recipe":"Use same attempted request4, ATTEMPTING_NOT_SUCCESS/current source/elapsedJob30 only. Retain pending attempt reason/link, no completed response or numeric row."},
+      {"id":"extra-header-service-message-rejected","recipe":"Add headers or serviceMessage=TEST_ONLY_NON_REAL_MARKER to the otherwise valid prerequisite record. Reject, no diagnostic raw link/copy, no marker in HTML/JSON/reasons."},
+      {"id":"parsed-exception-text-not-echoed","recipe":"In attempt4 replace only lastRow timestamp with TEST_ONLY_NON_REAL_MARKER. Reject; validation_reason omits parsed exception text; no diagnostic raw link/copy or marker in HTML/JSON/reasons."}
+    ],
+    "fileBackedASDATA": [
+      "Production fixture rejection remains mandatory: current protocol shape without real complete source/XY/metadata/current outputs cannot qualify. Current real exporter file must match selected16165/6ab69fee, not merely receipt self-claim. Mutating a disposable selected file byte rejects both completed export and current diagnostic; old11088 pin cannot validate currentPOST.",
+      "On a genuine complete later actual bundle run all2033 all-row/hash/revision/tie/boundary mutation cases. Also mutate only a selected prior full lastRow coordinate while retaining matching ID/timestamp and request query: retained-row comparison rejects. A successful bundle's leftover final ATTEMPTING snapshot is not failure and is never independent success. Keep all native/peer/parity/ink/review gates; missing genuine data is UNRUN."
+    ]
   }
 }

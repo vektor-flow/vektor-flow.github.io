@@ -10,13 +10,17 @@ method table, and the plotting sentence/scope label in the one brief intro.
 All other page bytes/tables, LOCAL48x10 and historical 12/72 accepted, 60 UNRUN,
 0 comparative rows retain their own scopes. No authored program, runtime,
 exporter, prepare, attach, test helper, current candidate or public file is
-changed by this SOURCE delta. The original2030 additive child is3ff41 over3c73;
-this2033 repair changes only those same three report files over exact2031
-240fade52528173981321a6a0218b3bc1245019b. Integrate ONLY the child delta into
-the actual current b78/4c6/prerequisite tree; never replay oldb2 ancestry/public
-bytes. Current publication and data recovery must not wait for this report.
+changed by this SOURCE delta. This2039 isolated child starts at exact2038
+4b046236fa28e91db0f6a87d891a0f3c883c7a72, verifies all2033 original three-file
+preimages, then intakes ONLY accepted2033 report8e8fbdb as intermediate8b9dabe.
+Its final change adapts only these same three files to the selected transport.
+Future intake uses the combined three-file delta against exact2030 preimages,
+or replays the two narrow commits; never copy this old public tree into current
+812e. All preimages/source pins and literal commands are in frozen READY.
+Current2035 site publication/inspection/normalclosure comes first. This report
+is not a current-site release gate, data grant or reason to interrupt that job.
 
-Current2031 export compatibility / acceptance
+Current explicit transport compatibility / acceptance
 --------------------------------------------
 The exporter keeps original WHERE/SELECT/timestamp,:id server order and exact
 chosen first1M, with coordinate/timestamp duplicates retained as distinct IDs.
@@ -33,10 +37,43 @@ accepted counts/starts/overlaps/boundaries, exact original queries with timestam
 suffix/tie offsets and final LIMIT20, original caps, authentic source revision
 1494466198/1702586741/14191205, and retained before/final metadata response pins.
 Month total remains UNKNOWN_NOT_QUERIED_PROVENANCE_ONLY; only final success
-establishes lowerBound1M. The loader requires the exact2031 exporter source:
-11088 bytes SHA256411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd.
-Changing the exporter method requires a reviewed adapter update; there is no
-silent acceptance of a changed data path.
+establishes lowerBound1M. Current receipt transport must explicitly name
+soda3-post or soda2-get and exporterSource must equal this exact source pin:
+16165 bytes SHA2566ab69fe83ccc5163094bb8c6e540c85089f11f8cc10cd924c1a2825cc79c4fc4.
+The loader also hashes the real selected fetch-tlc.py file; an arbitrary
+self-claimed receipt pin is insufficient. Current metadata stays GET at
+https://data.cityofnewyork.us/api/views/uacg-pexx.json before and after rows.
+SODA3 row requests must be POST at the real official endpoint
+https://data.cityofnewyork.us/api/v3/views/uacg-pexx/query.json with no invented
+GET query URL. Query is the original complete SELECT/WHERE/timestamp,:id ORDER/
+LIMIT/OFFSET. The exact canonical UTF-8 JSON body and SHA256 must match:
+includeSystem=true, includeSynthetic=false, orderingSpecifier=total, timeout
+positive integer floor(socketTimeoutSeconds), at most25. The exact pinned
+source enforces socket=min(25,remaining original240); success records alone
+cannot reconstruct the earlier remaining-budget instant. Full selected prior
+row/accepted count/trailing ties/request index are checked against all retained
+rows, including ties spanning pages. No auth header/token is recorded/displayed.
+
+Legacy receipts without transport/exporterSource retain their REAL three-field
+GET response records and original URL validation, only with the separately
+pinned old11088/411c6fee exporter file. They cannot pass with current16165 file
+or disguise POST as GET. Current soda2-get has explicit GET/method/endpoint/body
+identity and empty-body SHA. Supporting this contract is not an unchanged
+failed-export retry recommendation. No automatic fallback or retry is added.
+
+Existing request-failure.json or a request-attempt.json WITHOUT export.json
+is failure/attempt evidence only. The current source file and bounded exact
+diagnostic schema/method/query/body/hash/boundary/caps are checked before its
+ordinary raw link is admitted. Missing/unsupported credentials retain the fixed
+zero-network prerequisite reason. HTTP401/403, pre-header timeout, incomplete
+prefix and all other failures keep all3 rows with every numeric field null.
+Phase/type/status reasons are bounded; service bodies, headers and parsed
+exception text are never displayed. Rejected diagnostics get no copied raw
+link; rejected request/export query bodies are excluded from report JSON/raw
+links. Genuine separately supplied sanitized stderr links remain available.
+An attempt is not a successful response. A successful export leaves its final
+attempt snapshot behind, which does not invalidate the completed bundle or
+independently prove success. No raw HTTP bodies are retained or reconstructed.
 
 check_export_files verifies ordinary rows/XY/before/final metadata hashes and
 official schema/revision, then streams all1M source rows against every float32
@@ -138,8 +175,8 @@ It preserves those raw links and leaves all unmatched numeric cells pending.
 
   export PATH=/home/viktor/.local/bin:$PATH
 
-Existing export/prepare/attachment (do not repeat current already-admitted jobs):
-  python3 "$SITE/scripts/release-local48/plotting/fetch-tlc.py" "$RUN/tlc"
+Existing export/prepare/attachment, FUTURE separately admitted data scope ONLY:
+  python3 "$SITE/scripts/release-local48/plotting/fetch-tlc.py" "$RUN/tlc" --transport soda3-post
   python3 "$SITE/scripts/release-local48/plotting/prepare.py" "$RUN/tlc" "$RUN/prepared" --duration-seconds 6 --input-hz "$ACTUAL_INPUT_HZ" --environment "$RUN/environment.json"
   await runPlottingInExistingJob({...options, phase: 'preflight'});
   await runPlottingInExistingJob({...options, phase: 'measure'});
@@ -172,11 +209,18 @@ review, then existing authorized nonforce GitHub main/Pages workflow. Existing
 public; there is no new hosting/publish command or additional benchmark gate.
 Immediately verify existing target permissions/current remote refs as usual.
 Source has NO remote authority; this handoff is not an execution grant or clock
-extension. Actual2026 is closed. Actual2032 already has separate execution
-authority and its own FIRSTFD8915659,4GiB reserve and original STOP566239.475691614
-including preparation. No new permission is needed from this source; run only
-under that existing normal authority, never at the expense of current qualified
-publication/current causal checks or the real data job.
+extension. Actual2032 closed with failure149998 prefix, no export/finalmetadata.
+That and older100k remain failure evidence, never resumed/accepted data. Current
+actual2035 is SITE ONLY. Later data execution needs current2035 normal physical
+closure and independent review, a separate fresh Coordinator grant/current
+admission/NEW FIRSTFD/fresh original clock and normal external HARD240. Existing
+authorized valid SOCRATA_APP_TOKEN in that process is required for implemented
+POST; availability/validity is UNKNOWN here. Official docs permit app token OR
+user auth, but this exporter implements only the existing app-token input. No
+stores searched or credentials created/copied/printed. Source2038 transport
+and this adapter remain UNRUN: endpoint same-ID/order/representation equivalence
+and normal full240 completion are unknown. No source-only data/parity/timing
+acceptance, synthetic1M, prefix resume, capraise or optional matrix.
 
 Meaningful causal oracle — ASDATA, no SOURCE execution
 -----------------------------------------------------
@@ -242,13 +286,14 @@ This command itself has NOT been executed by SOURCE.
 
 Current protocol oracle command, LATER admitted actual ONLY, ASDATA:
 python3 - "$SITE" <<'PY'
-import copy, datetime, importlib.util, json, sys, tempfile, urllib.parse
+import copy, datetime, hashlib, importlib.util, json, sys, tempfile, urllib.parse
 from pathlib import Path
 root = Path(sys.argv[1])/'scripts/release-local48/plotting'
 spec = importlib.util.spec_from_file_location('plotting_report', root/'report.py')
 report = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(report)
-fixture = json.loads((root/'report-oracles.json').read_text())['exportProtocol']
+suite = json.loads((root/'report-oracles.json').read_text())
+fixture = suite['exportProtocol']
 assert fixture['status'] == 'TEST_ONLY_NON_REAL_NO_FILES_NO_MEASUREMENTS_UNRUN'
 baseline = copy.deepcopy(fixture['baseline'])
 recipe = fixture['recipe']
@@ -295,16 +340,90 @@ for case in fixture['cases']:
         assert case['expected'] == 'REJECT', case['id']
     else:
         assert case['expected'] == 'ACCEPT_PROTOCOL_ONLY', case['id']
+# Current explicit transport cases extend this SAME tiny protocol oracle.
+# No rows/XY, credentials, network, measurements or new launcher are involved.
+current = copy.deepcopy(baseline)
+current['transport'] = 'soda3-post'
+current['exporterSource'] = suite['currentTransport']['exporterSource']
+for index, r in enumerate(current['requests']):
+    metadata = index in (0,22)
+    query, boundary, body = None, None, None
+    if not metadata:
+        query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(r['url']).query))
+        for key in ('$limit','$offset'): query[key] = int(query[key])
+        previous = None if index == 1 else dict(current['completeness']['pages'][index-2]['last'],
+                                               pickup_longitude='-74', pickup_latitude='40.75')
+        boundary = dict(acceptedRows=current['completeness']['pages'][index-1]['start'],
+                        lastRow=previous, trailingTies=0 if previous is None else 1)
+        soql = ('SELECT '+query['$select']+' WHERE '+query['$where']+' ORDER BY '+query['$order']+
+                ' LIMIT '+str(query['$limit'])+' OFFSET '+str(query['$offset']))
+        body = json.dumps(dict(query=soql,includeSystem=True,includeSynthetic=False,
+                               orderingSpecifier='total',timeout=25),sort_keys=True,separators=(',',':'))
+    endpoint = metadata_url if metadata else origin+'/api/v3/views/uacg-pexx/query.json'
+    r.update(method='GET' if metadata else 'POST',url=endpoint,endpoint=endpoint,query=query,
+             body=body,bodySha256=hashlib.sha256((body or '').encode()).hexdigest(),boundary=boundary,
+             socketTimeoutSeconds=25,requestIndex=index,transport='soda3-post',elapsedRequestSeconds=1)
+for case in suite['currentTransport']['cases']:
+    data = copy.deepcopy(current)
+    for change in case['mutations']:
+        target = data
+        for part in change['path'][:-1]: target = target[part]
+        key = change['path'][-1]
+        if 'bodySet' in change:
+            body = json.loads(target[key]);body.update(change['bodySet'])
+            target[key] = json.dumps(body,sort_keys=True,separators=(',',':'))
+            target['bodySha256'] = hashlib.sha256(target[key].encode()).hexdigest()
+        else: target[key] = copy.deepcopy(change['set'])
+    try: report.check_export_protocol(data)
+    except (ValueError,KeyError,TypeError,IndexError,AttributeError): assert case['expected']=='REJECT',case['id']
+    else: assert case['expected']=='ACCEPT_PROTOCOL_ONLY',case['id']
+# Verify bounded failure reasons/raw links, without making a success fixture.
+source = suite['currentTransport']['exporterSource']
+prerequisite = dict(status='FAILED_PREREQUISITE',transport='soda3-post',networkRequests=0,
+    exporterSource=source,elapsedJobSeconds=1,
+    error='SOCRATA_APP_TOKEN required for SODA3; only a nonempty visible-ASCII header token is supported')
+attempt = copy.deepcopy(current['requests'][4])
+for key in ('bytes','sha256','elapsedRequestSeconds'): del attempt[key]
+diagnostics = [(prerequisite,True)]
+for code in (401,403):
+    r = copy.deepcopy(current['requests'][0])
+    for key in ('bytes','sha256','elapsedRequestSeconds'): del r[key]
+    diagnostics.append((dict(status='FAILED_NOT_EXPORTED',request=r,exporterSource=source,
+        phase='headers',errorType='HTTPError',reasonType='str',httpStatus=code,
+        elapsedRequestSeconds=1,elapsedJobSeconds=2,successfulRequests=[]),True))
+diagnostics.append((dict(status='FAILED_NOT_EXPORTED',request=attempt,exporterSource=source,
+    phase='headers',errorType='TimeoutError',reasonType=None,httpStatus=None,
+    elapsedRequestSeconds=25,elapsedJobSeconds=30,successfulRequests=current['requests'][:4]),True))
+pending = dict(status='ATTEMPTING_NOT_SUCCESS',request=attempt,exporterSource=source,elapsedJobSeconds=30)
+diagnostics.append((pending,True))
+marker = 'TEST_ONLY_NON_REAL_MARKER'
+diagnostics.append((dict(prerequisite,headers={'X-App-Token':marker},serviceMessage=marker),False))
+bad = copy.deepcopy(pending);bad['request']['boundary']['lastRow']['tpep_pickup_datetime']=marker
+diagnostics.append((bad,False))
+for diagnostic, accepted in diagnostics:
+    with tempfile.TemporaryDirectory() as directory:
+        empty = Path(directory)
+        name = 'request-attempt.json' if diagnostic['status']=='ATTEMPTING_NOT_SUCCESS' else 'request-failure.json'
+        (empty/name).write_text(json.dumps(diagnostic))
+        result = report.load_attempt(Path(sys.argv[1]).resolve(),empty,None,empty)
+        assert ('export-diagnostic' in result['artifacts']) == accepted
+        for row in result['rows']:
+            assert all(row[k] is None for k in ('completedUpdates','pacedCompletedUpdatesPerSecond',
+                'completedIntervalMs','presentationFps','repetitions','ratio','setup','inputTransfers','readbackTotalMs'))
+        text = json.dumps({k:v for k,v in result.items() if k!='artifacts'})+''.join(report.render(result,'fixture-only'))
+        assert marker not in text
 # No source/XY/metadata files or genuine output pins exist in this small oracle.
 # Protocol shape alone must never qualify the ordinary production loader.
 with tempfile.TemporaryDirectory() as directory:
     empty = Path(directory)
-    (empty/'export.json').write_text(json.dumps(baseline))
-    result = report.load_attempt(Path(sys.argv[1]).resolve(), empty, None, empty)
-    assert len(result['rows']) == 3 and result['problems']
-    assert all(r['pacedCompletedUpdatesPerSecond'] is None and r['completedUpdates'] is None
-               and r['status'] in ('PENDING','FAILED') for r in result['rows'])
-print('Protocol oracle passed:', len(fixture['cases']), 'TEST-ONLY cases; no real export acceptance')
+    for candidate in (baseline,current):
+        (empty/'export.json').write_text(json.dumps(candidate))
+        result = report.load_attempt(Path(sys.argv[1]).resolve(), empty, None, empty)
+        assert len(result['rows']) == 3 and result['problems']
+        assert all(r['pacedCompletedUpdatesPerSecond'] is None and r['completedUpdates'] is None
+                   and r['status'] in ('PENDING','FAILED') for r in result['rows'])
+print('Protocol oracles:',len(fixture['cases']),'legacy,',len(suite['currentTransport']['cases']),
+      'current;',len(diagnostics),'failure records; TEST ONLY, no real export acceptance')
 PY
 No command above was executed by SOURCE. The existing actual normal report
 regression may execute it without another launcher/job/quota. File-backed
@@ -325,7 +444,7 @@ File-integrity and publication oracle with the LATER actual's genuine bundle:
    row remains FAILED and raw error link survives. No silent dropped row.
 5. On a disposable page, call replace_tables with both rendered tables. Remove
    only the two old/new table spans and the documented intro sentence changes;
-   all remaining UTF-8 bytes must be identical. Assert five-menu labels and
+   all remaining UTF-8 bytes must be identical. Assert current six-menu labels and
    benchmark-method/current-qualification tables unchanged; 12/72/60/0 history
    remains exact. Feed HTMLParser: exactly one intro p inside article and no
    narrative p/section/chart/script additions after it. Verify every generated

@@ -30,11 +30,31 @@ SITE_INPUTS = {'helper': 'tests/plotting-comparison.mjs',
                'renderer': 'public/preview/0.7.5/vf-ui/vf-display.js',
                'runner': 'public/preview/0.7.5/inline-runner.mjs',
                'mount': 'public/preview/0.7.5/inline-retained-scene-view.mjs'}
+EXPORTER_PATH = 'scripts/release-local48/plotting/fetch-tlc.py'
+CURRENT_EXPORTER = {'path': EXPORTER_PATH, 'bytes': 16165, 'sha256':
+    '6ab69fe83ccc5163094bb8c6e540c85089f11f8cc10cd924c1a2825cc79c4fc4'}
+LEGACY_EXPORTER = {'path': EXPORTER_PATH, 'bytes': 11088, 'sha256':
+    '411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd'}
+ORIGIN = 'https://data.cityofnewyork.us'
+WHERE = ("tpep_pickup_datetime >= '2016-01-01T00:00:00' AND "
+         "tpep_pickup_datetime < '2016-02-01T00:00:00' AND "
+         'pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95')
+SELECT = ':id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude'
+ORDER = 'tpep_pickup_datetime ASC,:id ASC'
+
+
+class ReportValidationError(ValueError):
+    """Only locally authored validation labels are safe to display."""
 
 
 def require(condition, label):
     if not condition:
-        raise ValueError(label)
+        raise ReportValidationError(label)
+
+
+def validation_reason(error):
+    # Parser/OS exceptions can contain source strings or a service response.
+    return str(error) if isinstance(error, ReportValidationError) else 'Invalid input record (' + type(error).__name__ + ')'
 
 
 def finite(value):
@@ -62,6 +82,142 @@ def same_domain(a, b):
             all(finite(x) and finite(y) and abs(x-y) <= 1e-8 for x, y in zip(a, b)))
 
 
+def export_contract(dataset):
+    if 'transport' not in dataset and 'exporterSource' not in dataset:
+        # Legacy source really emitted only GET URL/response extent/hash. It
+        # cannot impersonate the new POST contract; production checks its file.
+        return 'legacy-get', LEGACY_EXPORTER
+    require(dataset['transport'] in ('soda2-get', 'soda3-post') and
+            dataset['exporterSource'] == CURRENT_EXPORTER, 'unreviewed exporter source/transport')
+    return dataset['transport'], CURRENT_EXPORTER
+
+
+def query_at_boundary(boundary):
+    require(isinstance(boundary, dict) and set(boundary) == {'acceptedRows', 'lastRow', 'trailingTies'},
+            'missing exact request boundary diagnostic')
+    count, last, ties = (boundary[k] for k in ('acceptedRows', 'lastRow', 'trailingTies'))
+    require(type(count) is int and 0 <= count < 1_000_000 and type(ties) is int,
+            'invalid request prefix boundary')
+    where = WHERE
+    if last is None:
+        require(count == ties == 0, 'unverified request prefix')
+    else:
+        require(set(last) == {'source_row_id', 'tpep_pickup_datetime', 'pickup_longitude', 'pickup_latitude'} and
+                isinstance(last['source_row_id'], str) and last['source_row_id'] and 1 <= ties <= count,
+                'invalid full selected boundary row')
+        stamp = datetime.datetime.fromisoformat(last['tpep_pickup_datetime'])
+        x, y = float(last['pickup_longitude']), float(last['pickup_latitude'])
+        require(stamp.tzinfo is None and stamp.year == 2016 and stamp.month == 1 and
+                math.isfinite(x) and math.isfinite(y) and -74.3 <= x <= -73.65 and 40.45 <= y <= 40.95,
+                'request boundary outside original eligibility')
+        where = '(' + WHERE + ") AND tpep_pickup_datetime >= '" + stamp.isoformat() + "'"
+    return {'$select': SELECT, '$where': where, '$order': ORDER,
+            '$limit': min(50_000, 1_000_000-count+int(last is not None)), '$offset': ties-1 if last else 0}
+
+
+def check_export_request(record, transport, query, index, completed=True):
+    """Credential-free request identity; never treat an attempt as a response."""
+    response_keys = {'bytes', 'sha256', 'elapsedRequestSeconds'} if completed else set()
+    require(set(record) == {'method', 'url', 'endpoint', 'query', 'body', 'bodySha256',
+            'boundary', 'socketTimeoutSeconds', 'requestIndex', 'transport'} | response_keys,
+            'unexpected/missing request diagnostic fields')
+    require(type(record['requestIndex']) is int and record['requestIndex'] == index and
+            record['transport'] == transport and record['query'] == query,
+            'request method/query/index identity mismatch')
+    budget = record['socketTimeoutSeconds']
+    require(finite(budget) and 0 < budget <= 25, 'invalid remaining socket budget')
+    metadata = query is None
+    if metadata:
+        endpoint = ORIGIN+'/api/views/uacg-pexx.json'
+        require(record['boundary'] is None, 'metadata must not carry row boundary')
+    else:
+        require(query_at_boundary(record['boundary']) == query and
+                type(query['$limit']) is int and type(query['$offset']) is int,
+                'request full query/boundary mismatch')
+        endpoint = ORIGIN+('/api/v3/views/uacg-pexx/query.json' if transport == 'soda3-post'
+                           else '/resource/uacg-pexx.json')
+    method = 'POST' if transport == 'soda3-post' and not metadata else 'GET'
+    require(record['method'] == method and record['endpoint'] == endpoint and record['url'] ==
+            endpoint+('?' + urllib.parse.urlencode(query) if query is not None and method == 'GET' else ''),
+            'unverified official request method/URL')
+    if method == 'POST':
+        require(isinstance(record['body'], str) and len(record['body']) < 2048, 'missing bounded POST body')
+        body = json.loads(record['body'])
+        timeout = body['timeout']
+        require(type(timeout) is int and 1 <= timeout <= 25 and timeout == math.floor(budget),
+                'POST timeout must be positive floor of remaining socket budget')
+        soql = ('SELECT '+query['$select']+' WHERE '+query['$where']+' ORDER BY '+query['$order']+
+                ' LIMIT '+str(query['$limit'])+' OFFSET '+str(query['$offset']))
+        expected = json.dumps({'query': soql, 'includeSystem': True, 'includeSynthetic': False,
+                              'orderingSpecifier': 'total', 'timeout': timeout},
+                             sort_keys=True, separators=(',', ':'))
+        require(record['body'] == expected, 'different canonical full SoQL/system/order POST body')
+    else:
+        require(record['body'] is None, 'GET must not carry a POST body')
+    require(record['bodySha256'] == hashlib.sha256((record['body'] or '').encode('utf-8')).hexdigest(),
+            'request canonical body hash mismatch')
+    if completed:
+        require(type(record['bytes']) is int and 0 < record['bytes'] <= 16*1024*1024 and
+                re.fullmatch(r'[0-9a-f]{64}', record['sha256']) and
+                finite(record['elapsedRequestSeconds']) and record['elapsedRequestSeconds'] >= 0,
+                'invalid completed response hash/extent/elapsed')
+
+
+def check_export_diagnostic(record, site):
+    """Return a bounded failure reason, with no service body/exception text."""
+    require(record['exporterSource'] == CURRENT_EXPORTER and
+            finite(record['elapsedJobSeconds']) and record['elapsedJobSeconds'] >= 0,
+            'unreviewed export diagnostic source/clock')
+    pin_matches(CURRENT_EXPORTER, site/EXPORTER_PATH)
+    status = record['status']
+    if status == 'FAILED_PREREQUISITE':
+        require(set(record) == {'status', 'transport', 'error', 'networkRequests', 'exporterSource',
+                'elapsedJobSeconds'} and record['transport'] in ('soda2-get', 'soda3-post') and
+                type(record['networkRequests']) is int and record['networkRequests'] == 0 and
+                record['error'] == 'SOCRATA_APP_TOKEN required for SODA3; only a nonempty visible-ASCII header token is supported',
+                'invalid credential prerequisite diagnostic')
+        return 'FAILED export prerequisite: missing/unsupported app-token input; zero network requests; no completed export'
+    require(status in ('ATTEMPTING_NOT_SUCCESS', 'FAILED_NOT_EXPORTED'), 'diagnostic is not export success')
+    expected = {'status', 'request', 'exporterSource', 'elapsedJobSeconds'}
+    completed = []
+    if status == 'FAILED_NOT_EXPORTED':
+        expected |= {'phase', 'errorType', 'reasonType', 'httpStatus', 'elapsedRequestSeconds', 'successfulRequests'}
+        completed = record['successfulRequests']
+        types = {'TimeoutError', 'URLError', 'HTTPError', 'RuntimeError', 'JSONDecodeError', 'UnicodeDecodeError',
+                 'OSError', 'SSLError', 'SSLCertVerificationError', 'ConnectionError', 'ConnectionResetError',
+                 'ConnectionRefusedError', 'BrokenPipeError', 'IncompleteRead', 'RemoteDisconnected', 'str', 'gaierror'}
+        require(record['phase'] in ('budget', 'headers', 'body', 'limits', 'json') and
+                record['errorType'] in types and (record['reasonType'] is None or record['reasonType'] in types) and
+                (record['httpStatus'] is None or type(record['httpStatus']) is int and 100 <= record['httpStatus'] <= 599) and
+                finite(record['elapsedRequestSeconds']) and record['elapsedRequestSeconds'] >= 0 and
+                isinstance(completed, list) and len(completed) <= 22,
+                'invalid bounded request failure diagnostic')
+    require(set(record) == expected, 'unexpected/missing export diagnostic fields')
+    r = record['request']
+    transport = r['transport']
+    require(transport in ('soda2-get', 'soda3-post') and type(r['requestIndex']) is int and
+            0 <= r['requestIndex'] <= 22 and (not completed or r['requestIndex'] == len(completed)),
+            'invalid diagnostic request sequence')
+    if status == 'FAILED_NOT_EXPORTED':
+        require(r['requestIndex'] == len(completed), 'failed request is not next after completed responses')
+    for index, request in [(i, v) for i, v in enumerate(completed)] + [(r['requestIndex'], r)]:
+        query = None if index in (0, 22) else query_at_boundary(request['boundary'])
+        if query is not None:
+            start = 0 if index == 1 else 50_000+(index-2)*49_999
+            require(request['boundary']['acceptedRows'] == start, 'diagnostic accepted-prefix gap')
+        check_export_request(request, transport, query, index, completed=request is not r)
+    require(sum(v['bytes'] for v in completed) <= 256*1024*1024, 'diagnostic response cap exceeded')
+    started = record['elapsedJobSeconds'] - (record['elapsedRequestSeconds'] if status == 'FAILED_NOT_EXPORTED' else 0)
+    require(0 <= started < 240, 'request attempt outside original 240 budget')
+    # The snapshot clock follows construction of the socket budget; it cannot
+    # reconstruct that earlier instant exactly. The pinned source enforces
+    # min(25, remaining240); POST timeout must equal its positive integer floor.
+    if status == 'ATTEMPTING_NOT_SUCCESS':
+        return 'PENDING export request attempt only; no completed export'
+    http = ' HTTP '+str(record['httpStatus']) if record['httpStatus'] is not None else ''
+    return 'FAILED export request during '+record['phase']+http+' ('+record['errorType']+'); no completed export'
+
+
 def check_export_protocol(dataset):
     """Check the current exporter receipt, not transport rows as population.
 
@@ -72,9 +228,8 @@ def check_export_protocol(dataset):
     require(dataset['schema'] == 1 and dataset['status'] == 'EXPORTED_NOT_BENCHMARKED' and
             dataset['dataset'] == 'uacg-pexx' and dataset['count'] == dataset['chosenRows'] == 1_000_000,
             'complete official first1M export missing')
-    where = ("tpep_pickup_datetime >= '2016-01-01T00:00:00' AND "
-             "tpep_pickup_datetime < '2016-02-01T00:00:00' AND "
-             'pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95')
+    transport, _ = export_contract(dataset)
+    where = WHERE
     require(dataset['order'] == 'tpep_pickup_datetime ASC,:id ASC' and
             dataset['select'] == ':id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude' and
             dataset['where'] == where, 'different population/filter/order')
@@ -96,11 +251,15 @@ def check_export_protocol(dataset):
     for r in requests:
         require(type(r['bytes']) is int and 0 < r['bytes'] <= 16*1024*1024 and
                 re.fullmatch(r'[0-9a-f]{64}', r['sha256']), 'invalid response hash/extent')
+        if transport == 'legacy-get':
+            require(set(r) == {'url', 'bytes', 'sha256'}, 'legacy GET response contract changed')
     require(sum(r['bytes'] for r in requests) <= 256*1024*1024, 'export response cap exceeded')
     for r, key in [(requests[0], 'metadata'), (requests[-1], 'metadataAfter')]:
         require(r['url'] == 'https://data.cityofnewyork.us/api/views/uacg-pexx.json' and
                 all(r[k] == dataset['files'][key][k] for k in ('bytes', 'sha256')),
                 'missing final/before metadata response identity')
+        if transport != 'legacy-get':
+            check_export_request(r, transport, None, 0 if key == 'metadata' else 22)
     previous = None
     for i, (page, r) in enumerate(zip(c['pages'], requests[1:-1])):
         accepted = 50_000 if i == 0 else 19 if i == 20 else 49_999
@@ -120,14 +279,22 @@ def check_export_protocol(dataset):
         require(first <= last and (previous is None or previous <= first), 'page order regression')
         expected_where = where if i == 0 else ('(' + where +
             ") AND tpep_pickup_datetime >= '" + previous.isoformat() + "'")
-        parsed = urllib.parse.urlsplit(r['url'])
-        query = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True, strict_parsing=True)
-        require(parsed.scheme == 'https' and parsed.netloc == 'data.cityofnewyork.us' and
-                parsed.path == '/resource/uacg-pexx.json' and not parsed.fragment and
-                len(query) == 5 and dict(query) == {'$select': dataset['select'], '$where': expected_where,
-                '$order': dataset['order'], '$limit': str(accepted + int(i > 0)),
-                '$offset': str(page['timestampOffset'])} and (i > 0 or page['timestampOffset'] == 0),
-                'unverified continuation query/order/boundary')
+        query = {'$select': dataset['select'], '$where': expected_where, '$order': dataset['order'],
+                 '$limit': accepted + int(i > 0), '$offset': page['timestampOffset']}
+        require(i > 0 or page['timestampOffset'] == 0, 'initial timestamp offset must be zero')
+        if transport == 'legacy-get':
+            parsed = urllib.parse.urlsplit(r['url'])
+            params = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True, strict_parsing=True)
+            require(parsed.scheme == 'https' and parsed.netloc == 'data.cityofnewyork.us' and
+                    parsed.path == '/resource/uacg-pexx.json' and not parsed.fragment and
+                    len(params) == 5 and dict(params) == {k: str(v) for k, v in query.items()},
+                    'unverified continuation query/order/boundary')
+        else:
+            check_export_request(r, transport, query, i+1)
+            b = r['boundary']
+            require(b['acceptedRows'] == starts[i] and
+                    (i == 0 or {k:b['lastRow'][k] for k in ('source_row_id', 'tpep_pickup_datetime')} ==
+                     c['pages'][i-1]['last']), 'request/previous accepted boundary mismatch')
         previous = last
     require(sum(p['acceptedRows'] for p in c['pages']) == 1_000_000, 'incomplete accepted population')
 
@@ -150,12 +317,17 @@ def check_export_files(dataset, root):
         require(all(columns.get(k) == v for k, v in {'tpep_pickup_datetime': 'calendar_date',
                 'pickup_longitude': 'number', 'pickup_latitude': 'number'}.items()), 'official schema changed')
     require(files['xy']['bytes'] == 8_000_000, 'incomplete full float32 population')
-    seen, previous, ties = set(), None, 0
+    transport, _ = export_contract(dataset)
+    seen, previous, ties, last_row = set(), None, 0, None
     bounds = [math.inf, -math.inf, math.inf, -math.inf]
     with (root/'rows.ndjson').open() as rows, (root/'xy.f32le').open('rb') as xy:
-        for page in dataset['completeness']['pages']:
+        for page_index, page in enumerate(dataset['completeness']['pages']):
             require(page['timestampOffset'] == (ties-1 if previous is not None else 0),
                     'continuation tie offset differs from accepted source prefix')
+            if transport != 'legacy-get':
+                require(dataset['requests'][page_index+1]['boundary'] ==
+                        {'acceptedRows': len(seen), 'lastRow': last_row, 'trailingTies': ties},
+                        'full selected request boundary differs from accepted source prefix')
             for i in range(page['acceptedRows']):
                 line = rows.readline()
                 require(line, 'truncated source population/prefix')
@@ -180,6 +352,7 @@ def check_export_files(dataset, root):
                 seen.add(identity)
                 ties = ties+1 if stamp == previous else 1
                 previous = stamp
+                last_row = row
         require(len(seen) == 1_000_000 and not rows.read(1) and not xy.read(1),
                 'incomplete/extra accepted source population')
     require(bounds == dataset['bounds'], 'all-row float32 bounds mismatch')
@@ -300,7 +473,7 @@ def make_rows(request, trace, parity, summary, preflights, measurements, review,
                 if raw.get('presentationFps') is not None or summary.get('presentationFps') is not None:
                     row['limits'].append('Unsupported presentationFps ignored: current output has no compositor presentation evidence.')
             except (KeyError, TypeError, ValueError, IndexError, ZeroDivisionError) as e:
-                reasons.append(str(e))
+                reasons.append(validation_reason(e))
         row['reasons'] = reasons
         rows.append(row)
     # A missing/failed peer never becomes a complete comparative table. Genuine
@@ -327,8 +500,25 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
             require(isinstance(value, list if key == 'trace' else dict), 'wrong JSON record shape')
             return value
         except (ValueError, UnicodeError, OSError) as e:
-            issues.append('Invalid ' + key + ': ' + str(e))
+            issues.append('Invalid ' + key + ': ' + validation_reason(e))
             return None
+
+    # A completed export leaves its final attempt snapshot behind. That file
+    # alone is never success; do not misclassify it when export.json exists.
+    diagnostic = export_root/'request-failure.json'
+    if not diagnostic.is_file() and not (export_root/'export.json').is_file():
+        diagnostic = export_root/'request-attempt.json'
+    if diagnostic.is_file():
+        try:
+            require(diagnostic.stat().st_size <= 128*1024, 'oversized export diagnostic')
+            value = json.loads(diagnostic.read_text())
+            reason = check_export_diagnostic(value, site)
+            artifacts['export-diagnostic'] = diagnostic
+            issues.append(reason)
+        except (KeyError, TypeError, ValueError, OSError, IndexError, AttributeError, OverflowError) as e:
+            # No raw link/copy for a diagnostic with an unverified body/URL or
+            # extra headers/message fields. Never echo parsed exception text.
+            issues.append('Rejected export diagnostic: ' + validation_reason(e))
 
     request = read(run/'request.json', 'request', True)
     parity = read(run/'plotting-parity.json', 'parity', True)
@@ -345,6 +535,7 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
             error = read(run/('plotting-'+phase+'-'+tool+'.json.error.json'), phase+'-'+tool+'-error')
             if error:
                 errors[tool].append(str(error.get('status', 'FAIL')) + ': ' + str(error.get('error', 'unknown error')))
+    export_validated = False
     try:
         require(request and parity and summary, 'complete current result bundle unavailable')
         identity = summary['identity']
@@ -355,13 +546,13 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
         export = read(export_root/'export.json', 'export', True)
         require(export == dataset, 'prepared/export receipt differs')
         pin_matches(request['exportReceipt'], export_root/'export.json')
-        # The exact source2031 contract supplies the overlap proof; discarded
+        # The exact selected source contract supplies the overlap proof; discarded
         # HTTP bodies cannot be rehashed or compared from this ordinary bundle.
-        pin_matches({'bytes': 11088, 'sha256':
-            '411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd'},
-            site/'scripts/release-local48/plotting/fetch-tlc.py')
+        _, source = export_contract(dataset)
+        pin_matches(source, site/EXPORTER_PATH)
         check_export_protocol(dataset)
         check_export_files(dataset, export_root)
+        export_validated = True
         for key, name in [('metadata', 'official-metadata.json'),
                           ('metadata-after', 'official-metadata-after.json')]:
             artifacts[key] = export_root/name
@@ -416,7 +607,13 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
         release = json.loads((site/SITE_INPUTS['release']).read_text())
         request['currentBinding'] = release['browser_binding']
     except (KeyError, TypeError, ValueError, OSError, IndexError, AttributeError) as e:
-        issues.append(str(e))
+        issues.append(validation_reason(e))
+    if not export_validated:
+        # Do not echo or publish rejected, potentially credential-bearing query
+        # bodies through JSON output or the ordinary raw artifact links.
+        request = None
+        artifacts.pop('request', None)
+        artifacts.pop('export', None)
     rows = make_rows(request, trace, parity, summary, preflights, measurements, review, issues, errors)
     return dict(rows=rows, request=request, identitySha256=(summary or {}).get('identitySha256'),
                 problems=issues, artifacts=artifacts)
@@ -471,6 +668,7 @@ def render(report, prefix):
         '<a href="https://plotly.com/javascript/webgl-vs-svg/">Plotly scattergl</a>',
         '<a href="https://deck.gl/docs/api-reference/core/orthographic-view">deck OrthographicView</a>',
         link('method','Adapter method'), link('request','Exact export / filter / order / quality'), link('export','Export receipt'),
+        link('export-diagnostic','Export attempt / failure (not success)'),
         link('metadata','Official metadata before'), link('metadata-after','Official metadata after'),
         link('trace','Camera trace'), link('parity','Parity and source/build/runtime pins'),
         link('raw-results','Raw result index'), link('normal-review','Independent normal review')])+'</td></tr>')

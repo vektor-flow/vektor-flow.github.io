@@ -9486,8 +9486,8 @@
     controllers.forEach(function(mesh) {
       var previous=mesh.axis_ticks.axis_style || {};
       var style={type:type,
-        arrows:options.arrows == null ? (options.type ? type === "open" : previous.arrows === true) : options.arrows === true,
-        frame:options.frame == null ? (options.type ? type === "box" : previous.frame === true) : options.frame === true};
+        arrows:options.arrows == null ? (options.type || previous.arrows == null ? type === "open" : previous.arrows === true) : options.arrows === true,
+        frame:options.frame == null ? (options.type || previous.frame == null ? type === "box" : previous.frame === true) : options.frame === true};
       mesh.axis_box=type !== "crosshair";mesh.axis_full_frame=type === "crosshair";
       mesh.__vf_axis_type=type;mesh.axis_ticks.axis_style=style;
       if (options.labels) ["x","y"].forEach(function(axis) {
@@ -9533,7 +9533,7 @@
       if (step) {
         major = [];
         var first = Math.ceil(minimum / step), last = Math.floor(maximum / step);
-        if (last-first+1 > 4096) throw new RangeError("plot grid exceeds 4096 positions on one axis");
+        if (!Number.isSafeInteger(first) || !Number.isSafeInteger(last) || last-first+1 > 4096) throw new RangeError("plot grid exceeds representable or 4096 positions on one axis");
         for (var n=first;n<=last;n++) major.push(n*step);
       }
       major = major.filter(function(v) {return v>=minimum && v<=maximum;}).sort(function(a,b) {return a-b;});

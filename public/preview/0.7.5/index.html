@@ -4,76 +4,52 @@
 <nav aria-label="On this page" class="chapter-nav"><a href="#purpose">The idea</a><a href="#principles">Connected concepts</a><a href="#examples">Try a calculation</a></nav>
 <section class="chapter why-chapter" id="purpose"><h2 id="origin">From language design to calculation and visualization.</h2><p>The project began with the keywordless-language experiment and grew through years of experience in data engineering and visualization. That background informs a design that connects functions, named dimensions and views.</p></section>
 <section class="chapter" id="principles"><div class="chapter-heading"><p class="eyebrow">CONNECTED CONCEPTS</p><h2>Keep the calculation and its context together.</h2></div><div class="three-columns"><div><span class="step-number">01 / SCOPES AND FUNCTIONS</span><h3>Give each calculation a boundary.</h3><p>Evaluate a scope directly, or reuse a function with named, variadic or bound arguments. Scopes support encapsulation; scopes and structs with overriding form the object model.</p><a href="syntax.html#functions-calls-and-specialization">Scopes and reusable functions →</a></div><div><span class="step-number">02 / DIMENSIONS</span><h3>Express the relationship between axes.</h3><p>Vectorization and automatic broadcasting carry calculations across compatible dimensions. Name the axes a function consumes and keep the others in its result.</p><a href="syntax.html#named-and-anonymous-dimensions">Work with axes →</a></div><div><span class="step-number">03 / CONTROL AND VIEWS</span><h3>Make the next step explicit.</h3><p>Guard clauses encourage clear control flow; there is no else construct. Transparent event matching, <code class="language-vkf" style="white-space:nowrap">??&gt;</code>, reduces callback logic, while named indices can also guide UI projections.</p><a href="syntax.html#event-and-i-o-concurrency">Events and views →</a></div></div><p>The calculation below brings scopes, dimensions and a view together: generate spectra, compare their contrast, then inspect one curve. You can inspect, edit and copy the source and run the source.</p></section>
-<section class="chapter demo-chapter" id="examples"><div class="chapter-heading"><p class="eyebrow">WHAT YOU CAN TRY</p><h2>Which site has the strongest contrast?</h2><p>Compare four generated detector spectra on 257 energy samples, select the largest measured contrast, then inspect that detector on a denser 513-sample curve.</p></div><div class="demo-instructions"><p>Run the model to select the strongest detector. Edit the detector amplitudes or line width and repeat the analysis.</p></div><p class="fine-print" id="execution-status" role="note">Run uses the current browser compiler. Edit, Run and Copy use the same source.</p><p class="example-purpose">Compare each detector’s sampled peak-to-peak contrast, choose the strongest detector from those results, then inspect its spectrum. Change the generated detector model and Run to repeat the decision.</p><p class="plot-presentation-note">This spectrum starts with <strong>Crosshair</strong> axes and a <strong>Dots</strong> grid. Change Axes and Grid independently in the viewport.</p><section id="example-scientific-spectrum" class="readme-example" data-verification="pending" data-vkf-example-id="scientific-spectrum" data-axis-type="crosshair" data-grid-mode="dots" data-axis-label-x="Energy" data-axis-label-y="Intensity"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">stat: .stat
+<section class="chapter demo-chapter" id="examples"><div class="chapter-heading"><p class="eyebrow">WHAT YOU CAN TRY</p><h2>Which site has the strongest contrast?</h2><p>Compare four generated detector spectra on 257 energy samples, select the largest measured contrast, then inspect that detector on a denser 513-sample curve.</p></div><div class="demo-instructions"><p>Run the model to select the strongest detector. Edit the detector amplitudes or line width and repeat the analysis.</p></div><p class="fine-print" id="execution-status" role="note">Run uses the current browser compiler. Edit, Run and Copy use the same source.</p><p class="example-purpose">Compare each detector’s sampled peak-to-peak contrast, choose the strongest detector from those results, then inspect its spectrum. Change the generated detector model and Run to repeat the decision.</p><p class="plot-presentation-note">This spectrum starts with <strong>Crosshair</strong> axes and a <strong>Dots</strong> grid. Change Axes and Grid independently in the viewport.</p><section id="example-scientific-spectrum" class="readme-example" data-verification="pending" data-vkf-example-id="scientific-spectrum"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">stat: .stat
 
-spectra:
-    values: [[0.0: 257]: 4]
-    detector: 0
-    detector &lt; 4?&gt;
-        sample: 0
-        sample &lt; 257?&gt;
-            energy: -1.0 + 0.0078125 * sample
-            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
-            .sample: sample + 1
-        .detector: detector + 1
-    values
+detectors: [0..3]_p
+energy: (([0..256] - 128) / 128)_u
+spectra: 1 + (1 + detectors_p) / (1 + 100energy_u ^ 2)
 
-contrasts: stat.ptp(spectra, 1)
-selected_site:
-    best: 0
-    candidate: 1
-    candidate &lt; contrasts.length()?&gt;
-        contrasts.(candidate) &gt; contrasts.(best)?
-            .best: candidate
-        .candidate: candidate + 1
+contrasts: stat.ptp_u(spectra)
+choose_detector(best, candidate):
+    contrasts.(candidate) &gt; contrasts.(best)? @: candidate
     best
+selected_site: reduce_p(choose_detector, detectors, 0)
 
 :: contrasts
 :: selected_site
 
-curve_energy: -1.0 + 0.00390625 * [0..512]
-selected: 1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
+curve_energy: ([0..512] - 256) / 256
+selected: 1 + (1 + selected_site) / (1 + 100curve_energy ^ 2)
 
 :: selected.(256)
 
 view: .ui.viewport
 view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
-view.push(x_lim: [-1, 1], y_lim: [0, 6])
+view.push(axis_type: "Crosshair", grid_mode: "Dots", x_lim: [-1, 1], y_lim: [0, 6], x_label: "Energy", y_label: "Intensity")
 view.show()</code></pre><textarea aria-label="Editable VKF source: Compare spectral contrast along the energy axis" class="readme-example-source" spellcheck="false">stat: .stat
 
-spectra:
-    values: [[0.0: 257]: 4]
-    detector: 0
-    detector &lt; 4?&gt;
-        sample: 0
-        sample &lt; 257?&gt;
-            energy: -1.0 + 0.0078125 * sample
-            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
-            .sample: sample + 1
-        .detector: detector + 1
-    values
+detectors: [0..3]_p
+energy: (([0..256] - 128) / 128)_u
+spectra: 1 + (1 + detectors_p) / (1 + 100energy_u ^ 2)
 
-contrasts: stat.ptp(spectra, 1)
-selected_site:
-    best: 0
-    candidate: 1
-    candidate &lt; contrasts.length()?&gt;
-        contrasts.(candidate) &gt; contrasts.(best)?
-            .best: candidate
-        .candidate: candidate + 1
+contrasts: stat.ptp_u(spectra)
+choose_detector(best, candidate):
+    contrasts.(candidate) &gt; contrasts.(best)? @: candidate
     best
+selected_site: reduce_p(choose_detector, detectors, 0)
 
 :: contrasts
 :: selected_site
 
-curve_energy: -1.0 + 0.00390625 * [0..512]
-selected: 1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
+curve_energy: ([0..512] - 256) / 256
+selected: 1 + (1 + selected_site) / (1 + 100curve_energy ^ 2)
 
 :: selected.(256)
 
 view: .ui.viewport
 view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
-view.push(x_lim: [-1, 1], y_lim: [0, 6])
+view.push(axis_type: "Crosshair", grid_mode: "Dots", x_lim: [-1, 1], y_lim: [0, 6], x_label: "Energy", y_label: "Intensity")
 view.show()</textarea></div><section aria-label="Spectroscopy output" class="readme-example-terminal"><span>Console · four contrasts and selected center value</span><pre aria-live="polite" class="readme-example-output"></pre></section></div><section aria-label="Selected spectrum plot" class="readme-example-result" data-example-result=""><div class="purpose-result-hint" data-result-hint=""><p>The current compiler generates this Lorentzian spectrum from the editable source. These are synthetic data, not measurements.</p></div></section></div></section><p class="example-back"><a href="#content">Back to top</a></p><p class="fine-print">Generated, in-memory data; no file access or performance claim. <a href="examples.html#spectra">Complete equivalent Python program →</a></p></section>
 
 <section class="next-step"><div><h2>Try the language.</h2><p>Read an example, explore its syntax, then edit or copy the source.</p></div><div class="actions"><a class="button primary" href="examples.html">Explore the examples →</a></div></section>

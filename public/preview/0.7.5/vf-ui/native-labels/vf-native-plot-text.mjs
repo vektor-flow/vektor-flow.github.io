@@ -149,6 +149,14 @@ export function createNativePlotTextLayer({container, createLayer, measure, onEr
     },
     statistics:() => ({...state,groups:[...groups.values()].map(g=>g.layer.statistics())}),
     canvases:() => [...groups.values()].map(g=>g.layer.canvas),
+    captureCanvases:() => [...groups.values()].map(g=>{
+      // WebGL's default buffer may be cleared after compositor presentation.
+      // Redraw the same accepted native scene synchronously before drawImage.
+      const color=g.layer.statistics().renderer.styleColor;
+      need(color && typeof g.layer.renderer.setNativeColor==='function','NATIVE_CAPTURE_REDRAW_UNAVAILABLE');
+      g.layer.renderer.setNativeColor(color);
+      return g.layer.canvas;
+    }),
     sourceSnapshots:() => [...groups.values()].map(g=>g.layer.renderer.nativeSourceSnapshot()),
     async destroy() {
       if (closed) return running;

@@ -8145,7 +8145,7 @@
     var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[String(fid)];
     if (scene && scene.background) {context.fillStyle=runtimeColorCss(scene.background);context.fillRect(0,0,canvas.width,canvas.height);}
     context.drawImage(source,0,0,canvas.width,canvas.height);
-    var glyphs=rec.nativePlotTextLayer ? rec.nativePlotTextLayer.canvases() : [];
+    var glyphs=rec.nativePlotTextLayer ? rec.nativePlotTextLayer.captureCanvases() : [];
     glyphs.forEach(function(layer) {
       if (layer.style.visibility !== "hidden") context.drawImage(layer,0,0,canvas.width,canvas.height);
     });

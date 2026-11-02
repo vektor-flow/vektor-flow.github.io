@@ -93,10 +93,29 @@ function captureGL(gl) {
   return {pixels, width, height, flipY: true};
 }
 
+// Blob module URLs are opaque bases. Resolve against the actual document's
+// origin, never import.meta.url or a possibly overridden document <base>.
+export function resolvePlottingRuntimeBase(base = '/preview/0.7.5/') {
+  const origin = globalThis.location.origin;
+  const resolved = new URL(base, origin + '/');
+  need(['http:', 'https:'].includes(resolved.protocol) && resolved.origin === origin,
+    'CURRENT_ORIGIN_RUNTIME_REQUIRED');
+  need(resolved.pathname.endsWith('/') && !resolved.search && !resolved.hash &&
+    !resolved.username && !resolved.password, 'RUNTIME_DIRECTORY_URL_REQUIRED');
+  return resolved.href;
+}
+
+// Shared by the genuine adapter and the existing-job Blob startup oracle.
+export async function importPlottingRuntime(base, name) {
+  need(['inline-runner.mjs', 'inline-renderer-loader.mjs', 'inline-retained-scene-view.mjs'].includes(name),
+    'MAINTAINED_RUNTIME_MODULE_REQUIRED');
+  return import(new URL(name, resolvePlottingRuntimeBase(base)).href);
+}
+
 async function vkfAdapter(host, request, source, xy, base) {
   const release = await fetch(base + 'current-compiler-release.json', {cache: 'no-store'}).then(r => r.json());
   need(release.browser_binding === request.currentBinding, 'ACTUAL_CURRENT_COMPILER_BINDING_REQUIRED');
-  const {createInlineRunner} = await import(base + 'inline-runner.mjs');
+  const {createInlineRunner} = await importPlottingRuntime(base, 'inline-runner.mjs');
   const runner = createInlineRunner({moduleURL: base + release.package.module.replace(/^\.\//, ''),
     wasmUrl: base + release.package.wasm.replace(/^\.\//, ''), dataURL: base + release.package.data.replace(/^\.\//, ''),
     expectedSourceBinding: release.browser_binding, timeoutMs: 180000});
@@ -129,12 +148,12 @@ async function vkfAdapter(host, request, source, xy, base) {
     }
     sameDomain(bounds, request.dataset.bounds);
     need(near(mesh.vertex_size, request.quality.radiusCssPx, 1e-5), 'SAME_PIXEL_RADIUS');
-    const {ensureInlineRenderer} = await import(base + 'inline-renderer-loader.mjs');
+    const {ensureInlineRenderer} = await importPlottingRuntime(base, 'inline-renderer-loader.mjs');
     await ensureInlineRenderer();
     const api = globalThis.VfDisplay;
     need(typeof api.updateGeomFrameDomains === 'function' && typeof api.getGeomFramePlotMetrics === 'function',
       'UNRUN_NORMAL_INTEGRATION_GAP:apply_reviewed_retained-domains-and-point-clip.patch_in_next_admitted_scope');
-    const {mountRetainedSceneResult} = await import(base + 'inline-retained-scene-view.mjs');
+    const {mountRetainedSceneResult} = await importPlottingRuntime(base, 'inline-retained-scene-view.mjs');
     dispose = mountRetainedSceneResult(host, result.packets);
     await bounded(dispose.presented, 30000, 'NORMAL_COMPLETE_INITIAL_PRESENTATION');
     const frameId = dispose.frameIds[0];
@@ -336,6 +355,7 @@ async function deckAdapter(host, request, xy, firstMetrics) {
 // One tool per existing browser context. The Node attachment runs all preflights
 // and parity checks before allowing ANY comparative timing invocation.
 export async function runPlottingTool({tool,phase,request,assetBase,base='/preview/0.7.5/',reference}) {
+  base = resolvePlottingRuntimeBase(base);
   need(['vkf','plotly','deck'].includes(tool)&&['preflight','measure'].includes(phase),'EXPLICIT_TOOL_PHASE');
   need(request.schema===1&&request.dataset.count===1_000_000,'FROZEN_REAL_POPULATION');
   need(devicePixelRatio===request.viewport.dpr,'MATCHED_DPR');

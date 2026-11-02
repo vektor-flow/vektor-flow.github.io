@@ -37,6 +37,7 @@ export async function runPlottingInExistingJob({page,siteRoot,runRoot,peerBuilds
   }
   const baseURL=new URL(page.url()).origin;
   assert(/^https?:/.test(baseURL),'page from normal existing served-site job required');
+  const runtimeBase=new URL('/preview/0.7.5/',baseURL+'/').href;
   const releasePath=path.join(siteRoot,'public/preview/0.7.5/current-compiler-release.json');
   const release=JSON.parse(await fs.readFile(releasePath,'utf8'));
   request.currentBinding=release.browser_binding;
@@ -104,7 +105,7 @@ export async function runPlottingInExistingJob({page,siteRoot,runRoot,peerBuilds
             const {runPlottingTool}=await import(url);
             return await runPlottingTool(options);
           } finally {URL.revokeObjectURL(url);}
-        },{helper,options:{tool,phase,request,assetBase:prefix,reference}});
+        },{helper,options:{tool,phase,request,assetBase:prefix,base:runtimeBase,reference}});
         const raw=await Promise.race([evaluation,new Promise((_,reject)=>{
           caseTimer=setTimeout(()=>reject(Error('NORMAL_PLOTTING_CASE_240S_CAP')),240000);
         })]);

@@ -8,6 +8,13 @@ when integrating these additive files. Do not replay b2b's site tree over it.
 Actual2023 is finished/normalclosed. Fresh2026 is preparing the next benchmark
 scope; separate actual execution authorization/admission is still required.
 
+e2027 child repair of frozen fd96cbbb: attachment passes an absolute runtime
+base; the Blob helper also resolves relative/default bases against the current
+HTTP(S) document origin before imports and package URL construction. Both paths
+retain the maintained runner, renderer and native compiler. This child changes
+only attachment/helper/oracle documentation; integrate only its delta after fd96.
+The b2-parent tree must never replace the current published4ddb/ad6 site tree.
+
 Method and scope
 ---------------
 Vega panzoom at 20ad5e85f829a4ccf29f2d92ea5d708c5c0a7c7e is the established
@@ -111,6 +118,60 @@ attachment owns only page routes and tool resources, navigates its dedicated
 page to blank afterward, and leaves normal browser/server/FD closure to that
 existing actual owner. Outputs use exclusive creation in the fresh attempt.
 Caller imports are Node standard library only plus existing Playwright methods.
+
+Blob startup regression ASDATA — UNRUN by SOURCE
+------------------------------------------------
+In that SAME admitted existing actual browser job, before the data-dependent
+comparison, use its dedicated page, existing server and original deadline callback.
+This probes maintained module startup only; it does not instantiate a runner,
+compile, mount, time a plot, authorize itself or qualify renderer parity. No bulk
+data or installed peers are needed for this startup oracle. The attachment's
+normal preflight/measure commands above remain required for a real comparison.
+Use the existing Node fs/path/pathToFileURL imports from that job:
+
+  await existingActualAdmissionAndOriginalDeadlineCheck({scope: 'plotting-blob-startup-regression'});
+  const origin = new URL(page.url()).origin;
+  const helper = await fs.readFile(path.join(siteRoot, 'tests/plotting-comparison.mjs'), 'utf8');
+  let startup;
+  try {
+    await page.goto(origin + '/preview/0.7.5/performance.html', {waitUntil: 'load'});
+    startup = await page.evaluate(async ({helper, origin}) => {
+      if (location.origin !== origin) throw Error('EXACT_SERVED_ORIGIN_REQUIRED');
+      const expectedBase = origin + '/preview/0.7.5/';
+      const names = ['inline-runner.mjs', 'inline-renderer-loader.mjs', 'inline-retained-scene-view.mjs'];
+      const exports = ['createInlineRunner', 'ensureInlineRenderer', 'mountRetainedSceneResult'];
+      const cases = [];
+      for (const base of [undefined, '/preview/0.7.5/', expectedBase]) {
+        // A fresh Blob module per case exercises the actual opaque referrer.
+        const url = URL.createObjectURL(new Blob([helper], {type: 'text/javascript'}));
+        try {
+          if (!url.startsWith('blob:' + origin + '/')) throw Error('CURRENT_ORIGIN_BLOB_REQUIRED');
+          const api = await import(url);
+          const resolved = api.resolvePlottingRuntimeBase(base);
+          if (resolved !== expectedBase) throw Error('EXACT_RUNTIME_BASE_REQUIRED:' + resolved);
+          const modules = [];
+          for (let i = 0; i < names.length; i++) {
+            const href = new URL(names[i], resolved).href;
+            if (href !== expectedBase + names[i]) throw Error('EXACT_MODULE_PATH_REQUIRED');
+            const loaded = await api.importPlottingRuntime(base, names[i]);
+            if (typeof loaded[exports[i]] !== 'function') throw Error('REAL_RUNTIME_EXPORT_REQUIRED:' + names[i]);
+            modules.push({href, export: exports[i]});
+          }
+          cases.push({input: base ?? 'DEFAULT', resolved, blobURL: url, modules});
+        } finally { URL.revokeObjectURL(url); }
+      }
+      return {scope: 'Blob module startup only; no compiler/parity/timing qualification', cases};
+    }, {helper, origin});
+  } finally { await page.goto('about:blank', {timeout: 15000}); }
+  // Persist startup or the genuine thrown error using the existing job's normal
+  // report/error handling. SOURCE supplies no PASS record; actual verifies it.
+
+Expected: default, root-relative and already absolute cases each report the exact
+served origin + /preview/0.7.5/ directory and the three exact maintained module
+URLs. Imports execute inside the fresh Blob helper via the SAME import function
+used by vkfAdapter, rather than merely checking URL strings in Node. No mocked
+module, substitute compiler or host evaluator is accepted. A genuine failed
+import remains FAIL; preflight/measure remain UNRUN until separately completed.
 
 Preflight writes plotting-preflight-{vkf,plotly,deck}.json and plotting-parity.json.
 All three must pass current source/data/build/environment identity and meaningful

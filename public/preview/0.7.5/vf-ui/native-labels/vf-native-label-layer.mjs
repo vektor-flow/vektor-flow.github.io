@@ -1,6 +1,6 @@
-import {createAdaptiveNativeLabelBatches} from './vf-adaptive-native-labels.mjs';
-import {createSharedAreaRenderer} from './vf-shared-area-renderer.mjs';
-import {loadCurrentNativeTypography} from './vf-current-native-provider.mjs';
+import {createAdaptiveNativeLabelBatches} from './vf-adaptive-native-labels.mjs?sha256=432d06520939bb3fd3fb4e9f6f50b490bb5dc455d5c195be97f7ec496c06b752';
+import {createSharedAreaRenderer} from './vf-shared-area-renderer.mjs?sha256=fa77ffa328dce0a413c0cd40099980c26100e58cdf669a6aa73daf899abb9073';
+import {loadCurrentNativeTypography} from './vf-current-native-provider.mjs?sha256=1bd1b35a58878452355c5c3152419eb08d9c0a4a7eca7aa0107407baeea426ad';
 
 const need = (ok, message) => { if (!ok) throw new Error(message); };
 const affine = m => Array.isArray(m) && m.length === 6 && m.every(Number.isFinite);

@@ -1,4 +1,4 @@
-import './current-documentation-examples.mjs';
+import './current-documentation-examples.mjs?sha256=e4e32814ef86629ff0440f98468dea32e02ab134b6ba865e413a61e9812851a0';
 const form=document.querySelector('#calculation');
 const input=document.querySelector('#number');
 const example=document.querySelector('[data-vkf-example-id="embed-panel-area"]');
@@ -9,12 +9,13 @@ button.disabled=!source;
 button.setAttribute('aria-disabled',String(!source));
 form.addEventListener('submit',event=>{
   event.preventDefault();
+  if (!form.reportValidity()) return;
   example?.querySelector('.readme-example-play')?.click();
 });
 input.addEventListener('input',()=>{
   if(!source || !input.validity.valid)return;
   const value=Number(input.value);
-  if(!Number.isFinite(value))return;
+  if(!Number.isFinite(value)||value<0)return;
   const binding=/^side:\s*[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?/m.exec(source.value);
   if(!binding){status.textContent='Edit the source below; the form updates its side binding when present.';return;}
   source.setRangeText(`side: ${value}`,binding.index,binding.index+binding[0].length,'preserve');

@@ -52,7 +52,7 @@ export function createSceneMediaCapture(options = {}) {
       token.resolve();
     };
     try {
-      const { createFrameMovieCapture } = await import('./vf-frame-movie-capture.mjs');
+      const { createFrameMovieCapture } = await import('./vf-frame-movie-capture.mjs?sha256=a244d3729ceb3bead11b46050245147aab5df35b2025ecaaa5f3067c6f39d95e');
       if (token.canceled) throw new DOMException('Capture canceled', 'AbortError');
       token.encoder = await createFrameMovieCapture({ ...settings, onClose: release });
       if (token.canceled) { await token.encoder.cancel(); throw new DOMException('Capture canceled', 'AbortError'); }

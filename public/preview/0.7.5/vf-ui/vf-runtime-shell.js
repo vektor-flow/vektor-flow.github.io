@@ -508,6 +508,10 @@
             return ensureScriptLoaded(path);
           });
         }, Promise.resolve());
+      }).then(function() {
+        return import(resolveAssetUrl("../inline-renderer-loader.mjs?sha256=3f452b95cacc5b7eea791f94ae8a2603a8dda419688bb3ca47d664194378ca87")).then(function(module) {
+          return module.ensureInlineNativeLabels();
+        });
       }).catch(function(err) {
         runtimeLog("error", "ensureSceneDependencies: " + (err && err.message ? err.message : String(err)));
         throw err;
@@ -639,9 +643,17 @@
       });
     }
 
+    var currentToolbarModule;
+    function loadCurrentToolbar() {
+      return currentToolbarModule || (currentToolbarModule = Promise.all([
+        ensureStylesheetLoaded({href: "vf-plot-toolbar.css"}),
+        import(resolveAssetUrl("vf-current-plot-toolbar.mjs?sha256=3dd1d261d28757978f170be821cf088e42e580fe3346dda898c368b807b92971"))
+      ]).then(function(parts) { return parts[1]; }));
+    }
+
     function ensureLaunchFrameDependencies() {
       return ensureStylesheetLoaded({ href: "vf-frame.css" }).then(function() {
-        return ensureScriptLoaded("vf-frame.js");
+        return Promise.all([ensureScriptLoaded("vf-frame.js"), loadCurrentToolbar()]);
       });
     }
 
@@ -845,9 +857,33 @@
           frameless: frame.frameless === true,
           dockLocation: frame.dockLocation || "bl",
           exitWhenLastFrameClosed: true,
+          toolbar: false,
           zIndexBase: 1000 + i
         });
         applyLaunchFrameRect(api, frame, dom.layer);
+        (function(api, frame) {
+          var removed = false, closeToolbar = null;
+          var observer = new MutationObserver(function() {
+            if (!api.root.isConnected) {
+              removed = true; observer.disconnect();
+              if (closeToolbar) closeToolbar();
+            }
+          });
+          observer.observe(dom.layer, {childList:true, subtree:true});
+          api.currentToolbarReady = loadCurrentToolbar().then(function(module) {
+            if (removed || !api.root.isConnected) return false;
+            closeToolbar = module.mountCurrentPlotToolbar(api, frame, {
+              document:document, VfDisplay:global.VfDisplay, host:api.body
+            });
+            return true;
+          }).catch(function(error) {
+            observer.disconnect();
+            runtimeLog("error", "current plot toolbar failed: " + error.message);
+            api.root.dispatchEvent(new CustomEvent("vf-plot-toolbar-error", {bubbles:true,detail:{message:error.message}}));
+            throw error;
+          });
+          api.currentToolbarReady.catch(function() {});
+        })(api, frame);
       }
       if (deps.frame && typeof deps.frame.postNativeHostLayout === "function") {
         deps.frame.postNativeHostLayout(dom.layer, { stageAlpha: 0 });

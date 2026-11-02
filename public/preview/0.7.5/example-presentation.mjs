@@ -1,5 +1,5 @@
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=3f452b95cacc5b7eea791f94ae8a2603a8dda419688bb3ca47d664194378ca87';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=fc8a280e71523744c6e437b609aca095a7639a5a2f10eccf4808724af3039221';
 
 const presentations = new WeakMap();
 const digest = async bytes => [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))]
@@ -72,7 +72,7 @@ export function prepareExamplePresentation(example) {
     if (!row) return;
     const sourceHash = await digest(new TextEncoder().encode(source.value));
     const release = await fetch(new URL('./current-compiler-release.json',import.meta.url),{cache:'no-store'}).then(r=>r.json());
-    if (row.source_sha256 !== sourceHash || row.compiler_binding !== release.browser_binding) return;
+    if (row.source_sha256 !== sourceHash || (row.compiler_binding !== release.browser_binding && !row.accepted_current_bindings?.includes(release.browser_binding))) return;
     const packets = await Promise.all(row.packets.map(async descriptor=>{
       const url = new URL(descriptor.url,import.meta.url);
       if (url.origin !== location.origin) throw new Error('Saved scene must be local');

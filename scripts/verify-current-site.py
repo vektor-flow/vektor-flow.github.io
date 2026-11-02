@@ -120,7 +120,11 @@ print('PASS historical compiler bytes, asset retirement, latest-preview entry ro
 if preview.exists() and review_mode:
  assert "current-documentation-examples.mjs" not in (preview/'website-controls.mjs').read_text(), 'Navigation controls must not initialize a second documentation runner'
  view=(preview/'inline-retained-scene-view.mjs').read_text()
- assert "mountPlotToolbar" in view and "toolbar: false" in view
+ assert "mountCurrentPlotToolbar" in view and "toolbar: false" in view
+ adapter=(preview/"vf-ui/vf-current-plot-toolbar.mjs").read_text()
+ assert "mountPlotToolbar(host," in adapter and "__vfViewHistory" in adapter
+ shell=(preview/"vf-ui/vf-runtime-shell.js").read_text()
+ assert "module.mountCurrentPlotToolbar(api, frame" in shell and "toolbar: false" in shell
  assert "readme-example-plot-controls" not in view and "readme-example-enlarge" not in view
  assert "vf-plot-toolbar.css" in (preview/'inline-renderer-loader.mjs').read_text()
  for page in preview.glob('*.html'):

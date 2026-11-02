@@ -6976,6 +6976,7 @@
       }
     }
     body.addEventListener("pointerdown", function (event) {
+      if (vfEventTargetIsFrameChrome(event.target)) { return; }
       if (event.pointerType !== "touch") { return; }
       points.set(event.pointerId, [event.clientX, event.clientY]);
       try { body.setPointerCapture(event.pointerId); } catch (_) {}
@@ -7022,6 +7023,8 @@
 
   function addOwnedPlotListener(body, fid, geom, kind, type, callback, options) {
     body.addEventListener(type, function (event) {
+      // Toolbar pointer presses belong to controls, not plot gestures.
+      if (vfEventTargetIsFrameChrome(event.target)) { return; }
       var live = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
       if (plotControlKind(live || geom) !== kind) { return; }
       callback(event);

@@ -45,10 +45,10 @@
     },
     {
       "path": "install.html",
-      "label": "Download",
+      "label": "Run & embed",
       "title": "Choose where to run",
       "kind": "guide",
-      "description": "Download available compiler artifacts and an HTML starter, with checksums and clear release status."
+      "description": "Use the current browser examples and integration guide; this review site offers no compiler downloads."
     },
     {
       "path": "performance.html",
@@ -76,9 +76,9 @@
     {
       "path": "embedding.html",
       "label": "Embedding",
-      "title": "One integration for every example",
+      "title": "How an embedded program reaches the screen",
       "kind": "guide",
-      "description": "Current source, console, retained viewport and lifecycle integration."
+      "description": "Reference process for source, compiler, text, retained scenes and lifecycle."
     }
   ],
   "redirects": {
@@ -159,7 +159,8 @@
     "vf-ui/index.html",
     "vf-ui/vf-shared-rect-demo.html",
     "website-controls.mjs",
-    "website-layout.css"
+    "website-layout.css",
+    "embedding.html"
   ],
   "source_ownership": {
     "website-layout.css": "site-source/components/website-layout.css",
@@ -210,6 +211,7 @@
     "benchmarks/grid-source.json": "site-source/benchmark-grid.json intentionally preserved numeric data",
     "sitemap.xml": "site-source/registry.json",
     "CNAME": "site-source/registry.json existing authorized custom domain",
-    "robots.txt": "site-source/registry.json"
+    "robots.txt": "site-source/registry.json",
+    "embedding.html": "maintained process reference; public/preview/0.7.5/embedding.html"
   }
 }

@@ -1,0 +1,97 @@
+{
+  "status": "FIXED_SUPPORTED_OPERATOR_RULE_AND_EXPLICIT_PIPE_EQUALITY_GAP_HONEST",
+  "atMonotonic": 538829.083099431,
+  "sourceRoot": "/mnt/development/VektorFlow-e2005-site-actual-20261102/review-site",
+  "syntaxFile": "/mnt/development/VektorFlow-e2005-site-actual-20261102/review-site/public/preview/0.7.5/syntax.html",
+  "syntaxPreimageSHA256": "3b130bb46f70421aae3f998e386742d4888e21eebd148a45670b27e5958269a5",
+  "sections": [
+    {
+      "id": "operators",
+      "present": "Table A &_i B and A & B; actual editable concatenation example. == != called whole-value comparison without indexed variants or axis/result-shape example."
+    },
+    {
+      "id": "pipes-and-loop-coordinates",
+      "present": "Bare >> example with $i/$0/$, no attached >>_i syntax/example and no shared operator-axis rule."
+    },
+    {
+      "id": "named-and-anonymous-dimensions",
+      "present": "Function subscripts sum_j and named operand axes; does not explain operator suffixes."
+    },
+    {
+      "id": "lifting-and-structural-calls",
+      "present": "Function selected-axis stat.ptp_i; no indexed operator inventory."
+    }
+  ],
+  "sharedRuleMissing": true,
+  "operatorCoverage": {
+    "&_i": "DOCUMENTED_AND_EXECUTED_CURRENT_EXAMPLE; dimension i selected for concatenation",
+    ">>_i": "PARSER_EXPLICIT_SUPPORT parse_pipe_expr; guide only bare >>, explicit form missing",
+    "==_i": "GUIDE_MISSING. Infix parse_cmp_expr has no attached selector branch; bounded normal runtime checks queued before asserting unsupported or supported. Prefix operator values must also be checked.",
+    "!=_i": "GUIDE_MISSING; same exact operator-value syntax investigation; no fabricated support claim",
+    "ordinaryElementwise": "No selected-axis parameter in infix parser; operand broadcasting remains separate."
+  },
+  "primarySource": "current compiler vkf_parser_token_stream_smoke.cpp:1419,1434,1877,1889; expression_binary_op.cpp; exact runtime checks pending",
+  "existingCurrentProofs": [
+    {
+      "occurrences": [
+        {
+          "page": "syntax.html",
+          "id": "syntax-extra-operators-0"
+        }
+      ],
+      "source": "offset(reading): reading + 0.3\ngain(reading): 1.02 reading\n\ncorrections_i: [offset, gain]_i\n\n:: corrections_i(20)\n\ncalibrate: offset & gain\n\n:: calibrate(20)",
+      "stdout": "[20.3, 20.4]\n20.706\n",
+      "binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+      "passed": true
+    }
+  ],
+  "plan": "Own syntax.html remains owned. Add concise operator-axis rule/table and genuine runnable small explicitpipe/currentequality examples only after actual syntax/outputs resolved; retain current concatenation proof. No new bank.",
+  "criticalCompiler": "Slot32 original$0cause fixed, new nominal callback contrasts capture failure retained in PUBLIC and native diagnostics.",
+  "productExecutionByCoverageAudit": false,
+  "currentActualResults": "INDEXED-OPERATOR-ACTUAL.json",
+  "actualOperatorResults": {
+    "status": "COMPLETE_ACTUAL_INDEXED_OPERATOR_SUPPORTED_AND_FAILURE_RESULTS",
+    "rows": [
+      {
+        "name": "explicit-pipe",
+        "source": "[10, 20]_i >>_i\n    :: $i\n    :: $0\n    :: $\n",
+        "result": {
+          "binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+          "stdout": "0\n0\n10\n1\n1\n20\n",
+          "stderr": ""
+        }
+      },
+      {
+        "name": "infix-indexed-object-equality",
+        "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: a ==_j b\n",
+        "result": {
+          "error": "compiler/bytecode-lowering: unknown scalar binding _j in function $vkf_main.body.body[3].expr.args[0].right.left"
+        }
+      },
+      {
+        "name": "prefix-indexed-object-equality",
+        "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: ==_j(a, b)\n",
+        "result": {
+          "error": "compiler/source-parse: unsupported token EXACT_EQ"
+        }
+      },
+      {
+        "name": "prefix-indexed-object-inequality",
+        "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: !=_j(a, b)\n",
+        "result": {
+          "error": "compiler/source-parse: unsupported token NEQ"
+        }
+      }
+    ],
+    "pages": [],
+    "errors": [],
+    "browserClosed": true,
+    "serverClosed": true
+  },
+  "equalityCurrentGap": "Infix ==_j rejects unknown scalar binding _j; prefix ==_j and !=_j reject EXACT_EQ/NEQ token. Not falsely claimed runnable; intended operator-axis semantics retained. Source2006 primary parser note owns followup.",
+  "compilerSourceOwnership": "Source2006 exclusively owns contrasts lexical-capture repair; actual2005 has made no additional compiler patch.",
+  "updatedSyntaxSHA256": "2349cbdf82cf1d36ec57efe4d2f67cdcb5efaa17e9f2c11a0ba567d58622e52f",
+  "newSection": "syntax.html#operator-axis-arguments",
+  "actualPipeSourceSHA256": "96e4d4a3bb178dd73437636d328fbcc1ce76b52e2dea00ed75734eff82399c13",
+  "knownRemaining": "Currentindexed==/!=syntax failure retained; source2006 exactprimarynote pending. No invented runnable equality."
+}

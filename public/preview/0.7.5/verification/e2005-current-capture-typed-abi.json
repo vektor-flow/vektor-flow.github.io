@@ -1,0 +1,119 @@
+{
+  "status": "CURRENT_TYPED_CAPTURE_ABI_OBSERVED_NATIVE_EXECUTION_STILL_PENDING",
+  "functions": [
+    {
+      "name": "choose_detector__overload_1",
+      "params": [
+        {
+          "default": null,
+          "kind": "param",
+          "name": "best",
+          "private_capture": false,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "type": "any",
+          "variadic_named": false,
+          "variadic_positional": false
+        },
+        {
+          "default": null,
+          "kind": "param",
+          "name": "candidate",
+          "private_capture": false,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "type": "any",
+          "variadic_named": false,
+          "variadic_positional": false
+        },
+        {
+          "default": null,
+          "kind": "param",
+          "name": "contrasts",
+          "private_capture": true,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "type": "axis<p>:[num:4]",
+          "variadic_named": false,
+          "variadic_positional": false
+        }
+      ],
+      "signature": {
+        "kind": "function_signature",
+        "params": [
+          "any",
+          "any",
+          "axis<p>:[num:4]"
+        ],
+        "return_type": "any",
+        "type": "fn(any,any,axis<p>:[num:4])->any"
+      },
+      "return_type": "any"
+    },
+    {
+      "name": "__vkf_nominal_value_42",
+      "params": [
+        {
+          "default": null,
+          "kind": "param",
+          "name": "best",
+          "private_capture": false,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "source_erased_observation": true,
+          "type": "int",
+          "variadic_named": false,
+          "variadic_positional": false
+        },
+        {
+          "default": null,
+          "kind": "param",
+          "name": "candidate",
+          "private_capture": false,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "source_erased_observation": true,
+          "type": "int",
+          "variadic_named": false,
+          "variadic_positional": false
+        },
+        {
+          "default": null,
+          "kind": "param",
+          "name": "contrasts",
+          "private_capture": true,
+          "shared_numeric_graph": false,
+          "shared_numeric_graph_payload": false,
+          "shared_numeric_vector": false,
+          "shared_numeric_vector_payload": false,
+          "type": "axis<p>:[num:4]",
+          "variadic_named": false,
+          "variadic_positional": false
+        }
+      ],
+      "signature": {
+        "kind": "function_signature",
+        "params": [
+          "int",
+          "int",
+          "axis<p>:[num:4]"
+        ],
+        "return_type": "int",
+        "type": "fn(int,int,axis<p>:[num:4])->int"
+      },
+      "return_type": "int"
+    }
+  ],
+  "typedIR": ".worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e2005/capture-native-scientific-spectrum/.vkfbuild/program/typed-ir.json",
+  "atMonotonic": 539486.411882747
+}

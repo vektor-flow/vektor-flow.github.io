@@ -1,6 +1,6 @@
-import {readyPlotControlFont} from './vf-plot-control-font.mjs';
-import {bindPlotDockGrip} from './vf-plot-docking.mjs';
-import {plotToolbarSvg} from './vf-plot-toolbar-icons.mjs';
+import {readyPlotControlFont} from './vf-plot-control-font.mjs?sha256=98d69bffa272062a7a5ab02ae2c7378b36da81eaf9544887b4cec58e612762a0';
+import {bindPlotDockGrip} from './vf-plot-docking.mjs?sha256=2d937dc67282c6305305905b0546b36205a3112e018ab40647f3cac2e0022fe3';
+import {plotToolbarSvg} from './vf-plot-toolbar-icons.mjs?sha256=f4e7c1f8a011c37baffa20e7feae1cf864ffa42e3baeb036c71d65b34bada54f';
 export const PLOT_TOOLBAR_API_VERSION='0.7.5-source.2';
 const need=(value,code,status='FAIL')=>{if(!value)throw Object.assign(Error(code),{code,status});};
 const copy=value=>structuredClone(value);

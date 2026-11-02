@@ -1,0 +1,39 @@
+{
+  "status": "COMPLETE_ACTUAL_INDEXED_OPERATOR_SUPPORTED_AND_FAILURE_RESULTS",
+  "rows": [
+    {
+      "name": "explicit-pipe",
+      "source": "[10, 20]_i >>_i\n    :: $i\n    :: $0\n    :: $\n",
+      "result": {
+        "binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+        "stdout": "0\n0\n10\n1\n1\n20\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "infix-indexed-object-equality",
+      "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: a ==_j b\n",
+      "result": {
+        "error": "compiler/bytecode-lowering: unknown scalar binding _j in function $vkf_main.body.body[3].expr.args[0].right.left"
+      }
+    },
+    {
+      "name": "prefix-indexed-object-equality",
+      "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: ==_j(a, b)\n",
+      "result": {
+        "error": "compiler/source-parse: unsupported token EXACT_EQ"
+      }
+    },
+    {
+      "name": "prefix-indexed-object-inequality",
+      "source": "a: [[1, 2], [3, 4]]_ij\nb: [[1, 2], [3, 9]]_ij\n:: !=_j(a, b)\n",
+      "result": {
+        "error": "compiler/source-parse: unsupported token NEQ"
+      }
+    }
+  ],
+  "pages": [],
+  "errors": [],
+  "browserClosed": true,
+  "serverClosed": true
+}

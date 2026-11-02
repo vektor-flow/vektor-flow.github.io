@@ -1,10 +1,10 @@
-import {prepareExamplePresentation} from './example-presentation.mjs';
-import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs';
+import {prepareExamplePresentation} from './example-presentation.mjs?sha256=d1a6749427ff46b02c013c169dc0f162334518ae3a9968d9af300f8780820f49';
+import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=8c332ba7d810ee29ed480970742b1ae0b5567c17a1749a8793c40c3acdeb9d9a';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {createInlineRunner} from './inline-runner.mjs?sha256=cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
+import {createInlineRunner} from './inline-runner.mjs?sha256=dbff659e6c73fd84cd67d08d9bc82724d81cbba787b9ed97ed31d7c5f03576f8';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=fc8a280e71523744c6e437b609aca095a7639a5a2f10eccf4808724af3039221';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=3f452b95cacc5b7eea791f94ae8a2603a8dda419688bb3ca47d664194378ca87';
 
 const release = await fetch(new URL('./current-compiler-release.json', import.meta.url),
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
@@ -31,7 +31,8 @@ try {
 } catch {}
 promoteVkfPrograms();
 for (const example of document.querySelectorAll('.readme-example')) prepareExamplePresentation(example);
-// Saved text is the complete output from this exact source/current compiler.
+// Saved text retains its actual execution binding. Explicit accepted unchanged
+// bindings reuse that proof only for an exact source hash; edited source clears it.
 // A draft or edited source never inherits a historical successful console.
 const consoleSeeds = await fetch(new URL('./example-output-seeds.json',import.meta.url),{cache:'no-store'})
   .then(r=>r.ok?r.json():{seeds:[]}).catch(()=>({seeds:[]}));
@@ -41,8 +42,8 @@ for (const example of document.querySelectorAll('.readme-example')) {
   const bytes=new TextEncoder().encode(source.value);
   const sourceHash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
   const page=location.pathname.split('/').at(-1)||'index.html';
-  const row=consoleSeeds.seeds.find(r=>r.page===page&&r.id===example.dataset.vkfExampleId&&r.source_sha256===sourceHash&&r.compiler_binding===release?.browser_binding);
-  if (row) {output.textContent=row.stdout;output.dataset.outputOrigin='saved-current-compiler';}
+  const row=consoleSeeds.seeds.find(r=>r.page===page&&r.id===example.dataset.vkfExampleId&&r.source_sha256===sourceHash&&(r.compiler_binding===release?.browser_binding||r.accepted_current_bindings?.includes(release?.browser_binding)));
+  if (row) {output.textContent=row.stdout;output.dataset.outputOrigin=row.compiler_binding===release?.browser_binding?'saved-current-compiler':'saved-accepted-unchanged-source';}
 }
 if (crossOriginIsolated) restoreBrowserDrafts();
 

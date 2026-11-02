@@ -12240,6 +12240,16 @@
     var specs = geomSpec && geomSpec.__renderableMeshes ? geomSpec.__renderableMeshes : (geomSpec && geomSpec.meshes ? geomSpec.meshes : []);
     if (!frameRecs[fid]) { frameRecs[fid] = { entries: [] }; }
     var rec = frameRecs[fid];
+    // A view/source update keeps the existing Canvas and native glyph sinks.
+    // Recreating the native layers here on every zoom/animation frame consumes
+    // fresh browser GL contexts faster than garbage collection can retire them.
+    if (rec.simple2DCanvas && rec.simple2DFrameEl === frameEl &&
+        rec.simple2DCanvas.isConnected !== false && geomSpec.native_plot_text === true) {
+      rec.simple2DMeshes=specs;rec.simple2DGeomSpec=geomSpec;
+      if (!drawSimple2DMarkerLineMeshes(fid,frameEl,specs)) return false;
+      renderGeomTextOverlay(fid,frameEl,geomSpec);
+      return true;
+    }
     stopGeomFrameRenderers(fid);
     rec.simple2DMeshes = specs;
     rec.simple2DGeomSpec = geomSpec;

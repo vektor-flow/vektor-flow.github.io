@@ -292,43 +292,8 @@ export function mountRetainedSceneResult(container, packets, {
       });
     }
   });
-  const enlarge = document.createElement("button");
-  enlarge.type = "button";
-  enlarge.className = "readme-example-enlarge";
-  enlarge.textContent = "Enlarge";
-  enlarge.setAttribute("aria-label", "Enlarge interactive result");
-  enlarge.setAttribute("aria-haspopup", "dialog");
-  container.append(enlarge);
-  let dialog = null;
-  let returnFocus = null;
-  const restore = () => {
-    if (!dialog) return;
-    container.append(viewport, enlarge);
-    dialog.remove();
-    dialog = null;
-    returnFocus?.focus();
-  };
-  enlarge.addEventListener("click", () => {
-    if (dialog) return;
-    returnFocus = document.activeElement;
-    dialog = document.createElement("dialog");
-    dialog.className = "readme-result-dialog";
-    dialog.setAttribute("aria-label", "Interactive result");
-    const close = document.createElement("button");
-    close.type = "button";
-    close.className = "readme-result-close";
-    close.textContent = "Close";
-    close.setAttribute("aria-label", "Close enlarged result");
-    close.addEventListener("click", () => dialog.close());
-    dialog.addEventListener("cancel", (event) => { event.preventDefault(); dialog.close(); });
-    const openedDialog = dialog;
-    dialog.addEventListener("close", () => { if (dialog === openedDialog) restore(); });
-    dialog.append(close, viewport);
-    document.body.append(dialog);
-    dialog.showModal();
-    close.focus();
-  });
   const dispose = () => {
+    if (disposed) return;
     disposed = true;
     layer.removeEventListener("vf-inline-render-error",renderError);
     presentationAbort.abort();
@@ -336,8 +301,6 @@ export function mountRetainedSceneResult(container, packets, {
     if (presentFrame) cancelAnimationFrame(presentFrame);
     for (const { capture } of movieCaptures.values()) capture.cancel();
     movieCaptures.clear();
-    if (dialog) { dialog.close(); restore(); }
-    enlarge.remove();
     for (const [index, frame] of frames.entries()) {
       VfDisplay.disposeGeomFrame?.(ownedPackets[index].metadata.scene.frame);
       frame?.root?.remove?.();

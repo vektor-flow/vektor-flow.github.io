@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "selectedCompilerSource": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
+  "browserBinding": "4a05eb5b0264c92b6546415d59e9a172ef2fc3554c74fae31fc12f25a6d18455",
+  "historyAuthority": "User chronology: Python parser -> Python emitting C++ -> compiling generated C++ -> removal of Python -> current C++ compiler; no invented dates or self-hosting claim.",
+  "moduleMap": {
+    "frontend": [
+      "compiler/native/vkf_native_frontend.hpp",
+      "compiler/native/vkf_module_frontend.hpp"
+    ],
+    "semantic": [
+      "compiler/native/vkf_semantic_demand.hpp",
+      "compiler/native/vkf_semantic_graph.hpp"
+    ],
+    "lowering": [
+      "compiler/native/lowering/",
+      "compiler/native/machine_lowering/",
+      "compiler/native/wasm_lowering/"
+    ],
+    "backends": [
+      "compiler/native/x64/",
+      "compiler/native/arm64/",
+      "compiler/native/wasm_emitter/"
+    ],
+    "runtimeAndLibraries": [
+      "compiler/native/runtime/",
+      "compiler/native/retained_scene/",
+      "compiler/self_hosted/stdlib/"
+    ],
+    "cache": [
+      "compiler/native/vkf_retained_optimization_cache.hpp",
+      "compiler/native/vkf_retained_optimization_driver.hpp"
+    ]
+  },
+  "inUseEvidence": {
+    "closedRecordEmbedding": "ae1db36",
+    "discardedIRCopyRemoval": "2a9bad8",
+    "fixedExtents": "682b082",
+    "lexicalCaptureDemand": "9abaf17",
+    "wasmPostLink": [
+      "--simplify-locals",
+      "--coalesce-locals"
+    ]
+  },
+  "pendingNotInUse": [
+    "74ca3e2 reflection reachability source",
+    "822396b erased-raise negative reachability source"
+  ],
+  "bootstrapStatus": "PLAN_ONLY_NOT_SELF_HOSTED",
+  "sourceInspectionOnly": true
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ONLY_ADAPTATION_UNRUN",
+  "workload": "Vega interaction/panzoom replay adapted to current VKF required-scale retained point fixture",
+  "upstream": "https://github.com/vega/vega-benchmarks",
+  "sourceFiles": [
+    "interaction/benchmarks.js",
+    "interaction/panzoom",
+    "interaction.sh"
+  ],
+  "peers": [
+    "regl-scatterplot",
+    "deck.gl ScatterplotLayer"
+  ],
+  "dataset": {
+    "source": "existing VKF required-scale fixture; same complete population across peers",
+    "sha256": null,
+    "count": null,
+    "status": "PENDING_MATCHED_DATA_ADAPTATION"
+  },
+  "interaction": "Replay the same centered zoom and alternating pan trace through genuine tool interactions; verify view endpoints and resident point population.",
+  "measurement": {
+    "setup": "Separate cold/load/first complete render",
+    "warm": "Actual presented-frame intervals during the same replay; FPS and p50/p95/p99 milliseconds; retain raw trace",
+    "quality": "Same appearance/viewport/DPR; no downsampling or invisible work; include axes/labels/modern toolbar or disclose incompatibility",
+    "environment": "Record browser, OS, CPU/GPU/driver/backend, display refresh, tool versions and artifact/data/trace hashes"
+  },
+  "results": [
+    {
+      "tool": "VKF current retained plot",
+      "status": "UNRUN",
+      "fps": null,
+      "frameMsP50": null,
+      "frameMsP95": null,
+      "frameMsP99": null
+    },
+    {
+      "tool": "regl-scatterplot",
+      "status": "UNRUN",
+      "fps": null,
+      "frameMsP50": null,
+      "frameMsP95": null,
+      "frameMsP99": null
+    },
+    {
+      "tool": "deck.gl ScatterplotLayer",
+      "status": "UNRUN",
+      "fps": null,
+      "frameMsP50": null,
+      "frameMsP95": null,
+      "frameMsP99": null
+    }
+  ],
+  "implementation": "No new renderer, shader or performance result. Existing actual runner adaptation only; exact commands in source owner handoff."
+}

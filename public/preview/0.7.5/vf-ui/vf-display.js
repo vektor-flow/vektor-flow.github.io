@@ -5831,6 +5831,46 @@
     return requestGeomFramePresentation(fid, options);
   }
 
+  // Programmatic domain replay uses the same retained meshes, draw transaction
+  // and completed-view fence as ordinary zoom/pan. No source/geometry evaluation.
+  function updateGeomFrameDomains(fid, domain, options) {
+    fid = String(fid);
+    if (!Array.isArray(domain) || domain.length !== 4 ||
+        !domain.every(function(value) { return typeof value === "number" && Number.isFinite(value); }) ||
+        !(domain[1] > domain[0]) || !(domain[3] > domain[2])) { return false; }
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    var meshes = geom && geom.meshes;
+    if (!Array.isArray(meshes) || !meshes.length || meshes.some(function(mesh) {
+      return mesh.mode3d === true || !mesh.axis_ticks || mesh.axis_polar === true;
+    }) || !findFrameEl(geomTargetFrameId(fid))) { return false; }
+    if (options && options.signal && options.signal.aborted) { return false; }
+    interruptFrameViewTransition(fid);
+    meshes.forEach(function(mesh) {
+      Object.assign(mesh.axis_ticks, {x_min:domain[0], x_max:domain[1], y_min:domain[2], y_max:domain[3], __vf_live_mutated:true});
+      delete mesh.axis_ticks.__frozen_tick_values;
+      delete mesh.axis_ticks.__frozen_box_tick_state;
+    });
+    return requestGeomFramePresentation(fid, options);
+  }
+
+  // Observe actual completed 2D chart domains and CSS data rectangle. This is
+  // also useful to normal embeddings that align an external overlay with a plot.
+  function getGeomFramePlotMetrics(fid) {
+    fid = String(fid);
+    var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    var frame = findFrameEl(geomTargetFrameId(fid));
+    var body = frame && geomFrameHost(frame, fid);
+    var canvas = body && geomHostCanvas(body, 0);
+    var mesh = geom && geom.meshes && geom.meshes[0];
+    var presented = getGeomFramePresentedView(fid);
+    if (!canvas || !mesh || mesh.mode3d === true || mesh.axis_polar === true || !mesh.axis_ticks || !presented) { return null; }
+    var rect = canvas.getBoundingClientRect();
+    var box = axisBoxRect(mesh, rect.width, rect.height);
+    return {width:rect.width, height:rect.height, dpr:Number(global.devicePixelRatio) || 1,
+      dataRect:{left:box.left, top:box.top, right:box.right, bottom:box.bottom, width:box.width, height:box.height},
+      presented:presented};
+  }
+
   function cancelFrameViewHistoryCommit(body) {
     if (!body) { return; }
     if (body.__vfViewHistoryTimer) { global.clearTimeout(body.__vfViewHistoryTimer); }
@@ -10168,6 +10208,15 @@
           drawAxisTicks(mesh);
           ctx.stroke();
         }
+        // Clip markers to the chart's data box, after drawing axes/grid. Keep
+        // off-domain coordinates intact: clamping creates false edge geometry.
+        ctx.save();
+        if (!boundController && mesh.axis_box === true) {
+          var pointClip = axisBoxRect(mesh, w, h);
+          ctx.beginPath();
+          ctx.rect(pointClip.left, pointClip.top, pointClip.width, pointClip.height);
+          ctx.clip();
+        }
         var pointScales = Array.isArray(mesh.vertex_scale) ? mesh.vertex_scale : null;
         var globalPointScale = pointScales
           ? null
@@ -10191,13 +10240,12 @@
             : globalPointScale;
           if (!(scale > 0)) { scale = 1; }
           var radius = Math.max(0.5, Number(mesh.vertex_size || 5) * scale);
-          pointPosition[0] = Math.max(radius, Math.min(w - radius, pointPosition[0]));
-          pointPosition[1] = Math.max(radius, Math.min(h - radius, pointPosition[1]));
           ctx.beginPath();
           ctx.fillStyle = runtimeColorCss(meshVertexColor(mesh, pointIndex, color));
           ctx.arc(pointPosition[0], pointPosition[1], radius, 0, Math.PI * 2);
           ctx.fill();
         }
+        ctx.restore();
         ctx.restore();
         continue;
       }
@@ -15188,6 +15236,8 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     requestGeomFramePresentation: requestGeomFramePresentation,
     disposeGeomFrame: disposeGeomFrame,
     updateGeomFrameCamera: updateGeomFrameCamera,
+    updateGeomFrameDomains: updateGeomFrameDomains,
+    getGeomFramePlotMetrics: getGeomFramePlotMetrics,
     getGeomFramePresentedView: getGeomFramePresentedView,
     createRetainedFrameSceneV1: createRetainedFrameSceneV1,
     loadAndRender: loadAndRender,

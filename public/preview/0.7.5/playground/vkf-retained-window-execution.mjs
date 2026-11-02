@@ -1,4 +1,4 @@
-import {ensureInlineRenderer} from '../inline-renderer-loader.mjs?sha256=e01af63580a929257c906f4c177f146231d7be4f1a38342cf99188d64450b62c';
+import {ensureInlineRenderer} from '../inline-renderer-loader.mjs?sha256=a9ee984e97808f178abbc9af7ee97dfb3d695ad9fa528f6d45de653ffd458cf5';
 import {createRetainedExecutionControl} from './vkf-retained-execution-control.mjs';
 // Retained programs require genuine DOM/render owners. The compiler worker
 // delegates only emitted WASM+manifest, then receives owned VM output bytes.

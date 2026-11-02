@@ -154,6 +154,11 @@ if (ready && crossOriginIsolated && requestedRun &&
   const example = [...document.querySelectorAll('.readme-example')].find(
     item => item.dataset.vkfExampleId === requestedRun.id);
   if (example?.querySelector('textarea')?.value === requestedRun.source) {
+    // Isolation replaces the document. Keep the explicitly requested example
+    // visible when its Run resumes inside an otherwise collapsed disclosure.
+    for (let parent = example.parentElement; parent; parent = parent.parentElement) {
+      if (parent instanceof HTMLDetailsElement) parent.open = true;
+    }
     example.querySelector('.readme-example-play')?.click();
   }
 }

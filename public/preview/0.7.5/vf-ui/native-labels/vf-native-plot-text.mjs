@@ -23,10 +23,10 @@ export function nativePlotTextSource(text) {
   return result;
 }
 
-export function createNativePlotTextLayer({container, createLayer, measure}) {
+export function createNativePlotTextLayer({container, createLayer, measure, onError}) {
   need(container?.ownerDocument && typeof createLayer === 'function', 'NATIVE_PLOT_TEXT_FACTORY');
   const groups = new Map();
-  let closed = false, next = null, running = null, generation = 0, accepted = 0;
+  let closed = false, failure = null, next = null, running = null, generation = 0, accepted = 0;
   let state = {status:'PENDING', route:'current-vkf-latex-scene'};
   const waiters = [];
   const settle = (through, result, error) => {
@@ -36,6 +36,14 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
       if (error) waiter.reject(error);
       else waiter.resolve({...result, superseded:waiter.generation !== through});
     }
+  };
+  const fail = error => {
+    if (closed || failure) return;
+    failure=error;next=null;
+    state={status:'FAILED',route:'current-vkf-latex-scene',error:String(error.stack ?? error)};
+    for (const group of groups.values()) group.layer.canvas.style.visibility='hidden';
+    settle(generation,null,error);
+    onError?.(error);
   };
   async function draw(input) {
     const batches = new Map();
@@ -75,6 +83,7 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
         sizeSpace:'world', anchorFraction:row.anchor ?? [0.5,0.5]});
     }
     for (const [key, group] of groups) if (!batches.has(key)) {
+      group.layer.canvas.removeEventListener('webglcontextlost',group.contextLost);
       await group.layer.destroy(); group.host.remove(); groups.delete(key);
     }
     for (const [key, batch] of batches) {
@@ -84,7 +93,9 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
         const host = container.ownerDocument.createElement('div');
         host.style.cssText = 'position:absolute;inset:0;pointer-events:none';
         container.append(host);
-        group = {host, layer:createLayer({container:host}), signature:null};
+        group = {host, layer:createLayer({container:host}), signature:null,
+          contextLost:()=>fail(new Error('Native plot text graphics context was lost. Run again.'))};
+        group.layer.canvas.addEventListener('webglcontextlost',group.contextLost);
         groups.set(key, group);
       }
       const signature = JSON.stringify([batch.specs,batch.camera,input.width,input.height,input.pixelRatio]);
@@ -101,10 +112,10 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
   }
   async function drain() {
     try {
-      while (next && !closed) {
+      while (next && !closed && !failure) {
         const input = next; next = null;
         await draw(input);
-        if (closed) break;
+        if (closed || failure) break;
         accepted = input.generation;
         if (next) continue; // Never report a superseded coordinate/view as current.
         state = {status:'SUBMITTED_COMPLETION_UNMEASURED',route:'current-vkf-latex-scene',
@@ -113,10 +124,7 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
         settle(accepted,state);
       }
     } catch (error) {
-      next = null;
-      state = {status:'FAILED',route:'current-vkf-latex-scene',error:String(error.stack ?? error)};
-      for (const group of groups.values()) group.layer.canvas.style.visibility = 'hidden';
-      settle(generation,null,error);
+      fail(error);
       throw error;
     }
   }
@@ -125,13 +133,14 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
       running=null;
       // A consumer may request its next view when the preceding ready promise
       // settles, before this drain's final microtask. Do not strand that input.
-      if (next && !closed) launch();
+      if (next && !closed && !failure) launch();
     });
     running.catch(()=>{});
   }
   return {
     update(input) {
       need(!closed, 'NATIVE_PLOT_TEXT_CLOSED');
+      if (failure) return Promise.reject(failure);
       next = {...input, rows:structuredClone(input.rows), generation:++generation};
       state = {...state,status:'PENDING',generation};
       const ready = new Promise((resolve,reject) => waiters.push({generation,resolve,reject}));
@@ -146,7 +155,10 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
       closed = true; next = null;
       settle(generation,{status:'DISPOSED'});
       await running?.catch(() => {});
-      await Promise.all([...groups.values()].map(async group => {await group.layer.destroy();group.host.remove();}));
+      await Promise.all([...groups.values()].map(async group => {
+        group.layer.canvas.removeEventListener('webglcontextlost',group.contextLost);
+        await group.layer.destroy();group.host.remove();
+      }));
       groups.clear();
     }
   };

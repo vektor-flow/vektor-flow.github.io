@@ -12078,7 +12078,13 @@
         // to the installed native scene layer, including axes and coordinates.
         content.textContent = "";
         rec.textOverlayPool = [];
-        rec.nativePlotTextLayer = _nativePlotTextRendererFactory({container:content,createLayer:_nativeLabelRendererFactory,measure:installation.measureMathSource});
+        rec.nativePlotTextLayer = _nativePlotTextRendererFactory({container:content,createLayer:_nativeLabelRendererFactory,measure:installation.measureMathSource,
+          onError:function(error) {
+            if (frameRecs[String(fid)] !== rec || !rec.nativePlotTextLayer) return;
+            rec.nativeLabelError=String(error.stack || error);
+            rec.nativeLabelReady=Promise.reject(error);rec.nativeLabelReady.catch(function() {});
+            frameEl.dispatchEvent(new global.CustomEvent("vf-inline-render-error",{bubbles:true,detail:{message:String(error.message || error)}}));
+          }});
       }
       return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,
         pixelRatio:Math.max(1,Number(global.devicePixelRatio) || 1),foreground:ink});

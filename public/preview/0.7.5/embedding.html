@@ -18,98 +18,13 @@
 </head>
 <body class="remake">
 <a class="skip-link" href="#content">Skip to content</a>
-<header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow<span class="release-version">0.7.5</span></a><details class="site-menu" open><summary>Menu</summary><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="examples.html">Examples</a><a href="embedding.html" aria-current="page">Embedding</a><a href="build.html">Run and test</a></nav></details></header>
-<main id="content"><article class="guide-page readme embedding-guide">
-<div class="page-intro"><p class="eyebrow">HOW / EMBEDDING</p><h1>Run VKF inside your page</h1><p class="page-lead">Your page supplies the source and owns the run. The compiler returns text and scene packets; the shared renderer presents the scene.</p></div>
-<p>Start with a real program from <a href="examples.html">Examples</a>. This guide explains the integration once. The HTML and JavaScript below are reference steps for a host application; they do not start another playground on this page.</p>
-<nav class="reference-toc" aria-label="Embedding guide"><a href="#hosting">Hosting</a><a href="#html">HTML targets</a><a href="#javascript">Compiler setup</a><a href="#run">Run and render</a><a href="#reuse">Errors and lifecycle</a></nav>
-<section id="hosting" class="embedding-reference">
-<h2>1. Keep the runtime together</h2>
-<p>The current website uses <a href="inline-runner.mjs?sha256=188f5f84e3dbd67defb9ffa1bfa3f94d614fda544764fb10788ca6d1e8ca96e1">inline-runner.mjs</a>, its compiler worker and the package selected by <a href="current-compiler-release.json">current-compiler-release.json</a>. Keep their relative directory structure, matching module/WASM/data files, renderer modules and native scene-label resources together. These examples describe the existing website modules; a standalone embedding SDK download is not offered by this review site.</p>
-<p>Serve modules and assets over HTTPS, or localhost during development. The browser compiler needs isolated shared memory: <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code>. Prefer those server headers. The site's <a href="vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029">isolation helper</a> can instead install <a href="vkf-coep-sw.js?sha256=2b4cced92cb9595df9609d86293059e5dfc2957a658df66d44d406585f5d8737">vkf-coep-sw.js</a> under the same path and reload once after an explicit Run. That reload requires restoring the edited source and resuming only the user's requested run.</p>
-<p>If the host sets a Content Security Policy, allow these same-origin module/classic scripts, module workers and service worker, compiler/scene resource fetches, styles and fonts, and WebAssembly compilation. A restrictive <code>script-src</code> needs <code>'wasm-unsafe-eval'</code> for WebAssembly. Cross-origin resources must also satisfy COEP and their fetch CORS requirements. Keep the integration's relative URLs and the host's policy consistent.</p>
-</section>
-<section id="html" class="embedding-reference">
-<h2>2. Give source, viewport and console separate elements</h2>
-<p>The host's editable source is input. Put the interactive plot in its own viewport and execution text in a different console. Explain the calculation above those elements and stack them at full width, as the maintained examples do. These target elements illustrate the connection:</p>
-<pre tabindex="0"><code class="language-markup">&lt;label for="vkf-source"&gt;VKF source&lt;/label&gt;
-&lt;textarea id="vkf-source" spellcheck="false" wrap="off"
-  placeholder="Paste a program from Examples"&gt;&lt;/textarea&gt;
-&lt;button id="vkf-run" type="button"&gt;Run&lt;/button&gt;
-&lt;p id="vkf-status" role="status"&gt;&lt;/p&gt;
-&lt;section id="vkf-viewport" class="readme-example-viewport"
-  aria-label="Interactive plot viewport"&gt;&lt;/section&gt;
-&lt;section class="readme-example-terminal" aria-label="Text console"&gt;
-  &lt;strong&gt;Console&lt;/strong&gt;
-  &lt;pre id="vkf-console" aria-live="polite"&gt;&lt;/pre&gt;
-&lt;/section&gt;</code></pre>
-<p>In the JavaScript steps, <code>source</code>, <code>viewport</code>, <code>consoleOutput</code> and <code>status</code> refer to these elements. The host attaches its own Run/edit/removal handlers once. It owns <code>controller</code> (the active run's AbortController), <code>scene</code> (the current mount), a source <code>revision</code> counter, a <code>closed</code> flag and the listener AbortController <code>events</code>. The steps share that state; they are excerpts, rather than a complete event-handling client.</p>
-</section>
-<section id="javascript" class="embedding-reference">
-<h2>3. Select the matching compiler once</h2>
-<p>Create one runner for this host owner, using the enabled manifest's exact files and source binding. Creation does not execute the program. <code>runner.run</code> prepares the package and worker when the user requests execution; reuse that runner for later runs. The modules below live beside this guide.</p>
-<pre tabindex="0"><code class="language-javascript">import {createInlineRunner} from './inline-runner.mjs';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
-
-const response = await fetch(new URL('./current-compiler-release.json',
-  import.meta.url), {cache: 'no-store'});
-if (!response.ok) throw new Error('Compiler manifest unavailable');
-const release = await response.json();
-if (![release.current_distribution, release.site_review_iteration]
-    .some(policy =&gt; policy?.enabled &amp;&amp; policy.runEnabled)) {
-  throw new Error('Browser execution is unavailable');
-}
-const runner = createInlineRunner({
-  moduleURL: release.package.module,
-  wasmUrl: release.package.wasm,
-  dataURL: release.package.data,
-  expectedSourceBinding: release.browser_binding ?? release.compiler_source,
-  timeoutMs: 360000,
-});</code></pre>
-<p>VKF source stays a string: <code>source.value</code>. Copy a complete program from <a href="examples.html#example-scientific-spectrum">the spectral analysis example</a> or another maintained example. JavaScript uses explicit operators such as <code>a * b</code>; VKF source uses its own range, index and implicit multiplication syntax. Do not translate VKF arithmetic into host JavaScript.</p>
-</section>
-<section id="run" class="embedding-reference">
-<h2>4. Execute, then present the real result</h2>
-<p>On Run, capture the source revision, create the active AbortController and disable repeated clicks. Dispose the previous scene before replacing it. Pass the source to the runner, put stdout/stderr in the console with <code>textContent</code> and hand retained packets to the shared renderer:</p>
-<pre tabindex="0"><code class="language-javascript">// Inside the host's async Run handler and its try/catch/finally:
-const runRevision = revision;
-const signal = controller.signal;
-scene?.();
-scene = undefined;
-const result = await runner.run(source.value, {signal});
-if (closed || signal.aborted || revision !== runRevision) return;
-consoleOutput.textContent = result.output.stdout + (result.output.stderr ?? '');
-
-if (result.packets?.length) {
-  await ensureInlineRenderer();
-  if (closed || signal.aborted || revision !== runRevision) return;
-  const mounted = mountRetainedSceneResult(viewport, result.packets);
-  scene = mounted; // Keep the cleanup function for edit, rerun and removal.
-  const presented = await mounted.presented;
-  // null means this mount was removed before its first presentation.
-  if (presented === null || closed || signal.aborted || revision !== runRevision) return;
-}
-status.textContent = 'Completed.';</code></pre>
-<p>After each <code>await</code>, the complete handler must check that its captured revision still matches and the host has not closed before changing output or installing a scene. An edit can arrive during compiler or renderer initialization. A cancelled or stale run must never overwrite the new source's result.</p>
-<p><code>mountRetainedSceneResult</code> supplies normal plot interaction and the native LaTeX scene text route, including ticks and coordinates. Its returned function removes the mounted scene; <code>.presented</code> resolves after its real first presentation or rejects on a rendering failure. Reuse that renderer rather than reconstructing plots, labels or physics in JavaScript. Plot style and axis visibility belong in the VKF program; the host does not add Axes/Grid selectors or duplicate plot navigation.</p>
-</section>
-<section id="reuse" class="embedding-reference">
-<h2>5. Handle errors, reruns and removal</h2>
-<p>Catch runner and presentation errors in the host's Run handler and report the actual error message in the console. Clear a failed scene. Later renderer failures arrive as <code>vf-example-render-error</code> on the viewport; its <code>event.detail.message</code> belongs in the same error path. Restore the Run button in <code>finally</code>, unless the host has closed, so an error can be corrected and rerun. Keep only one active run for an owner.</p>
-<pre tabindex="0"><code class="language-javascript">// On an edit: invalidate the pending result, cancel work and clear output.
-revision++;
-controller?.abort();
-scene?.();
-scene = undefined;
-consoleOutput.textContent = '';
-
-// On removal: also detach the host's listeners and await worker shutdown.
-events.abort(); // events is the AbortController used for those listeners.
-await runner.dispose();</code></pre>
-<p>The two cleanup groups above belong to different handlers. An edit cancels the active run and disposes its scene, while leaving the runner available. Removing the host first marks it <code>closed</code>, then cancels its active run, removes its scene, aborts its registered listeners and awaits <code>runner.dispose()</code>. Do not start a replacement owner while the old one is still closing. If page navigation disposes the owner, a return from the browser's back/forward cache must recreate it before another Run.</p>
-<p>For the full website event handling, inspect <a href="current-documentation-examples.mjs?sha256=c0e2f43229d44faadbedfffeeab8bde7f2e94cfa89e58046fd63c8ec980dda7b">current-documentation-examples.mjs</a> and <a href="example-presentation.mjs?sha256=363e7d202bf7912b128829fe33a5b59728adfedb2c500f04d2702ea64970f495">example-presentation.mjs</a>. They connect the same runner and mount APIs to the shared editable examples. <a href="embed-example.html">The panel-area form</a> shows a host input that changes the VKF source. Keep one entry point per page: loading the same event-handling module through different query URLs creates separate owners.</p>
-</section>
-</article></main>
-<footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="More"><a href="examples.html">Examples</a><a href="build.html">Run and test</a><a href="syntax.html">Syntax</a></nav><small>Vektor Flow · website review</small></footer>
+<header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow<span class="release-version">0.7.5</span></a><details class="site-menu" open><summary>Menu</summary><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="embedding.html" aria-current="page">Embedding</a><a href="build.html">Run and test</a></nav></details></header>
+<main id="content"><article class="guide-page readme embedding-guide"><div class="page-intro"><p class="eyebrow">HOW / EMBEDDING</p><h1>Run VKF inside your page</h1><p class="page-lead">Your page supplies source and owns the run. The compiler returns text and native scene packets; the shared renderer presents the scene.</p></div>
+<p>Start with the editable programs in <a href="syntax.html">Syntax + Examples</a>. The same area contains the working host-input example and the HTML and JavaScript that explain its connection. This guide keeps the integration requirements together.</p>
+<section id="hosting"><h2>Keep the runtime together.</h2><p>Use matching compiler, worker, renderer, module, WASM and data files from one selected revision. Keep relative paths, native scene-label resources and third-party notices intact. Serve over HTTPS or localhost and provide the browser isolation and policy required by those assets. This review site offers no standalone embedding SDK download.</p><p><a href="syntax.html#embedding-hosting">Read the hosting and policy details</a>.</p></section>
+<section id="html"><h2>Separate source, viewport and console.</h2><p>Source is editable input. Visual results belong in their own interactive viewport, with execution text in a separate console. The host owns its handlers and state.</p><p><a href="syntax.html#embedding-panel-area">Try the real host-input example</a> and <a href="syntax.html#embedding-html">inspect the target elements</a>.</p></section>
+<section id="javascript"><h2>Select one matching compiler owner.</h2><p>Create one runner for the host and reuse it for later user-requested runs. Creation does not execute the program. Keep VKF source as source rather than translating its calculation into JavaScript.</p><p><a href="syntax.html#embedding-javascript">Read the compiler setup beside the example</a>.</p></section>
+<section id="run"><h2>Present the actual result.</h2><p>Run compiles the edited VKF source. Present its output and retained native scene through the existing renderer, preserving the program’s axes, grid and shared toolbar.</p><p><a href="syntax.html#embedding-run">Read the Run and render example</a>.</p></section>
+<section id="reuse"><h2>Handle errors, reruns and removal.</h2><p>Report actual compiler and renderer errors. An edit invalidates the pending result, cancels work and clears its scene. Removing the host also detaches listeners and awaits worker shutdown. Close the preceding owner before starting a replacement.</p><p><a href="syntax.html#embedding-reuse">Read the lifecycle example</a>.</p></section></article></main>
+<footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="More"><a href="syntax.html#workflows">Examples</a><a href="build.html">Run and test</a><a href="syntax.html">Syntax + Examples</a></nav><small>Vektor Flow · website review</small></footer>
 </body></html>

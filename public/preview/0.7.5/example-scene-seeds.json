@@ -2,7 +2,7 @@
   "schema": 1,
   "examples": [
     {
-      "page": "index.html",
+      "page": "syntax.html",
       "id": "scientific-spectrum",
       "source_sha256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db",
       "compiler_binding": "4a05eb5b0264c92b6546415d59e9a172ef2fc3554c74fae31fc12f25a6d18455",
@@ -96,107 +96,15 @@
             "version": 1
           }
         }
+      ],
+      "relocated_from_page": "index.html",
+      "relocated_from_pages": [
+        "index.html",
+        "examples.html"
       ]
     },
     {
-      "page": "examples.html",
-      "id": "scientific-spectrum",
-      "source_sha256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db",
-      "compiler_binding": "4a05eb5b0264c92b6546415d59e9a172ef2fc3554c74fae31fc12f25a6d18455",
-      "packets": [
-        {
-          "url": "./example-scenes/226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db-0.bin",
-          "bytes": 24616,
-          "sha256": "0c724663125869b854096f1c2a48f4f669fc232f793d23b260d9bc24f211d64e",
-          "packet": {
-            "metadata": {
-              "scene": {
-                "container_kind": "viewport",
-                "frame": "frame_0",
-                "lights": [],
-                "meshes": [
-                  {
-                    "axis_box": false,
-                    "axis_full_frame": true,
-                    "axis_ticks": {
-                      "axis_style": {
-                        "arrows": false,
-                        "frame": false,
-                        "type": "crosshair"
-                      },
-                      "enabled": true,
-                      "grid": true,
-                      "grid_options": {
-                        "mode": "dots"
-                      },
-                      "x_label": "Energy",
-                      "x_max": 1,
-                      "x_min": -1,
-                      "y_label": "Intensity",
-                      "y_max": 6,
-                      "y_min": 0
-                    },
-                    "casts_shadow": false,
-                    "color": [
-                      0.25,
-                      0.72,
-                      1,
-                      1
-                    ],
-                    "coordinate_labels": {
-                      "x": "Energy",
-                      "y": "Intensity"
-                    },
-                    "curve_path": "open-continuous",
-                    "depth_write": true,
-                    "edge_width": 1,
-                    "id": "layer_0",
-                    "indices": {
-                      "byte_offset": 20520,
-                      "length": 1024,
-                      "storage": "uint32"
-                    },
-                    "layer_id": 0,
-                    "marker_space": "pixel",
-                    "mode3d": false,
-                    "no_lighting": true,
-                    "render_mode": "line",
-                    "spatial_axes": [
-                      "x",
-                      "y"
-                    ],
-                    "topology": "line-list",
-                    "transparent": false,
-                    "type": "field_mesh",
-                    "vertices": {
-                      "byte_offset": 0,
-                      "length": 5130,
-                      "storage": "float32"
-                    }
-                  }
-                ],
-                "pos": [
-                  0,
-                  0
-                ],
-                "size": [
-                  1,
-                  1
-                ],
-                "texts": [],
-                "toolbar": null
-              },
-              "schema": "vektor-flow/retained-scene-arena",
-              "version": 1
-            },
-            "schema": "vektor-flow/retained-scene-arena",
-            "version": 1
-          }
-        }
-      ]
-    },
-    {
-      "page": "examples.html",
+      "page": "syntax.html",
       "id": "motion-design",
       "source_sha256": "cc539214f227618e368ceb6a3ddd360ca6932ab405bba71193ad0ec33fb55500",
       "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
@@ -446,7 +354,8 @@
         "executedCompilerBinding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
         "executedReport": "e2000/ALL-SITE-RUNS4.json",
         "currentBindingAcceptance": "Exact unchanged authored source/output; ordinary immutable-capture correction qualified by current affected stat, full-spectrum, exact114 and pipe cases. Unchanged mathematical output retained; this is not a claim of re-executing this source on the new binding."
-      }
+      },
+      "relocated_from_page": "examples.html"
     },
     {
       "page": "syntax.html",
@@ -853,7 +762,7 @@
       }
     },
     {
-      "page": "few-math-labels.html",
+      "page": "syntax.html",
       "id": "native-math-annotations",
       "source_sha256": "2181fe3b4174a8eefd3dbf9fa73bb31c67640fb071dabb77e7de83b17ff21a7e",
       "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
@@ -1134,7 +1043,9 @@
         "executedCompilerBinding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
         "executedReport": "e2000/ALL-SITE-RUNS4.json",
         "currentBindingAcceptance": "Exact unchanged authored source/output; ordinary immutable-capture correction qualified by current affected stat, full-spectrum, exact114 and pipe cases. Unchanged mathematical output retained; this is not a claim of re-executing this source on the new binding."
-      }
+      },
+      "relocated_from_page": "few-math-labels.html"
     }
-  ]
+  ],
+  "editorial_relocation": "Canonical documentation code now lives in Syntax + Examples and separate Standard Library. Source/output/scene identities are unchanged; new route/layout checks remain required."
 }

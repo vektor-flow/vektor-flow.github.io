@@ -1,0 +1,51 @@
+# Compiler-paired pure interpolation, extracted from existing Interpolation.vkf.
+# Project-owned Morphing/geometry/view adapters stay in their library.
+interpolation_polynomial_backend:.interpolation.polynomial
+interpolation_tensor_backend:.interpolation.tensor
+Sample:(value:[num],first:[num],second:[num])
+
+# Flat vector entry points. Normalized coordinates are independent of time.
+Polynomial:(controls:[num],width:int,count:int)
+Patch:(controls:[num],width:int,u_count:int,v_count:int)
+PatchSample:(value:[num],du:[num],dv:[num],duu:[num],duv:[num],dvv:[num])
+
+lerp(start:num,finish:num,coordinate:num)->num:
+    (coordinate>=0 /\ coordinate<=1)?! "coordinate outside lerp domain"
+    (|start|<10^100 /\ |finish|<10^100)?! "nonfinite or excessive lerp value"
+    value:(1-coordinate)*start+coordinate*finish
+    coordinate=0? .value:start
+    coordinate=1? .value:finish
+    @:value
+
+blend(start:[num],finish:[num],coordinate:num)->[num]:
+    (start.length()>0 /\ start.length()=finish.length())?! "invalid blend dimensions"
+    (coordinate>=0 /\ coordinate<=1)?! "coordinate outside blend domain"
+    [num] value:[0:start.length()]
+    i:0
+    i<start.length()?>
+        value.(i):lerp(start.(i),finish.(i),coordinate)
+        .i:i+1
+    @:value
+
+prepare_bezier(controls:[num],width:int)->Polynomial:interpolation_polynomial_backend.prepare_bezier(controls,width)
+prepare_hermite(start:[num],finish:[num],start_derivative:[num],finish_derivative:[num])->Polynomial:interpolation_polynomial_backend.prepare_hermite(start,finish,start_derivative,finish_derivative)
+sample_polynomial(plan:Polynomial,coordinate:num)->Sample:interpolation_polynomial_backend.evaluate(plan,coordinate)
+prepare_patch(controls:[num],width:int,u_count:int,v_count:int)->Patch:interpolation_tensor_backend.prepare(controls,width,u_count,v_count)
+sample_patch(plan:Patch,u:num,v:num)->PatchSample:interpolation_tensor_backend.evaluate(plan,u,v)
+
+# Explicit plotting schedule: no implicit subdivision, resampling, or easing.
+# Frame.add consumes this record through its interp parameter, without x/y args.
+PlotCurve:(sample_x:[num],sample_y:[num])
+
+plot_curve(plan:Polynomial,coordinates:[num])->PlotCurve:
+    (plan.width=2)?! "plot interpolation requires a two-channel polynomial"
+    (coordinates.length()>=2)?! "plot interpolation requires at least two coordinates"
+    [num] coordinates_first:[0:coordinates.length()]
+    [num] coordinates_second:[0:coordinates.length()]
+    index:0
+    index<coordinates.length()?>
+        sampled:sample_polynomial(plan,coordinates.(index))
+        coordinates_first.(index):sampled.value.(0)
+        coordinates_second.(index):sampled.value.(1)
+        .index:index+1
+    @:(sample_x:coordinates_first,sample_y:coordinates_second)

@@ -17,17 +17,11 @@ for (const menu of document.querySelectorAll('.site-menu')) {
     }
   });
 }
-// Documentation can promote reference programs after its asynchronous manifest load.
-// Await that same owner URL before scanning, so promoted editors also receive Copy.
-// Narrative/guide pages without programs do not create a compiler owner.
-if (document.querySelector('.readme-example, .code-snippet[data-language="vkf"]')) {
-  await import('./current-documentation-examples.mjs?sha256=c0e2f43229d44faadbedfffeeab8bde7f2e94cfa89e58046fd63c8ec980dda7b');
-}
 // Extend the retained editor with a source-copy control; Run/highlighting stay in their original module.
-for (const example of document.querySelectorAll('.readme-example')) {
+function attachExampleCopy(example) {
   const bar=example.querySelector('.readme-example-bar');
   const source=example.querySelector('textarea');
-  if (!bar || !source) continue;
+  if (!bar || !source || bar.querySelector('.copy-button')) return;
   const copy=document.createElement('button');
   copy.type='button'; copy.className='copy-button'; copy.textContent='Copy';
   copy.setAttribute('aria-label','Copy VKF source');
@@ -59,3 +53,15 @@ for (const example of document.querySelectorAll('.readme-example')) {
     },1800);
   });
 }
+
+// Observe only editor DOM readiness. The documentation owner initializes itself.
+for (const example of document.querySelectorAll('.readme-example')) attachExampleCopy(example);
+const copyObserver=new MutationObserver(records=>{
+  for (const record of records) for (const node of record.addedNodes) {
+    if (node.nodeType!==1) continue;
+    if (node.matches('.readme-example')) attachExampleCopy(node);
+    for (const example of node.querySelectorAll('.readme-example')) attachExampleCopy(example);
+  }
+});
+copyObserver.observe(document.querySelector('main')??document.body,{childList:true,subtree:true});
+window.addEventListener('pagehide',()=>copyObserver.disconnect(),{once:true});

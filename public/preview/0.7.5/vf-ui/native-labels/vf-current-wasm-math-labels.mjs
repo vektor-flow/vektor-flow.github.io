@@ -22,6 +22,9 @@ export async function installCurrentWasmMathLabels({VfDisplay=globalThis.VfDispl
   typography=createCurrentNativeTypography({boxes:{},vectors,binding,identity:producer.identity,typeset:async(run,pins)=>{const at=performance.now(),result=await producer.typeset(run,pins);results.push({source:run.source,box:result.box,roundtripMs:performance.now()-at,timing:result.timing});return result;}});
   uninstall=installCurrentNativeLabels({VfDisplay,typography});
   let closing;
-  return Object.freeze({identity:producer.identity,setupMs:performance.now()-started,results,statistics:()=>typography.stats(),close(){return closing??=(async()=>{await uninstall();await VfDisplay.joinNativeLabelCleanup();typography.close();producer.close();})();}});
+  return Object.freeze({identity:producer.identity,setupMs:performance.now()-started,results,statistics:()=>typography.stats(),async measureMathSource(source){
+    const lease=await typography.prepare({kind:'math',source});
+    try{return {width:lease.box.width,height:lease.box.height,depth:lease.box.depth};}finally{lease.release();}
+  },close(){return closing??=(async()=>{await uninstall();await VfDisplay.joinNativeLabelCleanup();typography.close();producer.close();})();}});
  }catch(error){await uninstall?.();typography?.close();producer?.close();throw error;}
 }

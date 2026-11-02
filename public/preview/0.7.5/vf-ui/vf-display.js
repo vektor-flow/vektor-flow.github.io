@@ -9510,7 +9510,7 @@
     if (!controllers.length) throw new Error("plot grid requires a 2D axis controller");
     controllers.forEach(function(mesh) {
       var cfg = mesh.axis_ticks;
-      if (mesh.axis_polar === true && settings.mode === "dots") throw new Error("grid dots currently require Cartesian axes");
+      if (mesh.axis_polar === true) throw new Error("shared grid options currently require Cartesian 2D axes");
       ["x","y"].forEach(function(axis) {
         var logarithmic = isLogTickMode(cfg[axis+"_mode"]);
         if (settings[axis+"Step"] && logarithmic) throw new Error("explicit grid world steps currently require linear axes");
@@ -11978,7 +11978,9 @@
     var generation = rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
     var items = (geomSpec.texts || []).slice();
     (geomSpec.meshes || []).forEach(function(mesh) {
-      if (mesh && mesh.axis_ticks) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h));
+      if (mesh && mesh.axis_ticks) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h).map(function(item) {
+        return Object.assign({},item,{native_plot_bounded:true});
+      }));
     });
     var rows = [], seen = Object.create(null), ink = nativePlotInk();
     items.forEach(function(item, index) {
@@ -11990,6 +11992,7 @@
       seen[key] = true;
       rows.push({id:"plot-text-"+index,text:String(item.text),point:p,
         rotation:Number(item.rotate) || 0, fontSize:Math.max(1,Number(item.font_size) || 12),
+        keepInViewport:item.native_plot_bounded === true,
         anchor:[-anchor[0]/100,-anchor[1]/100],color:ink.slice()});
     });
     // Always recompute from the current shared inverse transform. A stationary
@@ -12006,14 +12009,14 @@
     rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[12,h-8],
       rotation:0,fontSize:11,anchor:[0,1],color:ink.slice()});
     rec.nativeLabelError = null;
-    rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function() {
+    rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function(installation) {
       if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation || !findFrameEl(String(fid))) return {status:"SUPERSEDED"};
       if (!rec.nativePlotTextLayer) {
         // Remove any previous DOM label pool. All visible plot text now belongs
         // to the installed native scene layer, including axes and coordinates.
         content.textContent = "";
         rec.textOverlayPool = [];
-        rec.nativePlotTextLayer = _nativePlotTextRendererFactory({container:content,createLayer:_nativeLabelRendererFactory});
+        rec.nativePlotTextLayer = _nativePlotTextRendererFactory({container:content,createLayer:_nativeLabelRendererFactory,measure:installation.measureMathSource});
       }
       return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,
         pixelRatio:Math.max(1,Number(global.devicePixelRatio) || 1),foreground:ink});

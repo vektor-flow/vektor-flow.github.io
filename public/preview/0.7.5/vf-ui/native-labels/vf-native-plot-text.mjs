@@ -23,7 +23,7 @@ export function nativePlotTextSource(text) {
   return result;
 }
 
-export function createNativePlotTextLayer({container, createLayer}) {
+export function createNativePlotTextLayer({container, createLayer, measure}) {
   need(container?.ownerDocument && typeof createLayer === 'function', 'NATIVE_PLOT_TEXT_FACTORY');
   const groups = new Map();
   let closed = false, next = null, running = null, generation = 0, accepted = 0;
@@ -54,9 +54,22 @@ export function createNativePlotTextLayer({container, createLayer}) {
         batch = {color, camera:[c,s,s,-c,0,0], specs:[]};
         batches.set(key, batch);
       }
-      const [a,b,c,d] = batch.camera, [x,y] = row.point;
-      batch.specs.push({id:row.id, kind:'math', source:nativePlotTextSource(row.text),
-        anchor:[a*x+b*y,c*x+d*y], scale:(row.fontSize ?? 12)/(10*7200/7227),
+      const source = nativePlotTextSource(row.text), scale=(row.fontSize ?? 12)/(10*7200/7227);
+      const [a,b,c,d] = batch.camera;
+      let [x,y] = row.point;
+      if (row.keepInViewport) {
+        need(typeof measure === 'function','NATIVE_PLOT_TEXT_NATIVE_METRICS_REQUIRED');
+        const box=await measure(source), width=box.width*scale,height=(box.height+box.depth)*scale;
+        const [ax,ay]=row.anchor ?? [0.5,0.5],theta=rotation*Math.PI/180,cos=Math.cos(theta),sin=Math.sin(theta);
+        const offsets=[[-ax*width,-ay*height],[(1-ax)*width,-ay*height],[-ax*width,(1-ay)*height],[(1-ax)*width,(1-ay)*height]]
+          .map(([u,v])=>[cos*u-sin*v,sin*u+cos*v]);
+        const inset=4,minX=Math.min(...offsets.map(p=>p[0])),maxX=Math.max(...offsets.map(p=>p[0]));
+        const minY=Math.min(...offsets.map(p=>p[1])),maxY=Math.max(...offsets.map(p=>p[1]));
+        x=Math.max(inset-minX,Math.min(input.width-inset-maxX,x));
+        y=Math.max(inset-minY,Math.min(input.height-28-inset-maxY,y));
+      }
+      batch.specs.push({id:row.id, kind:'math', source,
+        anchor:[a*x+b*y,c*x+d*y], scale,
         sizeSpace:'world', anchorFraction:row.anchor ?? [0.5,0.5]});
     }
     for (const [key, group] of groups) if (!batches.has(key)) {
@@ -105,16 +118,22 @@ export function createNativePlotTextLayer({container, createLayer}) {
       throw error;
     }
   }
+  function launch() {
+    running=Promise.resolve().then(drain).finally(()=>{
+      running=null;
+      // A consumer may request its next view when the preceding ready promise
+      // settles, before this drain's final microtask. Do not strand that input.
+      if (next && !closed) launch();
+    });
+    running.catch(()=>{});
+  }
   return {
     update(input) {
       need(!closed, 'NATIVE_PLOT_TEXT_CLOSED');
       next = {...input, rows:structuredClone(input.rows), generation:++generation};
       state = {...state,status:'PENDING',generation};
       const ready = new Promise((resolve,reject) => waiters.push({generation,resolve,reject}));
-      if (!running) {
-        running = Promise.resolve().then(drain).finally(() => { running = null; });
-        running.catch(() => {});
-      }
+      if (!running) launch();
       return ready;
     },
     statistics:() => ({...state,groups:[...groups.values()].map(g=>g.layer.statistics())}),

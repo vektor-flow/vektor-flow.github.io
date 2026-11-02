@@ -125,5 +125,70 @@
         "expect": "First50000 + nineteen49999 + final19 accepted =1000000. Final limit20 includes overlap.21 response pages, contiguous start extents,1000000 uniqueIDs,8000000 XYbytes, original filter/SELECT/ORDER, null UNKNOWN month total/lowerBound1M; full metadataBefore/metadataAfter/rows/XY/response/export hashes. Existing prepare every-row XY check succeeds before native/peer preflight/parity; timing remains later."
       }
     ]
+  },
+  "dataTransportDisposition": {
+    "owner": "e2037",
+    "status": "BLOCKED_DOCUMENTED_ALTERNATIVE_ONLY_NOT_EXECUTOR_READY",
+    "executableTransportChanged": false,
+    "failedCurrentSource": "240fade52528173981321a6a0218b3bc1245019b",
+    "failureEvidence": "Actual2032 BENCHMARK-ATTEMPT-STATUS:normal240/exit1/151.67363757s/149998rows/1199984XYbytes;25s waiting for headers; next URL inferred not captured; no final metadata/export receipt. ASDATA only, no receipt re-verification.",
+    "finding": "No bounded source evidence establishes exact1M within240; smaller response is not demonstrated to fix a pre-body failure. Do not retry unchanged.",
+    "missingPrerequisites": [
+      "Source environment lacks SOCRATA_APP_TOKEN; future actual credential presence/validity unknown. Never search/copy/print credentials.",
+      "Documented SODA3 POST adaptation preserving exact selected population is not implemented; current source, endpoint-specific :id/order/serialization and whole240 completion remain unverified."
+    ],
+    "alternative": {
+      "endpoint": "https://data.cityofnewyork.us/api/v3/views/uacg-pexx/query.json",
+      "method": "POST",
+      "logicalQuery": "SELECT q[$select] WHERE q[$where] ORDER BY q[$order] LIMIT q[$limit] OFFSET q[$offset], with q from unchanged page_query; no pageNumber",
+      "options": {
+        "includeSystem": true,
+        "includeSynthetic": false,
+        "orderingSpecifier": "total",
+        "timeout": "min(25,remaining240)"
+      },
+      "authentication": "X-App-Token from authorized environment, never URL/body/log/receipt",
+      "population": "Same exact first1000000 January2016 eligible rows, originalSELECT/fullWHERE/time/degreebounds/server timestamp,:id order; preserve coordinate duplicates and8M XYfloat32 bytes.",
+      "proofBoundary": "Same logical query is source algebra only; endpoint equivalence and full completion NOT established.",
+      "reportDelta": "Frozen2033 untouched. Future exact exporter pin + POST endpoint/method/credential-free full body/hash validation; preserve all21 logical pages/23 successful request records/overlap/both metadata/every-row/completeness checks. No report gate for site/recovery."
+    },
+    "cases": [
+      {
+        "id": "missing-authentication",
+        "given": "No valid authorized token/user auth for SODA3",
+        "expect": "Missing prerequisite, not an unchanged SODA2 retry, token creation request or unauthenticated broad export. No source/benchmark PASS."
+      },
+      {
+        "id": "same-complete-logical-query",
+        "given": "First page or continuation q from existing page_query",
+        "expect": "Complete SoQL retains exact original SELECT/fullWHERE/time/degreebounds/ORDER; only verified timestamp suffix/tie offset/finalLIMIT vary. Missing/reordered fields, broader population, order discard or local opaque-ID sort fail."
+      },
+      {
+        "id": "exact-row-and-boundary-semantics",
+        "given": "A future genuine SODA3 attempt returns selected fields",
+        "expect": "Authenticate same revision first; preserve source_row_id identity/server tie order, all selected boundary values, row precision and exact one-row overlap. Any mismatch fails; do not normalize away different rows or accept a different benchmark."
+      },
+      {
+        "id": "bounded-normal-whole-job",
+        "given": "A future concrete transport implementation within original admitted240 job",
+        "expect": "Keep25s/minremaining240 socket cap,16MiB response,256MiB total, finite21 pages/23 successful requests, external hard240 and original resources. All setup/hash/transfer costs counted. Timeout, byte overflow or shortpage exits nonzero; no fallback/retry/capraise/microjobs."
+      },
+      {
+        "id": "full-final-metadata-required",
+        "given": "Fresh genuine all21 page responses succeed",
+        "expect": "Exactly1M uniqueIDs/8Mfloat32XY; contiguous extents/overlaps/every-row eligibility/order/bounds and every response/file/body hash; retained official before/after revision1494466198/1702586741/14191205; final export.json before success.1M-sized raw files without final metadata remain FAILURE."
+      },
+      {
+        "id": "truthful-request-records",
+        "given": "Future POST transport or a failed header wait",
+        "expect": "Retain actual method/endpoint/full credential-free query body/hash, actual completed response hashes and genuine error. Never forge old SODA2 URLs or retrofit failed2032 evidence. Frozen report validator must reject incompatible contract until its own minimal later adaptation."
+      },
+      {
+        "id": "no-comparison-before-current-parity",
+        "given": "No complete current data or missing native/peer preflight/ink/fullgeometry",
+        "expect": "All comparative numbers/FPS/ratios/repetitions stay null. Site publication proceeds in its separate existing qualified scope; no benchmark report/speed/matrix gate."
+      }
+    ],
+    "allCases": "ASDATA_UNRUN; descriptions only, not measurements, tests, executable patch or an actual grant"
   }
 }

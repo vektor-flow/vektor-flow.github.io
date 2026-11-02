@@ -1,3 +1,121 @@
+CURRENT TRANSPORT DISPOSITION (e2037, 2026-11-02 UTC): BLOCKED, NOT EXECUTOR-READY
+----------------------------------------------------------------------------
+This section supersedes the older next-attempt directions below. fetch-tlc.py
+is unchanged exact240fade source (SHA256
+411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd).
+Do not run it again unchanged. Source investigation did not establish a repair
+that completes the exact population within the original normal240 data job.
+This child records the missing prerequisite and a concrete documented transport
+alternative as data, as requested when bounded source evidence is insufficient.
+It supplies no data execution grant, new launcher, report gate or site change.
+
+Actual2032's changed timestamp/tie-overlap attempt exited1 normally after
+151.67363757s. It retained149998 rows/1199984 XY bytes, then waited25s for HTTP
+response HEADERS. There is no complete1M/export.json/finalmetadata/accepted hash.
+Last timestamp2016-01-01T10:45:49.000, IDrow-89rd~9bzs-mmqw, trailing ties1.
+The next timestamp>=2016-01-01T10:45:49, OFFSET0/LIMIT50000 request is INFERRED
+from frozen source and accepted-as-failure status, not a captured transport URL.
+Both old100k and new149998 prefixes remain untouched failure evidence only.
+No resume, receipt reconstruction, cache adoption or qualification of a prefix.
+
+What the narrow official documentation establishes
+------------------------------------------------
+LIMIT controls returned rows; it is not an index hint or bound on rows examined.
+Smaller limits/CSV could reduce response bytes, but the failure precedes a
+response body. Neither is evidence of a fix for these header delays. The saved
+official metadata exposes no composite-index definition or execution plan;
+indexUpdatedAt is not such a definition. Scan/sort, service load, network delay
+and throttling remain hypotheses. No429 response was established by this read.
+Do not claim an index defect, throttling diagnosis or a measured improvement.
+  https://dev.socrata.com/docs/queries/limit.html
+  https://dev.socrata.com/docs/formats/
+  https://dev.socrata.com/docs/app-tokens.html
+
+SODA3 is the documented current machine-query transport. It accepts a complete
+SoQL query and recommends POST. A valid application token or user authentication
+is required. The source environment has NO SOCRATA_APP_TOKEN; no credential
+store was searched, no token was created/copied, and a future actual's credential
+availability/validity is UNKNOWN. Obtain an authorized existing credential in
+that actual's environment before considering this route. Its existence alone
+does not establish latency or full240 feasibility.
+  https://dev.socrata.com/docs/endpoints.html
+  https://dev.socrata.com/docs/queries/
+  https://support.socrata.com/hc/en-us/articles/43491231777047-Using-the-SODA3-API
+
+Concrete identical-population alternative, ASDATA ONLY, NOT IMPLEMENTED
+--------------------------------------------------------------------
+Within the existing fetcher's normal job, retain metadata() and its exact
+authentic revision check before ANY row and after ALL rows. For each existing
+page_query result q, a future minimal transport adaptation can POST JSON to:
+  https://data.cityofnewyork.us/api/v3/views/uacg-pexx/query.json
+with Accept:application/json, Content-Type:application/json and X-App-Token
+from the environment ONLY (never URLs/logs/files). The body is constructed as:
+  query = 'SELECT ' + q['$select'] + ' WHERE ' + q['$where'] + ' ORDER BY ' + q['$order'] + ' LIMIT ' + str(q['$limit']) + ' OFFSET ' + str(q['$offset'])
+  body = {"query": query, "includeSystem": true, "includeSynthetic": false,
+          "orderingSpecifier": "total", "timeout": min(25, remaining())}
+This is a request description, not a command executed or an accepted export.
+No pageNumber option: retain timestamp suffix/tie offset/exact boundary overlap.
+Only explicitly selected fields are wanted; :id AS source_row_id stays explicit.
+Never use orderingSpecifier=discard: it discards the requested ordering too.
+Do not replace server :id ordering with a guessed lexical row-ID comparison.
+  https://dev.socrata.com/docs/queries/query
+  https://dev.socrata.com/docs/queries/includesynthetic
+  https://dev.socrata.com/docs/queries/orderingspecifier
+  https://dev.socrata.com/docs/system-fields.html
+  https://dev.socrata.com/docs/queries/timeout
+
+The initial query must remain EXACTLY:
+  SELECT :id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude WHERE tpep_pickup_datetime >= '2016-01-01T00:00:00' AND tpep_pickup_datetime < '2016-02-01T00:00:00' AND pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95 ORDER BY tpep_pickup_datetime ASC,:id ASC LIMIT 50000 OFFSET 0
+Every continuation retains the full original filter and server order; only the
+existing normalized timestamp suffix, tie offset and final limit vary. If the
+same semantics hold, the unchanged induction below selects the identical first
+1M rows, not a different subset. Endpoint-specific :id identity/order, returned
+field/number representation and exact boundary behavior still need genuine
+current evidence. Source has NOT established that equivalence or completion.
+
+Do not use an unauthenticated whole-dataset /export.csv: it changes the fetched
+population/transport budget. A single1M JSON response would exceed the existing
+16MiB bound at observed row sizes. Do not use human-formatted export numbers as
+machine positions. No cap raise, automatic fallback, tokenless retry, microjobs,
+new timing quota or hidden query/setup cost is supplied. Keep21 finite response
+pages,23 successful request records including two metadata snapshots,25s socket
+operation caps/min remaining240,16MiB per response and256MiB total. Explicit
+server timeout cannot replace the existing external HARD240 whole-job cap.
+
+Future minimal compatibility delta, never a current site/recovery gate
+------------------------------------------------------------------
+The frozen2033 three report files remain untouched and source-accepted/UNRUN.
+For the proposed POST transport, their later owner must deliberately validate
+the new exact exporter pin, endpoint/method and credential-free full request
+body/hash in addition to genuine response hashes. Preserve21-page logical
+extents/tie offsets/overlaps, all23 successful request records, original WHERE/
+SELECT/ORDER, every-row1M unique IDs/filter/order/float32/bounds and both authentic
+metadata snapshots. Do not weaken old URL validation or forge old-shaped URLs.
+The actual failed-request query must be captured as such, not retrofitted into
+the old failure. No new report format/bank or implementation is created here.
+
+Later actual commands already used, ASDATA ONLY, CONDITIONAL ON A REAL REPAIR
+-----------------------------------------------------------------------
+  export PATH=/home/viktor/.local/bin:$PATH
+  python3 "$SITE/scripts/release-local48/plotting/fetch-tlc.py" "$RUN/tlc" > "$RUN/export.stdout" 2> "$RUN/export.stderr"
+  python3 "$SITE/scripts/release-local48/plotting/prepare.py" "$RUN/tlc" "$RUN/prepared" --duration-seconds 6 --input-hz "$ACTUAL_INPUT_HZ" --environment "$RUN/environment.json"
+These literal existing commands are NOT a recommendation to retry unchanged
+source. A separately scoped actual may use them only after a concrete repair,
+independent source review, prior safe closure, current admission/newFIRSTFD and
+the Coordinator's fresh data scope, with all setup/hash/transfer costs charged.
+Actual2035 has only site publication in scope. It must continue independently.
+
+The existing causal-oracles.json dataTransportDisposition describes missing-token,
+exact query/order/body, full-completion/failure and cap oracles ASDATA. Existing
+prepare.py still checks all genuine raw-row-to-float32 bytes; missing final
+metadata/export receipt is failure even if raw files reach1M/8M bytes. All
+matched native/peer preflights, parity/full geometry/native ink precede ANY
+comparative timing. All numeric report fields remain null until genuine complete
+data and current tool evidence exist. HistoricalLOCAL48x10/12of72accepted60UNRUN
+are separate. Source has run no product imports/syntax/tests/data fetch/timing.
+
+HISTORICAL SOURCE DIRECTIONS BELOW — NOT AN UNCHANGED RETRY AUTHORIZATION
+======================================================================
 SOURCE ONLY, UNRUN — additive next benchmark scope, not a website ship gate.
 
 Base: b2b50a2f66fa92621562d37d75792bfe1f8e9bb1. All maintained changes are

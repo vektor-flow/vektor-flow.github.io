@@ -1,0 +1,29 @@
+{
+  "status": "PROPOSED_NORMAL_FIX_ASDATA_NOT_APPLIED_NOT_QUALIFIED",
+  "target": "public/preview/0.7.5/vf-ui/vf-display.js",
+  "preimage": {
+    "bytes": 668560,
+    "sha256": "f52d8a8ee70bc4363a8e0aaa3f607f2ea9e176ea6cfd12a7a4c36f2cb5b3ddfc"
+  },
+  "proposedImage": {
+    "bytes": 671318,
+    "sha256": "a2a795e3ef1f9b4bf870e0495d899da400f1e2c55ea34fc6ac545c1e19a454c5"
+  },
+  "gaps": [
+    {
+      "cause": "updateGeomFrameCamera mutates camera only; ordinary 2D domains live in mesh.axis_ticks. No public exact domain setter or data-rectangle getter.",
+      "fix": "Small normal updateGeomFrameDomains/getGeomFramePlotMetrics methods, same existing complete-render fence, no private payload mutation from benchmark."
+    },
+    {
+      "cause": "drawSimple2DMarkerLineMeshes point-list branch clamps each projected point to canvas edge and clips only bound-controller geometry. Unbound Box points leak into margins and acquire false edge piles under zoom.",
+      "fix": "Clip the ordinary unbound Box marker pass with existing axisBoxRect; remove position clamp. Preserve original complete vertices/indices and normal renderer."
+    }
+  ],
+  "intake": "Only a later admitted source/actual integration may apply this proposed patch and refresh its normal renderer/component pins. e2025 does not edit selected product bytes or metadata. Current site may publish pending comparative rows.",
+  "regressions": [
+    "Actual invalid-domain refusal leaves previous completed snapshot/serial intact.",
+    "Exact requested 2D domain and all peer projected landmarks after completed render.",
+    "Adversarial off-domain real-data landmarks do not appear at canvas edges; full population retained; axes/labels remain outside clip.",
+    "Existing retained-view-history.mjs normal controls still pass after actual integration."
+  ]
+}

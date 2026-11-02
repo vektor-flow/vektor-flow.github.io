@@ -97,8 +97,13 @@ export function semanticVkfTokens(source) {
       || /^[A-Za-z_]\w*\.\([^:.,()]+(?:,[^:.,()]+)*\)$/.test(rhsText);
     const calls=rhs.filter((t,i)=>t.kind==='identifier' && rhs[i+1]?.value==='(');
     const knownElementwise=new Set(['sin','cos','exp','sqrt','abs','ln','log','clamp','sign']);
-    const uncertainCall=calls.some(t=>!knownElementwise.has(t.value) && !/_([a-z]{1,3})$/.test(t.value)
-      && !structuralFunctions.has(t.value) && t.value!=='length');
+    const uncertainCall=calls.some(t=>{
+      const at=rhs.indexOf(t),qualified=rhs[at-1]?.value==='.';
+      const module=qualified?resolve(rhs[at-2]?.value)?.module:null;
+      const receiverKnown=!qualified || module==='math' || module==='stat' || module==='symbolic';
+      const base=t.value.replace(/_[a-z]{1,3}$/,'');
+      return t.value!=='length' && !(receiverKnown && (knownElementwise.has(t.value) || structuralFunctions.has(base)));
+    });
     for(let i=0;i<code.length;i++) {
       const t=code[i];
       if(t.value==='[' && code[i-1]?.kind!=='identifier'){vector=true;bracketDepth++;rank=Math.max(rank,bracketDepth);}

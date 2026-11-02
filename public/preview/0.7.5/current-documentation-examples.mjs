@@ -17,6 +17,10 @@ const runner = ((release?.current_distribution?.enabled === true && release.curr
 // Browsing uses source-bound saved output. Package preparation belongs to Run;
 // createInlineRunner.run already performs its normal prewarm when requested.
 const ready = Boolean(runner);
+if (!ready) {
+  const status=document.querySelector('#execution-status');
+  if(status)status.textContent='The browser compiler is unavailable. You can still edit and copy the source.';
+}
 // Continue only a Run the reader explicitly requested before isolation reloaded
 // this page. Ordinary browsing still never initializes the compiler.
 const RUN_STATE = 'vkf-requested-run:' + location.pathname;
@@ -63,6 +67,10 @@ for (const example of document.querySelectorAll('.readme-example')) {
     if (output) output.textContent = '';
     if (output) delete output.dataset.outputOrigin;
   });
+  if (!ready && button) {
+    example.dataset.compilerStatus='unavailable';
+    button.title='The browser compiler is unavailable';
+  }
   if (ready && button && output && workspace) {
     example.dataset.compilerStatus = release.status==='private-candidate' ? 'private-candidate' : example.dataset.verification === 'pending'
       ? 'package-ready-example-unverified' : 'verified-examples';

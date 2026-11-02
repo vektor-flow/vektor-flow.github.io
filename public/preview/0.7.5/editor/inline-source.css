@@ -1,0 +1,35 @@
+/* Native textarea owns editing, selection, undo and both scroll positions.
+   The inert Prism surface shares its exact text metrics, without wrapping. */
+.readme .readme-example-editor { position:relative; isolation:isolate; overflow:hidden; }
+.readme .readme-example-editor > .readme-example-source,
+.readme .readme-example-editor > .readme-example-highlight {
+  box-sizing:border-box; width:100%; min-height:100px; max-height:580px;
+  margin:0; border:0; border-radius:0; padding:16px;
+  font:400 16px/24px ui-monospace,SFMono-Regular,Consolas,monospace;
+  letter-spacing:normal; word-spacing:normal; text-indent:0; text-align:left;
+  text-transform:none; font-variant-ligatures:none; tab-size:4;
+  white-space:pre; overflow-wrap:normal; word-break:normal;
+}
+.readme .readme-example-editor > .readme-example-highlight {
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  overflow:hidden; background:transparent;
+}
+.readme .readme-example-editor > .readme-example-highlight > code {
+  display:block; min-width:max-content; margin:0; border:0; padding:0;
+  background:transparent; color:inherit; white-space:inherit;
+  font:inherit; letter-spacing:inherit; word-spacing:inherit; tab-size:inherit;
+}
+.readme .readme-example-highlight .token { font:inherit; letter-spacing:inherit; }
+.readme .readme-example-editor > .readme-example-source {
+  position:relative; z-index:1; display:block; resize:vertical;
+  overflow:auto; background:transparent; color:transparent;
+  -webkit-text-fill-color:transparent; caret-color:#e6edf3;
+  pointer-events:auto; touch-action:auto;
+}
+.readme .readme-example-editor > .readme-example-source::selection {
+  color:transparent; -webkit-text-fill-color:transparent; background:#264f7880;
+}
+.readme code .token.definition { color:inherit; }
+.readme code .token.variable { color:#d2a8ff; }
+.readme code .token.function { color:#d2a8ff; }
+.signature-list { white-space:pre; overflow:auto; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }

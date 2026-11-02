@@ -1,3 +1,4 @@
+import './current-documentation-examples.mjs';
 // Native disclosure keeps the phone header in one row and its links reachable.
 for (const menu of document.querySelectorAll('.site-menu')) {
   const compact = matchMedia('(max-width: 1024px)');

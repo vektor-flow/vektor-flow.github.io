@@ -1,10 +1,10 @@
 import {prepareExamplePresentation} from './example-presentation.mjs';
+import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {highlightVkf} from './code-highlight.mjs?sha256=e04597c91a14531f0ae351594248135fff632b4ff686364fc8f2a9c4614442dc';
 import {createInlineRunner} from './inline-runner.mjs?sha256=cd3bd5d6dae1462345dd6a0781e8b6b142a3ac83df559d29992197ff392ee52f';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=7db3f1257e6f1c2aaf2999f928e0d66a0ed1ef82b7a7e75457beb03bda97f9b6';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=52b194dea44a00669bd02f3cf2ca3d5ca528ff126488087a1232c4bba8a5a729';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
 
 const release = await fetch(new URL('./current-compiler-release.json', import.meta.url),
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
@@ -25,6 +25,7 @@ try {
   requestedRun = JSON.parse(sessionStorage.getItem(RUN_STATE) ?? 'null');
   sessionStorage.removeItem(RUN_STATE);
 } catch {}
+promoteVkfPrograms();
 if (crossOriginIsolated) restoreBrowserDrafts();
 
 
@@ -52,12 +53,8 @@ for (const example of document.querySelectorAll('.readme-example')) {
     if (resultHint) resultHint.hidden = false;
   };
 
-  const refresh = () => {
-    code.innerHTML = highlightVkf(source.value + '\n');
-    highlight.scrollTop = source.scrollTop;
-    highlight.scrollLeft = source.scrollLeft;
-  };
-  source.style.height = `${Math.min(420, Math.max(100, source.value.split('\n').length * 24 + 32))}px`;
+  const editor = bindInlineSource(source, highlight, code);
+  const refresh = editor.refresh;
   source.addEventListener('input', () => {
     revision++;
     clearScene();
@@ -65,7 +62,6 @@ for (const example of document.querySelectorAll('.readme-example')) {
     if (output) output.textContent = '';
     if (output) delete output.dataset.outputOrigin;
   });
-  source.addEventListener('scroll', refresh);
   if (ready && button && output && workspace) {
     example.dataset.compilerStatus = release.status==='private-candidate' ? 'private-candidate' : example.dataset.verification === 'pending'
       ? 'package-ready-example-unverified' : 'verified-examples';
@@ -91,7 +87,8 @@ for (const example of document.querySelectorAll('.readme-example')) {
       output.dataset.outputOrigin = 'run';
       output.dataset.outputKind = 'stdout';
       try {
-        const result = await runner.run(source.value);
+        const runSource = source.value;
+        const result = await runner.run(runSource);
         if (revision !== runRevision) return;
         output.textContent = result.output.stdout + (result.output.stderr ?? '');
         if (result.packets?.length) {
@@ -121,7 +118,7 @@ for (const example of document.querySelectorAll('.readme-example')) {
       }
     });
   }
-  window.addEventListener('pagehide', () => clearScene(false));
+  window.addEventListener('pagehide', event => { if (!event.persisted) editor.dispose(); clearScene(false); });
   refresh();
 }
 

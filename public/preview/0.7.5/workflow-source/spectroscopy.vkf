@@ -1,22 +1,26 @@
 stat: .stat
 
-spectra: [[0.0: 257]: 4]
-detector: 0
-detector < 4?>
-    sample: 0
-    sample < 257?>
-        energy: -1.0 + 0.0078125 * sample
-        .spectra.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
-        .sample: sample + 1
-    .detector: detector + 1
+spectra:
+    values: [[0.0: 257]: 4]
+    detector: 0
+    detector < 4?>
+        sample: 0
+        sample < 257?>
+            energy: -1.0 + 0.0078125 * sample
+            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
+            .sample: sample + 1
+        .detector: detector + 1
+    values
 
 contrasts: stat.ptp(spectra, 1)
-selected_site: 0
-candidate: 1
-candidate < contrasts.length()?>
-    contrasts.(candidate) > contrasts.(selected_site)?
-        .selected_site: candidate
-    .candidate: candidate + 1
+selected_site:
+    best: 0
+    candidate: 1
+    candidate < contrasts.length()?>
+        contrasts.(candidate) > contrasts.(best)?
+            .best: candidate
+        .candidate: candidate + 1
+    best
 
 :: contrasts
 :: selected_site

@@ -28,7 +28,7 @@ function scopeFrameReferences(value, frameIds, property = "") {
     [key, scopeFrameReferences(entry, frameIds, key)]));
 }
 
-function ownRetainedScenePackets(packets) {
+function ownRetainedScenePackets(packets, plotLayers) {
   const scope = `vf-inline-result-${++nextRetainedSceneScope}--`;
   const frameIds = new Map(packets.map((packet) => [
     packet.metadata.scene.frame,
@@ -37,11 +37,16 @@ function ownRetainedScenePackets(packets) {
   return packets.map((packet) => ({
     ...packet,
     metadata: {...scopeFrameReferences(packet.metadata, frameIds),
-      scene:{...scopeFrameReferences(packet.metadata.scene, frameIds),native_plot_text:true}},
+      scene:{...scopeFrameReferences(packet.metadata.scene, frameIds),...plotLayers,native_plot_text:true}},
   }));
 }
 
+// Exact browser options (or scene metadata) axis_visible:false and
+// coordinates_visible:false omit optional decorations, preserving domains,
+// inverse projection, native navigation and the selected data clip policy.
 export function mountRetainedSceneResult(container, packets, {
+  axis_visible,
+  coordinates_visible,
   document = globalThis.document,
   VfFrame = globalThis.VfFrame,
   VfDisplay = globalThis.VfDisplay,
@@ -58,7 +63,9 @@ export function mountRetainedSceneResult(container, packets, {
       !VfDisplay || typeof VfDisplay.renderRetainedSceneArena !== "function") {
     throw new Error("native VfFrame/VfDisplay retained renderer is unavailable");
   }
-  const ownedPackets = ownRetainedScenePackets(packets);
+  const plotLayers=Object.fromEntries(Object.entries({axis_visible,coordinates_visible}).filter(([,value])=>value !== undefined));
+  for (const key of Object.keys(plotLayers)) if (typeof plotLayers[key] !== 'boolean') throw new TypeError(key+' requires boolean');
+  const ownedPackets = ownRetainedScenePackets(packets,plotLayers);
   container.hidden = false;
   const selectors = ownedPackets.map((packet) => packet.metadata.scene.view_selector);
   const hasViewSelector = ownedPackets.length > 1 && selectors.every((selector, index) =>

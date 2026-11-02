@@ -2988,6 +2988,12 @@
       var prevFrameGeom = prevGeom[fid];
       var nextFrameGeom = nextGeom[fid];
       if (!prevFrameGeom || !nextFrameGeom) { continue; }
+      if (prevFrameGeom.__vf_plot_layers_mutated) {
+        ["axis_visible","coordinates_visible"].forEach(function(key) {
+          if (Object.prototype.hasOwnProperty.call(prevFrameGeom,key)) nextFrameGeom[key]=prevFrameGeom[key];
+        });
+        nextFrameGeom.__vf_plot_layers_mutated=true;
+      }
       if (prevFrameGeom.geom_variants && nextFrameGeom.geom_variants && prevFrameGeom.active_geom_variant) {
         nextFrameGeom.active_geom_variant = prevFrameGeom.active_geom_variant;
       }
@@ -9473,11 +9479,37 @@
     return Object.freeze(result);
   }
 
+  // Supported browser renderer/scene fields; logical axes and navigation never
+  // depend on decoration visibility. This is not additional VKF source syntax.
+  function defaultPlotAxesVisible(scene, mesh) {
+    return (!scene || scene.axis_visible !== false) && (!mesh || mesh.axis_visible !== false)
+      && !(mesh && mesh.axis_ticks && mesh.axis_ticks.axis_visible === false);
+  }
+
+  function applyPlotLayerVisibility(scene, options) {
+    ["axis_visible","coordinates_visible"].forEach(function(key) {
+      if (options[key] !== undefined && typeof options[key] !== "boolean") throw new TypeError(key+" requires boolean");
+    });
+    ["axis_visible","coordinates_visible"].forEach(function(key) {
+      if (options[key] !== undefined) {scene[key]=options[key];scene.__vf_plot_layers_mutated=true;}
+    });
+  }
+
+  function setPlotScreen(fid, options) {
+    fid=String(fid);
+    var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!scene || !options || typeof options !== "object") throw new TypeError("plot Screen requires current Frame and options");
+    applyPlotLayerVisibility(scene,options);
+    requestGeomFramePresentation(fid);
+    return {axis_visible:scene.axis_visible !== false,coordinates_visible:scene.coordinates_visible !== false};
+  }
+
   function setPlotAxisStyle(fid, options) {
     fid=String(fid);
     if (!options || typeof options !== "object") throw new TypeError("plot axis style must be an object");
     var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
     if (!scene) throw new Error("plot axis style requires a current renderer Frame");
+    applyPlotLayerVisibility(scene,options);
     var controllers=(scene.meshes || []).filter(function(mesh) {return mesh.axis_ticks && mesh.mode3d !== true;});
     if (!controllers.length) throw new Error("axis style currently requires Cartesian 2D axes");
     if (controllers.some(function(mesh) {return mesh.axis_polar === true;})) throw new Error("polar/spherical axis conversion is deferred");
@@ -9623,7 +9655,7 @@
 
     function drawAxisTicks(mesh) {
       var cfg = mesh.axis_ticks || null;
-      if (!cfg || cfg.enabled === false) { return; }
+      if (!cfg || cfg.enabled === false || !defaultPlotAxesVisible(scene,mesh)) { return; }
       if (mesh.axis_polar === true) {
         drawAxisPolarTicks(mesh);
         return;
@@ -9984,6 +10016,7 @@
 
     function drawAxisBoxFrame(mesh) {
       if (mesh.axis_box !== true) { return false; }
+      if (!defaultPlotAxesVisible(scene,mesh)) { return true; }
       var box = axisBoxRect(mesh, w, h);
       var style=mesh.axis_ticks && mesh.axis_ticks.axis_style;
       ctx.moveTo(box.left,box.bottom);ctx.lineTo(box.right,box.bottom);
@@ -10000,6 +10033,7 @@
 
     function drawAxisPolarFrame(mesh) {
       if (mesh.axis_polar !== true) { return false; }
+      if (!defaultPlotAxesVisible(scene,mesh)) { return true; }
       var metrics = axisPolarMetrics(mesh);
       if (!metrics) { return false; }
       var cfg = mesh.axis_ticks || null;
@@ -10033,6 +10067,7 @@
     }
 
     function drawAxisFullFrameLines(mesh) {
+      if (!defaultPlotAxesVisible(scene,mesh)) { return true; }
       var cfg = mesh.axis_ticks || null;
       var view = cfg ? axisViewport(mesh, cfg, w, h) : null;
       if (!view) { return false; }
@@ -11978,7 +12013,7 @@
     var generation = rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
     var items = (geomSpec.texts || []).slice();
     (geomSpec.meshes || []).forEach(function(mesh) {
-      if (mesh && mesh.axis_ticks) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h).map(function(item) {
+      if (mesh && mesh.axis_ticks && defaultPlotAxesVisible(geomSpec,mesh)) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h).map(function(item) {
         return Object.assign({},item,{native_plot_bounded:true});
       }));
     });
@@ -12006,7 +12041,7 @@
         return label + " = " + formatPlotCoordinate(coordinate.values[index]);
       }).join("    ");
     }
-    rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[12,h-8],
+    if (geomSpec.coordinates_visible !== false) rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[12,h-8],
       rotation:0,fontSize:11,anchor:[0,1],color:ink.slice()});
     rec.nativeLabelError = null;
     rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function(installation) {
@@ -15066,6 +15101,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     nativeLabelFrameStatus: nativeLabelFrameStatus,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
+    setPlotScreen: setPlotScreen,
     setPlotGrid: setPlotGrid,
     setPlotAxisType: setPlotAxisType,
     setPlotAxisStyle: setPlotAxisStyle,

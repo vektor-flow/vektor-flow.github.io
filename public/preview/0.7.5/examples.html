@@ -75,7 +75,7 @@ def calibrate(reading, gain, offset):
 
 instrument = partial(calibrate, gain=1.02, offset=-0.3)
 print(instrument(20))
-print(instrument(25))</code></pre></div></div><div><h3>VKF / complete program</h3><div class="code-snippet" data-language="vkf"><button aria-label="Copy complete program" class="copy-button" data-copy="" type="button">Copy</button><pre><code class="language-vkf">calibrate(reading, gain, offset): reading * gain + offset
+print(instrument(25))</code></pre></div></div><div><h3>VKF / complete program</h3><div class="code-snippet" data-language="vkf" data-vkf-example-id="instrument-calibration"><button aria-label="Copy complete program" class="copy-button" data-copy="" type="button">Copy</button><pre><code class="language-vkf">calibrate(reading, gain, offset): reading gain + offset
 
 instrument: calibrate[gain: 1.02, offset: -0.3]
 

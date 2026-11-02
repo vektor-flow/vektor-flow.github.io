@@ -127,15 +127,15 @@
     ]
   },
   "dataTransportDisposition": {
-    "owner": "e2037",
-    "status": "BLOCKED_DOCUMENTED_ALTERNATIVE_ONLY_NOT_EXECUTOR_READY",
-    "executableTransportChanged": false,
+    "owner": "e2038",
+    "status": "EXECUTABLE_EXPLICIT_SODA3_AND_DIAGNOSTIC_SOURCE_UNRUN",
+    "executableTransportChanged": true,
     "failedCurrentSource": "240fade52528173981321a6a0218b3bc1245019b",
     "failureEvidence": "Actual2032 BENCHMARK-ATTEMPT-STATUS:normal240/exit1/151.67363757s/149998rows/1199984XYbytes;25s waiting for headers; next URL inferred not captured; no final metadata/export receipt. ASDATA only, no receipt re-verification.",
-    "finding": "No bounded source evidence establishes exact1M within240; smaller response is not demonstrated to fix a pre-body failure. Do not retry unchanged.",
+    "finding": "Explicit POST route and exact pre-header request/failure capture implemented; no actual latency/completion/authentication fact established.",
     "missingPrerequisites": [
-      "Source environment lacks SOCRATA_APP_TOKEN; future actual credential presence/validity unknown. Never search/copy/print credentials.",
-      "Documented SODA3 POST adaptation preserving exact selected population is not implemented; current source, endpoint-specific :id/order/serialization and whole240 completion remain unverified."
+      "Future actual must supply authorized existing valid SOCRATA_APP_TOKEN through normal environment. Presence/validity not inspected here; no stores searched or secrets created/copied/printed.",
+      "Independent exact-source review, prior2035 safe closure and fresh separately granted actual with currentadmission/NEW FIRSTFD/original clock; genuine endpoint semantic/full240 completion evidence remains missing."
     ],
     "alternative": {
       "endpoint": "https://data.cityofnewyork.us/api/v3/views/uacg-pexx/query.json",
@@ -145,23 +145,23 @@
         "includeSystem": true,
         "includeSynthetic": false,
         "orderingSpecifier": "total",
-        "timeout": "min(25,remaining240)"
+        "timeout": "floor(min(25,remaining240)); positive or fail before POST"
       },
       "authentication": "X-App-Token from authorized environment, never URL/body/log/receipt",
       "population": "Same exact first1000000 January2016 eligible rows, originalSELECT/fullWHERE/time/degreebounds/server timestamp,:id order; preserve coordinate duplicates and8M XYfloat32 bytes.",
-      "proofBoundary": "Same logical query is source algebra only; endpoint equivalence and full completion NOT established.",
+      "proofBoundary": "Documented query semantics implemented. No actual endpoint identity/order/representation/latency/fullcompletion qualification; fail on incompatibility.",
       "reportDelta": "Frozen2033 untouched. Future exact exporter pin + POST endpoint/method/credential-free full body/hash validation; preserve all21 logical pages/23 successful request records/overlap/both metadata/every-row/completeness checks. No report gate for site/recovery."
     },
     "cases": [
       {
         "id": "missing-authentication",
-        "given": "No valid authorized token/user auth for SODA3",
-        "expect": "Missing prerequisite, not an unchanged SODA2 retry, token creation request or unauthenticated broad export. No source/benchmark PASS."
+        "given": "TESTONLY non-real environment inputs: absent/empty token; token containing CR/LF, space, control or non-ASCII; user-auth-only context without supported app token; simulated401/403",
+        "expect": "Missing/unsupported input fails before any network call; no secret value in stdout/stderr/JSON/exception chain. Simulated401/403 records bounded status and fails, no retry/GET fallback. Tokens are fixtures only; no real credentials searched or exposed."
       },
       {
         "id": "same-complete-logical-query",
-        "given": "First page or continuation q from existing page_query",
-        "expect": "Complete SoQL retains exact original SELECT/fullWHERE/time/degreebounds/ORDER; only verified timestamp suffix/tie offset/finalLIMIT vary. Missing/reordered fields, broader population, order discard or local opaque-ID sort fail."
+        "given": "TESTONLY intercepted Request for first page, continuation with3 ties, final count999981; non-real app-token header fixture; metadata JSON fixtures pinned to exact genuine revision values only as protocol fixtures",
+        "expect": "Explicit soda3-post only: POST query.json; exact UTF8 canonical body query/select/fullWHERE/timestamp,:idORDER/LIMIT/OFFSET and system/synthetic/total options; finalLIMIT20 and tieOFFSET2; positive server timeout <=25/remaining240 and socket min25remaining; body SHA matches transmitted bytes. Header only carries fixture token; no token in body/URL/records. Metadata stays GET. Exact source/transport pin retained. No fixture qualifies production."
       },
       {
         "id": "exact-row-and-boundary-semantics",
@@ -171,17 +171,17 @@
       {
         "id": "bounded-normal-whole-job",
         "given": "A future concrete transport implementation within original admitted240 job",
-        "expect": "Keep25s/minremaining240 socket cap,16MiB response,256MiB total, finite21 pages/23 successful requests, external hard240 and original resources. All setup/hash/transfer costs counted. Timeout, byte overflow or shortpage exits nonzero; no fallback/retry/capraise/microjobs."
+        "expect": "Same external whole240/socketmin25remaining/per-response16MiB/total256MiB; all setup/parse/hash/transfer included. Simulated oversized response/total cap/timeout/shortpage refuses receipt; no retry/fallback/capraise/microjobs. Successful genuine full run still21pages/23requests."
       },
       {
         "id": "full-final-metadata-required",
         "given": "Fresh genuine all21 page responses succeed",
-        "expect": "Exactly1M uniqueIDs/8Mfloat32XY; contiguous extents/overlaps/every-row eligibility/order/bounds and every response/file/body hash; retained official before/after revision1494466198/1702586741/14191205; final export.json before success.1M-sized raw files without final metadata remain FAILURE."
+        "expect": "Exactly1M uniqueIDs/8Mfloat32XY; contiguous extents/overlaps/every-row eligibility/order/bounds and every response/file/body hash; retained official before/after revision1494466198/1702586741/14191205; final export.json before success.1M-sized raw files without final metadata remain FAILURE. TESTONLY protocol/seed bundles are rejected by frozen production report; only independently reviewed genuine complete bundle can qualify after owner source-pin/POST adapter."
       },
       {
         "id": "truthful-request-records",
-        "given": "Future POST transport or a failed header wait",
-        "expect": "Retain actual method/endpoint/full credential-free query body/hash, actual completed response hashes and genuine error. Never forge old SODA2 URLs or retrofit failed2032 evidence. Frozen report validator must reject incompatible contract until its own minimal later adaptation."
+        "given": "TESTONLY intercepted GET and POST open raise TimeoutError before response headers; simulated service error text/body includes non-real secret marker; finalmetadata timeout; external kill after pre-attempt write",
+        "expect": "Before open, request-attempt.json has exact method/endpoint/full query/body hash/boundary/sourcepin/budget, ATTEMPTING_NOT_SUCCESS. Normal failure writes request-failure.json with headers phase/type/status/elapsed/successfulRequests; sanitized stderr no marker/exception chain/error body/secret header. No export.json, retry or fallback. Hard kill may leave only ATTEMPTING snapshot, never completed response. Old2032 inferred query remains INFERRED and old failures untouched."
       },
       {
         "id": "no-comparison-before-current-parity",
@@ -189,6 +189,6 @@
         "expect": "All comparative numbers/FPS/ratios/repetitions stay null. Site publication proceeds in its separate existing qualified scope; no benchmark report/speed/matrix gate."
       }
     ],
-    "allCases": "ASDATA_UNRUN; descriptions only, not measurements, tests, executable patch or an actual grant"
+    "allCases": "ASDATA_UNRUN; minimal non-real causal fixture specifications for later authorized normal tests, not measurements, production data, execution or source-only PASS"
   }
 }

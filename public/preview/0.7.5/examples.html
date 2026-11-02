@@ -24,19 +24,26 @@ ax.set(xlim=(-1, 1), ylim=(0, 6),
 plt.show()</code></pre></div></div><div><h3>VKF / complete editable program below</h3><p>The editable program below contains all imports, generated data, analysis and plot calls.</p></div></div><p>NumPy's <code class="language-vkf"><span class="token variable">ptp</span></code> already states the reduction concisely. VKF makes the selected dimension part of calling an ordinary <code class="language-vkf"><span class="token variable">span</span></code> function. These are two readable ways to express the same numerical task; the plots are not claimed to be pixel-identical.</p><p class="fine-print" id="execution-status" role="note">Run uses the current browser compiler. Edit, Run and Copy use the same source.</p><p class="example-purpose">Compare each detector’s sampled peak-to-peak contrast, choose the strongest detector from those results, then inspect its spectrum. Change the generated detector model and Run to repeat the decision.</p><p class="plot-presentation-note">This spectrum starts with <strong>Crosshair</strong> axes and a <strong>Dots</strong> grid. Change Axes and Grid independently in the viewport.</p><section id="example-scientific-spectrum" class="readme-example" data-verification="pending" data-vkf-example-id="scientific-spectrum" data-axis-type="crosshair" data-grid-mode="dots" data-axis-label-x="Energy" data-axis-label-y="Intensity"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Run disabled before release">Run</button></div><div class="readme-example-layout has-result"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">stat: .stat
 
 spectra:
-    site: [0..3]_p
-    profile:
-        energy: (-1.0 + 0.0078125 * [0..256])_u
-        1.0 / (1.0 + 100.0 * energy ^ 2)
-    1.0 + (1.0 + site_p) * profile_u
+    values: [[0.0: 257]: 4]
+    detector: 0
+    detector &lt; 4?&gt;
+        sample: 0
+        sample &lt; 257?&gt;
+            energy: -1.0 + 0.0078125 * sample
+            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
+            .sample: sample + 1
+        .detector: detector + 1
+    values
 
-contrasts: stat.ptp_u(spectra)
-selected_site: 0
-candidate: 1
-candidate &lt; contrasts.length()?&gt;
-    contrasts.(candidate) &gt; contrasts.(selected_site)?
-        .selected_site: candidate
-    .candidate: candidate + 1
+contrasts: stat.ptp(spectra, 1)
+selected_site:
+    best: 0
+    candidate: 1
+    candidate &lt; contrasts.length()?&gt;
+        contrasts.(candidate) &gt; contrasts.(best)?
+            .best: candidate
+        .candidate: candidate + 1
+    best
 
 :: contrasts
 :: selected_site
@@ -52,19 +59,26 @@ view.push(x_lim: [-1, 1], y_lim: [0, 6])
 view.show()</code></pre><textarea aria-label="Editable VKF source: Compare spectral contrast along the energy axis" class="readme-example-source" spellcheck="false">stat: .stat
 
 spectra:
-    site: [0..3]_p
-    profile:
-        energy: (-1.0 + 0.0078125 * [0..256])_u
-        1.0 / (1.0 + 100.0 * energy ^ 2)
-    1.0 + (1.0 + site_p) * profile_u
+    values: [[0.0: 257]: 4]
+    detector: 0
+    detector &lt; 4?&gt;
+        sample: 0
+        sample &lt; 257?&gt;
+            energy: -1.0 + 0.0078125 * sample
+            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
+            .sample: sample + 1
+        .detector: detector + 1
+    values
 
-contrasts: stat.ptp_u(spectra)
-selected_site: 0
-candidate: 1
-candidate &lt; contrasts.length()?&gt;
-    contrasts.(candidate) &gt; contrasts.(selected_site)?
-        .selected_site: candidate
-    .candidate: candidate + 1
+contrasts: stat.ptp(spectra, 1)
+selected_site:
+    best: 0
+    candidate: 1
+    candidate &lt; contrasts.length()?&gt;
+        contrasts.(candidate) &gt; contrasts.(best)?
+            .best: candidate
+        .candidate: candidate + 1
+    best
 
 :: contrasts
 :: selected_site

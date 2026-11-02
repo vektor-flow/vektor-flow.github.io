@@ -1,13 +1,16 @@
 stat: .stat
 
-spectra:
-    site: [0..3]_p
-    profile:
-        energy: (-1.0 + 0.0078125 * [0..256])_u
-        1.0 / (1.0 + 100.0 * energy ^ 2)
-    1.0 + (1.0 + site_p) * profile_u
+spectra: [[0.0: 257]: 4]
+detector: 0
+detector < 4?>
+    sample: 0
+    sample < 257?>
+        energy: -1.0 + 0.0078125 * sample
+        .spectra.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
+        .sample: sample + 1
+    .detector: detector + 1
 
-contrasts: stat.ptp_u(spectra)
+contrasts: stat.ptp(spectra, 1)
 selected_site: 0
 candidate: 1
 candidate < contrasts.length()?>

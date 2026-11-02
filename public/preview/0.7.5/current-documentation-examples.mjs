@@ -31,6 +31,19 @@ try {
 } catch {}
 promoteVkfPrograms();
 for (const example of document.querySelectorAll('.readme-example')) prepareExamplePresentation(example);
+// Saved text is the complete output from this exact source/current compiler.
+// A draft or edited source never inherits a historical successful console.
+const consoleSeeds = await fetch(new URL('./example-output-seeds.json',import.meta.url),{cache:'no-store'})
+  .then(r=>r.ok?r.json():{seeds:[]}).catch(()=>({seeds:[]}));
+for (const example of document.querySelectorAll('.readme-example')) {
+  const source=example.querySelector('textarea'),output=example.querySelector('.readme-example-output');
+  if (!source || !output || source.value!==source.defaultValue) continue;
+  const bytes=new TextEncoder().encode(source.value);
+  const sourceHash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const page=location.pathname.split('/').at(-1)||'index.html';
+  const row=consoleSeeds.seeds.find(r=>r.page===page&&r.id===example.dataset.vkfExampleId&&r.source_sha256===sourceHash&&r.compiler_binding===release?.browser_binding);
+  if (row) {output.textContent=row.stdout;output.dataset.outputOrigin='saved-current-compiler';}
+}
 if (crossOriginIsolated) restoreBrowserDrafts();
 
 

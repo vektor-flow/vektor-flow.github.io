@@ -2,24 +2,24 @@
   "schema": 1,
   "release_version": "0.7.5",
   "preview": true,
-  "status": "verified-examples",
+  "status": "private-candidate",
   "complete": false,
   "published": true,
   "stable": false,
   "stable_release": false,
   "release_qualified": false,
   "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
-  "compiler_source_commit": "74cfd17c3d299069f013c828b27b3581d0c9f197",
-  "compiler_source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-  "release_source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-  "source": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-  "browser_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-  "frontend_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "compiler_source_commit": "978208edf8fab2b001e3c29e0c01f4b4b93a8d45",
+  "compiler_source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+  "release_source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+  "source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+  "browser_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+  "frontend_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
   "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
   "files": {
     "compiler-base.mjs": {
-      "bytes": 188024,
-      "sha256": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05"
+      "bytes": 188015,
+      "sha256": "514cf8cec8ece4e5edc43041e575fc43f069e618218510972a853fd06d9c7f68"
     },
     "compiler.data": {
       "bytes": 619872,
@@ -30,8 +30,8 @@
       "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     "compiler.wasm": {
-      "bytes": 67350513,
-      "sha256": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b"
+      "bytes": 20186000,
+      "sha256": "8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4"
     },
     "formatter.mjs": {
       "bytes": 62804,
@@ -96,13 +96,37 @@
     "package-tools/owner-protection.mjs": {
       "bytes": 2234,
       "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+    },
+    "package.json": {
+      "bytes": 9312,
+      "sha256": "42300935c4a352ad31b484553885170b174070900c915b3c85ae15f3a8206756"
+    },
+    "README.txt": {
+      "bytes": 1938,
+      "sha256": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
+    },
+    "third-party/emscripten-toolchain-copyright.txt": {
+      "bytes": 131248,
+      "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+    },
+    "third-party/trigonometric-source-notices.txt": {
+      "bytes": 3359,
+      "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+    },
+    "third-party/emscripten-musl-copyright.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "third-party/vkf-runtime-musl-license.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
     }
   },
   "sha256": {
-    "compiler-base.mjs": "b24fca5f626bbc6a05168f6a210116f89b5a1bbace29145176bcf14ec50c4f05",
+    "compiler-base.mjs": "514cf8cec8ece4e5edc43041e575fc43f069e618218510972a853fd06d9c7f68",
     "compiler.data": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2",
     "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "compiler.wasm": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
+    "compiler.wasm": "8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4",
     "formatter.mjs": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
     "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -118,11 +142,17 @@
     "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
-    "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+    "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
+    "package.json": "42300935c4a352ad31b484553885170b174070900c915b3c85ae15f3a8206756",
+    "README.txt": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da",
+    "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
+    "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
+    "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+    "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
   },
   "package": {
     "module": "./playground/canonical/compiler.mjs?sha256=3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4",
     "data": "./playground/canonical/compiler.data?sha256=6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
   },
   "current_package_composition": {
@@ -130,8 +160,8 @@
     "bytes": 46248,
     "sha256": "5a2ef3a249f7e31b21c58123037db4163cb80a3f53aa28de076818be8d378f6c"
   },
-  "publication_status": "PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS",
-  "download_packages_offered": true,
+  "publication_status": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
+  "download_packages_offered": false,
   "physical_gpu_tested": false,
   "current_candidate_verification": {
     "path": "verification/e1868-current075-browser-native.json",
@@ -145,9 +175,9 @@
     "releaseQualified": false
   },
   "current_distribution": {
-    "enabled": true,
+    "enabled": false,
     "runEnabled": true,
-    "downloadsOffered": true,
+    "downloadsOffered": false,
     "fullReleaseQualified": false,
     "sharedUploadAvailable": true
   },
@@ -186,5 +216,12 @@
     "path": "verification/e1893-local48-readiness.json",
     "bytes": 107291,
     "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
+  },
+  "site_review_iteration": {
+    "enabled": true,
+    "runEnabled": true,
+    "downloadsOffered": false,
+    "fullReleaseQualified": false,
+    "compilerOptimization": "Current dotted-index O1 + simplify-locals + successful local coalescing, focused actual runtime checks pending"
   }
 }

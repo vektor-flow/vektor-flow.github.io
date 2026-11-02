@@ -1,511 +1,516 @@
 {
   "schema": 1,
-  "status": "SOURCE_BOUND_OUTPUTS_WITH_EXPLICIT_PER_ROW_COMPILER_PROVENANCE",
+  "status": "SOURCE_BOUND_CURRENT_COMPILER_FULL_OUTPUTS",
   "seeds": [
     {
-      "page": "stdlib.html",
-      "id": "stdlib-example-23",
-      "source_sha256": "8787e287548e818143d006441afe304acbe0e15572363b8d87a4195706e2d1e6",
-      "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "page": "index.html",
+      "id": "scientific-spectrum",
+      "source_sha256": "1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe",
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-linalg-solve",
-      "source_sha256": "31cc7191af6b4c774a455f0ee0fddfdfda94df67fae94f304cc722b5e52044da",
-      "stdout": "[-0.999999999999999, 1]\n",
-      "origin": "Actual current e1870 ordinary editor exact stdout",
-      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
-      "visualOutputPending": false,
-      "actualRecord": "/mnt/development/VektorFlow-e1823-normal-label-route-publication-actual-20261101/WEBSITE-FIXES-ACTUAL-RESULT.json",
-      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-19",
-      "source_sha256": "25acab4ae269c71a36466ec8360d244a9f273d1803fe7ad21c0c599d871a3dca",
-      "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-20",
-      "source_sha256": "c005e86d29b6741ad617011ba3ee4f939ef6e2da99ccfcffe2dd06451497f82b",
-      "stdout": "[100, 200, 300] cm\n[1, 2, 3] m\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-21",
-      "source_sha256": "ec7b078fcfd7aa0094606865b15405e552424ffbfcb603cd1e9b6eaa789860dd",
-      "stdout": "[] cm\n[200, 200] cm\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-22",
-      "source_sha256": "c809f8bd7af0b08bbe463d630b81e486e6118ef4657f45f20a77cd59aa241a01",
-      "stdout": "9 m^2\n3 m/s\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-24",
-      "source_sha256": "849f495735b8891d55c7664c6856584f26fee724779bb253a94b1877cfbbc821",
-      "stdout": "18 m\n12 m/s\n4 m/s^2\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-28",
-      "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c",
-      "stdout": "",
-      "origin": "Visual example has no printed stdout; source-bound saved visual output still requires actual capture/verification",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c.png",
-        "bytes": 3830,
-        "sha256": "6050b113135c21da8d1dbabe7be289a2c4a41419077d3b917411d93955161958",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-31",
-      "source_sha256": "f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a",
-      "stdout": "",
-      "origin": "Visual example has no printed stdout; source-bound saved visual output still requires actual capture/verification",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a.png",
-        "bytes": 5042,
-        "sha256": "0fbd0c966ad4edb4caa74b3b0f2c5dfa7098cec92ebacf2a009e05d3a335dbe8",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-32",
-      "source_sha256": "3791d47654f2cd1c7d3b73ca24feb80a92b03870559c949677caf16a4a2e27f6",
-      "stdout": "42\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-33",
-      "source_sha256": "d3d0eada94203e1464de9be3133c31752c9a00315b816467d3534e762ac4636b",
-      "stdout": "ready\nready\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-29",
-      "source_sha256": "77d1545313e4b74a6ec867d4fc391c95a63451e1ac5a4b8d64bb89a8910b16e7",
-      "stdout": "6 m\n4 m/s\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
-    },
-    {
-      "page": "stdlib.html",
-      "id": "stdlib-example-30",
-      "source_sha256": "a6ccf768e1b842df5b252dcbb97493c9af403bf6afcb21220ced003432981244",
-      "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
-      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "examples.html",
       "id": "scientific-spectrum",
-      "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
-      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
-      "origin": "Existing same-calculation spectral oracle; current exact source and current compiler check required",
+      "source_sha256": "1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe",
+      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463.png",
-        "bytes": 7323,
-        "sha256": "1edf4ac34a7e3ad4d17e10ed3ac02f3c048d45cd430107fcc008685699b9602c",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "examples.html",
+      "id": "comparison-1",
+      "source_sha256": "5d51480377d3ef718de9a5e5a3ab21d67e3baa1d39b2a83901878a7541e02022",
+      "stdout": "20.099999999999998\n25.199999999999999\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "examples.html",
+      "id": "scalar-region-selection",
+      "source_sha256": "8cbe44c3a65a9341d23f86644c636bd9c1cae114220718f87d0a5590786147e4",
+      "stdout": "-0.7568024953079282\n[2, 57]\n[[0.974775369328844, 0.979307053479467, 0.983731289059078, 0.987949456706617, 0.991833245866448, 0.995217052498954, 0.997888735697216, 0.999578565792015, 0.999946320673152, 0.998566737775324, 0.994913981628472, 0.988346544035424, 0.9780951826237, 0.963258250598542, 0.942811138543404, 0.915639400986441, 0.880607903276984, 0.836679657726565, 0.783095508576149, 0.719616071385776, 0.646807105524505, 0.566318735111993, 0.48107532074555, 0.395274865239997, 0.314119052925279, 0.243269516918947, 0.188129307970432, 0.153120883029785, 0.141120008059867, 0.153120883029785, 0.188129307970432, 0.243269516918947, 0.314119052925279, 0.395274865239997, 0.48107532074555, 0.566318735111993, 0.646807105524505, 0.719616071385776, 0.783095508576149, 0.836679657726565, 0.880607903276984, 0.915639400986441, 0.942811138543404, 0.963258250598542, 0.9780951826237, 0.988346544035424, 0.994913981628472, 0.998566737775324, 0.999946320673152, 0.999578565792015, 0.997888735697216, 0.995217052498954, 0.991833245866448, 0.987949456706617, 0.983731289059078, 0.979307053479467, 0.974775369328844], [0.99863643886619, 0.999794299767988, 0.999895484832152, 0.998632885820873, 0.995626124666558, 0.990406028787892, 0.982396893627006, 0.970896960714294, 0.955058178481949, 0.93386735296754, 0.906132399793748, 0.870479745992035, 0.825372100088273, 0.769159679963581, 0.70018189733056, 0.616938782428218, 0.518348872166351, 0.404097816805392, 0.275053562060028, 0.13367618869627, -0.0157100709007903, -0.166962085279843, -0.312643715755435, -0.445063999992281, -0.557609656325902, -0.645893822782835, -0.708175484761308, -0.744781856226867, -0.756802495307928, -0.744781856226867, -0.708175484761308, -0.645893822782835, -0.557609656325902, -0.445063999992281, -0.312643715755435, -0.166962085279843, -0.0157100709007903, 0.13367618869627, 0.275053562060028, 0.404097816805392, 0.518348872166351, 0.616938782428218, 0.70018189733056, 0.769159679963581, 0.825372100088273, 0.870479745992035, 0.906132399793748, 0.93386735296754, 0.955058178481949, 0.970896960714294, 0.982396893627006, 0.990406028787892, 0.995626124666558, 0.998632885820873, 0.999895484832152, 0.999794299767988, 0.99863643886619]]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "examples.html",
       "id": "motion-design",
       "source_sha256": "251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78",
       "stdout": "[0, 0, 3, -2]\n0.5\n1.5\n",
-      "origin": "Explicit cubic constraints and printed values as mathematical data; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78.png",
-        "bytes": 11214,
-        "sha256": "bd507155cf682f27274f291ea54aa8b97a9d3fd861a2e447edefb8ac651ad1fd",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-3",
-      "source_sha256": "6dd856d1b3975d3c09ecbc98a0f06b766378021ece6159cd39ef4686537eea84",
-      "stdout": "3\n1\n7\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "88998673976cf4a5c6e7114220220c68ff61a1d01bf1a881e9c34378ca94a697",
+      "stdout": "21.399999999999999\n20\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-values-and-types-0",
-      "source_sha256": "ee6d89f972da2a9a3e1e07e7fe9b88cbb7a9f75ee2588716c22f50874ffd17f2",
-      "stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "d18ba4917003d6e231c10bd11bf820ca16caffc36a9e6eada018610dbfc6a9fd",
+      "stdout": "[(101, 21.4), (102, 22.1)]\n[[21.4, 45], [22.1, 48]]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-1",
-      "source_sha256": "5ac2086d1e7ae67c266ee1af946f3167b8bf1aaf7679c3527452cd1b8cfa9ac6",
-      "stdout": "4\n2\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "199a33f693901dfa16ede01ce888c9216a5ee28986f54501e007c4d2c6e10a6a",
+      "stdout": "36\n3\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
-      "id": "more-example-11",
-      "source_sha256": "dbae261fd7422948ff9088213a4315afcb6f938743defda585aa01013c65e376",
-      "stdout": "5\n6\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "id": "syntax-example-6",
+      "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00",
+      "stdout": "8\n7\n7\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-12",
-      "source_sha256": "cf98682fd99ae2abf9bbb7ee8bd0fbedd43c0ed533c8023b186c9f8747be90bc",
-      "stdout": "5\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "8720546b8b656f1eb66f065dc97cd391a620a056fb9886b856e96da3ff9e7fbf",
+      "stdout": "21.699999999999999\n22.400000000000002\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-11",
+      "source_sha256": "151e4c9c5d32c1b02afe2a45ee38dd211f839a11056d6d5464073049ce6e214f",
+      "stdout": "7\n12\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "spill-record",
-      "source_sha256": "77ff79a7dd8f5fdaa89e1fc8e45c72af0ed15224d87020dbb05a2215f9e47072",
-      "stdout": "5\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "a33d264d7ed82bebf1ebe32b9a1eef44d95c5892e09c53ef94c9faebfc5ecd43",
+      "stdout": "8\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "import-module",
-      "source_sha256": "6eed0e2b16ed356df0151969dea61475c30b8f44f1f1932e2c83b6b3e548eeec",
-      "stdout": "9\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "adf478a804a688742f592bff6a97ff3353214b49577b14ff997f9fe8ba388db7",
+      "stdout": "5\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-index-access-and-ranges-1",
       "source_sha256": "585b710fc8a08a00de9caa76f135fd546db5417ad5f0d573b5385da2d797077a",
       "stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-1",
-      "source_sha256": "e9ca89d695f5bf63837447e985c858c2f88186610d9b2cfc5d41be9361ac3ab7",
-      "stdout": "[10, 35, 60, 85, 110]\n[0, 6, 12, 18, 24]\n",
-      "origin": "Actual current e1870 ordinary editor exact stdout",
-      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
-      "visualOutputPending": false,
-      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+      "source_sha256": "00a477e3fc7639c283a8b8bd6124bccd273bd7561534c5f02552804df28e8aa8",
+      "stdout": "[15, 23, 20]\n[12, 18, 15]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-2",
-      "source_sha256": "d277779afa702f69ba714a235d917e94a689fa8b944b936e9ab962f63f9243f6",
-      "stdout": "[[10, 28, 46, 64], [13, 40, 67, 94]]\n",
-      "origin": "Actual current e1870 ordinary editor exact stdout",
-      "status": "PASS_CURRENT_FFCA_ORDINARY_EDITOR_RUN",
-      "visualOutputPending": false,
-      "compiler_binding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f"
+      "source_sha256": "b4f470d28bcb02823a674f12c64eeda38561c2682c8cbcf8b48b49a1e4478b88",
+      "stdout": "[[57, 41], [26, 28]]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-13",
-      "source_sha256": "fc6681767ba9f4989c08c6de8fb5f3a7236bbc4f3b2bd0d80024649b0527345c",
+      "source_sha256": "a6cabf62b8fe930a19d2417f7edf1574f400c600bab9d69c1416247c96e6e3a6",
       "stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-15",
-      "source_sha256": "7543df4f0a5fb95567c7ddb5806fe0955bb2597964cdf190a26388fd669aa6c0",
-      "stdout": "[[1, 2], [3, 4]]\n[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "469e8f6c4150c5d504ededfcbaa77a0b2d4fe0354f06c53549c40effd37e17d9",
+      "stdout": "[[21.4, 45], [22.1, 48]]\n[[[21, 45], [22, 48]], [[21.5, 46], [22.5, 49]]]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-8",
-      "source_sha256": "f36dcb09ad6a30cae86464fb110ef0f2f1446589f96b9d9450c3fa7782706643",
-      "stdout": "[0, 2, 3]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "859b2f3dcbb9f20ab4a53281ba4be17fb18e81e5a450d67f1775d08066ba49f6",
+      "stdout": "[0, 1.4, 2.1]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-lifting-and-structural-calls-0",
-      "source_sha256": "efcaa4dfac45626b1539a524808380a6840ba1e97b9c8c71aa4d233bd925f4bc",
-      "stdout": "[1, 4]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "987e254a77b9cc5668eea03bf844596b947bb2d0eccf08b31ffc8968cdd47501",
+      "stdout": "[2, 3]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-18",
-      "source_sha256": "bbeaa367c1b6d1aabd0dc157665a45845783887e16dfc635322d12c54bd0ac85",
-      "stdout": "[1, 2, 3, 4]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "21bade49bf6924f6e421a459e92ce448be8e3347dddffd4e9411dbeb05a24f07",
+      "stdout": "[21.4, 21.8, 22.1, 21.9]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-operators-0",
-      "source_sha256": "6fe237987aa850984349eee6fe6bd6d2f0380eec4a53852662153253f00308ce",
-      "stdout": "[4, 6]\n8\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "a98f5b961139282a84d311d70e7f14838550add3602dffe4dda7b8160dcc307c",
+      "stdout": "[20.3, 20.4]\n20.706\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-index-access-and-ranges-0",
-      "source_sha256": "2305d695de3dcbce88b51d64092d99034c71236cce725222d446aa990959e594",
+      "source_sha256": "ac47d28efb3c311b2a14a66df4a4072250a94b3264738b0f685c2c6631076d20",
       "stdout": "0\n1\n2\n3\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-4",
-      "source_sha256": "f8518c881082a1a1a8007030b67ba8d60bb5b466c06e5f2acfef3e201e9c6954",
-      "stdout": "6\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "872b2c2729451de33ccadf49700f0c4f5d8f2059fec394a151dda1315d199891",
+      "stdout": "35\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-10",
-      "source_sha256": "f20b7bb6aa1b2337d3d7ae890c47971f7fe0af92c31dc5c194ea013e4cf14384",
-      "stdout": "0.052808601763274413 + 0.22361225622108541i\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "a35ce8c7a281266880d86e0528957f1be6fa0697cf2603eff883745651cacf0b",
+      "stdout": "0.052809069334849225 + 0.22356251036508448i\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-11",
       "source_sha256": "3f68720c21e1c025c21318f0c4401a235d1afd0834e7bd2ed12e3c336be20d6c",
       "stdout": "0\n0\n10\n1\n1\n20\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "conditional-loop",
-      "source_sha256": "cb1280ad7bd7e8fdc7e8183dda221f433233e678877d88f4fb8e81b7a7f20f1f",
-      "stdout": "0\n1\n2\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "b3094f1f697c49dd58bc9700c6fa9eb1f8e719a2bebd617dbf2a6ddef9dc7685",
+      "stdout": "1\n2\n3\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-12",
-      "source_sha256": "5323ae262177673e3b56f3be5a0f6ded6cc3f5298a47aa9355bc28e52d25ca8b",
-      "stdout": "many\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "2ff856183472d3e8b58163b0c497d7f4caca45c0f2e36c33c58f8c3b7217303e",
+      "stdout": "multiple alarms\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-13",
-      "source_sha256": "66c8ae4e343f7b5519cae06c739153056241de1b876d841d06fb18d919ab3265",
-      "stdout": "message\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "63013f8e3240ed47ac0a23639c7017e4f64cdd8bc6bc5494c7cede105da44f37",
+      "stdout": "sensor disconnected\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-9",
-      "source_sha256": "a255975dbc45e341adcbdc98329046aecc316d8700d7d26d946937a227ab46a2",
-      "stdout": "2\n3\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "de8205585501f27c427daf257e62f6c6423912f54a2f865a6f93e8f4e1c450e9",
+      "stdout": "13\n9\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-15",
       "source_sha256": "27d3d0cce51fe4820e7eba24a6aad622ecdf357272d778e52ccbe9db5f0c2890",
       "stdout": "6\n9\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-16",
       "source_sha256": "6d97e79be03f91d2ecc95da7508bf365c82b64c03204f4c3dc254792b919e107",
       "stdout": "230 cm\n[100, 200, 300] cm\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "more-example-25",
-      "source_sha256": "af8158ce42e31b20dd9e5231069d5d3481ccf3885bd2f3cce87a4c8c59ee890b",
-      "stdout": "x = 1.3\n[1.3, 2.5]\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "source_sha256": "d592262d24025a56484183d64f489f4e5c0c058e7c2add0fd97caa8b120b2ae9",
+      "stdout": "temperature = 21.3\n[21.3, 45.5]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-extra-geometry-views-and-physics-0",
       "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c",
       "stdout": "",
-      "origin": "Visual example has no printed stdout; source-bound saved visual output still requires actual capture/verification",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c.png",
-        "bytes": 3830,
-        "sha256": "6050b113135c21da8d1dbabe7be289a2c4a41419077d3b917411d93955161958",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "syntax.html",
       "id": "syntax-example-18",
       "source_sha256": "13280141c26a567d3afa585f5ca3f734f495e26a2952a9408902922b429f3b2d",
       "stdout": "1\n2\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
-      "page": "index.html",
-      "id": "scientific-spectrum",
-      "source_sha256": "28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463",
-      "stdout": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n4\n",
-      "origin": "Existing same-calculation spectral oracle; current exact source and current compiler check required",
+      "page": "stdlib.html",
+      "id": "stdlib-example-23",
+      "source_sha256": "8787e287548e818143d006441afe304acbe0e15572363b8d87a4195706e2d1e6",
+      "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10",
-      "visual": {
-        "path": "example-previews/28e5483bced0a5c27114f12796abb2f974be1db5084e3d8085831fc9cbc82463.png",
-        "bytes": 7323,
-        "sha256": "1edf4ac34a7e3ad4d17e10ed3ac02f3c048d45cd430107fcc008685699b9602c",
-        "origin": "Actual current offered Run and shipped renderer; complete canvas readback checked"
-      }
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-linalg-solve",
+      "source_sha256": "8a7f3abc587b3da606ea378b4345832941ebcf4ddad9a7c37bfb05a3e64e6a1f",
+      "stdout": "[2, 3]\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-19",
+      "source_sha256": "25acab4ae269c71a36466ec8360d244a9f273d1803fe7ad21c0c599d871a3dca",
+      "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-20",
+      "source_sha256": "a85b8e8af8c3e083b7b999a04d3d221aa50e617243d9c83257aebd7c81b20dc2",
+      "stdout": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-21",
+      "source_sha256": "66eb4aca6bc525a85fccab63c8e14bd81fde652c4400ac1d4b92c6168399b03f",
+      "stdout": "[] cm\n[200, 200] cm\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-22",
+      "source_sha256": "c809f8bd7af0b08bbe463d630b81e486e6118ef4657f45f20a77cd59aa241a01",
+      "stdout": "9 m^2\n3 m/s\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-24",
+      "source_sha256": "849f495735b8891d55c7664c6856584f26fee724779bb253a94b1877cfbbc821",
+      "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-28",
+      "source_sha256": "049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39",
+      "stdout": "",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-31",
+      "source_sha256": "f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a",
+      "stdout": "",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-32",
+      "source_sha256": "ee5cbc6f282f11940ae82c44ec2fc9f8ae2e79d9679f16d7226a820f478abfa8",
+      "stdout": "257\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-33",
+      "source_sha256": "00f38fc066fad793b884f906b12e7befec703f3efa31dda1f92da4b8c3708667",
+      "stdout": "sensor ready\nsensor ready\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-29",
+      "source_sha256": "77d1545313e4b74a6ec867d4fc391c95a63451e1ac5a4b8d64bb89a8910b16e7",
+      "stdout": "6 m\n4 m/s\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "stdlib.html",
+      "id": "stdlib-example-30",
+      "source_sha256": "a6ccf768e1b842df5b252dcbb97493c9af403bf6afcb21220ced003432981244",
+      "stdout": "[[0, 2, 0], [1, 4, 0]] m\n[[0, 1, 0], [0, 2, 0]] m/s\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     },
     {
       "page": "build.html",
       "id": "path-assertions",
       "source_sha256": "f40dddcb434e3c663ae14b40654544ffe867862ccbe02b996dfcbcab213b22d4",
       "stdout": "passed\n",
-      "origin": "Existing displayed source-bound expected output; actual current check required",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
       "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
-      "visualOutputPending": false,
-      "compiler_binding": "b459ecbccb2968417c3f19b59307ad512cefe8793ed1d18fae93f65aced67a10"
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "embed-example.html",
+      "id": "embed-panel-area",
+      "source_sha256": "de6f2da975cd7d6c3edca6772e57f2327fbdc54ca73e3903892d35c47fb00948",
+      "stdout": "25\n",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
+    },
+    {
+      "page": "few-math-labels.html",
+      "id": "native-math-annotations",
+      "source_sha256": "5b8bb3ca655a4350b60b96e8d3ae236620d4a4ef47cf08622aecb60896520ec6",
+      "stdout": "",
+      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "origin": "Actual e1991 shared canonical browser compiler",
+      "visualOutputPending": false
     }
-  ],
-  "embeddingForm": {
-    "page": "embed-example.html",
-    "defaultInput": 5,
-    "source": "square(x): x ^ 2\n\n:: square(5)",
-    "stdout": "25\n",
-    "status": "PENDING_CURRENT_ACTUAL_VERIFICATION"
-  },
-  "editorial_note": "Each row retains its actual source and compiler provenance. Historical unchanged seeds are displayed examples, not current compiler qualification. Run compiles the actual edited source with the current selected compiler."
+  ]
 }

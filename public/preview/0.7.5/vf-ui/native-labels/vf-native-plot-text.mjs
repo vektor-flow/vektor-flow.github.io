@@ -59,7 +59,9 @@ export function createNativePlotTextLayer({container, createLayer, measure}) {
       let [x,y] = row.point;
       if (row.keepInViewport) {
         need(typeof measure === 'function','NATIVE_PLOT_TEXT_NATIVE_METRICS_REQUIRED');
+        state={...state,phase:'native-metrics',pendingSource:source};
         const box=await measure(source), width=box.width*scale,height=(box.height+box.depth)*scale;
+        state={...state,phase:'native-metrics-complete',pendingSource:source};
         const [ax,ay]=row.anchor ?? [0.5,0.5],theta=rotation*Math.PI/180,cos=Math.cos(theta),sin=Math.sin(theta);
         const offsets=[[-ax*width,-ay*height],[(1-ax)*width,-ay*height],[-ax*width,(1-ay)*height],[(1-ax)*width,(1-ay)*height]]
           .map(([u,v])=>[cos*u-sin*v,sin*u+cos*v]);

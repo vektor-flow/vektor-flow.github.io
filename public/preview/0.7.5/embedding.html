@@ -128,6 +128,7 @@ const viewport = document.querySelector(&#x27;#embed-viewport&#x27;);
 const consoleOutput = document.querySelector(&#x27;#embed-console&#x27;);
 const status = document.querySelector(&#x27;#embed-status&#x27;);
 let runner, scene, active, revision = 0, closed = false;
+const events = new AbortController();
 const clearScene = () =&gt; { scene?.(); scene = undefined; };
 const report = error =&gt; {
   consoleOutput.textContent += `${consoleOutput.textContent ? &#x27;\n&#x27; : &#x27;&#x27;}${error.message}`;
@@ -150,19 +151,21 @@ source.addEventListener(&#x27;input&#x27;, () =&gt; {
   clearScene();
   consoleOutput.textContent = &#x27;&#x27;;
   status.textContent = &#x27;Source changed. Run to update the result.&#x27;;
-});
+}, {signal: events.signal});
 viewport.addEventListener(&#x27;vf-example-render-error&#x27;, event =&gt; {
   clearScene();
   // During the first presentation the rejected promise reports this error.
   if (!active) report(new Error(event.detail.message));
-});
+}, {signal: events.signal});
 run.addEventListener(&#x27;click&#x27;, async () =&gt; {
   if (!runner || active || closed) return;
   const controller = new AbortController();
   active = controller;
   const runRevision = revision, runSource = source.value;
-  if (!crossOriginIsolated) sessionStorage.setItem(requestKey,
-    JSON.stringify({source: runSource, requestedAt: Date.now()}));
+  if (!crossOriginIsolated) {
+    try { sessionStorage.setItem(requestKey,
+      JSON.stringify({source: runSource, requestedAt: Date.now()})); } catch {}
+  }
   run.disabled = true;
   clearScene();
   consoleOutput.textContent = &#x27;&#x27;;
@@ -185,30 +188,32 @@ run.addEventListener(&#x27;click&#x27;, async () =&gt; {
   } catch (error) {
     if (!closed &amp;&amp; revision === runRevision) { clearScene(); report(error); }
   } finally {
-    if (crossOriginIsolated) sessionStorage.removeItem(requestKey);
+    if (crossOriginIsolated) { try { sessionStorage.removeItem(requestKey); } catch {} }
     active = undefined;
     run.disabled = closed || !runner;
   }
-});
+}, {signal: events.signal});
 
 // Call the same cleanup when a client application removes this embed.
 export async function close() {
   closed = true;
   revision++;
   active?.abort();
+  events.abort();
   clearScene();
   run.disabled = true;
   await runner?.dispose();
 }
-window.addEventListener(&#x27;pagehide&#x27;, () =&gt; { void close(); });
+window.addEventListener(&#x27;pagehide&#x27;, () =&gt; { void close(); }, {signal: events.signal});
 window.addEventListener(&#x27;pageshow&#x27;, event =&gt; { if (event.persisted) location.reload(); });
 
 try {
   const response = await fetch(new URL(&#x27;./current-compiler-release.json&#x27;, import.meta.url), {cache: &#x27;no-store&#x27;});
   if (!response.ok) throw new Error(&#x27;The current compiler manifest is unavailable&#x27;);
   const release = await response.json();
-  const policy = release.current_distribution?.enabled ? release.current_distribution : release.site_review_iteration;
-  if (!policy?.enabled || !policy.runEnabled) throw new Error(&#x27;This compiler is not enabled for browser examples&#x27;);
+  const enabled = [release.current_distribution, release.site_review_iteration]
+    .some(policy =&gt; policy?.enabled &amp;&amp; policy.runEnabled);
+  if (!enabled) throw new Error(&#x27;This compiler is not enabled for browser examples&#x27;);
   if (closed) throw new Error(&#x27;This embed is closed&#x27;);
   runner = createInlineRunner({
     moduleURL: release.package.module, wasmUrl: release.package.wasm,

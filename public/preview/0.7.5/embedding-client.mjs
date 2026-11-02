@@ -10,6 +10,7 @@ const viewport = document.querySelector('#embed-viewport');
 const consoleOutput = document.querySelector('#embed-console');
 const status = document.querySelector('#embed-status');
 let runner, scene, active, revision = 0, closed = false;
+const events = new AbortController();
 const clearScene = () => { scene?.(); scene = undefined; };
 const report = error => {
   consoleOutput.textContent += `${consoleOutput.textContent ? '\n' : ''}${error.message}`;
@@ -32,19 +33,21 @@ source.addEventListener('input', () => {
   clearScene();
   consoleOutput.textContent = '';
   status.textContent = 'Source changed. Run to update the result.';
-});
+}, {signal: events.signal});
 viewport.addEventListener('vf-example-render-error', event => {
   clearScene();
   // During the first presentation the rejected promise reports this error.
   if (!active) report(new Error(event.detail.message));
-});
+}, {signal: events.signal});
 run.addEventListener('click', async () => {
   if (!runner || active || closed) return;
   const controller = new AbortController();
   active = controller;
   const runRevision = revision, runSource = source.value;
-  if (!crossOriginIsolated) sessionStorage.setItem(requestKey,
-    JSON.stringify({source: runSource, requestedAt: Date.now()}));
+  if (!crossOriginIsolated) {
+    try { sessionStorage.setItem(requestKey,
+      JSON.stringify({source: runSource, requestedAt: Date.now()})); } catch {}
+  }
   run.disabled = true;
   clearScene();
   consoleOutput.textContent = '';
@@ -67,30 +70,32 @@ run.addEventListener('click', async () => {
   } catch (error) {
     if (!closed && revision === runRevision) { clearScene(); report(error); }
   } finally {
-    if (crossOriginIsolated) sessionStorage.removeItem(requestKey);
+    if (crossOriginIsolated) { try { sessionStorage.removeItem(requestKey); } catch {} }
     active = undefined;
     run.disabled = closed || !runner;
   }
-});
+}, {signal: events.signal});
 
 // Call the same cleanup when a client application removes this embed.
 export async function close() {
   closed = true;
   revision++;
   active?.abort();
+  events.abort();
   clearScene();
   run.disabled = true;
   await runner?.dispose();
 }
-window.addEventListener('pagehide', () => { void close(); });
+window.addEventListener('pagehide', () => { void close(); }, {signal: events.signal});
 window.addEventListener('pageshow', event => { if (event.persisted) location.reload(); });
 
 try {
   const response = await fetch(new URL('./current-compiler-release.json', import.meta.url), {cache: 'no-store'});
   if (!response.ok) throw new Error('The current compiler manifest is unavailable');
   const release = await response.json();
-  const policy = release.current_distribution?.enabled ? release.current_distribution : release.site_review_iteration;
-  if (!policy?.enabled || !policy.runEnabled) throw new Error('This compiler is not enabled for browser examples');
+  const enabled = [release.current_distribution, release.site_review_iteration]
+    .some(policy => policy?.enabled && policy.runEnabled);
+  if (!enabled) throw new Error('This compiler is not enabled for browser examples');
   if (closed) throw new Error('This embed is closed');
   runner = createInlineRunner({
     moduleURL: release.package.module, wasmUrl: release.package.wasm,

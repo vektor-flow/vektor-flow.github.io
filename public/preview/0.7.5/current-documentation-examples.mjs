@@ -8,7 +8,7 @@ import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
 
 const release = await fetch(new URL('./current-compiler-release.json', import.meta.url),
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
-const runner = release?.current_distribution?.enabled === true && release?.current_distribution?.runEnabled === true
+const runner = ((release?.current_distribution?.enabled === true && release.current_distribution.runEnabled === true) || (release?.site_review_iteration?.enabled === true && release.site_review_iteration.runEnabled === true))
   ? createInlineRunner({wasmUrl:release.package.wasm, moduleURL:release.package.module,
       dataURL:release.package.data, expectedSourceBinding:release.browser_binding??release.compiler_source, timeoutMs:360000}) : null;
 

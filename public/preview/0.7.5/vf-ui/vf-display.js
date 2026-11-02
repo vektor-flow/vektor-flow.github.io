@@ -2952,6 +2952,7 @@
       nextCfg.__frozen_box_tick_state = prevCfg.__frozen_box_tick_state;
     }
     if (prevCfg.grid_options) {nextCfg.grid_options=prevCfg.grid_options;nextCfg.grid=prevCfg.grid;}
+    if (prevCfg.axis_style) {nextCfg.axis_style=prevCfg.axis_style;nextCfg.x_label=prevCfg.x_label;nextCfg.y_label=prevCfg.y_label;}
     nextCfg.__vf_live_mutated = true;
   }
 
@@ -9472,24 +9473,33 @@
     return Object.freeze(result);
   }
 
-  function setPlotAxisType(fid, type) {
-    fid = String(fid);type=String(type).toLowerCase();
-    if (type !== "box" && type !== "crosshair") throw new TypeError("plot axis type must be box or crosshair");
-    var scene = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
-    if (!scene) throw new Error("plot axis type requires a current renderer Frame");
+  function setPlotAxisStyle(fid, options) {
+    fid=String(fid);
+    if (!options || typeof options !== "object") throw new TypeError("plot axis style must be an object");
+    var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    if (!scene) throw new Error("plot axis style requires a current renderer Frame");
     var controllers=(scene.meshes || []).filter(function(mesh) {return mesh.axis_ticks && mesh.mode3d !== true;});
-    if (!controllers.length) throw new Error("axis type control currently requires Cartesian 2D axes");
+    if (!controllers.length) throw new Error("axis style currently requires Cartesian 2D axes");
     if (controllers.some(function(mesh) {return mesh.axis_polar === true;})) throw new Error("polar/spherical axis conversion is deferred");
+    var type=String(options.type || controllers[0].__vf_axis_type || (controllers[0].axis_box ? "box" : "crosshair")).toLowerCase();
+    if (["box","crosshair","open"].indexOf(type)<0) throw new TypeError("plot axis type must be box, crosshair or open");
     controllers.forEach(function(mesh) {
-      mesh.axis_box=type === "box";
-      mesh.axis_full_frame=type === "crosshair";
-      mesh.__vf_axis_type=type;
-      mesh.axis_ticks.__vf_live_mutated=true;
-      unfreezeAxis2DBoxTickPlacement(mesh.axis_ticks);
+      var previous=mesh.axis_ticks.axis_style || {};
+      var style={type:type,
+        arrows:options.arrows == null ? (options.type ? type === "open" : previous.arrows === true) : options.arrows === true,
+        frame:options.frame == null ? (options.type ? type === "box" : previous.frame === true) : options.frame === true};
+      mesh.axis_box=type !== "crosshair";mesh.axis_full_frame=type === "crosshair";
+      mesh.__vf_axis_type=type;mesh.axis_ticks.axis_style=style;
+      if (options.labels) ["x","y"].forEach(function(axis) {
+        if (options.labels[axis]!=null) mesh.axis_ticks[axis+"_label"]=String(options.labels[axis]);
+      });
+      mesh.axis_ticks.__vf_live_mutated=true;unfreezeAxis2DBoxTickPlacement(mesh.axis_ticks);
     });
     requestGeomFramePresentation(fid);
-    return type;
+    return controllers[0].axis_ticks.axis_style;
   }
+
+  function setPlotAxisType(fid,type) { return setPlotAxisStyle(fid,{type:type}).type; }
 
   function setPlotGrid(fid, options) {
     fid = String(fid);
@@ -9975,11 +9985,16 @@
     function drawAxisBoxFrame(mesh) {
       if (mesh.axis_box !== true) { return false; }
       var box = axisBoxRect(mesh, w, h);
-      ctx.moveTo(box.left, box.bottom);
-      ctx.lineTo(box.right, box.bottom);
-      ctx.lineTo(box.right, box.top);
-      ctx.lineTo(box.left, box.top);
-      ctx.lineTo(box.left, box.bottom);
+      var style=mesh.axis_ticks && mesh.axis_ticks.axis_style;
+      ctx.moveTo(box.left,box.bottom);ctx.lineTo(box.right,box.bottom);
+      if (!style || style.frame !== false) {
+        ctx.lineTo(box.right,box.top);ctx.lineTo(box.left,box.top);ctx.lineTo(box.left,box.bottom);
+      } else {ctx.moveTo(box.left,box.bottom);ctx.lineTo(box.left,box.top);}
+      if (style && style.arrows) {
+        var length=8,half=4;
+        ctx.moveTo(box.right-length,box.bottom-half);ctx.lineTo(box.right,box.bottom);ctx.lineTo(box.right-length,box.bottom+half);
+        ctx.moveTo(box.left-half,box.top+length);ctx.lineTo(box.left,box.top);ctx.lineTo(box.left+half,box.top+length);
+      }
       return true;
     }
 
@@ -10031,6 +10046,17 @@
       if (xAxisPx >= localBounds.left && xAxisPx <= localBounds.right) {
         ctx.moveTo(xAxisPx, localBounds.top);
         ctx.lineTo(xAxisPx, localBounds.bottom);
+      }
+      var style=cfg.axis_style;
+      if (style && style.frame) ctx.rect(localBounds.left,localBounds.top,localBounds.right-localBounds.left,localBounds.bottom-localBounds.top);
+      if (style && style.arrows) {
+        var endX=localBounds.right-2,endY=localBounds.top+2;
+        if (yAxisPx >= localBounds.top && yAxisPx <= localBounds.bottom) {
+          ctx.moveTo(endX-8,yAxisPx-4);ctx.lineTo(endX,yAxisPx);ctx.lineTo(endX-8,yAxisPx+4);
+        }
+        if (xAxisPx >= localBounds.left && xAxisPx <= localBounds.right) {
+          ctx.moveTo(xAxisPx-4,endY+8);ctx.lineTo(xAxisPx,endY);ctx.lineTo(xAxisPx+4,endY+8);
+        }
       }
       return true;
     }
@@ -15039,6 +15065,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
     setPlotGrid: setPlotGrid,
     setPlotAxisType: setPlotAxisType,
+    setPlotAxisStyle: setPlotAxisStyle,
     normalizePlotGrid: normalizePlotGrid,
     refreshExamplePlotTheme: function() {
       if (!_lastDisplayPayload || !_lastDisplayPayload.geom) return;

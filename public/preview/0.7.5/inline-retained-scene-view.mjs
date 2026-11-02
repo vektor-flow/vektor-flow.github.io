@@ -157,6 +157,8 @@ export function mountRetainedSceneResult(container, packets, {
   const applyPlotSettings = packet => {
     if (!cartesianPackets.includes(packet)) return;
     if (requestedAxis) VfDisplay.setPlotAxisType(packet.metadata.scene.frame,axisType);
+    if (settings.axisLabelX != null || settings.axisLabelY != null) VfDisplay.setPlotAxisStyle(packet.metadata.scene.frame,
+      {labels:{x:settings.axisLabelX,y:settings.axisLabelY}});
     if (requestedGrid) VfDisplay.setPlotGrid(packet.metadata.scene.frame,{mode:gridMode});
   };
   if (cartesianPackets.length) {
@@ -179,8 +181,8 @@ export function mountRetainedSceneResult(container, packets, {
       });
       label.append(select);controls.append(label);
     };
-    addChoice('Axes',[['crosshair','Crosshair'],['box','Box']],axisType,value=>{axisType=value;requestedAxis=true;});
-    addChoice('Grid',[['off','Off'],['lines','Lines'],['dots','Dots']],gridMode,value=>{gridMode=value;requestedGrid=true;});
+    addChoice('Axes',[['box','Box'],['crosshair','Crosshair'],['open','Open']],axisType,value=>{axisType=value;requestedAxis=true;});
+    addChoice('Grid',[['off','None'],['lines','Lines'],['dots','Dots']],gridMode,value=>{gridMode=value;requestedGrid=true;});
     shell.append(controls,viewport);viewport=shell;
   }
   container.append(viewport);

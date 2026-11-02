@@ -15,6 +15,13 @@ retain the maintained runner, renderer and native compiler. This child changes
 only attachment/helper/oracle documentation; integrate only its delta after fd96.
 The b2-parent tree must never replace the current published4ddb/ad6 site tree.
 
+e2028 child of exact e1ac602: removes only the provenance-count dependency from
+the exporter, sizes the normal frame for a900x600 INNER viewport, and uses the
+same lowercase longitude/latitude degree labels in all three native adapters.
+Apply only this child delta to actual2026's current integrated4ddb/ad6 tree.
+All execution/real-data completeness/geometry/native label acceptance is UNRUN
+by SOURCE; no prior parity result transfers to changed source/request identities.
+
 Method and scope
 ---------------
 Vega panzoom at 20ad5e85f829a4ccf29f2d92ea5d708c5c0a7c7e is the established
@@ -27,8 +34,15 @@ Input cadence/duration are explicit actual-job parameters, not a new quota.
 The official Plotly WebGL example independently establishes a1M-point workload.
 fetch-tlc.py chooses exactly the first1M VALID January2016 TLC pickup rows in
 timestamp,:id order, not an undisclosed sample or an entire-month claim. It
-preserves all duplicates. Query/filter, eligible month count, revision, every
-response hash and final files are recorded. Missing/incomplete data fails; N is
+preserves all duplicates. Query/filter, revision, every response hash and final
+files are recorded. The eligible MONTH total is honestly null/unknown, with an
+explicit provenance-only status: its count(*) query timed out at25s before any
+export. That aggregate is unnecessary to select the same first1M. Exactly20
+complete50k pages at unchanged offsets0..950000, the SAME WHERE/ORDER/SELECT,
+unique row identities, every-row eligibility checks and unchanged before/after
+revision remain mandatory. Successful full export establishes a1M lower bound,
+not an invented month total. No aggregate retry or broader timeout is added.
+Missing/incomplete data fails; N is
 never silently reduced. No source worker fetched bulk rows. Exact N/export SHA
 and all actual machine/browser/compiler-build observations remain pending.
 
@@ -51,7 +65,7 @@ pin-peer-builds.py freezes the actual shipped scripts. No installed dependency
 or measured SDK/build version is claimed by source. No optional peer bank.
 
 All tools share real point positions/count/order, raw-degree domains,900x600
-outer CSS viewport/DPR1, native circular markers (upstream area40 -> radius
+INNER plot viewport/DPR1, native circular markers (upstream area40 -> radius
 sqrt(40/pi)), opaque steelblue, linear axes/grid and data-box clipping. Native
 tick algorithms/font rasterization/chrome differ and are explicit. Deck uses
 six linear grid positions with standard native text/layers. Peer standard
@@ -59,6 +73,72 @@ implementations do not need identical internals. Actual reviewer must reject
 semantic/visible mismatch, rather than hiding axes, dropping points or relabeling
 a renderer-only case as a full chart. Complete positions/indices/RGBA and full
 spatial occupied-cell landmark captures are independent of timing.
+
+Concrete data/host/native-label prerequisites — ASDATA, UNRUN by SOURCE
+-------------------------------------------------------------------
+The actual raw aggregate TimeoutError is retained in actual2026's
+official-tlc2016-complete-ordered-first1M-export.stderr (27.247747s normal240
+job, metadata only, no export.json). This child does NOT prescribe an unchanged
+retry. Later admitted actual uses the changed exact exporter in a FRESH output
+directory under its original normal240 cap. Per-request25s is retained and
+bounded by the remaining full240 budget; no whole-job/owner clock extension.
+
+Official schema metadata authenticates uacg-pexx/provenance=official,
+calendar_date pickup time and number longitude/latitude, rowsUpdatedAt1494466198,
+viewLastModified1702586741/tableId14191205. It does not expose a usable composite
+index or query plan. Its cached time-column statistics even contain1/2/3, not
+reliable eligible timestamps/counts. Do not use cached statistics as a count.
+The documented SODA2 $order provides stable pagination with :id tie-breaking;
+$limit/$offset select the same contiguous prefix. No unverified :id collation,
+index claim, keyset rewrite, SODA3/auth migration or speculative network scan.
+Primary semantics (read-only research; no data queries by SOURCE):
+  https://dev.socrata.com/docs/queries/order.html
+  https://dev.socrata.com/docs/queries/offset.html
+  https://dev.socrata.com/docs/queries/limit.html
+  https://dev.socrata.com/docs/system-fields.html
+Actual full export MUST prove20 complete pages/exact1M unique IDs, original
+filter/order, unchanged revision,8,000,000 XY bytes and every response/file hash.
+Any row-page timeout remains an authentic unresolved export failure, not PASS.
+
+The selected normal .vf-frame is border-box with1px per side. Setting its outer
+dimensions900x600 produced actual898x598 canvas. sizePlottingFrame now explicitly
+uses content-box900x600, preserving that border and the inset normal toolbar;
+the containing layer/host fit the measured outer shell (normally902x602).
+It never resizes captured output, removes axes/chrome or edits the renderer.
+FULL_MATCHED_VIEWPORT/sameRect/domain/DPR/full capture oracles remain intact.
+In actual's existing normal-domain-clip-control.mjs source, the literal existing
+control commands are ASDATA:
+  node "$ACTUAL_ROOT/normal-domain-clip-control.mjs" baseline
+  node "$ACTUAL_ROOT/normal-domain-clip-control.mjs" fixed
+Do not repeat or interfere with the already running/completed causal job.
+For the later meaningful existing control, actual may replace ONLY its host
+sizing statement with this SAME imported helper's sizePlottingFrame(host,frame,
+{width:900,height:600}), then request normal completed presentation/native labels.
+Require native getGeomFramePlotMetrics width900/height600/dpr1, complete captured
+canvas900x600, full5-point output and existing domain/clip/history assertions.
+This finite host check cannot qualify real1M or the peer comparison. The normal
+full-population preflight below still requires every native metric/dataRect to
+match the genuine peers; it must not accept898x598 or a resized readback.
+
+The CURRENT_NATIVE_FONT_MAPPING error comes from exact native provider validation
+of physical.paths[physical.keys[item.key]] AND physical.fontBindings[item.key].
+Current nativePlotTextSource wraps ordinary labels in \\text{...}; $...$ keeps
+native mathematical source. The selected same-catalog mapping lacks
+text/@roman:X, text/@roman:Y and text/@roman:L. It has all mapped paths AND bound
+physical font entries for lowercase longitude (degrees)/latitude (degrees),
+including parentheses; letter glyphs remain the selected CMR10. Changing only
+initial case preserves the complete names/units without a font/style alias.
+prepare.py emits these lowercase native labels and request.quality.axisLabels;
+Plotly/deck consume those identical strings. Exact producer/catalog/resource,
+vector/binding and missing-key evidence is in e2028 NATIVE-LABEL-SOURCE-CONTRACT.
+This is source-contract evidence, not proof of current engine output keys.
+Actual alone must compile/mount the same required labels with the ordinary point
+control (replace Energy/Intensity labels ONLY, retain point/domain workload),
+record raw native failures/pending source, require native-label status notFAILED
+and real ink for BOTH complete labels/units plus ticks. Then exact real1M normal
+preflight remains required. If a current engine key differs/misses, record that
+exact authentic key/resource; no unrelated label, missing-glyph drop, axes
+removal, host typesetter, substitution font or standalone font/PDF campaign.
 
 Causal current integration gaps — do not apply to the active site
 ----------------------------------------------------------------

@@ -112,6 +112,22 @@ export async function importPlottingRuntime(base, name) {
   return import(new URL(name, resolvePlottingRuntimeBase(base)).href);
 }
 
+// The normal frame has a 1px border on each side. Its requested dimensions
+// describe the INNER plot viewport; the outer embedding must also fit chrome.
+// Keep the real shell/body/toolbar and let the normal renderer resize its canvas.
+export function sizePlottingFrame(host, root, viewport) {
+  need(root?.parentElement?.parentElement === host, 'NORMAL_SINGLE_FRAME_EMBEDDING');
+  root.style.boxSizing = 'content-box';
+  root.style.width = viewport.width + 'px';
+  root.style.height = viewport.height + 'px';
+  const width = root.offsetWidth, height = root.offsetHeight;
+  need(width >= viewport.width && height >= viewport.height, 'FRAME_CHROME_EXTENT');
+  host.style.width = width + 'px';
+  host.style.height = height + 'px';
+  root.parentElement.style.height = height + 'px';
+  return {outerWidth: width, outerHeight: height};
+}
+
 async function vkfAdapter(host, request, source, xy, base) {
   const release = await fetch(base + 'current-compiler-release.json', {cache: 'no-store'}).then(r => r.json());
   need(release.browser_binding === request.currentBinding, 'ACTUAL_CURRENT_COMPILER_BINDING_REQUIRED');
@@ -159,9 +175,7 @@ async function vkfAdapter(host, request, source, xy, base) {
     const frameId = dispose.frameIds[0];
     const root = host.querySelector('[data-vf-frame-id]');
     need(root && dispose.frameIds.length === 1, 'ACTUAL_MOUNTED_FRAME');
-    // Normal embedding dimensions; preserve the mounted current frame/toolbar.
-    root.style.height = request.viewport.height + 'px';
-    root.style.width = request.viewport.width + 'px';
+    const embedding = sizePlottingFrame(host, root, request.viewport);
     const labels = async () => {
       let ready;
       do { ready = api.nativeLabelFrameStatus(frameId)?.ready; await ready; }
@@ -192,6 +206,7 @@ async function vkfAdapter(host, request, source, xy, base) {
     need(JSON.stringify(api.getGeomFramePresentedView(frameId)) === beforeInvalid, 'INVALID_DOMAIN_NO_PARTIAL_MUTATION');
     return {
       setup: {compileAndGuestMs: packetAt - compileAt, compilerTiming: result.timing,
+        embedding,
         transferMs:null, transferBoundary:'Normal runner returns compile/guest/packet profile together; no invented split',
         throughResourceInitAndFirstCompleteMs: performance.now() - compileAt, count, bounds, binding: result.sourceBinding},
       update,
@@ -199,6 +214,8 @@ async function vkfAdapter(host, request, source, xy, base) {
         await labels();
         const canvas = api.captureGeomFrameCanvas(frameId);
         need(canvas, 'GENUINE_COMPLETE_2D_CAPTURE');
+        need(canvas.width === request.viewport.width * request.viewport.dpr &&
+          canvas.height === request.viewport.height * request.viewport.dpr, 'FULL_NATIVE_CAPTURE_VIEWPORT');
         return {pixels: canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data, width: canvas.width, height: canvas.height};
       },
       checkPopulation() { need(indices.length === count && vertices.length === count * 10, 'VKF_FULL_RESIDENT_POPULATION'); return count; },
@@ -222,8 +239,8 @@ async function plotlyAdapter(host, request, xy, firstMetrics) {
       marker:{symbol:'circle', size:2*request.quality.radiusCssPx, color:'rgb(70,130,180)', opacity:1, line:{width:0}}}],
     {width:size.width, height:size.height, margin:margins(firstMetrics.dataRect), showlegend:false,
       paper_bgcolor:'white', plot_bgcolor:'white',
-      xaxis:axis([request.dataset.bounds[0],request.dataset.bounds[1]], 'Longitude (degrees)'),
-      yaxis:axis([request.dataset.bounds[2],request.dataset.bounds[3]], 'Latitude (degrees)')},
+      xaxis:axis([request.dataset.bounds[0],request.dataset.bounds[1]], request.quality.axisLabels.x),
+      yaxis:axis([request.dataset.bounds[2],request.dataset.bounds[3]], request.quality.axisLabels.y)},
     {responsive:false, displayModeBar:true, plotGlPixelRatio:size.dpr});
     const gls = () => completedGL(host.querySelectorAll('.gl-container canvas'));
     gls();
@@ -277,8 +294,8 @@ function deckAxes(deck, request, domain, rect) {
   }
   const border=[{a:[rect.left,rect.top],b:[rect.right,rect.top]},{a:[rect.right,rect.top],b:[rect.right,rect.bottom]},
     {a:[rect.right,rect.bottom],b:[rect.left,rect.bottom]},{a:[rect.left,rect.bottom],b:[rect.left,rect.top]}];
-  texts.push({p:[(rect.left+rect.right)/2,request.viewport.height-14],text:'Longitude (degrees)'},
-    {p:[rect.left,rect.top-20],text:'Latitude (degrees)'});
+  texts.push({p:[(rect.left+rect.right)/2,request.viewport.height-14],text:request.quality.axisLabels.x},
+    {p:[rect.left,rect.top-20],text:request.quality.axisLabels.y});
   return [new deck.LineLayer({id:'axes-grid',data:lines,getSourcePosition:d=>d.a,getTargetPosition:d=>d.b,getColor:[0,0,0,31],getWidth:1,widthUnits:'pixels',pickable:false}),
     new deck.LineLayer({id:'axes-frame',data:border,getSourcePosition:d=>d.a,getTargetPosition:d=>d.b,getColor:[0,0,0,255],getWidth:1,widthUnits:'pixels',pickable:false}),
     new deck.TextLayer({id:'axes-labels',data:texts,getPosition:d=>d.p,getText:d=>d.text,getSize:11,sizeUnits:'pixels',getColor:[0,0,0,255],fontFamily:'sans-serif',pickable:false})];
@@ -358,6 +375,8 @@ export async function runPlottingTool({tool,phase,request,assetBase,base='/previ
   base = resolvePlottingRuntimeBase(base);
   need(['vkf','plotly','deck'].includes(tool)&&['preflight','measure'].includes(phase),'EXPLICIT_TOOL_PHASE');
   need(request.schema===1&&request.dataset.count===1_000_000,'FROZEN_REAL_POPULATION');
+  need(request.quality.axisLabels?.x==='longitude (degrees)'&&request.quality.axisLabels?.y==='latitude (degrees)',
+    'MATCHED_MEANINGFUL_NATIVE_AXIS_LABELS');
   need(devicePixelRatio===request.viewport.dpr,'MATCHED_DPR');
   need(!document.hidden,'VISIBLE_BROWSER_CONTEXT_REQUIRED');
   const load=async key=>{

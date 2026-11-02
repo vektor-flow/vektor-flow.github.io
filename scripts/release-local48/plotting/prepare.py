@@ -68,7 +68,7 @@ def main():
               'positions: longitude_i * [1, 0]_c + latitude_i * [0, 1]_c\n'
               'view: .ui.viewport\n'
               'view.add(p: positions_ic, s: ' + repr(radius) + ', color: [0.27450980392156865, 0.5098039215686274, 0.7058823529411765, 1])\n'
-              'view.push(axis_type: "Box", grid_mode: "Lines", x_lim: [' + repr(domain[0]) + ', ' + repr(domain[1]) + '], y_lim: [' + repr(domain[2]) + ', ' + repr(domain[3]) + '], x_label: "Longitude (degrees)", y_label: "Latitude (degrees)")\n'
+              'view.push(axis_type: "Box", grid_mode: "Lines", x_lim: [' + repr(domain[0]) + ', ' + repr(domain[1]) + '], y_lim: [' + repr(domain[2]) + ', ' + repr(domain[3]) + '], x_label: "longitude (degrees)", y_label: "latitude (degrees)")\n'
               'view.show()\n')
     if len(source.encode()) > 64 * 1024 * 1024:
         raise ValueError('source representation exceeds 64MiB; no smaller fallback')
@@ -117,6 +117,7 @@ def main():
         'files': {name: pin(args.output / file) for name, file in [('source', 'program.vkf'), ('xy', 'xy.f32le'), ('trace', 'trace.json')]},
         'environment': environment, 'viewport': {'width': 900, 'height': 600, 'dpr': 1},
         'quality': {'shape': 'circle', 'radiusCssPx': radius, 'rgba': [70, 130, 180, 255],
+                    'axisLabels': {'x': 'longitude (degrees)', 'y': 'latitude (degrees)'},
                     'axes': 'Box', 'grid': 'Lines', 'clip': 'plot rectangle',
                     'coordinates': 'raw degrees', 'precision': 'float32 positions; float64 camera domains',
                     'notes': 'Native axes/text and tool chrome retained; peer native tick placement/font rasterization may differ. No LOD, sampling or aggregation.'},

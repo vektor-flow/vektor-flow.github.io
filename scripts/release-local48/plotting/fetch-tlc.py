@@ -40,19 +40,25 @@ def main():
     transferred = 0
     requests = []
 
+    def remaining():
+        seconds = 240 - (time.monotonic() - began)
+        if seconds <= 0:
+            raise RuntimeError('export exceeded admitted 240 second data cap; do not shrink N')
+        return seconds
+
     def get(path, query=None):
         nonlocal transferred
-        if time.monotonic() - began > 240:
-            raise RuntimeError('export exceeded admitted 240 second data cap; do not shrink N')
+        budget = min(25, remaining())
         url = ORIGIN + path + ('?' + urllib.parse.urlencode(query) if query else '')
         headers = {'Accept': 'application/json', 'User-Agent': 'VKF-plotting-reproduction/1'}
         # Never put credentials in URLs, receipts or error messages.
         if os.environ.get('SOCRATA_APP_TOKEN'):
             headers['X-App-Token'] = os.environ['SOCRATA_APP_TOKEN']
-        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=25) as response:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=budget) as response:
             if response.url.split('?', 1)[0] != url.split('?', 1)[0]:
                 raise RuntimeError('unexpected export redirect')
             raw = response.read(MAX_RESPONSE + 1)
+        remaining()
         transferred += len(raw)
         if len(raw) > MAX_RESPONSE or transferred > MAX_TOTAL:
             raise RuntimeError('export byte cap exceeded; do not truncate population')
@@ -71,10 +77,10 @@ def main():
 
     before, raw = metadata()
     (args.output / 'official-metadata.json').write_bytes(raw)
-    total, _ = get('/resource/' + DATASET + '.json', {'$select': 'count(*) AS n', '$where': WHERE})
-    eligible = int(total[0]['n'])
-    if eligible < N:
-        raise RuntimeError('official valid January population below chosen 1M; no reduced fallback')
+    # The month-wide aggregate is provenance only, not an input to this exact
+    # ordered prefix. It timed out before any export. Do not scan the month to
+    # learn a number unnecessary for selection, or infer it from cached metadata.
+    # Twenty COMPLETE ordered pages below establish at least N eligible rows.
     rows_path = args.output / 'rows.ndjson'
     xy_path = args.output / 'xy.f32le'
     bounds = [math.inf, -math.inf, math.inf, -math.inf]
@@ -106,6 +112,8 @@ def main():
                 xy_file.write(encoded)
                 rows_file.write((json.dumps(row, sort_keys=True, separators=(',', ':')) + '\n').encode())
     after, _ = metadata()
+    if len(seen_ids) != N or xy_path.stat().st_size != N * 8:
+        raise RuntimeError('complete chosen 1M population required; no partial export')
     if any(before.get(k) != after.get(k) for k in ['rowsUpdatedAt', 'viewLastModified', 'tableId']):
         raise RuntimeError('official dataset changed during export; reject entire attempt')
 
@@ -125,7 +133,13 @@ def main():
                     'note': 'Official metadata snapshot has no SPDX license; do not invent CC0.'},
         'sourceRevision': {k: before.get(k) for k in ['rowsUpdatedAt', 'viewLastModified', 'tableId']},
         'where': WHERE, 'select': SELECT, 'order': ORDER,
-        'eligibleJanuaryRows': eligible, 'count': len(seen_ids), 'chosenRows': N,
+        'eligibleJanuaryRows': None,
+        'eligibleJanuaryRowsStatus': 'UNKNOWN_NOT_QUERIED_PROVENANCE_ONLY',
+        'eligibleJanuaryRowsLowerBound': N,
+        'count': len(seen_ids), 'chosenRows': N,
+        'completeness': {'pageSize': PAGE, 'completePages': N // PAGE,
+                         'offsets': list(range(0, N, PAGE)),
+                         'proof': 'Full ordered contiguous pages; unique row IDs; every row filter checked; unchanged official revision; full file hashes'},
         'selection': 'First 1,000,000 matching January rows in timestamp,:id order; duplicates preserved',
         'coordinates': 'Unprojected longitude/latitude degrees; common IEEE754 float32 positions',
         'bounds': bounds, 'requests': requests,
@@ -133,6 +147,7 @@ def main():
         'resourceCaps': {'seconds': 240, 'responseBytes': MAX_RESPONSE, 'totalResponseBytes': MAX_TOTAL},
         'comparativeSamples': 0,
     }
+    remaining()
     (args.output / 'export.json').write_text(json.dumps(receipt, indent=2) + '\n')
 
 

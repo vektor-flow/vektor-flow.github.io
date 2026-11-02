@@ -43,3 +43,6 @@
 .readme-example-plot-controls select { min-height:44px; font:inherit; padding:4px 8px; color:inherit; background:var(--example-plot-paper); border:1px solid var(--rule); border-radius:6px; }
 .readme-result-dialog>.readme-example-scene-shell { flex:1; min-height:0; width:100%; }
 .readme-result-dialog .readme-example-scene-shell>.readme-example-retained-layer { flex:1; min-height:0; }
+
+/* The inset toolbar host fills the retained frame; its children are overlays. */
+.readme-example-retained-layer > .vf-frame.vf-plot-host { position:absolute; }

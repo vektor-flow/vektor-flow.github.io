@@ -100,7 +100,7 @@ print(region)</code></pre></div><h3>VKF / matching in-memory selection</h3><p>Se
 
 detectors: [0..3]_p
 energy: (([0..256] - 128) / 128)_u
-spectra: 1 + (1 + detectors_p) / (1 + 100energy_u ^ 2)
+spectra: 1 + (1 + detectors_p) * (1 / (1 + 100energy_u ^ 2))
 
 one: math.sin(spectra.(2, 128))
 region: math.sin(spectra.(1..2, 100..156))

@@ -12060,16 +12060,19 @@
     // Always recompute from the current shared inverse transform. A stationary
     // pointer must not keep its old data values after zoom, pan, resize or Home.
     var body = geomFrameHost(frameEl,fid), point = rec.nativePlotPointer;
-    var coordinate = point && plotCoordinatesAtClientPoint(geomSpec,body,point[0],point[1]);
-    var readout = "Move pointer to inspect coordinates";
-    if (coordinate && coordinate.axes && coordinate.values) {
-      readout = coordinate.axes.map(function(axis,index) {
-        var label = coordinate.labels && coordinate.labels[axis] || axis;
-        return label + " = " + formatPlotCoordinate(coordinate.values[index]);
-      }).join("    ");
+    if (!point && body && typeof body.getBoundingClientRect === "function") {
+      var bounds=body.getBoundingClientRect();
+      point=[bounds.left+bounds.width/2,bounds.top+bounds.height/2];
     }
-    if (geomSpec.coordinates_visible !== false) rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[12,h-8],
-      rotation:0,fontSize:11,anchor:[0,1],color:ink.slice()});
+    var coordinate = point && plotCoordinatesAtClientPoint(geomSpec,body,point[0],point[1]);
+    if (geomSpec.coordinates_visible !== false && coordinate && coordinate.values && coordinate.values.every(Number.isFinite)) {
+      var values=coordinate.values.map(function(value) {
+        return formatPlotCoordinate(value).replace(/e([+-]?\d+)$/,String.raw`\times 10^{$1}`);
+      });
+      var readout="$"+String.raw`\begin{pmatrix}`+values.join(String.raw`\\`)+String.raw`\end{pmatrix}`+"$";
+      rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[w-12,12],
+        rotation:0,fontSize:11,anchor:[1,0],keepInViewport:true,color:ink.slice()});
+    }
     rec.nativeLabelError = null;
     rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function(installation) {
       if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation || !findFrameEl(String(fid))) return {status:"SUPERSEDED"};
@@ -14504,7 +14507,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     }
     function createView(properties, sequence) {
       live();
-      var allowed = ["id", "title", "x_min", "x_max", "y_min", "y_max", "x_lim", "y_lim", "x_label", "y_label"];
+      var allowed = ["id", "title", "x_min", "x_max", "y_min", "y_max", "x_lim", "y_lim", "x_label", "y_label", "axis_type", "grid_mode", "axis_visible", "coordinates_visible"];
       for (var key of Object.keys(properties)) if (!allowed.includes(key))
         throw new TypeError("unsupported retained View property " + key);
       for (var axis of ["x", "y"]) {
@@ -14533,14 +14536,28 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           axisConfig[axis + "_max"] = evaluatedRanges[axis + "_max"];
         }
       }
-      if (!axisConfig && (properties.x_label !== undefined || properties.y_label !== undefined))
-        throw new TypeError("retained View labels require explicit x and y ranges");
+      if (!axisConfig && (properties.x_label !== undefined || properties.y_label !== undefined || properties.axis_type !== undefined || properties.grid_mode !== undefined))
+        axisConfig=evaluatedAxisRanges(pending);
+      for (var flag of ["axis_visible","coordinates_visible"]) if (properties[flag] !== undefined && typeof properties[flag] !== "boolean")
+        throw new TypeError("View "+flag+" requires boolean");
+      if (properties.axis_type !== undefined && !["Box","Crosshair","Open"].includes(properties.axis_type)) throw new TypeError("View axis_type requires Box, Crosshair, or Open");
+      if (properties.grid_mode !== undefined && !["None","Lines","Dots"].includes(properties.grid_mode)) throw new TypeError("View grid_mode requires None, Lines, or Dots");
       var view = new RetainedViewV1(properties, worldScope(sequence));
+      if (!axisConfig && (properties.axis_type !== undefined || properties.grid_mode !== undefined)) axisConfig=evaluatedAxisRanges(view.meshes);
       if (axisConfig) {
         axisConfig.x_label = properties.x_label === undefined ? "x" : properties.x_label;
         axisConfig.y_label = properties.y_label === undefined ? "y" : properties.y_label;
-        for (var layer of view.meshes) layer.axis_ticks = {...axisConfig};
+        for (var layer of view.meshes) {
+          layer.axis_ticks = {...axisConfig};
+          if (properties.axis_visible !== undefined) {layer.axis_visible=properties.axis_visible;layer.axis_ticks.axis_visible=properties.axis_visible;}
+          if (properties.axis_type !== undefined) {
+            var style=properties.axis_type.toLowerCase();layer.axis_box=style !== "crosshair";layer.axis_full_frame=style === "crosshair";
+            layer.axis_ticks.axis_style={type:style,arrows:style === "open",frame:style === "box"};
+          }
+          if (properties.grid_mode !== undefined) {layer.axis_ticks.grid=properties.grid_mode !== "None";layer.axis_ticks.grid_options={mode:properties.grid_mode === "None" ? "off" : properties.grid_mode.toLowerCase()};}
+        }
       }
+      scene.axis_visible=properties.axis_visible !== false;scene.coordinates_visible=properties.coordinates_visible !== false;
       // These are the same live records consumed by the existing View control.
       views.push(view); children.push(view); pending = []; active = view;
       publish(); return view;

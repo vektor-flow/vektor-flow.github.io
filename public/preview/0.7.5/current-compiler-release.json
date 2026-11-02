@@ -9,17 +9,17 @@
   "stable_release": false,
   "release_qualified": false,
   "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
-  "compiler_source_commit": "978208edf8fab2b001e3c29e0c01f4b4b93a8d45",
-  "compiler_source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
-  "release_source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
-  "source": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
-  "browser_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
-  "frontend_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
-  "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
+  "compiler_source_commit": "682b0828bad92113627c34514242bc03a16e7422",
+  "compiler_source": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "release_source": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "source": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "browser_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "frontend_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
   "files": {
     "compiler-base.mjs": {
-      "bytes": 188015,
-      "sha256": "514cf8cec8ece4e5edc43041e575fc43f069e618218510972a853fd06d9c7f68"
+      "bytes": 187967,
+      "sha256": "d6308c42ac3bfc7089877172f40719aacd0e61fb51c4ee4c35724177f2a4baae"
     },
     "compiler.data": {
       "bytes": 619872,
@@ -30,16 +30,16 @@
       "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     "compiler.wasm": {
-      "bytes": 20186000,
-      "sha256": "8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4"
+      "bytes": 20205281,
+      "sha256": "c4d1f3a0d2d6d6ed1487cae64b837a25f1bf5e782952dfa1565508fd7d65dad5"
     },
     "formatter.mjs": {
-      "bytes": 62804,
-      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      "bytes": 61416,
+      "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
     },
     "formatter.wasm": {
-      "bytes": 1118687,
-      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+      "bytes": 1042604,
+      "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
     },
     "package-tools/addresses.mjs": {
       "bytes": 22794,
@@ -123,12 +123,12 @@
     }
   },
   "sha256": {
-    "compiler-base.mjs": "514cf8cec8ece4e5edc43041e575fc43f069e618218510972a853fd06d9c7f68",
+    "compiler-base.mjs": "d6308c42ac3bfc7089877172f40719aacd0e61fb51c4ee4c35724177f2a4baae",
     "compiler.data": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2",
     "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "compiler.wasm": "8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4",
-    "formatter.mjs": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
-    "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
+    "compiler.wasm": "c4d1f3a0d2d6d6ed1487cae64b837a25f1bf5e782952dfa1565508fd7d65dad5",
+    "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
+    "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
     "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
     "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
@@ -152,7 +152,7 @@
   },
   "package": {
     "module": "./playground/canonical/compiler.mjs?sha256=3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=8fcc9bd3af1c5660d95bfbd306895b9d512c43d34268c11a96568b49ea1d0eb4",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=c4d1f3a0d2d6d6ed1487cae64b837a25f1bf5e782952dfa1565508fd7d65dad5",
     "data": "./playground/canonical/compiler.data?sha256=6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
   },
   "current_package_composition": {
@@ -176,7 +176,7 @@
     "runEnabled": true,
     "downloadsOffered": false,
     "fullReleaseQualified": false,
-    "compilerOptimization": "Accepted exact current coalesced compiler, source-bound program/output and focused UI checks; no comparative timing claim."
+    "compilerOptimization": "Minimal current plot API and fixed-extent consumers rebuilt with exact dependency reuse; genuine packet formatter rebuilt; current O1 dotted-index/simplify/coalesce preserved. Runtime qualification in focused current report."
   },
   "historical_prior_binding_evidence": {
     "current_candidate_verification": {

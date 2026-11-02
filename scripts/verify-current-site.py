@@ -115,3 +115,22 @@ for path,content in routing.generated().items():
  assert '/preview/' in content
 assert 'noindex' in (root/'404.html').read_text()
 print('PASS historical compiler bytes, asset retirement, latest-preview entry routing and local page dependencies')
+
+# The current review uses one documentation owner and the recovered plot toolbar.
+if preview.exists() and review_mode:
+ assert "current-documentation-examples.mjs" not in (preview/'website-controls.mjs').read_text(), 'Navigation controls must not initialize a second documentation runner'
+ view=(preview/'inline-retained-scene-view.mjs').read_text()
+ assert "mountPlotToolbar" in view and "toolbar: false" in view
+ assert "readme-example-plot-controls" not in view and "readme-example-enlarge" not in view
+ assert "vf-plot-toolbar.css" in (preview/'inline-renderer-loader.mjs').read_text()
+ for page in preview.glob('*.html'):
+  body=page.read_text()
+  entries=re.findall(r'<script[^>]+src="([^"]+)"',body)
+  assert sum('current-documentation-examples.mjs' in entry for entry in entries)<=1, page
+  assert 'data-axis-type=' not in body and 'data-grid-mode=' not in body, page
+  for url in re.findall(r'(?:src|href)="(\./[^"]+\?v=[0-9a-f]{16})"',body):
+   asset,version=url.rsplit('?v=',1);target=page.parent/asset
+   assert target.is_file() and hashlib.sha256(target.read_bytes()).hexdigest().startswith(version),(page.name,url,'cache identity mismatch')
+ guide=(preview/'embedding.html').read_text()
+ assert 'embedding-client.mjs' not in guide and 'id="embed-run"' not in guide and '<textarea' not in guide
+ print('PASS current single-owner entrypoints, recovered toolbar, no example selectors and current cache identities')

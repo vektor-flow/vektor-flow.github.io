@@ -4,11 +4,11 @@
     {
       "page": "index.html",
       "id": "scientific-spectrum",
-      "source_sha256": "1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe-0.bin",
+          "url": "./example-scenes/226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db-0.bin",
           "bytes": 24616,
           "sha256": "0c724663125869b854096f1c2a48f4f669fc232f793d23b260d9bc24f211d64e",
           "packet": {
@@ -19,12 +19,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": false,
+                    "axis_full_frame": true,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": false,
+                        "type": "crosshair"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "dots"
+                      },
+                      "x_label": "Energy",
                       "x_max": 1,
                       "x_min": -1,
-                      "y_label": "y",
+                      "y_label": "Intensity",
                       "y_max": 6,
                       "y_min": 0
                     },
@@ -36,8 +47,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "Energy",
+                      "y": "Intensity"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -90,11 +101,11 @@
     {
       "page": "examples.html",
       "id": "scientific-spectrum",
-      "source_sha256": "1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/1231c76d636c99420a33f84fd4185bc5a1ab92af37b47ee2cfc1bf690de78ffe-0.bin",
+          "url": "./example-scenes/226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db-0.bin",
           "bytes": 24616,
           "sha256": "0c724663125869b854096f1c2a48f4f669fc232f793d23b260d9bc24f211d64e",
           "packet": {
@@ -105,12 +116,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": false,
+                    "axis_full_frame": true,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": false,
+                        "type": "crosshair"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "dots"
+                      },
+                      "x_label": "Energy",
                       "x_max": 1,
                       "x_min": -1,
-                      "y_label": "y",
+                      "y_label": "Intensity",
                       "y_max": 6,
                       "y_min": 0
                     },
@@ -122,8 +144,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "Energy",
+                      "y": "Intensity"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -176,11 +198,11 @@
     {
       "page": "examples.html",
       "id": "motion-design",
-      "source_sha256": "251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "cc539214f227618e368ceb6a3ddd360ca6932ab405bba71193ad0ec33fb55500",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78-0.bin",
+          "url": "./example-scenes/cc539214f227618e368ceb6a3ddd360ca6932ab405bba71193ad0ec33fb55500-0.bin",
           "bytes": 24656,
           "sha256": "f2543ae1a713e2e08b68055645276aedc0b03d7a3048f2bae440f6d281c3ebe8",
           "packet": {
@@ -191,12 +213,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": true,
+                        "frame": false,
+                        "type": "open"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
+                      "x_label": "t",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "Position / slope",
                       "y_max": 1,
                       "y_min": 0
                     },
@@ -208,8 +241,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "t",
+                      "y": "Position / slope"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -239,12 +272,23 @@
                     }
                   },
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": true,
+                        "frame": false,
+                        "type": "open"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
+                      "x_label": "t",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "Position / slope",
                       "y_max": 1.5,
                       "y_min": 0
                     },
@@ -256,8 +300,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "t",
+                      "y": "Position / slope"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -306,7 +350,7 @@
           }
         },
         {
-          "url": "./example-scenes/251c4d8061a411f98084ab8c7b3103aa91c72e0ce8f8ea733f9e5ad808460e78-1.bin",
+          "url": "./example-scenes/cc539214f227618e368ceb6a3ddd360ca6932ab405bba71193ad0ec33fb55500-1.bin",
           "bytes": 12328,
           "sha256": "a4676fae437e22ccbd2451002ec24ec3c21d82fb156db81169bafc7bb0f37b56",
           "packet": {
@@ -317,12 +361,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": false,
+                    "axis_full_frame": true,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": false,
+                        "type": "crosshair"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "lines"
+                      },
+                      "x_label": "Position",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "Slope",
                       "y_max": 1.5,
                       "y_min": 0
                     },
@@ -334,8 +389,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "Position",
+                      "y": "Slope"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -388,11 +443,11 @@
     {
       "page": "syntax.html",
       "id": "syntax-extra-geometry-views-and-physics-0",
-      "source_sha256": "de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "135f9c0a38455fae1e1ee9cf1697276212590d40400e4787f7147824b644209a",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/de411408eb5125cb4b480dd38999944ff9a01f2de44338188f9491296877d46c-0.bin",
+          "url": "./example-scenes/135f9c0a38455fae1e1ee9cf1697276212590d40400e4787f7147824b644209a-0.bin",
           "bytes": 49192,
           "sha256": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4",
           "packet": {
@@ -403,8 +458,19 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": true,
+                        "type": "box"
+                      },
                       "enabled": true,
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "lines"
+                      },
                       "x_label": "x",
                       "x_max": 1,
                       "x_min": 0,
@@ -474,11 +540,11 @@
     {
       "page": "stdlib.html",
       "id": "stdlib-example-28",
-      "source_sha256": "049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "a7b0dbffc2a71d3470989acdecd4beafbca4cd4b13f57f4862ee6f5446f1e734",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39-0.bin",
+          "url": "./example-scenes/a7b0dbffc2a71d3470989acdecd4beafbca4cd4b13f57f4862ee6f5446f1e734-0.bin",
           "bytes": 49192,
           "sha256": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4",
           "packet": {
@@ -489,12 +555,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": true,
+                        "frame": false,
+                        "type": "open"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
+                      "x_label": "t",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "x",
                       "y_max": 1,
                       "y_min": 0
                     },
@@ -506,8 +583,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "t",
+                      "y": "x"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -560,11 +637,11 @@
     {
       "page": "stdlib.html",
       "id": "stdlib-example-31",
-      "source_sha256": "f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "5841699fa928779d42b24bdc9ce3637570d94910d40e56e3c0f4e98d315496f9",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a-0.bin",
+          "url": "./example-scenes/5841699fa928779d42b24bdc9ce3637570d94910d40e56e3c0f4e98d315496f9-0.bin",
           "bytes": 49192,
           "sha256": "9b2026fb407906198252164d176a1e545bf9a88038d53a22743ea101951946c4",
           "packet": {
@@ -575,12 +652,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": true,
+                        "type": "box"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "lines"
+                      },
+                      "x_label": "Input",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "Response",
                       "y_max": 1,
                       "y_min": 0
                     },
@@ -592,8 +680,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "Input",
+                      "y": "Response"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -642,7 +730,7 @@
           }
         },
         {
-          "url": "./example-scenes/f1d106289832cbbb0b26d8ea75a3d7063ee7c7243c54c75195a3d3b9da67396a-1.bin",
+          "url": "./example-scenes/5841699fa928779d42b24bdc9ce3637570d94910d40e56e3c0f4e98d315496f9-1.bin",
           "bytes": 49192,
           "sha256": "fec5f10cf6596665c7ab802f664756cf115a6ba970e2af4ad8122ad0ab8d8c3d",
           "packet": {
@@ -653,12 +741,23 @@
                 "lights": [],
                 "meshes": [
                   {
+                    "axis_box": true,
+                    "axis_full_frame": false,
                     "axis_ticks": {
+                      "axis_style": {
+                        "arrows": false,
+                        "frame": true,
+                        "type": "box"
+                      },
                       "enabled": true,
-                      "x_label": "x",
+                      "grid": true,
+                      "grid_options": {
+                        "mode": "lines"
+                      },
+                      "x_label": "Response",
                       "x_max": 1,
                       "x_min": 0,
-                      "y_label": "y",
+                      "y_label": "Input",
                       "y_max": 1,
                       "y_min": 0
                     },
@@ -670,8 +769,8 @@
                       1
                     ],
                     "coordinate_labels": {
-                      "x": "x",
-                      "y": "y"
+                      "x": "Response",
+                      "y": "Input"
                     },
                     "curve_path": "open-continuous",
                     "depth_write": true,
@@ -724,11 +823,11 @@
     {
       "page": "few-math-labels.html",
       "id": "native-math-annotations",
-      "source_sha256": "5b8bb3ca655a4350b60b96e8d3ae236620d4a4ef47cf08622aecb60896520ec6",
-      "compiler_binding": "78bdbdf9fa4950d25e240bf9f2ed672d0463667d8cc8b8a5a743054b251e07f2",
+      "source_sha256": "2181fe3b4174a8eefd3dbf9fa73bb31c67640fb071dabb77e7de83b17ff21a7e",
+      "compiler_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
       "packets": [
         {
-          "url": "./example-scenes/5b8bb3ca655a4350b60b96e8d3ae236620d4a4ef47cf08622aecb60896520ec6-0.bin",
+          "url": "./example-scenes/2181fe3b4174a8eefd3dbf9fa73bb31c67640fb071dabb77e7de83b17ff21a7e-0.bin",
           "bytes": 264,
           "sha256": "16ed768a62e4f1d416c87c79b0930b697a7b1af850832cc257fc24be1d6aa96e",
           "packet": {
@@ -740,7 +839,12 @@
                 "meshes": [
                   {
                     "axis_ticks": {
+                      "axis_visible": false,
                       "enabled": true,
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
                       "label_color": [
                         0,
                         0,
@@ -754,6 +858,7 @@
                       "y_max": 84,
                       "y_min": 76
                     },
+                    "axis_visible": false,
                     "casts_shadow": false,
                     "color": [
                       0,
@@ -794,7 +899,12 @@
                   },
                   {
                     "axis_ticks": {
+                      "axis_visible": false,
                       "enabled": true,
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
                       "label_color": [
                         0,
                         0,
@@ -808,6 +918,7 @@
                       "y_max": 210,
                       "y_min": 190
                     },
+                    "axis_visible": false,
                     "casts_shadow": false,
                     "color": [
                       0,
@@ -848,7 +959,12 @@
                   },
                   {
                     "axis_ticks": {
+                      "axis_visible": false,
                       "enabled": true,
+                      "grid": false,
+                      "grid_options": {
+                        "mode": "off"
+                      },
                       "label_color": [
                         0,
                         0,
@@ -862,6 +978,7 @@
                       "y_max": 336,
                       "y_min": 304
                     },
+                    "axis_visible": false,
                     "casts_shadow": false,
                     "color": [
                       0,

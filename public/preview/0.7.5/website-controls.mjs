@@ -17,6 +17,12 @@ for (const menu of document.querySelectorAll('.site-menu')) {
     }
   });
 }
+// Documentation can promote reference programs after its asynchronous manifest load.
+// Await that same owner URL before scanning, so promoted editors also receive Copy.
+// Narrative/guide pages without programs do not create a compiler owner.
+if (document.querySelector('.readme-example, .code-snippet[data-language="vkf"]')) {
+  await import('./current-documentation-examples.mjs?sha256=c0e2f43229d44faadbedfffeeab8bde7f2e94cfa89e58046fd63c8ec980dda7b');
+}
 // Extend the retained editor with a source-copy control; Run/highlighting stay in their original module.
 for (const example of document.querySelectorAll('.readme-example')) {
   const bar=example.querySelector('.readme-example-bar');

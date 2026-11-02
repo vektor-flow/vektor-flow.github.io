@@ -37,10 +37,10 @@ timestamp,:id order, not an undisclosed sample or an entire-month claim. It
 preserves all duplicates. Query/filter, revision, every response hash and final
 files are recorded. The eligible MONTH total is honestly null/unknown, with an
 explicit provenance-only status: its count(*) query timed out at25s before any
-export. That aggregate is unnecessary to select the same first1M. Exactly20
-complete50k pages at unchanged offsets0..950000, the SAME WHERE/ORDER/SELECT,
-unique row identities, every-row eligibility checks and unchanged before/after
-revision remain mandatory. Successful full export establishes a1M lower bound,
+export. That aggregate is unnecessary to select the same first1M. The SAME WHERE/ORDER/SELECT, unique row identities, every-row eligibility
+checks and unchanged before/after revision remain mandatory. e2031 replaces
+global offset paging with timestamp-suffix continuation and exact boundary overlap
+as detailed below; the chosen population is unchanged. Successful full export establishes a1M lower bound,
 not an invented month total. No aggregate retry or broader timeout is added.
 Missing/incomplete data fails; N is
 never silently reduced. No source worker fetched bulk rows. Exact N/export SHA
@@ -88,17 +88,136 @@ calendar_date pickup time and number longitude/latitude, rowsUpdatedAt1494466198
 viewLastModified1702586741/tableId14191205. It does not expose a usable composite
 index or query plan. Its cached time-column statistics even contain1/2/3, not
 reliable eligible timestamps/counts. Do not use cached statistics as a count.
-The documented SODA2 $order provides stable pagination with :id tie-breaking;
-$limit/$offset select the same contiguous prefix. No unverified :id collation,
-index claim, keyset rewrite, SODA3/auth migration or speculative network scan.
+The documented SODA2 $order provides stable pagination with :id tie-breaking.
+e2031 uses a timestamp suffix plus offset within that timestamp, described below.
+No unverified :id collation, index claim, SODA3/auth migration or network scan.
 Primary semantics (read-only research; no data queries by SOURCE):
   https://dev.socrata.com/docs/queries/order.html
   https://dev.socrata.com/docs/queries/offset.html
   https://dev.socrata.com/docs/queries/limit.html
   https://dev.socrata.com/docs/system-fields.html
-Actual full export MUST prove20 complete pages/exact1M unique IDs, original
-filter/order, unchanged revision,8,000,000 XY bytes and every response/file hash.
+Actual full export MUST prove contiguous complete responses/exact1M unique IDs,
+original filter/order, unchanged revision,8,000,000 XY bytes and every response/file
+hash. Transport page count is no longer the population acceptance criterion.
 Any row-page timeout remains an authentic unresolved export failure, not PASS.
+
+e2031: bounded same-population ordered continuation (SOURCE ONLY, UNRUN)
+---------------------------------------------------------------------
+Actual attempt2 reached100,000 rows/800,000 XY bytes, then timed out25s waiting
+for a later row response's headers. The third offset100000 is inferred from the
+exact loop and two complete written batches; it was not logged as a raw URL.
+Normal240 job exited1 after196.373578s. All original artifacts/errors remain in
+actual2026/plotting-attempt2/tlc; no final export.json or final revision exists.
+Those files are NOT accepted data or a cache this child may resume.
+
+Small causal correction: first response remains original ORDER/LIMIT50000/
+OFFSET0. Thereafter add AND tpep_pickup_datetime >= lastAcceptedTimestamp to
+parenthesized ORIGINAL WHERE, keep the SAME SELECT and timestamp ASC,:id ASC,
+and OFFSET(trailingAcceptedRowsAtThatTimestamp - 1). Require the first returned
+row to equal the prior last row in ALL selected fields, then discard that one
+overlap. Request min(50000, remainingPopulation + 1). This excludes earlier
+timestamps before sorting/skipping; offset counts only ties at the boundary.
+
+Induction: the first response is the earliest prefix. Filtering >= its last time
+removes only already consumed earlier times. Skipping exactly the preceding ties
+and checking the unchanged last row leaves precisely the next ordered rows.
+If a timestamp spans multiple pages, accumulate its trailing count across pages;
+reset to1 only when time changes. Never skip by coordinates or timestamp alone,
+never sort opaque row-* strings in Python, and never discard distinct IDs with
+identical time/XY. Server :id ordering is authenticated by the exact ordered
+requests/responses and overlap, not independently decoded as a host collation.
+
+Default transport is21 responses:50000 accepted first, nineteen49999, then19;
+last response20 includes overlap. The receipt records actual response pages,
+logical accepted starts/counts/boundaries and request hashes, not a false claim
+of20 full network pages. Final count is still exactly1,000,000/8,000,000 XY bytes.
+Expected revision is pinned to authentic attempt2 rowsUpdatedAt1494466198,
+viewLastModified1702586741/tableId14191205. Both authenticated metadata snapshots
+must match; the final snapshot is retained and hashed as metadataAfter. Existing
+prepare.py's generic file-pin loop consumes it without a code change.
+
+No persisted checkpoint feature or import/adoption path is introduced. ONLY the
+uninterrupted process's just-validated ordered prefix continues. Existing output
+directories (even a purported compatible cache) are refused before any network
+request; --resume is unsupported. A failed prefix stays intact and unaccepted.
+Never fabricate request hashes or a final revision for old100k. No microjobs,
+unchanged retry, synthetic population, smaller N, raised cap or clock reset.
+All requests remain <=50000 rows/16MiB each/256MiB total;25s socket timeout is
+bounded by remaining240. The normal actual job's hard240 cap remains required:
+Python socket timeouts are per blocking operation, not a wall-clock job timer.
+No internal retries. Entire fetch/hash/transfer/preparation costs stay separately
+recorded by actual's existing job, including failure and all setup overhead.
+
+Performance improvement is an inference from the supported filter/offset
+semantics. No exposed composite index or query plan proves latency; same-time
+ties may still be large, and even the first response may time out. Genuine final
+failure remains a valid outcome, with no full-population comparison. Official
+SODA3 supports filtered exports/queries but requires auth; unauthenticated full
+export would fetch a different broad population. No endpoint/auth switch here.
+
+Exact later actual commands, ASDATA ONLY, inside its separately granted sole
+normal job and original clock/resource checks (current2026 is closed; source
+cannot grant execution). SITE is current b78/4c6-or-newer integrated clone and
+RUN is a fresh actual-owned attempt. Cherry-pick ONLY e2031's child delta; never
+replace that current tree with this source clone's older site ancestry:
+
+  export PATH=/home/viktor/.local/bin:$PATH
+  python3 "$SITE/scripts/release-local48/plotting/fetch-tlc.py" "$RUN/tlc" > "$RUN/export.stdout" 2> "$RUN/export.stderr"
+  python3 "$SITE/scripts/release-local48/plotting/prepare.py" "$RUN/tlc" "$RUN/prepared" --duration-seconds 6 --input-hz "$ACTUAL_INPUT_HZ" --environment "$RUN/environment.json"
+
+Retain existing normal240 supervisor/resource admission around the first command;
+this text does not launch/replace a controller or grant a new clock. On failure,
+keep raw stderr/partial bytes; do not run prepare/parity/timing on the prefix.
+After genuine complete export and every-row prepare validation, the existing
+matched native/Plotly/deck full preflight/parity and only then measure workflow
+below still applies. Native full degree labels/content-box900x600 and absolute
+Blob repair are unchanged. LOCAL48/historical scopes remain separate.
+
+Important future consumer: source2030 report.py currently hardcodes20 pages/
+offsets0..950000. It must later be taught the genuine continuation receipt by
+its owner during report intake, not used as a data recovery gate or made to pass
+by lying about transport. This child does not edit its three owned files.
+
+Concrete causal oracles, ASDATA ONLY (no source execution)
+--------------------------------------------------------
+Use existing causal-oracles.json dataContinuation cases. Exact lightweight helper
+invocation for a later granted actual source check (does no network/main call):
+
+  python3 - "$SITE/scripts/release-local48/plotting/fetch-tlc.py" <<'PY_ORACLE'
+  import runpy, sys
+  api = runpy.run_path(sys.argv[1], run_name='exporter_source_oracle')
+  q = api['page_query']
+  first = q(None, 0, 0)
+  assert first == {'$select': api['SELECT'], '$where': api['WHERE'], '$order': api['ORDER'], '$limit': 50000, '$offset': 0}
+  boundary = {'source_row_id': 'TEST_ONLY_OPAQUE_ID', 'tpep_pickup_datetime': '2016-01-01T04:03:04.000'}
+  resumed = q(boundary, 3, 100000)
+  assert resumed['$offset'] == 2 and resumed['$limit'] == 50000
+  assert resumed['$where'] == '(' + api['WHERE'] + ") AND tpep_pickup_datetime >= '2016-01-01T04:03:04'"
+  assert resumed['$select'] == api['SELECT'] and resumed['$order'] == api['ORDER']
+  assert q(boundary, 7, 999981)['$limit'] == 20
+  for args in [(None, 0, 100000), (boundary, 0, 100000)]:
+      try: q(*args)
+      except RuntimeError: pass
+      else: raise AssertionError('unverified prefix accepted')
+  PY_ORACLE
+
+This helper check alone cannot qualify prefix provenance or data completeness.
+Actual's normal test harness may inject a finite mocked urlopen responder solely
+for the listed failure/boundary cases; test-only fixture rows are never a dataset
+or benchmark substitute and N/PAGE must remain unchanged in the genuine job.
+Required final real-data oracle is export count=chosenRows=1000000, null unknown
+eligible total/lowerBound1M, exact original WHERE/SELECT/ORDER, pinned unchanged
+before/after official revision, contiguous accepted extents summing1M, every
+source row eligibility/uniqueID/timestamp order, exact boundary overlap for every
+continuation,8M XY and all raw-row-to-float32 bytes via existing prepare.py, full
+response/file/export hashes, successful final receipt. No earlier partial/PASS
+qualifies this changed source. Genuine timeout/mismatch/truncation -> nonzero and
+no final success receipt; missing receipt -> prepare refuses. Primary references:
+  https://dev.socrata.com/docs/queries/page
+  https://dev.socrata.com/docs/datatypes/floating_timestamp.html
+  https://dev.socrata.com/docs/row-identifiers
+  https://dev.socrata.com/docs/queries/offset.html
+  https://dev.socrata.com/docs/queries/where.html
 
 The selected normal .vf-frame is border-box with1px per side. Setting its outer
 dimensions900x600 produced actual898x598 canvas. sizePlottingFrame now explicitly

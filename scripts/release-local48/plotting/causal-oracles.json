@@ -4,7 +4,7 @@
   "oracles": [
     {
       "cause": "Provenance-only month count times out before any chosen rows are exported",
-      "actualCheck": "Execute changed frozen exporter only in a later admitted original normal240 data job with fresh output; require export.json count=chosenRows=1000000, unknown/null month total,20 complete50k ordered contiguous pages, unchanged original WHERE/ORDER/SELECT/revision, all unique row IDs, every-row filter checks,8M XY bytes and full response/file hashes; independently prepare every raw row. Preserve original raw TimeoutError; row-query failures remain failures.",
+      "actualCheck": "Execute only changed frozen exporter in a later granted original normal240 job with fresh output. Require full1M/8MXY, unknown total, original filter/order/fields, exact pinned revision and contiguous timestamp-suffix/overlap responses; independently prepare every source row. Earlier aggregate/offset timeouts remain authentic failures, no cache adoption.",
       "location": "fetch-tlc.py and existing prepare.py full-row check",
       "status": "ASDATA_UNRUN",
       "expectedBeforeTiming": "No aggregate dependency, synthetic/reduced fallback, unproved month total or raised job cap"
@@ -69,5 +69,61 @@
   ],
   "priorScope": "LOCAL48 48x10 unchanged; accepted12/72 controls,60UNRUN,0comparative historical rows unchanged",
   "newComparativeRows": 0,
-  "runtimeAcceptance": false
+  "runtimeAcceptance": false,
+  "dataContinuation": {
+    "status": "ASDATA_UNRUN",
+    "mechanism": "timestamp-suffix, offset within ties, exact prior-boundary overlap; no persisted checkpoint",
+    "cases": [
+      {
+        "id": "same-uninterrupted-prefix",
+        "given": "100000 already verified ordered rows ending timestamp2016-01-01T04:03:04.000 with3 trailing equal timestamps",
+        "expect": "Original full WHERE AND timestamp>=2016-01-01T04:03:04, same SELECT/ORDER, OFFSET2 LIMIT50000. First returned row must equal prior last in all fields; discard only it, accept49999. Source did not establish old100k has3 ties; this is TEST-ONLY algebra."
+      },
+      {
+        "id": "timestamp-tie-spans-pages",
+        "given": "A single timestamp spans two complete responses with distinct opaque IDs and identical coordinates",
+        "expect": "Trailing tie counter accumulates50000 then99999; offsets49999 then99998; one boundary overlap per continuation; no dropped duplicate-coordinate row and no lexical ID comparison."
+      },
+      {
+        "id": "boundary-mismatch",
+        "given": "Server continuation first row has changed ID,time or raw coordinate value",
+        "expect": "RuntimeError ordered continuation boundary changed, nonzero, original partial preserved, no export.json."
+      },
+      {
+        "id": "incompatible-revision",
+        "given": "Official metadata rowsUpdatedAt,viewLastModified or tableId differs from pinned authentic attempt2 before or after fetch",
+        "expect": "Nonzero; no final success receipt; before mismatch fetches no data pages; after mismatch leaves complete-sized but UNACCEPTED raw files."
+      },
+      {
+        "id": "incompatible-query-order-cache",
+        "given": "Existing partial directory has changed WHERE/SELECT/ORDER/revision or claimed hashes",
+        "expect": "FileExistsError before network; no existing file changed. No persisted resume feature exists, even compatible cached prefixes are refused. --resume is unsupported; never retrofit a checkpoint."
+      },
+      {
+        "id": "truncated-prefix",
+        "given": "Existing directory rows.ndjson loses tail or XY has799999 bytes instead of800000",
+        "expect": "Existing directory refused before network; missing export.json prevents preparation. No recovery by trusting positions or fabricated count."
+      },
+      {
+        "id": "short-response",
+        "given": "Fresh response returns fewer rows than exact query limit (including required overlap), or a non-list error object",
+        "expect": "incomplete ordered export page, nonzero, no final export.json; no smaller chosen workload."
+      },
+      {
+        "id": "timeout-no-final-success",
+        "given": "urlopen raises authentic TimeoutError on a later continuation or final metadata",
+        "expect": "Exception propagates, no retry, no export.json, preserve previous raw files/stderr. Original240 job and25s socket timeout remain unchanged; actual external hard240 required."
+      },
+      {
+        "id": "invalid-source-row",
+        "given": "Any new row repeats acceptedID, decreases timestamp, violates January/raw-degree filters or has nonfinite XY",
+        "expect": "Nonzero, no final receipt. Distinct IDs with equal timestamp/XY remain accepted rows."
+      },
+      {
+        "id": "exact-full-population",
+        "given": "All21 genuine ordered responses and unchanged final official metadata succeed",
+        "expect": "First50000 + nineteen49999 + final19 accepted =1000000. Final limit20 includes overlap.21 response pages, contiguous start extents,1000000 uniqueIDs,8000000 XYbytes, original filter/SELECT/ORDER, null UNKNOWN month total/lowerBound1M; full metadataBefore/metadataAfter/rows/XY/response/export hashes. Existing prepare every-row XY check succeeds before native/peer preflight/parity; timing remains later."
+      }
+    ]
+  }
 }

@@ -1,0 +1,830 @@
+{
+  "status": "ASDATA_SOURCE_ONLY_UNRUN_TEST_FIXTURES_NOT_MEASUREMENTS",
+  "description": "Independent numerical cells: two paced intervals 20+21ms, two completed updates, observed readback 1+2ms. Rate is 2000/41, not 2/(5+6) completion latencies, not 60Hz idleRAF, no ten repeats or ratio. Fixture identities are deliberately non-real and cannot pass normal CLI pin loading.",
+  "baseline": {
+    "request": {
+      "currentBinding": "FIXTURE_BINDING",
+      "environment": {
+        "os": "FIXTURE OS",
+        "cpu": "FIXTURE CPU",
+        "ramBytes": 4294967296,
+        "gpu": "SwiftShader TEST FIXTURE",
+        "driver": "FIXTURE",
+        "backend": "software",
+        "displayHz": 60,
+        "browserBuild": "FIXTURE browser",
+        "powerState": "FIXTURE",
+        "device": "FIXTURE ONLY"
+      },
+      "viewport": {
+        "width": 900,
+        "height": 600,
+        "dpr": 1
+      },
+      "quality": {
+        "axes": "Box",
+        "grid": "Lines",
+        "clip": "plot rectangle"
+      },
+      "dataset": {
+        "count": 1000000,
+        "eligibleJanuaryRows": null,
+        "sourceRevision": {
+          "rowsUpdatedAt": 1,
+          "viewLastModified": 2,
+          "tableId": 3
+        },
+        "files": {
+          "xy": {
+            "sha256": "FIXTURE_NOT_REAL"
+          }
+        }
+      }
+    },
+    "trace": [
+      {
+        "index": 0,
+        "atMs": 0,
+        "domain": [
+          -74,
+          -73,
+          40,
+          41
+        ]
+      },
+      {
+        "index": 1,
+        "atMs": 15,
+        "domain": [
+          -73.9,
+          -73.1,
+          40.1,
+          40.9
+        ]
+      },
+      {
+        "index": 2,
+        "atMs": 35,
+        "domain": [
+          -74,
+          -73,
+          40,
+          41
+        ]
+      }
+    ],
+    "parity": {
+      "status": "PASS_PARITY_PREFLIGHT",
+      "identitySha256": "FIXTURE_ONLY_MATCHED_IDENTITY_NOT_A_REAL_DIGEST",
+      "reference": [
+        {
+          "width": 900,
+          "height": 600,
+          "dpr": 1,
+          "dataRect": {
+            "left": 50,
+            "right": 850,
+            "top": 50,
+            "bottom": 550,
+            "width": 800,
+            "height": 500
+          }
+        },
+        {
+          "width": 900,
+          "height": 600,
+          "dpr": 1,
+          "dataRect": {
+            "left": 50,
+            "right": 850,
+            "top": 50,
+            "bottom": 550,
+            "width": 800,
+            "height": 500
+          }
+        },
+        {
+          "width": 900,
+          "height": 600,
+          "dpr": 1,
+          "dataRect": {
+            "left": 50,
+            "right": 850,
+            "top": 50,
+            "bottom": 550,
+            "width": 800,
+            "height": 500
+          }
+        }
+      ]
+    },
+    "summary": {
+      "status": "RAW_MEASURED_REQUIRES_INDEPENDENT_REVIEW",
+      "identitySha256": "FIXTURE_ONLY_MATCHED_IDENTITY_NOT_A_REAL_DIGEST",
+      "identity": {
+        "peerBuilds": {
+          "plotly": {
+            "version": "4.2.0"
+          },
+          "deck": {
+            "version": "9.4.1"
+          }
+        }
+      },
+      "presentationFps": null
+    },
+    "review": {
+      "status": "PASS",
+      "identitySha256": "FIXTURE_ONLY_MATCHED_IDENTITY_NOT_A_REAL_DIGEST",
+      "fullOutputMatched": true,
+      "nativeAxesLabelsComplete": true,
+      "tools": {
+        "vkf": {
+          "status": "PASS",
+          "limits": [
+            "TEST FIXTURE: software, no physical GPU claim"
+          ]
+        },
+        "plotly": {
+          "status": "PASS",
+          "limits": [
+            "TEST FIXTURE: software, no physical GPU claim"
+          ]
+        },
+        "deck": {
+          "status": "PASS",
+          "limits": [
+            "TEST FIXTURE: software, no physical GPU claim"
+          ]
+        }
+      }
+    },
+    "problems": [],
+    "errors": {
+      "vkf": [],
+      "plotly": [],
+      "deck": []
+    }
+  },
+  "recordTemplates": {
+    "preflight": {
+      "identitySha256": "FIXTURE_ONLY_MATCHED_IDENTITY_NOT_A_REAL_DIGEST",
+      "environment": {
+        "os": "FIXTURE OS",
+        "cpu": "FIXTURE CPU",
+        "ramBytes": 4294967296,
+        "gpu": "SwiftShader TEST FIXTURE",
+        "driver": "FIXTURE",
+        "backend": "software",
+        "displayHz": 60,
+        "browserBuild": "FIXTURE browser",
+        "powerState": "FIXTURE",
+        "device": "FIXTURE ONLY"
+      },
+      "browser": {
+        "userAgent": "FIXTURE browser",
+        "dpr": 1,
+        "viewport": {
+          "width": 1200,
+          "height": 800
+        }
+      },
+      "presentationFps": null,
+      "phase": "preflight",
+      "status": "PASS_PREFLIGHT",
+      "checkpoints": [
+        {
+          "index": 0,
+          "domain": [
+            -74,
+            -73,
+            40,
+            41
+          ],
+          "metrics": {
+            "width": 900,
+            "height": 600,
+            "dpr": 1,
+            "dataRect": {
+              "left": 50,
+              "right": 850,
+              "top": 50,
+              "bottom": 550,
+              "width": 800,
+              "height": 500
+            }
+          },
+          "geometry": {
+            "occupiedCells": 17,
+            "visibleLandmarks": 17,
+            "fullCapturePixels": 540000
+          }
+        },
+        {
+          "index": 1,
+          "domain": [
+            -73.9,
+            -73.1,
+            40.1,
+            40.9
+          ],
+          "metrics": {
+            "width": 900,
+            "height": 600,
+            "dpr": 1,
+            "dataRect": {
+              "left": 50,
+              "right": 850,
+              "top": 50,
+              "bottom": 550,
+              "width": 800,
+              "height": 500
+            }
+          },
+          "geometry": {
+            "occupiedCells": 17,
+            "visibleLandmarks": 17,
+            "fullCapturePixels": 540000
+          }
+        },
+        {
+          "index": 2,
+          "domain": [
+            -74,
+            -73,
+            40,
+            41
+          ],
+          "metrics": {
+            "width": 900,
+            "height": 600,
+            "dpr": 1,
+            "dataRect": {
+              "left": 50,
+              "right": 850,
+              "top": 50,
+              "bottom": 550,
+              "width": 800,
+              "height": 500
+            }
+          },
+          "geometry": {
+            "occupiedCells": 17,
+            "visibleLandmarks": 17,
+            "fullCapturePixels": 540000
+          }
+        }
+      ],
+      "frames": [],
+      "comparativeSamples": 0
+    },
+    "measure": {
+      "identitySha256": "FIXTURE_ONLY_MATCHED_IDENTITY_NOT_A_REAL_DIGEST",
+      "environment": {
+        "os": "FIXTURE OS",
+        "cpu": "FIXTURE CPU",
+        "ramBytes": 4294967296,
+        "gpu": "SwiftShader TEST FIXTURE",
+        "driver": "FIXTURE",
+        "backend": "software",
+        "displayHz": 60,
+        "browserBuild": "FIXTURE browser",
+        "powerState": "FIXTURE",
+        "device": "FIXTURE ONLY"
+      },
+      "browser": {
+        "userAgent": "FIXTURE browser",
+        "dpr": 1,
+        "viewport": {
+          "width": 1200,
+          "height": 800
+        }
+      },
+      "presentationFps": null,
+      "phase": "measure",
+      "status": "RAW_MEASURED_REQUIRES_INDEPENDENT_REVIEW",
+      "metric": "Paced sequential full-chart application update + complete native surface readback cadence; observer overhead included; no compositor/display presentation proof",
+      "checkpoints": [
+        {
+          "index": 0,
+          "domain": [
+            -74,
+            -73,
+            40,
+            41
+          ],
+          "metrics": {
+            "width": 900,
+            "height": 600,
+            "dpr": 1,
+            "dataRect": {
+              "left": 50,
+              "right": 850,
+              "top": 50,
+              "bottom": 550,
+              "width": 800,
+              "height": 500
+            }
+          },
+          "geometry": {
+            "occupiedCells": 17,
+            "visibleLandmarks": 17,
+            "fullCapturePixels": 540000
+          }
+        },
+        {
+          "index": 2,
+          "domain": [
+            -74,
+            -73,
+            40,
+            41
+          ],
+          "metrics": {
+            "width": 900,
+            "height": 600,
+            "dpr": 1,
+            "dataRect": {
+              "left": 50,
+              "right": 850,
+              "top": 50,
+              "bottom": 550,
+              "width": 800,
+              "height": 500
+            }
+          },
+          "geometry": {
+            "occupiedCells": 17,
+            "visibleLandmarks": 17,
+            "fullCapturePixels": 540000
+          }
+        }
+      ],
+      "frames": [
+        {
+          "index": 1,
+          "traceAtMs": 15,
+          "requestedAt": 100,
+          "commandsAndQueueReadyAt": 104,
+          "completedAt": 105,
+          "completedIntervalMs": 20,
+          "completionLatencyMs": 5,
+          "fullSurfaceReadbackMs": 1,
+          "lateByMs": 0,
+          "domain": [
+            -73.9,
+            -73.1,
+            40.1,
+            40.9
+          ],
+          "endpoint": "{endpoint}",
+          "epochCompletedMs": 100105
+        },
+        {
+          "index": 2,
+          "traceAtMs": 35,
+          "requestedAt": 120,
+          "commandsAndQueueReadyAt": 124,
+          "completedAt": 126,
+          "completedIntervalMs": 21,
+          "completionLatencyMs": 6,
+          "fullSurfaceReadbackMs": 2,
+          "lateByMs": 0,
+          "domain": [
+            -74,
+            -73,
+            40,
+            41
+          ],
+          "endpoint": "{endpoint}",
+          "epochCompletedMs": 100126
+        }
+      ],
+      "comparativeSamples": 2,
+      "setup": {
+        "throughResourceInitAndFirstCompleteMs": 20,
+        "compileAndGuestMs": 10,
+        "compilerTiming": null,
+        "transferMs": null,
+        "binding": "FIXTURE_BINDING"
+      },
+      "inputTransfers": {
+        "xy": {
+          "fetchAndHashMs": 4,
+          "bytes": 8000000
+        },
+        "trace": {
+          "fetchAndHashMs": 1,
+          "bytes": 100
+        }
+      },
+      "timeOrigin": 100000
+    }
+  },
+  "toolFields": {
+    "vkf": {
+      "endpoint": "gpu-queue-completed+native-labels-ready + full native surface readback; native SVG axes DOM complete for Plotly",
+      "setup": {
+        "throughResourceInitAndFirstCompleteMs": 20,
+        "compileAndGuestMs": 10,
+        "compilerTiming": null,
+        "transferMs": null,
+        "binding": "FIXTURE_BINDING"
+      }
+    },
+    "plotly": {
+      "endpoint": "Plotly.relayout promise + all native GL contexts finish + full native surface readback; native SVG axes DOM complete for Plotly",
+      "setup": {
+        "throughResourceInitAndFirstCompleteMs": 20,
+        "version": "4.2.0"
+      }
+    },
+    "deck": {
+      "endpoint": "deck.onAfterRender + all layers loaded + native GL finish + full native surface readback; native SVG axes DOM complete for Plotly",
+      "setup": {
+        "throughResourceInitAndFirstCompleteMs": 20,
+        "version": "9.4.1"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "matched-recorded-application-row",
+      "mutations": [],
+      "expectedAllRows": {
+        "status": "MEASURED_APPLICATION_UPDATES",
+        "completedUpdates": 2,
+        "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+        "completedIntervalMs": [
+          20,
+          21
+        ],
+        "readbackTotalMs": 3,
+        "presentationFps": null,
+        "ratio": null,
+        "repetitions": null
+      },
+      "htmlRequired": [
+        "Paced completed updates/s · includes readback",
+        "48.780",
+        "Displayed / presentation FPS",
+        "Unavailable",
+        "software, no physical GPU claim"
+      ],
+      "htmlForbidden": [
+        "<td>999999",
+        "p50",
+        "peak FPS"
+      ]
+    },
+    {
+      "id": "missing-independent-review",
+      "mutations": [
+        {
+          "path": [
+            "review"
+          ],
+          "set": null
+        }
+      ],
+      "expectedAllRows": {
+        "status": "PENDING",
+        "completedUpdates": null,
+        "pacedCompletedUpdatesPerSecond": null,
+        "presentationFps": null
+      },
+      "htmlRequired": [
+        "independent matched review pending/mismatched"
+      ],
+      "htmlForbidden": [
+        "<td>48.780</td>"
+      ]
+    },
+    {
+      "id": "genuine-peer-failure-retained",
+      "mutations": [
+        {
+          "path": [
+            "errors",
+            "deck"
+          ],
+          "set": [
+            "FAIL: authentic full-population peer timeout <not markup>"
+          ]
+        }
+      ],
+      "expectedRows": {
+        "deck": {
+          "status": "FAILED",
+          "completedUpdates": null,
+          "pacedCompletedUpdatesPerSecond": null
+        },
+        "vkf": {
+          "status": "MEASURED_APPLICATION_UPDATES",
+          "completedUpdates": 2,
+          "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+          "completedIntervalMs": [
+            20,
+            21
+          ],
+          "readbackTotalMs": 3,
+          "presentationFps": null,
+          "ratio": null,
+          "repetitions": null
+        },
+        "plotly": {
+          "status": "MEASURED_APPLICATION_UPDATES",
+          "completedUpdates": 2,
+          "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+          "completedIntervalMs": [
+            20,
+            21
+          ],
+          "readbackTotalMs": 3,
+          "presentationFps": null,
+          "ratio": null,
+          "repetitions": null
+        }
+      },
+      "htmlRequired": [
+        "deck.gl",
+        "FAILED",
+        "authentic full-population peer timeout &lt;not markup&gt;"
+      ],
+      "htmlForbidden": [
+        "<not markup>"
+      ]
+    },
+    {
+      "id": "different-current-parity-identity",
+      "mutations": [
+        {
+          "path": [
+            "parity",
+            "identitySha256"
+          ],
+          "set": "OTHER_CANDIDATE"
+        }
+      ],
+      "expectedAllRows": {
+        "status": "PENDING",
+        "completedUpdates": null,
+        "pacedCompletedUpdatesPerSecond": null
+      },
+      "htmlRequired": [
+        "current parity missing or mismatched"
+      ],
+      "htmlForbidden": [
+        "<td>48.780</td>"
+      ]
+    },
+    {
+      "id": "different-tool-observation-identity",
+      "mutations": [
+        {
+          "path": [
+            "measurements",
+            "vkf",
+            "identitySha256"
+          ],
+          "set": "OLD_CANDIDATE"
+        }
+      ],
+      "expectedRows": {
+        "vkf": {
+          "status": "PENDING",
+          "completedUpdates": null,
+          "pacedCompletedUpdatesPerSecond": null
+        },
+        "plotly": {
+          "status": "MEASURED_APPLICATION_UPDATES",
+          "completedUpdates": 2,
+          "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+          "completedIntervalMs": [
+            20,
+            21
+          ],
+          "readbackTotalMs": 3,
+          "presentationFps": null,
+          "ratio": null,
+          "repetitions": null
+        },
+        "deck": {
+          "status": "MEASURED_APPLICATION_UPDATES",
+          "completedUpdates": 2,
+          "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+          "completedIntervalMs": [
+            20,
+            21
+          ],
+          "readbackTotalMs": 3,
+          "presentationFps": null,
+          "ratio": null,
+          "repetitions": null
+        }
+      },
+      "htmlRequired": [
+        "tool identity mismatch"
+      ],
+      "htmlForbidden": []
+    },
+    {
+      "id": "source-preparation-is-not-measurement",
+      "mutations": [
+        {
+          "path": [
+            "summary",
+            "status"
+          ],
+          "set": "PREPARED_UNRUN"
+        }
+      ],
+      "expectedAllRows": {
+        "status": "PENDING",
+        "completedUpdates": null,
+        "pacedCompletedUpdatesPerSecond": null
+      },
+      "htmlRequired": [
+        "source-only or unqualified raw index"
+      ],
+      "htmlForbidden": [
+        "<td>48.780</td>"
+      ]
+    },
+    {
+      "id": "partial-trace-not-full-output",
+      "mutations": [
+        {
+          "path": [
+            "measurements",
+            "vkf",
+            "frames"
+          ],
+          "set": [
+            {
+              "index": 1,
+              "traceAtMs": 15,
+              "requestedAt": 100,
+              "commandsAndQueueReadyAt": 104,
+              "completedAt": 105,
+              "completedIntervalMs": 20,
+              "completionLatencyMs": 5,
+              "fullSurfaceReadbackMs": 1,
+              "lateByMs": 0,
+              "domain": [
+                -73.9,
+                -73.1,
+                40.1,
+                40.9
+              ],
+              "endpoint": "{endpoint}",
+              "epochCompletedMs": 100105
+            }
+          ]
+        }
+      ],
+      "expectedRows": {
+        "vkf": {
+          "status": "PENDING",
+          "completedUpdates": null,
+          "pacedCompletedUpdatesPerSecond": null
+        }
+      },
+      "htmlRequired": [
+        "incomplete moving trace"
+      ],
+      "htmlForbidden": []
+    },
+    {
+      "id": "presentation-claim-never-fills-display-cell",
+      "mutations": [
+        {
+          "path": [
+            "measurements",
+            "vkf",
+            "presentationFps"
+          ],
+          "set": 999999
+        }
+      ],
+      "expectedAllRows": {
+        "status": "MEASURED_APPLICATION_UPDATES",
+        "completedUpdates": 2,
+        "pacedCompletedUpdatesPerSecond": 48.78048780487805,
+        "completedIntervalMs": [
+          20,
+          21
+        ],
+        "readbackTotalMs": 3,
+        "presentationFps": null,
+        "ratio": null,
+        "repetitions": null
+      },
+      "htmlRequired": [
+        "Unsupported presentationFps ignored",
+        "<td>Unavailable</td>"
+      ],
+      "htmlForbidden": [
+        "999999"
+      ]
+    },
+    {
+      "id": "idle-raf-cannot-fill-full-output-cell",
+      "mutations": [
+        {
+          "path": [
+            "measurements",
+            "vkf",
+            "metric"
+          ],
+          "set": "idleRAF"
+        }
+      ],
+      "expectedRows": {
+        "vkf": {
+          "status": "PENDING",
+          "completedUpdates": null,
+          "pacedCompletedUpdatesPerSecond": null
+        }
+      },
+      "htmlRequired": [
+        "unsupported measurement boundary"
+      ],
+      "htmlForbidden": []
+    },
+    {
+      "id": "enqueue-is-not-full-completion",
+      "mutations": [
+        {
+          "path": [
+            "measurements",
+            "vkf",
+            "frames",
+            "0",
+            "endpoint"
+          ],
+          "set": "enqueued"
+        }
+      ],
+      "expectedRows": {
+        "vkf": {
+          "status": "PENDING",
+          "completedUpdates": null,
+          "pacedCompletedUpdatesPerSecond": null
+        }
+      },
+      "htmlRequired": [
+        "unsupported full-output endpoint"
+      ],
+      "htmlForbidden": []
+    },
+    {
+      "id": "font-coverage-proposal-is-not-native-ink",
+      "mutations": [
+        {
+          "path": [
+            "review",
+            "nativeAxesLabelsComplete"
+          ],
+          "set": false
+        }
+      ],
+      "expectedAllRows": {
+        "status": "PENDING",
+        "completedUpdates": null,
+        "pacedCompletedUpdatesPerSecond": null
+      },
+      "htmlRequired": [
+        "actual native axis ink review pending"
+      ],
+      "htmlForbidden": [
+        "<td>48.780</td>"
+      ]
+    },
+    {
+      "id": "changed-current-input-blocks-old-pass",
+      "mutations": [
+        {
+          "path": [
+            "problems"
+          ],
+          "set": [
+            "changed input bytes: vf-display.js"
+          ]
+        }
+      ],
+      "expectedAllRows": {
+        "status": "PENDING",
+        "completedUpdates": null,
+        "pacedCompletedUpdatesPerSecond": null
+      },
+      "htmlRequired": [
+        "changed input bytes: vf-display.js"
+      ],
+      "htmlForbidden": [
+        "<td>48.780</td>"
+      ]
+    }
+  ],
+  "fileIntegrityAndPublicationOracle": "REPORT.txt steps1..6; later ACTUAL genuine bundle only, source did not execute."
+}

@@ -1,0 +1,226 @@
+SOURCE ONLY / ALL COMMANDS ASDATA. No report, test or benchmark executed here.
+
+This is the small publication adapter for the EXISTING plotting attachment and
+Performance page, not a new benchmark/hosting/release system. Existing tracked
+scripts/release-local48/bench-driver.py handles the independent LOCAL48 method;
+no plotting report generator exists there. The current plotting HTML was made
+by e2022's one-off edit-site.py/refine-source.py (outside the maintained repo).
+report.py replaces only that existing plotting table, its immediately following
+method table, and the plotting sentence/scope label in the one brief intro.
+All other page bytes/tables, LOCAL48x10 and historical 12/72 accepted, 60 UNRUN,
+0 comparative rows retain their own scopes. No authored program, runtime,
+exporter, prepare, attach, test helper, current candidate or public file is
+changed by this SOURCE delta. Integrate ONLY these three new source files from
+the 3c73fa2 parent into the later current actual baseline; never replay its b2
+ancestry/public tree. Current qualified publication need not wait for this work.
+
+Existing inputs / acceptance
+----------------------------
+Use exactly fetch-tlc.py -> prepare.py -> runPlottingInExistingJob from the
+existing README.txt, within the sole actual owner's normal original admission,
+whole-job caps and deadline. No extra browser, quota, repetition matrix or data
+fallback is introduced. Preflight must precede measurement. Outputs consumed:
+  request.json; its exact trace.json; original TLC export.json
+  plotting-preflight-{vkf,plotly,deck}.json; plotting-parity.json
+  plotting-measure-{vkf,plotly,deck}.json; plotting-raw-results.json
+  any plotting-{preflight,measure}-{tool}.json.error.json
+Raw results marked RAW_MEASURED_REQUIRES_INDEPENDENT_REVIEW remain unqualified
+until the existing normal independent review actually accepts their exact pins.
+Existing actual normal review JSON may have this SMALL plotting member:
+
+  "plotting": {
+    "status": "PASS",
+    "identitySha256": "<actual exact attachment identity>",
+    "fullOutputMatched": true,
+    "nativeAxesLabelsComplete": true,
+    "tools": {
+      "vkf": {"status":"PASS", "preflight":{"bytes":0,"sha256":"<actual>"},
+              "measure":{"bytes":0,"sha256":"<actual>"}, "limits":[]},
+      "plotly": {"status":"PASS", "preflight":{"bytes":0,"sha256":"<actual>"},
+                 "measure":{"bytes":0,"sha256":"<actual>"}, "limits":["Native SVG axes DOM complete; compositor raster/presentation unproved."]},
+      "deck": {"status":"PASS", "preflight":{"bytes":0,"sha256":"<actual>"},
+               "measure":{"bytes":0,"sha256":"<actual>"}, "limits":[]}
+    }
+  }
+
+This is a SHAPE, never a success record. Replace bytes=0 and every placeholder
+with the independently reviewed existing output pins; do not fill PASS merely
+to obtain a numeric cell. No new receipt service or signature framework exists.
+fullOutputMatched means actual correctness/preflight/parity proves the SAME
+complete first1M population, eligibility/filter, order, all positions/indices,
+duplicates, full trace/camera/domains, inner900x600/DPR1/dataRect, native axes,
+clip and marker quality across all tools. It cannot come from a prefix, raster
+nonblank check, proposed native font coverage or earlier candidate's PASS.
+nativeAxesLabelsComplete additionally requires actual complete longitude and
+latitude names/degree units and ticks with real native ink; coverage inference
+or an unrelated label control is insufficient. Keep genuine partial limits in
+each accepted tool's limits array. Independent normal review retains its normal
+underlying evidence; this adapter does not manufacture or independently rerun it.
+
+The adapter verifies existing current source/runtime/release/selection inputs,
+prepared/export equality and export hash, full XY identity/extent, peer script
+and lockfile pins/version/integrity, environment, parity/index/output/review
+identity, every recorded moving frame and current helper checkpoint shape. It
+does not reimplement the full geometry oracle or launch a compiler. Missing,
+failed, source-only, changed, truncated or unqualified records keep numeric cells
+unavailable and their tool/error rows visible. Earlier successful tool files in
+an interrupted attempt remain linked as unqualified partial raw observations;
+they never stand in for an absent full result index. A failed peer is never
+silently dropped. No changed-input PASS transfer or denominator replacement.
+
+The current helper has NO compositor presentation evidence. presentationFps is
+always null/Unavailable, even if an unsupported numeric claim is added to an
+otherwise accepted raw file. A future genuine presentation method needs its
+own reviewed measured boundary; idleRAF/enqueue/component costs cannot populate
+the current full-output or presentation cells.
+
+Paced completed updates/s is recorded moving updates * 1000 / SUM of those
+actual completedIntervalMs values. Each interval includes pacing, completed
+application update and full native readback observer costs. This is NOT peak,
+interaction/display FPS or a speedup ratio. No interval percentile, fabricated
+10 repetitions, ratio or repeated-run statistic is inferred from one trace.
+Setup/compile+guest/compiler-profile/input-fetch+hash/transfer/readback stay
+distinct. Dispatch/sync/output encoding remain null because current outputs do
+not isolate them. Setup totals overlap subphases: never add them as disjoint
+costs. Software/SwiftShader retains its software identity and never qualifies
+physical GPU. Historical cross-hardware scores are not local ratios.
+
+Literal normal execution / publication commands — ASDATA ONLY
+------------------------------------------------------------
+After prior actual closure, a later admitted sole actual works in its own
+current integrated SITE, original clock/permissions/refs and normal caps.
+SITE is that own absolute current site root. RUN is that actual attempt root;
+RUN/prepared and RUN/tlc are the exact directories used by the existing README.
+REVIEW is that attempt's existing normal independent review JSON. ATTEMPT is a
+fresh simple label (letters/digits/underscore/hyphen, <=64), not an old result
+directory. Pending attempts may omit --review; no new qualification is implied.
+For a genuine export/setup failure before prepared outputs exist, additionally
+pass --error "$RUN/<authentic-job-stderr>" (repeat only for actual error logs).
+It preserves those raw links and leaves all unmatched numeric cells pending.
+
+  export PATH=/home/viktor/.local/bin:$PATH
+
+Existing export/prepare/attachment (do not repeat current already-admitted jobs):
+  python3 "$SITE/scripts/release-local48/plotting/fetch-tlc.py" "$RUN/tlc"
+  python3 "$SITE/scripts/release-local48/plotting/prepare.py" "$RUN/tlc" "$RUN/prepared" --duration-seconds 6 --input-hz "$ACTUAL_INPUT_HZ" --environment "$RUN/environment.json"
+  await runPlottingInExistingJob({...options, phase: 'preflight'});
+  await runPlottingInExistingJob({...options, phase: 'measure'});
+Peer install/pinning and options are the literal existing README commands,
+unchanged. Do not execute measure unless the exact current parity qualifies.
+
+New adapter, consumed in that SAME existing normal actual workflow:
+  python3 "$SITE/scripts/release-local48/plotting/report.py" --site "$SITE" --run "$RUN/prepared" --export "$RUN/tlc" --review "$REVIEW" --attempt "$ATTEMPT" > "$RUN/plotting-tables.html"
+  python3 "$SITE/scripts/release-local48/plotting/report.py" --site "$SITE" --run "$RUN/prepared" --export "$RUN/tlc" --review "$REVIEW" --attempt "$ATTEMPT" --format json > "$RUN/plotting-report.json"
+The first two are review-only outputs. Neither touches a public candidate.
+After the actual's normal review, the same adapter can update its OWN candidate:
+  python3 "$SITE/scripts/release-local48/plotting/report.py" --site "$SITE" --run "$RUN/prepared" --export "$RUN/tlc" --review "$REVIEW" --attempt "$ATTEMPT" --write > "$RUN/plotting-tables-written.html"
+
+--write copies the exact small request/export/trace/raw/error/review/method files
+to the EXISTING public/preview/0.7.5/benchmarks/plotting/results/ATTEMPT directory
+and replaces the two existing tables. It never copies the million-row corpus,
+peer packages, archives or source program as public bulk assets. No overwrite
+of a prior result directory is allowed. The method table carries exact source,
+input/runtime/tool pins, environment, quality, limits and raw-result links.
+The page retains its single brief intro followed by TABLES ONLY.
+
+Continue the EXISTING actual workflow, including any normally required current
+composition/selection/descriptor evidence refresh for the changed page/records:
+  python3 "$SITE/scripts/update-manifest.py"
+  python3 "$SITE/scripts/verify-current-site.py"
+Use the actual's existing site-local-checks.py and site-flow-browser.mjs normal
+current-source checks, original full normal caps, exact-source independent
+review, then existing authorized nonforce GitHub main/Pages workflow. Existing
+.github/workflows/pages.yml verifies current-site and manifest then uploads
+public; there is no new hosting/publish command or additional benchmark gate.
+Immediately verify existing target permissions/current remote refs as usual.
+Source has NO remote authority; this handoff is not an execution grant or clock
+extension. Actual2026 STOP563648.194122167 remains unchanged; a future actual may
+run this only after required prior closure, never at the expense of its current
+qualified publication/current causal checks or real data job.
+
+Meaningful causal oracle — ASDATA, no SOURCE execution
+-----------------------------------------------------
+report-oracles.json contains TEST-ONLY values, not measured product results or
+a substitute dataset. Later actual uses its existing small source-test context
+to import report.py and exercise make_rows/render/replace_tables. No product,
+browser, data fetch or synthetic fallback is needed for these report decisions.
+The CLI always loads actual pinned inputs; fixture objects cannot bypass it.
+
+To expand the declarative oracle, deep-copy baseline. Build preflights and
+measurements for each tool by merging common record + tool-specific fields;
+replace each {endpoint} with the literal endpoint for that tool. Deep-copy the
+expanded baseline for each case; apply its listed path/set/delete operations.
+Call make_rows with the nine named arguments in baseline (there is no executor
+or clock in this fixture). Assert the explicit expected cells, then render
+using artifacts={} and request/identity from that input. Check the literal
+required/forbidden HTML listed by the case. These expected values deliberately
+include pacing/readback, missing/failed peers, changed identity, incomplete
+trace, source-only/idleRAF endpoints, absent native-ink review, and a bogus
+presentation claim. They test acceptance behavior, not code structure.
+
+Literal decision-oracle command for the LATER admitted actual ONLY, ASDATA:
+python3 - "$SITE" <<'PY'
+import copy, importlib.util, json, math, sys
+from pathlib import Path
+root = Path(sys.argv[1])/'scripts/release-local48/plotting'
+spec = importlib.util.spec_from_file_location('plotting_report', root/'report.py')
+report = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(report)
+suite = json.loads((root/'report-oracles.json').read_text())
+baseline = copy.deepcopy(suite['baseline'])
+for phase, key in [('preflight','preflights'), ('measure','measurements')]:
+    baseline[key] = {}
+    for tool, fields in suite['toolFields'].items():
+        record = copy.deepcopy(suite['recordTemplates'][phase])
+        record['tool'] = tool
+        if phase == 'measure':
+            record['setup'] = copy.deepcopy(fields['setup'])
+            for frame in record['frames']: frame['endpoint'] = fields['endpoint']
+        baseline[key][tool] = record
+for case in suite['cases']:
+    data = copy.deepcopy(baseline)
+    for change in case['mutations']:
+        target = data
+        for part in change['path'][:-1]:
+            target = target[int(part)] if isinstance(target,list) else target[part]
+        last = change['path'][-1]
+        target[int(last) if isinstance(target,list) else last] = copy.deepcopy(change['set'])
+    rows = report.make_rows(**data)
+    for row in rows:
+        expected = case.get('expectedRows',{}).get(row['tool'], case.get('expectedAllRows',{}))
+        for key, value in expected.items():
+            actual = row[key]
+            assert (math.isclose(actual,value,rel_tol=1e-12) if isinstance(value,float)
+                    else actual == value), (case['id'],row['tool'],key,actual,value)
+    fragments = ''.join(report.render({'rows':rows,'request':data['request'],
+        'identitySha256':data['summary']['identitySha256'],'artifacts':{}}, 'fixture-only'))
+    for text in case['htmlRequired']: assert text in fragments, (case['id'],text)
+    for text in case['htmlForbidden']: assert text not in fragments, (case['id'],text)
+print('Decision oracle passed:', len(suite['cases']), 'TEST-ONLY cases; no product measurements')
+PY
+This command itself has NOT been executed by SOURCE.
+
+File-integrity and publication oracle with the LATER actual's genuine bundle:
+1. Run review-only --format json on exact accepted inputs: three measured rows
+   only if each independently qualifies. Save the raw output and input pins.
+2. In an OWN disposable current site copy change ONE renderer byte, retaining
+   old parity/review. Report must keep all three numeric rows pending with a
+   changed-input reason. No old-candidate PASS transfer. Restore the exact byte.
+3. Change ONE prepared XY byte or export.json byte, or replace just a tool raw
+   file without changing independently reviewed pins. Numeric cells must remain
+   unavailable with the corresponding input/review mismatch. Restore originals.
+4. Retain an authentic .error.json next to otherwise valid output: failed tool
+   row remains FAILED and raw error link survives. No silent dropped row.
+5. On a disposable page, call replace_tables with both rendered tables. Remove
+   only the two old/new table spans and the documented intro sentence changes;
+   all remaining UTF-8 bytes must be identical. Assert five-menu labels and
+   benchmark-method/current-qualification tables unchanged; 12/72/60/0 history
+   remains exact. Feed HTMLParser: exactly one intro p inside article and no
+   narrative p/section/chart/script additions after it. Verify every generated
+   local link resolves after --write, with original artifact SHA/bytes identical.
+6. A second --write with SAME ATTEMPT must refuse before page mutation. No
+   fixture/candidate test bank is a new condition ahead of current publication.
+
+All this is unexecuted oracle ASDATA. Source's whitespace/manual reading is not
+syntax, runtime, test or performance acceptance. Later actual records real
+results/errors under its own unchanged normal authority/caps/deadlines.

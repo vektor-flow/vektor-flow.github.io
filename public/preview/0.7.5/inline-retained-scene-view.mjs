@@ -1,3 +1,7 @@
+import {mountPlotToolbar} from './vf-ui/vf-plot-toolbar.mjs';
+import {createPlotDocking} from './vf-ui/vf-plot-docking.mjs';
+import {createSceneMediaCapture,createLayeredCanvasCaptureStream} from './vf-ui/vf-media-capture.mjs';
+
 function retainedPacket(packet) {
   return packet
     && packet.schema === "vektor-flow/retained-scene-arena"
@@ -67,11 +71,8 @@ export function mountRetainedSceneResult(container, packets, {
   for (const key of Object.keys(plotLayers)) if (typeof plotLayers[key] !== 'boolean') throw new TypeError(key+' requires boolean');
   const ownedPackets = ownRetainedScenePackets(packets,plotLayers);
   container.hidden = false;
-  const selectors = ownedPackets.map((packet) => packet.metadata.scene.view_selector);
-  const hasViewSelector = ownedPackets.length > 1 && selectors.every((selector, index) =>
-    selector?.axis === "n" && selector.index === index && selector.count === ownedPackets.length);
-  const separateViewports = !hasViewSelector && ownedPackets.length > 1 && ownedPackets.every(packet => {
-    const scene = packet.metadata.scene;
+  const separateViewports = ownedPackets.length > 1 && ownedPackets.every(packet => {
+    const scene=packet.metadata.scene;
     return (scene.container_kind ?? "viewport") === "viewport"
       && (!scene.pos || (scene.pos[0] === 0 && scene.pos[1] === 0))
       && (!scene.size || (scene.size[0] === 1 && scene.size[1] === 1));
@@ -85,6 +86,8 @@ export function mountRetainedSceneResult(container, packets, {
     layer.style.gap = "12px";
   }
   const frames = [];
+  const animated = ownedPackets.some(packet=>packet.metadata.scene.meshes?.some(mesh=>mesh._layer_time));
+  let animationLast=null, animationElapsed=0, animationPlaying=true, playbackRate=1;
   const showFrame = (frame, visible) => {
     if (!frame?.root) return;
     frame.root.hidden = !visible;
@@ -105,7 +108,7 @@ export function mountRetainedSceneResult(container, packets, {
       resizable: isWindow,
       closable: isWindow,
       alpha: 1,
-      toolbar: scene.toolbar ?? "top",
+      toolbar: false,
     });
     frame?.body?.classList?.add("vf-frame__body--transparent");
     if (frame?.root?.style && Array.isArray(scene.pos) && scene.pos.length === 2 &&
@@ -121,39 +124,10 @@ export function mountRetainedSceneResult(container, packets, {
     if (separateViewports && frame?.root?.style) {
       Object.assign(frame.root.style, {position:"relative", inset:"auto", width:"100%", height:"328px"});
     }
-    showFrame(frame, !hasViewSelector || index === 0);
+    showFrame(frame,true);
     frames.push(frame);
   }
-  let selector = null;
-  let viewport = layer;
-  if (hasViewSelector) {
-    viewport = document.createElement("div");
-    viewport.className = "readme-example-view-shell";
-    selector = document.createElement("nav");
-    selector.className = "readme-example-view-selector";
-    selector.setAttribute("aria-label", "Views");
-    const header = document.createElement("div");
-    header.className = "readme-example-view-selector__label";
-    header.textContent = String(selectors[0].header ?? "n");
-    selector.append(header);
-    const buttons = [];
-    selectors.forEach((entry, selected) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = String(entry.label ?? entry.value);
-      button.setAttribute("aria-pressed", selected === 0 ? "true" : "false");
-      button.addEventListener("click", () => {
-        frames.forEach((frame, index) => {
-          showFrame(frame, index === selected);
-          buttons[index]?.setAttribute?.(
-            "aria-pressed", index === selected ? "true" : "false");
-        });
-      });
-      buttons.push(button);
-      selector.append(button);
-    });
-    viewport.append(selector, layer);
-  }
+  const viewport = layer;
   container.append(viewport);
   let disposed = false;
   const presentationAbort = new AbortController();
@@ -193,12 +167,6 @@ export function mountRetainedSceneResult(container, packets, {
     if (animated) presentFrame = requestAnimationFrame(animate);
   };
   let presentFrame = 0;
-  let animationLast = null;
-  let animationElapsed = 0;
-  let animationPlaying = true;
-  let playbackRate = 1;
-  const animated = ownedPackets.some((packet) =>
-    packet.metadata.scene.meshes?.some((mesh) => mesh._layer_time));
   const animationStateEvent = () => {
     if (typeof globalThis.CustomEvent === "function") {
       return new globalThis.CustomEvent("vf-view-animation-state", {
@@ -226,46 +194,79 @@ export function mountRetainedSceneResult(container, packets, {
   };
   const playbackRateChanged = (event) => {
     const next = Number(event?.detail?.rate);
-    if (Number.isFinite(next) && next > 0) playbackRate = next;
+    if (Number.isFinite(next) && next >= -4 && next <= 4) playbackRate = next;
   };
-  const movieCaptures = new Map();
-  const downloadUrl = (url, filename) => {
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = filename;
-    anchor.click?.();
-  };
-  const captureCommand = (index) => async (event) => {
-    const command = String(event?.detail?.command ?? "");
-    const frame = frames[index];
-    const frameId = ownedPackets[index]?.metadata?.scene?.frame;
-    if (command === "capture-view") {
-      const url = await VfDisplay.captureGeomFrameDataUrl?.(frameId);
-      if (url) downloadUrl(url, "vektor-flow-view.png");
-      return;
+  const toolbarCleanup=[];
+  frames.forEach((frame,index)=>{
+    const root=frame?.root,body=frame?.body,packet=ownedPackets[index],scene=packet.metadata.scene;
+    if (!root || !body) return;
+    root.addEventListener("vf-view-command",animationCommand);
+    root.addEventListener("vf-view-playback-rate",playbackRateChanged);
+    toolbarCleanup.push(()=>{root.removeEventListener("vf-view-command",animationCommand);root.removeEventListener("vf-view-playback-rate",playbackRateChanged);});
+    if (scene.toolbar === false) return;
+    const dispatch=command=>body.dispatchEvent(new CustomEvent("vf-view-command",{bubbles:true,cancelable:true,detail:{command}}));
+    const subscriptions=new Set();
+    const historyState=()=>({canBack:body.__vfViewHistory?.canBack?.()===true,canForward:body.__vfViewHistory?.canForward?.()===true});
+    // Reuse the existing bounded renderer history, including its restore path.
+    // First/last never reset the data domain or create a second history.
+    const move=command=>{dispatch(command);return body.__vfViewHistory?.current?.() ?? null;};
+    const edge=command=>{let count=0,value=null;while(historyState()[command === 'back' ? 'canBack' : 'canForward']) {
+      if (++count>100) throw new Error('PLOT_RENDERER_HISTORY_BOUND');value=move(command);
+    }return value;};
+    const history={state:historyState,current:()=>body.__vfViewHistory?.current?.() ?? null,
+      back:()=>historyState().canBack ? move('back') : null,forward:()=>historyState().canForward ? move('forward') : null,
+      first:()=>edge('back'),last:()=>edge('forward'),subscribe(fn){subscriptions.add(fn);return()=>subscriptions.delete(fn);}};
+    const historyChanged=()=>{for (const fn of subscriptions) fn(historyState());};
+    root.addEventListener('vf-view-history-state',historyChanged);
+    toolbarCleanup.push(()=>root.removeEventListener('vf-view-history-state',historyChanged));
+    const fid=scene.frame;
+    const download=(bytes,type,name)=>{
+      const url=URL.createObjectURL(new Blob([bytes],{type})),anchor=document.createElement('a');
+      anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),0);
+    };
+    const media=createSceneMediaCapture({requestStream:()=>createLayeredCanvasCaptureStream({document,
+      layers:[()=>VfDisplay.captureGeomFrameCanvas(fid)],beforeDraw:()=>VfDisplay.captureGeomFrameCanvas(fid)})});
+    const video={get recording(){return media.recording;},start:()=>media.startMovie(),async stop(){
+      const blob=await media.stopMovie();if (!blob) throw new Error('PLOT_VIDEO_CAPTURE_EMPTY');
+      download(new Uint8Array(await blob.arrayBuffer()),blob.type,'vektor-flow-view.webm');return blob;
+    }};
+    const canvasCapture=(scene.meshes || []).length>0 && (scene.meshes || []).every(mesh=>mesh.mode3d === false);
+    const capture={formats:canvasCapture ? ['png'] : [],video:canvasCapture && typeof document.defaultView?.MediaRecorder === 'function' ? video : null,
+      async frame(){
+        const url=await VfDisplay.captureGeomFrameDataUrl(fid);if (!url) throw new Error('PLOT_PNG_CAPTURE_UNAVAILABLE');
+        const bytes=new Uint8Array(await(await fetch(url)).arrayBuffer());
+        return {formats:['png'],save(format){if(format !== 'png') throw new Error('PLOT_CAPTURE_FORMAT_UNAVAILABLE');return bytes;}};
+      },save({format,bytes}){download(bytes,'image/png','vektor-flow-view.'+format);}};
+    const originalClass=root.classList.contains('vf-plot-host');
+    root.classList.add('vf-plot-host');body.classList.add('vf-plot-frame');
+    const phone=document.defaultView?.matchMedia?.('(max-width:480px)');
+    const docking=createPlotDocking({position:scene.toolbarPosition ?? (typeof scene.toolbar === 'string' ? scene.toolbar : 'top'),
+      inset:scene.inset !== false,phone:phone?.matches === true,onChange:applyDock});
+    function applyDock(state) {
+      root.dataset.toolbarDock=state.dock;root.dataset.toolbarInset=String(state.inset);
+      // Inset chrome overlays the existing complete plot viewport. Only the
+      // explicit non-inset option may consume a layout row/column.
+      body.style.position=state.inset ? 'absolute' : 'relative';
+      body.style.inset=state.inset ? '0' : 'auto';
+      VfDisplay.requestGeomFramePresentation?.(fid);
     }
-    if (command !== "capture-video") return;
-    const active = movieCaptures.get(frame?.root);
-    if (active) {
-      const blob = await active.capture.stopMovie();
-      movieCaptures.delete(frame.root);
-      if (blob) {
-        const url = URL.createObjectURL(blob);
-        downloadUrl(url, "vektor-flow-view.webm");
-        setTimeout(() => URL.revokeObjectURL(url), 0);
-      }
-      return;
-    }
-    const { createSceneMediaCapture } = await import("./vf-ui/vf-media-capture.mjs");
-    const capture = createSceneMediaCapture({
-      fallbackCanvas: () => frame?.root?.querySelector?.("canvas.vf-geom-canvas, canvas"),
+    applyDock(docking.snapshot());
+    const timed=scene.meshes?.some(mesh=>mesh._layer_time) === true;
+    const toolbar=mountPlotToolbar(root,{history,docking,capture,
+      animation:{timed,get playing(){return animationPlaying;},get rate(){return playbackRate;},toggle(){dispatch('play-pause');},
+        setRate(rate){root.dispatchEvent(new CustomEvent('vf-view-playback-rate',{bubbles:true,detail:{rate}}));}},
+      zoom:factor=>dispatch(factor<1 ? 'zoom-in' : 'zoom-out'),
+      onDockPreview:edge=>{if(edge)root.dataset.dockPreview=edge;else delete root.dataset.dockPreview;},
+      onError:error=>{root.dispatchEvent(new CustomEvent('vf-plot-toolbar-error',{bubbles:true,detail:{message:error.message}}));}
     });
-    if (await capture.startMovie()) movieCaptures.set(frame.root, { capture });
-  };
-  frames.forEach((frame, index) => {
-    frame?.root?.addEventListener?.("vf-view-command", animationCommand);
-    frame?.root?.addEventListener?.("vf-view-command", captureCommand(index));
-    frame?.root?.addEventListener?.("vf-view-playback-rate", playbackRateChanged);
+    const refresh=()=>toolbar.refresh();root.addEventListener('vf-view-animation-state',refresh);
+    const appearance=document.defaultView?.matchMedia?.('(prefers-color-scheme:dark)');
+    const theme=()=>{const selected=document.documentElement.dataset.theme;toolbar.element.dataset.theme=['light','dark'].includes(selected) ? selected : appearance?.matches ? 'dark' : 'light';};
+    theme();appearance?.addEventListener?.('change',theme);const themeObserver=typeof MutationObserver === 'function' ? new MutationObserver(theme) : null;
+    themeObserver?.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    const phoneChanged=()=>docking.setPhone(phone.matches);phone?.addEventListener?.('change',phoneChanged);
+    toolbarCleanup.push(()=>{root.removeEventListener('vf-view-animation-state',refresh);themeObserver?.disconnect();appearance?.removeEventListener?.('change',theme);phone?.removeEventListener?.('change',phoneChanged);
+      media.cancel();void toolbar.close();body.classList.remove('vf-plot-frame');if(!originalClass)root.classList.remove('vf-plot-host');});
   });
   publishAnimationState();
   const animate = (timestamp) => {
@@ -299,8 +300,7 @@ export function mountRetainedSceneResult(container, packets, {
     presentationAbort.abort();
     resolvePresented(null);
     if (presentFrame) cancelAnimationFrame(presentFrame);
-    for (const { capture } of movieCaptures.values()) capture.cancel();
-    movieCaptures.clear();
+    for (const cleanup of toolbarCleanup) cleanup();
     for (const [index, frame] of frames.entries()) {
       VfDisplay.disposeGeomFrame?.(ownedPackets[index].metadata.scene.frame);
       frame?.root?.remove?.();
@@ -321,14 +321,14 @@ function temporalSample(descriptor, elapsed) {
   const start = Number(coordinates[0]);
   const end = Number(coordinates.at(-1));
   if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return null;
-  let time = start + Math.max(0, elapsed);
+  let time = start + elapsed;
   const duration = end - start;
-  if (descriptor.mode === "repeat") time = start + ((time - start) % duration);
+  if (descriptor.mode === "repeat") time = start + (((time - start) % duration + duration) % duration);
   else if (descriptor.mode === "mirror") {
-    const phase = ((time - start) % (duration * 2)) / duration;
+    const phase = (((time - start) % (duration * 2) + duration * 2) % (duration * 2)) / duration;
     time = phase <= 1 ? start + phase * duration : end - (phase - 1) * duration;
   } else if (descriptor.mode === "reset" && time >= end) time = start;
-  else time = Math.min(time, end);
+  else time = Math.max(start,Math.min(time, end));
   let upper = coordinates.findIndex((coordinate) => Number(coordinate) >= time);
   if (upper <= 0) upper = 1;
   const lower = upper - 1;

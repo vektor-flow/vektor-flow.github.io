@@ -40,6 +40,8 @@ export function ensureInlineRenderer() {
     css.rel = "stylesheet";
     css.href = new URL("./vf-ui/vf-frame.css", import.meta.url);
     document.head.append(css);
+    const toolbarCSS=document.createElement("link");toolbarCSS.rel="stylesheet";
+    toolbarCSS.href=new URL("./vf-ui/vf-plot-toolbar.css",import.meta.url);document.head.append(toolbarCSS);
     for (const path of scripts) {
       await new Promise((resolve, reject) => {
         const script = document.createElement("script");

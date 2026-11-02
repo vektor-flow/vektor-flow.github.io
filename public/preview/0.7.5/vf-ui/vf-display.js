@@ -8129,9 +8129,36 @@
     return out;
   }
 
+  // Product capture composes only the existing plot and visible native glyph
+  // canvases. Floating toolbar/menu/grips are chrome, never capture content.
+  function captureGeomFrameCanvas(fid) {
+    var rec=frameRecs[String(fid)],source=rec && rec.simple2DCanvas;
+    if (!source || !(source.width>0) || !(source.height>0)) return null;
+    var canvas=rec.captureCanvas || (rec.captureCanvas=document.createElement("canvas"));
+    if (canvas.width !== source.width) canvas.width=source.width;
+    if (canvas.height !== source.height) canvas.height=source.height;
+    var context=canvas.getContext("2d");if (!context) return null;
+    context.clearRect(0,0,canvas.width,canvas.height);
+    var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[String(fid)];
+    if (scene && scene.background) {context.fillStyle=runtimeColorCss(scene.background);context.fillRect(0,0,canvas.width,canvas.height);}
+    context.drawImage(source,0,0,canvas.width,canvas.height);
+    var glyphs=rec.nativePlotTextLayer ? rec.nativePlotTextLayer.canvases() : [];
+    glyphs.forEach(function(layer) {
+      if (layer.style.visibility !== "hidden") context.drawImage(layer,0,0,canvas.width,canvas.height);
+    });
+    return canvas;
+  }
+
   async function captureGeomFrameDataUrl(fid) {
     var rec = frameRecs[String(fid)] || null;
     if (!rec || !Array.isArray(rec.entries)) { return null; }
+    if (rec.simple2DCanvas && rec.simple2DGeomSpec && rec.simple2DGeomSpec.native_plot_text === true) {
+      var ready;
+      do {ready=rec.nativeLabelReady;await ready;} while (ready !== rec.nativeLabelReady);
+      if (frameRecs[String(fid)] !== rec) return null;
+      var plot=captureGeomFrameCanvas(fid);
+      return plot ? plot.toDataURL("image/png") : null;
+    }
     for (var i = 0; i < rec.entries.length; i += 1) {
       var entry = rec.entries[i];
       var renderer = entry && entry.renderer;
@@ -15111,6 +15138,8 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     nativeLabelFrameStatus: nativeLabelFrameStatus,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
+    captureGeomFrameCanvas: captureGeomFrameCanvas,
+    captureGeomFrameDataUrl: captureGeomFrameDataUrl,
     setPlotScreen: setPlotScreen,
     setPlotGrid: setPlotGrid,
     setPlotAxisType: setPlotAxisType,
@@ -15194,6 +15223,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       buildCombinedTriangleMesh: buildCombinedTriangleMesh,
       buildCombinedTransparentMesh: buildCombinedTransparentMesh,
       analyzeSurfaceTextures: analyzeSurfaceTextures,
+      captureGeomFrameCanvas: captureGeomFrameCanvas,
       captureGeomFrameDataUrl: captureGeomFrameDataUrl,
       debugGeomFrameCaptureState: debugGeomFrameCaptureState,
       debugDynamicGeomFrameState: debugDynamicGeomFrameState,

@@ -1,13 +1,59 @@
-.embedding-demo { margin-block:24px; min-width:0; }
-.embedding-demo label { display:block; margin-bottom:8px; font-weight:600; }
-.embedding-demo textarea { display:block; box-sizing:border-box; width:100%; min-height:300px; max-height:600px; resize:vertical; padding:16px; border:1px solid var(--rule); border-radius:6px; font:16px/24px ui-monospace,SFMono-Regular,Consolas,monospace; tab-size:4; color:inherit; background:var(--surface,Canvas); white-space:pre; overflow:auto; }
-.embedding-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-block:12px; }
-.embedding-actions button { min-height:44px; padding:8px 16px; border:1px solid var(--rule); border-radius:6px; font:inherit; color:inherit; background:var(--surface); cursor:pointer; }
-.embedding-actions button:disabled { cursor:wait; opacity:.65; }
-.embedding-actions p { margin:0; }
-.embedding-demo .readme-example-viewport { min-height:320px; }
-.embedding-demo .readme-example-viewport:empty::before { content:'Run to draw the viewport.'; display:block; padding:16px; }
-.embedding-demo .readme-example-terminal { margin-top:16px; padding:12px 16px; border:1px solid var(--rule); border-radius:6px; }
-.embedding-demo .readme-example-output { margin:8px 0 0; }
-.embedding-reference pre { max-height:42rem; }
-.embedding-demo :focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+/* Process-reference styles only; executable examples use the shared editor. */
+.embedding-guide {
+  --guide-code-paper:#f6f8fa;
+  --guide-code-ink:#1f2328;
+  --guide-code-comment:#57606a;
+  --guide-code-string:#075875;
+  --guide-code-number:#0550ae;
+  --guide-code-keyword:#a62638;
+  --guide-code-variable:#6639ba;
+  --guide-code-name:#953800;
+}
+.embedding-guide .embedding-reference {
+  min-width:0;
+  padding-block:28px;
+  border-top:1px solid var(--rule);
+  scroll-margin-top:24px;
+}
+.readme.embedding-guide .embedding-reference pre {
+  box-sizing:border-box;
+  width:100%;
+  max-height:36rem;
+  padding:16px;
+  overflow:auto;
+  border:1px solid var(--rule);
+  border-radius:6px;
+  color:var(--guide-code-ink);
+  background:var(--guide-code-paper);
+  font-size:14px;
+  line-height:1.6;
+  white-space:pre;
+  tab-size:4;
+}
+.embedding-guide pre code { color:inherit; white-space:inherit; }
+.embedding-guide .token.comment { color:var(--guide-code-comment); }
+.embedding-guide .token.string,
+.embedding-guide .token.attr-value { color:var(--guide-code-string); }
+.embedding-guide .token.number,
+.embedding-guide .token.tag { color:var(--guide-code-number); }
+.embedding-guide .token.keyword,
+.embedding-guide .token.operator,
+.embedding-guide .token.boolean { color:var(--guide-code-keyword); }
+.embedding-guide .token.function,
+.embedding-guide .token.variable { color:var(--guide-code-variable); }
+.embedding-guide .token.attr-name,
+.embedding-guide .token.class-name { color:var(--guide-code-name); }
+.embedding-guide .token.punctuation { color:var(--guide-code-ink); }
+.embedding-guide pre:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+@media(prefers-color-scheme:dark) {
+  .embedding-guide {
+    --guide-code-paper:#0d1117;
+    --guide-code-ink:#e6edf3;
+    --guide-code-comment:#9da7b3;
+    --guide-code-string:#a5d6ff;
+    --guide-code-number:#79c0ff;
+    --guide-code-keyword:#ff7b72;
+    --guide-code-variable:#d2a8ff;
+    --guide-code-name:#ffa657;
+  }
+}

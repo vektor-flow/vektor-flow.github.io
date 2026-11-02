@@ -1,233 +1,110 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Embed a VKF program once: editable source, the current compiler, an interactive viewport and a separate text console."><title>Embedding · Vektor Flow</title><link rel="canonical" href="https://vektorflow.org/preview/0.7.5/embedding.html"><link rel="stylesheet" href="./site.css?v=9a57163da0fdcdd6"><link rel="stylesheet" href="./website-layout.css?v=0ebf6c5e9b39553b"><link rel="stylesheet" href="./embedding.css?v=218252a020ad58ee"><link rel="icon" href="data:,"></head>
-<body class="remake"><a class="skip-link" href="#content">Skip to content</a><header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow<span class="release-version">0.7.5</span></a><details class="site-menu" open><summary>Menu</summary><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="examples.html">Examples</a><a href="embedding.html" aria-current="page">Embedding</a><a href="build.html">Run and test</a></nav></details></header>
-<main id="content"><article class="guide-page readme">
-<div class="page-intro"><p class="eyebrow">HOW / EMBEDDING</p><h1>One integration for every example</h1><p class="page-lead">Give the compiler VKF source. Put its text in a console and its retained scene in a separate viewport.</p></div>
-<p>The client code below is shared. For another example, change the source and the target elements. The compiler and viewport stay the same. <a href="examples.html">Browse the examples</a>.</p>
-<nav class="reference-toc" aria-label="Embedding guide"><a href="#try">Try it</a><a href="#html">HTML</a><a href="#javascript">JavaScript</a><a href="#reuse">Reuse and lifecycle</a></nav>
-<section id="try"><h2>Try the same spectrum in a small client.</h2><p>This is the complete, already qualified spectral program from <a href="examples.html#example-scientific-spectrum">Examples</a>: four detectors × 257 analysis samples, a direct peak-to-peak reduction and a 513-point curve for the strongest detector. Run calculates the console and scene from the editable source. No result is prefilled.</p>
-<section class="embedding-demo" aria-label="Embedded spectrum">
-<label for="embed-source">VKF source</label>
-<textarea id="embed-source" spellcheck="false" wrap="off">stat: .stat
-
-spectra:
-    values: [[0.0: 257]: 4]
-    detector: 0
-    detector &lt; 4?&gt;
-        sample: 0
-        sample &lt; 257?&gt;
-            energy: -1.0 + 0.0078125 * sample
-            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
-            .sample: sample + 1
-        .detector: detector + 1
-    values
-
-contrasts: stat.ptp(spectra, 1)
-selected_site:
-    best: 0
-    candidate: 1
-    candidate &lt; contrasts.length()?&gt;
-        contrasts.(candidate) &gt; contrasts.(best)?
-            .best: candidate
-        .candidate: candidate + 1
-    best
-
-:: contrasts
-:: selected_site
-
-curve_energy: -1.0 + 0.00390625 * [0..512]
-selected: 1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
-
-:: selected.(256)
-
-view: .ui.viewport
-view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
-view.push(x_lim: [-1, 1], y_lim: [0, 6])
-view.show()</textarea>
-<div class="embedding-actions">
-  <button id="embed-run" type="button" disabled>Run</button>
-  <p id="embed-status" role="status">Loading the compiler manifest…</p>
-</div>
-<section id="embed-viewport" class="readme-example-viewport" aria-label="Interactive plot viewport"></section>
-<section class="readme-example-terminal" aria-label="Text console">
-  <strong>Console</strong>
-  <pre id="embed-console" class="readme-example-output" aria-live="polite"></pre>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="How a host page runs VKF: load the matching compiler, pass source, present stdout and native scene packets, handle errors and release resources.">
+<title>Embedding · Vektor Flow</title>
+<link rel="canonical" href="https://vektorflow.org/preview/0.7.5/embedding.html">
+<link rel="stylesheet" href="./site.css?v=9a57163da0fdcdd6">
+<link rel="stylesheet" href="./website-layout.css?v=0ebf6c5e9b39553b">
+<link rel="stylesheet" href="./embedding.css?v=218252a020ad58ee">
+<link rel="icon" href="data:,">
+<script defer src="./vendor/prism/prism-core-1.30.0.min.js"></script>
+<script defer src="./vendor/prism/prism-markup.min.js"></script>
+<script defer src="./vendor/prism/prism-clike.min.js"></script>
+<script defer src="./vendor/prism/prism-javascript.min.js"></script>
+</head>
+<body class="remake">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-nav"><a class="wordmark" href="index.html">Vektor Flow<span class="release-version">0.7.5</span></a><details class="site-menu" open><summary>Menu</summary><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="examples.html">Examples</a><a href="embedding.html" aria-current="page">Embedding</a><a href="build.html">Run and test</a></nav></details></header>
+<main id="content"><article class="guide-page readme embedding-guide">
+<div class="page-intro"><p class="eyebrow">HOW / EMBEDDING</p><h1>Run VKF inside your page</h1><p class="page-lead">Your page supplies the source and owns the run. The compiler returns text and scene packets; the shared renderer presents the scene.</p></div>
+<p>Start with a real program from <a href="examples.html">Examples</a>. This guide explains the integration once. The HTML and JavaScript below are reference steps for a host application; they do not start another playground on this page.</p>
+<nav class="reference-toc" aria-label="Embedding guide"><a href="#hosting">Hosting</a><a href="#html">HTML targets</a><a href="#javascript">Compiler setup</a><a href="#run">Run and render</a><a href="#reuse">Errors and lifecycle</a></nav>
+<section id="hosting" class="embedding-reference">
+<h2>1. Keep the runtime together</h2>
+<p>The current website uses <a href="inline-runner.mjs">inline-runner.mjs</a>, its compiler worker and the package selected by <a href="current-compiler-release.json">current-compiler-release.json</a>. Keep their relative directory structure, matching module/WASM/data files, renderer modules and native scene-label resources together. These examples describe the existing website modules; a standalone embedding SDK download is not offered by this review site.</p>
+<p>Serve modules and assets over HTTPS, or localhost during development. The browser compiler needs isolated shared memory: <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code>. Prefer those server headers. The site's <a href="vkf-browser-isolation.mjs">isolation helper</a> can instead install <a href="vkf-coep-sw.js">vkf-coep-sw.js</a> under the same path and reload once after an explicit Run. That reload requires restoring the edited source and resuming only the user's requested run.</p>
+<p>If the host sets a Content Security Policy, allow these same-origin module/classic scripts, module workers and service worker, compiler/scene resource fetches, styles and fonts, and WebAssembly compilation. A restrictive <code>script-src</code> needs <code>'wasm-unsafe-eval'</code> for WebAssembly. Cross-origin resources must also satisfy COEP and their fetch CORS requirements. Keep the integration's relative URLs and the host's policy consistent.</p>
 </section>
-</section>
-<p>The viewport supplies independent Axes (Box, Crosshair, Open) and Grid (None, Lines, Dots) controls for Cartesian 2D plots. Zoom and pan use the shared renderer. Polar and Spherical presentations are deferred.</p></section>
-<section id="html" class="embedding-reference"><h2>1. Provide source and separate targets.</h2><p>Place this HTML alongside the current site modules and their matching runtime assets. The textarea contains the per-example input; the viewport and console are different elements. This is the markup used by the client above.</p>
-<pre><code class="language-html">&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
-&lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot;&gt;
-&lt;title&gt;Embedded VKF spectrum&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./site.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./website-layout.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./embedding.css&quot;&gt;
-&lt;section class=&quot;embedding-demo&quot; aria-label=&quot;Embedded spectrum&quot;&gt;
-&lt;label for=&quot;embed-source&quot;&gt;VKF source&lt;/label&gt;
-&lt;textarea id=&quot;embed-source&quot; spellcheck=&quot;false&quot; wrap=&quot;off&quot;&gt;stat: .stat
-
-spectra:
-    values: [[0.0: 257]: 4]
-    detector: 0
-    detector &amp;lt; 4?&amp;gt;
-        sample: 0
-        sample &amp;lt; 257?&amp;gt;
-            energy: -1.0 + 0.0078125 * sample
-            values.(detector, sample): 1.0 + (1.0 + detector) / (1.0 + 100.0 * energy ^ 2)
-            .sample: sample + 1
-        .detector: detector + 1
-    values
-
-contrasts: stat.ptp(spectra, 1)
-selected_site:
-    best: 0
-    candidate: 1
-    candidate &amp;lt; contrasts.length()?&amp;gt;
-        contrasts.(candidate) &amp;gt; contrasts.(best)?
-            .best: candidate
-        .candidate: candidate + 1
-    best
-
-:: contrasts
-:: selected_site
-
-curve_energy: -1.0 + 0.00390625 * [0..512]
-selected: 1.0 + (1.0 + selected_site) / (1.0 + 100.0 * curve_energy ^ 2)
-
-:: selected.(256)
-
-view: .ui.viewport
-view.add(x: curve_energy_u, y: selected_u, color: [0.25, 0.72, 1, 1])
-view.push(x_lim: [-1, 1], y_lim: [0, 6])
-view.show()&lt;/textarea&gt;
-&lt;div class=&quot;embedding-actions&quot;&gt;
-  &lt;button id=&quot;embed-run&quot; type=&quot;button&quot; disabled&gt;Run&lt;/button&gt;
-  &lt;p id=&quot;embed-status&quot; role=&quot;status&quot;&gt;Loading the compiler manifest…&lt;/p&gt;
-&lt;/div&gt;
-&lt;section id=&quot;embed-viewport&quot; class=&quot;readme-example-viewport&quot; aria-label=&quot;Interactive plot viewport&quot;&gt;&lt;/section&gt;
-&lt;section class=&quot;readme-example-terminal&quot; aria-label=&quot;Text console&quot;&gt;
+<section id="html" class="embedding-reference">
+<h2>2. Give source, viewport and console separate elements</h2>
+<p>The host's editable source is input. Put the interactive plot in its own viewport and execution text in a different console. Explain the calculation above those elements and stack them at full width, as the maintained examples do. These target elements illustrate the connection:</p>
+<pre tabindex="0"><code class="language-markup">&lt;label for="vkf-source"&gt;VKF source&lt;/label&gt;
+&lt;textarea id="vkf-source" spellcheck="false" wrap="off"
+  placeholder="Paste a program from Examples"&gt;&lt;/textarea&gt;
+&lt;button id="vkf-run" type="button"&gt;Run&lt;/button&gt;
+&lt;p id="vkf-status" role="status"&gt;&lt;/p&gt;
+&lt;section id="vkf-viewport" class="readme-example-viewport"
+  aria-label="Interactive plot viewport"&gt;&lt;/section&gt;
+&lt;section class="readme-example-terminal" aria-label="Text console"&gt;
   &lt;strong&gt;Console&lt;/strong&gt;
-  &lt;pre id=&quot;embed-console&quot; class=&quot;readme-example-output&quot; aria-live=&quot;polite&quot;&gt;&lt;/pre&gt;
-&lt;/section&gt;
-&lt;/section&gt;
-&lt;script type=&quot;module&quot; src=&quot;./embedding-client.mjs&quot;&gt;&lt;/script&gt;
-&lt;/html&gt;</code></pre></section>
-<section id="javascript" class="embedding-reference"><h2>2. Connect the current compiler and viewport.</h2><p>This is the complete <a href="embedding-client.mjs">embedding-client.mjs</a> used above. It calls the existing <code>createInlineRunner</code> and <code>mountRetainedSceneResult</code> APIs directly. The manifest selects matching compiler files and the expected source binding.</p>
-<pre><code class="language-javascript">import {createInlineRunner} from &#x27;./inline-runner.mjs&#x27;;
-import {ensureInlineRenderer} from &#x27;./inline-renderer-loader.mjs&#x27;;
-import {mountRetainedSceneResult} from &#x27;./inline-retained-scene-view.mjs&#x27;;
-import {restoreBrowserDrafts} from &#x27;./vkf-browser-isolation.mjs&#x27;;
+  &lt;pre id="vkf-console" aria-live="polite"&gt;&lt;/pre&gt;
+&lt;/section&gt;</code></pre>
+<p>In the JavaScript steps, <code>source</code>, <code>viewport</code>, <code>consoleOutput</code> and <code>status</code> refer to these elements. The host attaches its own Run/edit/removal handlers once. It owns <code>controller</code> (the active run's AbortController), <code>scene</code> (the current mount), a source <code>revision</code> counter and the listener AbortController <code>events</code>. The steps share that state; they are excerpts, rather than a complete event-handling client.</p>
+</section>
+<section id="javascript" class="embedding-reference">
+<h2>3. Select the matching compiler once</h2>
+<p>Create one runner for this host owner, using the enabled manifest's exact files and source binding. Creation does not execute the program. <code>runner.run</code> prepares the package and worker when the user requests execution; reuse that runner for later runs. The modules below live beside this guide.</p>
+<pre tabindex="0"><code class="language-javascript">import {createInlineRunner} from './inline-runner.mjs';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 
-// Per embed: the source field and these four output/control elements.
-const source = document.querySelector(&#x27;#embed-source&#x27;);
-const run = document.querySelector(&#x27;#embed-run&#x27;);
-const viewport = document.querySelector(&#x27;#embed-viewport&#x27;);
-const consoleOutput = document.querySelector(&#x27;#embed-console&#x27;);
-const status = document.querySelector(&#x27;#embed-status&#x27;);
-let runner, scene, active, revision = 0, closed = false;
-const events = new AbortController();
-const clearScene = () =&gt; { scene?.(); scene = undefined; };
-const report = error =&gt; {
-  consoleOutput.textContent += `${consoleOutput.textContent ? &#x27;\n&#x27; : &#x27;&#x27;}${error.message}`;
-  status.textContent = &#x27;Could not complete. See the console.&#x27;;
-};
-
-// The included isolation helper can reload once on the first requested Run.
-// Resume only that explicit request, with its exact restored source.
-const requestKey = &#x27;vkf-embedding-run:&#x27; + location.pathname;
-let requested;
-try {
-  requested = JSON.parse(sessionStorage.getItem(requestKey) ?? &#x27;null&#x27;);
-  sessionStorage.removeItem(requestKey);
-} catch {}
-if (crossOriginIsolated) restoreBrowserDrafts();
-
-source.addEventListener(&#x27;input&#x27;, () =&gt; {
-  revision++;
-  active?.abort();
-  clearScene();
-  consoleOutput.textContent = &#x27;&#x27;;
-  status.textContent = &#x27;Source changed. Run to update the result.&#x27;;
-}, {signal: events.signal});
-viewport.addEventListener(&#x27;vf-example-render-error&#x27;, event =&gt; {
-  clearScene();
-  // During the first presentation the rejected promise reports this error.
-  if (!active) report(new Error(event.detail.message));
-}, {signal: events.signal});
-run.addEventListener(&#x27;click&#x27;, async () =&gt; {
-  if (!runner || active || closed) return;
-  const controller = new AbortController();
-  active = controller;
-  const runRevision = revision, runSource = source.value;
-  if (!crossOriginIsolated) {
-    try { sessionStorage.setItem(requestKey,
-      JSON.stringify({source: runSource, requestedAt: Date.now()})); } catch {}
-  }
-  run.disabled = true;
-  clearScene();
-  consoleOutput.textContent = &#x27;&#x27;;
-  status.textContent = &#x27;Compiling and running…&#x27;;
-  try {
-    const result = await runner.run(runSource, {signal: controller.signal});
-    if (closed || revision !== runRevision) return;
-    consoleOutput.textContent = result.output.stdout + (result.output.stderr ?? &#x27;&#x27;);
-    if (result.packets?.length) {
-      await ensureInlineRenderer();
-      if (closed || revision !== runRevision) return;
-      const mounted = mountRetainedSceneResult(viewport, result.packets);
-      scene = mounted;
-      // This resolves after real rendering and native scene labels are ready.
-      // null means this mount was disposed before it presented.
-      const presented = await mounted.presented;
-      if (!presented || closed || revision !== runRevision) return;
-    }
-    status.textContent = &#x27;Completed.&#x27;;
-  } catch (error) {
-    if (!closed &amp;&amp; revision === runRevision) { clearScene(); report(error); }
-  } finally {
-    if (crossOriginIsolated) { try { sessionStorage.removeItem(requestKey); } catch {} }
-    active = undefined;
-    run.disabled = closed || !runner;
-  }
-}, {signal: events.signal});
-
-// Call the same cleanup when a client application removes this embed.
-export async function close() {
-  closed = true;
-  revision++;
-  active?.abort();
-  events.abort();
-  clearScene();
-  run.disabled = true;
-  await runner?.dispose();
+const response = await fetch(new URL('./current-compiler-release.json',
+  import.meta.url), {cache: 'no-store'});
+if (!response.ok) throw new Error('Compiler manifest unavailable');
+const release = await response.json();
+if (![release.current_distribution, release.site_review_iteration]
+    .some(policy =&gt; policy?.enabled &amp;&amp; policy.runEnabled)) {
+  throw new Error('Browser execution is unavailable');
 }
-window.addEventListener(&#x27;pagehide&#x27;, () =&gt; { void close(); }, {signal: events.signal});
-window.addEventListener(&#x27;pageshow&#x27;, event =&gt; { if (event.persisted) location.reload(); });
+const runner = createInlineRunner({
+  moduleURL: release.package.module,
+  wasmUrl: release.package.wasm,
+  dataURL: release.package.data,
+  expectedSourceBinding: release.browser_binding ?? release.compiler_source,
+  timeoutMs: 360000,
+});</code></pre>
+<p>VKF source stays a string: <code>source.value</code>. Copy a complete program from <a href="examples.html#example-scientific-spectrum">the spectral analysis example</a> or another maintained example. JavaScript uses explicit operators such as <code>a * b</code>; VKF source uses its own range, index and implicit multiplication syntax. Do not translate VKF arithmetic into host JavaScript.</p>
+</section>
+<section id="run" class="embedding-reference">
+<h2>4. Execute, then present the real result</h2>
+<p>On Run, capture the source revision, create the active AbortController and disable repeated clicks. Dispose the previous scene before replacing it. Pass the source to the runner, put stdout/stderr in the console with <code>textContent</code> and hand retained packets to the shared renderer:</p>
+<pre tabindex="0"><code class="language-javascript">// In the host's async Run handler, after clearing the previous mount:
+const result = await runner.run(source.value, {signal: controller.signal});
+consoleOutput.textContent = result.output.stdout + (result.output.stderr ?? '');
 
-try {
-  const response = await fetch(new URL(&#x27;./current-compiler-release.json&#x27;, import.meta.url), {cache: &#x27;no-store&#x27;});
-  if (!response.ok) throw new Error(&#x27;The current compiler manifest is unavailable&#x27;);
-  const release = await response.json();
-  const enabled = [release.current_distribution, release.site_review_iteration]
-    .some(policy =&gt; policy?.enabled &amp;&amp; policy.runEnabled);
-  if (!enabled) throw new Error(&#x27;This compiler is not enabled for browser examples&#x27;);
-  if (closed) throw new Error(&#x27;This embed is closed&#x27;);
-  runner = createInlineRunner({
-    moduleURL: release.package.module, wasmUrl: release.package.wasm,
-    dataURL: release.package.data,
-    expectedSourceBinding: release.browser_binding ?? release.compiler_source,
-    timeoutMs: 360000,
-  });
-  run.disabled = false;
-  status.textContent = &#x27;Ready. Run the source to calculate and draw.&#x27;;
-  if (crossOriginIsolated &amp;&amp; requested?.source === source.value &amp;&amp;
-      Date.now() &gt;= requested.requestedAt &amp;&amp; Date.now() - requested.requestedAt &lt; 60000) run.click();
-} catch (error) { if (!closed) report(error); }
-</code></pre></section>
-<section id="reuse"><h2>Reuse the client. Change the input.</h2><p><code>source.value</code> is the VKF input. <code>result.output.stdout</code> and <code>result.output.stderr</code> are text from real execution; assign them with <code>textContent</code>. <code>result.packets</code> holds the compiler’s retained-scene arenas; pass them to the shared viewport instead of reconstructing a chart in JavaScript.</p><p>The five element lookups at the start connect a particular embed. Reuse the remaining flow for a different source or target elements. For several embeds on one page, give each its own elements and state. An HTML form can change a validated parameter in the textarea and dispatch an <code>input</code> event; <a href="embed-example.html">the panel-area form</a> demonstrates that input pattern.</p><p>Editing aborts the pending run and clears its old scene and console. Each successful run disposes the previous mount, checks its source revision and waits for <code>mounted.presented</code>. A disposed mount resolves with <code>null</code>; rendering errors reject. The exported <code>close()</code> aborts work, removes the scene and awaits <code>runner.dispose()</code>. Call it when removing this client from an application; the page also calls it on navigation.</p><p>Use <code>mounted.frameIds</code> if your application changes presentation through <code>VfDisplay.setPlotAxisType</code>, <code>setPlotAxisStyle</code> or <code>setPlotGrid</code>. The mount scopes frame identities, so the original packet frame ID is not the mounted ID. The viewport already provides the simple controls without extra client code.</p><p>Keep the runner, worker, compiler module/WASM/data, renderer and native scene-label resources from the same site revision. Serve them over HTTPS (or localhost for development). Shared memory requires browser isolation: COOP <code>same-origin</code> and COEP <code>require-corp</code>, or the included service-worker helper. That helper may reload once; the client preserves only an explicitly requested Run and the edited source.</p><p>This guide uses the current website integration. The review site does not offer a standalone compiler or embedding SDK download. Its browser support does not establish native source-option syntax or file-backed HDF5 support.</p></section>
-</article></main><footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="More"><a href="examples.html">Examples</a><a href="build.html">Run and test</a><a href="syntax.html">Syntax</a></nav><small>Vektor Flow · website review</small></footer>
-<script type="module" src="./embedding-client.mjs?v=70bf2dec6083ce34"></script>
+if (result.packets?.length) {
+  await ensureInlineRenderer();
+  const mounted = mountRetainedSceneResult(viewport, result.packets);
+  scene = mounted; // Keep the cleanup function for edit, rerun and removal.
+  const presented = await mounted.presented;
+  // null means this mount was removed before its first presentation.
+  if (presented !== null) status.textContent = 'Completed.';
+} else {
+  status.textContent = 'Completed.';
+}</code></pre>
+<p>After each <code>await</code>, the complete handler must check that its captured revision still matches and the host has not closed before changing output or installing a scene. An edit can arrive during compiler or renderer initialization. A cancelled or stale run must never overwrite the new source's result.</p>
+<p><code>mountRetainedSceneResult</code> supplies normal plot interaction and the native LaTeX scene text route, including ticks and coordinates. Its returned function removes the mounted scene; <code>.presented</code> resolves after its real first presentation or rejects on a rendering failure. Reuse that renderer rather than reconstructing plots, labels or physics in JavaScript. Plot style and axis visibility belong in the VKF program; the host does not add Axes/Grid selectors or duplicate plot navigation.</p>
+</section>
+<section id="reuse" class="embedding-reference">
+<h2>5. Handle errors, reruns and removal</h2>
+<p>Catch runner and presentation errors in the host's Run handler and report the actual error message in the console. Clear a failed scene. Later renderer failures arrive as <code>vf-example-render-error</code> on the viewport; its <code>event.detail.message</code> belongs in the same error path. Restore the Run button in <code>finally</code>, unless the host has closed, so an error can be corrected and rerun. Keep only one active run for an owner.</p>
+<pre tabindex="0"><code class="language-javascript">// On an edit: invalidate the pending result, cancel work and clear output.
+revision++;
+controller?.abort();
+scene?.();
+scene = undefined;
+consoleOutput.textContent = '';
+
+// On removal: also detach the host's listeners and await worker shutdown.
+events.abort(); // events is the AbortController used for those listeners.
+await runner.dispose();</code></pre>
+<p>The two cleanup groups above belong to different handlers. An edit cancels the active run and disposes its scene, while leaving the runner available. Removing the host also aborts its registered listeners and awaits <code>runner.dispose()</code>. Do not start a replacement owner while the old one is still closing. If page navigation disposes the owner, a return from the browser's back/forward cache must recreate it before another Run.</p>
+<p>For the full website event handling, inspect <a href="current-documentation-examples.mjs">current-documentation-examples.mjs</a> and <a href="example-presentation.mjs">example-presentation.mjs</a>. They connect the same runner and mount APIs to the shared editable examples. <a href="embed-example.html">The panel-area form</a> shows a host input that changes the VKF source. Keep one entry point per page: loading the same event-handling module through different query URLs creates separate owners.</p>
+</section>
+</article></main>
+<footer class="site-footer"><a class="wordmark" href="index.html">Vektor Flow</a><nav aria-label="More"><a href="examples.html">Examples</a><a href="build.html">Run and test</a><a href="syntax.html">Syntax</a></nav><small>Vektor Flow · website review</small></footer>
 </body></html>

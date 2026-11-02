@@ -1,0 +1,1805 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "id": "declarations-and-property-labels",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "Selected"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": "\n    "
+        },
+        {
+          "kind": "definition",
+          "value": "Selected_site"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "plain",
+          "value": "\n\n"
+        },
+        {
+          "kind": "definition",
+          "value": "selected_site"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "3"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "selected_site"
+        }
+      ],
+      "expected": [
+        "Selected and both *_site definition labels are neutral, no dimension-index tokens",
+        "last selected_site is one variable token, never split"
+      ]
+    },
+    {
+      "id": "longest-established-vector-base",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "operator",
+          "value": "-"
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "0"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "selected"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "5"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "u",
+          "alias": "vkf-index-4"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "+"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "selected"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "u",
+          "alias": "vkf-index-4"
+        }
+      ],
+      "expected": [
+        "curve_energy and selected definitions neutral",
+        "r-values tokenize curve_energy(variable), _(operator), u(index-vkf-index-4); selected(variable), _(operator), u(index-vkf-index-4)",
+        "all variable tokens have one shared base color"
+      ]
+    },
+    {
+      "id": "index-p-versus-site-base",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "site"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "0"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "profile"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "0.5"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "0.1"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "site"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "p",
+          "alias": "vkf-index-7"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "*"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "profile"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "u",
+          "alias": "vkf-index-4"
+        }
+      ],
+      "expected": [
+        "site and profile variable references share same base color",
+        "p(index-vkf-index-7), u(index-vkf-index-4) have distinct colors"
+      ]
+    },
+    {
+      "id": "complete-legitimate-underscore-name",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "sensor_id"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "101"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "102"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "sensor_id"
+        }
+      ],
+      "expected": [
+        "sensor_id definition neutral; reference one variable token; no suffix splitting"
+      ]
+    },
+    {
+      "id": "unknown-reference-before-declaration",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "unknown_i"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "unknown"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "unknown"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "i",
+          "alias": "vkf-index-0"
+        }
+      ],
+      "expected": [
+        "first unknown_i neutral and unsplit",
+        "after definition unknown(variable), _(operator), i(index-vkf-index-0)"
+      ]
+    },
+    {
+      "id": "unknown-long-suffix",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "signal_site"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "unknown_i"
+        }
+      ],
+      "expected": [
+        "signal_site and unknown_i unresolved/ambiguous neutral; no palette indices"
+      ]
+    },
+    {
+      "id": "scalar-extremum-result",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "stat"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "plain",
+          "value": "stat"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "4"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "peak"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "stat"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "function",
+          "value": "max"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "peak_i"
+        }
+      ],
+      "expected": [
+        "stat.max is a function category on known module receiver; signal variable",
+        "peak_i neutral and unsplit because max consumes vector to scalar"
+      ]
+    },
+    {
+      "id": "scalar-length-result",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "4"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "count"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "function",
+          "value": "length"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "count_i"
+        }
+      ],
+      "expected": [
+        "count_i neutral and unsplit"
+      ]
+    },
+    {
+      "id": "single-axis-reduction-result",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "stat"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "plain",
+          "value": "stat"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "4"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "peak"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "stat"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "function",
+          "value": "ptp"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "i",
+          "alias": "vkf-index-0"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "peak_i"
+        }
+      ],
+      "expected": [
+        "ptp function selector i is colored only in the call consuming earlier-defined signal vector",
+        "peak_i neutral because result has no remaining axis"
+      ]
+    },
+    {
+      "id": "attached-axis-declaration",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "A_ij"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "3"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "4"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "A"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "j",
+          "alias": "vkf-index-1"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "i",
+          "alias": "vkf-index-0"
+        }
+      ],
+      "expected": [
+        "whole A_ij declaration label neutral",
+        "r-value A(variable), _(operator), j(index-vkf-index-1), i(index-vkf-index-0)"
+      ]
+    },
+    {
+      "id": "scope-exit",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "result"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": "\n    "
+        },
+        {
+          "kind": "definition",
+          "value": "local"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n    "
+        },
+        {
+          "kind": "variable",
+          "value": "local"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "i",
+          "alias": "vkf-index-0"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "local_i"
+        }
+      ],
+      "expected": [
+        "local_i inside scope has index i",
+        "local_i after scope unresolved neutral"
+      ]
+    },
+    {
+      "id": "scalar-shadowing",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "result"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": "\n    "
+        },
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "3"
+        },
+        {
+          "kind": "plain",
+          "value": "\n    "
+        },
+        {
+          "kind": "plain",
+          "value": "signal_i"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "i",
+          "alias": "vkf-index-0"
+        }
+      ],
+      "expected": [
+        "inner signal_i neutral because scalar shadows vector",
+        "outer final signal_i indexed"
+      ]
+    },
+    {
+      "id": "comments-and-strings",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "comment",
+          "value": "# curve_energy_u"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "label"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "string",
+          "value": "\"curve_energy_u\""
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "u",
+          "alias": "vkf-index-4"
+        }
+      ],
+      "expected": [
+        "comment/string contents remain their single lexical category",
+        "only final reference gets operator/index tokens"
+      ]
+    },
+    {
+      "id": "neutral-call-labels",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "definition",
+          "value": "view"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "plain",
+          "value": "ui"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "plain",
+          "value": "viewport"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "variable",
+          "value": "view"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "function",
+          "value": "add"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "definition",
+          "value": "x"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "curve_energy"
+        },
+        {
+          "kind": "operator",
+          "value": "_"
+        },
+        {
+          "kind": "dimension-index",
+          "value": "u",
+          "alias": "vkf-index-4"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "definition",
+          "value": "label_color"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        }
+      ],
+      "expected": [
+        "x and label_color property labels neutral, never split",
+        "curve_energy_u resolves earlier vector"
+      ]
+    },
+    {
+      "id": "unknown-qualified-selector",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "unknown"
+        },
+        {
+          "kind": "operator",
+          "value": "."
+        },
+        {
+          "kind": "plain",
+          "value": "ptp_i"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        }
+      ],
+      "expected": [
+        "ptp_i unsplit neutral because receiver/family unresolved"
+      ]
+    },
+    {
+      "id": "call-argument-boundary",
+      "passed": true,
+      "tokens": [
+        {
+          "kind": "definition",
+          "value": "signal"
+        },
+        {
+          "kind": "operator",
+          "value": ":"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "punctuation",
+          "value": "["
+        },
+        {
+          "kind": "number",
+          "value": "1"
+        },
+        {
+          "kind": "punctuation",
+          "value": ","
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "number",
+          "value": "2"
+        },
+        {
+          "kind": "punctuation",
+          "value": "]"
+        },
+        {
+          "kind": "plain",
+          "value": "\n"
+        },
+        {
+          "kind": "operator",
+          "value": "::"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "plain",
+          "value": "sum_i"
+        },
+        {
+          "kind": "punctuation",
+          "value": "("
+        },
+        {
+          "kind": "plain",
+          "value": "unknown"
+        },
+        {
+          "kind": "punctuation",
+          "value": ")"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "operator",
+          "value": "+"
+        },
+        {
+          "kind": "plain",
+          "value": " "
+        },
+        {
+          "kind": "variable",
+          "value": "signal"
+        }
+      ],
+      "expected": [
+        "sum_i unsplit neutral: later signal is outside call, not an argument"
+      ]
+    }
+  ]
+}

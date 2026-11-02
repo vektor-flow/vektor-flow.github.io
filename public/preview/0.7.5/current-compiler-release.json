@@ -157,71 +157,78 @@
   },
   "current_package_composition": {
     "path": "CURRENT-COMPOSITION.json",
-    "bytes": 46248,
-    "sha256": "5a2ef3a249f7e31b21c58123037db4163cb80a3f53aa28de076818be8d378f6c"
+    "bytes": 52375,
+    "sha256": "505ec3f916e6f87b09fb569850cd4f8700186122ef200471aebda781a8beefd7"
   },
   "publication_status": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
   "download_packages_offered": false,
   "physical_gpu_tested": false,
-  "current_candidate_verification": {
-    "path": "verification/e1868-current075-browser-native.json",
-    "bytes": 10734,
-    "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1",
-    "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-    "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
-    "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
-    "namedBrowserNativeChecksPASS": true,
-    "publicRuntimePromoted": true,
-    "releaseQualified": false
-  },
   "current_distribution": {
     "enabled": false,
     "runEnabled": true,
     "downloadsOffered": false,
     "fullReleaseQualified": false,
-    "sharedUploadAvailable": true
+    "sharedUploadAvailable": false
   },
-  "current_distribution_checksums": {
-    "path": "downloads/current075-checksums.json",
-    "bytes": 1581,
-    "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
-  },
-  "current_runtime_repair": {
-    "path": "verification/e1870-axis-routing-repair.json",
-    "bytes": 1178,
-    "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
-  },
-  "current_distribution_evidence": {
-    "path": "verification/e1880-renderer-distribution.json",
-    "bytes": 58061,
-    "sha256": "4acec08b8f275c72c5e85d6976a4ab4a1d6be76f048a6126755295008dec03c2"
-  },
-  "current_source_progress": {
-    "path": "verification/e1872-source-progress.json",
-    "bytes": 11885,
-    "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
-  },
-  "current_owner_host": {
-    "path": "verification/e1878-owner-host.json",
-    "bytes": 45824,
-    "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
-  },
-  "current_renderer_correctness": {
-    "path": "verification/e1880-current-renderer.json",
-    "bytes": 617505,
-    "sha256": "0698497208150af4437b2c93a9a8060718ad293ec40a073b9550341b5d35da1e"
-  },
-  "full_requested_075_requirements_complete": true,
-  "current_benchmark_readiness": {
-    "path": "verification/e1893-local48-readiness.json",
-    "bytes": 107291,
-    "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
-  },
+  "full_requested_075_requirements_complete": false,
   "site_review_iteration": {
     "enabled": true,
     "runEnabled": true,
     "downloadsOffered": false,
     "fullReleaseQualified": false,
-    "compilerOptimization": "Current dotted-index O1 + simplify-locals + successful local coalescing, focused actual runtime checks pending"
+    "compilerOptimization": "Accepted exact current coalesced compiler, source-bound program/output and focused UI checks; no comparative timing claim."
+  },
+  "historical_prior_binding_evidence": {
+    "current_candidate_verification": {
+      "path": "verification/e1868-current075-browser-native.json",
+      "bytes": 10734,
+      "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1",
+      "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+      "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+      "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+      "namedBrowserNativeChecksPASS": true,
+      "publicRuntimePromoted": true,
+      "releaseQualified": false
+    },
+    "current_distribution_checksums": {
+      "path": "downloads/current075-checksums.json",
+      "bytes": 1581,
+      "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
+    },
+    "current_runtime_repair": {
+      "path": "verification/e1870-axis-routing-repair.json",
+      "bytes": 1178,
+      "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+    },
+    "current_distribution_evidence": {
+      "path": "verification/e1880-renderer-distribution.json",
+      "bytes": 58061,
+      "sha256": "4acec08b8f275c72c5e85d6976a4ab4a1d6be76f048a6126755295008dec03c2"
+    },
+    "current_source_progress": {
+      "path": "verification/e1872-source-progress.json",
+      "bytes": 11885,
+      "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
+    },
+    "current_owner_host": {
+      "path": "verification/e1878-owner-host.json",
+      "bytes": 45824,
+      "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
+    },
+    "current_renderer_correctness": {
+      "path": "verification/e1880-current-renderer.json",
+      "bytes": 617505,
+      "sha256": "0698497208150af4437b2c93a9a8060718ad293ec40a073b9550341b5d35da1e"
+    },
+    "current_benchmark_readiness": {
+      "path": "verification/e1893-local48-readiness.json",
+      "bytes": 107291,
+      "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
+    }
+  },
+  "current_review_site_evidence": {
+    "path": "verification/e1995-current-review-site.json",
+    "bytes": 56359,
+    "sha256": "488cb4b90b36f66de39d299f319332ea4a6ea277ee2f1ffe189342fcba881c1f"
   }
 }

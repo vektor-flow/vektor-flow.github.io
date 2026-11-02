@@ -157,7 +157,7 @@ def verify_current_review_site(preview, release):
         root = preview.parents[1]
         actual = {p.relative_to(root).as_posix(): identity(p) for p in root.rglob('*') if p.is_file() and 'downloads' in p.relative_to(root).parts}
         need(actual == baseline['files'], 'review iteration must preserve existing downloads without adding artifacts')
-        return {Path(row['install']).name: row['sha256'] for row in compiler['files']}
+        return {(row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else Path(row['install']).name): row['sha256'] for row in compiler['files']}
     need(report['status'] == 'PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS', 'current focused review-site controls incomplete')
     need(report['frontendBinding'] == binding and report['sourceCommit'] == source, 'review evidence runtime mismatch')
     need(report['browserClosed'] and report['serverClosed'] and report['noNewDownloads'], 'review browser/download checks incomplete')
@@ -169,4 +169,4 @@ def verify_current_review_site(preview, release):
     root = preview.parents[1]
     actual = {p.relative_to(root).as_posix(): identity(p) for p in root.rglob('*') if p.is_file() and 'downloads' in p.relative_to(root).parts}
     need(actual == baseline['files'], 'review iteration must preserve existing downloads without adding artifacts')
-    return {Path(row['install']).name: row['sha256'] for row in compiler['files']}
+    return {(row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else Path(row['install']).name): row['sha256'] for row in compiler['files']}

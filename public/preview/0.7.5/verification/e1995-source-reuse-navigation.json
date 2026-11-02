@@ -1,0 +1,52 @@
+{
+  "status": "FAIL_AUDIT",
+  "rows": [],
+  "pages": [
+    {
+      "route": "index.html",
+      "occurrences": 1,
+      "allShared": true
+    },
+    {
+      "route": "examples.html",
+      "occurrences": 4,
+      "allShared": true
+    },
+    {
+      "route": "syntax.html",
+      "occurrences": 30,
+      "allShared": true
+    },
+    {
+      "route": "stdlib.html",
+      "occurrences": 13,
+      "allShared": true
+    },
+    {
+      "route": "build.html",
+      "occurrences": 1,
+      "allShared": true
+    },
+    {
+      "route": "embed-example.html",
+      "occurrences": 1,
+      "allShared": true
+    },
+    {
+      "route": "few-math-labels.html",
+      "occurrences": 1,
+      "allShared": true
+    }
+  ],
+  "errors": [],
+  "browserClosed": true,
+  "serverClosed": true,
+  "sourceProgramsExactAcceptedReuse": true,
+  "distinctPrograms": 50,
+  "programOccurrences": 51,
+  "noProgramExecution": true,
+  "noDownloads": true,
+  "guideNavigation": true,
+  "mobileOneRowMenu": true,
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#content\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <a href=\"#content\" class=\"skip-link\">Skip to content</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    57 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - element is outside of the viewport\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/e1995/check-final-surface.mjs:37:67"
+}

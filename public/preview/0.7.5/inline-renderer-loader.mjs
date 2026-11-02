@@ -1,5 +1,4 @@
 const scripts = [
-  "vf-ui/katex/katex.min.js",
   "vf-ui/vf-startup-gate.js",
   "vf-ui/vf-runtime-packet-contract.js",
   "vf-ui/vf-retained-event-adapter.js",
@@ -52,6 +51,20 @@ export function ensureInlineRenderer() {
         document.head.append(script);
       });
     }
+    const {createNativePlotTextLayer} = await import('./vf-ui/native-labels/vf-native-plot-text.mjs');
+    VfDisplay.setNativePlotTextRendererFactory(createNativePlotTextLayer);
+    const refresh = () => VfDisplay.refreshExamplePlotTheme();
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change',refresh);
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    // A monitor/browser zoom change can alter DPR without changing CSS bounds.
+    let density;
+    const watchDensity = () => {
+      density?.removeEventListener('change',changedDensity);
+      density = matchMedia(`(resolution: ${devicePixelRatio || 1}dppx)`);
+      density.addEventListener('change',changedDensity,{once:true});
+    };
+    const changedDensity = () => {VfDisplay.redrawVisibleGeomFrames();watchDensity();};
+    watchDensity();
     VfDisplay.setNativeMathLabelInstaller(() => mathInstallation ??= import('./vf-ui/native-labels/vf-current-wasm-math-labels.mjs').then(m=>m.installCurrentWasmMathLabels()));
   })();
 }

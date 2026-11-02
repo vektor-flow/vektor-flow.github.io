@@ -43,7 +43,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
     container.appendChild(canvas);
     const renderer = rendererFactory(canvas, {pixelRatio: () => globalThis.devicePixelRatio || 1,
       nativeAccuracy: renderingPolicy === 'required' ? 'required' : 'diagnostic-uncertified', samplesPerAxis: 4});
-    let closed = false, scene = null, census = null, signature = null, width = 0, height = 0, tail = Promise.resolve();
+    let closed = false, scene = null, census = null, signature = null, width = 0, height = 0, pixelRatio = 0, tail = Promise.resolve();
     let state = {status: 'PENDING', renderingPolicy, releaseQualified: false};
     let viewCamera = [1,0,0,1,0,0], frameTransform = [1,0,0,1,0,0];
     const initialized = Promise.resolve().then(() => renderer.initialize());
@@ -66,7 +66,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
           if (closed) { next.close(); return {status: 'DISPOSED'}; }
         }
         try {
-          if (width !== w || height !== h) { renderer.resize(w, h); width = w; height = h; }
+          if (width !== w || height !== h || pixelRatio !== (globalThis.devicePixelRatio || 1)) { renderer.resize(w, h); width = w; height = h; pixelRatio = globalThis.devicePixelRatio || 1; }
           if (next !== scene) renderer.setNativeScene(next, compose(nextCamera,frameTransform));
           else renderer.setNativeCamera(compose(nextCamera,frameTransform));
         } catch (error) { if (next !== scene) next.close(); throw error; }
@@ -95,7 +95,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
       const nextCamera = [...camera];
       const job = tail.then(() => {
         need(!closed && scene, 'NATIVE_LABEL_LAYER_CLOSED');
-        if (w !== width || h !== height) { renderer.resize(w, h); width = w; height = h; }
+        if (w !== width || h !== height || pixelRatio !== (globalThis.devicePixelRatio || 1)) { renderer.resize(w, h); width = w; height = h; pixelRatio = globalThis.devicePixelRatio || 1; }
         renderer.setNativeCamera(compose(nextCamera,frameTransform));
         viewCamera = nextCamera;
         state = {status:'SUBMITTED_COMPLETION_UNMEASURED', renderingPolicy, releaseQualified:false,

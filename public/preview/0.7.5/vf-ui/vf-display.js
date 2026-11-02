@@ -76,6 +76,7 @@
   var _mathTextHtmlCache = Object.create(null);
   var _nativeLabelRendererFactory = null;
   var _nativeMathLabelInstaller = null;
+  var _nativePlotTextRendererFactory = null;
   // Renderer-owned axis decorations keep their established text/style path.
   var _generatedAxisMathTexts = new WeakSet();
   var _nativeLabelCleanup = new Set();
@@ -1367,8 +1368,11 @@
     var fit = geomFrameRenderRect(frameEl, hostEl, fid);
     var w = Math.max(1, Math.floor(fit.width));
     var h = Math.max(1, Math.floor(fit.height));
-    if (canvas.width  !== w) { canvas.width  = w; }
-    if (canvas.height !== h) { canvas.height = h; }
+    var pixelRatio = Number(options.pixelRatio) || 1;
+    var backingWidth = Math.max(1, Math.round(w * pixelRatio));
+    var backingHeight = Math.max(1, Math.round(h * pixelRatio));
+    if (canvas.width !== backingWidth) { canvas.width = backingWidth; }
+    if (canvas.height !== backingHeight) { canvas.height = backingHeight; }
     if (canvas.style && options.deferStyle !== true) {
       canvas.style.visibility = "";
       canvas.style.left = Math.round(fit.localLeft) + "px";
@@ -6868,6 +6872,14 @@
 
   function publishPlotPointerCoordinates(geomSpec, body, event) {
     if (!event) { return; }
+    if (geomSpec && geomSpec.native_plot_text === true) {
+      var frameEl = body && body.closest && body.closest(".vf-frame");
+      var fid = frameEl && frameEl.getAttribute("data-vf-frame-id");
+      if (fid && frameRecs[fid]) {
+        frameRecs[fid].nativePlotPointer = [event.clientX, event.clientY];
+        scheduleGeomTextOverlayRender(fid, frameEl, geomSpec);
+      }
+    }
     publishPlotCoordinates(body, plotCoordinatesAtClientPoint(geomSpec, body, event.clientX, event.clientY));
   }
 
@@ -9430,13 +9442,19 @@
       canvas.classList.add("vf-geom-canvas", "vf-geom-canvas-0");
       canvas.setAttribute("data-vf-geom-canvas", "1");
     }
-    var sz = syncCanvasSize(canvas);
+    var scene = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+    var nativePlot = scene && scene.native_plot_text === true;
+    var pixelRatio = nativePlot ? Math.max(1, Number(global.devicePixelRatio) || 1) : 1;
+    var sz = syncCanvasSize(canvas, {pixelRatio:pixelRatio});
     if (!sz || !sz.w || !sz.h) { return false; }
     var ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) { return false; }
-    var w = canvas.width || sz.w;
-    var h = canvas.height || sz.h;
-    var toolbarInset = toolbarBottomInsetPx(body);
+    // World transforms, tick sizing and hit tests all remain in CSS pixels.
+    // Only the backing surface and its raster transform use device pixels.
+    ctx.setTransform(canvas.width / sz.w, 0, 0, canvas.height / sz.h, 0, 0);
+    var w = sz.w;
+    var h = sz.h;
+    var toolbarInset = toolbarBottomInsetPx(body) + (nativePlot ? 28 : 0);
     for (var meshIndex = 0; meshIndex < meshes.length; meshIndex += 1) {
       var meshCfg = meshes[meshIndex] && meshes[meshIndex].axis_ticks;
       if (meshCfg) { meshCfg.__vf_toolbar_bottom_inset_px = toolbarInset; }
@@ -10446,13 +10464,15 @@
   function renderGeomLineOverlay(fid, frameEl, geomSpec, w, h) {
     var canvas = ensureGeomLineOverlay(frameEl, fid);
     if (!canvas) { return; }
-    canvas.width = Math.max(1, Math.round(w));
-    canvas.height = Math.max(1, Math.round(h));
+    var ratio = geomSpec && geomSpec.native_plot_text === true ? Math.max(1,Number(global.devicePixelRatio) || 1) : 1;
+    canvas.width = Math.max(1, Math.round(w * ratio));
+    canvas.height = Math.max(1, Math.round(h * ratio));
     canvas.style.width = Math.max(1, Math.round(w)) + "px";
     canvas.style.height = Math.max(1, Math.round(h)) + "px";
     var ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) { return; }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.setTransform(canvas.width / w,0,0,canvas.height / h,0,0);
+    ctx.clearRect(0, 0, w, h);
     var camera = geomSpec && geomSpec.camera || null;
     var meshes = geomSpec && Array.isArray(geomSpec.meshes) ? geomSpec.meshes : [];
     var axis3DCfg = axis3DRuntimeConfig(geomSpec);
@@ -11697,8 +11717,14 @@
   }
 
   function releaseNativeLabelLayer(rec) {
-    if (!rec || !rec.nativeLabelLayer) return Promise.resolve();
-    var joined = Promise.resolve(rec.nativeLabelLayer.destroy());
+    if (!rec || (!rec.nativeLabelLayer && !rec.nativePlotTextLayer)) return Promise.resolve();
+    rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
+    var plotLayer = rec.nativePlotTextLayer;
+    rec.nativePlotTextLayer = null;
+    var joined = Promise.all([
+      rec.nativeLabelLayer ? rec.nativeLabelLayer.destroy() : null,
+      plotLayer ? plotLayer.destroy() : null
+    ]);
     _nativeLabelCleanup.add(joined);
     joined.then(function() {_nativeLabelCleanup.delete(joined);}, function() {});
     rec.nativeLabelLayer = null;
@@ -11721,7 +11747,9 @@
     var rec = frameRecs[String(fid)];
     return rec ? {
       ready: rec.nativeLabelReady,
-      statistics: rec.nativeLabelLayer ? rec.nativeLabelLayer.statistics() : {status:rec.nativeLabelError ? "FAILED" : "UNMOUNTED",error:rec.nativeLabelError || null},
+      statistics: rec.nativePlotTextLayer ? rec.nativePlotTextLayer.statistics() : rec.nativeLabelLayer ? rec.nativeLabelLayer.statistics() : {status:rec.nativeLabelError ? "FAILED" : "UNMOUNTED",error:rec.nativeLabelError || null},
+      plotCanvases: rec.nativePlotTextLayer ? rec.nativePlotTextLayer.canvases() : [],
+      plotSourceSnapshots: rec.nativePlotTextLayer ? function() {return rec.nativePlotTextLayer.sourceSnapshots();} : null,
       sourceSnapshot: rec.nativeLabelLayer ? function() {return rec.nativeLabelLayer.renderer.nativeSourceSnapshot();} : null,
       canvas: rec.nativeLabelLayer && rec.nativeLabelLayer.canvas
     } : null;
@@ -11786,6 +11814,88 @@
     });
   }
 
+  function nativePlotInk() { return activeColorTheme() === "dark" ? [1,1,1,1] : [0,0,0,1]; }
+
+  function applyExamplePlotTheme(scene) {
+    var ink = nativePlotInk();
+    scene.background = activeColorTheme() === "dark" ? [0,0,0,1] : [1,1,1,1];
+    var meshes = Array.isArray(scene.meshes) ? scene.meshes : [];
+    var curves = meshes.filter(function(mesh) {return mesh.topology === "line-list" && !!mesh.curve_path;});
+    meshes.forEach(function(mesh) {
+      if (mesh.axis_ticks) {
+        mesh.axis_ticks = Object.assign({}, mesh.axis_ticks, {
+          axis_color:ink.slice(), tick_color:ink.slice(), ticklabel_color:ink.slice(), label_color:ink.slice(), grid_color:ink.slice()
+        });
+      }
+      if (curves.length === 1 && mesh === curves[0] && !mesh.theme_default_cmap) {
+        // Colors alone are presentation here; never alter compiler positions,
+        // topology, values, indices, units or the source-owned arena bytes.
+        mesh.vertices = new Float32Array(mesh.vertices);
+        paintVertexBufferColor(mesh.vertices, ink);
+        mesh.color = ink.slice();
+        mesh.__revision = Number(mesh.__revision || 0) + 1;
+      }
+    });
+    if (scene.axis3d_runtime) {
+      scene.axis3d_runtime = Object.assign({}, scene.axis3d_runtime, {
+        color:ink.slice(), axis_color:ink.slice(), tick_color:ink.slice(), ticklabel_color:ink.slice(), label_color:ink.slice()
+      });
+    }
+  }
+
+  function renderNativePlotText(fid, frameEl, geomSpec, content, w, h) {
+    if (!_nativeMathLabelInstaller || !_nativePlotTextRendererFactory) throw new Error("current VKF plot text installer is unavailable");
+    var rec = frameRecs[String(fid)] || (frameRecs[String(fid)] = {entries:[]});
+    var generation = rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
+    var items = (geomSpec.texts || []).slice();
+    (geomSpec.meshes || []).forEach(function(mesh) {
+      if (mesh && mesh.axis_ticks) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h));
+    });
+    var rows = [], seen = Object.create(null), ink = nativePlotInk();
+    items.forEach(function(item, index) {
+      var p = geomTextToPx(item,w,h,geomSpec.camera || null,geomSpec);
+      if (!p || !textPointIsNearViewport(p,w,h,112) || !String(item.text || "")) return;
+      var anchor = geomTextAnchorPercent(item,String(item.ha || "center"),String(item.va || "center"));
+      var key = JSON.stringify([item.text,p,anchor,item.rotate || 0]);
+      if (seen[key]) return;
+      seen[key] = true;
+      rows.push({id:"plot-text-"+index,text:String(item.text),point:p,
+        rotation:Number(item.rotate) || 0, fontSize:Math.max(1,Number(item.font_size) || 12),
+        anchor:[-anchor[0]/100,-anchor[1]/100],color:ink.slice()});
+    });
+    // Always recompute from the current shared inverse transform. A stationary
+    // pointer must not keep its old data values after zoom, pan, resize or Home.
+    var body = geomFrameHost(frameEl,fid), point = rec.nativePlotPointer;
+    var coordinate = point && plotCoordinatesAtClientPoint(geomSpec,body,point[0],point[1]);
+    var readout = "Move pointer to inspect coordinates";
+    if (coordinate && coordinate.axes && coordinate.values) {
+      readout = coordinate.axes.map(function(axis,index) {
+        var label = coordinate.labels && coordinate.labels[axis] || axis;
+        return label + " = " + formatPlotCoordinate(coordinate.values[index]);
+      }).join("    ");
+    }
+    rows.push({id:"plot-coordinate",role:"coordinate",text:readout,point:[12,h-8],
+      rotation:0,fontSize:11,anchor:[0,1],color:ink.slice()});
+    rec.nativeLabelError = null;
+    rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function() {
+      if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation || !findFrameEl(String(fid))) return {status:"SUPERSEDED"};
+      if (!rec.nativePlotTextLayer) {
+        // Remove any previous DOM label pool. All visible plot text now belongs
+        // to the installed native scene layer, including axes and coordinates.
+        content.textContent = "";
+        rec.textOverlayPool = [];
+        rec.nativePlotTextLayer = _nativePlotTextRendererFactory({container:content,createLayer:_nativeLabelRendererFactory});
+      }
+      return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,
+        pixelRatio:Math.max(1,Number(global.devicePixelRatio) || 1),foreground:ink});
+    });
+    rec.nativeLabelReady.catch(function(error) {
+      if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation) return;
+      rec.nativeLabelError = String(error.stack || error);
+      frameEl.dispatchEvent(new global.CustomEvent("vf-inline-render-error", {bubbles:true,detail:{message:String(error.message || error)}}));
+    });
+  }
+
   function renderGeomTextOverlay(fid, frameEl, geomSpec) {
     try {
       var incomingTexts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts.length : 0;
@@ -11804,6 +11914,11 @@
       var contentLayer = layer.__vfGeomTextContent || layer;
       contentLayer.style.transform = "";
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
+      if (geomSpec && geomSpec.native_plot_text === true) {
+        renderNativePlotText(fid, frameEl, geomSpec, contentLayer, w, h);
+        layer.style.visibility = "visible";
+        return;
+      }
       // Standalone math strings are evaluated by the normal compiler, then
       // passed unchanged to the current VKF math producer. No host typesetter.
       function standaloneMath(t) {return !_generatedAxisMathTexts.has(t) && typeof t.text === "string" && t.text.length > 2 && t.text[0] === "$" && t.text[t.text.length-1] === "$";}
@@ -11943,7 +12058,7 @@
       layer.style.visibility = used > 0 || hasCompiledMath ? "visible" : "hidden";
       updateAxis3DBoundaryLabels(fid);
     } catch (err) {
-      if (geomSpec && geomSpec.native_labels) {
+      if (geomSpec && (geomSpec.native_labels || geomSpec.native_plot_text === true)) {
         if (layer) layer.style.visibility = "hidden";
         if (!frameRecs[String(fid)]) frameRecs[String(fid)] = {entries:[]};
         frameRecs[String(fid)].nativeLabelError = String(err.stack || err);
@@ -13940,6 +14055,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       scene.background = null;
     }
     applyRetainedScene3DDefaults(scene);
+    if (source.native_plot_text === true) applyExamplePlotTheme(scene);
     var geom = {};
     geom[frameId] = scene;
     return { geom: geom };
@@ -14817,6 +14933,16 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     joinNativeLabelCleanup: joinNativeLabelCleanup,
     nativeLabelFrameStatus: nativeLabelFrameStatus,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
+    setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
+    refreshExamplePlotTheme: function() {
+      if (!_lastDisplayPayload || !_lastDisplayPayload.geom) return;
+      Object.keys(_lastDisplayPayload.geom).forEach(function(fid) {
+        var scene = _lastDisplayPayload.geom[fid];
+        if (!scene || scene.native_plot_text !== true) return;
+        applyExamplePlotTheme(scene);
+        requestGeomFramePresentation(fid);
+      });
+    },
     updateNativeLabelFrameView: updateNativeLabelFrameView,
     updateNativeLabelFrameAnimation: updateNativeLabelFrameAnimation,
     updateNativeLabelFrameColor: updateNativeLabelFrameColor,

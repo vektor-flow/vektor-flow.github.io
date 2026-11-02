@@ -1,3 +1,4 @@
+import {prepareExamplePresentation} from './example-presentation.mjs';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
 import {highlightVkf} from './code-highlight.mjs?sha256=e04597c91a14531f0ae351594248135fff632b4ff686364fc8f2a9c4614442dc';
@@ -28,6 +29,7 @@ if (crossOriginIsolated) restoreBrowserDrafts();
 
 
 for (const example of document.querySelectorAll('.readme-example')) {
+  prepareExamplePresentation(example);
   const source = example.querySelector('.readme-example-source');
   const highlight = example.querySelector('.readme-example-highlight');
   const code = highlight?.querySelector('code');
@@ -96,6 +98,8 @@ for (const example of document.querySelectorAll('.readme-example')) {
           await ensureInlineRenderer();
           if (revision === runRevision) {
             dispose = mountRetainedSceneResult(resultContainer, result.packets);
+            example.dispatchEvent(new CustomEvent('vf-example-compiled', {detail:{source:source.value, result}}));
+            await dispose.presented;
             if (resultHint) resultHint.hidden = true;
           }
         }

@@ -1,0 +1,38 @@
+/* One reading and execution surface for every maintained documentation example. */
+:root { --example-plot-paper:#fff; --example-plot-ink:#111; }
+@media(prefers-color-scheme:dark) { :root { --example-plot-paper:#000; --example-plot-ink:#fff; } }
+:root[data-theme="dark"] { --example-plot-paper:#000; --example-plot-ink:#fff; }
+:root[data-theme="light"] { --example-plot-paper:#fff; --example-plot-ink:#111; }
+.readme-example-layout,.readme-example-layout.has-result,
+.remake .readme-example-layout.has-result,:root .comparison-grid,:root .reference-comparison {
+  display:flex; flex-direction:column; gap:0; grid-template-columns:minmax(0,1fr);
+}
+:root .comparison-grid,:root .reference-comparison { gap:24px; }
+.readme-example-layout>* { width:100%; min-width:0; box-sizing:border-box; }
+.readme-example-explanation { padding:16px; border-bottom:1px solid var(--rule); }
+.readme-example-explanation:empty { display:none; }
+.readme-example-explanation>:last-child { margin-bottom:0; }
+.readme-example-result { border:0; min-height:0; padding:0; }
+.readme-example-viewport { position:relative; border-block:1px solid var(--rule); background:var(--example-plot-paper); color:var(--example-plot-ink); }
+.readme-example-viewport[hidden] { display:none; }
+.readme-example-viewport-hint { padding:16px; margin:0!important; font-size:14px; color:var(--example-plot-ink); }
+.readme-example-retained-layer { min-height:clamp(300px,52vw,520px); }
+.readme-example-retained-layer>.vf-frame { background:var(--example-plot-paper); color:var(--example-plot-ink); }
+.readme-example-retained-layer .vf-frame__body { background:var(--example-plot-paper); }
+.readme-example-view-shell { display:flex; flex-direction:column; gap:0; }
+.readme-example-view-selector { flex-direction:row; flex-wrap:wrap; gap:8px; padding:8px; border:0; border-bottom:1px solid var(--rule); }
+.readme-example-view-selector__label { align-self:center; }
+.readme-example-viewport .vf-frame__toolbar { color:var(--example-plot-ink); background:var(--example-plot-paper); }
+/* The visible pointer/selected readout is native SCENE ink in the viewport.
+   Keep the existing semantic output available to assistive technology. */
+.readme-example-viewport .vf-frame__toolbar-coordinates { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.readme-example-viewport .vf-frame__toolbar-button { min-width:44px; min-height:44px; color:inherit; }
+.readme-example-terminal { max-height:20rem; overflow:auto; border-top:1px solid var(--rule); }
+.readme-example-terminal img[data-saved-visual] { display:none; }
+.readme-example-output { min-height:1.5em; max-height:none; white-space:pre; overflow:visible; }
+.readme-result-dialog { color:var(--example-plot-ink); background:var(--example-plot-paper); }
+@media(max-width:620px) {
+ .readme-example-explanation { padding:12px; }
+ .readme-example-retained-layer { min-height:320px; }
+ .readme-example-viewport .vf-frame__toolbar-controls { flex-wrap:wrap; }
+}

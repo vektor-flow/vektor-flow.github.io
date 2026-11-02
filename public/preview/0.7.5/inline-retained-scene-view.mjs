@@ -36,7 +36,8 @@ function ownRetainedScenePackets(packets) {
   ]));
   return packets.map((packet) => ({
     ...packet,
-    metadata: scopeFrameReferences(packet.metadata, frameIds),
+    metadata: {...scopeFrameReferences(packet.metadata, frameIds),
+      scene:{...scopeFrameReferences(packet.metadata.scene, frameIds),native_plot_text:true}},
   }));
 }
 
@@ -58,6 +59,7 @@ export function mountRetainedSceneResult(container, packets, {
     throw new Error("native VfFrame/VfDisplay retained renderer is unavailable");
   }
   const ownedPackets = ownRetainedScenePackets(packets);
+  container.hidden = false;
   const selectors = ownedPackets.map((packet) => packet.metadata.scene.view_selector);
   const hasViewSelector = ownedPackets.length > 1 && selectors.every((selector, index) =>
     selector?.axis === "n" && selector.index === index && selector.count === ownedPackets.length);
@@ -72,7 +74,7 @@ export function mountRetainedSceneResult(container, packets, {
   layer.dataset.vfRenderState = "pending";
   if (separateViewports) {
     layer.style.display = "grid";
-    layer.style.gridTemplateColumns = "repeat(auto-fit,minmax(min(260px,100%),1fr))";
+    layer.style.gridTemplateColumns = "minmax(0,1fr)";
     layer.style.gap = "12px";
   }
   const frames = [];
@@ -96,7 +98,7 @@ export function mountRetainedSceneResult(container, packets, {
       resizable: isWindow,
       closable: isWindow,
       alpha: 1,
-      toolbar: scene.toolbar ?? null,
+      toolbar: scene.toolbar ?? "top",
     });
     frame?.body?.classList?.add("vf-frame__body--transparent");
     if (frame?.root?.style && Array.isArray(scene.pos) && scene.pos.length === 2 &&
@@ -148,11 +150,31 @@ export function mountRetainedSceneResult(container, packets, {
   container.append(viewport);
   let disposed = false;
   const presentationAbort = new AbortController();
-  let resolvePresented;
-  const presented = new Promise(resolve => { resolvePresented = resolve; });
+  let resolvePresented, rejectPresented;
+  const presented = new Promise((resolve,reject) => { resolvePresented = resolve; rejectPresented = reject; });
+  presented.catch(() => {});
+  const renderError = event => {
+    if (disposed) return;
+    layer.dataset.vfRenderState = 'failed';
+    const message = String(event.detail?.message ?? 'Current VKF plot rendering failed');
+    rejectPresented(new Error(message));
+    container.dispatchEvent(new CustomEvent('vf-example-render-error',{bubbles:true,detail:{message}}));
+    dispose();
+  };
+  layer.addEventListener('vf-inline-render-error',renderError);
   const firstPresentations = new Map();
-  const firstPresented = (frameId, record) => {
+  const firstPresented = async (frameId, record) => {
     if (disposed || firstPresentations.has(frameId)) return;
+    try {
+      let ready;
+      do {
+        ready = VfDisplay.nativeLabelFrameStatus?.(frameId)?.ready;
+        await ready;
+      } while (!disposed && ready !== VfDisplay.nativeLabelFrameStatus?.(frameId)?.ready);
+      if (disposed) return;
+      const status = VfDisplay.nativeLabelFrameStatus?.(frameId)?.statistics;
+      if (status?.status === 'FAILED') throw new Error(status.error);
+    } catch (error) {renderError({detail:{message:error.message}});return;}
     firstPresentations.set(frameId, record);
     if (firstPresentations.size !== ownedPackets.length) return;
     layer.dataset.vfRenderState = "visible";
@@ -301,6 +323,7 @@ export function mountRetainedSceneResult(container, packets, {
   });
   const dispose = () => {
     disposed = true;
+    layer.removeEventListener("vf-inline-render-error",renderError);
     presentationAbort.abort();
     resolvePresented(null);
     if (presentFrame) cancelAnimationFrame(presentFrame);

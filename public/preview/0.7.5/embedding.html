@@ -43,7 +43,7 @@
   &lt;strong&gt;Console&lt;/strong&gt;
   &lt;pre id="vkf-console" aria-live="polite"&gt;&lt;/pre&gt;
 &lt;/section&gt;</code></pre>
-<p>In the JavaScript steps, <code>source</code>, <code>viewport</code>, <code>consoleOutput</code> and <code>status</code> refer to these elements. The host attaches its own Run/edit/removal handlers once. It owns <code>controller</code> (the active run's AbortController), <code>scene</code> (the current mount), a source <code>revision</code> counter and the listener AbortController <code>events</code>. The steps share that state; they are excerpts, rather than a complete event-handling client.</p>
+<p>In the JavaScript steps, <code>source</code>, <code>viewport</code>, <code>consoleOutput</code> and <code>status</code> refer to these elements. The host attaches its own Run/edit/removal handlers once. It owns <code>controller</code> (the active run's AbortController), <code>scene</code> (the current mount), a source <code>revision</code> counter, a <code>closed</code> flag and the listener AbortController <code>events</code>. The steps share that state; they are excerpts, rather than a complete event-handling client.</p>
 </section>
 <section id="javascript" class="embedding-reference">
 <h2>3. Select the matching compiler once</h2>
@@ -72,20 +72,25 @@ const runner = createInlineRunner({
 <section id="run" class="embedding-reference">
 <h2>4. Execute, then present the real result</h2>
 <p>On Run, capture the source revision, create the active AbortController and disable repeated clicks. Dispose the previous scene before replacing it. Pass the source to the runner, put stdout/stderr in the console with <code>textContent</code> and hand retained packets to the shared renderer:</p>
-<pre tabindex="0"><code class="language-javascript">// In the host's async Run handler, after clearing the previous mount:
-const result = await runner.run(source.value, {signal: controller.signal});
+<pre tabindex="0"><code class="language-javascript">// Inside the host's async Run handler and its try/catch/finally:
+const runRevision = revision;
+const signal = controller.signal;
+scene?.();
+scene = undefined;
+const result = await runner.run(source.value, {signal});
+if (closed || signal.aborted || revision !== runRevision) return;
 consoleOutput.textContent = result.output.stdout + (result.output.stderr ?? '');
 
 if (result.packets?.length) {
   await ensureInlineRenderer();
+  if (closed || signal.aborted || revision !== runRevision) return;
   const mounted = mountRetainedSceneResult(viewport, result.packets);
   scene = mounted; // Keep the cleanup function for edit, rerun and removal.
   const presented = await mounted.presented;
   // null means this mount was removed before its first presentation.
-  if (presented !== null) status.textContent = 'Completed.';
-} else {
-  status.textContent = 'Completed.';
-}</code></pre>
+  if (presented === null || closed || signal.aborted || revision !== runRevision) return;
+}
+status.textContent = 'Completed.';</code></pre>
 <p>After each <code>await</code>, the complete handler must check that its captured revision still matches and the host has not closed before changing output or installing a scene. An edit can arrive during compiler or renderer initialization. A cancelled or stale run must never overwrite the new source's result.</p>
 <p><code>mountRetainedSceneResult</code> supplies normal plot interaction and the native LaTeX scene text route, including ticks and coordinates. Its returned function removes the mounted scene; <code>.presented</code> resolves after its real first presentation or rejects on a rendering failure. Reuse that renderer rather than reconstructing plots, labels or physics in JavaScript. Plot style and axis visibility belong in the VKF program; the host does not add Axes/Grid selectors or duplicate plot navigation.</p>
 </section>
@@ -102,7 +107,7 @@ consoleOutput.textContent = '';
 // On removal: also detach the host's listeners and await worker shutdown.
 events.abort(); // events is the AbortController used for those listeners.
 await runner.dispose();</code></pre>
-<p>The two cleanup groups above belong to different handlers. An edit cancels the active run and disposes its scene, while leaving the runner available. Removing the host also aborts its registered listeners and awaits <code>runner.dispose()</code>. Do not start a replacement owner while the old one is still closing. If page navigation disposes the owner, a return from the browser's back/forward cache must recreate it before another Run.</p>
+<p>The two cleanup groups above belong to different handlers. An edit cancels the active run and disposes its scene, while leaving the runner available. Removing the host first marks it <code>closed</code>, then cancels its active run, removes its scene, aborts its registered listeners and awaits <code>runner.dispose()</code>. Do not start a replacement owner while the old one is still closing. If page navigation disposes the owner, a return from the browser's back/forward cache must recreate it before another Run.</p>
 <p>For the full website event handling, inspect <a href="current-documentation-examples.mjs">current-documentation-examples.mjs</a> and <a href="example-presentation.mjs">example-presentation.mjs</a>. They connect the same runner and mount APIs to the shared editable examples. <a href="embed-example.html">The panel-area form</a> shows a host input that changes the VKF source. Keep one entry point per page: loading the same event-handling module through different query URLs creates separate owners.</p>
 </section>
 </article></main>

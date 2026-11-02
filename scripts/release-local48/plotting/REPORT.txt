@@ -10,9 +10,47 @@ method table, and the plotting sentence/scope label in the one brief intro.
 All other page bytes/tables, LOCAL48x10 and historical 12/72 accepted, 60 UNRUN,
 0 comparative rows retain their own scopes. No authored program, runtime,
 exporter, prepare, attach, test helper, current candidate or public file is
-changed by this SOURCE delta. Integrate ONLY these three new source files from
-the 3c73fa2 parent into the later current actual baseline; never replay its b2
-ancestry/public tree. Current qualified publication need not wait for this work.
+changed by this SOURCE delta. The original2030 additive child is3ff41 over3c73;
+this2033 repair changes only those same three report files over exact2031
+240fade52528173981321a6a0218b3bc1245019b. Integrate ONLY the child delta into
+the actual current b78/4c6/prerequisite tree; never replay oldb2 ancestry/public
+bytes. Current publication and data recovery must not wait for this report.
+
+Current2031 export compatibility / acceptance
+--------------------------------------------
+The exporter keeps original WHERE/SELECT/timestamp,:id server order and exact
+chosen first1M, with coordinate/timestamp duplicates retained as distinct IDs.
+It now emits21 response pages:50000 accepted initially,19*49999 after one exact
+discarded overlap each, then19 accepted from LIMIT20. Accepted starts are0,
+50000,99999,...,999981. Thus1000020 transported rows are not the population.
+Continuations retain timestamps >= prior last and offset only the full trailing
+timestamp tie count minus1, including ties that span pages. Opaque source IDs
+are never locally lexically sorted. No persisted checkpoint/--resume exists;
+fresh output is exclusive. Old unreceipted100k cannot be accepted or resumed.
+
+check_export_protocol checks this exact method,21 pages/23 HTTP request records,
+accepted counts/starts/overlaps/boundaries, exact original queries with timestamp
+suffix/tie offsets and final LIMIT20, original caps, authentic source revision
+1494466198/1702586741/14191205, and retained before/final metadata response pins.
+Month total remains UNKNOWN_NOT_QUERIED_PROVENANCE_ONLY; only final success
+establishes lowerBound1M. The loader requires the exact2031 exporter source:
+11088 bytes SHA256411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd.
+Changing the exporter method requires a reviewed adapter update; there is no
+silent acceptance of a changed data path.
+
+check_export_files verifies ordinary rows/XY/before/final metadata hashes and
+official schema/revision, then streams all1M source rows against every float32
+XY position, unique ID, eligibility, timestamp order, bounds and page boundaries.
+Tie offsets are recomputed from the full accepted prefix, including boundary
+ties spanning pages. It never drops repeated coordinates. HTTP response bodies
+were not retained by the exporter: their recorded hashes are provenance only,
+not independently rehashed here. Exact discarded-overlap equality and server
+:id ordering within timestamp ties rely on the pinned exporter and authentic
+normal independently reviewed export. A shape-only oracle cannot establish
+actual completeness/order/parity or timing. No new receipt bank is introduced.
+Both small authentic metadata snapshots are linked alongside the export receipt;
+the corpus remains outside public assets. All existing current source/build/
+runtime/output/review checks below remain prerequisites for numeric rows.
 
 Existing inputs / acceptance
 ----------------------------
@@ -134,9 +172,11 @@ review, then existing authorized nonforce GitHub main/Pages workflow. Existing
 public; there is no new hosting/publish command or additional benchmark gate.
 Immediately verify existing target permissions/current remote refs as usual.
 Source has NO remote authority; this handoff is not an execution grant or clock
-extension. Actual2026 STOP563648.194122167 remains unchanged; a future actual may
-run this only after required prior closure, never at the expense of its current
-qualified publication/current causal checks or real data job.
+extension. Actual2026 is closed. Actual2032 already has separate execution
+authority and its own FIRSTFD8915659,4GiB reserve and original STOP566239.475691614
+including preparation. No new permission is needed from this source; run only
+under that existing normal authority, never at the expense of current qualified
+publication/current causal checks or the real data job.
 
 Meaningful causal oracle — ASDATA, no SOURCE execution
 -----------------------------------------------------
@@ -199,6 +239,78 @@ for case in suite['cases']:
 print('Decision oracle passed:', len(suite['cases']), 'TEST-ONLY cases; no product measurements')
 PY
 This command itself has NOT been executed by SOURCE.
+
+Current protocol oracle command, LATER admitted actual ONLY, ASDATA:
+python3 - "$SITE" <<'PY'
+import copy, datetime, importlib.util, json, sys, tempfile, urllib.parse
+from pathlib import Path
+root = Path(sys.argv[1])/'scripts/release-local48/plotting'
+spec = importlib.util.spec_from_file_location('plotting_report', root/'report.py')
+report = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(report)
+fixture = json.loads((root/'report-oracles.json').read_text())['exportProtocol']
+assert fixture['status'] == 'TEST_ONLY_NON_REAL_NO_FILES_NO_MEASUREMENTS_UNRUN'
+baseline = copy.deepcopy(fixture['baseline'])
+recipe = fixture['recipe']
+origin = 'https://data.cityofnewyork.us'
+metadata_url = origin+'/api/views/uacg-pexx.json'
+baseline['requests'] = [dict(url=metadata_url, bytes=100, sha256='b'*64)]
+baseline['completeness']['pages'] = []
+previous = None
+for i, accepted in enumerate(recipe['acceptedRows']):
+    first = datetime.datetime.fromisoformat(recipe['firstTimestamp'])+datetime.timedelta(minutes=i)
+    last = first+datetime.timedelta(seconds=59)
+    boundary = lambda stamp, label: dict(source_row_id='TEST-ONLY-'+label+'-'+str(i),
+                                       tpep_pickup_datetime=stamp.isoformat())
+    baseline['completeness']['pages'].append(dict(start=baseline['completeness']['offsets'][i],
+        acceptedRows=accepted, timestampOffset=0, overlapRows=int(i>0),
+        first=boundary(first,'FIRST'), last=boundary(last,'LAST')))
+    where = baseline['where'] if previous is None else ('('+baseline['where']+
+        ") AND tpep_pickup_datetime >= '"+previous.isoformat()+"'")
+    query = {'$select':baseline['select'], '$where':where, '$order':baseline['order'],
+             '$limit':accepted+int(i>0), '$offset':0}
+    baseline['requests'].append(dict(url=origin+'/resource/uacg-pexx.json?'+urllib.parse.urlencode(query),
+        bytes=recipe['responseBytes'], sha256=recipe['pageResponseHash']))
+    previous = last
+baseline['requests'].append(dict(url=metadata_url, bytes=100, sha256='c'*64))
+assert sum(p['acceptedRows'] for p in baseline['completeness']['pages']) == 1000000
+assert sum(p['acceptedRows']+p['overlapRows'] for p in baseline['completeness']['pages']) == 1000020
+assert baseline['completeness']['pages'][-1]['acceptedRows'] == 19
+for case in fixture['cases']:
+    data = copy.deepcopy(baseline)
+    for change in case['mutations']:
+        target = data
+        for part in change['path'][:-1]: target = target[part]
+        key = change['path'][-1]
+        if change.get('delete'): del target[key]
+        elif 'querySet' in change:
+            parts = urllib.parse.urlsplit(target[key])
+            query = dict(urllib.parse.parse_qsl(parts.query))
+            query.update(change['querySet'])
+            target[key] = urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(query)))
+        else: target[key] = copy.deepcopy(change['set'])
+    try:
+        report.check_export_protocol(data)
+    except (ValueError, KeyError, TypeError, IndexError, AttributeError):
+        assert case['expected'] == 'REJECT', case['id']
+    else:
+        assert case['expected'] == 'ACCEPT_PROTOCOL_ONLY', case['id']
+# No source/XY/metadata files or genuine output pins exist in this small oracle.
+# Protocol shape alone must never qualify the ordinary production loader.
+with tempfile.TemporaryDirectory() as directory:
+    empty = Path(directory)
+    (empty/'export.json').write_text(json.dumps(baseline))
+    result = report.load_attempt(Path(sys.argv[1]).resolve(), empty, None, empty)
+    assert len(result['rows']) == 3 and result['problems']
+    assert all(r['pacedCompletedUpdatesPerSecond'] is None and r['completedUpdates'] is None
+               and r['status'] in ('PENDING','FAILED') for r in result['rows'])
+print('Protocol oracle passed:', len(fixture['cases']), 'TEST-ONLY cases; no real export acceptance')
+PY
+No command above was executed by SOURCE. The existing actual normal report
+regression may execute it without another launcher/job/quota. File-backed
+success and semantic mutation cases use ONLY the genuine complete later actual
+bundle as described in exportProtocol.fileBackedOracleASDATA. Preserve original
+errors and all UNRUN boundaries. No fabricated million-row fixture is required.
 
 File-integrity and publication oracle with the LATER actual's genuine bundle:
 1. Run review-only --format json on exact accepted inputs: three measured rows

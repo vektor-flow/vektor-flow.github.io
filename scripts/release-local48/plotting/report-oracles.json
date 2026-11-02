@@ -465,7 +465,7 @@
         "repetitions": null
       },
       "htmlRequired": [
-        "Paced completed updates/s · includes readback",
+        "Paced completed updates/s \u00b7 includes readback",
         "48.780",
         "Displayed / presentation FPS",
         "Unavailable",
@@ -826,5 +826,333 @@
       ]
     }
   ],
-  "fileIntegrityAndPublicationOracle": "REPORT.txt steps1..6; later ACTUAL genuine bundle only, source did not execute."
+  "fileIntegrityAndPublicationOracle": "REPORT.txt steps1..6; later ACTUAL genuine bundle only, source did not execute.",
+  "exportProtocol": {
+    "status": "TEST_ONLY_NON_REAL_NO_FILES_NO_MEASUREMENTS_UNRUN",
+    "description": "Only the receipt-shape helper is exercised. The a/b/c digests and TEST-ONLY IDs are fabricated oracle markers, never export evidence. No source/XY/metadata or prepared/current output pins exist; production load_attempt must reject this fixture. AcceptedRows sum is exactly1000000; transport rows are1000020; last LIMIT20 accepts19. This is not full-data or benchmark acceptance.",
+    "baseline": {
+      "schema": 1,
+      "status": "EXPORTED_NOT_BENCHMARKED",
+      "dataset": "uacg-pexx",
+      "count": 1000000,
+      "chosenRows": 1000000,
+      "where": "tpep_pickup_datetime >= '2016-01-01T00:00:00' AND tpep_pickup_datetime < '2016-02-01T00:00:00' AND pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95",
+      "select": ":id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude",
+      "order": "tpep_pickup_datetime ASC,:id ASC",
+      "sourceRevision": {
+        "rowsUpdatedAt": 1494466198,
+        "viewLastModified": 1702586741,
+        "tableId": 14191205
+      },
+      "eligibleJanuaryRows": null,
+      "eligibleJanuaryRowsStatus": "UNKNOWN_NOT_QUERIED_PROVENANCE_ONLY",
+      "eligibleJanuaryRowsLowerBound": 1000000,
+      "completeness": {
+        "pageSize": 50000,
+        "completePages": 21,
+        "offsets": [
+          0,
+          50000,
+          99999,
+          149998,
+          199997,
+          249996,
+          299995,
+          349994,
+          399993,
+          449992,
+          499991,
+          549990,
+          599989,
+          649988,
+          699987,
+          749986,
+          799985,
+          849984,
+          899983,
+          949982,
+          999981
+        ],
+        "pagination": "Timestamp suffix with :id ordered tie offset and exact one-row overlap"
+      },
+      "files": {
+        "metadata": {
+          "path": "official-metadata.json",
+          "bytes": 100,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        },
+        "metadataAfter": {
+          "path": "official-metadata-after.json",
+          "bytes": 100,
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      "resourceCaps": {
+        "seconds": 240,
+        "responseBytes": 16777216,
+        "totalResponseBytes": 268435456
+      }
+    },
+    "cases": [
+      {
+        "id": "current21-response-protocol-accepts-only-shape",
+        "mutations": [],
+        "expected": "ACCEPT_PROTOCOL_ONLY"
+      },
+      {
+        "id": "overlap-missing",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              1,
+              "overlapRows"
+            ],
+            "set": 0
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "overlap-double-counted",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              1,
+              "acceptedRows"
+            ],
+            "set": 50000
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "page-gap",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              2,
+              "start"
+            ],
+            "set": 100000
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "page-omitted",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              10
+            ],
+            "delete": true
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "old20-page-count",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "completePages"
+            ],
+            "set": 20
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "order-changed",
+        "mutations": [
+          {
+            "path": [
+              "order"
+            ],
+            "set": ":id ASC"
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "page-order-regression",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              1,
+              "first",
+              "tpep_pickup_datetime"
+            ],
+            "set": "2016-01-01T00:00:00"
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "unverified-revision",
+        "mutations": [
+          {
+            "path": [
+              "sourceRevision",
+              "tableId"
+            ],
+            "set": 1
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "final-metadata-pin-missing",
+        "mutations": [
+          {
+            "path": [
+              "files",
+              "metadataAfter"
+            ],
+            "delete": true
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "final-metadata-response-missing",
+        "mutations": [
+          {
+            "path": [
+              "requests",
+              22
+            ],
+            "delete": true
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "prefix100k",
+        "mutations": [
+          {
+            "path": [
+              "count"
+            ],
+            "set": 100000
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "continuation-query-wrong-offset",
+        "mutations": [
+          {
+            "path": [
+              "requests",
+              2,
+              "url"
+            ],
+            "querySet": {
+              "$offset": "1"
+            }
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "invented-month-total",
+        "mutations": [
+          {
+            "path": [
+              "eligibleJanuaryRows"
+            ],
+            "set": 1000000
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "last-response-wrong-limit",
+        "mutations": [
+          {
+            "path": [
+              "requests",
+              21,
+              "url"
+            ],
+            "querySet": {
+              "$limit": "19"
+            }
+          }
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "nonzero-tie-offset-query-matches-protocol-only",
+        "mutations": [
+          {
+            "path": [
+              "completeness",
+              "pages",
+              1,
+              "timestampOffset"
+            ],
+            "set": 7
+          },
+          {
+            "path": [
+              "requests",
+              2,
+              "url"
+            ],
+            "querySet": {
+              "$offset": "7"
+            }
+          }
+        ],
+        "expected": "ACCEPT_PROTOCOL_ONLY"
+      }
+    ],
+    "fileBackedOracleASDATA": [
+      "On the genuine later actual complete export require check_export_files success and all1000000 IDs/XY checked, retaining coordinate duplicates. Every accepted page boundary must match source rows; timestampOffset must equal full trailing tie count minus1, including ties spanning pages.",
+      "On an own disposable copy retain old pins and mutate one rows/XY/finalmetadata byte: reject. Repin only the disposable mutated file to exercise semantic checks: duplicate source ID including a duplicated overlap, timestamp regression, changed coordinate/XY, boundary mismatch, changed tie offset (and corresponding request query), wrong final revision, and truncated100k with count still1M each reject. These are failure oracles, never qualification evidence.",
+      "Use existing decision/error/publication oracles unchanged: all3 pending/failed rows, authentic error links, unchanged rest-of-page and all copied raw-link bytes. No production fixture acceptance or copied oracle numbers as results."
+    ],
+    "recipe": {
+      "description": "Expand only in the later TEST-ONLY helper oracle. No corpus or output files are fabricated. One page per minute; last boundary at second59; fake100byte response extents and a/b/c hashes.",
+      "firstTimestamp": "2016-01-01T00:00:00",
+      "acceptedRows": [
+        50000,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        49999,
+        19
+      ],
+      "responseBytes": 100,
+      "pageResponseHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  }
 }

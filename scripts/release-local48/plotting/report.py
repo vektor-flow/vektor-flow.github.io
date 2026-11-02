@@ -5,6 +5,7 @@ No benchmark execution, dependency imports, browser, hosting or release gate.
 Without --write this prints a reviewable fragment (or --format json oracle data).
 """
 import argparse
+import datetime
 import hashlib
 import html
 import json
@@ -12,6 +13,8 @@ import math
 from pathlib import Path
 import re
 import shutil
+import struct
+import urllib.parse
 
 TOOLS = {'vkf': 'VKF · current retained plot',
          'plotly': 'Plotly.js · scattergl',
@@ -57,6 +60,129 @@ def same_rect(a, b):
 def same_domain(a, b):
     return (isinstance(a, list) and len(a) == len(b) == 4 and
             all(finite(x) and finite(y) and abs(x-y) <= 1e-8 for x, y in zip(a, b)))
+
+
+def check_export_protocol(dataset):
+    """Check the current exporter receipt, not transport rows as population.
+
+    Raw response bodies are not retained by fetch-tlc.py. Their hashes remain
+    provenance; the file-backed check below and normal independent review are
+    still required. This helper alone cannot qualify data or report numbers.
+    """
+    require(dataset['schema'] == 1 and dataset['status'] == 'EXPORTED_NOT_BENCHMARKED' and
+            dataset['dataset'] == 'uacg-pexx' and dataset['count'] == dataset['chosenRows'] == 1_000_000,
+            'complete official first1M export missing')
+    where = ("tpep_pickup_datetime >= '2016-01-01T00:00:00' AND "
+             "tpep_pickup_datetime < '2016-02-01T00:00:00' AND "
+             'pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95')
+    require(dataset['order'] == 'tpep_pickup_datetime ASC,:id ASC' and
+            dataset['select'] == ':id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude' and
+            dataset['where'] == where, 'different population/filter/order')
+    require(dataset['sourceRevision'] == {'rowsUpdatedAt': 1494466198,
+            'viewLastModified': 1702586741, 'tableId': 14191205}, 'unverified chosen dataset revision')
+    require(dataset['eligibleJanuaryRows'] is None and
+            dataset['eligibleJanuaryRowsStatus'] == 'UNKNOWN_NOT_QUERIED_PROVENANCE_ONLY' and
+            dataset['eligibleJanuaryRowsLowerBound'] == 1_000_000, 'unsupported month total provenance')
+    c = dataset['completeness']
+    starts = [0] + [50_000 + i*49_999 for i in range(20)]
+    require(c['pageSize'] == 50_000 and c['completePages'] == len(c['pages']) == 21 and
+            c['offsets'] == starts and
+            c['pagination'] == 'Timestamp suffix with :id ordered tie offset and exact one-row overlap',
+            'incomplete ordered continuation protocol')
+    requests = dataset['requests']
+    require(len(requests) == 23 and dataset['resourceCaps'] ==
+            {'seconds': 240, 'responseBytes': 16*1024*1024, 'totalResponseBytes': 256*1024*1024},
+            'missing export responses or changed caps')
+    for r in requests:
+        require(type(r['bytes']) is int and 0 < r['bytes'] <= 16*1024*1024 and
+                re.fullmatch(r'[0-9a-f]{64}', r['sha256']), 'invalid response hash/extent')
+    require(sum(r['bytes'] for r in requests) <= 256*1024*1024, 'export response cap exceeded')
+    for r, key in [(requests[0], 'metadata'), (requests[-1], 'metadataAfter')]:
+        require(r['url'] == 'https://data.cityofnewyork.us/api/views/uacg-pexx.json' and
+                all(r[k] == dataset['files'][key][k] for k in ('bytes', 'sha256')),
+                'missing final/before metadata response identity')
+    previous = None
+    for i, (page, r) in enumerate(zip(c['pages'], requests[1:-1])):
+        accepted = 50_000 if i == 0 else 19 if i == 20 else 49_999
+        require(page['start'] == starts[i] and page['acceptedRows'] == accepted and
+                type(page['overlapRows']) is int and page['overlapRows'] == int(i > 0) and
+                type(page['timestampOffset']) is int and 0 <= page['timestampOffset'] < max(1, starts[i]),
+                'page gap/count/overlap mismatch')
+        for boundary in (page['first'], page['last']):
+            require(set(boundary) == {'source_row_id', 'tpep_pickup_datetime'} and
+                    isinstance(boundary['source_row_id'], str) and boundary['source_row_id'],
+                    'missing source page boundary')
+            stamp = datetime.datetime.fromisoformat(boundary['tpep_pickup_datetime'])
+            require(stamp.tzinfo is None and stamp.year == 2016 and stamp.month == 1,
+                    'page boundary outside eligibility')
+        first = datetime.datetime.fromisoformat(page['first']['tpep_pickup_datetime'])
+        last = datetime.datetime.fromisoformat(page['last']['tpep_pickup_datetime'])
+        require(first <= last and (previous is None or previous <= first), 'page order regression')
+        expected_where = where if i == 0 else ('(' + where +
+            ") AND tpep_pickup_datetime >= '" + previous.isoformat() + "'")
+        parsed = urllib.parse.urlsplit(r['url'])
+        query = urllib.parse.parse_qsl(parsed.query, keep_blank_values=True, strict_parsing=True)
+        require(parsed.scheme == 'https' and parsed.netloc == 'data.cityofnewyork.us' and
+                parsed.path == '/resource/uacg-pexx.json' and not parsed.fragment and
+                len(query) == 5 and dict(query) == {'$select': dataset['select'], '$where': expected_where,
+                '$order': dataset['order'], '$limit': str(accepted + int(i > 0)),
+                '$offset': str(page['timestampOffset'])} and (i > 0 or page['timestampOffset'] == 0),
+                'unverified continuation query/order/boundary')
+        previous = last
+    require(sum(p['acceptedRows'] for p in c['pages']) == 1_000_000, 'incomplete accepted population')
+
+
+def check_export_files(dataset, root):
+    """Recheck ordinary retained source/XY/metadata files, including every row."""
+    files = dataset['files']
+    expected = {'rows': 'rows.ndjson', 'xy': 'xy.f32le', 'metadata': 'official-metadata.json',
+                'metadataAfter': 'official-metadata-after.json'}
+    require(set(files) == set(expected), 'complete export files missing')
+    for key, name in expected.items():
+        require(files[key]['path'] == name, 'different export file path')
+        pin_matches(files[key], root/name)
+    for key in ('metadata', 'metadataAfter'):
+        metadata = json.loads((root/expected[key]).read_text())
+        require(metadata['id'] == 'uacg-pexx' and metadata['provenance'] == 'official' and
+                all(metadata.get(k) == v for k, v in dataset['sourceRevision'].items()),
+                'official metadata revision/identity mismatch')
+        columns = {c['fieldName']: c['dataTypeName'] for c in metadata['columns']}
+        require(all(columns.get(k) == v for k, v in {'tpep_pickup_datetime': 'calendar_date',
+                'pickup_longitude': 'number', 'pickup_latitude': 'number'}.items()), 'official schema changed')
+    require(files['xy']['bytes'] == 8_000_000, 'incomplete full float32 population')
+    seen, previous, ties = set(), None, 0
+    bounds = [math.inf, -math.inf, math.inf, -math.inf]
+    with (root/'rows.ndjson').open() as rows, (root/'xy.f32le').open('rb') as xy:
+        for page in dataset['completeness']['pages']:
+            require(page['timestampOffset'] == (ties-1 if previous is not None else 0),
+                    'continuation tie offset differs from accepted source prefix')
+            for i in range(page['acceptedRows']):
+                line = rows.readline()
+                require(line, 'truncated source population/prefix')
+                row = json.loads(line)
+                require(set(row) == {'source_row_id', 'tpep_pickup_datetime', 'pickup_longitude',
+                        'pickup_latitude'}, 'different selected source fields')
+                identity = row['source_row_id']
+                stamp = datetime.datetime.fromisoformat(row['tpep_pickup_datetime'])
+                require(isinstance(identity, str) and identity and identity not in seen and
+                        stamp.tzinfo is None and stamp.year == 2016 and stamp.month == 1 and
+                        (previous is None or previous <= stamp), 'duplicate ID/eligibility/order regression')
+                x, y = float(row['pickup_longitude']), float(row['pickup_latitude'])
+                require(math.isfinite(x) and math.isfinite(y) and -74.3 <= x <= -73.65 and
+                        40.45 <= y <= 40.95, 'source coordinate eligibility mismatch')
+                encoded = struct.pack('<ff', x, y)
+                require(xy.read(8) == encoded, 'all-row source/float32 XY mismatch')
+                fx, fy = struct.unpack('<ff', encoded)
+                bounds = [min(bounds[0], fx), max(bounds[1], fx), min(bounds[2], fy), max(bounds[3], fy)]
+                if i == 0 or i == page['acceptedRows']-1:
+                    boundary = {k: row[k] for k in ('source_row_id', 'tpep_pickup_datetime')}
+                    require(boundary == page['first' if i == 0 else 'last'], 'source/page boundary mismatch')
+                seen.add(identity)
+                ties = ties+1 if stamp == previous else 1
+                previous = stamp
+        require(len(seen) == 1_000_000 and not rows.read(1) and not xy.read(1),
+                'incomplete/extra accepted source population')
+    require(bounds == dataset['bounds'], 'all-row float32 bounds mismatch')
 
 
 def check_output(raw, tool, phase, request, trace, reference):
@@ -229,22 +355,16 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
         export = read(export_root/'export.json', 'export', True)
         require(export == dataset, 'prepared/export receipt differs')
         pin_matches(request['exportReceipt'], export_root/'export.json')
-        require(dataset['status'] == 'EXPORTED_NOT_BENCHMARKED' and dataset['dataset'] == 'uacg-pexx' and
-                dataset['count'] == dataset['chosenRows'] == 1_000_000,
-                'complete official first1M export missing')
-        require(dataset['completeness']['pageSize'] == 50_000 and
-                dataset['completeness']['completePages'] == 20 and
-                dataset['completeness']['offsets'] == list(range(0, 1_000_000, 50_000)),
-                'incomplete ordered export')
-        # Use the existing exporter method constants, without importing/running it.
-        require(dataset['order'] == 'tpep_pickup_datetime ASC,:id ASC' and
-                dataset['select'] == ':id AS source_row_id,tpep_pickup_datetime,pickup_longitude,pickup_latitude' and
-                dataset['where'] == ("tpep_pickup_datetime >= '2016-01-01T00:00:00' AND "
-                "tpep_pickup_datetime < '2016-02-01T00:00:00' AND "
-                'pickup_longitude BETWEEN -74.3 AND -73.65 AND pickup_latitude BETWEEN 40.45 AND 40.95'),
-                'different population/filter/order')
-        require(all(dataset['sourceRevision'].get(k) is not None for k in
-                    ('rowsUpdatedAt', 'viewLastModified', 'tableId')), 'dataset revision missing')
+        # The exact source2031 contract supplies the overlap proof; discarded
+        # HTTP bodies cannot be rehashed or compared from this ordinary bundle.
+        pin_matches({'bytes': 11088, 'sha256':
+            '411c6fee5a99ed8f21a5688e77a8c0aae43bccdab4bc4c507d839e0f5ab0d6dd'},
+            site/'scripts/release-local48/plotting/fetch-tlc.py')
+        check_export_protocol(dataset)
+        check_export_files(dataset, export_root)
+        for key, name in [('metadata', 'official-metadata.json'),
+                          ('metadata-after', 'official-metadata-after.json')]:
+            artifacts[key] = export_root/name
         require(request['viewport'] == {'width': 900, 'height': 600, 'dpr': 1}, 'unmatched inner viewport')
         q = request['quality']
         require(q['shape'] == 'circle' and abs(q['radiusCssPx']-math.sqrt(40/math.pi)) < 1e-8 and
@@ -295,7 +415,7 @@ def load_attempt(site, run, review_path, export_root, error_paths=()):
                             'independent review does not bind exact '+tool+' '+phase+' output')
         release = json.loads((site/SITE_INPUTS['release']).read_text())
         request['currentBinding'] = release['browser_binding']
-    except (KeyError, TypeError, ValueError, OSError) as e:
+    except (KeyError, TypeError, ValueError, OSError, IndexError, AttributeError) as e:
         issues.append(str(e))
     rows = make_rows(request, trace, parity, summary, preflights, measurements, review, issues, errors)
     return dict(rows=rows, request=request, identitySha256=(summary or {}).get('identitySha256'),
@@ -351,6 +471,7 @@ def render(report, prefix):
         '<a href="https://plotly.com/javascript/webgl-vs-svg/">Plotly scattergl</a>',
         '<a href="https://deck.gl/docs/api-reference/core/orthographic-view">deck OrthographicView</a>',
         link('method','Adapter method'), link('request','Exact export / filter / order / quality'), link('export','Export receipt'),
+        link('metadata','Official metadata before'), link('metadata-after','Official metadata after'),
         link('trace','Camera trace'), link('parity','Parity and source/build/runtime pins'),
         link('raw-results','Raw result index'), link('normal-review','Independent normal review')])+'</td></tr>')
     attempt_errors = [link(k, 'Attempt error: '+v.name) for k,v in report['artifacts'].items()

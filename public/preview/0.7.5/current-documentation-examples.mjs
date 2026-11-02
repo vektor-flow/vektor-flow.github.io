@@ -26,6 +26,7 @@ try {
   sessionStorage.removeItem(RUN_STATE);
 } catch {}
 promoteVkfPrograms();
+for (const example of document.querySelectorAll('.readme-example')) prepareExamplePresentation(example);
 if (crossOriginIsolated) restoreBrowserDrafts();
 
 

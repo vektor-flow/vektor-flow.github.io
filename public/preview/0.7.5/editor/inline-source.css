@@ -33,3 +33,10 @@
 .readme code .token.variable { color:#d2a8ff; }
 .readme code .token.function { color:#d2a8ff; }
 .signature-list { white-space:pre; overflow:auto; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+
+.readme :not(pre)>code .token.variable,
+.readme :not(pre)>code .token.function { color:#6639ba; }
+@media(prefers-color-scheme:dark) {
+  .readme :not(pre)>code .token.variable,
+  .readme :not(pre)>code .token.function { color:#d2a8ff; }
+}

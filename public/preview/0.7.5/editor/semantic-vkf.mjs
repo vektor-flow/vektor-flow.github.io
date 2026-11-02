@@ -120,9 +120,18 @@ export function semanticVkfTokens(source) {
         const base=t.value.slice(0,at), suffix=t.value.slice(at+1);
         if(!/^[a-z]{1,4}$/.test(suffix))continue;
         const target=introduced.get(base)??resolve(base);
-        const callable=next?.value==='(' && (target?.callable || structuralFunctions.has(base));
-        // Structural calls need an actual earlier-defined vector argument.
-        const vectorArgument=callable && code.slice(i+2).some(a=>a.kind==='identifier' && resolve(a.value)?.vector);
+        const qualified=prev?.value==='.';
+        const module=qualified?resolve(code[i-2]?.value)?.module:null;
+        const familyKnown=target?.callable || (structuralFunctions.has(base) && (!qualified || module==='stat' || module==='symbolic'));
+        const callable=next?.value==='(' && familyKnown;
+        // Inspect only this call's balanced arguments, not later expressions.
+        let end=i+2,depth=1;
+        for(;end<code.length;end++){
+          if(code[end].value==='(')depth++;
+          if(code[end].value===')' && --depth===0)break;
+        }
+        const argumentRank=Math.max(0,...code.slice(i+2,end).map(a=>resolve(a.value)?.rank??0));
+        const vectorArgument=callable && argumentRank>=suffix.length;
         if((target?.vector && suffix.length <= target.rank) || vectorArgument){structural={base,suffix,callable,target};break;}
       }
       if(structural){
@@ -148,7 +157,7 @@ export function semanticVkfTokens(source) {
     }
     if(functionName) current.symbols.set(functionName,{callable:true,vector:false});
     if(binding){
-      const entry={vector,rank:vector?Math.max(1,rank):0,axes,callable:Boolean(resolve(rhs[0]?.value)?.callable && rhs[1]?.value==='[')};
+      const entry={vector,module:rhs[0]?.value==='.'?rhs[1]?.value:null,rank:vector?Math.max(1,rank):0,axes,callable:Boolean(resolve(rhs[0]?.value)?.callable && rhs[1]?.value==='[')};
       current.symbols.set(binding.value,entry);
       axisBinding(binding.value,entry,current.symbols);
       if(/:\s*$/.test(line))scopes.push({indent,symbols:new Map(),parentBinding:entry,bindingName:binding.value,vector:false,rank:0,axes:new Set()});

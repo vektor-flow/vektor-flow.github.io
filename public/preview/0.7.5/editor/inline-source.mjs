@@ -1,4 +1,4 @@
-import {highlightVkf} from '../code-highlight.mjs';
+import {highlightVkf} from '../code-highlight.mjs?v=e1988-semantic-1';
 const stylesheet = new URL('./inline-source.css',import.meta.url).href;
 if (!document.querySelector(`link[href="${stylesheet}"]`)) {
   const link=document.createElement('link'); link.rel='stylesheet';link.href=stylesheet;document.head.append(link);

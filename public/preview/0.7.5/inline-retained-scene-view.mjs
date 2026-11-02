@@ -225,7 +225,7 @@ export function mountRetainedSceneResult(container, packets, {
       anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),0);
     };
     const media=createSceneMediaCapture({requestStream:()=>createLayeredCanvasCaptureStream({document,
-      layers:[()=>VfDisplay.captureGeomFrameCanvas(fid)],beforeDraw:()=>VfDisplay.captureGeomFrameCanvas(fid)})});
+      layers:[()=>VfDisplay.captureGeomFrameCanvas(fid)]})});
     const video={get recording(){return media.recording;},start:()=>media.startMovie(),async stop(){
       const blob=await media.stopMovie();if (!blob) throw new Error('PLOT_VIDEO_CAPTURE_EMPTY');
       download(new Uint8Array(await blob.arrayBuffer()),blob.type,'vektor-flow-view.webm');return blob;

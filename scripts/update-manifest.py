@@ -8,6 +8,8 @@ if preview.exists():
  m['source']='Scoped stable 0.7.5 UI, ordinary retained plotting and browser/Node ESM embedding; selected compiler source '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Stable qualification is limited to scoped_release in current-compiler-release.json and its named current evidence, including explicitly accepted unchanged components. Broad preview/stable flags describe the incomplete full compiler/platform release; this inventory does not extend qualification.'
  if compiler.get('site_review_iteration', {}).get('enabled'):
   m['source']='Website review without downloads; current compiler binding '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Source-bound affected web/output checks are in current_review_site_evidence. Full compiler/platform release remains unqualified.'
+ if compiler.get('site_review_iteration', {}).get('downloadsOffered') is True:
+  m['source']='Website review with existing pinned Linux console and Node package downloads, whose earlier bindings remain explicit. Current browser compiler binding '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Availability does not extend archive or full compiler/platform qualification.'
  if compiler.get('site_review_iteration', {}).get('runEnabled') is False:
   m['source']='Pre-release website review with Run disabled. Stored compiler assets are inactive historical bytes. Latest compiler execution and enabled release qualification remain UNRUN; current disabled-mode evidence is in current_review_site_evidence.'
   if compiler.get('current_candidate_verification'):

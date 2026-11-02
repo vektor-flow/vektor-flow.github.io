@@ -142,8 +142,19 @@ def verify_current_package(preview, release):
 def verify_current_review_site(preview, release):
     expected, composition, components, compiler, binding, source = verify_current_runtime(preview, release)
     mode = release['site_review_iteration']
-    need(mode['enabled'] is True and mode['downloadsOffered'] is False, 'explicit no-download review mode required')
-    need(release['download_packages_offered'] is False and release['release_qualified'] is False, 'review mode cannot claim release/download qualification')
+    offers_pinned = mode.get('downloadsOffered') is True
+    need(mode['enabled'] is True and type(mode.get('downloadsOffered')) is bool, 'explicit review download policy required')
+    need(release['download_packages_offered'] is offers_pinned and release['release_qualified'] is False, 'download availability cannot imply full release qualification')
+    if offers_pinned:
+        policy = read(Path(__file__).with_name('review-site-policy.json'))
+        need(policy['mode'] == 'website-review-pinned-downloads' and policy['downloadsEnabled'] is True and policy['fullReleaseQualified'] is False, 'pinned download policy mismatch')
+        offer = release['pinned_downloads']
+        checksums = read(preview / offer['checksums'])
+        need(checksums['fullReleaseQualified'] is False, 'archive full release remains unqualified')
+        need(set(offer['archives']) == {row['path'] for row in checksums['archives']}, 'offered archive selection mismatch')
+        for row in checksums['archives']:
+            pinned(preview, row)
+        need(checksums['compilerBinding'] != binding, 'earlier archive must not be relabeled as current website compiler')
     report = read(pinned(preview, release['current_review_site_evidence']))
     if mode.get('runEnabled') is False:
         need(mode.get('latestCompilerRequired') is True and mode.get('latestCompilerRunStatus') == 'UNRUN', 'latest compiler must remain deferred')
@@ -162,7 +173,7 @@ def verify_current_review_site(preview, release):
     need(report['frontendBinding'] == binding and report['sourceCommit'] == source, 'review evidence runtime mismatch')
     need(report['browserClosed'] and report['serverClosed'] and report['noNewDownloads'], 'review browser/download checks incomplete')
     need(report['changedSourceChecks'] and all(row['passed'] is True for row in report['changedSourceChecks']), 'changed source/full output controls incomplete')
-    need(all(report['presentation'][key] is True for key in ['initialOutputs', 'runReplacesOutput', 'prismIndices', 'plainCopy', 'realEdit', 'mobileOneRowMenu', 'anchors', 'noDownloads']), 'review presentation controls incomplete')
+    need(all(report['presentation'][key] is True for key in ['initialOutputs', 'runReplacesOutput', 'prismIndices', 'plainCopy', 'realEdit', 'mobileOneRowMenu', 'anchors', 'pinnedDownloads' if offers_pinned else 'noDownloads']), 'review presentation controls incomplete')
     for row in report['sourceFreeze']['files']:
         pinned(preview, row)
     baseline = read(Path(__file__).with_name('review-site-download-baseline.json'))

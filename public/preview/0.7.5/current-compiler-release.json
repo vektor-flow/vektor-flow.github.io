@@ -160,8 +160,8 @@
     "bytes": 55656,
     "sha256": "e49da6764a4af1fd08e906d359fa47eac117d71ad07da1d4067d07336b2993a4"
   },
-  "publication_status": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
-  "download_packages_offered": false,
+  "publication_status": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
+  "download_packages_offered": true,
   "physical_gpu_tested": false,
   "current_distribution": {
     "enabled": false,
@@ -174,7 +174,7 @@
   "site_review_iteration": {
     "enabled": true,
     "runEnabled": true,
-    "downloadsOffered": false,
+    "downloadsOffered": true,
     "fullReleaseQualified": false,
     "compilerOptimization": "Minimal shared lexical-capture/front-end consumers rebuilt with exact current dependency reuse; native coordinate fix retained, current O1 dotted-index/simplify/coalesce/security helpers preserved; unchanged formatter actual binding retained."
   },
@@ -241,5 +241,13 @@
     "failed": 0,
     "unrun": 60,
     "comparativeSamples": 0
+  },
+  "pinned_downloads": {
+    "checksums": "downloads/current075-checksums.json",
+    "archives": [
+      "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "downloads/vkf-canonical-0.7.5-ffca-host96d0ff98-owner.tar.gz"
+    ],
+    "qualification": "Existing named console/package scopes only; archive bindings differ from current website compiler. No new artifact or full-release qualification."
   }
 }

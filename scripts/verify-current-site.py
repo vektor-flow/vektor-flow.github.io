@@ -47,8 +47,10 @@ if preview.exists():
   expected_preview = verify_current_distribution(preview, current_release)
  elif review_mode:
   assert current_release['status'] == 'private-candidate'
-  assert current_release['publication_status'] == manifest['publication'] == 'PUBLISHED_REVIEW_SITE_NO_DOWNLOADS'
-  assert current_release['download_packages_offered'] is False
+  offers_pinned = current_release.get('site_review_iteration', {}).get('downloadsOffered') is True
+  publication = 'PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS' if offers_pinned else 'PUBLISHED_REVIEW_SITE_NO_DOWNLOADS'
+  assert current_release['publication_status'] == manifest['publication'] == publication
+  assert current_release['download_packages_offered'] is offers_pinned
   from current_package import verify_current_review_site
   expected_preview = verify_current_review_site(preview, current_release)
  else:

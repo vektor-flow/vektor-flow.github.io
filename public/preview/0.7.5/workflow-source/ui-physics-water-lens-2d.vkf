@@ -4,6 +4,9 @@
 :.math
 circle_x(angle:num): cos(angle)
 circle_y(angle:num): sin(angle)
+
+point2(x:num,y:num) -> [num:2]: [x,y]
+point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
 scene():
     view: .ui.viewport
     index: 1.5

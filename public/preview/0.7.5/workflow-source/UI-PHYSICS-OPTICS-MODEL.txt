@@ -1,0 +1,165 @@
+CURRENT UI + PHYSICS / OPTICS INTERFACES — source candidate, 2026-11-03
+
+Start with EX01-recovered-lit-rooms-2d.vkf. It consolidates the original three-room
+proof at bootstrap/seed Git cfb0f75c, examples/generated/readme/ui_physics_layer_lighting.vkf.
+ROOM-PROVENANCE.json pins exact origin. The original image was a real authored
+metadata-driven Python visual proof. This candidate moves its calculations into
+normal VKF; it does not execute that historical renderer or inherit its PASS.
+Room coordinates, source (-.35,0), middle-third openings, mirror endpoints,
+reflectivity .72, finite-aperture spread .10, falloff .7666666667 and shadow easing
+base .0166666667/growth .16 remain explicit in the VKF source. The sampled field
+has 676x226 vertices. This resolution is an explicit current candidate, not a
+claim that the historical metadata contained that mesh population. Original
+1400x900 image and its pixel-oracle provenance remain historical.
+
+OWNERSHIP AND ACTUAL API PATH
+Scene files live under UI workflow-source, outside Physics exports. General
+physical functions live in compiler/self_hosted/stdlib/physics/optics.vkf and the
+existing physics.vkf/rigid.vkf modules. Native arrays and named u/v/t axes feed
+.ui.viewport.add, push and show. Scalar laws remain inspectable VKF; the host
+consumes compiler-produced geometry, colors, materials, camera and light data.
+The compiler frontend admits fields in native/lowering/expression_call_stages_5.cpp.
+vkf_retained_scene_packet.hpp validates/indexes material geometry; the executed
+UI formatter vkf_ui_effect_packets.hpp must preserve the same options. Native
+scene normalization is vf-ui/vf-native-scene.js; GPU shading and the established
+planar mirror/aperture/shadow implementations are geom/vf-geom-wgpu.js.
+No scene-specific host solver or hardcoded room/curve was added.
+
+The same source variables supply material optical_index and ray-law index, and
+mirror endpoints supply both the displayed line and optical normals/aperture.
+EX01 reflects the LIGHT SOURCE into a virtual source. It uses finite sided
+aperture gates and source-to-hit/hit-to-receiver occlusion. It has no reflected
+camera, offscreen mirror view or degenerate 3D aperture. Normalized finite-source
+falloff and smoothstep penumbra are declared visual/geometric approximations.
+Original reflected display exposure 1.35 is applied after optical transport;
+it is not an energy gain in the reflection law. Edit source_x then Run to move
+source, reflected illumination and visible light together. Continuous moving
+source interaction is not claimed by this initial restored room chunk.
+
+MATERIAL CONTRACT
+roughness/reflectivity/emissivity/transparency must be finite in [0,1];
+optical_index must be finite positive; emission is finite nonnegative.
+Transparency maps to alpha=1-transparency and defaults depth writes off;
+authors may explicitly choose depth_write. Generic roughness and procedural
+roughness modulation affect the existing Blinn specular exponent. A derivative
+height-normal perturbation provides microdetail without changing vertices,
+silhouette, collider mass or inertia. This is not GGX/full PBR, arbitrary image
+normal mapping, physical displacement or a changed contact surface.
+Emissivity/emission currently mean normalized visible emissive gain. Direct
+illumination uses an explicit light. No automatic GI, temperature/spectral
+blackbody radiation or thermally calibrated emissivity is claimed. IOR is
+preserved metadata in the draw route and actually consumed by the VKF optical
+interface; the shader does not turn arbitrary transparent geometry into a
+refractive ray tracer. EX05 draws actual computed entry/internal/exit rays.
+
+LIGHT / SHADOW / VIEW CONTRACT
+set_geom_options(render_options:(show_light_markers:true,light_flares:true,...))
+uses the existing generic light marker/flare path. Finite source_radius/spread
+controls the existing geometric shadow easing. EX01 instead computes its authored
+2D room visibility/easing in VKF arrays; this is live calculated illumination,
+not a manually painted lighting texture. Source colors and geometry are actual
+outputs and remain owned by the ordinary renderer during pan/zoom.
+EX02 uses genuine planar 3D surfaces. surface_system.kind=mirror is lowered to
+screen; its camera refers to current frame and reflect_mirror_mesh_id. The
+maintained adapter derives the reflected eye and an off-axis aperture/frustum
+from transformed surface corners. A separate screen.camera renders a second
+view. A linked reflect_of_light_id/reflect_mirror_mesh_id models sun-like reflected
+illumination. Actual framebuffer/reflection/flare/shadow correctness is UNRUN.
+All scene sources use existing camera navigation. EX01 has 2D mode; 3D benches
+set add_camera explicitly. Actual repeated pan/orbit and zoom-out/in qualification
+is required on BOTH native UI and the DEPLOYED site, not inferred from source.
+
+POLARIZATION / ENERGY / UNITS
+Four real Stokes components [I,Q,U,V] represent a per-ray incoherent ensemble:
+Q=Is-Ip, U=2Re(Es Ep*), V=+2Im(Es Ep*). This explicitly chosen V sign differs
+from some conventions. Ideal filters absorb rejected power without renormalizing.
+Zero intensity requires zero polarization; relative validity protects dim signals.
+The local interface basis is s perpendicular to incidence plane and p completing
+its transverse basis. Call rotate_stokes for a changed plane. Coplanar lens/ray
+examples share s, so they need no guessed 3D basis transport. Reflection includes
+signed Fresnel cross terms; TIR retains relative complex phase. No phase coherence
+between separate rays, diffraction, interference, spectral dispersion, absorbing
+complex-index solids or general birefringent specimen is supplied. POM here means
+a filter/analyzer and isotropic-interface bench, not a complete microscope.
+Lossless real-index interfaces use Rs/Rp and Ts=1-Rs,Tp=1-Rp as ray POWER fractions,
+not field amplitudes or an unexplained n-squared radiance factor. I is watts only
+when input source I is watts. Room normalized light intensity is a separate model.
+Lens first transmitted branch records omitted reflected power; ghost paths are
+not recursively traced. Circle hit tolerances target metre-scale examples; no
+arbitrary nano-optic scale robustness claim. Angles are radians in laws and degrees
+only on plot axes. Geometric coordinates are explicit SI metres where labelled.
+
+METHOD CHOICES, PRIMARY REFERENCES AND COST
+NIST SCATMECH documents Stokes/Mueller and Jones representations. Four real Stokes
+values support unpolarized and partly polarized sources; Jones alone represents
+fully polarized coherent fields. Sparse filter/interface formulas avoid a stored
+16-value Mueller matrix per event. Full wave grids would solve different physics
+and are not a justified replacement for these ray experiments.
+https://pages.nist.gov/SCATMECH/docs/stokesvector.htm
+https://pages.nist.gov/SCATMECH/docs/elements.htm
+PBRT's authors derive geometric reflection/refraction and dielectric Fresnel laws.
+Exact smooth-interface coefficients give Brewster behavior; replacing these with
+an unpolarized approximation would lose the s/p minimum. Its microfacet chapter
+motivates a future GGX energy-aware renderer, while this minimal patch retains
+existing Blinn behavior and declares its limits.
+https://pbr-book.org/4ed/Reflection_Models/Specular_Reflection_and_Transmission
+https://pbr-book.org/4ed/Reflection_Models/Roughness_Using_Microfacet_Theory
+Edmund Optics' ball-lens equations independently give EFL=nR/[2(n-1)] and
+BFL=EFL-R in air. R=1,n=1.5 has near-axis focus x=1.5 and first-branch central
+power .96^2=.9216. Larger apertures have spherical aberration, not universal focus.
+https://www.edmundoptics.eu/knowledge-center/application-notes/optics/understanding-ball-lenses
+Existing elastic source uses six generalized DOFs, consistent mass and implicit
+midpoint, with real small-strain/rotation checks and an energy/work ledger.
+This preserves a meaningful contact/virtual-work seam. It is not a full tree,
+large-deformation FEM or a scalar spring standing in for bending. EX04 derives
+wind drag loads from prescribed air speed; it does not solve an air pressure field.
+Existing rigid replay remains the current backend, rather than a host replacement.
+Its source admission/runtime availability, friction/rolling and multi-contact
+behavior must be verified for the exact scene candidate.
+For EM, the current Lorentz force rate remains explicit. Primary Boris-integrator
+work compares phase accuracy and structure preservation, useful if a particle
+pusher is actually integrated; this source does not add Maxwell/PIC or rename
+polarization as full EM.
+https://arxiv.org/abs/1809.04378
+For fluid motion, the current Newtonian local rate requires supplied pressure,
+advection and boundaries. Cheap analytic cylinder potential flow has a slip
+boundary and cannot honestly replace viscous water around irregular rough rocks.
+EX03 therefore remains open rather than claiming a new fluid solver.
+https://www.damtp.cam.ac.uk/user/tong/fluids/fluids1.pdf
+Diffusion flux/rate similarly require actual spatial operators. Those laws and
+existing unit rejection controls remain preserved, not silently declared complete
+spatial simulations or hidden under an optics-only coverage claim.
+
+REALTIME AND COMPOSITION BOUNDARY
+Target: all supported physics plus optics/update/render/FULLFRAME <10 ms, on
+native AND deployed site at matched correct candidate/workload/quality. It is
+UNMEASURED for these sources. Separate first compile/load/library preparation,
+geometry/lightfield setup, physics integration, optical updates, transfer, CPU
+render submission, GPU completion and presentation cadence. Native numeric
+process time, FPS/vsync, local browser-only output and a renderer-only frame do
+not prove this target. Temporal sources currently compute real physics samples
+through normal VKF laws at Run/preparation and then use existing temporal array
+playback; do not count playback as a fresh physical integration benchmark.
+View-only changes should reuse authoritative state/geometry without advancing
+physics. Any change to state/material/topology must invalidate affected outputs.
+Optimize only actual measured bottlenecks, retain output quality and original
+fixture populations; no unmeasured fast/world-class/fullGPU claim.
+
+FIXED COVERAGE AND REMAINING WORK
+EX01 is the recovered room plus mirror light; EX02 is the 3D die/mirror/screen;
+EX04 is a two-clamped-edge wind specimen with grass; EX05 is lens/aperture;
+EX06 is polarization/Brewster. All are SOURCE candidates, no current native+site
+running PASS claimed. EX03 water around rough rocks still needs real boundary/
+pressure/state integration; water-interface Snell/Fresnel component is available.
+EX04 has no tree parent/contact assembly. EX02 has no qualified simultaneous
+irregular multi-body world or rolling/spin material acceptance yet. Shared mass,
+full inertia, geometry edits/caches, deformable contact and same-state debug/
+appearance integration remain explicit. Original stones5, tree2592 nodes,
+air64000/grass81920 and waterwheel1905 positions remain separate authored fixtures.
+EM fields, diffusion spatial evolution, irregular2D AND3D simultaneous contacts,
+fluid pressure/boundaries and original-population acceptance are not completed
+by the five new source candidates. The wider collection MASTER N is UNKNOWN
+pending dedicated inventory/review; the fixed six showcases do not mean all prior
+examples. No legacy deletion is performed without a concrete canonical mapping.
+Published fd43f292/native824/browser9fc/library0b63 remains distinct from private
+native2f82/4b369/ea894 plus cleanedb65 or elastic2e3 and these new optics sources.

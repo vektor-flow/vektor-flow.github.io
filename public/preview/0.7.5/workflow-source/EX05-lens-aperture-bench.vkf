@@ -1,0 +1,46 @@
+# EX05: solid ball lens + aperture + actual entry/exit Snell/Fresnel ray power.
+# Orbit/zoom OUT+IN with the existing camera. Edit aperture/index then Run.
+# Collimated incoherent rays; no coherent laser or framebuffer ray tracing.
+optics:.physics.optics
+:.math
+sphere_x(theta:num,phi:num): cos(theta)*sin(phi)
+sphere_y(theta:num,phi:num): sin(theta)*sin(phi)
+sphere_z(phi:num): 0.8+cos(phi)
+
+point2(x:num,y:num) -> [num:2]: [x,y]
+point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
+scene():
+    view: .ui.viewport
+    index: 1.5
+    aperture: 0.2
+    top: optics.ball_lens_ray(aperture,1,index,1.5)
+    middle: optics.ball_lens_ray(0,1,index,1.5)
+    bottom: optics.ball_lens_ray(-aperture,1,index,1.5)
+    top_points: top.points >> [$.0,$.1,0.8]
+    middle_points: middle.points >> [$.0,$.1,0.8]
+    bottom_points: bottom.points >> [$.0,$.1,0.8]
+    theta: [0..48]*2*pi/48
+    phi: [0..24]*pi/24
+    x: sphere_x(theta_u,phi_v)
+    y: sphere_y(theta_u,phi_v)
+    z: sphere_z(phi_v)
+    floor: [[-3.5,-2,-0.25],[2,-2,-0.25],[2,2,-0.25],[-3.5,2,-0.25]]
+    faces: [[0,1,2],[0,2,3]]
+    aperture_top: [[-2,aperture,0.3],[-2,0.7,0.3],[-2,0.7,1.3],[-2,aperture,1.3]]
+    aperture_bottom: [[-2,-0.7,0.3],[-2,-aperture,0.3],[-2,-aperture,1.3],[-2,-0.7,1.3]]
+    f: optics.fresnel(1,index,1)
+    view.set_geom_options(background:[0.025,0.035,0.06,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+    view.add(p_up:floor,faces_uvw:faces,id:"bench-shadow-receiver",color:[0.16,0.23,0.31,1],roughness:0.65)
+    view.add(x:x_uv,y:y_uv,z:z_v,id:"solid-lens",color:[0.3,0.65,0.95,1],optical_index:index,reflectivity:f.rs,transparency:0.8,roughness:0,casts_shadow:false)
+    view.add(p_up:aperture_top,faces_uvw:faces,id:"aperture-upper",color:[0.35,0.4,0.48,1],roughness:0.4,casts_shadow:true)
+    view.add(p_up:aperture_bottom,faces_uvw:faces,id:"aperture-lower",color:[0.35,0.4,0.48,1],roughness:0.4,casts_shadow:true)
+    view.add(p:top_points_uc,id:"upper-transmitted-ray",color:[1,0.65,0.12,top.state.0],w:3)
+    view.add(p:middle_points_uc,id:"axis-transmitted-ray",color:[1,0.65,0.12,middle.state.0],w:3)
+    view.add(p:bottom_points_uc,id:"lower-transmitted-ray",color:[1,0.65,0.12,bottom.state.0],w:3)
+    view.add_light(id:"visible-illuminator",kind:"spot",pos:[-2.5,-1,3],target:[0,0,0],color:[1,0.85,0.55,1],intensity:8,source_radius:0.12,spread:1,inner_cone_deg:20,outer_cone_deg:35,range:12,casts_shadow:true,show_marker:true)
+    view.add_camera(pos:[4,-6,4],target:[-0.5,0,0.7],up:[0,0,1],fov:42)
+    view.push(x_label:"x (m)",y_label:"y (m)",z_label:"z (m)")
+    view.show()
+    :: optics.detector(top.state)
+    :: top.rejected_power
+scene()

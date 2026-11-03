@@ -1,0 +1,65 @@
+# EX02: actual rigid replay state drives SAME 3D die geometry and pips.
+# Current rigid backend/rolling-contact acceptance remains candidate-specific.
+# Mirror camera/frustum and camera screen use existing planar surface renderer.
+# Orbit/pan/zoom OUT+IN and time toolbar; no host physics or canned pose curve.
+rigid:.physics.rigid
+si:.physics.units
+vertices: [[-0.25,-0.25,-0.25],[0.25,-0.25,-0.25],[0.25,0.25,-0.25],[-0.25,0.25,-0.25],[-0.25,-0.25,0.25],[0.25,-0.25,0.25],[0.25,0.25,0.25],[-0.25,0.25,0.25]]
+faces: [[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]]
+pips: [[0,-0.252,0],[0.252,-0.08,-0.08],[0.252,0.08,0.08],[-0.09,-0.09,0.252],[0,0,0.252],[0.09,0.09,0.252]]
+initial: rigid.prepare_si(vertices,faces,1,0.6,0.2,[-0.8,0,0.6],[0,0,0,1],[0.7,0,0],[0,2.8,0],[0,0,-9.81])
+rotate(point:[num:3],q:[num:4]):
+    # Canonical pose quaternion is x,y,z,w (same body axes as collider).
+    tx: 2*(q.1*point.2-q.2*point.1)
+    ty: 2*(q.2*point.0-q.0*point.2)
+    tz: 2*(q.0*point.1-q.1*point.0)
+    [point.0+q.3*tx+q.1*tz-q.2*ty,point.1+q.3*ty+q.2*tx-q.0*tz,point.2+q.3*tz+q.0*ty-q.1*tx]
+world_point(time:num,point:[num:3]):
+    state: rigid.step(initial,time*si.s)
+    local: rotate(point,state.orientation)
+    [local.0+num(state.position.0/si.m),local.1+num(state.position.1/si.m),local.2+num(state.position.2/si.m)]
+die_x(time:num,vertex:num):
+    p: world_point(time,vertices.(int(vertex)))
+    p.0
+die_y(time:num,vertex:num):
+    p: world_point(time,vertices.(int(vertex)))
+    p.1
+die_z(time:num,vertex:num):
+    p: world_point(time,vertices.(int(vertex)))
+    p.2
+pip_x(time:num,vertex:num):
+    p: world_point(time,pips.(int(vertex)))
+    p.0
+pip_y(time:num,vertex:num):
+    p: world_point(time,pips.(int(vertex)))
+    p.1
+pip_z(time:num,vertex:num):
+    p: world_point(time,pips.(int(vertex)))
+    p.2
+scene():
+    view: .ui.viewport
+    time: [0..120]/60
+    vertex: [0..7]
+    pip: [0..5]
+    x: die_x(time_t,vertex_u)
+    y: die_y(time_t,vertex_u)
+    z: die_z(time_t,vertex_u)
+    px: pip_x(time_t,pip_i)
+    py: pip_y(time_t,pip_i)
+    pz: pip_z(time_t,pip_i)
+    floor: [[-2,-2,0],[2,-2,0],[2,2,0],[-2,2,0]]
+    mirror: [[-1.5,1.2,0.1],[1.5,1.2,0.1],[1.5,1.2,2],[-1.5,1.2,2]]
+    screen: [[-1.8,-0.5,0.4],[-1.8,0.5,0.4],[-1.8,0.5,1.4],[-1.8,-0.5,1.4]]
+    quad: [[0,1,2],[0,2,3]]
+    view.set_geom_options(background:[0.025,0.035,0.055,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+    view.add(p_up:floor,faces_uvw:quad,id:"floor",color:[0.22,0.26,0.32,1],roughness:0.55,texture:(kind:"checker",roughness_modulation:0.1,bump_strength:0.04,detail_frequency:8))
+    view.add(x:x_tu,y:y_tu,z:z_tu,faces_uvw:faces,t:time,t_mode:"mirror",id:"die",color:[0.9,0.85,0.7,1],roughness:0.25,reflectivity:0.15,casts_shadow:true)
+    view.add(x:px_ti,y:py_ti,z:pz_ti,t:time,t_mode:"mirror",id:"die-pips",color:[0.02,0.02,0.025,1],s:7)
+    view.add(p_up:mirror,faces_uvw:quad,id:"mirror",color:[0.2,0.23,0.28,1],roughness:0.02,reflectivity:0.85,surface_system:(kind:"mirror",reflectivity:0.85,camera:(reflect_of_frame_id:"current",reflect_mirror_mesh_id:"mirror",reflect_eye_only:true,lock_aperture_camera:true)))
+    view.add(p_up:screen,faces_uvw:quad,id:"camera-screen",color:[0.1,0.1,0.1,1],surface_system:(kind:"screen",reflectivity:1,camera:(pos:[2,-2,1.8],target:[0,0,0.4],up:[0,0,1],fov:40)))
+    view.add_light(id:"sun",pos:[-1,-1.5,3],color:[1,0.85,0.55,1],intensity:7,source_radius:0.12,spread:1,range:12,casts_shadow:true,show_marker:true)
+    view.add_light(id:"mirror-sun-reflection",kind:"projected",pos:[0,0,1],reflect_of_light_id:"sun",reflect_mirror_mesh_id:"mirror",intensity:1,source_radius:0.12,spread:1,casts_shadow:true)
+    view.add_camera(pos:[4,-5,3],target:[0,0,0.7],up:[0,0,1],fov:40)
+    view.push()
+    view.show()
+scene()

@@ -1,0 +1,276 @@
+# Geometrical, isotropic lossless dielectric optics. Angles in radians.
+# Stokes [I,Q,U,V]: Q=Is-Ip, U=2Re(Es Ep*), V=2Im(Es Ep*).
+# Each ray owns a transverse (s,p) basis. Interfaces below require that basis;
+# rotate_stokes changes its axes before/after a differently oriented interface.
+# No coherence between separate rays, interference, dispersion or scattering.
+_optics_math: .math
+
+finite(x:num):
+    (x = x) /\ ((_optics_math.abs(x) - _optics_math.abs(x)) = 0)
+
+validate_stokes(s:[num:4]) -> [num:4]:
+    (finite(s.0) /\ finite(s.1) /\ finite(s.2) /\ finite(s.3) /\ s.0 >= 0)?! "optics: invalid Stokes state"
+    s.0 = 0?
+        (s.1 = 0 /\ s.2 = 0 /\ s.3 = 0)?! "optics: zero power must have zero polarization"
+        @: s
+    # Relative admission keeps dim signals physical; no absolute power floor.
+    q: s.1/s.0
+    u: s.2/s.0
+    v: s.3/s.0
+    (q*q+u*u+v*v <= 1.000000000001)?! "optics: polarization exceeds total power"
+    s
+
+unpolarized(power:num) -> [num:4]:
+    (finite(power) /\ power >= 0)?! "optics: nonnegative finite power required"
+    [power,0,0,0]
+
+linear(power:num,angle:num) -> [num:4]:
+    (finite(power) /\ power >= 0 /\ finite(angle))?! "optics: invalid linear source"
+    [power,power*_optics_math.cos(2*angle),power*_optics_math.sin(2*angle),0]
+
+rotate_stokes(state:[num:4],angle:num) -> [num:4]:
+    s: validate_stokes(state)
+    (finite(angle))?! "optics: finite basis angle required"
+    c: _optics_math.cos(2*angle)
+    h: _optics_math.sin(2*angle)
+    [s.0,c*s.1+h*s.2,0-h*s.1+c*s.2,s.3]
+
+# Ideal linear polarizer: absorbs rejected power; no artificial renormalization.
+polarizer(state:[num:4],angle:num) -> [num:4]:
+    s: validate_stokes(state)
+    (finite(angle))?! "optics: finite polarizer angle required"
+    c: _optics_math.cos(2*angle)
+    h: _optics_math.sin(2*angle)
+    power: (s.0+c*s.1+h*s.2)/2
+    # Only admitted relative floating roundoff may fall slightly below zero.
+    power < 0?
+        .power: 0
+    [power,power*c,power*h,0]
+
+# Real indices, nonmagnetic media, cos_i in [0,1], normal against incidence.
+# ts/tp are power transmittances (not electric field amplitudes).
+fresnel(n1:num,n2:num,cos_i:num) -> (rs:num,rp:num,ts:num,tp:num,cos_t:num,tir:num,cross_re:num,cross_im:num):
+    (finite(n1) /\ finite(n2) /\ n1 > 0 /\ n2 > 0 /\ finite(cos_i) /\ cos_i >= 0 /\ cos_i <= 1)?! "optics: positive indices and incidence cosine in [0,1] required"
+    n1 = n2? @: (rs:0,rp:0,ts:1,tp:1,cos_t:cos_i,tir:0,cross_re:0,cross_im:0)
+    ratio: n1/n2
+    sin_t2: ratio^2*(1-cos_i^2)
+    sin_t2 >= 1?
+        # TIR complex Fresnel phase retained for polarization within each ray.
+        gamma: _optics_math.sqrt(sin_t2-1)
+        a: n1*cos_i
+        b: n2*gamma
+        c: n2*cos_i
+        d: n1*gamma
+        sr: (a*a-b*b)/(a*a+b*b)
+        si: (0-2*a*b)/(a*a+b*b)
+        pr: (c*c-d*d)/(c*c+d*d)
+        pi: (0-2*c*d)/(c*c+d*d)
+        @: (rs:1,rp:1,ts:0,tp:0,cos_t:0,tir:1,cross_re:sr*pr+si*pi,cross_im:si*pr-sr*pi)
+    ct: _optics_math.sqrt(1-sin_t2)
+    rs: (n1*cos_i-n2*ct)/(n1*cos_i+n2*ct)
+    rp: (n2*cos_i-n1*ct)/(n2*cos_i+n1*ct)
+    (rs:rs^2,rp:rp^2,ts:1-rs^2,tp:1-rp^2,cos_t:ct,tir:0,cross_re:rs*rp,cross_im:0)
+
+reflected_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
+    s: validate_stokes(state)
+    f: fresnel(n1,n2,cos_i)
+    a: (f.rs+f.rp)/2
+    b: (f.rs-f.rp)/2
+    [a*s.0+b*s.1,b*s.0+a*s.1,f.cross_re*s.2-f.cross_im*s.3,f.cross_im*s.2+f.cross_re*s.3]
+
+transmitted_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
+    s: validate_stokes(state)
+    f: fresnel(n1,n2,cos_i)
+    a: (f.ts+f.tp)/2
+    b: (f.ts-f.tp)/2
+    c: _optics_math.sqrt(f.ts*f.tp)
+    [a*s.0+b*s.1,b*s.0+a*s.1,c*s.2,c*s.3]
+
+# Detector sums ray powers incoherently; value is watts if source I is watts.
+detector(state:[num:4]):
+    s: validate_stokes(state)
+    s.0
+
+unit2(v:[num:2]) -> [num:2]:
+    length: _optics_math.sqrt(v.0*v.0+v.1*v.1)
+    (finite(length) /\ length > 0)?! "optics: nonzero finite direction required"
+    [v.0/length,v.1/length]
+
+reflect2(direction:[num:2],normal:[num:2]) -> [num:2]:
+    d: unit2(direction)
+    n: unit2(normal)
+    c: d.0*n.0+d.1*n.1
+    [d.0-2*c*n.0,d.1-2*c*n.1]
+
+# Normal points into incident medium; n1/n2 selected by caller, never guessed.
+refract2(direction:[num:2],normal:[num:2],n1:num,n2:num) -> (direction:[num:2],tir:num):
+    d: unit2(direction)
+    n: unit2(normal)
+    ci: 0-d.0*n.0-d.1*n.1
+    f: fresnel(n1,n2,ci)
+    f.tir = 1? @: (direction:reflect2(d,n),tir:1)
+    k: (n1/n2)*ci-f.cos_t
+    (direction:[(n1/n2)*d.0+k*n.0,(n1/n2)*d.1+k*n.1],tir:0)
+
+# Nearest positive intersection with finite line segment; no infinite mirror.
+line_hit(origin:[num:2],direction:[num:2],a:[num:2],b:[num:2]) -> (hit:num,distance:num,point:[num:2]):
+    (finite(origin.0) /\ finite(origin.1) /\ finite(a.0) /\ finite(a.1) /\ finite(b.0) /\ finite(b.1))?! "optics: finite line geometry required"
+    d: unit2(direction)
+    ex: b.0-a.0
+    ey: b.1-a.1
+    determinant: d.0*ey-d.1*ex
+    _optics_math.abs(determinant) < 0.000000000001? @: (hit:0,distance:0,point:origin)
+    qx: a.0-origin.0
+    qy: a.1-origin.1
+    distance: (qx*ey-qy*ex)/determinant
+    u: (qx*d.1-qy*d.0)/determinant
+    (distance <= 0)? @: (hit:0,distance:0,point:origin)
+    (u < 0 \/ u > 1)? @: (hit:0,distance:0,point:origin)
+    (hit:1,distance:distance,point:[origin.0+distance*d.0,origin.1+distance*d.1])
+
+# Incoherent ray power incident on an ideal oriented line detector/receiver.
+# 3D point-source inverse-square law evaluated on a 2D scene cross-section.
+point_irradiance(power:num,distance:num,cosine:num):
+    (finite(power) /\ power >= 0 /\ finite(distance) /\ distance > 0 /\ finite(cosine) /\ cosine >= 0 /\ cosine <= 1)?! "optics: invalid point receiver"
+    power*cosine/(4*_optics_math.pi*distance^2)
+
+# Segment normal derives from the SAME endpoints used to draw and intersect.
+normal2(a:[num:2],b:[num:2],incident:[num:2]) -> [num:2]:
+    n: unit2([a.1-b.1,b.0-a.0])
+    (n.0*incident.0+n.1*incident.1 > 0)?
+        @: [0-n.0,0-n.1]
+    n
+
+# Positive circle boundary intersection, used for both entry and exit.
+circle_hit(origin:[num:2],direction:[num:2],center:[num:2],radius:num) -> (hit:num,distance:num,point:[num:2]):
+    (finite(origin.0) /\ finite(origin.1) /\ finite(center.0) /\ finite(center.1) /\ finite(radius) /\ radius > 0)?! "optics: finite circle and positive radius required"
+    d: unit2(direction)
+    qx: origin.0-center.0
+    qy: origin.1-center.1
+    b: qx*d.0+qy*d.1
+    c: qx*qx+qy*qy-radius*radius
+    disc: b*b-c
+    disc < 0? @: (hit:0,distance:0,point:origin)
+    root: _optics_math.sqrt(disc)
+    distance: 0-b-root
+    distance <= 0.000000001?
+        .distance: 0-b+root
+    distance <= 0.000000001? @: (hit:0,distance:0,point:origin)
+    (hit:1,distance:distance,point:[origin.0+distance*d.0,origin.1+distance*d.1])
+
+# First transmitted branch of an isotropic circular/ball lens cross-section.
+# No internalscattering or recursive ghost paths; discarded reflected power kept.
+ball_lens_ray(height:num,radius:num,index:num,detector_x:num) -> (points:[[num:2]:4],state:[num:4],rejected_power:num):
+    (finite(height) /\ finite(radius) /\ radius > 0 /\ _optics_math.abs(height) < radius /\ finite(detector_x) /\ detector_x > radius)?! "optics: invalid lens aperture/detector"
+    source: [0-3*radius,height]
+    enter: circle_hit(source,[1,0],[0,0],radius)
+    (enter.hit=1)?! "optics: lens entry missed"
+    n: unit2(enter.point)
+    first: refract2([1,0],n,1,index)
+    (first.tir=0)?! "optics: unsupported lens entry TIR"
+    inside_origin: [enter.point.0+0.00000001*radius*first.direction.0,enter.point.1+0.00000001*radius*first.direction.1]
+    exit: circle_hit(inside_origin,first.direction,[0,0],radius)
+    (exit.hit=1)?! "optics: lens exit missed"
+    outward: unit2(exit.point)
+    inside_normal: [0-outward.0,0-outward.1]
+    second: refract2(first.direction,inside_normal,index,1)
+    (second.tir=0 /\ second.direction.0 > 0)?! "optics: detector unreachable for this lens ray"
+    distance: (detector_x-exit.point.0)/second.direction.0
+    detector_point: [detector_x,exit.point.1+distance*second.direction.1]
+    incoming: unpolarized(1)
+    ci: 0-n.0
+    internal: transmitted_stokes(incoming,1,index,ci)
+    co: 0-first.direction.0*inside_normal.0-first.direction.1*inside_normal.1
+    output: transmitted_stokes(internal,index,1,co)
+    (points:[source,enter.point,exit.point,detector_point],state:output,rejected_power:1-output.0)
+
+# General analytic 2D lighting primitives. Soft-edge model is geometric/numerical,
+# not wave diffraction. Falloff below is normalized finite-source display light,
+# not calibrated point-source watts; exact ray-power Fresnel remains separate.
+clamp01(value:num):
+    value < 0? @: 0
+    value > 1? @: 1
+    value
+
+smooth_edge(edge0:num,edge1:num,value:num):
+    edge0 = edge1?
+        value >= edge1? @: 1
+        @: 0
+    t: clamp01((value-edge0)/(edge1-edge0))
+    t*t*(3-2*t)
+
+min2(a:num,b:num):
+    a < b? @: a
+    b
+max2(a:num,b:num):
+    a > b? @: a
+    b
+
+# Segment endpoints as [ax,ay,bx,by], fully generic orientation.
+eased_segment_visibility(source:[num:2],target:[num:2],wall:[num:4],base:num,growth:num):
+    dx: target.0-source.0
+    dy: target.1-source.1
+    ex: wall.2-wall.0
+    ey: wall.3-wall.1
+    determinant: dx*ey-dy*ex
+    _optics_math.abs(determinant)<0.000000000001? @: 1
+    qx: wall.0-source.0
+    qy: wall.1-source.1
+    t: (qx*ey-qy*ex)/determinant
+    u: (qx*dy-qy*dx)/determinant
+    (t<=0 \/ t>=1 \/ u<0 \/ u>1)? @: 1
+    gap: (1-t)*_optics_math.sqrt(dx*dx+dy*dy)
+    edge_distance: min2(u,1-u)*_optics_math.sqrt(ex*ex+ey*ey)
+    1-smooth_edge(0,base+growth*gap,edge_distance)
+
+soft_visibility(source:[num:2],target:[num:2],walls:[[num:4]:n],base:num,growth:num):
+    (finite(base) /\ finite(growth) /\ base>=0 /\ growth>=0)?! "optics: nonnegative shadow easing required"
+    visible: 1
+    i: 0
+    i<walls.length()?>
+        .visible: min2(visible,eased_segment_visibility(source,target,walls.(i),base,growth))
+        .i: i+1
+    visible
+
+virtual_source2(source:[num:2],a:[num:2],b:[num:2]) -> [num:2]:
+    n: unit2([a.1-b.1,b.0-a.0])
+    distance: (source.0-a.0)*n.0+(source.1-a.1)*n.1
+    [source.0-2*distance*n.0,source.1-2*distance*n.1]
+
+normalized_light2(source:[num:2],target:[num:2],falloff:num,walls:[[num:4]:n],base:num,growth:num):
+    (finite(falloff) /\ falloff>0)?! "optics: positive light falloff radius required"
+    dx: target.0-source.0
+    dy: target.1-source.1
+    soft_visibility(source,target,walls,base,growth)/(1+(dx*dx+dy*dy)/(falloff*falloff))
+
+# One front-sided finite mirror. Neutral coating reflectivity scales Stokes power.
+# The virtual source is analytic geometry; no camera/texture/zero-area3D aperture.
+# Feather outside segment is declared finite-source aperture easing, same oldmodel.
+reflected_light2(source:[num:2],target:[num:2],a:[num:2],b:[num:2],reflectivity:num,spread:num,falloff:num,walls:[[num:4]:n],base:num,growth:num):
+    (finite(reflectivity) /\ reflectivity>=0 /\ reflectivity<=1 /\ finite(spread) /\ spread>=0 /\ finite(falloff) /\ falloff>0)?! "optics: invalid reflected light material"
+    normal: unit2([a.1-b.1,b.0-a.0])
+    side_source: (source.0-a.0)*normal.0+(source.1-a.1)*normal.1
+    side_target: (target.0-a.0)*normal.0+(target.1-a.1)*normal.1
+    (side_source<=0 \/ side_target<=0)? @: 0
+    virtual: virtual_source2(source,a,b)
+    dx: target.0-virtual.0
+    dy: target.1-virtual.1
+    ex: b.0-a.0
+    ey: b.1-a.1
+    determinant: dx*ey-dy*ex
+    _optics_math.abs(determinant)<0.000000000001? @: 0
+    qx: a.0-virtual.0
+    qy: a.1-virtual.1
+    t: (qx*ey-qy*ex)/determinant
+    u: (qx*dy-qy*dx)/determinant
+    (t<=0 \/ t>=1)? @: 0
+    outside: max2(0,max2(0-u,u-1))
+    gate: 1-smooth_edge(0,spread,outside)
+    spread=0?
+        .gate: 0
+        (u>=0 /\ u<=1)?
+            .gate: 1
+    hit: [virtual.0+t*dx,virtual.1+t*dy]
+    visibility_in: soft_visibility(source,hit,walls,base,growth)
+    visibility_out: soft_visibility(hit,target,walls,base,growth)
+    reflectivity*gate*visibility_in*visibility_out/(1+(dx*dx+dy*dy)/(falloff*falloff))

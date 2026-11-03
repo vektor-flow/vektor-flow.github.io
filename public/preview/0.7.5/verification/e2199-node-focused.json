@@ -1,0 +1,137 @@
+[
+  {
+    "id": "unchanged-contact648",
+    "source": ":.physics\n\nbody_a: collision_body3(2, diag_inv3([3, 4, 5]), [0, 0, 0])\nbody_b: collision_body3(3, diag_inv3([6, 7, 8]), [0, 0, 0])\nmatrix: collision_matrix3(body_a, body_b)\nmaterial: rigid_material(\"test\", 1000, 0.5, 0.25, 0.6, 0.4, 0.05)\ncontact: contact_material(material, material)\ncontact_hit: solid_contact_impulse3(\n    matrix,\n    [-6, 2, 0],\n    [0.5, 0, 0],\n    [1, 0, 0],\n    [0, 1, 0],\n    [0, 0, 1],\n    1,\n    1,\n    contact\n)\n\n:: contact.e_n\n:: contact.e_t\n:: contact.mu_s\n:: contact.mu_d\n:: contact.mu_r\n:: contact_hit.normal_impulse.0\n:: contact_hit.linear_impulse.0\n:: contact_hit.linear_impulse.1\n:: contact_hit.angular_impulse.0\n",
+    "expectedNumbers": [
+      0.5,
+      0.25,
+      0.6,
+      0.4,
+      0.05,
+      10.8,
+      10.8,
+      -3,
+      -1.25
+    ],
+    "absoluteTolerance": 1e-10,
+    "scope": "Original contact/material/inverse inertia/tangent and angular impulses. No changed oracle or calibration claim.",
+    "sourcePin": {
+      "path": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/contact/main.vkf",
+      "bytes": 648,
+      "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152"
+    },
+    "route": "current-rebuilt-WASM-public-Node-guest",
+    "binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+    "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+    "source_sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152",
+    "artifacts": "/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/qualification-wasm-current/unchanged-contact648",
+    "accepted": true,
+    "stdout": "0.5\n0.25\n0.59999999999999998\n0.40000000000000002\n0.050000000000000003\n10.800000000000001\n10.800000000000001\n-3.0000000000000004\n-1.25\n",
+    "numericValues": [
+      0.5,
+      0.25,
+      0.6,
+      0.4,
+      0.05,
+      10.8,
+      10.8,
+      -3.0000000000000004,
+      -1.25
+    ],
+    "passed": true
+  },
+  {
+    "id": "same-inverse281",
+    "source": ":.linalg\n\ninverse3(matrix:[[num:3]:3]) -> [[num:3]:3]:\n    inverse(matrix)\n\nresult: inverse3([[3, 0, 0], [0, 4, 0], [0, 0, 5]])\n:: result.(0, 0)\n:: result.(0, 1)\n:: result.(0, 2)\n:: result.(1, 0)\n:: result.(1, 1)\n:: result.(1, 2)\n:: result.(2, 0)\n:: result.(2, 1)\n:: result.(2, 2)\n",
+    "expectedNumbers": [
+      0.3333333333333333,
+      0,
+      0,
+      0,
+      0.25,
+      0,
+      0,
+      0,
+      0.2
+    ],
+    "absoluteTolerance": 1e-10,
+    "scope": "Native causal differential: baseline and first4f fail diagonal;824 candidate passes all9 normal CLI values.",
+    "sourcePin": {
+      "path": "/mnt/development/VektorFlow-e2197-browser-counted-result-source-20261103/compiler-browser/tests/fixtures/scoped-counted-solve-result.vkf",
+      "bytes": 281,
+      "sha256": "166755cc572786ff1b2953b003c0483377c7a3b7f595c7ce60d4b690f1941e5b"
+    },
+    "route": "current-rebuilt-WASM-public-Node-guest",
+    "binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+    "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+    "source_sha256": "166755cc572786ff1b2953b003c0483377c7a3b7f595c7ce60d4b690f1941e5b",
+    "artifacts": "/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/qualification-wasm-current/same-inverse281",
+    "accepted": true,
+    "stdout": "0.33333333333333331\n0\n0\n0\n0.25\n0\n0\n0\n0.20000000000000001\n",
+    "numericValues": [
+      0.3333333333333333,
+      0,
+      0,
+      0,
+      0.25,
+      0,
+      0,
+      0,
+      0.2
+    ],
+    "passed": true
+  },
+  {
+    "id": "corrected-existing-arity378",
+    "source": "# The hidden capture adds a physical signature to the one source helper.\n# An erased wrapper must still lower its executable body at the public arity.\n_mode: 2\n\ncaptured(value:any):\n    @: (amount: value.amount + _mode, marker: value.marker)\n\ncombine(value:any):\n    hit: captured(value)\n    @: (amount: hit.amount, marker: hit.marker)\n\n::combine((amount: 3, marker: 0)).amount\n",
+    "expectedStdout": "5\n",
+    "scope": "Corrected2192 real record; baseline and candidate both pass; compatibility only, not proof of arity repair.",
+    "sourcePin": {
+      "path": "/mnt/development/VektorFlow-e2197-browser-counted-result-source-20261103/compiler-browser/tests/fixtures/captured-helper-erased-call.vkf",
+      "bytes": 378,
+      "sha256": "a00565e0a1bfb3e72ec89f4448c299068a067851a1b8ded0f20d26259e4c114d"
+    },
+    "route": "current-rebuilt-WASM-public-Node-guest",
+    "binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+    "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+    "source_sha256": "a00565e0a1bfb3e72ec89f4448c299068a067851a1b8ded0f20d26259e4c114d",
+    "artifacts": "/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/qualification-wasm-current/corrected-existing-arity378",
+    "accepted": true,
+    "stdout": "5\n",
+    "passed": true
+  },
+  {
+    "id": "original-undefined-totals-0",
+    "source": "composition: [[2, 1], [1, 3], [4, 2]]_kj\nbatches: [[10, 5, 8], [4, 6, 3]]_ik\n\ntotals_ij: sum_k(batches composition)\n\n:: totals",
+    "source_sha256": "7fd5a91f00f7fab5ae0276d8e270fea7b05720e6e9853262b7b0b0361d7ab251",
+    "expected": "COMPILE_ERROR_UNDEFINED_TOTALS",
+    "status": "UNEXECUTED_ASDATA",
+    "required_name": "totals",
+    "required_reference_line": 6,
+    "reason": "totals_ij is a complete identifier declaration; totals has no binding. Preserve actual exact diagnostic/sourceposition; do not invent duplicate errors.",
+    "route": "current-rebuilt-WASM-public-Node-guest",
+    "binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+    "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+    "artifacts": "/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/qualification-wasm-current/original-undefined-totals-0",
+    "accepted": false,
+    "error": {
+      "name": "Error",
+      "message": "VKF packages: compile/source-semantic-lower: /vkf-package-inputs/project/main.vkf:6:4: undefined identifier totals"
+    },
+    "passed": true,
+    "positionPassed": true
+  },
+  {
+    "id": "hello-ordinary",
+    "source": ":: \"Hello World\"",
+    "expectedStdout": "Hello World\n",
+    "route": "current-rebuilt-WASM-public-Node-guest",
+    "binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+    "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+    "source_sha256": "af5c2d7c3a4286e7d5674fa63ce1fe66e29e431b8a67eb4a5e24fb531b082bac",
+    "artifacts": "/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/qualification-wasm-current/hello-ordinary",
+    "accepted": true,
+    "stdout": "Hello World\n",
+    "passed": true
+  }
+]

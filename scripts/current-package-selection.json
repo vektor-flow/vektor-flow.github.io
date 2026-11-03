@@ -1,46 +1,46 @@
 {
   "schema": 2,
-  "inputSha256": "4a070b07677c6b698cb38cd1dc5f9d20dfd87eeff21c384ab1e8fadfe094a6bc",
+  "inputSha256": "fee5701cafb92a1a18212c5cf13e3ee9d0f6ad4502a9ce264c29302b0286600e",
   "components": {
     "browser-node-compiler": {
       "id": "browser-node-compiler",
       "identity": {
-        "sourceCommit": "bd7e1823e118869ae84444263e39fe9180efca10",
-        "sourceBinding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+        "sourceCommit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+        "sourceBinding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
         "nodePackageHostSourceCommit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
         "nodePackageHostDurableSourceCommit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
-        "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c"
+        "pairedLibrarySourceCommit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9"
       },
       "files": [
         {
           "path": "playground/canonical/README.txt",
-          "bytes": 422,
-          "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
+          "bytes": 448,
+          "sha256": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826"
         },
         {
           "path": "playground/canonical/VERIFICATION.json",
-          "bytes": 2194,
-          "sha256": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
+          "bytes": 3078,
+          "sha256": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec"
         },
         {
           "path": "playground/canonical/compiler-base.mjs",
-          "bytes": 188078,
-          "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
+          "bytes": 188042,
+          "sha256": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309"
         },
         {
           "path": "playground/canonical/compiler.data",
-          "bytes": 619732,
-          "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+          "bytes": 620301,
+          "sha256": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a"
         },
         {
           "path": "playground/canonical/compiler.mjs",
           "bytes": 1464,
-          "sha256": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113"
+          "sha256": "7f307cbe1a29b2856f4d0a23acaaa1c28b4817b045831d6e70617936708cee0b"
         },
         {
           "path": "playground/canonical/compiler.wasm",
-          "bytes": 20391843,
-          "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
+          "bytes": 20393313,
+          "sha256": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d"
         },
         {
           "path": "playground/canonical/formatter.mjs",
@@ -119,8 +119,8 @@
         },
         {
           "path": "playground/canonical/package.json",
-          "bytes": 48256,
-          "sha256": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b"
+          "bytes": 48745,
+          "sha256": "33aece6cadff3c29255c2d7cc9d231abe1fc03e5a1ed5a86f55a3d605f658de9"
         },
         {
           "path": "playground/canonical/prepare-formatter-ir.mjs",
@@ -230,8 +230,8 @@
         },
         {
           "path": "example-output-seeds.json",
-          "bytes": 108365,
-          "sha256": "232cb7defe84582904f982706f57297a4e915799af06548a59618eee6468ff57"
+          "bytes": 122894,
+          "sha256": "d6597cfc738fb4a30d933b6276d288c6f70f3d08a5b09aeaaf6c8abb45540f65"
         },
         {
           "path": "example-presentation.css",
@@ -245,8 +245,8 @@
         },
         {
           "path": "example-scene-seeds.json",
-          "bytes": 63516,
-          "sha256": "81274ddf8ba3332b8f7767daf046eab49206d5e28233f9c6a6b9c68b7aa5d3e4"
+          "bytes": 64960,
+          "sha256": "9f2c0cf9cea661189a536e15c2faf37f82be343b23e7096fad62e4914d8eb6d0"
         },
         {
           "path": "example-scenes/049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39-0.bin",
@@ -1480,17 +1480,17 @@
     "native-linux-cli": {
       "id": "native-linux-cli",
       "identity": {
-        "sourceCommit": "6f05a02040bf56dc5703bc6e77cfe59d2dd6610e",
-        "sourceBinding": "6a05590cfd1cec7664012426541952316215f664ca0984091786885147a34b23",
-        "binarySHA256": "e8bf4097b9b4c24a2967f0f97d63f8f4f8b40f5b8901031c50ff3cf229bc2906",
-        "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-        "pairedManifestSHA256": "9fb32101b419914d5ccfe47922782171e673af13a0def1930928b046d523bbaa"
+        "sourceCommit": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
+        "sourceBinding": "8c59af92cabfe07967106464033e674995784b4ad63942bd0f0709ea14a6cd5f",
+        "binarySHA256": "a5c949bd71242f3e96d8a426f4509b34299427f6835349828ee0fc2e78909a69",
+        "pairedLibrarySourceCommit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
+        "pairedManifestSHA256": "e5dcb5389057232424b0ab3685a9a0cf5d3e31bbc695a5feee780894e88d3c5c"
       },
       "files": [
         {
-          "path": "downloads/vkf-native-linux-x86_64-0.7.5-6a05590c-lib804892b6-notices.tar.gz",
-          "bytes": 10146013,
-          "sha256": "d09152d618f3d2001ffec67f47128b778313b20aea96ac90399804fa43d350cb"
+          "path": "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz",
+          "bytes": 10145369,
+          "sha256": "6c70ece97338341914df0931f45f8523ad5469d26b9c91f6a22f2a8bdd0f53d7"
         }
       ]
     }
@@ -1512,9 +1512,9 @@
       "sha256": "e3a133f6d52bc77c2a22cedbb0f0230698847ceb5b108f7c0b6945857f6c13f6"
     },
     {
-      "path": "downloads/vkf-native-linux-x86_64-0.7.5-6a05590c-lib804892b6-notices.tar.gz",
-      "bytes": 10146013,
-      "sha256": "d09152d618f3d2001ffec67f47128b778313b20aea96ac90399804fa43d350cb"
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz",
+      "bytes": 10145369,
+      "sha256": "6c70ece97338341914df0931f45f8523ad5469d26b9c91f6a22f2a8bdd0f53d7"
     },
     {
       "path": "e1099-check-worker.mjs",
@@ -1568,8 +1568,8 @@
     },
     {
       "path": "example-output-seeds.json",
-      "bytes": 108365,
-      "sha256": "232cb7defe84582904f982706f57297a4e915799af06548a59618eee6468ff57"
+      "bytes": 122894,
+      "sha256": "d6597cfc738fb4a30d933b6276d288c6f70f3d08a5b09aeaaf6c8abb45540f65"
     },
     {
       "path": "example-presentation.css",
@@ -1583,8 +1583,8 @@
     },
     {
       "path": "example-scene-seeds.json",
-      "bytes": 63516,
-      "sha256": "81274ddf8ba3332b8f7767daf046eab49206d5e28233f9c6a6b9c68b7aa5d3e4"
+      "bytes": 64960,
+      "sha256": "9f2c0cf9cea661189a536e15c2faf37f82be343b23e7096fad62e4914d8eb6d0"
     },
     {
       "path": "example-scenes/049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39-0.bin",
@@ -1718,33 +1718,33 @@
     },
     {
       "path": "playground/canonical/README.txt",
-      "bytes": 422,
-      "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
+      "bytes": 448,
+      "sha256": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826"
     },
     {
       "path": "playground/canonical/VERIFICATION.json",
-      "bytes": 2194,
-      "sha256": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
+      "bytes": 3078,
+      "sha256": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec"
     },
     {
       "path": "playground/canonical/compiler-base.mjs",
-      "bytes": 188078,
-      "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
+      "bytes": 188042,
+      "sha256": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309"
     },
     {
       "path": "playground/canonical/compiler.data",
-      "bytes": 619732,
-      "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+      "bytes": 620301,
+      "sha256": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a"
     },
     {
       "path": "playground/canonical/compiler.mjs",
       "bytes": 1464,
-      "sha256": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113"
+      "sha256": "7f307cbe1a29b2856f4d0a23acaaa1c28b4817b045831d6e70617936708cee0b"
     },
     {
       "path": "playground/canonical/compiler.wasm",
-      "bytes": 20391843,
-      "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
+      "bytes": 20393313,
+      "sha256": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d"
     },
     {
       "path": "playground/canonical/formatter.mjs",
@@ -1823,8 +1823,8 @@
     },
     {
       "path": "playground/canonical/package.json",
-      "bytes": 48256,
-      "sha256": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b"
+      "bytes": 48745,
+      "sha256": "33aece6cadff3c29255c2d7cc9d231abe1fc03e5a1ed5a86f55a3d605f658de9"
     },
     {
       "path": "playground/canonical/prepare-formatter-ir.mjs",
@@ -2916,15 +2916,15 @@
   "archives": [
     {
       "target": "canonical",
-      "path": "downloads/vkf-canonical-0.7.5-0c33370b-hostcb619656-notices.tar.gz",
-      "bytes": 4355463,
-      "sha256": "ab89586f2f8314417c239be5c1c6a59f196702ab17048ed66889832da256de12"
+      "path": "downloads/vkf-canonical-0.7.5-103091b2-hostcb619656-notices.tar.gz",
+      "bytes": 4356564,
+      "sha256": "df4530745bd7b7f8c3400c513f15845ca39d7b42755b11dd0813cea013becfba"
     },
     {
       "target": "native",
-      "path": "downloads/vkf-native-linux-x86_64-0.7.5-6a05590c-lib804892b6-notices.tar.gz",
-      "bytes": 10146013,
-      "sha256": "d09152d618f3d2001ffec67f47128b778313b20aea96ac90399804fa43d350cb"
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz",
+      "bytes": 10145369,
+      "sha256": "6c70ece97338341914df0931f45f8523ad5469d26b9c91f6a22f2a8bdd0f53d7"
     }
   ],
   "notices": [

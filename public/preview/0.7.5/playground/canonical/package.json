@@ -4,29 +4,33 @@
   "status": "private-candidate",
   "complete": false,
   "stable": false,
-  "source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
-  "release_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
-  "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+  "source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+  "release_source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+  "library_source": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
   "files": {
     "README.txt": {
-      "bytes": 422,
-      "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
+      "bytes": 448,
+      "sha256": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826"
+    },
+    "VERIFICATION.json": {
+      "bytes": 3078,
+      "sha256": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec"
     },
     "compiler-base.mjs": {
-      "bytes": 188078,
-      "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
+      "bytes": 188042,
+      "sha256": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309"
     },
     "compiler.data": {
-      "bytes": 619732,
-      "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+      "bytes": 620301,
+      "sha256": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a"
     },
     "compiler.mjs": {
       "bytes": 1248,
       "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     "compiler.wasm": {
-      "bytes": 20391843,
-      "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
+      "bytes": 20393313,
+      "sha256": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d"
     },
     "formatter.mjs": {
       "bytes": 61416,
@@ -110,7 +114,7 @@
     }
   },
   "verification": {
-    "status": "PASS_NAMED_NINETEEN_NODE_CONTROLS",
+    "status": "PASS_NAMED_FIVE_AFFECTED_NODE_CONTROLS",
     "extractedUsage": "Recorded separately in current package qualification after deterministic packaging",
     "evidence": "VERIFICATION.json",
     "oldPassCarry": false
@@ -146,17 +150,18 @@
       "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
     }
   },
-  "compiler_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
-  "browser_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "compiler_source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+  "browser_binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
   "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-  "frontend_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "frontend_binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
   "stable_release": false,
   "sha256": {
-    "README.txt": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54",
-    "compiler-base.mjs": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942",
-    "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "README.txt": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826",
+    "VERIFICATION.json": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec",
+    "compiler-base.mjs": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309",
+    "compiler.data": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a",
     "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "compiler.wasm": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
+    "compiler.wasm": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d",
     "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
     "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -179,7 +184,7 @@
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
   },
   "published": false,
-  "publication_status": "PENDING_INDEPENDENT_REVIEW_AND_HOSTED_PUBLICATION",
+  "publication_status": "SCOPED_CANDIDATE_ARCHIVE_HOSTING_RECORDED_SEPARATELY",
   "physical_gpu_tested": false,
   "release_qualified": false,
   "scoped_release": {
@@ -189,7 +194,7 @@
       "ordinary retained plotting",
       "Node ESM compiler/guest/formatter embedding"
     ],
-    "qualification": "Exact current name/index/diagnostic Node controls; extracted install/run/compile/security qualification is recorded separately. New Physics laws/full SDK/platform/GPU/benchmarks remain unqualified.",
+    "qualification": "Exact scoped contact9/inverse9/arity compatibility/positioned error/Hello Node controls; native824 contact+inverse separately accepted. Extracted install/run/compile/security checks recorded separately. Broader Physics/full SDK/platform/GPU/benchmarks remain unqualified.",
     "evidence": "VERIFICATION.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
@@ -198,8 +203,8 @@
     "comparativeSamples": 0
   },
   "library_update": {
-    "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-    "scope": "Paired library bytes unchanged; no compiler PASS carried from historical metadata."
+    "pairedLibrarySourceCommit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
+    "scope": "Retained804 plus12line full-mass record adapter; other31 selected sources byte-identical, current paired header and preload. No corrected972 law replacement or calibrated adoption."
   },
   "historical_before_ae0e200": {
     "verification": {
@@ -266,11 +271,11 @@
     "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
     "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
   },
-  "compiler_source_commit": "bd7e1823e118869ae84444263e39fe9180efca10",
-  "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
-  "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-  "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
-  "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6",
+  "compiler_source_commit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+  "native_binding": "8c59af92cabfe07967106464033e674995784b4ad63942bd0f0709ea14a6cd5f",
+  "native_binary_source_commit": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
+  "node_package_host_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
+  "node_package_host_durable_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
   "historical_package_metadata_before_e2116_correction": {
     "schema": 1,
     "version": "0.7.5",
@@ -1037,5 +1042,6 @@
       "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
       "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6"
     }
-  }
+  },
+  "paired_library_source_commit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9"
 }

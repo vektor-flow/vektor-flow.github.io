@@ -1,0 +1,9 @@
+# Explicit synchronous OS-command execution. `run` passes an exact argument
+# vector without invoking a shell. `shell` is the explicit platform-shell
+# boundary: never build its command from untrusted text.
+
+run(program:str, args:any) -> (code:int,out:str,err:str):
+    command.run_native(program, args)
+
+shell(command:str) -> (code:int,out:str,err:str):
+    command.shell_native(command)

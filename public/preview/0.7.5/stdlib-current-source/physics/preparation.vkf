@@ -1,0 +1,45 @@
+# Ordinary unit-aware tetrahedron mass-property preparation candidate.
+# Uses existing physics.tetra_mass_properties3 unchanged. This record is not a
+# backend world/state, and carries no backend lease or numeric resource handle.
+# All checks complete before a record is returned. Source errors belong to the
+# current program. General indexed convex topology/engine admission remain open.
+physics:.physics
+:.physics.units
+errors:.errors
+:.math
+finite(x:num): (x=x) /\ ((abs(x)-abs(x))=0) /\ ((x=abs(x)) \/ (x=0-abs(x)))
+prepare_tetrahedron(a:[quantity<1,0,0,0,0,0,0>:3],b:[quantity<1,0,0,0,0,0,0>:3],c:[quantity<1,0,0,0,0,0,0>:3],d:[quantity<1,0,0,0,0,0,0>:3],authoredmass:quantity<0,1,0,0,0,0,0>):
+ (a.length()!=3 \/ b.length()!=3 \/ c.length()!=3 \/ d.length()!=3)? errors.ValueError("three coordinates per tetrahedron vertex required")!
+ am:a+[0m,0m,0m]
+ pa:[num((am.0+0m)/m),num((am.1+0m)/m),num((am.2+0m)/m)]
+ bm:b+[0m,0m,0m]
+ pb:[num((bm.0+0m)/m),num((bm.1+0m)/m),num((bm.2+0m)/m)]
+ cm:c+[0m,0m,0m]
+ pc:[num((cm.0+0m)/m),num((cm.1+0m)/m),num((cm.2+0m)/m)]
+ dm:d+[0m,0m,0m]
+ pd:[num((dm.0+0m)/m),num((dm.1+0m)/m),num((dm.2+0m)/m)]
+ massvalue:num((authoredmass+0kg)/kg)
+ [..2] >>
+  (~finite(pa.($)) \/ ~finite(pb.($)) \/ ~finite(pc.($)) \/ ~finite(pd.($)))? errors.ValueError("finite tetrahedron coordinates required")!
+ (~finite(massvalue) \/ massvalue<=0)? errors.ValueError("finite positive mass required")!
+ signedsix:physics.rb_dot3(physics.rb_sub3(pb,pa),physics.rb_cross3(physics.rb_sub3(pc,pa),physics.rb_sub3(pd,pa)))
+ (~finite(signedsix) \/ signedsix=0)? errors.ValueError("nondegenerate finite tetrahedron required")!
+ volumevalue:abs(signedsix)/6
+ (~finite(volumevalue) \/ volumevalue<=0)? errors.ValueError("finite positive tetrahedron volume required")!
+ density:massvalue/volumevalue
+ (~finite(density) \/ density<=0)? errors.ValueError("finite positive tetrahedron density required")!
+ properties:physics.tetra_mass_properties3(pa,pb,pc,pd,density)
+ tensor:physics.rb_scale_mat3(1,properties.inertia_tensor)
+ center:physics.rb_scale3(1,properties.center_of_mass)
+ checks:[center.0,center.1,center.2,tensor.0.0,tensor.0.1,tensor.0.2,tensor.1.0,tensor.1.1,tensor.1.2,tensor.2.0,tensor.2.1,tensor.2.2]
+ [..11] >>
+  ~finite(checks.($))? errors.RuntimeError("nonfinite tetrahedron mass properties")!
+ determinant:tensor.0.0*(tensor.1.1*tensor.2.2-tensor.1.2*tensor.2.1)-tensor.0.1*(tensor.1.0*tensor.2.2-tensor.1.2*tensor.2.0)+tensor.0.2*(tensor.1.0*tensor.2.1-tensor.1.1*tensor.2.0)
+ minor:tensor.0.0*tensor.1.1-tensor.0.1*tensor.1.0
+ (~finite(determinant) \/ ~finite(minor) \/ tensor.0.0<=0 \/ minor<=0 \/ determinant<=0)? errors.RuntimeError("positive definite finite tetrahedron inertia required")!
+ (
+  mass:massvalue*kg,
+  volume:volumevalue*m^3,
+  center_of_mass:center*m,
+  inertia_tensor:tensor*kg*m^2
+ )

@@ -1,0 +1,107 @@
+# Ordinary source preparation, not a backend resource or authorization token.
+# This numerical core accepts explicitly SI numeric coordinates and mass.
+# A public unit-aware wrapper must retain unit facts before converting inputs.
+# Source-level unit admission is not conferred by this numerical record.
+# Frozen physics mass-property operations are used without changed mathematics.
+physics:.physics
+preparation:.physics.preparation
+errors:.errors
+:.math
+
+vertex(points:[[num:3]:n],index:int):
+ row:points.(index)
+ [row.0,row.1,row.2]
+
+validate_vertex(points:[[num:3]:n],faces:[[int:3]:nf],i:int):
+ pi:vertex(points,i)
+ referenced:false
+ [..faces.length()*3-1] >>
+  face:faces.(int(($-($%3))/3))
+  face.(int($)%3)=i? .referenced:true
+ ~referenced? errors.ValueError("unreferenced convex vertex")!
+ [..points.length()-1] >>
+  j:int($)
+  pj:vertex(points,j)
+  (j<i /\ pi.0=pj.0 /\ pi.1=pj.1 /\ pi.2=pj.2)? errors.ValueError("duplicate convex vertex")!
+ 0
+
+validate_edge(faces:[[int:3]:nf],u:int,w:int):
+ matches:0
+ [..faces.length()*3-1] >>
+  other:faces.(int(($-($%3))/3))
+  k:int($)%3
+  x:other.(k)
+  y:other.((k+1)%3)
+  ((x=u /\ y=w) \/ (x=w /\ y=u))? .matches+:1
+ matches!=2? errors.ValueError("each convex edge must have exactly two incident faces")!
+ 0
+
+validate_face_indices(count:int,face:[int:3]):
+ [..2] >>
+  index:face.($)
+  (~preparation.finite(index) \/ index<0 \/ index>=count \/ index!=int(index))? errors.ValueError("convex face index outside vertex group")!
+ (face.0=face.1 \/ face.1=face.2 \/ face.2=face.0)? errors.ValueError("distinct face vertices required")!
+ 0
+
+validate_face(points:[[num:3]:n],faces:[[int:3]:nf],i:int,origin:[num:3]):
+ face:faces.(i)
+ a:vertex(points,int(face.0))
+ b:vertex(points,int(face.1))
+ c:vertex(points,int(face.2))
+ normal:physics.rb_cross3(physics.rb_sub3(b,a),physics.rb_sub3(c,a))
+ norm2:physics.rb_dot3(normal,normal)
+ side:physics.rb_dot3(normal,physics.rb_sub3(origin,a))
+ (~preparation.finite(norm2) \/ norm2<=0 \/ ~preparation.finite(side) \/ side=0)? errors.ValueError("nondegenerate closed convex volume required")!
+ [..points.length()-1] >>
+  v:vertex(points,int($))
+  distance:physics.rb_dot3(normal,physics.rb_sub3(v,a))
+  # Supporting planes allow only 128 binary64 epsilon relative to interior depth.
+  (~preparation.finite(distance) \/ distance/side<0-0.000000000000028421709430404)? errors.ValueError("face is not a convex supporting plane")!
+ validate_edge(faces,int(face.0),int(face.1))
+ validate_edge(faces,int(face.1),int(face.2))
+ validate_edge(faces,int(face.2),int(face.0))
+ 0
+
+part_for_face(points:[[num:3]:n],faces:[[int:3]:nf],origin:[num:3],i:int):
+ face:faces.(i)
+ properties:physics.tetra_mass_properties3(origin,vertex(points,int(face.0)),vertex(points,int(face.1)),vertex(points,int(face.2)),1)
+ (mass:num(properties.mass),center_of_mass:properties.center_of_mass,inertia_tensor:properties.inertia_tensor)
+
+prepare_convex_si(points:[[num:3]:n],faces:[[int:3]:nf],massvalue:num,mu_s:num,mu_d:num,restitution:num):
+ n:int(points.length())
+ nf:int(faces.length())
+ (n<4 \/ nf<4)? errors.ValueError("closed convex geometry requires at least four vertices and faces")!
+ (~preparation.finite(massvalue) \/ massvalue<=0)? errors.ValueError("finite positive mass required")!
+ (~preparation.finite(mu_s) \/ ~preparation.finite(mu_d) \/ ~preparation.finite(restitution) \/ mu_d<0 \/ mu_s<mu_d \/ restitution<0 \/ restitution>1)? errors.ValueError("invalid convex contact material")!
+ origin:[0.0,0.0,0.0]
+ [..n-1] >>
+  points.($).length()!=3? errors.ValueError("three coordinates per convex vertex required")!
+  v:vertex(points,$)
+  (~preparation.finite(v.0) \/ ~preparation.finite(v.1) \/ ~preparation.finite(v.2))? errors.ValueError("finite convex coordinates required")!
+  .origin:physics.rb_add3(origin,v)
+ .origin:physics.rb_scale3(1/n,origin)
+ [..nf-1] >>
+  validate_face_indices(int(n),faces.($))
+ [..n-1] >>
+  validate_vertex(points,faces,int($))
+ [..nf-1] >>
+  validate_face(points,faces,int($),origin)
+ first:faces.0
+ initial:physics.tetra_mass_properties3(origin,vertex(points,int(first.0)),vertex(points,int(first.1)),vertex(points,int(first.2)),1)
+ properties:(mass:num(initial.mass),center_of_mass:initial.center_of_mass,inertia_tensor:initial.inertia_tensor)
+ [..nf-1] >>
+  $>0?
+   .properties:physics.combine_mass_properties3(properties,part_for_face(points,faces,origin,int($)))
+ volumevalue:properties.mass
+ (~preparation.finite(volumevalue) \/ volumevalue<=0)? errors.RuntimeError("finite positive convex volume required")!
+ density:massvalue/volumevalue
+ (~preparation.finite(density) \/ density<=0)? errors.RuntimeError("finite positive convex density required")!
+ tensor:physics.rb_scale_mat3(density,properties.inertia_tensor)
+ center:physics.rb_scale3(1,properties.center_of_mass)
+ checks:[center.0,center.1,center.2,tensor.0.0,tensor.0.1,tensor.0.2,tensor.1.0,tensor.1.1,tensor.1.2,tensor.2.0,tensor.2.1,tensor.2.2]
+ [..11] >>
+  ~preparation.finite(checks.($))? errors.RuntimeError("nonfinite convex mass properties")!
+ determinant:tensor.0.0*(tensor.1.1*tensor.2.2-tensor.1.2*tensor.2.1)-tensor.0.1*(tensor.1.0*tensor.2.2-tensor.1.2*tensor.2.0)+tensor.0.2*(tensor.1.0*tensor.2.1-tensor.1.1*tensor.2.0)
+ minor:tensor.0.0*tensor.1.1-tensor.0.1*tensor.1.0
+ (~preparation.finite(determinant) \/ ~preparation.finite(minor) \/ tensor.0.0<=0 \/ minor<=0 \/ determinant<=0)? errors.RuntimeError("positive definite convex inertia required")!
+ (mass:massvalue,volume:volumevalue,center_of_mass:center,inertia_tensor:tensor,geometry:(vertices:points,faces:faces),material:(mu_s:mu_s,mu_d:mu_d,restitution:restitution))

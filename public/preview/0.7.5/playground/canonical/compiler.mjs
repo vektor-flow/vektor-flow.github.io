@@ -1,4 +1,4 @@
-import createCompiler from './compiler-base.mjs?sha256=1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942';
+import createCompiler from './compiler-base.mjs?sha256=e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309';
 import createFormatter from './formatter.mjs?sha256=09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f';
 // Explicit Node host entrypoint; the browser/default factory never imports host
 // I/O or resolves packages. Ship package-tools and prepare-formatter-ir.mjs

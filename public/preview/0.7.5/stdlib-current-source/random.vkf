@@ -1,0 +1,63 @@
+# Pure seed-threaded pseudo-random generation. Every sampling function returns
+# both the value and next seed; callers own state explicitly.
+:.math
+:.time
+
+_modulus: 2147483647
+_multiplier: 16807
+
+next(seed:num) -> (value:num,seed:num):
+    state: int(math.abs(seed)) % _modulus
+    state = 0?
+        .state: 1
+    next_seed: (state * _multiplier) % _modulus
+    (value: next_seed / _modulus, seed: next_seed)
+
+clock_seed() -> num:
+    sample: next((time.wall_seconds() + time.monotonic_seconds()) // 1)
+    sample.seed
+
+_uniform_scalar(seed:num, low:num, high:num) -> (value:num,seed:num):
+    (low <= high)?! "random.uniform: low must be <= high"
+    sample: next(seed)
+    (value: low + (high - low) * sample.value, seed: sample.seed)
+
+uniform(seed:num=clock_seed(), low:num=0, high:num=1) -> (value:num,seed:num):
+    _uniform_scalar(seed, low, high)
+
+uniform(seed:num=clock_seed(), low:num=0, high:num=1, shape:num) -> (value:[num],seed:num):
+    (low <= high)?! "random.uniform: low must be <= high"
+    count: shape
+    size: int(count)
+    (size >= 0)?! "random.uniform: shape dimensions must be non-negative"
+    state: seed
+    values: [0:size]
+    ..size - 1 >>
+        sample: _uniform_scalar(state, low, high)
+        .state: sample.seed
+        values.($): sample.value
+    (value:values, seed:state)
+
+uniform(seed:num=clock_seed(), low:num=0, high:num=1, shape:(num,num)) -> (value:[[num]],seed:num):
+    (low <= high)?! "random.uniform: low must be <= high"
+    rows: int(shape.0)
+    columns: int(shape.1)
+    (rows >= 0 /\ columns >= 0)?! "random.uniform: shape dimensions must be non-negative"
+    state: seed
+    values: [..rows - 1 >> [0:columns]]
+    ..rows * columns - 1 >>
+        index: $
+        row: index // columns
+        column: index % columns
+        sample: _uniform_scalar(state, low, high)
+        .state: sample.seed
+        values.(row, column): sample.value
+    (value:values, seed:state)
+
+normal(seed:num=clock_seed(), mean:num=0, variance:num=1) -> (value:num,seed:num):
+    (variance >= 0)?! "random.normal: variance must be non-negative"
+    first: next(seed)
+    second: next(first.seed)
+    radius: math.sqrt(-2 * math.ln(first.value))
+    z: radius * math.cos(math.tau * second.value)
+    (value: mean + math.sqrt(variance) * z, seed: second.seed)

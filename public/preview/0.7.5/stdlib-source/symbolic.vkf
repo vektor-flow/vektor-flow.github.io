@@ -140,16 +140,22 @@ _symbolic_katex_parenthesize(value:str, precedence:num, parent_precedence:num) -
         @: "\\left(" & value & "\\right)"
     value
 
+_symbolic_katex_number(value:num, parent_precedence:num) -> str:
+    # Keep a negative factor or power base distinct from a subtraction.
+    value < 0 /\ parent_precedence >= 3?
+        @: "\\left(" & str(value) & "\\right)"
+    str(value)
+
 _symbolic_katex_at(value:symbolic, parent_precedence:num) -> str:
     _symbolic_storage_kind(_symbolic_clone(value)) != 10?
         kind: _symbolic_root_kind(_symbolic_clone(value))
         kind = 1? @: _symbolic_symbol_latex(value)
-        kind = 2? @: str(_symbolic_number_value(value))
+        kind = 2? @: _symbolic_katex_number(_symbolic_number_value(value), parent_precedence)
         @: _symbolic_katex_at(_symbolic_as_dag(value), parent_precedence)
 
     operation: _symbolic_dag_operation(_symbolic_clone(value))
     operation = 1? @: _symbolic_symbol_latex(value)
-    operation = 2? @: str(_symbolic_number_value(value))
+    operation = 2? @: _symbolic_katex_number(_symbolic_number_value(value), parent_precedence)
     precedence: _symbolic_katex_precedence(operation)
     left: _symbolic_left(_symbolic_clone(value))
     right: _symbolic_clone(left)
@@ -4746,7 +4752,7 @@ _symbolic_separable_numeric_system(
     handled: equation_count = variable_count
     has_solution: true
     verified: true
-    num solution_count: 0
+    num enumerated_solution_count: 0
     num row: 0
     num solution_index: 0
     num combination: 0
@@ -4818,16 +4824,16 @@ _symbolic_separable_numeric_system(
             .variable_index+: 1
 
     handled /\ has_solution?
-        .solution_count: 1
+        .enumerated_solution_count: 1
         .variable_index: 0
         variable_index < variable_count?>
-            .solution_count *: candidate_counts.(variable_index)
+            .enumerated_solution_count *: candidate_counts.(variable_index)
             .variable_index+: 1
 
-        .values: [0:int(solution_count * variable_count)]
+        .values: [0:int(enumerated_solution_count * variable_count)]
 
         .combination: 0
-        combination < solution_count?>
+        combination < enumerated_solution_count?>
             .divisor: 1
             .variable_index: 0
             variable_index < variable_count?>
@@ -4841,7 +4847,7 @@ _symbolic_separable_numeric_system(
             .combination+: 1
 
         .solution_index: 0
-        solution_index < solution_count?>
+        solution_index < enumerated_solution_count?>
             .row: 0
             row < equation_count?>
                 residual: _symbolic_unexpanded_equation_residual(
@@ -4860,9 +4866,9 @@ _symbolic_separable_numeric_system(
                 .row+: 1
             .solution_index+: 1
         @: (handled:handled, has_solution:has_solution, verified:verified,
-            solution_count:solution_count, values:values)
+            solution_count:enumerated_solution_count, values:values)
     (handled:handled, has_solution:has_solution, verified:verified,
-     solution_count:solution_count, values:values)
+     solution_count:enumerated_solution_count, values:values)
 
 _symbolic_polynomial_pair_coefficient(
     value:symbolic,

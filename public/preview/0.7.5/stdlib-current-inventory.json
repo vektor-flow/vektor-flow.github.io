@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "scope": "Current selected package source and current registered namespaces; inventory presence is not full API qualification.",
-  "compiler_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-  "compiler_data_sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2",
+  "compiler_source_commit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
+  "compiler_data_sha256": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a",
   "current_registry_sha256": "b5d70c04e22e8acd7d7576bd5caf9b599d935bdcd30cc08e001d2b1c115a9658",
   "registry_entries": [
     {
@@ -165,7 +165,8 @@
       "source_sha256": "ca670afda7c9edc010ca25428f61f79c0fb45bdf5655a4a240d2162e744a2f3f",
       "name": ".math",
       "anchor": "math",
-      "description": "Elementary mathematics"
+      "description": "Elementary mathematics",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "linalg",
@@ -175,27 +176,30 @@
       "source_sha256": "5dcd769b40b58738c68774defe032f068b1894b057cc523b4622f3357de9c866",
       "name": ".linalg",
       "anchor": "linalg",
-      "description": "Linear algebra"
+      "description": "Linear algebra",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "stat",
       "source": "stdlib-source/stat.vkf",
       "implementation": "Mixed",
       "native": true,
-      "source_sha256": "a0d3b7c7af273ea8e3f633e9abd24dc6f0494933cd4c22a6c285272b00faf95b",
+      "source_sha256": "60e6e00c16f3d784409a5de4acbd788d1aff94f3b5737a16b8698951afe71b62",
       "name": ".stat",
       "anchor": "stat",
-      "description": "Statistics"
+      "description": "Statistics",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "units",
       "source": "stdlib-source/units.vkf",
       "implementation": "Mixed",
       "native": true,
-      "source_sha256": "c6eae08570c5fa77548d42c69ab590ebff3956aeb04d519980a225d2897819a5",
+      "source_sha256": "c20912bb329371215b241670919d439a03cee578dbaea5b3ae2b6fd9a6080b12",
       "name": ".units",
       "anchor": "units",
-      "description": "Physical units"
+      "description": "Physical units",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "ui",
@@ -205,7 +209,8 @@
       "source_sha256": "1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb",
       "name": ".ui",
       "anchor": "ui",
-      "description": "Browser views"
+      "description": "Browser views",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "concurrent",
@@ -215,7 +220,8 @@
       "source_sha256": "0309f6be8a254f1a9282f0ddab9edfdd5f76724bf5870f2bf815fd9883fea8f9",
       "name": ".concurrent",
       "anchor": "concurrent",
-      "description": "Queues, processes and shared values"
+      "description": "Queues, processes and shared values",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "collections",
@@ -225,7 +231,8 @@
       "source_sha256": "57014c51de253c74998cdeb450771135d434c50e350d0555ebc032b61307a7a1",
       "name": ".collections",
       "anchor": "collections",
-      "description": "Collections"
+      "description": "Collections",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "errors",
@@ -235,7 +242,8 @@
       "source_sha256": "150851cae3b6b1f2fc275de0d8678435a2e765f6b8f085a2c76c06584b7a7345",
       "name": ".errors",
       "anchor": "errors",
-      "description": "Error handling"
+      "description": "Error handling",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "random",
@@ -245,7 +253,8 @@
       "source_sha256": "f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5",
       "name": ".random",
       "anchor": "random",
-      "description": "Random values"
+      "description": "Random values",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "regex",
@@ -255,7 +264,8 @@
       "source_sha256": "748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7",
       "name": ".regex",
       "anchor": "regex",
-      "description": "Regular expressions"
+      "description": "Regular expressions",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "symbolic",
@@ -265,17 +275,19 @@
       "source_sha256": "0cfceb3ced5c928d58954c0b8c870760275fdd645a68b9456fa0274d562f88a4",
       "name": ".symbolic",
       "anchor": "symbolic",
-      "description": "Symbolic operations"
+      "description": "Symbolic operations",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics",
       "source": "stdlib-source/physics.vkf",
       "implementation": "Mixed",
       "native": true,
-      "source_sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3",
+      "source_sha256": "1478685dac1f31d7df61d66c7128ca1ab206b9c698eab926975ba825fb021804",
       "name": ".physics",
       "anchor": "physics",
-      "description": "Physical models"
+      "description": "Physical models",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "io",
@@ -285,7 +297,8 @@
       "source_sha256": "0df4f64fa1597f619743fb0ff01105f59c1e7883e19bc095f00ba48e9a3e7d80",
       "name": ".io",
       "anchor": "io",
-      "description": "Input and output"
+      "description": "Input and output",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "command",
@@ -295,7 +308,8 @@
       "source_sha256": "1d7b751e40daaf1689bb78dbac8fb593a998841e6b05de50e49130089ac63d34",
       "name": ".command",
       "anchor": "command",
-      "description": "Command execution"
+      "description": "Command execution",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "system",
@@ -305,7 +319,8 @@
       "source_sha256": "5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9",
       "name": ".system",
       "anchor": "system",
-      "description": "System operations"
+      "description": "System operations",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "time",
@@ -315,7 +330,8 @@
       "source_sha256": "5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc",
       "name": ".time",
       "anchor": "time",
-      "description": "Clocks and time"
+      "description": "Clocks and time",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "ui.colormaps",
@@ -325,17 +341,19 @@
       "source_sha256": "1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82",
       "name": ".ui.colormaps",
       "anchor": "ui-colormaps",
-      "description": "Colormap selectors"
+      "description": "Colormap selectors",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "units.si",
       "source": "stdlib-source/units/si.vkf",
       "implementation": "VkfSource",
       "native": true,
-      "source_sha256": "36a2ce04f5ebff724d5c75a330f7eb42a5d816749557fb9f8b6668a60fd928c1",
+      "source_sha256": "d5fb024e6c13d91088fd7dc7dc2d0423d399906a28eefc9b32dd680cdd6cb1ff",
       "name": ".units.si",
       "anchor": "units-si",
-      "description": "SI unit definitions"
+      "description": "SI unit definitions",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.units",
@@ -345,7 +363,8 @@
       "source_sha256": "79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2",
       "name": ".physics.units",
       "anchor": "physics-units",
-      "description": "Physical unit helpers"
+      "description": "Physical unit helpers",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.units.si",
@@ -355,7 +374,8 @@
       "source_sha256": "d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05",
       "name": ".physics.units.si",
       "anchor": "physics-units-si",
-      "description": "Physical SI definitions"
+      "description": "Physical SI definitions",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.preparation",
@@ -365,7 +385,8 @@
       "source_sha256": "02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8",
       "name": ".physics.preparation",
       "anchor": "physics-preparation",
-      "description": "Physical model preparation"
+      "description": "Physical model preparation",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.convex_preparation",
@@ -375,7 +396,8 @@
       "source_sha256": "69145d0db315e3d97aff50077fedf7c879be1cdb093b63a7aa3b6a9fbf08ae00",
       "name": ".physics.convex_preparation",
       "anchor": "physics-convex_preparation",
-      "description": "Convex model preparation"
+      "description": "Convex model preparation",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.rigid",
@@ -385,7 +407,8 @@
       "source_sha256": "44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c",
       "name": ".physics.rigid",
       "anchor": "physics-rigid",
-      "description": "Rigid-body helpers"
+      "description": "Rigid-body helpers",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "physics.supported_contact",
@@ -395,7 +418,8 @@
       "source_sha256": "9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05",
       "name": ".physics.supported_contact",
       "anchor": "physics-supported_contact",
-      "description": "Supported-contact helpers"
+      "description": "Supported-contact helpers",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "data",
@@ -404,7 +428,9 @@
       "native": true,
       "name": ".data",
       "anchor": "data",
-      "description": "Compiler-provided data namespace"
+      "description": "Compiler-provided data namespace",
+      "sourcePresentInSelectedPackage": false,
+      "source_note": "Registered intrinsic/runtime module; no source file in selected32 package."
     },
     {
       "module": "events",
@@ -413,7 +439,9 @@
       "native": false,
       "name": ".events",
       "anchor": "events",
-      "description": "Target-dependent event namespace"
+      "description": "Target-dependent event namespace",
+      "sourcePresentInSelectedPackage": false,
+      "source_note": "Registered intrinsic/runtime module; no source file in selected32 package."
     },
     {
       "module": "interpolation",
@@ -423,7 +451,8 @@
       "source_sha256": "ecb7a741e256f5e7b796ebf587fcc8342e33ea5aebd0da3e38ef1f736355d936",
       "name": ".interpolation",
       "anchor": "interpolation",
-      "description": "Explicit interpolation plans and sampling"
+      "description": "Explicit interpolation plans and sampling",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "interpolation.polynomial",
@@ -433,7 +462,8 @@
       "source_sha256": "31886179a3b94e795b2cc581db127b76571c34903f160af69c8f6ffce7f4f343",
       "name": ".interpolation.polynomial",
       "anchor": "interpolation-polynomial",
-      "description": "Bernstein polynomial helpers"
+      "description": "Bernstein polynomial helpers",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "interpolation.tensor",
@@ -443,7 +473,8 @@
       "source_sha256": "21ab3900bc7d0974d6bcaaa6b16f9881c7c38b8dcac2f9de692904503e1ed929",
       "name": ".interpolation.tensor",
       "anchor": "interpolation-tensor",
-      "description": "Tensor-product patch helpers"
+      "description": "Tensor-product patch helpers",
+      "sourcePresentInSelectedPackage": true
     },
     {
       "module": "screen",
@@ -452,7 +483,9 @@
       "native": false,
       "name": ".screen",
       "anchor": "screen",
-      "description": "Target-dependent screen namespace"
+      "description": "Target-dependent screen namespace",
+      "sourcePresentInSelectedPackage": false,
+      "source_note": "Registered intrinsic/runtime module; no source file in selected32 package."
     }
   ],
   "package_sources": [
@@ -559,16 +592,16 @@
       "path": "stdlib-source/physics.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics.vkf",
       "start": 60957,
-      "end": 89813,
-      "bytes": 28856,
-      "sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3",
+      "end": 90382,
+      "bytes": 29425,
+      "sha256": "1478685dac1f31d7df61d66c7128ca1ab206b9c698eab926975ba825fb021804",
       "support_file": false
     },
     {
       "path": "stdlib-source/physics/convex_preparation.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf",
-      "start": 89813,
-      "end": 95419,
+      "start": 90382,
+      "end": 95988,
       "bytes": 5606,
       "sha256": "69145d0db315e3d97aff50077fedf7c879be1cdb093b63a7aa3b6a9fbf08ae00",
       "support_file": false
@@ -576,8 +609,8 @@
     {
       "path": "stdlib-source/physics/preparation.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/preparation.vkf",
-      "start": 95419,
-      "end": 98249,
+      "start": 95988,
+      "end": 98818,
       "bytes": 2830,
       "sha256": "02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8",
       "support_file": false
@@ -585,8 +618,8 @@
     {
       "path": "stdlib-source/physics/rigid.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/rigid.vkf",
-      "start": 98249,
-      "end": 108295,
+      "start": 98818,
+      "end": 108864,
       "bytes": 10046,
       "sha256": "44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c",
       "support_file": false
@@ -594,8 +627,8 @@
     {
       "path": "stdlib-source/physics/runtime.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/runtime.vkf",
-      "start": 108295,
-      "end": 108635,
+      "start": 108864,
+      "end": 109204,
       "bytes": 340,
       "sha256": "28ba2b827cb93c24ae0dad07ee56f444a8e1e7d229c3ece6a4f3dbba272e375b",
       "support_file": true
@@ -603,8 +636,8 @@
     {
       "path": "stdlib-source/physics/supported_contact.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf",
-      "start": 108635,
-      "end": 115859,
+      "start": 109204,
+      "end": 116428,
       "bytes": 7224,
       "sha256": "9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05",
       "support_file": false
@@ -612,8 +645,8 @@
     {
       "path": "stdlib-source/physics/units.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/units.vkf",
-      "start": 115859,
-      "end": 116073,
+      "start": 116428,
+      "end": 116642,
       "bytes": 214,
       "sha256": "79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2",
       "support_file": false
@@ -621,8 +654,8 @@
     {
       "path": "stdlib-source/physics/units/si.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics/units/si.vkf",
-      "start": 116073,
-      "end": 116363,
+      "start": 116642,
+      "end": 116932,
       "bytes": 290,
       "sha256": "d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05",
       "support_file": false
@@ -630,8 +663,8 @@
     {
       "path": "stdlib-source/physics_collision_matrix_smoke.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
-      "start": 116363,
-      "end": 116687,
+      "start": 116932,
+      "end": 117256,
       "bytes": 324,
       "sha256": "7c7fd8b7fe93197cafbe91c769a39be2ef6913c8d734c3706fddf4765025c8e9",
       "support_file": true
@@ -639,8 +672,8 @@
     {
       "path": "stdlib-source/physics_contact_model_smoke.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
-      "start": 116687,
-      "end": 117335,
+      "start": 117256,
+      "end": 117904,
       "bytes": 648,
       "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152",
       "support_file": true
@@ -648,8 +681,8 @@
     {
       "path": "stdlib-source/physics_rigid_body_smoke.vkf",
       "package_path": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
-      "start": 117335,
-      "end": 117914,
+      "start": 117904,
+      "end": 118483,
       "bytes": 579,
       "sha256": "3547a685b765a70d4d68c8cfc1835bfd8bea3564e8e66fc6891977066f64058b",
       "support_file": true
@@ -657,8 +690,8 @@
     {
       "path": "stdlib-source/random.vkf",
       "package_path": "/compiler/self_hosted/stdlib/random.vkf",
-      "start": 117914,
-      "end": 120209,
+      "start": 118483,
+      "end": 120778,
       "bytes": 2295,
       "sha256": "f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5",
       "support_file": false
@@ -666,8 +699,8 @@
     {
       "path": "stdlib-source/regex.vkf",
       "package_path": "/compiler/self_hosted/stdlib/regex.vkf",
-      "start": 120209,
-      "end": 120669,
+      "start": 120778,
+      "end": 121238,
       "bytes": 460,
       "sha256": "748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7",
       "support_file": false
@@ -675,17 +708,17 @@
     {
       "path": "stdlib-source/stat.vkf",
       "package_path": "/compiler/self_hosted/stdlib/stat.vkf",
-      "start": 120669,
-      "end": 130253,
-      "bytes": 9584,
-      "sha256": "a0d3b7c7af273ea8e3f633e9abd24dc6f0494933cd4c22a6c285272b00faf95b",
+      "start": 121238,
+      "end": 130959,
+      "bytes": 9721,
+      "sha256": "60e6e00c16f3d784409a5de4acbd788d1aff94f3b5737a16b8698951afe71b62",
       "support_file": false
     },
     {
       "path": "stdlib-current-source/symbolic.vkf",
       "package_path": "/compiler/self_hosted/stdlib/symbolic.vkf",
-      "start": 130253,
-      "end": 613652,
+      "start": 130959,
+      "end": 614358,
       "bytes": 483399,
       "sha256": "0cfceb3ced5c928d58954c0b8c870760275fdd645a68b9456fa0274d562f88a4",
       "support_file": false
@@ -693,8 +726,8 @@
     {
       "path": "stdlib-source/system.vkf",
       "package_path": "/compiler/self_hosted/stdlib/system.vkf",
-      "start": 613652,
-      "end": 614027,
+      "start": 614358,
+      "end": 614733,
       "bytes": 375,
       "sha256": "5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9",
       "support_file": false
@@ -702,8 +735,8 @@
     {
       "path": "stdlib-source/time.vkf",
       "package_path": "/compiler/self_hosted/stdlib/time.vkf",
-      "start": 614027,
-      "end": 618013,
+      "start": 614733,
+      "end": 618719,
       "bytes": 3986,
       "sha256": "5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc",
       "support_file": false
@@ -711,8 +744,8 @@
     {
       "path": "stdlib-source/ui.vkf",
       "package_path": "/compiler/self_hosted/stdlib/ui.vkf",
-      "start": 618013,
-      "end": 618039,
+      "start": 618719,
+      "end": 618745,
       "bytes": 26,
       "sha256": "1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb",
       "support_file": false
@@ -720,8 +753,8 @@
     {
       "path": "stdlib-source/ui/colormaps.vkf",
       "package_path": "/compiler/self_hosted/stdlib/ui/colormaps.vkf",
-      "start": 618039,
-      "end": 619435,
+      "start": 618745,
+      "end": 620141,
       "bytes": 1396,
       "sha256": "1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82",
       "support_file": false
@@ -729,21 +762,24 @@
     {
       "path": "stdlib-source/units.vkf",
       "package_path": "/compiler/self_hosted/stdlib/units.vkf",
-      "start": 619435,
-      "end": 619586,
-      "bytes": 151,
-      "sha256": "c6eae08570c5fa77548d42c69ab590ebff3956aeb04d519980a225d2897819a5",
+      "start": 620141,
+      "end": 620217,
+      "bytes": 76,
+      "sha256": "c20912bb329371215b241670919d439a03cee578dbaea5b3ae2b6fd9a6080b12",
       "support_file": false
     },
     {
       "path": "stdlib-source/units/si.vkf",
       "package_path": "/compiler/self_hosted/stdlib/units/si.vkf",
-      "start": 619586,
-      "end": 619872,
-      "bytes": 286,
-      "sha256": "36a2ce04f5ebff724d5c75a330f7eb42a5d816749557fb9f8b6668a60fd928c1",
+      "start": 620217,
+      "end": 620301,
+      "bytes": 84,
+      "sha256": "d5fb024e6c13d91088fd7dc7dc2d0423d399906a28eefc9b32dd680cdd6cb1ff",
       "support_file": false
     }
   ],
-  "source_note": "The package is the selected current artifact. Its stat.vkf differs from the current maintained source snapshot; package source is shown exactly, without claiming that mismatch repaired. Morphing is project/application code, outside this standard-library inventory."
+  "source_note": "Both source mirrors contain the same exact selected32 paired-header/preload snapshot0b63. Inventory is source presence, not full API or Physics qualification; Morphing remains project code.",
+  "compiler_binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
+  "selected_library_source_commit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
+  "paired_manifest_sha256": "e5dcb5389057232424b0ab3685a9a0cf5d3e31bbc695a5feee780894e88d3c5c"
 }

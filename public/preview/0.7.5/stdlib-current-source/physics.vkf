@@ -191,6 +191,19 @@ step_rigid_body_momentum3(
         position: position
     )
 
+# The full geometry-derived record has four fields. Ordinary record contracts
+# are exact; explicitly project its inertial fields into the existing law.
+step_rigid_body_momentum3(
+    state:(position:[num:3], momentum:[num:3], angular_momentum:[num:3]),
+    properties:(mass:num, volume:num, center_of_mass:[num:3], inertia_tensor:[[num:3]:3]),
+    dt:num,
+    force:[num:3],
+    torque:[num:3]
+):
+    inertial_properties: (mass: properties.mass, inertia_tensor: properties.inertia_tensor)
+    step_rigid_body_momentum3(state, inertial_properties, dt, force, torque)
+
+
 vec2(x:num, y:num):
     [x, y]
 

@@ -166,6 +166,10 @@ min(values:[num:n]) -> num:
 max(values:[num:n]) -> num:
     percentile(values, 100)
 
+# Peak-to-peak range inherits the extrema's promotion and non-empty contract.
+ptp(values:[num:n]) -> num:
+    max(values) - min(values)
+
 percentile(values:[num:n], p:num) -> num:
     n: stat.count(values)
     (n > 0)?! "stat.percentile: sequence must be non-empty"

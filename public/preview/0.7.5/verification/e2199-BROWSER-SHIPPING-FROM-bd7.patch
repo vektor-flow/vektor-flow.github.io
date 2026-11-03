@@ -1,0 +1,92 @@
+diff --git a/compiler/native/lowering/callable_resolution_1.cpp b/compiler/native/lowering/callable_resolution_1.cpp
+index 69d1586..42af991 100644
+--- a/compiler/native/lowering/callable_resolution_1.cpp
++++ b/compiler/native/lowering/callable_resolution_1.cpp
+@@ -243,7 +243,8 @@ bool Lowerer::erased_overload_call(const vf::JsonValue& value,const std::set<std
+         if(kind_of(value)!="call")return false;
+         const auto& object=value.as_object();const auto& callee=field(object,"callee","ordinary overload template");
+         if(kind_of(callee)!="identifier")return false;
+-        const auto family=functions_.family(string_field(callee.as_object(),"name","ordinary overload template"));
++        const auto callee_name=string_field(callee.as_object(),"name","ordinary overload template");
++        auto family=functions_.family(callee_name);
+         if(family.empty())return false;
+         const auto depends=[&](const auto& self,const vf::JsonValue& item)->bool {
+             if(item.is_array())return std::any_of(item.as_array().begin(),item.as_array().end(),[&](const auto& child){return self(self,child);});
+@@ -254,6 +255,15 @@ bool Lowerer::erased_overload_call(const vf::JsonValue& value,const std::set<std
+             return false;
+         };
+         const auto& arguments=field(object,"args","ordinary overload template").as_array();
++        // Positional arity is known before erased operand types. In particular,
++        // an appended capture ABI is not another choice at the source call's
++        // public arity. Keep genuine same-arity overloads on the staged path.
++        if(family.size()>1 && std::none_of(arguments.begin(),arguments.end(),[](const auto& argument) {
++            return kind_of(argument)=="named_call_arg" || kind_of(argument)=="spread_arg";
++        })) {
++            if(const auto* selected=functions_.get_unique_arity(callee_name,arguments.size()))
++                family={selected};
++        }
+         if(family.size()>1)return depends(depends,vf::JsonValue(arguments));
+         const auto& target=*family.front();
+         if(!forwarding_path.insert(target.name).second)return false;
+diff --git a/compiler/native/machine_lowering/expressions_2.cpp b/compiler/native/machine_lowering/expressions_2.cpp
+index c25504d..70dd95b 100644
+--- a/compiler/native/machine_lowering/expressions_2.cpp
++++ b/compiler/native/machine_lowering/expressions_2.cpp
+@@ -257,7 +257,10 @@ bool lower_discarded_range_pipe(
+                                     declared->second.is_string()) {
+                                     const auto declared_layout = layout_from_type(
+                                         declared->second.as_string(), &signatures);
+-                                    if (!(string_field(value, "kind", "pipe binding value") ==
++                                    // Keep the actual counted return storage;
++                                    // a logical fixed extent cannot pad a handle.
++                                    if (layout.kind != ValueKind::DynamicF64List &&
++                                        !(string_field(value, "kind", "pipe binding value") ==
+                                               "load" && layout.kind != ValueKind::Any) &&
+                                         declared_layout.width > layout.width) {
+                                         layout = declared_layout;
+diff --git a/tests/fixtures/captured-helper-erased-call.expected.txt b/tests/fixtures/captured-helper-erased-call.expected.txt
+new file mode 100644
+index 0000000..7ed6ff8
+--- /dev/null
++++ b/tests/fixtures/captured-helper-erased-call.expected.txt
+@@ -0,0 +1 @@
++5
+diff --git a/tests/fixtures/captured-helper-erased-call.vkf b/tests/fixtures/captured-helper-erased-call.vkf
+new file mode 100644
+index 0000000..2da686f
+--- /dev/null
++++ b/tests/fixtures/captured-helper-erased-call.vkf
+@@ -0,0 +1,12 @@
++# The hidden capture adds a physical signature to the one source helper.
++# An erased wrapper must still lower its executable body at the public arity.
++_mode: 2
++
++captured(value:any):
++    @: (amount: value.amount + _mode, marker: value.marker)
++
++combine(value:any):
++    hit: captured(value)
++    @: (amount: hit.amount, marker: hit.marker)
++
++::combine((amount: 3, marker: 0)).amount
+diff --git a/tests/fixtures/scoped-counted-solve-result.vkf b/tests/fixtures/scoped-counted-solve-result.vkf
+new file mode 100644
+index 0000000..fe59a2b
+--- /dev/null
++++ b/tests/fixtures/scoped-counted-solve-result.vkf
+@@ -0,0 +1,15 @@
++:.linalg
++
++inverse3(matrix:[[num:3]:3]) -> [[num:3]:3]:
++    inverse(matrix)
++
++result: inverse3([[3, 0, 0], [0, 4, 0], [0, 0, 5]])
++:: result.(0, 0)
++:: result.(0, 1)
++:: result.(0, 2)
++:: result.(1, 0)
++:: result.(1, 1)
++:: result.(1, 2)
++:: result.(2, 0)
++:: result.(2, 1)
++:: result.(2, 2)

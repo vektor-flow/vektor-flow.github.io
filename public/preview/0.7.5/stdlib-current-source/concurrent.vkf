@@ -1,0 +1,18 @@
+# Event and I/O concurrency.  Numerical parallelism remains compiler-managed
+# Quantum work; this module is deliberately about isolated processes and
+# message ownership, not GPU launches or parallel loops.
+
+# The public entry points are compiler/runtime intrinsics.  They are not
+# redeclared with invented variadic syntax here: the handover deliberately
+# leaves the final core variadic declaration spelling open.  The compiler
+# exports `process`, `queue`, `broadcast`, and `shared` using ordinary call
+# binding, so process invocation inherits that final spelling unchanged.
+
+concurrent_stdlib_capability:
+    name: "concurrent"
+    concepts: ["process", "queue", "broadcast", "shared"]
+    process: ["starts immediately", "join returns worker result", "kill is forced termination"]
+    queue: ["FIFO", "destructive receive", "get blocks without polling"]
+    broadcast: ["many producers", "one queue-like branch per subscriber", "active subscribers receive every later value"]
+    shared: ["one arbitrary immutable VKF value", "published generations", "no mutable shared-pointer API"]
+    :

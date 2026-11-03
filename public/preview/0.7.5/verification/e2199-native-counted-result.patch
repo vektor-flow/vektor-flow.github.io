@@ -1,0 +1,37 @@
+diff --git a/compiler/native/machine_lowering/expressions_2.cpp b/compiler/native/machine_lowering/expressions_2.cpp
+index c25504d..70dd95b 100644
+--- a/compiler/native/machine_lowering/expressions_2.cpp
++++ b/compiler/native/machine_lowering/expressions_2.cpp
+@@ -257,7 +257,10 @@ bool lower_discarded_range_pipe(
+                                     declared->second.is_string()) {
+                                     const auto declared_layout = layout_from_type(
+                                         declared->second.as_string(), &signatures);
+-                                    if (!(string_field(value, "kind", "pipe binding value") ==
++                                    // Keep the actual counted return storage;
++                                    // a logical fixed extent cannot pad a handle.
++                                    if (layout.kind != ValueKind::DynamicF64List &&
++                                        !(string_field(value, "kind", "pipe binding value") ==
+                                               "load" && layout.kind != ValueKind::Any) &&
+                                         declared_layout.width > layout.width) {
+                                         layout = declared_layout;
+diff --git a/tests/fixtures/scoped-counted-solve-result.vkf b/tests/fixtures/scoped-counted-solve-result.vkf
+new file mode 100644
+index 0000000..fe59a2b
+--- /dev/null
++++ b/tests/fixtures/scoped-counted-solve-result.vkf
+@@ -0,0 +1,15 @@
++:.linalg
++
++inverse3(matrix:[[num:3]:3]) -> [[num:3]:3]:
++    inverse(matrix)
++
++result: inverse3([[3, 0, 0], [0, 4, 0], [0, 0, 5]])
++:: result.(0, 0)
++:: result.(0, 1)
++:: result.(0, 2)
++:: result.(1, 0)
++:: result.(1, 1)
++:: result.(1, 2)
++:: result.(2, 0)
++:: result.(2, 1)
++:: result.(2, 2)

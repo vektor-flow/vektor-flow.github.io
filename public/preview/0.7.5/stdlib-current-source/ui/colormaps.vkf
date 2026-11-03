@@ -1,0 +1,25 @@
+# Compile-time UI colormap selector namespace.
+#
+# Selectors are consumed by `Frame.add(cmap:...)`; they are not runtime values.
+# Any standard palette may carry one color axis, and every palette has the
+# corresponding alpha form with alpha first:
+#
+#   maps.viridis_i       maps.turbo_x       maps.Spectral_t
+#   maps.twilight_q      maps.tab20_i       maps.terrain_uv
+#   maps.alpha_jet_ij    maps.alpha_tab20_qi
+#
+# Supported standard families: perceptual (viridis, plasma, inferno, magma,
+# cividis, turbo), sequential (Blues through YlOrRd plus gray/bone/pink/hot),
+# diverging (coolwarm, bwr, seismic, PiYG through Spectral), cyclic
+# (twilight, twilight_shifted, hsv), categorical (Accent, Dark2, Paired,
+# Pastel1/2, Set1/2/3, tab10/20/20b/20c), and legacy scientific palettes
+# (jet, rainbow, prism, flag, terrain, ocean, cubehelix, nipy_spectral,
+# gist_earth, gist_ncar, gnuplot, CMRmap).
+#
+# The suffix is the coordinate being normalized. Its `axis_lim` (or
+# `axis_min`/`axis_max`) sets the normalization domain; `axis_mode` controls
+# outside values: extend, clamp, repeat, mirror, or discard.
+# An extra value axis is ordinary layer grouping unless a cmap/alpha suffix
+# consumes that axis as its color channel; plotting never implicitly
+# vectorizes a coordinate result. Complex coordinate output is rejected—make
+# real output channels explicitly, e.g. `[abs(p),arg(p)]_qic`.

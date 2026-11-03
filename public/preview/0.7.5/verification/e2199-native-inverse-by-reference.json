@@ -1,0 +1,272 @@
+{
+  "owner": "e2195",
+  "atMonotonic": 634440.349480341,
+  "source": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
+  "build": {
+    "standaloneBinary": {
+      "path": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/vkf_x64_artifact",
+      "bytes": 12799104,
+      "sha256": "68a1e45327d2a07dc3815ad19c5d166f99a17fe55945beb1b5fd1afb984a8ce9"
+    },
+    "standaloneLink": {
+      "name": "standalone-link",
+      "argv": [
+        "/usr/bin/clang++-19",
+        "-O0",
+        "-Wl,--gc-sections",
+        "-static-libstdc++",
+        "-static-libgcc",
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/objects/component-238.o",
+        "/mnt/development/VektorFlow-e1991-fast-site-actual-20261102/native/objects/component-239.o",
+        "@/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/standalone-providers.rsp",
+        "/home/viktor/.cache/vkf-architecture-0136/fresh180/native/libvkf_trig.a",
+        "/home/viktor/.cache/vkf-architecture-0136/fresh180/native/libvkf_source_device_transport.a",
+        "-pthread",
+        "-o",
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/vkf_x64_artifact"
+      ],
+      "actualDirectChildReturncode": 0,
+      "timeout": false,
+      "childJoined": true,
+      "elapsedSeconds": 2.318627823027782
+    },
+    "owner": "e2195",
+    "sourceCommit": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
+    "binding": "8c59af92cabfe07967106464033e674995784b4ad63942bd0f0709ea14a6cd5f",
+    "binary": {
+      "path": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/native2196v2-install/bin/vkf",
+      "bytes": 32903896,
+      "sha256": "a5c949bd71242f3e96d8a426f4509b34299427f6835349828ee0fc2e78909a69"
+    },
+    "normalLink": {
+      "name": "normal-link",
+      "argv": [
+        "/usr/bin/clang++-19",
+        "-O0",
+        "-Wl,--gc-sections",
+        "-static-libstdc++",
+        "-static-libgcc",
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/objects/component-237.o",
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/objects/component-238.o",
+        "/mnt/development/VektorFlow-e1991-fast-site-actual-20261102/native/objects/component-239.o",
+        "@/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/normal-providers.rsp",
+        "/home/viktor/.cache/vkf-architecture-0136/fresh180/native/libvkf_trig.a",
+        "/home/viktor/.cache/vkf-architecture-0136/fresh180/native/libvkf_source_device_transport.a",
+        "-pthread",
+        "-o",
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/candidate2196v2-build/vkf"
+      ],
+      "actualDirectChildReturncode": 0,
+      "timeout": false,
+      "childJoined": true,
+      "elapsedSeconds": 2.771325477049686
+    },
+    "sourceBindingQuery": {
+      "name": "normal-binding",
+      "argv": [
+        "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/native2196v2-install/bin/vkf",
+        "--source-binding"
+      ],
+      "actualDirectChildReturncode": 0,
+      "timeout": false,
+      "childJoined": true,
+      "elapsedSeconds": 0.00373243005014956
+    },
+    "installedPhysics": {
+      "path": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/native2196v2-install/compiler/self_hosted/stdlib/physics.vkf",
+      "bytes": 29425,
+      "sha256": "1478685dac1f31d7df61d66c7128ca1ab206b9c698eab926975ba825fb021804"
+    },
+    "rebuilt": [
+      25,
+      90,
+      237,
+      238
+    ],
+    "normalReused": 236,
+    "normalLinked": 240,
+    "standaloneReused": 236,
+    "standaloneLinked": 239,
+    "normalCLIQualified": false,
+    "atMonotonic": 634204.178128417
+  },
+  "fixture": {
+    "source": "/mnt/development/VektorFlow-e2196-contact-tangent-spin-source-20261103/compiler/tests/fixtures/scoped-counted-solve-result.vkf",
+    "ownSource": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression-inverse/main.vkf",
+    "bytes": 281,
+    "sha256": "166755cc572786ff1b2953b003c0483377c7a3b7f595c7ce60d4b690f1941e5b",
+    "expected": [
+      0.3333333333333333,
+      0,
+      0,
+      0,
+      0.25,
+      0,
+      0,
+      0,
+      0.2
+    ],
+    "atMonotonic": 633521.597292727,
+    "sourceRuntimeUNRUN": true,
+    "scope": "minimal scoped binding of counted inverse3 result; original contact648B source unchanged"
+  },
+  "compile": {
+    "name": "source2196v2-inverse-regression-normal-compile",
+    "command": [
+      "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/native2196v2-install/bin/vkf",
+      "-b",
+      "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression2196v2/main.vkf",
+      "-o",
+      "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression2196v2/program",
+      "--optimizer-policy",
+      "mask-0",
+      "--diagnostics"
+    ],
+    "cwd": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression2196v2",
+    "normalCapSeconds": 60,
+    "cleanupReserveSeconds": 30,
+    "startMonotonic": 634371.726286289,
+    "clock": {
+      "name": "e2195",
+      "threadId": "01a1a285-9423-78b3-9096-0af34ecf01de",
+      "cwd": "/home/viktor/Projects/Vektor Flow",
+      "verifiedServerProject": "/home/viktor/Projects/Vektor Flow",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high",
+      "modelAuthority": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "config": {
+          "model_reasoning_effort": "high"
+        },
+        "authority_id": "user-e1390-20261027T213253.062166Z",
+        "effective": true,
+        "effective_epoch": 1793136773.0621665,
+        "effective_utc": "2026-10-27T21:32:53.062166+00:00",
+        "policy_path": "/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json",
+        "worker_transition": "Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption."
+      },
+      "returnedModel": "gpt-6.1-sol",
+      "status": "RUNNING",
+      "role": "ACTUAL_CURRENT_CONTACT_BACKEND_DISCRIMINATOR_AND_MINIMAL_CAUSAL_FIX",
+      "executionAuthority": "SOLE_PRODUCT_EXECUTION_FRESH_CONTINUOUS_FIRST_FD",
+      "order": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/ORDER-e2195.txt",
+      "handover": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/HANDOVER-TO-e2195.txt",
+      "started": "2026-11-03T17:47:05.666708+00:00",
+      "started_epoch": 1793728025.6667085,
+      "started_monotonic": 632539.729272792,
+      "sourceCutoff": 635389.729272792,
+      "operationStop": 635539.729272792,
+      "physicalDeadline": 636019.729272792,
+      "finalDeadline": 636139.729272792,
+      "turnId": "01a1a285-9572-7523-a699-0060afb143db"
+    },
+    "adoptedJoins": [],
+    "joinDeadlineMonotonic": 634461.726286289,
+    "identity": {
+      "pid": 2331634,
+      "ppid": 2308009,
+      "startTicks": 63437173,
+      "state": "R"
+    },
+    "inheritedFD": 9,
+    "admitted": true,
+    "exit": 0,
+    "childJoined": true,
+    "directExitObserved": 634393.793036363,
+    "remainingChildren": [],
+    "allDescendantsJoined": true,
+    "endMonotonic": 634393.795640259,
+    "elapsedSeconds": 22.0693542099325
+  },
+  "run": {
+    "name": "source2196v2-inverse-regression-normal-run",
+    "command": [
+      "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression2196v2/program"
+    ],
+    "cwd": "/mnt/development/VektorFlow-e2195-contact-backend-discriminator-actual-20261103/regression2196v2",
+    "normalCapSeconds": 10,
+    "cleanupReserveSeconds": 30,
+    "startMonotonic": 634418.760105342,
+    "clock": {
+      "name": "e2195",
+      "threadId": "01a1a285-9423-78b3-9096-0af34ecf01de",
+      "cwd": "/home/viktor/Projects/Vektor Flow",
+      "verifiedServerProject": "/home/viktor/Projects/Vektor Flow",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high",
+      "modelAuthority": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "config": {
+          "model_reasoning_effort": "high"
+        },
+        "authority_id": "user-e1390-20261027T213253.062166Z",
+        "effective": true,
+        "effective_epoch": 1793136773.0621665,
+        "effective_utc": "2026-10-27T21:32:53.062166+00:00",
+        "policy_path": "/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json",
+        "worker_transition": "Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption."
+      },
+      "returnedModel": "gpt-6.1-sol",
+      "status": "RUNNING",
+      "role": "ACTUAL_CURRENT_CONTACT_BACKEND_DISCRIMINATOR_AND_MINIMAL_CAUSAL_FIX",
+      "executionAuthority": "SOLE_PRODUCT_EXECUTION_FRESH_CONTINUOUS_FIRST_FD",
+      "order": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/ORDER-e2195.txt",
+      "handover": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/HANDOVER-TO-e2195.txt",
+      "started": "2026-11-03T17:47:05.666708+00:00",
+      "started_epoch": 1793728025.6667085,
+      "started_monotonic": 632539.729272792,
+      "sourceCutoff": 635389.729272792,
+      "operationStop": 635539.729272792,
+      "physicalDeadline": 636019.729272792,
+      "finalDeadline": 636139.729272792,
+      "turnId": "01a1a285-9572-7523-a699-0060afb143db"
+    },
+    "adoptedJoins": [],
+    "joinDeadlineMonotonic": 634458.760105342,
+    "identity": {
+      "pid": 2331980,
+      "ppid": 2308009,
+      "startTicks": 63441876,
+      "state": "R"
+    },
+    "inheritedFD": 9,
+    "admitted": true,
+    "exit": 0,
+    "childJoined": true,
+    "directExitObserved": 634418.814205837,
+    "remainingChildren": [],
+    "allDescendantsJoined": true,
+    "endMonotonic": 634418.816777802,
+    "elapsedSeconds": 0.056672820006497204
+  },
+  "expected": [
+    0.3333333333333333,
+    0,
+    0,
+    0,
+    0.25,
+    0,
+    0,
+    0,
+    0.2
+  ],
+  "actual": [
+    0.3333333333333333,
+    0.0,
+    0.0,
+    0.0,
+    0.25,
+    0.0,
+    0.0,
+    0.0,
+    0.2
+  ],
+  "passed": 9,
+  "total": 9,
+  "normalCLIRegressionPASS": true,
+  "baselineNormalFailed": true,
+  "firstCandidateNormalFailed": true,
+  "fullContactNormalCLIUnqualified": true
+}

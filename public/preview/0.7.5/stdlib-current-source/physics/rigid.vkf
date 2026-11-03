@@ -1,0 +1,107 @@
+# Ordinary-library wrapper for authenticated native replay.
+# This source alone cannot produce physics states: replay fails closed unless
+# the compiler and reviewed backend support its live source-owner definition.
+# prepare_si accepts explicitly SI numeric geometry; prepare checks physical
+# quantity dimensions before projecting individual coordinates into SI storage.
+runtime:.physics.runtime
+convex:.physics.convex_preparation
+validation:.physics.preparation
+errors:.errors
+:.physics.units
+:.math
+
+_publish_list(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,result:[num:15]):
+ result.0=1? errors.ValueError("invalid physics description or duration history")!
+ result.0!=0? errors.RuntimeError("physics backend failed before publication")!
+ (
+  backing:(definition:definition,history:history,snapshot:[result.1,result.2,result.3,result.4,result.5,result.6,result.7,result.8,result.9,result.10,result.11,result.12,result.13,result.14]),
+  time:result.1*s,
+  position:[result.2,result.3,result.4]*m,
+  orientation:[result.5,result.6,result.7,result.8],
+  velocity:[result.9,result.10,result.11]*m/s,
+  omega:[result.12,result.13,result.14]/s
+ )
+
+_history_list(values:[num:n]) -> list<num>:
+ result:[0.0:values.length()]
+ values.length()>0 ?
+  ..values.length()-1 >>
+   result.(int($)):num(values.(int($)))
+ result
+
+_publish(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:[num:n],result:[num:15]):
+ _publish_list(definition,_history_list(history),result)
+
+_canonical(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3])):
+ p:definition.geometry
+ g:p.geometry
+ (
+  geometry:(mass:num(p.mass),volume:num(p.volume),center_of_mass:[num(p.center_of_mass.0),num(p.center_of_mass.1),num(p.center_of_mass.2)],inertia_tensor:[[num(p.inertia_tensor.0.0),num(p.inertia_tensor.0.1),num(p.inertia_tensor.0.2)],[num(p.inertia_tensor.1.0),num(p.inertia_tensor.1.1),num(p.inertia_tensor.1.2)],[num(p.inertia_tensor.2.0),num(p.inertia_tensor.2.1),num(p.inertia_tensor.2.2)]],geometry:(vertices:g.vertices,faces:g.faces),material:(mu_s:num(p.material.mu_s),mu_d:num(p.material.mu_d),restitution:num(p.material.restitution))),
+  initial:(position:[num(definition.initial.position.0),num(definition.initial.position.1),num(definition.initial.position.2)],orientation:[num(definition.initial.orientation.0),num(definition.initial.orientation.1),num(definition.initial.orientation.2),num(definition.initial.orientation.3)],velocity:[num(definition.initial.velocity.0),num(definition.initial.velocity.1),num(definition.initial.velocity.2)],omega:[num(definition.initial.omega.0),num(definition.initial.omega.1),num(definition.initial.omega.2)]),
+  gravity:[num(definition.gravity.0),num(definition.gravity.1),num(definition.gravity.2)]
+ )
+
+# Keep caller domains until sealed replay admission; SI projection is explicit.
+prepare_si(points:[[P:3]:nv],faces:[[Q:3]:nf],massvalue:M,friction:Y,restitution:R,position:[X:3],orientation:[O:4],velocity:[D:3],omega:[U:3],gravity:[G:3]):
+ numericpoints:points >> [num($.0),num($.1),num($.2)]
+ numericfaces:faces >> [int($.0),int($.1),int($.2)]
+ numericposition:[num(position.0),num(position.1),num(position.2)]
+ numericorientation:[num(orientation.0),num(orientation.1),num(orientation.2),num(orientation.3)]
+ numericvelocity:[num(velocity.0),num(velocity.1),num(velocity.2)]
+ numericomega:[num(omega.0),num(omega.1),num(omega.2)]
+ numericgravity:[num(gravity.0),num(gravity.1),num(gravity.2)]
+ geometry:convex.prepare_convex_si(numericpoints,numericfaces,num(massvalue),num(friction),num(friction),num(restitution))
+ raw:(geometry:(mass:massvalue,volume:num(geometry.volume),center_of_mass:[num(geometry.center_of_mass.0),num(geometry.center_of_mass.1),num(geometry.center_of_mass.2)],inertia_tensor:[[num(geometry.inertia_tensor.0.0),num(geometry.inertia_tensor.0.1),num(geometry.inertia_tensor.0.2)],[num(geometry.inertia_tensor.1.0),num(geometry.inertia_tensor.1.1),num(geometry.inertia_tensor.1.2)],[num(geometry.inertia_tensor.2.0),num(geometry.inertia_tensor.2.1),num(geometry.inertia_tensor.2.2)]],geometry:(vertices:points,faces:faces),material:(mu_s:friction,mu_d:friction,restitution:restitution)),initial:(position:position,orientation:orientation,velocity:velocity,omega:omega),gravity:gravity)
+ history:_empty_history(0)
+ result:runtime._replay_si(raw,history)
+ publishraw:(geometry:geometry,initial:(position:numericposition,orientation:numericorientation,velocity:numericvelocity,omega:numericomega),gravity:numericgravity)
+ definition:_canonical(publishraw)
+ _publish_list(definition,history,result)
+
+_time_si(value:quantity<0,0,1,0,0,0,0>): num(value/s)
+_length_si(value:quantity<1,0,0,0,0,0,0>): num(value/m)
+_velocity_si(value:quantity<1,0,-1,0,0,0,0>): _length_si(value*s)
+_unitless_si(value:quantity<0,0,0,0,0,0,0>): num(value)
+_omega_si(value:quantity<0,0,-1,0,0,0,0>): _unitless_si(value*s)
+_gravity_si(value:quantity<1,0,-2,0,0,0,0>): _length_si(value*s*s)
+
+_coherent(state:(backing:(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,snapshot:[num:14]),time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3]),expected:[num:15]):
+ (state.time. == any \/ state.position. == any \/ state.position. == [any:3] \/ state.velocity. == any \/ state.velocity. == [any:3] \/ state.omega. == any \/ state.omega. == [any:3]) ? errors.ValueError("physics snapshot dimensions must remain known")!
+ original:[expected.1,expected.2,expected.3,expected.4,expected.5,expected.6,expected.7,expected.8,expected.9,expected.10,expected.11,expected.12,expected.13,expected.14]
+ views:[_time_si(state.time),_length_si(state.position.0),_length_si(state.position.1),_length_si(state.position.2),num(state.orientation.0),num(state.orientation.1),num(state.orientation.2),num(state.orientation.3),_velocity_si(state.velocity.0),_velocity_si(state.velocity.1),_velocity_si(state.velocity.2),_omega_si(state.omega.0),_omega_si(state.omega.1),_omega_si(state.omega.2)]
+ recorded:[num(state.backing.snapshot.0),num(state.backing.snapshot.1),num(state.backing.snapshot.2),num(state.backing.snapshot.3),num(state.backing.snapshot.4),num(state.backing.snapshot.5),num(state.backing.snapshot.6),num(state.backing.snapshot.7),num(state.backing.snapshot.8),num(state.backing.snapshot.9),num(state.backing.snapshot.10),num(state.backing.snapshot.11),num(state.backing.snapshot.12),num(state.backing.snapshot.13)]
+ coherent:true
+ [..13] >>
+  .coherent:coherent /\ (recorded.(int($))==original.(int($))) /\ (views.(int($))==original.(int($)))
+ coherent
+
+_empty_history(n:int) -> list<num>: [0.0:n]
+_history(values:list<num>) -> list<num>: values
+_append(history:list<num>,seconds:num) -> list<num>: history&[seconds]
+_next_history(history:list<num>,seconds:num) -> list<num>:
+ seconds=0 ? @:history
+ _append(history,seconds)
+
+step(state:(backing:(definition:(geometry:(mass:num,volume:num,center_of_mass:[num:3],inertia_tensor:[[num:3]:3],geometry:(vertices:[[num:3]:nv],faces:[[int:3]:nf]),material:(mu_s:num,mu_d:num,restitution:num)),initial:(position:[num:3],orientation:[num:4],velocity:[num:3],omega:[num:3]),gravity:[num:3]),history:list<num>,snapshot:[num:14]),time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3]),duration:quantity<0,0,1,0,0,0,0>):
+ seconds:num((duration+0s)/s)
+ (~validation.finite(seconds) \/ seconds<0)? errors.ValueError("finite nonnegative physics duration required")!
+ definition:_canonical(state.backing.definition)
+ expected:runtime._replay_si(definition,state.backing.history)
+ expected.0=1? errors.ValueError("invalid physics description or duration history")!
+ expected.0!=0? errors.RuntimeError("physics backend failed before publication")!
+ ~_coherent(state,expected)? errors.ValueError("physics snapshot differs from immutable replay history")!
+ history:_next_history(state.backing.history,seconds)
+ result:runtime._replay_si(definition,history)
+ _publish_list(definition,history,result)
+
+_mass_si(value:quantity<0,1,0,0,0,0,0>): num(value/kg)
+
+# Physical arguments retain known dimensions through ordinary source coercion.
+prepare(points:[[quantity<1,0,0,0,0,0,0>:3]:nv],faces:[[Q:3]:nf],massvalue:quantity<0,1,0,0,0,0,0>,friction:Y,restitution:R,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[O:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],gravity:[quantity<1,0,-2,0,0,0,0>:3]):
+ numericpoints:points >> [_length_si($.0),_length_si($.1),_length_si($.2)]
+ numericmass:_mass_si(massvalue)
+ numericposition:[_length_si(position.0),_length_si(position.1),_length_si(position.2)]
+ numericvelocity:[_velocity_si(velocity.0),_velocity_si(velocity.1),_velocity_si(velocity.2)]
+ numericomega:[_omega_si(omega.0),_omega_si(omega.1),_omega_si(omega.2)]
+ numericgravity:[_gravity_si(gravity.0),_gravity_si(gravity.1),_gravity_si(gravity.2)]
+ prepare_si(numericpoints,faces,numericmass,friction,restitution,numericposition,orientation,numericvelocity,numericomega,numericgravity)

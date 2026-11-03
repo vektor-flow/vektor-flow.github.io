@@ -206,21 +206,20 @@ sample_color(x:num,y:num,source_x:num) -&gt; [num:4]:
     green: material.1*lighting+(248/255)*(direct+reflected_display)*glow*0.93
     blue: material.2*lighting+(168/255)*(direct+reflected_display)*glow*0.66
     [optics.clamp01(red),optics.clamp01(green),optics.clamp01(blue),1]
-scene():
-    view: .ui.viewport
-    # Current explicit sampling:675x225 cells, near original proof floor pixels.
-    x: [0..675]/225-1.5
-    y: [0..225]/225-0.5
-    source_x: -0.35
-    color: sample_color(x_u,y_v,source_x)
-    line: [mirror_a,mirror_b]
-    view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
-    view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
-    view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
-    view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
-    view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
-    view.show()
-scene()
+# UI effects execute at the normal program root; helpers remain ordinary VKF.
+view: .ui.viewport
+# Current explicit sampling:675x225 cells, near original proof floor pixels.
+x: [0..675]/225-1.5
+y: [0..225]/225-0.5
+source_x: -0.35
+color: sample_color(x_u,y_v,source_x)
+line: [mirror_a,mirror_b]
+view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
+view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
+view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
+view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
+view.show()
 </code></pre><textarea class="readme-example-source" aria-label="EX01 VKF source" spellcheck="false"># EX01, consolidated original cfb0f75c (2026-07-04), room/light/mirror unchanged.
 # Original three1x1 rooms; shared wall middle-thirds open, eased shadows OUT.
 # All lighting/occlusion/virtualsource arithmetic is VKF, host only draws arrays.
@@ -276,21 +275,20 @@ sample_color(x:num,y:num,source_x:num) -&gt; [num:4]:
     green: material.1*lighting+(248/255)*(direct+reflected_display)*glow*0.93
     blue: material.2*lighting+(168/255)*(direct+reflected_display)*glow*0.66
     [optics.clamp01(red),optics.clamp01(green),optics.clamp01(blue),1]
-scene():
-    view: .ui.viewport
-    # Current explicit sampling:675x225 cells, near original proof floor pixels.
-    x: [0..675]/225-1.5
-    y: [0..225]/225-0.5
-    source_x: -0.35
-    color: sample_color(x_u,y_v,source_x)
-    line: [mirror_a,mirror_b]
-    view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
-    view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
-    view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
-    view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
-    view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
-    view.show()
-scene()
+# UI effects execute at the normal program root; helpers remain ordinary VKF.
+view: .ui.viewport
+# Current explicit sampling:675x225 cells, near original proof floor pixels.
+x: [0..675]/225-1.5
+y: [0..225]/225-0.5
+source_x: -0.35
+color: sample_color(x_u,y_v,source_x)
+line: [mirror_a,mirror_b]
+view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
+view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
+view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
+view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
+view.show()
 </textarea></div><pre class="readme-example-output" aria-live="polite"></pre></div><div data-example-result=""><p data-result-hint="">Run to inspect the scene. Use its camera controls to zoom out and in.</p></div></div></section><section id="example-ex02" data-vkf-example-id="ui-physics-ex02" data-verification="pending" class="readme-example"><h4>EX02 · 3D die, mirror and camera screen</h4><p>A rigid-body pose drives die geometry and pips. The planar mirror uses a reflected camera aligned to its aperture; a second surface shows a camera view.</p><p><a href="workflow-source/EX02-die-mirror-camera-3d.vkf">Complete VKF source</a>. Native, site, navigation and full-frame timing: unverified.</p><div class="readme-example-bar"><span>Editable source candidate</span><button class="readme-example-play" type="button" disabled aria-disabled="true" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf"># EX02: actual rigid replay state drives SAME 3D die geometry and pips.
 # Current rigid backend/rolling-contact acceptance remains candidate-specific.
 # Mirror camera/frustum and camera screen use existing planar surface renderer.

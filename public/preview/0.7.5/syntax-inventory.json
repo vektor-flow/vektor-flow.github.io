@@ -11,24 +11,42 @@
       "examples": [
         {
           "id": "syntax-example-3",
-          "source_sha256": "1acc7ec0b5f36fda48596f00ef76b8b1f3d04b5f54a4c37087a5bdaa5bf86bfa",
-          "expected_stdout": "3\n1\n7\n",
+          "source_sha256": "af5c2d7c3a4286e7d5674fa63ce1fe66e29e431b8a67eb4a5e24fb531b082bac",
+          "expected_stdout": "Hello World\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "1acc7ec0b5f36fda48596f00ef76b8b1f3d04b5f54a4c37087a5bdaa5bf86bfa",
+            "expected_stdout": "3\n1\n7\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         },
         {
           "id": "syntax-extra-values-and-types-0",
-          "source_sha256": "b07d41a96ff4571ed4754e88e0144ba576295e43754f6f6809589f65ab7e3691",
-          "expected_stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+          "source_sha256": "707603caa05c5a42b6f5305726271df5529b7e99cfc5dab8e5f74a9aa0ec1d57",
+          "expected_stdout": "42\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "b07d41a96ff4571ed4754e88e0144ba576295e43754f6f6809589f65ab7e3691",
+            "expected_stdout": "[(1, 2), (3, 4)]\n[[1, 2], [3, 4]]\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],
@@ -41,13 +59,22 @@
       "examples": [
         {
           "id": "syntax-example-1",
-          "source_sha256": "b35452c3a99a3dd48c69249d56f90507f434ebe8e9990cbd9776284b9681d1b1",
-          "expected_stdout": "4\n2\n",
+          "source_sha256": "68f4f452f8380dc0f97e99c4e2e4354571f98ca8a3e289607609017e8e132de6",
+          "expected_stdout": "72\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "b35452c3a99a3dd48c69249d56f90507f434ebe8e9990cbd9776284b9681d1b1",
+            "expected_stdout": "4\n2\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],
@@ -59,38 +86,76 @@
       "canonical_url": "syntax.html#functions-calls-and-specialization",
       "examples": [
         {
-          "id": "syntax-example-6",
-          "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00",
+          "id": "syntax-function-calculation",
+          "source_sha256": "1d19e88e43caa78916b904df810541d3484cdfdc1e37feaa487dc6a25d5d0d1e",
+          "expected_stdout": "42\n",
           "runtime_verification": {
-            "status": "UNRUN_LATEST_COMPILER",
+            "status": "UNVALIDATED_CURRENT_SOURCE",
             "proof": null,
-            "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00"
+            "actual_execution": false
           }
         },
         {
-          "id": "more-example-11",
-          "source_sha256": "8ca69eca3f244eb7b2e5c99084ddca005f6565bdf64769f4d489d1c664de96c5",
-          "expected_stdout": "5\n6\n",
+          "id": "syntax-example-6",
+          "source_sha256": "013068b5957f5c8a664f87c805fc3284839078f919345d7d632d3e7f8906fb98",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00",
+            "expected_stdout": null,
+            "runtime_verification": {
+              "status": "UNRUN_LATEST_COMPILER",
+              "proof": null,
+              "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00"
+            }
+          },
+          "expected_stdout": "15\n42\n42\n"
+        },
+        {
+          "id": "more-example-11",
+          "source_sha256": "abd5c0e7beb7f2e5fdbfc49de93b66faf98ce62dc73b337ccb7de86ab06f4ca1",
+          "expected_stdout": "7\n12\n",
+          "runtime_verification": {
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "8ca69eca3f244eb7b2e5c99084ddca005f6565bdf64769f4d489d1c664de96c5",
+            "expected_stdout": "5\n6\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         },
         {
           "id": "more-example-12",
-          "source_sha256": "152a585243eee2ea8cacb24e309b4c14e23dcfc6a5a382a4eb9fbb6c1054a876",
-          "expected_stdout": "5\n",
+          "source_sha256": "6c4b48b442d1a06f6a49c1be7f8952f042d7cc5400dc8693b6d55f195f1b41df",
+          "expected_stdout": "4\n5\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "152a585243eee2ea8cacb24e309b4c14e23dcfc6a5a382a4eb9fbb6c1054a876",
+            "expected_stdout": "5\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],
-      "coverage": "Related scope/function/call/binding forms share one new compact calibration example. Latest compiler execution is UNRUN; historical results do not qualify it.",
+      "coverage": "Simple function, local calculation and argument-binding examples; changed source and expected outputs await genuine current compiler execution.",
       "shared_example_url": "syntax.html#example-syntax-example-6"
     },
     {
@@ -100,15 +165,25 @@
       "examples": [
         {
           "id": "syntax-example-6",
-          "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00",
+          "source_sha256": "013068b5957f5c8a664f87c805fc3284839078f919345d7d632d3e7f8906fb98",
           "runtime_verification": {
-            "status": "UNRUN_LATEST_COMPILER",
+            "status": "UNVALIDATED_CURRENT_SOURCE",
             "proof": null,
-            "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00"
-          }
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00",
+            "expected_stdout": null,
+            "runtime_verification": {
+              "status": "UNRUN_LATEST_COMPILER",
+              "proof": null,
+              "source_sha256": "3c5f05899b99ca3fe52ca8d865693cf6ce05b869fb9e70ee07643aab52c48f00"
+            }
+          },
+          "expected_stdout": "15\n42\n42\n"
         }
       ],
-      "coverage": "Related scope/function/call/binding forms share one new compact calibration example. Latest compiler execution is UNRUN; historical results do not qualify it.",
+      "coverage": "Simple function, local calculation and argument-binding examples; changed source and expected outputs await genuine current compiler execution.",
       "shared_example_url": "syntax.html#example-syntax-example-6"
     },
     {
@@ -137,13 +212,22 @@
       "examples": [
         {
           "id": "import-module",
-          "source_sha256": "6206bcee611fe4c3d6636f9ef2ea399256c103e95033e0012e77723d3553df89",
-          "expected_stdout": "9\n",
+          "source_sha256": "9ab9dc9c6843906e4bd6121280879622c9c8a11e3a13b49b2af15c0e95ad4c9f",
+          "expected_stdout": "5\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "6206bcee611fe4c3d6636f9ef2ea399256c103e95033e0012e77723d3553df89",
+            "expected_stdout": "9\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],
@@ -186,24 +270,42 @@
         },
         {
           "id": "more-example-2",
-          "source_sha256": "88cf7be5bbe872c5eb26a2d79ac40d70686b6928db70e3e1281249a94b041e07",
-          "expected_stdout": "[[19, 22], [43, 50]]\n",
+          "source_sha256": "0771296692cbbcff2cfc38969c8febd0709dc171c77448d67a912e5ee06d2749",
+          "expected_stdout": "[[57, 41], [26, 28]]\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "88cf7be5bbe872c5eb26a2d79ac40d70686b6928db70e3e1281249a94b041e07",
+            "expected_stdout": "[[19, 22], [43, 50]]\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         },
         {
           "id": "more-example-13",
-          "source_sha256": "32063e8856824478bdcde383f848f7c9d159831698cd5a4b62ce437b1f2f1368",
+          "source_sha256": "6900dfb3d42d614bf9a341fb157bf09d3965b5c2cc5f8f443ad3434c12b75971",
           "expected_stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "32063e8856824478bdcde383f848f7c9d159831698cd5a4b62ce437b1f2f1368",
+            "expected_stdout": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         },
         {
@@ -268,13 +370,22 @@
         },
         {
           "id": "syntax-extra-operators-0",
-          "source_sha256": "92bf4804b487a1a8bf082609ba000631bdb959b94ceff8ea84c879e346375e47",
-          "expected_stdout": "[4, 6]\n8\n",
+          "source_sha256": "e69e3083e1ad0763368df50498ab91dc33616c9a404a125e108800314261a545",
+          "expected_stdout": "[20.3, 20.4]\n20.706\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "92bf4804b487a1a8bf082609ba000631bdb959b94ceff8ea84c879e346375e47",
+            "expected_stdout": "[4, 6]\n8\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],

@@ -24,7 +24,9 @@ def check(s,label):
   t=m.group();n=ts[i+1] if i+1<len(ts) else None
   if t==',' and n and '\n' not in s[m.end():n.start()]:
    assert s[m.end():n.start()]==' ',(label,'comma must be followed by a space')
-  if t in {'=','==','!=','~=','<','>','<=','>=','^','/','//','%','&','>>','/\\','\\/','><','=>'}:
+  # Arithmetic spacing depends on precedence; compact powers/products and
+  # tighter divisions are deliberate. This bounded lint is not a VKF parser.
+  if t in {'=','==','!=','~=','<','>','<=','>=','&','>>','/\\','\\/','><','=>'}:
    prev=ts[i-1] if i else None
    # Operators are also first-class values; suffixes bind to selected operators.
    value=(not prev or prev.group() in {'[','(',',',':'}) and (not n or n.group() in {']',')',',','['})

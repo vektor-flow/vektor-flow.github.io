@@ -171,14 +171,18 @@ The authored examples in `public/preview/0.7.5/` use these conventions. Apply
 changes to the editable source, displayed Prism code and canonical runnable
 copy together; retain exact source hashes and require fresh qualification.
 
-- Use one space on each side of binary assignment, arithmetic, comparison,
-  composition, pipeline and logical operators: `x = y`, `a + b`, `f & g`.
+- Space the lowest-precedence operation to expose the expression’s structure;
+  keep tighter operations compact: `2x + 4x^2`, `x*y + 2x`. Multiplication
+  defaults to no spaces. Attach numeric coefficients to variables or function
+  calls where supported and unambiguous (`2x`, `2sin(x)`); keep distinct
+  variable products explicit (`x*y`). Do not merge identifiers or reinterpret
+  multiplication as a call. This is documentation style, not a grammar ban.
   VKF binding and named-argument colons take no space before and one after:
   `x: 3`, `f[n: 3]`, `view.add(x: u_u, y: y_u)`.
 - Put a space after commas. Keep calls, indexing and member access compact:
   `f(x, y)`, `A.(1, :)`, `record.x`. Do not separate axis suffixes, derivative
   suffixes, unit literals or selected operators: `A_ii`, `f'x`, `2m`, `a &_i b`.
-  Unary signs bind to their operand: `-1`, `a * -b`. Operator values stay
+  Unary signs bind to their operand: `-1`, `a*-b`. Operator values stay
   intact: `[+, *]` and `reduce_i(+, A, 0)` where the grammar permits them.
 - Indent bodies and continuation rows by four spaces. Add a blank row between
   imports, data/model definitions, computation and plot/output stages, where

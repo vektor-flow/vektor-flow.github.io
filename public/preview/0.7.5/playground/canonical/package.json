@@ -1,57 +1,47 @@
 {
   "schema": 1,
   "version": "0.7.5",
-  "status": "published-scoped-embedding",
+  "status": "private-candidate",
   "complete": false,
   "stable": false,
-  "source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
-  "release_source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
-  "library_source": "ba9edf4d57148c160e0d5ba136326c914b9395c95f33a9f3a9499ad94ae1d88e",
+  "source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "release_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
   "files": {
     "compiler.mjs": {
-      "bytes": 828,
-      "sha256": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae"
+      "bytes": 1464,
+      "sha256": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308"
     },
     "compiler-base.mjs": {
-      "bytes": 184885,
-      "sha256": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c"
+      "bytes": 187970,
+      "sha256": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075"
     },
     "compiler.wasm": {
-      "bytes": 65507158,
-      "sha256": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d"
+      "bytes": 20205031,
+      "sha256": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7"
     },
     "compiler.data": {
-      "bytes": 610405,
-      "sha256": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7"
+      "bytes": 619732,
+      "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
     },
     "formatter.mjs": {
-      "bytes": 62804,
-      "sha256": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9"
+      "bytes": 61416,
+      "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
     },
     "formatter.wasm": {
-      "bytes": 1118687,
-      "sha256": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39"
+      "bytes": 1042604,
+      "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
     },
     "README.txt": {
-      "bytes": 1938,
-      "sha256": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
+      "bytes": 2684,
+      "sha256": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3"
     }
   },
   "verification": {
-    "status": "PASS_NAMED_CURRENT_ORDINARY_UI_SOURCE_EDIT_RASTER_AND_NODE_TRANSPORT",
-    "evidence": "../../verification/e1677-ordinary-ui-compiler-propagation.json",
+    "status": "PASS_CURRENT_CHANGED_ARTIFACT_EIGHT_CANONICAL_REAL_RUN_EDIT_DOWNLOADS",
+    "evidence": "../../verification/e2045-affected-browser-local.json",
     "oldPassCarry": false,
-    "historicalEvidenceDoesNotQualifyCurrentCompiler": true,
-    "ordinarySourceEdit": {
-      "rows": 3,
-      "pointsPerRow": 1025,
-      "completeCanvas2DRaster": true,
-      "realSourceEditChangesArenaAndRaster": true
-    },
-    "normalNodeESM": {
-      "stdout": "7\n",
-      "independentBindings": true
-    }
+    "historicalEvidenceDoesNotQualifyCurrentCompiler": true
   },
   "historical_verification": {
     "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
@@ -112,26 +102,24 @@
       "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
     }
   },
-  "compiler_source": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
-  "browser_binding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
-  "formatter_binding": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-  "frontend_binding": "4ea6273419611232ec481e6cc445faed2907d8538ca3ce4058e18aad79381fcf",
+  "compiler_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "browser_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+  "frontend_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
   "stable_release": false,
   "sha256": {
-    "compiler.mjs": "22bca1ceecb13d001506dcb9b370f9463a10ed2f1e9df37305f8ca4e3155bfae",
-    "compiler-base.mjs": "0b8f63438bc5a4ed74f16fefd711f1718a0b63c3596c50a7eda635079014559c",
-    "compiler.wasm": "d453d6741d1a9813fe3456388c67ffc43e4ce54133a55004d0bfbfe88654340d",
-    "compiler.data": "529047d470a5a8147ab4276a6d48f757f0abcdd3adafe3681e1a84c099e9f1d7",
-    "formatter.mjs": "e5d971632b76c953149a6cd98688da1c5aa14f6b87825265d8fd6ff4a8e6d1b9",
-    "formatter.wasm": "14aa1029054807d073513ae98f0e7eef9fce0dbddacd9c0e232c6d6ce18edd39",
-    "README.txt": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
+    "compiler.mjs": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308",
+    "compiler-base.mjs": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+    "compiler.wasm": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
+    "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
+    "README.txt": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3"
   },
-  "published": true,
-  "publication_status": "PUBLISHED_CORRECTNESS_CHECKED_NAMED_EMBEDDING_SCOPE",
+  "published": false,
+  "publication_status": "PENDING_INDEPENDENT_REVIEW_AND_HOSTED_PUBLICATION",
   "physical_gpu_tested": false,
   "release_qualified": false,
-  "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-  "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7",
   "scoped_release": {
     "version": "0.7.5",
     "components": [
@@ -139,36 +127,18 @@
       "ordinary retained plotting",
       "Node ESM compiler/guest/formatter embedding"
     ],
-    "qualification": "Only named current affected controls and accepted exact ae0e200 original symbolic receipts; historical full banks are not current qualification.",
-    "evidence": "../../verification/e1677-ordinary-ui-compiler-propagation.json",
+    "qualification": "Fresh native and regenerated WASM 17/17 named controls per target; current extracted archive usage, security/integrity and typed ownership; affected local browser eight canonical programs, real source edit/rerun and both archive HTTP byte/hash checks. Hosted verification and publication pending. Full compiler/SDK/GPU/benchmark release unqualified.",
+    "evidence": "../../verification/e2045-package-qualification.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
     "comparativeBenchmarksQualified": false,
     "fullGpuWorldQualified": false,
-    "matchedPreflights": {
-      "passed": 2,
-      "failed": 0,
-      "unrun": 46,
-      "total": 48
-    },
-    "nativeWasmParity": {
-      "passed": 0,
-      "failed": 0,
-      "unrun": 24,
-      "total": 24
-    },
-    "comparativeSamples": 0,
-    "ordinarySourceEdit": {
-      "rows": 3,
-      "pointsPerRow": 1025,
-      "completeRaster": true
-    },
-    "normalNodeEsmStdout": "7\n"
+    "comparativeSamples": 0
   },
   "library_update": {
-    "sourceCommit": "3ef02b76fcc9de3a32b8693544afba54c12b830c",
-    "changed": "Normal symbolic.vkf numeric-leaf KaTeX renderer and corresponding generated embedded table; one unchanged-code API provider rebuilt,139 objects and formatter retained",
-    "evidence": "../../verification/e1642-symbolic-renderer-library.json"
+    "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+    "changed": "One Physics SI catalog exposed by :.physics.units with :.units and :.units.si compatibility forwarders; fresh browser/WASM binding, unchanged native binary with separately paired current library. Node host and formatter retain their separately identified bytes.",
+    "evidence": "../../verification/e2045-package-qualification.json"
   },
   "historical_before_ae0e200": {
     "verification": {
@@ -231,7 +201,13 @@
       },
       "normalNodeEsmStdout": "7\n"
     },
-    "physical_gpu_tested": true
+    "physical_gpu_tested": true,
+    "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
+    "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
   },
-  "compiler_source_commit": "ae0e200708a660b965a98e17e5ed8e1f2c5420a6"
+  "compiler_source_commit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+  "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
+  "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
+  "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
+  "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6"
 }

@@ -173,16 +173,22 @@ copy together; retain exact source hashes and require fresh qualification.
 
 - Space the lowest-precedence operation to expose the expression’s structure;
   keep tighter operations compact: `2x + 4x^2`, `x*y + 2x`. Multiplication
-  defaults to no spaces. Attach numeric coefficients to variables or function
+  stays compact inside a sum. When an explicit product is the lowest-precedence
+  operation in its own scope, space it: `sum_k(batches_ik * composition_kj)`.
+  Implicit juxtaposition remains adjacent. Attach numeric coefficients to variables or function
   calls where supported and unambiguous (`2x`, `2sin(x)`); keep distinct
-  variable products explicit (`x*y`). Do not merge identifiers or reinterpret
+  variable products explicit (`x*y + 2x`). Do not merge identifiers or reinterpret
   multiplication as a call. This is documentation style, not a grammar ban.
   VKF binding and named-argument colons take no space before and one after:
   `x: 3`, `f[n: 3]`, `view.add(x: u_u, y: y_u)`.
+- Bind ordinary names, and choose dimension indices at use when they are not
+  reused: `totals: sum_k(batches_ik * composition_kj)`, then `:: totals`.
+  Never put dimension notation on the left of the binding: `totals_ij` is a
+  literal name, distinct from `totals`.
 - Put a space after commas. Keep calls, indexing and member access compact:
   `f(x, y)`, `A.(1, :)`, `record.x`. Do not separate axis suffixes, derivative
   suffixes, unit literals or selected operators: `A_ii`, `f'x`, `2m`, `a &_i b`.
-  Unary signs bind to their operand: `-1`, `a*-b`. Operator values stay
+  Unary signs bind to their operand: `-1`, `a*-b + c`. Operator values stay
   intact: `[+, *]` and `reduce_i(+, A, 0)` where the grammar permits them.
 - Indent bodies and continuation rows by four spaces. Add a blank row between
   imports, data/model definitions, computation and plot/output stages, where

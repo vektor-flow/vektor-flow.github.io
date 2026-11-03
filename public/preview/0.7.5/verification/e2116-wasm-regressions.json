@@ -1,0 +1,481 @@
+{
+  "owner": "e2116",
+  "sourceCommit": "b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d",
+  "binding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "rows": [
+    {
+      "status": "PASS",
+      "sourceBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2110-latest-wasm-site-actual-20261103/inputs-final/regression/captured-first17/module-capture-mixed-overload-captured-first.vkf",
+        "bytes": 742,
+        "sha256": "3469a7c2ba47623131d63bb585136fc5cb91f46fbacbcba5ee3e6cedcbb77893"
+      },
+      "expected": {
+        "path": "/mnt/development/VektorFlow-e2110-latest-wasm-site-actual-20261103/inputs-final/regression/captured-first17/module-capture-mixed-overload-captured-first.expected.txt",
+        "bytes": 17,
+        "sha256": "c9b5fbc722ca06d828b1a19fc512bc276dbc5daa2ba8a1648f5c4f1481cb80fa"
+      },
+      "stdout": "6\n28\n-7\n15\n28\n12\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2116-direct-pty-wasm-site-actual-20261103/regression/captured-first17/wasm-typed-ir.json",
+        "bytes": 144759,
+        "sha256": "da20821c9b5ea4f7e30c61a5370b21508dd3c2194be622834ea9bf61abc1e980"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 5,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_root_closure_0": {
+            "index": 0,
+            "parameters": 2,
+            "resultType": 1
+          },
+          "__vkf_root_closure_2": {
+            "index": 1,
+            "parameters": 2,
+            "resultType": 1
+          },
+          "__vkf_root_closure_4": {
+            "index": 2,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "shadow": {
+            "index": 4,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "weighted__overload_1": {
+            "index": 3,
+            "parameters": 2,
+            "resultType": 2
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 545776,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 1528,
+          "bytecodeLength": 1527,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 1912
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13201520,
+          "heapLimit": 80310384,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 1936,
+          "staticEnd": 4008,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "status": "PASS",
+      "sourceBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2110-latest-wasm-site-actual-20261103/inputs-final/regression/previous12/module-capture-forward-overload.vkf",
+        "bytes": 646,
+        "sha256": "0a77eb7d6299cb99db686db973aa2f493896db01782c1570d35756ab5e28c1eb"
+      },
+      "expected": {
+        "path": "/mnt/development/VektorFlow-e2110-latest-wasm-site-actual-20261103/inputs-final/regression/previous12/module-capture-forward-overload.expected.txt",
+        "bytes": 12,
+        "sha256": "3725ad1d37ff539c7751695b2afd34725559854ebe3142fa40c8ad04432316fa"
+      },
+      "stdout": "15\n-1\n99\n10\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2116-direct-pty-wasm-site-actual-20261103/regression/previous12/wasm-typed-ir.json",
+        "bytes": 91184,
+        "sha256": "d5cf6d4d55b91ee5a0bb0a2394915568ac9ee96efc613c4e5eb16daa9eb2ff63"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 6,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "_domain_matches__overload_1": {
+            "index": 0,
+            "parameters": 2,
+            "resultType": 1
+          },
+          "_require_domain__overload_1": {
+            "index": 1,
+            "parameters": 2,
+            "resultType": 1
+          },
+          "classify__overload_1": {
+            "index": 2,
+            "parameters": 2,
+            "resultType": 2
+          },
+          "late_pick__overload_0": {
+            "index": 3,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "late_pick__overload_1": {
+            "index": 4,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "shadow": {
+            "index": 5,
+            "parameters": 1,
+            "resultType": 2
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 545456,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 1240,
+          "bytecodeLength": 1239,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 1624
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13201200,
+          "heapLimit": 80310064,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 1648,
+          "staticEnd": 3696,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "status": "PASS",
+      "sourceBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2104-capture-build-actual-20261103/external-regression29/module-capture-forward-saved-family.vkf",
+        "bytes": 649,
+        "sha256": "a9cc4ee59f84593be9927e941050a66cc6f96380faf1355636e9a31e0d7479b4"
+      },
+      "expected": {
+        "path": "/mnt/development/VektorFlow-e2104-capture-build-actual-20261103/external-regression29/module-capture-forward-saved-family.expected.txt",
+        "bytes": 29,
+        "sha256": "cb001bdb4a8013cbf8faa9efa04ebbdcae55acdd10e4f5e343e373af973514ab"
+      },
+      "stdout": "2\n17\n6\n2\n9\n52\n5\n12\n67\n12\n1\n8\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2116-direct-pty-wasm-site-actual-20261103/regression/forward-saved29/wasm-typed-ir.json",
+        "bytes": 270331,
+        "sha256": "1560c5a893165015d163bdf0342fbbf8ea294fd325277da9a8ce9cfe7161ba37"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 5,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_root_callable_facade_7__overload_0": {
+            "index": 0,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "__vkf_root_callable_facade_7__overload_1": {
+            "index": 1,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "__vkf_root_closure_0": {
+            "index": 2,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "__vkf_root_closure_2": {
+            "index": 4,
+            "parameters": 2,
+            "resultType": 2
+          },
+          "family__overload_1": {
+            "index": 3,
+            "parameters": 2,
+            "resultType": 2
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 546432,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 2040,
+          "bytecodeLength": 2038,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 2424
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13202176,
+          "heapLimit": 80311040,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 2448,
+          "staticEnd": 4664,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    }
+  ],
+  "scope": "Exact authored captured overload correctness; actual guest/fullstdout/typedIR/pairedformatter. Full benchmark/parity/comparison deferred."
+}

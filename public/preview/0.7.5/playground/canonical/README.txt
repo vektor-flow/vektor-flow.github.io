@@ -1,12 +1,6 @@
-0.7.5 browser / Node ESM embedding candidate — named supported controls only.
-Compiler and paired library source commit 804892b62f3dd938fd67d820f322a72c0c1ed96c.
-Frontend / guest VM binding 1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5.
-Independent evaluated-output formatter binding 9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0.
-Node package host source commit 96d0ff9831a09740b30d05f3d3a64f4ab61a8c87; durable source 4ad2dedae91f028c5a79c1f8b5eb67c3db504af6 identifies the same host bytes, separately from the paired library.
-The separate Linux console target retains native binary binding 305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352 from core source 9abaf17558a5e8b74f6ab5e9381484c194ca0612, paired with library 804892b62f3dd938fd67d820f322a72c0c1ed96c. It is not the regenerated browser/WASM target.
-The current library exposes :.physics.units through one Physics SI catalog; :.units and :.units.si remain compatibility forwarders.
-Fresh native and regenerated WASM controls each passed 17/17 named cases: four import paths, eight canonical programs, four dimension rejections and the alias/catalog/quantity regression. See ../../verification/e2045-native-controls.json and ../../verification/e2045-wasm-controls.json.
-The two current downloadable archives passed the existing canonical (26 members) and native (40 members) archive checks, extracted ordinary native and Node install/run/compile, and current security/integrity and typed ownership checks. See ../../verification/e2045-package-qualification.json and ../../verification/e2045-typed-module-ownership.json. Their bundled README/VERIFICATION describe their own archive contents; this served root metadata is separate.
-The affected local browser check passed eight canonical programs through actual UI Run, a real 330cm source edit and rerun, and both archive HTTP byte/hash checks, plus phone download/navigation labels. See ../../verification/e2045-affected-browser-local.json. Hosted verification and publication of this candidate remain pending.
-Earlier e1677 UI/Node checks and original symbolic, five-million-point, native-label and 57-program evidence retain their original package identities; they do not qualify these current compiler files. No whole-language/full compiler release, Linux compiler SDK, full LaTeX/all-font support, full GPU world, complete cross-target matrix or comparative benchmark claim is made.
-Existing third-party notices and normal runtime/embedding usage are retained. Native-label integration still requires the maintained native engine transport; no native executable or JavaScript typesetter is included by its adapter.
+Vektor Flow 0.7.5 browser / Node compiler.
+Compiler source b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d; queried WASM binding dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388.
+Paired library 804892b62f3dd938fd67d820f322a72c0c1ed96c; independent formatter 9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0.
+Maintained Node host96d preserved byte for byte. Exact17/12/29-byte captured-overload regressions passed through public runProject and actual guest/formatter.
+Existing native download keeps its separate305da binary/library804 identity. Full compiler/SDK, GPU, fonts/LaTeX, full benchmark/parity and comparative timings remain unqualified.
+From this directory: node package-tools/cli.mjs install /absolute/project --compiler ./compiler.mjs; then run or compile with the same arguments.

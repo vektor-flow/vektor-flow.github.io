@@ -9,17 +9,17 @@
   "stable_release": false,
   "release_qualified": false,
   "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
-  "compiler_source_commit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-  "compiler_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-  "release_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-  "source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-  "browser_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-  "frontend_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "compiler_source_commit": "b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d",
+  "compiler_source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "release_source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "browser_binding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "frontend_binding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
   "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
   "files": {
     "compiler-base.mjs": {
-      "bytes": 187970,
-      "sha256": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075"
+      "bytes": 187991,
+      "sha256": "7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4"
     },
     "compiler.data": {
       "bytes": 619732,
@@ -27,11 +27,11 @@
     },
     "compiler.mjs": {
       "bytes": 1464,
-      "sha256": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308"
+      "sha256": "92bf8edeb6135d459f7adf0fa74cf207e52690d1d31e1543b876f9a1a9430de5"
     },
     "compiler.wasm": {
-      "bytes": 20205031,
-      "sha256": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7"
+      "bytes": 20406990,
+      "sha256": "98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4"
     },
     "formatter.mjs": {
       "bytes": 61416,
@@ -98,12 +98,12 @@
       "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
     },
     "package.json": {
-      "bytes": 9279,
-      "sha256": "f0ea2bce757a0fb8eded5e37f0d5fedac4127aeb8075dc1021b11043c3baebe3"
+      "bytes": 23853,
+      "sha256": "acdb6fc0668c16ce63e6ef03a37635504c9a4c6d0985d411a619f43877879c08"
     },
     "README.txt": {
-      "bytes": 2684,
-      "sha256": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3"
+      "bytes": 818,
+      "sha256": "cad52495019248e3973c4ff73bef37e1ef96f51e11007e96821258154402dc57"
     },
     "third-party/emscripten-toolchain-copyright.txt": {
       "bytes": 131248,
@@ -123,10 +123,10 @@
     }
   },
   "sha256": {
-    "compiler-base.mjs": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+    "compiler-base.mjs": "7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4",
     "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-    "compiler.mjs": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308",
-    "compiler.wasm": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "compiler.mjs": "92bf8edeb6135d459f7adf0fa74cf207e52690d1d31e1543b876f9a1a9430de5",
+    "compiler.wasm": "98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
     "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
     "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -143,22 +143,22 @@
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
     "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
-    "package.json": "f0ea2bce757a0fb8eded5e37f0d5fedac4127aeb8075dc1021b11043c3baebe3",
-    "README.txt": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3",
+    "package.json": "acdb6fc0668c16ce63e6ef03a37635504c9a4c6d0985d411a619f43877879c08",
+    "README.txt": "cad52495019248e3973c4ff73bef37e1ef96f51e11007e96821258154402dc57",
     "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
     "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
     "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
   },
   "package": {
-    "module": "./playground/canonical/compiler.mjs?sha256=8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "module": "./playground/canonical/compiler.mjs?sha256=92bf8edeb6135d459f7adf0fa74cf207e52690d1d31e1543b876f9a1a9430de5",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
     "data": "./playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
   },
   "current_package_composition": {
     "path": "CURRENT-COMPOSITION.json",
-    "bytes": 57349,
-    "sha256": "27e90231b3c1831c3cca1f546c16c3bb60ae59648808f6443471f58e248e4490"
+    "bytes": 57430,
+    "sha256": "eacc2877f3a23c8828d25fdfb505172d5e4f701cb19521cf46e2a2444190abfc"
   },
   "publication_status": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
   "download_packages_offered": true,
@@ -176,7 +176,7 @@
     "runEnabled": true,
     "downloadsOffered": true,
     "fullReleaseQualified": false,
-    "compilerOptimization": "Only currentAPI130 rebuilt for fresh804 pairedsource header; current140objectresponse/116O1 preserved, newdata preloaded, normal simplify/coalesce/enginevalidated; native305da reused with separately pinned804library, formatter unchanged."
+    "compilerOptimization": "Corrected b096 captured-overload compiler:87 affected current WASM objects plus53 valid objects, full140response,116O1, genuine sameTU dependency binding; normal simplify/coalesce/engine validation; maintained host96d/formatter9de and paired804 library. Full benchmark/parity deferred."
   },
   "historical_prior_binding_evidence": {
     "current_candidate_verification": {
@@ -227,9 +227,9 @@
     }
   },
   "current_review_site_evidence": {
-    "path": "verification/e2058-current-review-site.json",
-    "bytes": 948542,
-    "sha256": "64e4340450d8166c3a9e6ca3ca722961f11569aed44fd4c6e9674364b89b73b9"
+    "path": "verification/e2116-current-review-site.json",
+    "bytes": 1149964,
+    "sha256": "b4a4795016b08ecc55424419efa19b1a3bbf4e1af9248a946423da5c46d97bb0"
   },
   "current_benchmark_readiness": {
     "path": "verification/e2058-local48-readiness.json",
@@ -245,9 +245,9 @@
   "pinned_downloads": {
     "checksums": "downloads/current075-checksums.json",
     "archives": [
-      "downloads/vkf-canonical-0.7.5-1af3f96f-host96d0ff98-notices.tar.gz",
+      "downloads/vkf-canonical-0.7.5-dba3302f-host96d0ff98-notices.tar.gz",
       "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz"
     ],
-    "qualification": "Fresh scoped native305da/library804 and regeneratedWASM 1af3f96f / host96d archives; exact semantics, extractedusage and security/integrity checked. Full compiler/SDK/GPU/benchmark release unqualified."
+    "qualification": "Current b096 browser/Node compiler with separately paired library804; extracted Node install/run/compile and scoped security/integrity checks. Unchanged native305da/library804 archive retains its original qualification. Full compiler/SDK/GPU/benchmark release unqualified."
   }
 }

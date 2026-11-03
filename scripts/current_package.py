@@ -163,9 +163,10 @@ def verify_current_review_site(preview, release):
             host = compiler['identity']
             need(expected['schema'] == 2 and record['schema'] == 'vektor-flow.current075-qualified-scopes-package/1', 'current archive identity schema')
             need(checksums['compilerBinding'] == record['browserBinding'] == binding
-                 and record['sourceCommit'] == record['pairedLibrarySourceCommit']
-                 == checksums['pairedLibrarySourceCommit'] == native['pairedLibrarySourceCommit'] == source,
-                 'current archive/compiler/library identities differ')
+                 and record['sourceCommit'] == source, 'current archive/compiler identities differ')
+            need(record['pairedLibrarySourceCommit'] == checksums['pairedLibrarySourceCommit']
+                 == native['pairedLibrarySourceCommit'] == host.get('pairedLibrarySourceCommit', source),
+                 'current archive/library identities differ')
             need(checksums['nativeBinding'] == record['nativeBinding'] == native['sourceBinding']
                  and record['nativeBinarySourceCommit'] == native['sourceCommit'], 'native binary identity differs')
             need(record['pairedManifest']['sha256'] == native['pairedManifestSHA256'], 'native paired manifest differs')

@@ -1,0 +1,564 @@
+{
+  "owner": "e2116",
+  "mode": "local",
+  "sourceCommit": "b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d",
+  "binding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+  "status": "PASS_CURRENT_CHANGED_ARTIFACT_GENUINE_RUN_EDIT_BINDING_DOWNLOADS",
+  "browserClosed": true,
+  "serverClosed": true,
+  "errors": [],
+  "executions": [
+    {
+      "id": "syntax-example-16",
+      "page": "syntax.html",
+      "sourceSHA256": "935efb7bc198a050bda626a449968ac6492a4d3f9c23b43f26a481eb0193b13e",
+      "binding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "visibleStdout": "230 cm\n[100, 200, 300] cm\n",
+      "outputVisible": true,
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      },
+      "raw": {
+        "id": 1,
+        "status": "ok",
+        "output": {
+          "kind": "console",
+          "stdout": "230 cm\n[100, 200, 300] cm\n",
+          "stderr": ""
+        },
+        "timing": {
+          "formatProfile": {
+            "binaryRetained": true,
+            "usedBytes": 13222544,
+            "packetJSONChars": 2,
+            "allocateMs": 0.004999995231628418,
+            "heapCopyMs": 9.115000009536743,
+            "stdoutMs": 1.0299999713897705,
+            "retainedFormatMs": 13.47000002861023,
+            "packetReadMs": 0.029999971389770508,
+            "jsonParseMs": 0.009999990463256836,
+            "arenaReconstructionMs": 0.11000001430511475
+          },
+          "compileProfile": {
+            "native": {
+              "bridge_stages": [
+                {
+                  "milliseconds": 1.18,
+                  "stage": "bridge-source-copy"
+                },
+                {
+                  "milliseconds": 5720.525,
+                  "stage": "bridge-compiler-call"
+                },
+                {
+                  "milliseconds": 65.560001,
+                  "stage": "bridge-response-json-parse"
+                },
+                {
+                  "milliseconds": 32.309999,
+                  "stage": "bridge-ir-json"
+                },
+                {
+                  "milliseconds": 0.385,
+                  "stage": "bridge-manifest-json"
+                },
+                {
+                  "milliseconds": 19.24,
+                  "stage": "bridge-wasm-hex-decode"
+                },
+                {
+                  "milliseconds": 9.27,
+                  "stage": "bridge-formatter-ir-copy"
+                },
+                {
+                  "milliseconds": 29.09,
+                  "stage": "bridge-output-plan"
+                }
+              ],
+              "browser_ir_json_bytes": 275853,
+              "browser_manifest_json_bytes": 1681,
+              "browser_wasm_bytes": 112980,
+              "compiler": {
+                "sizes": {
+                  "argument_slot_capacity": 16,
+                  "artifact_cache_hit": 0,
+                  "bytecode_constants": 50,
+                  "bytecode_functions": 1,
+                  "default_argument_slots": 16,
+                  "document_arena_bytes": 541728,
+                  "execution_body_statements": 736,
+                  "frontend_compile_calls": 1,
+                  "imported_function_candidates": 0,
+                  "imported_function_retained": 0,
+                  "mount_arena_bytes": 4198720,
+                  "mutable_compile_input": 1,
+                  "ordinary_flow_worker_pair": 0,
+                  "packaged_module_parse_calls": 2,
+                  "required_argument_slots": 0,
+                  "response_json_bytes": 503705,
+                  "source_execution_projection_limit": 0,
+                  "source_fast_path": 0,
+                  "source_route_capability_limit": 1,
+                  "source_semantic_lowering_passes": 1,
+                  "typed_functions": 1,
+                  "wasm_bytes": 112980
+                },
+                "stages": [
+                  {
+                    "milliseconds": 1.215001,
+                    "stage": "provider-frontend"
+                  },
+                  {
+                    "milliseconds": 1.235,
+                    "stage": "source-prepare"
+                  },
+                  {
+                    "milliseconds": 11.099999,
+                    "stage": "source-lex"
+                  },
+                  {
+                    "milliseconds": 13.48,
+                    "stage": "source-parse"
+                  },
+                  {
+                    "milliseconds": 59.015,
+                    "stage": "source-link"
+                  },
+                  {
+                    "milliseconds": 25.25,
+                    "stage": "source-function-demand"
+                  },
+                  {
+                    "milliseconds": 1735.415001,
+                    "stage": "source-semantic-lower"
+                  },
+                  {
+                    "milliseconds": 51.74,
+                    "stage": "source-context-identity"
+                  },
+                  {
+                    "milliseconds": 0.184999,
+                    "stage": "provider-execution-ir"
+                  },
+                  {
+                    "milliseconds": 22.37,
+                    "stage": "canonical-ir-copy"
+                  },
+                  {
+                    "milliseconds": 9.995,
+                    "stage": "executable-ir-copy"
+                  },
+                  {
+                    "milliseconds": 3573.245,
+                    "stage": "typed-program-lowering"
+                  },
+                  {
+                    "milliseconds": 79.275,
+                    "stage": "bytecode-lowering"
+                  },
+                  {
+                    "milliseconds": 0.485,
+                    "stage": "ordinary-flow-worker-bridge"
+                  },
+                  {
+                    "milliseconds": 59.3,
+                    "stage": "wasm-emission"
+                  },
+                  {
+                    "milliseconds": 16.58,
+                    "stage": "wasm-hex-transport"
+                  },
+                  {
+                    "milliseconds": 17.63,
+                    "stage": "manifest"
+                  },
+                  {
+                    "milliseconds": 37.195001,
+                    "stage": "compile-response-json"
+                  }
+                ]
+              }
+            },
+            "compilerCallMs": 5880.339999914169,
+            "transportReadMs": 0.9250000715255737,
+            "jsParseMs": 0.8249999284744263,
+            "wasmCopyMs": 0.12999999523162842,
+            "profileReadMs": 1.4600000381469727,
+            "typedIRChars": 275853,
+            "manifestChars": 1681,
+            "guestWasmBytes": 112980
+          },
+          "compileMs": 5949.350000023842,
+          "executeMs": 1.899999976158142,
+          "formatMs": 23.795000076293945
+        },
+        "sourceBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "canonical-source:syntax-example-16",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "stdout": "230 cm\n[100, 200, 300] cm\n",
+        "expected": "230 cm\n[100, 200, 300] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "full-raw-and-visible-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "visibleStdout": "230 cm\n[100, 200, 300] cm\n",
+        "outputVisible": true,
+        "rawStdout": "230 cm\n[100, 200, 300] cm\n",
+        "rawStderr": "",
+        "rawBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388"
+      }
+    },
+    {
+      "name": "real-edit-prism-matches-source",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "stdout": "330 cm\n[100, 200, 300] cm\n",
+        "expected": "330 cm\n[100, 200, 300] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "full-raw-and-visible-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "visibleStdout": "330 cm\n[100, 200, 300] cm\n",
+        "outputVisible": true,
+        "rawStdout": "330 cm\n[100, 200, 300] cm\n",
+        "rawStderr": "",
+        "rawBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388"
+      }
+    },
+    {
+      "name": "actual-download-bytes:canonical",
+      "passed": true,
+      "detail": {
+        "path": "downloads/vkf-canonical-0.7.5-dba3302f-host96d0ff98-notices.tar.gz",
+        "status": 200,
+        "bytes": 4355678,
+        "sha256": "8ba8b6117c1582022046fa35f72b8a28fdc76229ca1d4da8bef7bf808333fc36",
+        "expectedBytes": 4355678,
+        "expectedSHA256": "8ba8b6117c1582022046fa35f72b8a28fdc76229ca1d4da8bef7bf808333fc36"
+      }
+    },
+    {
+      "name": "actual-download-bytes:native",
+      "passed": true,
+      "detail": {
+        "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+        "status": 200,
+        "bytes": 10075839,
+        "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109",
+        "expectedBytes": 10075839,
+        "expectedSHA256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
+      }
+    },
+    {
+      "name": "served-new-binding-and-source",
+      "passed": true
+    },
+    {
+      "name": "actual-new-artifact-request",
+      "passed": true,
+      "detail": [
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.wasm?sha256=98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4",
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.wasm?sha256=98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4"
+      ]
+    },
+    {
+      "name": "phone-download-navigation-current-labels",
+      "passed": true
+    },
+    {
+      "name": "phone-exact-current-download-labels",
+      "passed": true,
+      "detail": [
+        {
+          "label": "Linux x86_64 native CLI · 10.1 MB",
+          "href": "http://127.0.0.1:43177/preview/0.7.5/downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+          "visible": true
+        },
+        {
+          "label": "WebAssembly / Node package · 4.3 MB",
+          "href": "http://127.0.0.1:43177/preview/0.7.5/downloads/vkf-canonical-0.7.5-dba3302f-host96d0ff98-notices.tar.gz",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "phone-menu-syntax-visible",
+      "passed": true
+    },
+    {
+      "name": "phone-normal-syntax-navigation",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.wasm?sha256=98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4",
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.wasm?sha256=98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4",
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "http://127.0.0.1:43177/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4"
+  ],
+  "base": "http://127.0.0.1:43177/preview/0.7.5/",
+  "rawCapture": "Passive message listener on original Worker; no source/response substitution or hidden semantic execution",
+  "edit": {
+    "sourceSHA256": "3c21da584bced658fda1d96c6c6e002612306e5c2862637dee00efbeb1bc0931",
+    "stdout": "330 cm\n[100, 200, 300] cm\n",
+    "visibleStdout": "330 cm\n[100, 200, 300] cm\n",
+    "outputVisible": true,
+    "completion": {
+      "origin": "run",
+      "kind": "stdout",
+      "isolated": true
+    },
+    "raw": {
+      "id": 1,
+      "status": "ok",
+      "output": {
+        "kind": "console",
+        "stdout": "330 cm\n[100, 200, 300] cm\n",
+        "stderr": ""
+      },
+      "timing": {
+        "formatProfile": {
+          "binaryRetained": true,
+          "usedBytes": 13222544,
+          "packetJSONChars": 2,
+          "allocateMs": 0.010000109672546387,
+          "heapCopyMs": 8.899999976158142,
+          "stdoutMs": 1.0399999618530273,
+          "retainedFormatMs": 13.305000066757202,
+          "packetReadMs": 0.02499997615814209,
+          "jsonParseMs": 0.009999990463256836,
+          "arenaReconstructionMs": 0.10500001907348633
+        },
+        "compileProfile": {
+          "native": {
+            "bridge_stages": [
+              {
+                "milliseconds": 1.125,
+                "stage": "bridge-source-copy"
+              },
+              {
+                "milliseconds": 5847.505,
+                "stage": "bridge-compiler-call"
+              },
+              {
+                "milliseconds": 70.090001,
+                "stage": "bridge-response-json-parse"
+              },
+              {
+                "milliseconds": 32.844999,
+                "stage": "bridge-ir-json"
+              },
+              {
+                "milliseconds": 0.405001,
+                "stage": "bridge-manifest-json"
+              },
+              {
+                "milliseconds": 20.875,
+                "stage": "bridge-wasm-hex-decode"
+              },
+              {
+                "milliseconds": 9.255,
+                "stage": "bridge-formatter-ir-copy"
+              },
+              {
+                "milliseconds": 28.995,
+                "stage": "bridge-output-plan"
+              }
+            ],
+            "browser_ir_json_bytes": 275853,
+            "browser_manifest_json_bytes": 1681,
+            "browser_wasm_bytes": 112980,
+            "compiler": {
+              "sizes": {
+                "argument_slot_capacity": 16,
+                "artifact_cache_hit": 0,
+                "bytecode_constants": 50,
+                "bytecode_functions": 1,
+                "default_argument_slots": 16,
+                "document_arena_bytes": 541728,
+                "execution_body_statements": 736,
+                "frontend_compile_calls": 1,
+                "imported_function_candidates": 0,
+                "imported_function_retained": 0,
+                "mount_arena_bytes": 4198720,
+                "mutable_compile_input": 1,
+                "ordinary_flow_worker_pair": 0,
+                "packaged_module_parse_calls": 2,
+                "required_argument_slots": 0,
+                "response_json_bytes": 503705,
+                "source_execution_projection_limit": 0,
+                "source_fast_path": 0,
+                "source_route_capability_limit": 1,
+                "source_semantic_lowering_passes": 1,
+                "typed_functions": 1,
+                "wasm_bytes": 112980
+              },
+              "stages": [
+                {
+                  "milliseconds": 1.26,
+                  "stage": "provider-frontend"
+                },
+                {
+                  "milliseconds": 1.2,
+                  "stage": "source-prepare"
+                },
+                {
+                  "milliseconds": 13.345,
+                  "stage": "source-lex"
+                },
+                {
+                  "milliseconds": 17.455,
+                  "stage": "source-parse"
+                },
+                {
+                  "milliseconds": 94.17,
+                  "stage": "source-link"
+                },
+                {
+                  "milliseconds": 40.135,
+                  "stage": "source-function-demand"
+                },
+                {
+                  "milliseconds": 1852.965001,
+                  "stage": "source-semantic-lower"
+                },
+                {
+                  "milliseconds": 52.01,
+                  "stage": "source-context-identity"
+                },
+                {
+                  "milliseconds": 0.174999,
+                  "stage": "provider-execution-ir"
+                },
+                {
+                  "milliseconds": 20.62,
+                  "stage": "canonical-ir-copy"
+                },
+                {
+                  "milliseconds": 9.815001,
+                  "stage": "executable-ir-copy"
+                },
+                {
+                  "milliseconds": 3512.365,
+                  "stage": "typed-program-lowering"
+                },
+                {
+                  "milliseconds": 87.104999,
+                  "stage": "bytecode-lowering"
+                },
+                {
+                  "milliseconds": 0.68,
+                  "stage": "ordinary-flow-worker-bridge"
+                },
+                {
+                  "milliseconds": 63.92,
+                  "stage": "wasm-emission"
+                },
+                {
+                  "milliseconds": 16.09,
+                  "stage": "wasm-hex-transport"
+                },
+                {
+                  "milliseconds": 17.805,
+                  "stage": "manifest"
+                },
+                {
+                  "milliseconds": 39.38,
+                  "stage": "compile-response-json"
+                }
+              ]
+            }
+          },
+          "compilerCallMs": 6013.870000004768,
+          "transportReadMs": 0.9149999618530273,
+          "jsParseMs": 0.815000057220459,
+          "wasmCopyMs": 0.09500002861022949,
+          "profileReadMs": 1.5049999952316284,
+          "typedIRChars": 275853,
+          "manifestChars": 1681,
+          "guestWasmBytes": 112980
+        },
+        "compileMs": 6082.715000033379,
+        "executeMs": 2.1999999284744263,
+        "formatMs": 23.415000081062317
+      },
+      "sourceBinding": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388"
+    }
+  },
+  "downloads": [
+    {
+      "path": "downloads/vkf-canonical-0.7.5-dba3302f-host96d0ff98-notices.tar.gz",
+      "status": 200,
+      "bytes": 4355678,
+      "sha256": "8ba8b6117c1582022046fa35f72b8a28fdc76229ca1d4da8bef7bf808333fc36",
+      "expectedBytes": 4355678,
+      "expectedSHA256": "8ba8b6117c1582022046fa35f72b8a28fdc76229ca1d4da8bef7bf808333fc36"
+    },
+    {
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+      "status": 200,
+      "bytes": 10075839,
+      "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109",
+      "expectedBytes": 10075839,
+      "expectedSHA256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
+    }
+  ],
+  "phoneDownloads": [
+    {
+      "label": "Linux x86_64 native CLI · 10.1 MB",
+      "href": "http://127.0.0.1:43177/preview/0.7.5/downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+      "visible": true
+    },
+    {
+      "label": "WebAssembly / Node package · 4.3 MB",
+      "href": "http://127.0.0.1:43177/preview/0.7.5/downloads/vkf-canonical-0.7.5-dba3302f-host96d0ff98-notices.tar.gz",
+      "visible": true
+    }
+  ],
+  "phoneNavigation": {
+    "url": "http://127.0.0.1:43177/preview/0.7.5/syntax.html",
+    "heading": "Syntax"
+  }
+}

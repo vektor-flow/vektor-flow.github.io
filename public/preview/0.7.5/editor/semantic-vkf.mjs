@@ -36,26 +36,12 @@ export function semanticVkfTokens(source) {
     for (let i=scopes.length-1;i>=0;i--) if (scopes[i].symbols.has(name)) return scopes[i].symbols.get(name);
     return null;
   };
-  const axisBinding = (name, entry, symbols) => {
-    // An attached-axis declaration introduces the base in the compiler grammar.
-    // Restrict this fallback to the compact axis forms present in maintained
-    // declarations; full legitimate names still win during reference lookup.
-    const match=/^(.+)_([a-z]{1,3})$/.exec(name);
-    if(entry.vector && match && match[2].length <= entry.rank && !symbols.has(match[1])) {
-      const indexed={...entry,axes:new Set(match[2])};
-      symbols.set(match[1],indexed);
-      // Only resolve a selector when there is no conflicting earlier full name.
-      // Keep the complete binding record too, so ordinary snake_case wins.
-      entry.axisDeclaration={base:match[1],suffix:match[2]};
-    }
-  };
   const close = () => {
     const scope=scopes.pop();
     if (scope.parentBinding) {
       scope.parentBinding.vector=scope.vector;
       scope.parentBinding.rank=scope.rank;
       scope.parentBinding.axes=scope.axes;
-      axisBinding(scope.bindingName,scope.parentBinding,scopes.at(-1).symbols);
     }
   };
   let offset=0;
@@ -111,9 +97,16 @@ export function semanticVkfTokens(source) {
       if(t.kind!=='identifier')continue;
       const next=code[i+1], prev=code[i-1];
       if(t.end<=definitionEnd || t===binding || next?.value===':') { annotations.set(t.start,[{kind:'definition',value:t.value}]); continue; }
+      // A free imaginary i uses the same numeric-literal token as 1.
+      // Whole identifiers, member labels and declared names keep their context;
+      // structural suffixes such as _i/_ij are split only below.
+      if(t.value==='i' && prev?.value!=='.' && !introduced.has('i') && !resolve('i')) {
+        annotations.set(t.start,[{kind:'number',value:t.value}]);
+        continue;
+      }
       const symbol=introduced.get(t.value)??resolve(t.value);
       // A full legitimate underscore name wins over any potential selector.
-      if(symbol && !symbol.axisDeclaration){
+      if(symbol){
         vector ||= symbol.vector;
         rank=Math.max(rank,symbol.rank??0);
         for(const axis of symbol.axes??[])axes.add(axis);
@@ -164,7 +157,6 @@ export function semanticVkfTokens(source) {
     if(binding){
       const entry={vector,module:rhs[0]?.value==='.'?rhs[1]?.value:null,rank:vector?Math.max(1,rank):0,axes,callable:Boolean(resolve(rhs[0]?.value)?.callable && rhs[1]?.value==='[')};
       current.symbols.set(binding.value,entry);
-      axisBinding(binding.value,entry,current.symbols);
       if(/:\s*$/.test(line))scopes.push({indent,symbols:new Map(),parentBinding:entry,bindingName:binding.value,vector:false,rank:0,axes:new Set()});
     } else {current.vector=vector;current.rank=rank;current.axes=axes;}
     if(!functionName && !binding && /(?:\?>|\?\?>|\?|>>|=>)\s*$/.test(line)) scopes.push({indent,symbols:new Map(),parentBinding:null,vector:false,rank:0,axes:new Set()});

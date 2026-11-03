@@ -4,17 +4,17 @@
   "status": "private-candidate",
   "complete": false,
   "stable": false,
-  "source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-  "release_source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
+  "source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "release_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
   "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
   "files": {
     "README.txt": {
-      "bytes": 821,
-      "sha256": "acf3055803aa0645a4c623bf91fa0476e7db446188e6bce0304c9caaf6356627"
+      "bytes": 823,
+      "sha256": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73"
     },
     "compiler-base.mjs": {
-      "bytes": 188048,
-      "sha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73"
+      "bytes": 188012,
+      "sha256": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116"
     },
     "compiler.data": {
       "bytes": 619732,
@@ -22,11 +22,11 @@
     },
     "compiler.mjs": {
       "bytes": 1464,
-      "sha256": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460"
+      "sha256": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0"
     },
     "compiler.wasm": {
-      "bytes": 20414072,
-      "sha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648"
+      "bytes": 20414736,
+      "sha256": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae"
     },
     "formatter.mjs": {
       "bytes": 61416,
@@ -111,7 +111,7 @@
   },
   "verification": {
     "status": "PASS_EXACT_CAPTURE_REGRESSIONS",
-    "evidence": "../../verification/e2139-wasm-regressions.json",
+    "evidence": "../../verification/e2161-wasm-regressions.json",
     "oldPassCarry": false
   },
   "historical_verification": {
@@ -145,17 +145,17 @@
       "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
     }
   },
-  "compiler_source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-  "browser_binding": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
+  "compiler_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "browser_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
   "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-  "frontend_binding": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
+  "frontend_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
   "stable_release": false,
   "sha256": {
-    "README.txt": "acf3055803aa0645a4c623bf91fa0476e7db446188e6bce0304c9caaf6356627",
-    "compiler-base.mjs": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73",
+    "README.txt": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73",
+    "compiler-base.mjs": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116",
     "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-    "compiler.mjs": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460",
-    "compiler.wasm": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648",
+    "compiler.mjs": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0",
+    "compiler.wasm": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae",
     "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
     "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -188,7 +188,7 @@
       "ordinary retained plotting",
       "Node ESM compiler/guest/formatter embedding"
     ],
-    "qualification": "Current 01d1cb exact4 captured-overload Node guest controls; actual local units Run/Edit and scientific-spectrum/native viewport/Unicode/editor/navigation checks. Unchanged native305da/library804 and host96d proof reused by exact bytes. Full compiler/SDK/GPU/benchmark release remains unqualified.",
+    "qualification": "Current native8/14/17/12/29 and WASM public Node8/14/17/12/29 completeoutputs; current extracted Node usage/security/integrity. Full benchmark/parity/GPU release remain pending.",
     "evidence": "VERIFICATION.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
@@ -198,7 +198,7 @@
   },
   "library_update": {
     "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-    "scope": "Paired library bytes unchanged; earlier library update evidence is historical metadata."
+    "scope": "Paired library bytes unchanged; no compiler PASS carried from historical metadata."
   },
   "historical_before_ae0e200": {
     "verification": {
@@ -265,7 +265,7 @@
     "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
     "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
   },
-  "compiler_source_commit": "01d1cb2858bc896efa672caf48dfcd9e4d4c2578",
+  "compiler_source_commit": "894b7128f71e74cd0227a0930676b2ec6389141c",
   "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
   "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
   "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",

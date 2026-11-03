@@ -1,0 +1,1782 @@
+{
+  "status": "PASS_FRESH_REGENERATED_WASM",
+  "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "rows": [
+    {
+      "id": "import-physics-units",
+      "source": ":.physics.units\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+      "sha256": "935efb7bc198a050bda626a449968ac6492a4d3f9c23b43f26a481eb0193b13e",
+      "expectedStdout": "230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "module": "physics.units",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-physics-units",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-physics-units/wasm-typed-ir.json",
+        "bytes": 400165,
+        "sha256": "54ae97d0fe5cc178f2b7054a866f9fa0e9655884fcbf4a343245dd4cb54d9dec"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18656,
+          "bytecodeLength": 18655,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19040
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19064,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "import-physics-units-si",
+      "source": ":.physics.units.si\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+      "sha256": "829d89764d1b3e6086fb24547edeeba10ce808d4e3ec2320a2846287e3a655f7",
+      "expectedStdout": "230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "module": "physics.units.si",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-physics-units-si",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-physics-units-si/wasm-typed-ir.json",
+        "bytes": 399970,
+        "sha256": "14c7053d4752d3a1cfd6d4f1b17085634c0fdcfe30c523b2a03789d59d849283"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18656,
+          "bytecodeLength": 18655,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19040
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19064,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "import-units",
+      "source": ":.units\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+      "sha256": "05216b819f6251554e754fd85dc2b0837a1baaf7019c310a8aff3f0cb2516fce",
+      "expectedStdout": "230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "module": "units",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-units",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-units/wasm-typed-ir.json",
+        "bytes": 400339,
+        "sha256": "2d3d8076ffc05a48f4c67702bc9fad9dd6a095d6f1be4bafa44f9867c85f9da6"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18656,
+          "bytecodeLength": 18655,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19040
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19064,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "import-units-si",
+      "source": ":.units.si\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+      "sha256": "011a9dfd51dd3fb3f258d3c80680c631eec0846750d1c3a044e70bbd7cddb2f5",
+      "expectedStdout": "230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "module": "units.si",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-units-si",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/import-units-si/wasm-typed-ir.json",
+        "bytes": 400160,
+        "sha256": "089d2b98b9ac3bcea637dc19bcac6eee0e2cb6093b46c91a8f8f0146c74d9fa8"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18656,
+          "bytecodeLength": 18655,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19040
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19064,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "syntax-example-16",
+      "source": ":.physics.units\n\nx: 2m + 30cm\nv: [1, 2, 3]m\n\n:: x.to(cm)\n:: v.to(cm)",
+      "sha256": "935efb7bc198a050bda626a449968ac6492a4d3f9c23b43f26a481eb0193b13e",
+      "expectedStdout": "230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/syntax-example-16",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/syntax-example-16/wasm-typed-ir.json",
+        "bytes": 400165,
+        "sha256": "54ae97d0fe5cc178f2b7054a866f9fa0e9655884fcbf4a343245dd4cb54d9dec"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18656,
+          "bytecodeLength": 18655,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19040
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19064,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-23",
+      "source": ":.physics.units\n: .math\n\n:: sin(90deg)\n:: exp(i 180deg)",
+      "sha256": "4cd75f1db610c86b8a629c3bc3516ee1c2a671c10c316d37e9d2c14e2e684df9",
+      "expectedStdout": "1\n-1 + 1.2246467991473532e-16i\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-23",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-23/wasm-typed-ir.json",
+        "bytes": 1019338,
+        "sha256": "9104cbfd5e02d63d9a0427c767188f6cf91f3ed800158af10f21d9fa9bb2dd24"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563392,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18632,
+          "bytecodeLength": 18632,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19016
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219136,
+          "heapLimit": 80328000,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19040,
+          "staticEnd": 21624,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-19",
+      "source": ":.physics.units\n\n:: 2m + 30cm\n:: 30cm + 2m\n:: ([1, 2, 3]m).to(cm)",
+      "sha256": "b71a4ec476079fa78ca059c8dc18cef16d063dfbdc1f80c0b269445d4d4d3089",
+      "expectedStdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-19",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-19/wasm-typed-ir.json",
+        "bytes": 412094,
+        "sha256": "41e480f1e84ef45ca938f7671a70d17b421da30ac7f29d6dfa92219e587676f9"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563504,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18776,
+          "bytecodeLength": 18775,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19160
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219248,
+          "heapLimit": 80328112,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19184,
+          "staticEnd": 21744,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-20",
+      "source": ":.physics.units\n\nreadings: [1.2, 0.8, 2.1]m\n\n:: readings.to(cm)\n:: readings",
+      "sha256": "3a776b640745fc4a7e5a49340e01d99ae15a3c2a30f06d875103711646ed4587",
+      "expectedStdout": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-20",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-20/wasm-typed-ir.json",
+        "bytes": 390612,
+        "sha256": "72c9a7c9a78f6b107051afcd3b0bc6b869b322fd05ef4b2d45346573b31f168c"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563744,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18992,
+          "bytecodeLength": 18987,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19376
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219488,
+          "heapLimit": 80328352,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19400,
+          "staticEnd": 21976,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-21",
+      "source": ":.physics.units\n\nemptyBatch: [2m: 0]\nreceivedBatch: [2m: 2]\n\n:: emptyBatch.to(cm)\n:: receivedBatch.to(cm)",
+      "sha256": "788874259352d71809da54da80ccf542fd054b8fd03986be789f37218658c50c",
+      "expectedStdout": "[] cm\n[200, 200] cm\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-21",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "[] cm\n[200, 200] cm\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-21/wasm-typed-ir.json",
+        "bytes": 394290,
+        "sha256": "652de805a3f5f63f0c5c42087bebadd004c019c730a7400dfd2ca176e6677b1e"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 0,
+            "parameters": 0,
+            "resultType": 5
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563296,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18592,
+          "bytecodeLength": 18592,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 18976
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219040,
+          "heapLimit": 80327904,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19000,
+          "staticEnd": 21528,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-22",
+      "source": ":.physics.units\n\narea(side): side ^ 2\n\n:: area(3m).to(m ^ 2)\n:: (6m / 2s).to(m / s)",
+      "sha256": "bb3c50a6dfe5c6b280ede58e18c6b2205662883ceb602be83aa638f6f0f94456",
+      "expectedStdout": "9 m^2\n3 m/s\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-22",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "9 m^2\n3 m/s\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-22/wasm-typed-ir.json",
+        "bytes": 417756,
+        "sha256": "eab8e40c6e8b004841569eb1da9303198408dffb7e2da3ad6e0730bf1d418272"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 2,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_nominal_value_0": {
+            "index": 1,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "area": {
+            "index": 0,
+            "parameters": 1,
+            "resultType": 1
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563424,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 18600,
+          "bytecodeLength": 18596,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 18984
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219168,
+          "heapLimit": 80328032,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19008,
+          "staticEnd": 21656,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-24",
+      "source": ":.physics.units\n\nposition(t): 2m * (t / 1s) ^ 2\n\nvelocity: deriv_t(position)\nacceleration: deriv_t(velocity)\n\n:: position(3s).to(m)\n:: velocity(3s).to(m / s)\n:: acceleration(3s).to(m / s ^ 2)",
+      "sha256": "7ec729f9927cff7f54e845bd701430ec77e508234b0694e43a2b2b15227cfc36",
+      "expectedStdout": "18 m\n12 m/s\n4 m/s^2\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-24",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-24/wasm-typed-ir.json",
+        "bytes": 1379481,
+        "sha256": "43fd2369ae6311a80ad2e123de48c7e178dc4225a41069ee0e32788748813f81"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 3,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_nominal_value_0": {
+            "index": 0,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "__vkf_nominal_value_1": {
+            "index": 1,
+            "parameters": 3,
+            "resultType": 2
+          },
+          "__vkf_nominal_value_2": {
+            "index": 2,
+            "parameters": 3,
+            "resultType": 2
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 563872,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 19008,
+          "bytecodeLength": 19006,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19392
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13219616,
+          "heapLimit": 80328480,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19416,
+          "staticEnd": 22104,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "stdlib-example-29",
+      "source": ":.physics.units\n\nadvance(p, v, a, dt): (p: p + v dt + a dt ^ 2 / 2, v: v + a dt)\nstate: advance(0m, 2m / 1s, 1m / 1s ^ 2, 2s)\n\n:: state.p\n:: state.v.to(m / s)",
+      "sha256": "443db138496840311c4ed15cb3769f724bd8946a20a8f0b03c810c3ea334b1fc",
+      "expectedStdout": "6 m\n4 m/s\n",
+      "kind": "accept",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-29",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "6 m\n4 m/s\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/stdlib-example-29/wasm-typed-ir.json",
+        "bytes": 474454,
+        "sha256": "e5f5bd8db3072cea757f0c25ddd40b4c2773c30fb2f05d3b060c1b91e66ac4da"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 2,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_nominal_value_0": {
+            "index": 1,
+            "parameters": 4,
+            "resultType": 6
+          },
+          "advance": {
+            "index": 0,
+            "parameters": 4,
+            "resultType": 1
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 564272,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 19456,
+          "bytecodeLength": 19453,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 19840
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13220016,
+          "heapLimit": 80328880,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 19864,
+          "staticEnd": 22504,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    },
+    {
+      "id": "dimension-reject-physics-units",
+      "source": ":.physics.units\n:: (2m).to(s)\n",
+      "sha256": "db4d3a3a62ef66cf09647301ae92f9b219a1ed6e8dd07b74474a78c6622624c4",
+      "kind": "reject",
+      "errorIncludes": "compatible physical dimensions",
+      "module": "physics.units",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/dimension-reject-physics-units",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "error": "Error: VKF packages: compile/source-semantic-lower: quantity.to(unit) requires compatible physical dimensions"
+    },
+    {
+      "id": "dimension-reject-physics-units-si",
+      "source": ":.physics.units.si\n:: (2m).to(s)\n",
+      "sha256": "481318935de9b493b49dfb646302bc2c859020c182e17c057e3c2ad11d01da0f",
+      "kind": "reject",
+      "errorIncludes": "compatible physical dimensions",
+      "module": "physics.units.si",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/dimension-reject-physics-units-si",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "error": "Error: VKF packages: compile/source-semantic-lower: quantity.to(unit) requires compatible physical dimensions"
+    },
+    {
+      "id": "dimension-reject-units",
+      "source": ":.units\n:: (2m).to(s)\n",
+      "sha256": "c48b6a325d1b54f6af2c8da4f7a39f0af9618ec4454e8d1cbcf599fcd079add2",
+      "kind": "reject",
+      "errorIncludes": "compatible physical dimensions",
+      "module": "units",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/dimension-reject-units",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "error": "Error: VKF packages: compile/source-semantic-lower: quantity.to(unit) requires compatible physical dimensions"
+    },
+    {
+      "id": "dimension-reject-units-si",
+      "source": ":.units.si\n:: (2m).to(s)\n",
+      "sha256": "12b5fddd0e5bb52f23591f5a01834f25cc761d5bd0b74ba1f1648c83d949668f",
+      "kind": "reject",
+      "errorIncludes": "compatible physical dimensions",
+      "module": "units.si",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/dimension-reject-units-si",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "error": "Error: VKF packages: compile/source-semantic-lower: quantity.to(unit) requires compatible physical dimensions"
+    },
+    {
+      "id": "durable-fourpath-alias-catalog-regression",
+      "source": "# Compatibility paths and canonical paths must share ordinary spilled exports.\n:.physics.units\n:.physics.units.si\n:.units\n:.units.si\n\nphysical:.physics.units\nphysicalSI:.physics.units.si\nlegacy:.units\nlegacySI:.units.si\n\ncatalog_values(c): [c.m, c.km, c.s, c.kg, c.A, c.K, c.mol, c.cd, c.N, c.Pa, c.J, c.W]\n\n:: catalog_values(physical.si)\n:: catalog_values(physicalSI.si)\n:: catalog_values(legacy.si)\n:: catalog_values(legacySI.si)\n\nx: 2m + 30cm\nv: [1, 2, 3]m\nother: 4m + 70cm\nreverse: [-2, 0, 4]m\n\n:: x.to(physical.cm)\n:: v.to(physicalSI.cm)\n:: other.to(legacy.cm)\n:: reverse.to(legacySI.cm)\n:: v\n\narea(side): side ^ 2\n:: area(4m).to(physicalSI.m ^ 2)\n:: (18m / 3s).to(legacy.m / legacySI.s)\n",
+      "sha256": "921d0d48d6a7a300e59dd17210224d268b1513cd362a9a5f481fdad01e2eae16",
+      "expectedStdout": "[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n230 cm\n[100, 200, 300] cm\n470 cm\n[-200, 0, 400] cm\n[1, 2, 3] m\n16 m^2\n6 m/s\n",
+      "kind": "accept",
+      "testOnlySourceCommit": "e6bbec4904e7ccc6134ca63cc5af9955ad20916a",
+      "project": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/durable-fourpath-alias-catalog-regression",
+      "target": "fresh-regenerated-wasm",
+      "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "passStatus": true,
+      "stdout": "[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n[1, 1000, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\n230 cm\n[100, 200, 300] cm\n470 cm\n[-200, 0, 400] cm\n[1, 2, 3] m\n16 m^2\n6 m/s\n",
+      "typedIR": {
+        "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/controls/durable-fourpath-alias-catalog-regression/wasm-typed-ir.json",
+        "bytes": 587290,
+        "sha256": "de18ffb02cae3c395220f1cdadbd6c905a0f7af2edc2c737d8a98c73fa4a7a8a"
+      },
+      "manifest": {
+        "functions": {
+          "$vkf_main": {
+            "index": 4,
+            "parameters": 0,
+            "resultType": 5
+          },
+          "__vkf_nominal_value_0": {
+            "index": 1,
+            "parameters": 1,
+            "resultType": 5
+          },
+          "__vkf_nominal_value_1": {
+            "index": 3,
+            "parameters": 1,
+            "resultType": 2
+          },
+          "area": {
+            "index": 2,
+            "parameters": 1,
+            "resultType": 1
+          },
+          "catalog_values": {
+            "index": 0,
+            "parameters": 1,
+            "resultType": 1
+          }
+        },
+        "immutableHostDocuments": {
+          "arenaLength": 4198720,
+          "arenaPointer": 568768,
+          "dataCapacity": 262144,
+          "headerSize": 64,
+          "imports": "none",
+          "pathCapacity": 256,
+          "paths": "exact canonical printable ASCII, relative or absolute",
+          "readOnly": true,
+          "resetLifetime": "preserved until explicit clear",
+          "slotCount": 16,
+          "slotSize": 262416,
+          "totalByteQuota": 2097152,
+          "version": 1
+        },
+        "memory": {
+          "argumentsCapacity": 16,
+          "argumentsPointer": 23776,
+          "bytecodeLength": 23774,
+          "bytecodePointer": 0,
+          "resultsCapacity": 1,
+          "resultsPointer": 24160
+        },
+        "runtimeDiagnostic": {
+          "classes": [
+            {
+              "mask": 1,
+              "name": "Error"
+            },
+            {
+              "mask": 3,
+              "name": "VektorFlowError"
+            },
+            {
+              "mask": 7,
+              "name": "LexError"
+            },
+            {
+              "mask": 11,
+              "name": "ParseError"
+            },
+            {
+              "mask": 19,
+              "name": "EvalError"
+            },
+            {
+              "mask": 67,
+              "name": "AssertionError"
+            },
+            {
+              "mask": 33,
+              "name": "PythonError"
+            },
+            {
+              "mask": 97,
+              "name": "TypeError"
+            },
+            {
+              "mask": 161,
+              "name": "ValueError"
+            },
+            {
+              "mask": 289,
+              "name": "KeyError"
+            },
+            {
+              "mask": 545,
+              "name": "IndexError"
+            },
+            {
+              "mask": 1057,
+              "name": "FileNotFoundError"
+            },
+            {
+              "mask": 2081,
+              "name": "RuntimeError"
+            }
+          ],
+          "controlBytes": 32,
+          "controlExport": "vkf_vm_error_control_ptr",
+          "errorStatus": 4,
+          "heapBegin": 13224512,
+          "heapLimit": 80333376,
+          "invokeExport": "vkf_vm_invoke_diagnostic",
+          "lifetime": "until-reset-or-next-invoke",
+          "maskOffset": 24,
+          "payloadSchema": "record{message:str,type?:str,mask?:num}|str",
+          "phase": "runtime",
+          "recordTag": 5,
+          "schema": "vektor-flow.vm-runtime-diagnostic",
+          "slotAlignment": 8,
+          "slotBytes": 16,
+          "staticBegin": 24184,
+          "staticEnd": 27008,
+          "stringTag": 3,
+          "valueOffset": 20,
+          "version": 1,
+          "versionExport": "vkf_vm_diagnostic_abi_version"
+        },
+        "schema": "vektor-flow.symbolic-kernel",
+        "version": 1,
+        "wasm": "program.wasm"
+      }
+    }
+  ]
+}

@@ -6,30 +6,36 @@
     {
       "id": "browser-node-compiler",
       "identity": {
-        "sourceCommit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-        "sourceBinding": "4a05eb5b0264c92b6546415d59e9a172ef2fc3554c74fae31fc12f25a6d18455",
-        "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87"
+        "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+        "sourceBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+        "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
+        "nodePackageHostDurableSourceCommit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6"
       },
       "files": [
         {
+          "path": "playground/canonical/README.txt",
+          "bytes": 1938,
+          "sha256": "c91e7e15955374468ebe58f85fb38931ba7815f80ce2424ec1abbcf5134e62da"
+        },
+        {
           "path": "playground/canonical/compiler-base.mjs",
-          "bytes": 188012,
-          "sha256": "0da03c8e9d7fed7f97425f66940b555f174b3303fbd7e5d9cf17d0cd7fc31d4b"
+          "bytes": 187970,
+          "sha256": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075"
         },
         {
           "path": "playground/canonical/compiler.data",
-          "bytes": 619872,
-          "sha256": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
+          "bytes": 619732,
+          "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
         },
         {
           "path": "playground/canonical/compiler.mjs",
           "bytes": 1464,
-          "sha256": "5f22db7752f4581a51efa0c60494f0e3a67dd0714f3a0be35a79e23a77435abe"
+          "sha256": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308"
         },
         {
           "path": "playground/canonical/compiler.wasm",
-          "bytes": 20205303,
-          "sha256": "fbd417bf9ac34c549148f0e966cf7f4a83a76be682ac4c124ba40f43bf1ed5e1"
+          "bytes": 20205031,
+          "sha256": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7"
         },
         {
           "path": "playground/canonical/formatter.mjs",
@@ -107,9 +113,34 @@
           "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
         },
         {
+          "path": "playground/canonical/package.json",
+          "bytes": 9312,
+          "sha256": "42300935c4a352ad31b484553885170b174070900c915b3c85ae15f3a8206756"
+        },
+        {
           "path": "playground/canonical/prepare-formatter-ir.mjs",
           "bytes": 693,
           "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+        },
+        {
+          "path": "playground/canonical/third-party/emscripten-musl-copyright.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+        },
+        {
+          "path": "playground/canonical/third-party/emscripten-toolchain-copyright.txt",
+          "bytes": 131248,
+          "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+        },
+        {
+          "path": "playground/canonical/third-party/trigonometric-source-notices.txt",
+          "bytes": 3359,
+          "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+        },
+        {
+          "path": "playground/canonical/third-party/vkf-runtime-musl-license.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
         }
       ]
     },
@@ -193,8 +224,8 @@
         },
         {
           "path": "example-output-seeds.json",
-          "bytes": 60354,
-          "sha256": "4b0219d74dbef0df4d3c431761925313621f63f29e20e88cb0358fc2b1bf7703"
+          "bytes": 72604,
+          "sha256": "53ef06df9c26d28be5d80131bbc8acbef9dfd7c8440410a7a9a8c35207dd758c"
         },
         {
           "path": "example-presentation.css",
@@ -208,8 +239,8 @@
         },
         {
           "path": "example-scene-seeds.json",
-          "bytes": 37035,
-          "sha256": "a6848b3e340ac205155d210a2de0388c5abdc059518d0cb9ae8d4dac8b5674f5"
+          "bytes": 38865,
+          "sha256": "5ab8fd34ede7bedad963cbde1afea9749482a1dc85abe62ffd7d4666138a23e4"
         },
         {
           "path": "example-scenes/049d13badcd11a5355c728e2a8a7b3532423fe0999cc02bc933f3222748c1c39-0.bin",
@@ -1417,18 +1448,20 @@
     {
       "id": "native-linux-cli",
       "identity": {
-        "sourceCommit": "89f64c311913343cd17ffe4f3329296ed291d229",
-        "sourceBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
-        "binarySHA256": "7f039e6ab3ea12c5756a376f64b93c8490d707f94b6f1c98388a3714e4487fcc"
+        "sourceCommit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
+        "sourceBinding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
+        "binarySHA256": "1fc05a8e04ec329b67b739730b16418fb997cd9106a0268edf8a5ed20a040c25",
+        "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+        "pairedManifestSHA256": "9fb32101b419914d5ccfe47922782171e673af13a0def1930928b046d523bbaa"
       },
       "files": [
         {
-          "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
-          "bytes": 9803445,
-          "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+          "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+          "bytes": 10075839,
+          "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
         }
       ]
     }
   ],
-  "inputSha256": "288a3ec2a408d483e3383f30bfb01cdb16549dd9a23b3301c28c47804d97a759"
+  "inputSha256": "9f98502e8f62e222936cfbfc751ee8a62487b0da8677dae8065711a59e6d2867"
 }

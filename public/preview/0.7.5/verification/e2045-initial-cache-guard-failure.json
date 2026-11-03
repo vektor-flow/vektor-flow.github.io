@@ -1,0 +1,88 @@
+{
+  "status": "FAILED_CACHE_GUARD_BEFORE_NATIVE_ARCHIVE",
+  "generatedCacheFiles": [
+    {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/native-install/.vkfbuild/stdlib-cache/math-4b82dd003e1038ecde78439e46f3cab016906e65cb643451caf4b0fb76169b17.ast.json",
+      "bytes": 127459,
+      "sha256": "2de078ca55f75ffcad685ee8cd793d196df08fa83771ba1a2ad656fd7c608e1a"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/native-install/.vkfbuild/stdlib-cache/units-5cef68546453889b501be6e6e150c186fd781fc536d0af21507560ff0ff38ea3.ast.json",
+      "bytes": 464,
+      "sha256": "189b1b14b3d31b93312ea9b6e2bbea7125df08acd4bdb79879ccb00bc43000e0"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/native-install/compiler/self_hosted/stdlib/units/.vkfbuild/module-cache/si-45d11dc430e105f722b99eb096763c408ff6180635b6ffde7982b8cba26b2908.ast.json",
+      "bytes": 473,
+      "sha256": "627926b0c759085e267ab50950494fd71cd480c306465c0334d1fb5ebf6cd154"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/native-install/compiler/self_hosted/stdlib/physics/.vkfbuild/module-cache/units-186a5da49ae6f7c76817b142c148c7a94bc21f9f80a1394d0ba494f8c299fc8c.ast.json",
+      "bytes": 478,
+      "sha256": "c87a35ec35df88914bbb4600e28aebacee9402500da12090c1b72941e7c267e8"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/native-install/compiler/self_hosted/stdlib/physics/units/.vkfbuild/module-cache/si-edb5e8dc90ba66cb445062a4a9b59d89ec9f0c1bc58304c80bce28a3ea5dc989.ast.json",
+      "bytes": 6988,
+      "sha256": "c6a9fdb71fe4265ac3c5c3d7976e822bab8220ade8746d3b49aca0b0e2aac8e6"
+    }
+  ],
+  "failedJobReceipt": {
+    "name": "current075-complete-archives-extracted-native-node-and-security-controls",
+    "command": [
+      "python3",
+      "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/package-checks.py"
+    ],
+    "cwd": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103",
+    "normalCapSeconds": 780,
+    "startMonotonic": 568590.705470723,
+    "clock": {
+      "name": "e2045",
+      "threadId": "01a19eab-400f-7e23-b1b6-a43bcc45f4ad",
+      "cwd": "/home/viktor/Projects/Vektor Flow",
+      "verifiedServerProject": "/home/viktor/Projects/Vektor Flow",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "high",
+      "modelAuthority": {
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "config": {
+          "model_reasoning_effort": "high"
+        },
+        "authority_id": "user-e1390-20261027T213253.062166Z",
+        "effective": true,
+        "effective_epoch": 1793136773.0621665,
+        "effective_utc": "2026-10-27T21:32:53.062166+00:00",
+        "policy_path": "/home/viktor/Projects/Vektor Flow/.coordination/atomic-chats446/model-authority.json",
+        "worker_transition": "Existing scoped turns retain provenance and clocks; seal/close safely, then fresh successors. No model-only product interruption."
+      },
+      "returnedModel": "gpt-6.1-sol",
+      "status": "CREATED_NOT_STARTED",
+      "role": "ACTUAL_PREPARATION_075_PHYSICS_UNITS_NATIVE_WASM_QUALIFICATION_AND_PACKAGING",
+      "executionAuthority": "READ_ONLY_PREPARATION_NO_PRODUCT_UNTIL_SEPARATE_COORDINATOR_GRANT",
+      "order": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/ORDER-e2045.txt",
+      "handover": "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/HANDOVER-TO-e2045.txt",
+      "started": "2026-11-02T23:49:45.646753+00:00",
+      "started_epoch": 1793663385.6467526,
+      "started_monotonic": 567899.709315742,
+      "sourceCutoff": 570749.709315742,
+      "operationStop": 570899.709315742,
+      "physicalDeadline": 571379.709315742,
+      "finalDeadline": 571499.709315742
+    },
+    "identity": {
+      "pid": 1658859,
+      "ppid": 1655016,
+      "startTicks": 56859070
+    },
+    "inheritedFD": 9,
+    "exit": 1,
+    "endMonotonic": 568593.015301227,
+    "refusal": null,
+    "childJoined": true,
+    "adoptedJoins": [],
+    "remainingChildren": [],
+    "elapsedSeconds": 2.309830504003912
+  },
+  "fix": "Exclude all .vkfbuild generated directories from native archive payload, as required. Preserve all32manifest source files and exactbinary."
+}

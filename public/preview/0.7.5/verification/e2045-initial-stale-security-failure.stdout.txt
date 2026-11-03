@@ -1,0 +1,262 @@
+TAP version 13
+# Subtest: first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+ok 1 - first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+  ---
+  duration_ms: 111.739199
+  type: 'test'
+  ...
+# Subtest: normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+ok 2 - normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+  ---
+  duration_ms: 239.05361
+  type: 'test'
+  ...
+# Subtest: old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+ok 3 - old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+  ---
+  duration_ms: 212.859879
+  type: 'test'
+  ...
+# Subtest: direct Git file and personal unmerged branch work without central registration/approval
+ok 4 - direct Git file and personal unmerged branch work without central registration/approval
+  ---
+  duration_ms: 134.00833
+  type: 'test'
+  ...
+# Subtest: local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+not ok 5 - local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+  ---
+  duration_ms: 55.571186
+  type: 'test'
+  location: '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/addresses.test.mjs:86:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, lstat '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/tmp/vkf-package-regression-6gjsqr/project/editable'"
+  code: 'ENOENT'
+  stack: |-
+    async Object.lstat (node:internal/fs/promises:1020:18)
+    async addressSpec (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/addresses.mjs:107:16)
+    async prepareAddressProject (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/addresses.mjs:276:20)
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/addresses.test.mjs:90:17)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: same source URL uses editable override inside sole lock, then restores verified cached commit
+ok 6 - same source URL uses editable override inside sole lock, then restores verified cached commit
+  ---
+  duration_ms: 137.180791
+  type: 'test'
+  ...
+# Subtest: fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+ok 7 - fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+  ---
+  duration_ms: 276.823904
+  type: 'test'
+  ...
+# Subtest: package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+ok 8 - package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+  ---
+  duration_ms: 194.992436
+  type: 'test'
+  ...
+# Subtest: concurrent source-address cache population exposes complete verified data only
+ok 9 - concurrent source-address cache population exposes complete verified data only
+  ---
+  duration_ms: 106.194726
+  type: 'test'
+  ...
+# Subtest: direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+ok 10 - direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+  ---
+  duration_ms: 58.323702
+  type: 'test'
+  ...
+# Subtest: complete large UTF8 IR uses its formatter heap and is freed on all returns
+ok 11 - complete large UTF8 IR uses its formatter heap and is freed on all returns
+  ---
+  duration_ms: 18.075935
+  type: 'test'
+  ...
+# Subtest: publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+not ok 12 - publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+  ---
+  duration_ms: 79.222314
+  type: 'test'
+  location: '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: 'VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    fail (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/metadata.mjs:18:40)
+    publishPackage (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/publish.mjs:15:182)
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:31:18)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: nonowner/trusted-base owner transfer and new registration cannot self-authorize
+not ok 13 - nonowner/trusted-base owner transfer and new registration cannot self-authorize
+  ---
+  duration_ms: 58.087328
+  type: 'test'
+  location: '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:46:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /not an owner/. Input:
+    
+    'Error: VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+  stack: |-
+    fail (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/metadata.mjs:18:40)
+    publishPackage (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/publish.mjs:15:182)
+    async waitForActual (node:assert:644:5)
+    async Function.rejects (node:assert:767:25)
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:48:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:48:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: single owner author is authorized without approving their own PR; normal review is separate
+ok 14 - single owner author is authorized without approving their own PR; normal review is separate
+  ---
+  duration_ms: 1.140865
+  type: 'test'
+  ...
+# Subtest: current unprotected/private-plan enforcement gap refuses upload before remote writes
+not ok 15 - current unprotected/private-plan enforcement gap refuses upload before remote writes
+  ---
+  duration_ms: 149.133137
+  type: 'test'
+  location: '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:62:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /lacks enforced owner policy/. Input:
+    
+    'Error: VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+  stack: |-
+    fail (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/metadata.mjs:18:40)
+    publishPackage (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/publish.mjs:15:182)
+    async waitForActual (node:assert:644:5)
+    async Function.rejects (node:assert:767:25)
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:64:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:64:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: uncertain PR creation retains explicit source branch/commit recovery and never retries
+not ok 16 - uncertain PR creation retains explicit source branch/commit recovery and never retries
+  ---
+  duration_ms: 157.02269
+  type: 'test'
+  location: '/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:68:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /source branch vkf-package\/acme\/leaf\/.* exists; PR creation was not confirmed/. Input:
+    
+    'Error: VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'VKF packages: package upload requires authenticated proposal-branch write access to the existing public library repository; contributors without it can propose a public fork PR'
+  stack: |-
+    fail (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/metadata.mjs:18:40)
+    publishPackage (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/package-tools/publish.mjs:15:182)
+    async waitForActual (node:assert:644:5)
+    async Function.rejects (node:assert:767:25)
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:70:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/tests/packages/publish.test.mjs:70:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: approved Git ref resolves once; moving HEAD never upgrades ordinary installs; explicit update does
+ok 17 - approved Git ref resolves once; moving HEAD never upgrades ordinary installs; explicit update does
+  ---
+  duration_ms: 611.518614
+  type: 'test'
+  ...
+# Subtest: one Git source per package: compatible diamond resolves; conflicting exact commits fail and retain lock
+ok 18 - one Git source per package: compatible diamond resolves; conflicting exact commits fail and retain lock
+  ---
+  duration_ms: 734.003822
+  type: 'test'
+  ...
+# Subtest: ref/metadata/compiler/target/missing commit and unmerged source errors are explicit
+ok 19 - ref/metadata/compiler/target/missing commit and unmerged source errors are explicit
+  ---
+  duration_ms: 208.493872
+  type: 'test'
+  ...
+# Subtest: locked fetch reads no discovery; old commit remains reproducible after HEAD advances; offline missing/tamper fails
+ok 20 - locked fetch reads no discovery; old commit remains reproducible after HEAD advances; offline missing/tamper fails
+  ---
+  duration_ms: 310.892129
+  type: 'test'
+  ...
+# Subtest: altered download/normalized traversal/link objects/working symlinks/Git symlinks are refused
+ok 21 - altered download/normalized traversal/link objects/working symlinks/Git symlinks are refused
+  ---
+  duration_ms: 136.868897
+  type: 'test'
+  ...
+# Subtest: concurrent content-addressed writers publish only complete verified blobs
+ok 22 - concurrent content-addressed writers publish only complete verified blobs
+  ---
+  duration_ms: 385.892528
+  type: 'test'
+  ...
+# Subtest: editable overrides change inputs but preserve exact lock and cached commit restoration
+ok 23 - editable overrides change inputs but preserve exact lock and cached commit restoration
+  ---
+  duration_ms: 188.425349
+  type: 'test'
+  ...
+# Subtest: ordinary nested exports/multiple modules/native map and duplicates preserve bounded verified inputs
+ok 24 - ordinary nested exports/multiple modules/native map and duplicates preserve bounded verified inputs
+  ---
+  duration_ms: 305.924244
+  type: 'test'
+  ...
+# Subtest: same commit cannot acquire rewritten normalized source on explicit update (mock transport contract)
+ok 25 - same commit cannot acquire rewritten normalized source on explicit update (mock transport contract)
+  ---
+  duration_ms: 168.566141
+  type: 'test'
+  ...
+# Subtest: one installed vkf bin exposes run/compile/install/update/publish; discovery requires actual compiler
+ok 26 - one installed vkf bin exposes run/compile/install/update/publish; discovery requires actual compiler
+  ---
+  duration_ms: 539.106648
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 21
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3766.093235

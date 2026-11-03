@@ -3382,6 +3382,10 @@ min(values:[num:n]) -> num:
 max(values:[num:n]) -> num:
     percentile(values, 100)
 
+# Peak-to-peak range inherits the extrema's promotion and non-empty contract.
+ptp(values:[num:n]) -> num:
+    max(values) - min(values)
+
 percentile(values:[num:n], p:num) -> num:
     n: stat.count(values)
     (n > 0)?! "stat.percentile: sequence must be non-empty"
@@ -13942,26 +13946,9 @@ set_mode(mode:str):
 # consumes that axis as its color channel; plotting never implicitly
 # vectorizes a coordinate result. Complex coordinate output is rejected—make
 # real output channels explicitly, e.g. `[abs(p),arg(p)]_qic`.
-# Default unit catalog. Units are language-level numerical metadata, not a
-# physics-engine subsystem. The default catalog is coherent SI.
+# Compatibility path for the default Physics unit catalog.
 
-:.units.si
-# Coherent SI catalog. Native lowering expands this declaration into the full
-# prefixable catalog while retaining physical dimensions as compile-time data.
+:.physics.units
+# Compatibility path for the Physics-owned coherent SI catalog.
 
-si:(
-    m:1,
-    km:1000,
-    s:1,
-    kg:1,
-    A:1,
-    K:1,
-    mol:1,
-    cd:1,
-    N:1,
-    Pa:1,
-    J:1,
-    W:1
-)
-
-:si
+:.physics.units.si

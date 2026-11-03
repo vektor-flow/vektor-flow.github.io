@@ -1,0 +1,20 @@
+{
+  "owner": "e2045",
+  "mode": "local",
+  "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+  "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "status": "FAIL",
+  "browserClosed": true,
+  "serverClosed": true,
+  "errors": [],
+  "executions": [],
+  "checks": [
+    {
+      "name": "canonical-source:syntax-example-16",
+      "passed": true
+    }
+  ],
+  "requests": [],
+  "base": "http://127.0.0.1:35731/preview/0.7.5/",
+  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-vkf-example-id=\"syntax-example-16\"]').locator('.readme-example-play')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-disabled=\"false\" class=\"readme-example-play\" aria-describedby=\"execution-status\" title=\"Run with the browser compiler\">Run</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    39 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at run (/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/affected-browser.mjs:15:384)\n    at async file:///mnt/development/VektorFlow-e2045-physics-units-actual-20261103/affected-browser.mjs:19:218"
+}

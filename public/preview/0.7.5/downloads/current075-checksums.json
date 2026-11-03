@@ -3,19 +3,19 @@
   "archives": [
     {
       "target": "canonical",
-      "path": "downloads/vkf-canonical-0.7.5-ffca-host96d0ff98-owner.tar.gz",
-      "bytes": 6126786,
-      "sha256": "b54e9d483a2ec1bbe362a4e221df5a991e9e9f3fb8c5c9376e87be452a873433"
+      "path": "downloads/vkf-canonical-0.7.5-1af3f96f-host96d0ff98-notices.tar.gz",
+      "bytes": 4317707,
+      "sha256": "dbf6c898e4caf08d0ddfdf78519ae48d7c3fcd5e09a3276559e6ff9cdc421594"
     },
     {
       "target": "native",
-      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
-      "bytes": 9803445,
-      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+      "bytes": 10075839,
+      "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
     }
   ],
-  "compilerBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
-  "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+  "compilerBinding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "nativeBinding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
   "fullReleaseQualified": false,
   "frozenPayloadArchives": [
     {
@@ -31,6 +31,26 @@
       "sha256": "3b552723baba5392af1823579133ee7be2d61e632ee2943a4e24da98232798b6"
     }
   ],
-  "noticeProvenance": "Existing four maintained canonical/third-party text notices, unchanged; original frozen runtime/archive members preserved byte for byte.",
-  "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87"
+  "noticeProvenance": "Exact four maintained notices included in both freshly qualified archives. Every archived/extracted member verified; generated .vkfbuild caches excluded.",
+  "nodePackageHostSourceCommit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
+  "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+  "currentQualification": {
+    "path": "verification/e2045-package-qualification.json",
+    "bytes": 26960,
+    "sha256": "d7f1a3d6df7c80b7b256ede92bf2e7a1d9cc371d59712956049a17fecea7accf"
+  },
+  "earlierOfferedArchives": [
+    {
+      "target": "canonical",
+      "path": "downloads/vkf-canonical-0.7.5-ffca-host96d0ff98-owner.tar.gz",
+      "bytes": 6126786,
+      "sha256": "b54e9d483a2ec1bbe362a4e221df5a991e9e9f3fb8c5c9376e87be452a873433"
+    },
+    {
+      "target": "native",
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-f3768ef2-clean-notices.tar.gz",
+      "bytes": 9803445,
+      "sha256": "addd19301d698e4a60fe7447bf77a0b274f0d3c3330dc86fad6e5014b0766076"
+    }
+  ]
 }

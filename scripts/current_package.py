@@ -143,6 +143,7 @@ def verify_current_review_site(preview, release):
     expected, composition, components, compiler, binding, source = verify_current_runtime(preview, release)
     mode = release['site_review_iteration']
     offers_pinned = mode.get('downloadsOffered') is True
+    qualified_replacement = False
     need(mode['enabled'] is True and type(mode.get('downloadsOffered')) is bool, 'explicit review download policy required')
     need(release['download_packages_offered'] is offers_pinned and release['release_qualified'] is False, 'download availability cannot imply full release qualification')
     if offers_pinned:
@@ -154,7 +155,58 @@ def verify_current_review_site(preview, release):
         need(set(offer['archives']) == {row['path'] for row in checksums['archives']}, 'offered archive selection mismatch')
         for row in checksums['archives']:
             pinned(preview, row)
-        need(checksums['compilerBinding'] != binding, 'earlier archive must not be relabeled as current website compiler')
+        if checksums.get('currentQualification'):
+            current = read(pinned(preview, checksums['currentQualification']))
+            need(current['status'] == 'PASS_SCOPED_CURRENT_ARCHIVES_EXTRACTED_NATIVE_NODE_INSTALL_RUN_COMPILE_SECURITY_INTEGRITY', 'current archive checks incomplete')
+            record = current['record']
+            native = components['native-linux-cli']['identity']
+            host = compiler['identity']
+            need(expected['schema'] == 2 and record['schema'] == 'vektor-flow.current075-qualified-scopes-package/1', 'current archive identity schema')
+            need(checksums['compilerBinding'] == record['browserBinding'] == binding
+                 and record['sourceCommit'] == record['pairedLibrarySourceCommit']
+                 == checksums['pairedLibrarySourceCommit'] == native['pairedLibrarySourceCommit'] == source,
+                 'current archive/compiler/library identities differ')
+            need(checksums['nativeBinding'] == record['nativeBinding'] == native['sourceBinding']
+                 and record['nativeBinarySourceCommit'] == native['sourceCommit'], 'native binary identity differs')
+            need(record['pairedManifest']['sha256'] == native['pairedManifestSHA256'], 'native paired manifest differs')
+            need(record['hostSourceCommit'] == checksums['nodePackageHostSourceCommit'] == host['nodePackageHostSourceCommit']
+                 and current['durableHostSourceCommit'] == host['nodePackageHostDurableSourceCommit']
+                 and current['all13ExtractedHostMembersEqualMaintained96d'] is True, 'qualified Node host differs')
+            need(record['formatterBinding'] == expected['formatterBinding'], 'qualified independent formatter differs')
+            need(all(record[key] is False for key in ('fullReleaseClaim', 'nativeSDKClaim', 'physicalGPUClaim', 'benchmarkClaim')),
+                 'scoped archives cannot qualify a full release')
+            need(checksums['archives'] == expected['archives']
+                 and sorted(row['target'] for row in checksums['archives']) == ['canonical', 'native'],
+                 'current archive target/selection mismatch')
+            for archive in checksums['archives']:
+                target = current[archive['target']]
+                actual = target['archive']
+                need(target['target'] == archive['target'] and target['safeExtraction'] is True
+                     and target['allArchiveMembersMatchCheckedInputs'] is True, 'current archive member checks incomplete')
+                need(PurePosixPath(archive['path']).name == PurePosixPath(actual['path']).name
+                     and all(archive[k] == actual[k] for k in ('bytes', 'sha256')), 'current archive differs from qualification')
+                entries = {row['path']: {k: row[k] for k in ('bytes', 'sha256')} for row in target['entries']}
+                need(len(entries) == len(target['entries']), 'duplicate qualified archive member')
+                if archive['target'] == 'native':
+                    need(entries['bin/vkf']['sha256'] == native['binarySHA256']
+                         and entries['PAIRED-STDLIB-MANIFEST.json'] == {k: record['pairedManifest'][k] for k in ('bytes', 'sha256')},
+                         'qualified native binary/library members differ')
+                else:
+                    # The site adds only these three hash-addressed URLs to the
+                    # ordinary Node wrapper; README/package.json are site metadata.
+                    wrapper = (preview / 'playground/canonical/compiler.mjs').read_text()
+                    for name in ('compiler-base.mjs', 'formatter.mjs', 'formatter.wasm'):
+                        wrapper = wrapper.replace('./' + name + '?sha256=' + release['sha256'][name], './' + name)
+                    wrapper = wrapper.encode()
+                    need(entries['compiler.mjs'] == dict(bytes=len(wrapper), sha256=hashlib.sha256(wrapper).hexdigest()),
+                         'qualified canonical wrapper differs beyond cache URLs')
+                    for row in compiler['files']:
+                        name = row['path'].removeprefix('playground/canonical/')
+                        if name not in ('README.txt', 'package.json', 'compiler.mjs'):
+                            need(entries[name] == {k: row[k] for k in ('bytes', 'sha256')}, 'qualified canonical member differs: ' + name)
+            qualified_replacement = True
+        else:
+            need(checksums['compilerBinding'] != binding, 'earlier archive must not be relabeled as current website compiler')
     report = read(pinned(preview, release['current_review_site_evidence']))
     if mode.get('runEnabled') is False:
         need(mode.get('latestCompilerRequired') is True and mode.get('latestCompilerRunStatus') == 'UNRUN', 'latest compiler must remain deferred')
@@ -171,7 +223,7 @@ def verify_current_review_site(preview, release):
         return {(row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else Path(row['install']).name): row['sha256'] for row in compiler['files']}
     need(report['status'] == 'PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS', 'current focused review-site controls incomplete')
     need(report['frontendBinding'] == binding and report['sourceCommit'] == source, 'review evidence runtime mismatch')
-    need(report['browserClosed'] and report['serverClosed'] and report['noNewDownloads'], 'review browser/download checks incomplete')
+    need(report['browserClosed'] and report['serverClosed'] and (report.get('noNewDownloads') is True or (report.get('qualifiedDownloadReplacement') is True and qualified_replacement)), 'review browser/download checks incomplete')
     need(report['changedSourceChecks'] and all(row['passed'] is True for row in report['changedSourceChecks']), 'changed source/full output controls incomplete')
     need(all(report['presentation'][key] is True for key in ['initialOutputs', 'runReplacesOutput', 'prismIndices', 'plainCopy', 'realEdit', 'mobileOneRowMenu', 'anchors', 'pinnedDownloads' if offers_pinned else 'noDownloads']), 'review presentation controls incomplete')
     for row in report['sourceFreeze']['files']:

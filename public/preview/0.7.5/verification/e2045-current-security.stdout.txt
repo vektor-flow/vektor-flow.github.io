@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+ok 1 - first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+  ---
+  duration_ms: 104.149373
+  type: 'test'
+  ...
+# Subtest: normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+ok 2 - normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+  ---
+  duration_ms: 131.06705
+  type: 'test'
+  ...
+# Subtest: old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+ok 3 - old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+  ---
+  duration_ms: 137.712176
+  type: 'test'
+  ...
+# Subtest: direct Git file and personal unmerged branch work without central registration/approval
+ok 4 - direct Git file and personal unmerged branch work without central registration/approval
+  ---
+  duration_ms: 97.077212
+  type: 'test'
+  ...
+# Subtest: local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+ok 5 - local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+  ---
+  duration_ms: 70.320587
+  type: 'test'
+  ...
+# Subtest: same source URL uses editable override inside sole lock, then restores verified cached commit
+ok 6 - same source URL uses editable override inside sole lock, then restores verified cached commit
+  ---
+  duration_ms: 92.657775
+  type: 'test'
+  ...
+# Subtest: fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+ok 7 - fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+  ---
+  duration_ms: 101.54223
+  type: 'test'
+  ...
+# Subtest: package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+ok 8 - package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+  ---
+  duration_ms: 437.840537
+  type: 'test'
+  ...
+# Subtest: concurrent source-address cache population exposes complete verified data only
+ok 9 - concurrent source-address cache population exposes complete verified data only
+  ---
+  duration_ms: 110.685748
+  type: 'test'
+  ...
+# Subtest: direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+ok 10 - direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+  ---
+  duration_ms: 68.803487
+  type: 'test'
+  ...
+# Subtest: publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+ok 11 - publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+  ---
+  duration_ms: 80.388276
+  type: 'test'
+  ...
+# Subtest: nonowner/trusted-base owner transfer and new registration cannot self-authorize
+ok 12 - nonowner/trusted-base owner transfer and new registration cannot self-authorize
+  ---
+  duration_ms: 52.592638
+  type: 'test'
+  ...
+# Subtest: proposal ownership does not authorize merge; server restricts current-head publication to maintainers
+ok 13 - proposal ownership does not authorize merge; server restricts current-head publication to maintainers
+  ---
+  duration_ms: 0.420815
+  type: 'test'
+  ...
+# Subtest: unprotected public main refuses upload before proposal writes
+ok 14 - unprotected public main refuses upload before proposal writes
+  ---
+  duration_ms: 53.997736
+  type: 'test'
+  ...
+# Subtest: private visibility and null PR requirements refuse before writes
+ok 15 - private visibility and null PR requirements refuse before writes
+  ---
+  duration_ms: 57.248028
+  type: 'test'
+  ...
+# Subtest: readback rejects broadened merge writers, bypasses and legacy Actions ownership signals
+ok 16 - readback rejects broadened merge writers, bypasses and legacy Actions ownership signals
+  ---
+  duration_ms: 1.716912
+  type: 'test'
+  ...
+# Subtest: base drift after branch creation preserves recovery pointer and does not open stale-policy PR
+ok 17 - base drift after branch creation preserves recovery pointer and does not open stale-policy PR
+  ---
+  duration_ms: 56.264285
+  type: 'test'
+  ...
+# Subtest: uncertain PR creation retains explicit source branch/commit recovery and never retries
+ok 18 - uncertain PR creation retains explicit source branch/commit recovery and never retries
+  ---
+  duration_ms: 54.765787
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1517.906557

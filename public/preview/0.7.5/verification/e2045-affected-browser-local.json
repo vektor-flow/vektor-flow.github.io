@@ -1,0 +1,354 @@
+{
+  "owner": "e2045",
+  "mode": "local",
+  "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+  "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+  "status": "PASS_CURRENT_CHANGED_ARTIFACT_EIGHT_CANONICAL_REAL_RUN_EDIT_DOWNLOADS",
+  "browserClosed": true,
+  "serverClosed": true,
+  "errors": [],
+  "executions": [
+    {
+      "id": "syntax-example-16",
+      "page": "syntax.html",
+      "sourceSHA256": "935efb7bc198a050bda626a449968ac6492a4d3f9c23b43f26a481eb0193b13e",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "230 cm\n[100, 200, 300] cm\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-23",
+      "page": "stdlib.html",
+      "sourceSHA256": "4cd75f1db610c86b8a629c3bc3516ee1c2a671c10c316d37e9d2c14e2e684df9",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-19",
+      "page": "stdlib.html",
+      "sourceSHA256": "b71a4ec476079fa78ca059c8dc18cef16d063dfbdc1f80c0b269445d4d4d3089",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-20",
+      "page": "stdlib.html",
+      "sourceSHA256": "3a776b640745fc4a7e5a49340e01d99ae15a3c2a30f06d875103711646ed4587",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-21",
+      "page": "stdlib.html",
+      "sourceSHA256": "788874259352d71809da54da80ccf542fd054b8fd03986be789f37218658c50c",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "[] cm\n[200, 200] cm\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-22",
+      "page": "stdlib.html",
+      "sourceSHA256": "bb3c50a6dfe5c6b280ede58e18c6b2205662883ceb602be83aa638f6f0f94456",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "9 m^2\n3 m/s\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-24",
+      "page": "stdlib.html",
+      "sourceSHA256": "7ec729f9927cff7f54e845bd701430ec77e508234b0694e43a2b2b15227cfc36",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "id": "stdlib-example-29",
+      "page": "stdlib.html",
+      "sourceSHA256": "443db138496840311c4ed15cb3769f724bd8946a20a8f0b03c810c3ea334b1fc",
+      "binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
+      "stdout": "6 m\n4 m/s\n",
+      "completion": {
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "canonical-source:syntax-example-16",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "stdout": "230 cm\n[100, 200, 300] cm\n",
+        "expected": "230 cm\n[100, 200, 300] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-23",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-23",
+      "passed": true,
+      "detail": {
+        "stdout": "1\n-1 + 1.2246467991473532e-16i\n",
+        "expected": "1\n-1 + 1.2246467991473532e-16i\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-19",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-19",
+      "passed": true,
+      "detail": {
+        "stdout": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+        "expected": "2.3 m\n230 cm\n[100, 200, 300] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-20",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-20",
+      "passed": true,
+      "detail": {
+        "stdout": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+        "expected": "[120, 80, 210] cm\n[1.2, 0.8, 2.1] m\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-21",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-21",
+      "passed": true,
+      "detail": {
+        "stdout": "[] cm\n[200, 200] cm\n",
+        "expected": "[] cm\n[200, 200] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-22",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-22",
+      "passed": true,
+      "detail": {
+        "stdout": "9 m^2\n3 m/s\n",
+        "expected": "9 m^2\n3 m/s\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-24",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-24",
+      "passed": true,
+      "detail": {
+        "stdout": "18 m\n12 m/s\n4 m/s^2\n",
+        "expected": "18 m\n12 m/s\n4 m/s^2\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "canonical-source:stdlib-example-29",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:stdlib-example-29",
+      "passed": true,
+      "detail": {
+        "stdout": "6 m\n4 m/s\n",
+        "expected": "6 m\n4 m/s\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "real-edit-prism-matches-source",
+      "passed": true
+    },
+    {
+      "name": "real-current-output:syntax-example-16",
+      "passed": true,
+      "detail": {
+        "stdout": "330 cm\n[100, 200, 300] cm\n",
+        "expected": "330 cm\n[100, 200, 300] cm\n",
+        "completion": {
+          "origin": "run",
+          "kind": "stdout",
+          "isolated": true
+        }
+      }
+    },
+    {
+      "name": "actual-download-bytes:canonical",
+      "passed": true,
+      "detail": {
+        "path": "downloads/vkf-canonical-0.7.5-1af3f96f-host96d0ff98-notices.tar.gz",
+        "status": 200,
+        "bytes": 4317707,
+        "sha256": "dbf6c898e4caf08d0ddfdf78519ae48d7c3fcd5e09a3276559e6ff9cdc421594",
+        "expectedBytes": 4317707,
+        "expectedSHA256": "dbf6c898e4caf08d0ddfdf78519ae48d7c3fcd5e09a3276559e6ff9cdc421594"
+      }
+    },
+    {
+      "name": "actual-download-bytes:native",
+      "passed": true,
+      "detail": {
+        "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+        "status": 200,
+        "bytes": 10075839,
+        "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109",
+        "expectedBytes": 10075839,
+        "expectedSHA256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
+      }
+    },
+    {
+      "name": "served-new-binding-and-source",
+      "passed": true
+    },
+    {
+      "name": "actual-new-artifact-request",
+      "passed": true,
+      "detail": [
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075"
+      ]
+    },
+    {
+      "name": "phone-download-navigation-current-labels",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.wasm?sha256=1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+    "http://127.0.0.1:36649/preview/0.7.5/playground/canonical/compiler-base.mjs?sha256=9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075"
+  ],
+  "base": "http://127.0.0.1:36649/preview/0.7.5/",
+  "edit": {
+    "sourceSHA256": "3c21da584bced658fda1d96c6c6e002612306e5c2862637dee00efbeb1bc0931",
+    "stdout": "330 cm\n[100, 200, 300] cm\n",
+    "completion": {
+      "origin": "run",
+      "kind": "stdout",
+      "isolated": true
+    }
+  },
+  "downloads": [
+    {
+      "path": "downloads/vkf-canonical-0.7.5-1af3f96f-host96d0ff98-notices.tar.gz",
+      "status": 200,
+      "bytes": 4317707,
+      "sha256": "dbf6c898e4caf08d0ddfdf78519ae48d7c3fcd5e09a3276559e6ff9cdc421594",
+      "expectedBytes": 4317707,
+      "expectedSHA256": "dbf6c898e4caf08d0ddfdf78519ae48d7c3fcd5e09a3276559e6ff9cdc421594"
+    },
+    {
+      "path": "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz",
+      "status": 200,
+      "bytes": 10075839,
+      "sha256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109",
+      "expectedBytes": 10075839,
+      "expectedSHA256": "3b6d0d74f2a521e27db7c2147aaaf89b2b10cf9108ad036ccaaacc0b144a4109"
+    }
+  ]
+}

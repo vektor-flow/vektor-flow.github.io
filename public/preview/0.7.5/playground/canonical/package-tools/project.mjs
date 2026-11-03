@@ -7,6 +7,17 @@ import {prepareAddressProject} from './addresses.mjs';
 import {fail} from './metadata.mjs';
 import {prepareFormatterIr} from '../prepare-formatter-ir.mjs';
 
+function compilerMessage(response, message) {
+  // SourceDiagnostic and source-address errors already share this tuple ABI.
+  // Retain it in the ordinary Error message used by existing hosts and CLIs.
+  const location = response.source_location;
+  if (Array.isArray(location) && location.length === 3 && typeof location[0] === 'string' &&
+      Number.isSafeInteger(location[1]) && location[1] > 0 &&
+      Number.isSafeInteger(location[2]) && location[2] > 0)
+    return `${location[0]}:${location[1]}:${location[2]}: ${message}`;
+  return message;
+}
+
 export async function createProjectCompiler({compilerModule, factory, compilerOptions = {}} = {}) {
   if (!factory) {
     if (!compilerModule) fail('compilerModule must name the maintained canonical compiler.mjs');
@@ -40,7 +51,7 @@ export async function createProjectCompiler({compilerModule, factory, compilerOp
         // ccall converts the borrowed response to a JS string before cleanup;
         // parsing and error handling stay inside the serialized transaction.
         const response = JSON.parse(owner.ccall('vkf075_discover_source_addresses', 'string', ['number'], [pointer]));
-        if (!response.ok) fail(`source discovery: ${response.error ?? 'failed'}`);
+        if (!response.ok) fail(`source discovery: ${compilerMessage(response, response.error ?? 'failed')}`);
         return response;
       } finally { owner._free(pointer); }
     };
@@ -82,7 +93,7 @@ export async function createProjectCompiler({compilerModule, factory, compilerOp
         const text = owner.FS.readFile(entry, {encoding: 'utf8'});
         const response = owner.ccall('vkf075_compile', 'string', ['string', 'string'], [text, entry]);
         const result = JSON.parse(response);
-        if (!result.ok) fail(`compile/${result.phase ?? 'unknown'}: ${result.error}`);
+        if (!result.ok) fail(`compile/${result.phase ?? 'unknown'}: ${compilerMessage(result, result.error)}`);
         if (result.source_binding !== sourceBinding || typeof result.wasm_hex !== 'string' ||
             !/^(?:[a-f0-9]{2})+$/.test(result.wasm_hex)) fail('invalid canonical compiler artifact');
         const compiled = {result, wasm: Buffer.from(result.wasm_hex, 'hex'), lock, inputs, inputDigest: inputs.inputDigest, sourceBinding};

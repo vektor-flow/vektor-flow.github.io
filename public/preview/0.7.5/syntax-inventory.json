@@ -428,13 +428,22 @@
         },
         {
           "id": "syntax-example-10",
-          "source_sha256": "542dda914baed1c68e4f27ebc96c8169ea320413f9eb3258849f2f8e73865c38",
-          "expected_stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+          "source_sha256": "9a9a91ec251b063af2c894348c506495bd9b39b0acbc2636c57a48b50150f9d3",
+          "expected_stdout": "0.052809069334849225 + 0.22356251036508448i\n",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "542dda914baed1c68e4f27ebc96c8169ea320413f9eb3258849f2f8e73865c38",
+            "expected_stdout": "0.052808601763274413 + 0.22361225622108541i\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
           }
         }
       ],

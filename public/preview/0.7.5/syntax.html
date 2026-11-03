@@ -174,14 +174,14 @@ deliveries: [12, 8, 15]_i
 
 deliveries: [12, 8, 15]_i
 
-:: reduce_i(accumulate, deliveries, 0)</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><section class="additional-example"><p class="example-back"><a href="#content">Back to top</a></p></section><section class="additional-example"><h3>Folds, recurrence and composition</h3><p class="example-purpose">Compose ten Julia-map updates from a repeated parameter vector and inspect the final complex state.</p><section id="example-syntax-example-10" data-verification="pending" class="readme-example" data-compiler-status="loading" data-vkf-example-id="syntax-example-10"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">iterate(z, parameter): z ^ 2 + parameter
+:: reduce_i(accumulate, deliveries, 0)</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><section class="additional-example"><p class="example-back"><a href="#content">Back to top</a></p></section><section class="additional-example"><h3>Folds, recurrence and composition</h3><p class="example-purpose">Compose ten Julia-map updates from a repeated parameter vector and inspect the final complex state.</p><section id="example-syntax-example-10" data-verification="pending" class="readme-example" data-compiler-status="loading" data-vkf-example-id="syntax-example-10"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">iterate(z, parameter): z^2 + parameter
 
 result:
     parameters_i: [0.1 + 0.2i: 10]
     updates_i: iterate[parameter: parameters_i]
     chain_i(updates)(0)
 
-:: result</code></pre><textarea aria-label="Editable VKF source: Folds, recurrence and composition" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="syntax-example-10" spellcheck="false">iterate(z, parameter): z ^ 2 + parameter
+:: result</code></pre><textarea aria-label="Editable VKF source: Folds, recurrence and composition" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="syntax-example-10" spellcheck="false">iterate(z, parameter): z^2 + parameter
 
 result:
     parameters_i: [0.1 + 0.2i: 10]
@@ -402,7 +402,7 @@ def calibrate(reading, gain, offset):
 
 instrument = partial(calibrate, gain=1.02, offset=-0.3)
 print(instrument(20))
-print(instrument(25))</code></pre></div></div><div><h3>VKF / complete program</h3><div class="code-snippet" data-language="vkf" data-vkf-example-id="instrument-calibration"><button aria-label="Copy complete program" class="copy-button" data-copy="" type="button">Copy</button><pre><code class="language-vkf">calibrate(reading, gain, offset): reading gain + offset
+print(instrument(25))</code></pre></div></div><div><h3>VKF / complete program</h3><div class="code-snippet" data-language="vkf" data-vkf-example-id="instrument-calibration"><button aria-label="Copy complete program" class="copy-button" data-copy="" type="button">Copy</button><pre><code class="language-vkf">calibrate(reading, gain, offset): reading*gain + offset
 
 instrument: calibrate[gain: 1.02, offset: -0.3]
 
@@ -427,7 +427,7 @@ print(region)</code></pre></div><h3>VKF / matching in-memory selection</h3><p>Se
 
 detectors: [0..3]_p
 energy: (([0..256] - 128) / 128)_u
-spectra: 1 + (1 + detectors_p) * (1 / (1 + 100energy_u ^ 2))
+spectra: 1 + (1 + detectors_p)*(1 / (1 + 100energy_u^2))
 
 one: math.sin(spectra.(2, 128))
 region: math.sin(spectra.(1..2, 100..156))

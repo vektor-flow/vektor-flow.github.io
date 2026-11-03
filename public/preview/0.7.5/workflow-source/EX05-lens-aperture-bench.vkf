@@ -3,9 +3,9 @@
 # Collimated incoherent rays; no coherent laser or framebuffer ray tracing.
 optics:.physics.optics
 :.math
-sphere_x(theta:num,phi:num): cos(theta)*sin(phi)
-sphere_y(theta:num,phi:num): sin(theta)*sin(phi)
-sphere_z(phi:num): 0.8+cos(phi)
+sphere_x(theta:num,phi:num) -> num: cos(theta)*sin(phi)
+sphere_y(theta:num,phi:num) -> num: sin(theta)*sin(phi)
+sphere_z(phi:num) -> num: 0.8+cos(phi)
 
 point2(x:num,y:num) -> [num:2]: [x,y]
 point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]

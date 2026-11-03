@@ -1,0 +1,55 @@
+# Analytic inviscid incompressible slip flow past a circular cylinder.
+# A narrow reusable reference field, NOT a pressure/mesh/fullCFD solver.
+# Coordinates SI m, speed m/s, density kg/m^3; origin is cylinder centre.
+_flow_math:.math
+_flow_physics:.physics
+_flow_units:.physics.units
+_flow_optics:.physics.optics
+
+cylinder_velocity(point:[num:2],radius:num,speed:num) -> [num:2]:
+    x: point.0
+    y: point.1
+    r2: x*x+y*y
+    (_flow_optics.finite(radius) /\ radius>0 /\ _flow_optics.finite(speed) /\ _flow_optics.finite(x) /\ _flow_optics.finite(y) /\ r2>=radius*radius)?! "flow: sample must be outside finite cylinder"
+    [speed*(1-radius^2*(x*x-y*y)/(r2*r2)),0-2*speed*radius^2*x*y/(r2*r2)]
+
+cylinder_material_acceleration(point:[num:2],radius:num,speed:num) -> [num:2]:
+    velocity: cylinder_velocity(point,radius,speed)
+    x: point.0
+    y: point.1
+    r2: x*x+y*y
+    # Analytic derivatives: du/dx=-dv/dy; du/dy=dv/dx.
+    ux: 2*speed*radius^2*x*(x*x-3*y*y)/(r2^3)
+    uy: 2*speed*radius^2*y*(3*x*x-y*y)/(r2^3)
+    [velocity.0*ux+velocity.1*uy,velocity.0*uy-velocity.1*ux]
+
+cylinder_pressure_gradient(point:[num:2],radius:num,speed:num,density:num) -> [num:2]:
+    (_flow_optics.finite(density) /\ density>0)?! "flow: positive finite density required"
+    acceleration: cylinder_material_acceleration(point,radius,speed)
+    [0-density*acceleration.0,0-density*acceleration.1]
+
+# Verify the reference field through the EXISTING dimensioned local fluid law.
+# For this steady inviscid field, dp/rho balances (u.grad)u, so Eulerian rate0.
+cylinder_eulerian_rate(point:[num:2],radius:num,speed:num,density:num) -> [num:2]:
+    acceleration: cylinder_material_acceleration(point,radius,speed)
+    gradient: cylinder_pressure_gradient(point,radius,speed,density)
+    unit_accel: _flow_units.m/(_flow_units.s^2)
+    unit_gradient: _flow_units.kg/(_flow_units.m^2*_flow_units.s^2)
+    rate: _flow_physics.fluid_velocity_rate(density*_flow_units.kg/(_flow_units.m^3),0*_flow_units.m^2/_flow_units.s,gradient*unit_gradient,[0,0]/(_flow_units.m*_flow_units.s),[0,0]*unit_accel,acceleration*unit_accel)
+    [num(rate.0/unit_accel),num(rate.1/unit_accel)]
+
+# Lagrangian parcel under analytic pressure force; existing momentum integrator.
+# Density cancels in -grad(p)/rho. Finite integration error is not a wall solver.
+cylinder_parcel(initial:[num:2],radius:num,speed:num,time:num,dt:num) -> [num:2]:
+    (_flow_optics.finite(time) /\ time>=0 /\ _flow_optics.finite(dt) /\ dt>0)?! "flow: valid integration duration and timestep required"
+    velocity: cylinder_velocity(initial,radius,speed)
+    state: _flow_physics.rigid_state3([initial.0,initial.1,0],[velocity.0,velocity.1,0],[0,0,0])
+    inertial: (mass:1,inertia_tensor:[[1,0,0],[0,1,0],[0,0,1]])
+    i: 0
+    steps: int(time/dt)
+    i<steps?>
+        acceleration: cylinder_material_acceleration([state.position.0,state.position.1],radius,speed)
+        next: _flow_physics.step_rigid_body_momentum3(state,inertial,dt,[acceleration.0,acceleration.1,0],[0,0,0])
+        .state: _flow_physics.rigid_state3(next.position,next.momentum,next.angular_momentum)
+        .i: i+1
+    [state.position.0,state.position.1]

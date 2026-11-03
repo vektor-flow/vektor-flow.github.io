@@ -3,21 +3,27 @@
 # No birefringent specimen/full microscope, inter-ray interference or laser phase.
 optics:.physics.optics
 :.math
-s_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,0),1,1.5,cos(angle))
+s_power(angle:num,index:num) -> num:
+    state: optics.reflected_stokes(optics.linear(1,0),1,index,cos(angle))
     optics.detector(state)
-p_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,pi/2),1,1.5,cos(angle))
+p_power(angle:num,index:num) -> num:
+    state: optics.reflected_stokes(optics.linear(1,pi/2),1,index,cos(angle))
     optics.detector(state)
 
 point2(x:num,y:num) -> [num:2]: [x,y]
 point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
+filter_power(angle:num,index:num,incidence:num,source_angle:num) -> num:
+    filtered: optics.polarizer(optics.unpolarized(1),source_angle)
+    sample: optics.transmitted_stokes(filtered,1,index,cos(incidence))
+    analyzed: optics.polarizer(sample,angle)
+    optics.detector(analyzed)
+
 scene():
     view: .ui.viewport
-    incidence: atan(1.5)
+    index: 1.5
+    incidence: atan(index)
     polarizer_angle: pi/2
     analyzer_angle: pi/2
-    index: 1.5
     initial: optics.unpolarized(1)
     filtered: optics.polarizer(initial,polarizer_angle)
     reflected: optics.reflected_stokes(filtered,1,index,cos(incidence))
@@ -31,12 +37,21 @@ scene():
     through: [point3(h.0,h.1,h.2),point3(2*refracted.direction.0,2*refracted.direction.1,0.8)]
     floor: [[-3,-2,0],[3,-2,0],[3,2,0],[-3,2,0]]
     interface: [[-1,0,0.4],[1,0,0.4],[1,0,1.2],[-1,0,1.2]]
-    filter: [[-1.7,0.3,0.3],[-1.7,1.1,0.3],[-1.7,1.1,1.3],[-1.7,0.3,1.3]]
+    # Filter/analyzer planes cross actual incoming/reflected rays at midpoint.
+    fx: source.0/2
+    fy: source.1/2
+    ax: sin(incidence)
+    ay: cos(incidence)
+    filter: [point3(fx,fy-0.3,0.4),point3(fx,fy+0.3,0.4),point3(fx,fy+0.3,1.2),point3(fx,fy-0.3,1.2)]
+    analyzer: [point3(ax,ay-0.3,0.4),point3(ax,ay+0.3,0.4),point3(ax,ay+0.3,1.2),point3(ax,ay-0.3,1.2)]
+    detector_face: [point3(2*ax,2*ay-0.2,0.5),point3(2*ax,2*ay+0.2,0.5),point3(2*ax,2*ay+0.2,1.1),point3(2*ax,2*ay-0.2,1.1)]
     faces: [[0,1,2],[0,2,3]]
     view.set_geom_options(background:[0.025,0.035,0.06,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.12))
     view.add(p_up:floor,faces_uvw:faces,id:"bench",color:[0.18,0.22,0.29,1],roughness:0.7)
     view.add(p_up:interface,faces_uvw:faces,id:"dielectric",color:[0.25,0.62,0.9,1],optical_index:index,reflectivity:reflected.0/filtered.0,transparency:transmitted.0/filtered.0,roughness:0)
     view.add(p_up:filter,faces_uvw:faces,id:"polarizer-shadow-caster",color:[0.35,0.38,0.5,1],roughness:0.4,casts_shadow:true)
+    view.add(p_up:analyzer,faces_uvw:faces,id:"analyzer",color:[0.25,0.3,0.45,1],roughness:0.3,casts_shadow:true)
+    view.add(p_up:detector_face,faces_uvw:faces,id:"detector",color:[0.2,0.7,0.35,1],emissivity:detected.0,roughness:0.5)
     view.add(p:incoming_uc,id:"filtered-ray",color:[1,0.7,0.12,filtered.0],w:3)
     view.add(p:outgoing_uc,id:"reflected-ray",color:[1,0.5,0.12,reflected.0],w:3)
     view.add(p:through_uc,id:"transmitted-ray",color:[0.3,0.75,1,transmitted.0],w:3)
@@ -47,11 +62,13 @@ scene():
     plot: .ui.viewport
     angles: [0..180]*pi/360
     degrees: [0..180]/2
-    rs: s_power(angles_i)
-    rp: p_power(angles_i)
+    rs: s_power(angles_i,index)
+    rp: p_power(angles_i,index)
+    malus: filter_power(angles_i,index,incidence,polarizer_angle)
     plot.add(x:degrees_u,y:rs_u,id:"s-polarized-reflection",color:[0.2,0.65,1,1],w:2)
     plot.add(x:degrees_u,y:rp_u,id:"p-polarized-reflection",color:[1,0.45,0.12,1],w:2)
-    plot.push(x_label:"Incidence (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
+    plot.add(x:degrees_u,y:malus_u,id:"transmitted-filter-analyzer-detector",color:[0.3,0.8,0.25,1],w:2)
+    plot.push(x_label:"Incidence / analyzer angle (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
     plot.show()
     :: optics.detector(detected)
     :: optics.detector(transmitted)

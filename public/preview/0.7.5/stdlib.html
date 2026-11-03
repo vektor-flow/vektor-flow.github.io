@@ -165,11 +165,11 @@ reflectivity: 0.72
 falloff: 0.7666666667
 base_penumbra: 0.0166666667
 growth: 0.16
-wall_material(x:num,y:num):
+wall_material(x:num,y:num) -&gt; bit:
     (abs(y)&gt;0.5-0.0266666667 \/ abs(x)&gt;1.5-0.0266666667)? @: true
     ((abs(x+0.5)&lt;0.01333333335 \/ abs(x-0.5)&lt;0.01333333335) /\ abs(y)&gt;1/6)? @: true
     false
-sample_color(x:num,y:num,source_x:num):
+sample_color(x:num,y:num,source_x:num) -&gt; [num:4]:
     source: [source_x,0]
     target: [x,y]
     direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)
@@ -235,11 +235,11 @@ reflectivity: 0.72
 falloff: 0.7666666667
 base_penumbra: 0.0166666667
 growth: 0.16
-wall_material(x:num,y:num):
+wall_material(x:num,y:num) -&gt; bit:
     (abs(y)&gt;0.5-0.0266666667 \/ abs(x)&gt;1.5-0.0266666667)? @: true
     ((abs(x+0.5)&lt;0.01333333335 \/ abs(x-0.5)&lt;0.01333333335) /\ abs(y)&gt;1/6)? @: true
     false
-sample_color(x:num,y:num,source_x:num):
+sample_color(x:num,y:num,source_x:num) -&gt; [num:4]:
     source: [source_x,0]
     target: [x,y]
     direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)
@@ -301,32 +301,32 @@ vertices: [[-0.25,-0.25,-0.25],[0.25,-0.25,-0.25],[0.25,0.25,-0.25],[-0.25,0.25,
 faces: [[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]]
 pips: [[0,-0.252,0],[0.252,-0.08,-0.08],[0.252,0.08,0.08],[-0.09,-0.09,0.252],[0,0,0.252],[0.09,0.09,0.252]]
 initial: rigid.prepare_si(vertices,faces,1,0.6,0.2,[-0.8,0,0.6],[0,0,0,1],[0.7,0,0],[0,2.8,0],[0,0,-9.81])
-rotate(point:[num:3],q:[num:4]):
+rotate(point:[num:3],q:[num:4]) -&gt; [num:3]:
     # Canonical pose quaternion is x,y,z,w (same body axes as collider).
     tx: 2*(q.1*point.2-q.2*point.1)
     ty: 2*(q.2*point.0-q.0*point.2)
     tz: 2*(q.0*point.1-q.1*point.0)
     [point.0+q.3*tx+q.1*tz-q.2*ty,point.1+q.3*ty+q.2*tx-q.0*tz,point.2+q.3*tz+q.0*ty-q.1*tx]
-world_point(time:num,point:[num:3]):
+world_point(time:num,point:[num:3]) -&gt; [num:3]:
     state: rigid.step(initial,time*si.s)
     local: rotate(point,state.orientation)
     [local.0+num(state.position.0/si.m),local.1+num(state.position.1/si.m),local.2+num(state.position.2/si.m)]
-die_x(time:num,vertex:num):
+die_x(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.0
-die_y(time:num,vertex:num):
+die_y(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.1
-die_z(time:num,vertex:num):
+die_z(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.2
-pip_x(time:num,vertex:num):
+pip_x(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.0
-pip_y(time:num,vertex:num):
+pip_y(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.1
-pip_z(time:num,vertex:num):
+pip_z(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.2
 scene():
@@ -366,32 +366,32 @@ vertices: [[-0.25,-0.25,-0.25],[0.25,-0.25,-0.25],[0.25,0.25,-0.25],[-0.25,0.25,
 faces: [[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]]
 pips: [[0,-0.252,0],[0.252,-0.08,-0.08],[0.252,0.08,0.08],[-0.09,-0.09,0.252],[0,0,0.252],[0.09,0.09,0.252]]
 initial: rigid.prepare_si(vertices,faces,1,0.6,0.2,[-0.8,0,0.6],[0,0,0,1],[0.7,0,0],[0,2.8,0],[0,0,-9.81])
-rotate(point:[num:3],q:[num:4]):
+rotate(point:[num:3],q:[num:4]) -&gt; [num:3]:
     # Canonical pose quaternion is x,y,z,w (same body axes as collider).
     tx: 2*(q.1*point.2-q.2*point.1)
     ty: 2*(q.2*point.0-q.0*point.2)
     tz: 2*(q.0*point.1-q.1*point.0)
     [point.0+q.3*tx+q.1*tz-q.2*ty,point.1+q.3*ty+q.2*tx-q.0*tz,point.2+q.3*tz+q.0*ty-q.1*tx]
-world_point(time:num,point:[num:3]):
+world_point(time:num,point:[num:3]) -&gt; [num:3]:
     state: rigid.step(initial,time*si.s)
     local: rotate(point,state.orientation)
     [local.0+num(state.position.0/si.m),local.1+num(state.position.1/si.m),local.2+num(state.position.2/si.m)]
-die_x(time:num,vertex:num):
+die_x(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.0
-die_y(time:num,vertex:num):
+die_y(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.1
-die_z(time:num,vertex:num):
+die_z(time:num,vertex:num) -&gt; num:
     p: world_point(time,vertices.(int(vertex)))
     p.2
-pip_x(time:num,vertex:num):
+pip_x(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.0
-pip_y(time:num,vertex:num):
+pip_y(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.1
-pip_z(time:num,vertex:num):
+pip_z(time:num,vertex:num) -&gt; num:
     p: world_point(time,pips.(int(vertex)))
     p.2
 scene():
@@ -429,7 +429,7 @@ physics:.physics
 :.math
 edge: physics.elastic_edge_circular_si(1,0.012,20000000,0.3,850,0.2,0.001)
 rest: physics.elastic_edge_state(edge,[0,0,0,0,0,0],[0,0,0,0,0,0])
-branch_state(time:num):
+branch_state(time:num) -&gt; (coordinate:[num:6],velocity:[num:6]):
     state: rest
     i: 0
     steps: int(time/0.01)
@@ -442,12 +442,12 @@ branch_state(time:num):
         .state: step.state
         .i: i+1
     state
-branch_x(time:num,arc:num,root:num):
+branch_x(time:num,arc:num,root:num) -&gt; num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     root+point.1
-branch_y(time:num,arc:num,root:num): 0
-branch_z(time:num,arc:num,root:num):
+branch_y(time:num,arc:num,root:num) -&gt; num: 0
+branch_z(time:num,arc:num,root:num) -&gt; num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     point.0
@@ -481,7 +481,7 @@ physics:.physics
 :.math
 edge: physics.elastic_edge_circular_si(1,0.012,20000000,0.3,850,0.2,0.001)
 rest: physics.elastic_edge_state(edge,[0,0,0,0,0,0],[0,0,0,0,0,0])
-branch_state(time:num):
+branch_state(time:num) -&gt; (coordinate:[num:6],velocity:[num:6]):
     state: rest
     i: 0
     steps: int(time/0.01)
@@ -494,12 +494,12 @@ branch_state(time:num):
         .state: step.state
         .i: i+1
     state
-branch_x(time:num,arc:num,root:num):
+branch_x(time:num,arc:num,root:num) -&gt; num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     root+point.1
-branch_y(time:num,arc:num,root:num): 0
-branch_z(time:num,arc:num,root:num):
+branch_y(time:num,arc:num,root:num) -&gt; num: 0
+branch_z(time:num,arc:num,root:num) -&gt; num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     point.0
@@ -530,9 +530,9 @@ scene()
 # Collimated incoherent rays; no coherent laser or framebuffer ray tracing.
 optics:.physics.optics
 :.math
-sphere_x(theta:num,phi:num): cos(theta)*sin(phi)
-sphere_y(theta:num,phi:num): sin(theta)*sin(phi)
-sphere_z(phi:num): 0.8+cos(phi)
+sphere_x(theta:num,phi:num) -&gt; num: cos(theta)*sin(phi)
+sphere_y(theta:num,phi:num) -&gt; num: sin(theta)*sin(phi)
+sphere_z(phi:num) -&gt; num: 0.8+cos(phi)
 
 point2(x:num,y:num) -&gt; [num:2]: [x,y]
 point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
@@ -576,9 +576,9 @@ scene()
 # Collimated incoherent rays; no coherent laser or framebuffer ray tracing.
 optics:.physics.optics
 :.math
-sphere_x(theta:num,phi:num): cos(theta)*sin(phi)
-sphere_y(theta:num,phi:num): sin(theta)*sin(phi)
-sphere_z(phi:num): 0.8+cos(phi)
+sphere_x(theta:num,phi:num) -&gt; num: cos(theta)*sin(phi)
+sphere_y(theta:num,phi:num) -&gt; num: sin(theta)*sin(phi)
+sphere_z(phi:num) -&gt; num: 0.8+cos(phi)
 
 point2(x:num,y:num) -&gt; [num:2]: [x,y]
 point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
@@ -622,21 +622,27 @@ scene()
 # No birefringent specimen/full microscope, inter-ray interference or laser phase.
 optics:.physics.optics
 :.math
-s_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,0),1,1.5,cos(angle))
+s_power(angle:num,index:num) -&gt; num:
+    state: optics.reflected_stokes(optics.linear(1,0),1,index,cos(angle))
     optics.detector(state)
-p_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,pi/2),1,1.5,cos(angle))
+p_power(angle:num,index:num) -&gt; num:
+    state: optics.reflected_stokes(optics.linear(1,pi/2),1,index,cos(angle))
     optics.detector(state)
 
 point2(x:num,y:num) -&gt; [num:2]: [x,y]
 point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
+filter_power(angle:num,index:num,incidence:num,source_angle:num) -&gt; num:
+    filtered: optics.polarizer(optics.unpolarized(1),source_angle)
+    sample: optics.transmitted_stokes(filtered,1,index,cos(incidence))
+    analyzed: optics.polarizer(sample,angle)
+    optics.detector(analyzed)
+
 scene():
     view: .ui.viewport
-    incidence: atan(1.5)
+    index: 1.5
+    incidence: atan(index)
     polarizer_angle: pi/2
     analyzer_angle: pi/2
-    index: 1.5
     initial: optics.unpolarized(1)
     filtered: optics.polarizer(initial,polarizer_angle)
     reflected: optics.reflected_stokes(filtered,1,index,cos(incidence))
@@ -650,12 +656,21 @@ scene():
     through: [point3(h.0,h.1,h.2),point3(2*refracted.direction.0,2*refracted.direction.1,0.8)]
     floor: [[-3,-2,0],[3,-2,0],[3,2,0],[-3,2,0]]
     interface: [[-1,0,0.4],[1,0,0.4],[1,0,1.2],[-1,0,1.2]]
-    filter: [[-1.7,0.3,0.3],[-1.7,1.1,0.3],[-1.7,1.1,1.3],[-1.7,0.3,1.3]]
+    # Filter/analyzer planes cross actual incoming/reflected rays at midpoint.
+    fx: source.0/2
+    fy: source.1/2
+    ax: sin(incidence)
+    ay: cos(incidence)
+    filter: [point3(fx,fy-0.3,0.4),point3(fx,fy+0.3,0.4),point3(fx,fy+0.3,1.2),point3(fx,fy-0.3,1.2)]
+    analyzer: [point3(ax,ay-0.3,0.4),point3(ax,ay+0.3,0.4),point3(ax,ay+0.3,1.2),point3(ax,ay-0.3,1.2)]
+    detector_face: [point3(2*ax,2*ay-0.2,0.5),point3(2*ax,2*ay+0.2,0.5),point3(2*ax,2*ay+0.2,1.1),point3(2*ax,2*ay-0.2,1.1)]
     faces: [[0,1,2],[0,2,3]]
     view.set_geom_options(background:[0.025,0.035,0.06,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.12))
     view.add(p_up:floor,faces_uvw:faces,id:"bench",color:[0.18,0.22,0.29,1],roughness:0.7)
     view.add(p_up:interface,faces_uvw:faces,id:"dielectric",color:[0.25,0.62,0.9,1],optical_index:index,reflectivity:reflected.0/filtered.0,transparency:transmitted.0/filtered.0,roughness:0)
     view.add(p_up:filter,faces_uvw:faces,id:"polarizer-shadow-caster",color:[0.35,0.38,0.5,1],roughness:0.4,casts_shadow:true)
+    view.add(p_up:analyzer,faces_uvw:faces,id:"analyzer",color:[0.25,0.3,0.45,1],roughness:0.3,casts_shadow:true)
+    view.add(p_up:detector_face,faces_uvw:faces,id:"detector",color:[0.2,0.7,0.35,1],emissivity:detected.0,roughness:0.5)
     view.add(p:incoming_uc,id:"filtered-ray",color:[1,0.7,0.12,filtered.0],w:3)
     view.add(p:outgoing_uc,id:"reflected-ray",color:[1,0.5,0.12,reflected.0],w:3)
     view.add(p:through_uc,id:"transmitted-ray",color:[0.3,0.75,1,transmitted.0],w:3)
@@ -666,11 +681,13 @@ scene():
     plot: .ui.viewport
     angles: [0..180]*pi/360
     degrees: [0..180]/2
-    rs: s_power(angles_i)
-    rp: p_power(angles_i)
+    rs: s_power(angles_i,index)
+    rp: p_power(angles_i,index)
+    malus: filter_power(angles_i,index,incidence,polarizer_angle)
     plot.add(x:degrees_u,y:rs_u,id:"s-polarized-reflection",color:[0.2,0.65,1,1],w:2)
     plot.add(x:degrees_u,y:rp_u,id:"p-polarized-reflection",color:[1,0.45,0.12,1],w:2)
-    plot.push(x_label:"Incidence (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
+    plot.add(x:degrees_u,y:malus_u,id:"transmitted-filter-analyzer-detector",color:[0.3,0.8,0.25,1],w:2)
+    plot.push(x_label:"Incidence / analyzer angle (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
     plot.show()
     :: optics.detector(detected)
     :: optics.detector(transmitted)
@@ -680,21 +697,27 @@ scene()
 # No birefringent specimen/full microscope, inter-ray interference or laser phase.
 optics:.physics.optics
 :.math
-s_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,0),1,1.5,cos(angle))
+s_power(angle:num,index:num) -&gt; num:
+    state: optics.reflected_stokes(optics.linear(1,0),1,index,cos(angle))
     optics.detector(state)
-p_power(angle:num):
-    state: optics.reflected_stokes(optics.linear(1,pi/2),1,1.5,cos(angle))
+p_power(angle:num,index:num) -&gt; num:
+    state: optics.reflected_stokes(optics.linear(1,pi/2),1,index,cos(angle))
     optics.detector(state)
 
 point2(x:num,y:num) -&gt; [num:2]: [x,y]
 point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
+filter_power(angle:num,index:num,incidence:num,source_angle:num) -&gt; num:
+    filtered: optics.polarizer(optics.unpolarized(1),source_angle)
+    sample: optics.transmitted_stokes(filtered,1,index,cos(incidence))
+    analyzed: optics.polarizer(sample,angle)
+    optics.detector(analyzed)
+
 scene():
     view: .ui.viewport
-    incidence: atan(1.5)
+    index: 1.5
+    incidence: atan(index)
     polarizer_angle: pi/2
     analyzer_angle: pi/2
-    index: 1.5
     initial: optics.unpolarized(1)
     filtered: optics.polarizer(initial,polarizer_angle)
     reflected: optics.reflected_stokes(filtered,1,index,cos(incidence))
@@ -708,12 +731,21 @@ scene():
     through: [point3(h.0,h.1,h.2),point3(2*refracted.direction.0,2*refracted.direction.1,0.8)]
     floor: [[-3,-2,0],[3,-2,0],[3,2,0],[-3,2,0]]
     interface: [[-1,0,0.4],[1,0,0.4],[1,0,1.2],[-1,0,1.2]]
-    filter: [[-1.7,0.3,0.3],[-1.7,1.1,0.3],[-1.7,1.1,1.3],[-1.7,0.3,1.3]]
+    # Filter/analyzer planes cross actual incoming/reflected rays at midpoint.
+    fx: source.0/2
+    fy: source.1/2
+    ax: sin(incidence)
+    ay: cos(incidence)
+    filter: [point3(fx,fy-0.3,0.4),point3(fx,fy+0.3,0.4),point3(fx,fy+0.3,1.2),point3(fx,fy-0.3,1.2)]
+    analyzer: [point3(ax,ay-0.3,0.4),point3(ax,ay+0.3,0.4),point3(ax,ay+0.3,1.2),point3(ax,ay-0.3,1.2)]
+    detector_face: [point3(2*ax,2*ay-0.2,0.5),point3(2*ax,2*ay+0.2,0.5),point3(2*ax,2*ay+0.2,1.1),point3(2*ax,2*ay-0.2,1.1)]
     faces: [[0,1,2],[0,2,3]]
     view.set_geom_options(background:[0.025,0.035,0.06,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.12))
     view.add(p_up:floor,faces_uvw:faces,id:"bench",color:[0.18,0.22,0.29,1],roughness:0.7)
     view.add(p_up:interface,faces_uvw:faces,id:"dielectric",color:[0.25,0.62,0.9,1],optical_index:index,reflectivity:reflected.0/filtered.0,transparency:transmitted.0/filtered.0,roughness:0)
     view.add(p_up:filter,faces_uvw:faces,id:"polarizer-shadow-caster",color:[0.35,0.38,0.5,1],roughness:0.4,casts_shadow:true)
+    view.add(p_up:analyzer,faces_uvw:faces,id:"analyzer",color:[0.25,0.3,0.45,1],roughness:0.3,casts_shadow:true)
+    view.add(p_up:detector_face,faces_uvw:faces,id:"detector",color:[0.2,0.7,0.35,1],emissivity:detected.0,roughness:0.5)
     view.add(p:incoming_uc,id:"filtered-ray",color:[1,0.7,0.12,filtered.0],w:3)
     view.add(p:outgoing_uc,id:"reflected-ray",color:[1,0.5,0.12,reflected.0],w:3)
     view.add(p:through_uc,id:"transmitted-ray",color:[0.3,0.75,1,transmitted.0],w:3)
@@ -724,16 +756,118 @@ scene():
     plot: .ui.viewport
     angles: [0..180]*pi/360
     degrees: [0..180]/2
-    rs: s_power(angles_i)
-    rp: p_power(angles_i)
+    rs: s_power(angles_i,index)
+    rp: p_power(angles_i,index)
+    malus: filter_power(angles_i,index,incidence,polarizer_angle)
     plot.add(x:degrees_u,y:rs_u,id:"s-polarized-reflection",color:[0.2,0.65,1,1],w:2)
     plot.add(x:degrees_u,y:rp_u,id:"p-polarized-reflection",color:[1,0.45,0.12,1],w:2)
-    plot.push(x_label:"Incidence (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
+    plot.add(x:degrees_u,y:malus_u,id:"transmitted-filter-analyzer-detector",color:[0.3,0.8,0.25,1],w:2)
+    plot.push(x_label:"Incidence / analyzer angle (degrees)",y_label:"Fresnel reflected power fraction",y_min:0,y_max:1)
     plot.show()
     :: optics.detector(detected)
     :: optics.detector(transmitted)
 scene()
-</textarea></div><pre class="readme-example-output" aria-live="polite"></pre></div><div data-example-result=""><p data-result-hint="">Run to inspect the scene. Use its camera controls to zoom out and in.</p></div></div></section><section id="example-ex03"><h4>EX03 · Water moving around rough rocks</h4><p>Integration pending. The current fluid-rate law accepts supplied spatial derivatives; it does not provide the pressure and obstacle-boundary solve required for this scene. The authored water and rock geometry remains preserved. Water-interface refraction is a separate implemented source component.</p><p><a href="workflow-source/ui-physics-water-interface.vkf">Water-interface component source</a></p></section></section></div></details><details class="reference-group" id="concurrent"><summary><span class="group-number">06</span><span>.concurrent<span class="module-subtitle"> / Coordinate messages and workers</span></span><small>Example + source</small></summary><div class="group-body"><p>Use queues and process handles when independent work must exchange events. The displayed examples cover queue/process and broadcast/shared operations in this browser package. These APIs do not promise automatic numerical parallelization.</p><p><strong>Support:</strong> Compiler/runtime intrinsics.</p><div aria-label="API names" class="api-list"><code class="language-vkf"><span class="token function">process</span><span class="token punctuation">(</span><span class="token variable">worker</span><span class="token punctuation">,</span> …<span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">shared</span><span class="token punctuation">(</span><span class="token variable">value</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token stdlib-call"><span class="token namespace">process</span><span class="token punctuation">.</span><span class="token function">join</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token stdlib-call"><span class="token namespace">process</span><span class="token punctuation">.</span><span class="token function">kill</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">queue</span><span class="token operator">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token variable">value</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">queue</span><span class="token operator">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">broadcast</span><span class="token operator">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></div><h3>Queue and process</h3><p class="example-purpose">Pass a completed sample count to a worker through a queue, then join it to obtain the delivered value.</p><section id="example-stdlib-example-32" class="readme-example" data-compiler-status="loading" data-vkf-example-id="stdlib-example-32"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">concurrent: .concurrent
+</textarea></div><pre class="readme-example-output" aria-live="polite"></pre></div><div data-example-result=""><p data-result-hint="">Run to inspect the scene. Use its camera controls to zoom out and in.</p></div></div></section><section id="example-ex03" data-vkf-example-id="ui-physics-ex03" data-verification="pending" class="readme-example"><h4>EX03 · Water and a rough-shaded round rock</h4><p>Analytic inviscid slip flow supplies pressure and advection to the existing fluid and momentum laws. This limited reference case does not implement irregular rough boundaries, no-slip viscosity or full CFD.</p><p><a href="workflow-source/EX03-water-rough-rock.vkf">Complete VKF source</a>. Native, site, navigation and full-frame timing: unverified.</p><div class="readme-example-bar"><span>Editable source candidate</span><button class="readme-example-play" type="button" disabled aria-disabled="true" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf"># EX03: water parcels in an analytic slip-flow reference around ONE round rock.
+# Explicit inviscid2D model; roughness changes shading, not the flow boundary.
+# Existing fluid rate checks pressure/advection; existing momentum step advects.
+# No completeCFD/no-slip/free-surface/wave/irregularmulti-rock solver claim.
+# Orbit/zoom OUT+IN; scrub physically integrated samples in the time toolbar.
+flow:.physics.flow
+optics:.physics.optics
+:.math
+radius: 0.4
+speed: 0.8
+parcel_x(time:num,height:num) -&gt; num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.0
+parcel_y(time:num,height:num) -&gt; num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.1
+rock_x(angle:num) -&gt; num: radius*cos(angle)
+rock_y(angle:num) -&gt; num: radius*sin(angle)
+point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
+scene():
+    view: .ui.viewport
+    time: [0..120]/40
+    height: [-0.24,-0.12,0.12,0.24]
+    x: parcel_x(time_t,height_i)
+    y: parcel_y(time_t,height_i)
+    angle: [0..64]*2*pi/64
+    z: [0,0.7]
+    rx: rock_x(angle_u)
+    ry: rock_y(angle_u)
+    floor: [[-1.8,-1,-0.05],[1.8,-1,-0.05],[1.8,1,-0.05],[-1.8,1,-0.05]]
+    water: [[-1.8,-1,0.15],[1.8,-1,0.15],[1.8,1,0.15],[-1.8,1,0.15]]
+    quad: [[0,1,2],[0,2,3]]
+    index: 1.333
+    f: optics.fresnel(1,index,1)
+    refracted: optics.refract2([0.6,-0.8],[0,1],1,index)
+    transmitted: optics.transmitted_stokes(optics.unpolarized(1),1,index,0.8)
+    through: [point3(-1.1,-0.8,0.55),point3(-0.8,-0.8,0.15),point3(-0.8+0.4*refracted.direction.0,-0.8,0.15+0.4*refracted.direction.1)]
+    view.set_geom_options(background:[0.025,0.045,0.07,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+    view.add(p_up:floor,faces_uvw:quad,id:"riverbed",color:[0.3,0.24,0.14,1],roughness:0.8)
+    view.add(p_up:water,faces_uvw:quad,id:"water",color:[0.1,0.48,0.7,1],optical_index:index,reflectivity:f.rs,transparency:0.55,roughness:0.05,casts_shadow:false)
+    view.add(x:rx_u,y:ry_u,z:z_v,id:"round-rock-boundary",color:[0.4,0.36,0.3,1],roughness:0.9,texture:(kind:"checker",roughness_modulation:0.08,bump_strength:0.1,detail_frequency:18),casts_shadow:true)
+    view.add(x:x_ti,y:y_ti,z:0.17,t:time,t_mode:"mirror",id:"water-parcels",color:[0.6,0.9,1,1],s:7)
+    view.add(p:through_uc,id:"water-interface-ray",color:[1,0.7,0.12,transmitted.0],w:2)
+    view.add_light(id:"sun",pos:[-1,-1.5,3],color:[1,0.88,0.6,1],intensity:8,source_radius:0.16,spread:1,range:12,casts_shadow:true,show_marker:true)
+    view.add_camera(pos:[3,-4,3],target:[0,0,0.2],up:[0,0,1],fov:42)
+    view.push(x_label:"x (m)",y_label:"y (m)",z_label:"z (m)")
+    view.show()
+    balance: flow.cylinder_eulerian_rate([0.8,0.5],radius,speed,1000)
+    :: balance
+scene()
+</code></pre><textarea class="readme-example-source" aria-label="EX03 VKF source" spellcheck="false"># EX03: water parcels in an analytic slip-flow reference around ONE round rock.
+# Explicit inviscid2D model; roughness changes shading, not the flow boundary.
+# Existing fluid rate checks pressure/advection; existing momentum step advects.
+# No completeCFD/no-slip/free-surface/wave/irregularmulti-rock solver claim.
+# Orbit/zoom OUT+IN; scrub physically integrated samples in the time toolbar.
+flow:.physics.flow
+optics:.physics.optics
+:.math
+radius: 0.4
+speed: 0.8
+parcel_x(time:num,height:num) -&gt; num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.0
+parcel_y(time:num,height:num) -&gt; num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.1
+rock_x(angle:num) -&gt; num: radius*cos(angle)
+rock_y(angle:num) -&gt; num: radius*sin(angle)
+point3(x:num,y:num,z:num) -&gt; [num:3]: [x,y,z]
+scene():
+    view: .ui.viewport
+    time: [0..120]/40
+    height: [-0.24,-0.12,0.12,0.24]
+    x: parcel_x(time_t,height_i)
+    y: parcel_y(time_t,height_i)
+    angle: [0..64]*2*pi/64
+    z: [0,0.7]
+    rx: rock_x(angle_u)
+    ry: rock_y(angle_u)
+    floor: [[-1.8,-1,-0.05],[1.8,-1,-0.05],[1.8,1,-0.05],[-1.8,1,-0.05]]
+    water: [[-1.8,-1,0.15],[1.8,-1,0.15],[1.8,1,0.15],[-1.8,1,0.15]]
+    quad: [[0,1,2],[0,2,3]]
+    index: 1.333
+    f: optics.fresnel(1,index,1)
+    refracted: optics.refract2([0.6,-0.8],[0,1],1,index)
+    transmitted: optics.transmitted_stokes(optics.unpolarized(1),1,index,0.8)
+    through: [point3(-1.1,-0.8,0.55),point3(-0.8,-0.8,0.15),point3(-0.8+0.4*refracted.direction.0,-0.8,0.15+0.4*refracted.direction.1)]
+    view.set_geom_options(background:[0.025,0.045,0.07,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+    view.add(p_up:floor,faces_uvw:quad,id:"riverbed",color:[0.3,0.24,0.14,1],roughness:0.8)
+    view.add(p_up:water,faces_uvw:quad,id:"water",color:[0.1,0.48,0.7,1],optical_index:index,reflectivity:f.rs,transparency:0.55,roughness:0.05,casts_shadow:false)
+    view.add(x:rx_u,y:ry_u,z:z_v,id:"round-rock-boundary",color:[0.4,0.36,0.3,1],roughness:0.9,texture:(kind:"checker",roughness_modulation:0.08,bump_strength:0.1,detail_frequency:18),casts_shadow:true)
+    view.add(x:x_ti,y:y_ti,z:0.17,t:time,t_mode:"mirror",id:"water-parcels",color:[0.6,0.9,1,1],s:7)
+    view.add(p:through_uc,id:"water-interface-ray",color:[1,0.7,0.12,transmitted.0],w:2)
+    view.add_light(id:"sun",pos:[-1,-1.5,3],color:[1,0.88,0.6,1],intensity:8,source_radius:0.16,spread:1,range:12,casts_shadow:true,show_marker:true)
+    view.add_camera(pos:[3,-4,3],target:[0,0,0.2],up:[0,0,1],fov:42)
+    view.push(x_label:"x (m)",y_label:"y (m)",z_label:"z (m)")
+    view.show()
+    balance: flow.cylinder_eulerian_rate([0.8,0.5],radius,speed,1000)
+    :: balance
+scene()
+</textarea></div><pre class="readme-example-output" aria-live="polite"></pre></div><div data-example-result=""><p data-result-hint="">Run to inspect the scene. Use its camera controls to zoom out and in.</p></div></div></section></section></div></details><details class="reference-group" id="concurrent"><summary><span class="group-number">06</span><span>.concurrent<span class="module-subtitle"> / Coordinate messages and workers</span></span><small>Example + source</small></summary><div class="group-body"><p>Use queues and process handles when independent work must exchange events. The displayed examples cover queue/process and broadcast/shared operations in this browser package. These APIs do not promise automatic numerical parallelization.</p><p><strong>Support:</strong> Compiler/runtime intrinsics.</p><div aria-label="API names" class="api-list"><code class="language-vkf"><span class="token function">process</span><span class="token punctuation">(</span><span class="token variable">worker</span><span class="token punctuation">,</span> …<span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token function">shared</span><span class="token punctuation">(</span><span class="token variable">value</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token stdlib-call"><span class="token namespace">process</span><span class="token punctuation">.</span><span class="token function">join</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token stdlib-call"><span class="token namespace">process</span><span class="token punctuation">.</span><span class="token function">kill</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">queue</span><span class="token operator">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token variable">value</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">queue</span><span class="token operator">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code><code class="language-vkf"><span class="token variable">broadcast</span><span class="token operator">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></div><h3>Queue and process</h3><p class="example-purpose">Pass a completed sample count to a worker through a queue, then join it to obtain the delivered value.</p><section id="example-stdlib-example-32" class="readme-example" data-compiler-status="loading" data-vkf-example-id="stdlib-example-32"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">concurrent: .concurrent
 
 receive(samples): samples.get()
 

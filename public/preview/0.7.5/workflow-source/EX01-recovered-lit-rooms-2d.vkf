@@ -12,11 +12,11 @@ reflectivity: 0.72
 falloff: 0.7666666667
 base_penumbra: 0.0166666667
 growth: 0.16
-wall_material(x:num,y:num):
+wall_material(x:num,y:num) -> bit:
     (abs(y)>0.5-0.0266666667 \/ abs(x)>1.5-0.0266666667)? @: true
     ((abs(x+0.5)<0.01333333335 \/ abs(x-0.5)<0.01333333335) /\ abs(y)>1/6)? @: true
     false
-sample_color(x:num,y:num,source_x:num):
+sample_color(x:num,y:num,source_x:num) -> [num:4]:
     source: [source_x,0]
     target: [x,y]
     direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)

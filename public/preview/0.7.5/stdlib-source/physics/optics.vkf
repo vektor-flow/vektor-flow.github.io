@@ -5,7 +5,7 @@
 # No coherence between separate rays, interference, dispersion or scattering.
 _optics_math: .math
 
-finite(x:num):
+finite(x:num) -> bit:
     (x = x) /\ ((_optics_math.abs(x) - _optics_math.abs(x)) = 0)
 
 validate_stokes(s:[num:4]) -> [num:4]:
@@ -87,7 +87,7 @@ transmitted_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
     [a*s.0+b*s.1,b*s.0+a*s.1,c*s.2,c*s.3]
 
 # Detector sums ray powers incoherently; value is watts if source I is watts.
-detector(state:[num:4]):
+detector(state:[num:4]) -> num:
     s: validate_stokes(state)
     s.0
 
@@ -130,7 +130,7 @@ line_hit(origin:[num:2],direction:[num:2],a:[num:2],b:[num:2]) -> (hit:num,dista
 
 # Incoherent ray power incident on an ideal oriented line detector/receiver.
 # 3D point-source inverse-square law evaluated on a 2D scene cross-section.
-point_irradiance(power:num,distance:num,cosine:num):
+point_irradiance(power:num,distance:num,cosine:num) -> num:
     (finite(power) /\ power >= 0 /\ finite(distance) /\ distance > 0 /\ finite(cosine) /\ cosine >= 0 /\ cosine <= 1)?! "optics: invalid point receiver"
     power*cosine/(4*_optics_math.pi*distance^2)
 
@@ -187,27 +187,27 @@ ball_lens_ray(height:num,radius:num,index:num,detector_x:num) -> (points:[[num:2
 # General analytic 2D lighting primitives. Soft-edge model is geometric/numerical,
 # not wave diffraction. Falloff below is normalized finite-source display light,
 # not calibrated point-source watts; exact ray-power Fresnel remains separate.
-clamp01(value:num):
+clamp01(value:num) -> num:
     value < 0? @: 0
     value > 1? @: 1
     value
 
-smooth_edge(edge0:num,edge1:num,value:num):
+smooth_edge(edge0:num,edge1:num,value:num) -> num:
     edge0 = edge1?
         value >= edge1? @: 1
         @: 0
     t: clamp01((value-edge0)/(edge1-edge0))
     t*t*(3-2*t)
 
-min2(a:num,b:num):
+min2(a:num,b:num) -> num:
     a < b? @: a
     b
-max2(a:num,b:num):
+max2(a:num,b:num) -> num:
     a > b? @: a
     b
 
 # Segment endpoints as [ax,ay,bx,by], fully generic orientation.
-eased_segment_visibility(source:[num:2],target:[num:2],wall:[num:4],base:num,growth:num):
+eased_segment_visibility(source:[num:2],target:[num:2],wall:[num:4],base:num,growth:num) -> num:
     dx: target.0-source.0
     dy: target.1-source.1
     ex: wall.2-wall.0
@@ -223,7 +223,7 @@ eased_segment_visibility(source:[num:2],target:[num:2],wall:[num:4],base:num,gro
     edge_distance: min2(u,1-u)*_optics_math.sqrt(ex*ex+ey*ey)
     1-smooth_edge(0,base+growth*gap,edge_distance)
 
-soft_visibility(source:[num:2],target:[num:2],walls:[[num:4]:n],base:num,growth:num):
+soft_visibility(source:[num:2],target:[num:2],walls:[[num:4]:n],base:num,growth:num) -> num:
     (finite(base) /\ finite(growth) /\ base>=0 /\ growth>=0)?! "optics: nonnegative shadow easing required"
     visible: 1
     i: 0
@@ -237,7 +237,7 @@ virtual_source2(source:[num:2],a:[num:2],b:[num:2]) -> [num:2]:
     distance: (source.0-a.0)*n.0+(source.1-a.1)*n.1
     [source.0-2*distance*n.0,source.1-2*distance*n.1]
 
-normalized_light2(source:[num:2],target:[num:2],falloff:num,walls:[[num:4]:n],base:num,growth:num):
+normalized_light2(source:[num:2],target:[num:2],falloff:num,walls:[[num:4]:n],base:num,growth:num) -> num:
     (finite(falloff) /\ falloff>0)?! "optics: positive light falloff radius required"
     dx: target.0-source.0
     dy: target.1-source.1
@@ -246,7 +246,7 @@ normalized_light2(source:[num:2],target:[num:2],falloff:num,walls:[[num:4]:n],ba
 # One front-sided finite mirror. Neutral coating reflectivity scales Stokes power.
 # The virtual source is analytic geometry; no camera/texture/zero-area3D aperture.
 # Feather outside segment is declared finite-source aperture easing, same oldmodel.
-reflected_light2(source:[num:2],target:[num:2],a:[num:2],b:[num:2],reflectivity:num,spread:num,falloff:num,walls:[[num:4]:n],base:num,growth:num):
+reflected_light2(source:[num:2],target:[num:2],a:[num:2],b:[num:2],reflectivity:num,spread:num,falloff:num,walls:[[num:4]:n],base:num,growth:num) -> num:
     (finite(reflectivity) /\ reflectivity>=0 /\ reflectivity<=1 /\ finite(spread) /\ spread>=0 /\ finite(falloff) /\ falloff>0)?! "optics: invalid reflected light material"
     normal: unit2([a.1-b.1,b.0-a.0])
     side_source: (source.0-a.0)*normal.0+(source.1-a.1)*normal.1

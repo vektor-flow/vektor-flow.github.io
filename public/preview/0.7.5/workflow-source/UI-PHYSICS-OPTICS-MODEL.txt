@@ -14,7 +14,7 @@ claim that the historical metadata contained that mesh population. Original
 
 OWNERSHIP AND ACTUAL API PATH
 Scene files live under UI workflow-source, outside Physics exports. General
-physical functions live in compiler/self_hosted/stdlib/physics/optics.vkf and the
+physical functions live in compiler/self_hosted/stdlib/physics/optics.vkf, physics/flow.vkf and the
 existing physics.vkf/rigid.vkf modules. Native arrays and named u/v/t axes feed
 .ui.viewport.add, push and show. Scalar laws remain inspectable VKF; the host
 consumes compiler-produced geometry, colors, materials, camera and light data.
@@ -124,7 +124,10 @@ https://arxiv.org/abs/1809.04378
 For fluid motion, the current Newtonian local rate requires supplied pressure,
 advection and boundaries. Cheap analytic cylinder potential flow has a slip
 boundary and cannot honestly replace viscous water around irregular rough rocks.
-EX03 therefore remains open rather than claiming a new fluid solver.
+EX03 now supplies this restricted analytic circular-slip reference field, coupled
+through the EXISTING dimensioned fluid_velocity_rate and momentum integrator.
+It uses a round rock boundary with procedural shading roughness; it does not
+claim rough irregular/no-slip boundary flow or a general pressure solver.
 https://www.damtp.cam.ac.uk/user/tong/fluids/fluids1.pdf
 Diffusion flux/rate similarly require actual spatial operators. Those laws and
 existing unit rejection controls remain preserved, not silently declared complete
@@ -148,9 +151,13 @@ fixture populations; no unmeasured fast/world-class/fullGPU claim.
 FIXED COVERAGE AND REMAINING WORK
 EX01 is the recovered room plus mirror light; EX02 is the 3D die/mirror/screen;
 EX04 is a two-clamped-edge wind specimen with grass; EX05 is lens/aperture;
-EX06 is polarization/Brewster. All are SOURCE candidates, no current native+site
-running PASS claimed. EX03 water around rough rocks still needs real boundary/
-pressure/state integration; water-interface Snell/Fresnel component is available.
+EX06 is polarization/Brewster. All six are SOURCE candidates, no current native+site
+running PASS claimed. EX03 uses analytic inviscid slip flow around ONE round rock, and a flat-water
+Snell/Fresnel ray. Its normal velocity is zero on the reference cylinder, pressure
+balances advection through the existing fluid law, and existing momentum stepping
+advances parcels under that pressure force. Finite-step trajectory/boundary error
+still requires independent checks. This is not irregular rough-boundary/no-slip/
+viscous/free-surface/fullCFD or original authored waterwheel acceptance.
 EX04 has no tree parent/contact assembly. EX02 has no qualified simultaneous
 irregular multi-body world or rolling/spin material acceptance yet. Shared mass,
 full inertia, geometry edits/caches, deformable contact and same-state debug/
@@ -158,8 +165,29 @@ appearance integration remain explicit. Original stones5, tree2592 nodes,
 air64000/grass81920 and waterwheel1905 positions remain separate authored fixtures.
 EM fields, diffusion spatial evolution, irregular2D AND3D simultaneous contacts,
 fluid pressure/boundaries and original-population acceptance are not completed
-by the five new source candidates. The wider collection MASTER N is UNKNOWN
+by the six new source candidates. The wider collection MASTER N is UNKNOWN
 pending dedicated inventory/review; the fixed six showcases do not mean all prior
 examples. No legacy deletion is performed without a concrete canonical mapping.
 Published fd43f292/native824/browser9fc/library0b63 remains distinct from private
 native2f82/4b369/ea894 plus cleanedb65 or elastic2e3 and these new optics sources.
+
+LATEST CAUSAL SOURCE CORRECTIONS
+The actual native first ray diagram failed because an inferred record point
+became [any:2] inside an array. Explicit ordinary optical numeric return contracts
+and scene coordinate/color return shapes address that path; this is not a current
+runtime PASS. Final mode3d is validated and honoured after geometry normalization.
+Hard aperture spread=0 now passes valid segment interiors rather than zeroing
+all reflection. New module descriptors register physics.optics and physics.flow
+as source-backed modules. This applies the actual-owned observed packaged-import
+registry cause; header/VFS registration and paired formatter/compiler bytes must
+all agree. Registry membership is not platform/backend qualification. Existing
+physics.rigid native replay/browser provider availability remains unqualified.
+EX06 now shares material index with the actual angular sweep and initial Brewster
+angle; filter, analyzer and detector are placed on the computed ray paths.
+EX02/EX04/EX03 sample-preparation costs can repeat state work in scalar lifting.
+No compiler reuse/CSE is assumed for effectful replay. A future measured bottleneck
+may justify one authoritative state array per time; it must preserve physics and
+source-dependent invalidation rather than introducing a hand-coded pose cache.
+No broad legacy cleanup was attempted: the dedicated read-only plan currently
+has no approved concrete removal operations. Auxiliary optical probes remain
+separate from the six canonical UI cards and from the still-unknown MASTER N.

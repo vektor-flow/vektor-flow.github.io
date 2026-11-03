@@ -1,0 +1,50 @@
+# EX03: water parcels in an analytic slip-flow reference around ONE round rock.
+# Explicit inviscid2D model; roughness changes shading, not the flow boundary.
+# Existing fluid rate checks pressure/advection; existing momentum step advects.
+# No completeCFD/no-slip/free-surface/wave/irregularmulti-rock solver claim.
+# Orbit/zoom OUT+IN; scrub physically integrated samples in the time toolbar.
+flow:.physics.flow
+optics:.physics.optics
+:.math
+radius: 0.4
+speed: 0.8
+parcel_x(time:num,height:num) -> num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.0
+parcel_y(time:num,height:num) -> num:
+    point: flow.cylinder_parcel([-1.3,height],radius,speed,time,0.001)
+    point.1
+rock_x(angle:num) -> num: radius*cos(angle)
+rock_y(angle:num) -> num: radius*sin(angle)
+point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
+scene():
+    view: .ui.viewport
+    time: [0..120]/40
+    height: [-0.24,-0.12,0.12,0.24]
+    x: parcel_x(time_t,height_i)
+    y: parcel_y(time_t,height_i)
+    angle: [0..64]*2*pi/64
+    z: [0,0.7]
+    rx: rock_x(angle_u)
+    ry: rock_y(angle_u)
+    floor: [[-1.8,-1,-0.05],[1.8,-1,-0.05],[1.8,1,-0.05],[-1.8,1,-0.05]]
+    water: [[-1.8,-1,0.15],[1.8,-1,0.15],[1.8,1,0.15],[-1.8,1,0.15]]
+    quad: [[0,1,2],[0,2,3]]
+    index: 1.333
+    f: optics.fresnel(1,index,1)
+    refracted: optics.refract2([0.6,-0.8],[0,1],1,index)
+    transmitted: optics.transmitted_stokes(optics.unpolarized(1),1,index,0.8)
+    through: [point3(-1.1,-0.8,0.55),point3(-0.8,-0.8,0.15),point3(-0.8+0.4*refracted.direction.0,-0.8,0.15+0.4*refracted.direction.1)]
+    view.set_geom_options(background:[0.025,0.045,0.07,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
+    view.add(p_up:floor,faces_uvw:quad,id:"riverbed",color:[0.3,0.24,0.14,1],roughness:0.8)
+    view.add(p_up:water,faces_uvw:quad,id:"water",color:[0.1,0.48,0.7,1],optical_index:index,reflectivity:f.rs,transparency:0.55,roughness:0.05,casts_shadow:false)
+    view.add(x:rx_u,y:ry_u,z:z_v,id:"round-rock-boundary",color:[0.4,0.36,0.3,1],roughness:0.9,texture:(kind:"checker",roughness_modulation:0.08,bump_strength:0.1,detail_frequency:18),casts_shadow:true)
+    view.add(x:x_ti,y:y_ti,z:0.17,t:time,t_mode:"mirror",id:"water-parcels",color:[0.6,0.9,1,1],s:7)
+    view.add(p:through_uc,id:"water-interface-ray",color:[1,0.7,0.12,transmitted.0],w:2)
+    view.add_light(id:"sun",pos:[-1,-1.5,3],color:[1,0.88,0.6,1],intensity:8,source_radius:0.16,spread:1,range:12,casts_shadow:true,show_marker:true)
+    view.add_camera(pos:[3,-4,3],target:[0,0,0.2],up:[0,0,1],fov:42)
+    view.push(x_label:"x (m)",y_label:"y (m)",z_label:"z (m)")
+    view.show()
+    balance: flow.cylinder_eulerian_rate([0.8,0.5],radius,speed,1000)
+    :: balance
+scene()

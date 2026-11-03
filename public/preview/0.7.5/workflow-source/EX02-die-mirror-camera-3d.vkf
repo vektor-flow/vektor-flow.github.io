@@ -8,32 +8,32 @@ vertices: [[-0.25,-0.25,-0.25],[0.25,-0.25,-0.25],[0.25,0.25,-0.25],[-0.25,0.25,
 faces: [[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,5],[0,5,4],[1,2,6],[1,6,5],[2,3,7],[2,7,6],[3,0,4],[3,4,7]]
 pips: [[0,-0.252,0],[0.252,-0.08,-0.08],[0.252,0.08,0.08],[-0.09,-0.09,0.252],[0,0,0.252],[0.09,0.09,0.252]]
 initial: rigid.prepare_si(vertices,faces,1,0.6,0.2,[-0.8,0,0.6],[0,0,0,1],[0.7,0,0],[0,2.8,0],[0,0,-9.81])
-rotate(point:[num:3],q:[num:4]):
+rotate(point:[num:3],q:[num:4]) -> [num:3]:
     # Canonical pose quaternion is x,y,z,w (same body axes as collider).
     tx: 2*(q.1*point.2-q.2*point.1)
     ty: 2*(q.2*point.0-q.0*point.2)
     tz: 2*(q.0*point.1-q.1*point.0)
     [point.0+q.3*tx+q.1*tz-q.2*ty,point.1+q.3*ty+q.2*tx-q.0*tz,point.2+q.3*tz+q.0*ty-q.1*tx]
-world_point(time:num,point:[num:3]):
+world_point(time:num,point:[num:3]) -> [num:3]:
     state: rigid.step(initial,time*si.s)
     local: rotate(point,state.orientation)
     [local.0+num(state.position.0/si.m),local.1+num(state.position.1/si.m),local.2+num(state.position.2/si.m)]
-die_x(time:num,vertex:num):
+die_x(time:num,vertex:num) -> num:
     p: world_point(time,vertices.(int(vertex)))
     p.0
-die_y(time:num,vertex:num):
+die_y(time:num,vertex:num) -> num:
     p: world_point(time,vertices.(int(vertex)))
     p.1
-die_z(time:num,vertex:num):
+die_z(time:num,vertex:num) -> num:
     p: world_point(time,vertices.(int(vertex)))
     p.2
-pip_x(time:num,vertex:num):
+pip_x(time:num,vertex:num) -> num:
     p: world_point(time,pips.(int(vertex)))
     p.0
-pip_y(time:num,vertex:num):
+pip_y(time:num,vertex:num) -> num:
     p: world_point(time,pips.(int(vertex)))
     p.1
-pip_z(time:num,vertex:num):
+pip_z(time:num,vertex:num) -> num:
     p: world_point(time,pips.(int(vertex)))
     p.2
 scene():

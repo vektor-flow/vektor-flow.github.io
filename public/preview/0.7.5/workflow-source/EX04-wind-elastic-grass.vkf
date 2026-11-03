@@ -6,7 +6,7 @@ physics:.physics
 :.math
 edge: physics.elastic_edge_circular_si(1,0.012,20000000,0.3,850,0.2,0.001)
 rest: physics.elastic_edge_state(edge,[0,0,0,0,0,0],[0,0,0,0,0,0])
-branch_state(time:num):
+branch_state(time:num) -> (coordinate:[num:6],velocity:[num:6]):
     state: rest
     i: 0
     steps: int(time/0.01)
@@ -19,12 +19,12 @@ branch_state(time:num):
         .state: step.state
         .i: i+1
     state
-branch_x(time:num,arc:num,root:num):
+branch_x(time:num,arc:num,root:num) -> num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     root+point.1
-branch_y(time:num,arc:num,root:num): 0
-branch_z(time:num,arc:num,root:num):
+branch_y(time:num,arc:num,root:num) -> num: 0
+branch_z(time:num,arc:num,root:num) -> num:
     state: branch_state(time)
     point: physics.elastic_edge_point(edge,state,[arc,0,0])
     point.0

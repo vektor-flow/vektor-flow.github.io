@@ -215,7 +215,7 @@ source_x: -0.35
 color: sample_color(x_u,y_v,source_x)
 line: [mirror_a,mirror_b]
 view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
-view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
+view.add(x:x_u,y:y_v,z:0,c:color_uv,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
 view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
 view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
 view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
@@ -284,7 +284,7 @@ source_x: -0.35
 color: sample_color(x_u,y_v,source_x)
 line: [mirror_a,mirror_b]
 view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
-view.add(x:x_u,y:y_v,z:0,c:color_uvc,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
+view.add(x:x_u,y:y_v,z:0,c:color_uv,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
 view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
 view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
 view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")

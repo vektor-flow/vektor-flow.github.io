@@ -1,0 +1,23 @@
+# 2D finite mirror: edit source direction/material, then Run.
+# Drag to pan; wheel/toolbar zoom out and in use the existing camera.
+:.physics.optics
+scene():
+    view: .ui.viewport
+    a: [-2,0]
+    b: [2,0]
+    origin: [-1,2]
+    incident: [0.6,-0.8]
+    h: line_hit(origin,incident,a,b)
+    (h.hit=1)?! "beam misses finite mirror"
+    reflected: reflect2(incident,[0,1])
+    end: [h.point.0+2*reflected.0,h.point.1+2*reflected.1]
+    mirror: [a,b]
+    incoming: [origin,h.point]
+    outgoing: [h.point,end]
+    view.add(p:mirror_uc,id:"mirror",color:[0.7,0.8,0.9,1],w:3,receives_lighting:true,roughness:0.05,reflectivity:0.9)
+    view.add(p:incoming_uc,id:"incident",color:[1,0.7,0.1,1],w:2)
+    view.add(p:outgoing_uc,id:"reflected",color:[1,0.63,0.09,1],w:2)
+    view.add_light(id:"source",pos:[-1,2,1],color:[1,0.85,0.6,1],intensity:4,range:10,casts_shadow:false)
+    view.push()
+    view.show()
+scene()

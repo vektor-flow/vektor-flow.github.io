@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Evaluated scene presentation controls</title>
+<script src="../public/preview/0.7.5/vf-ui/vf-runtime-shell.js?v=native-scene-options-v1"></script></head>
+<body data-vf-runtime-autoboot="false"><pre id="result">UNRUN</pre><script>
+(async()=>{
+  const require=(ok,message)=>{if(!ok)throw Error(message)};
+  try {
+    await VfRuntimeShell.ensureSceneDependencies();
+    const lights=[{id:"source",pos:[-.35,0,.1],color:[1,.97,.65,1],source_radius:.1,intensity:1,show_marker:true,casts_shadow:false}];
+    const options={light_flares:true,light_marker_size:.1};
+    const expected={enabled:true,size:.1,lights,occluders:[]};
+    require(JSON.stringify(VfDisplay.createLightFlareOptions(options,lights,[]))===JSON.stringify(expected),"shared native-scene contract changed");
+    const scene={frame:"frame_options",meshes:[],lights,render_options:options};
+    const packet={schema:"vektor-flow/retained-scene-arena",version:1,metadata:{schema:"vektor-flow/retained-scene-arena",version:1,scene},arena:new Uint8Array(0)};
+    const materialize=VfDisplay.__test.materializeRetainedSceneArena;
+    const value=materialize(packet).geom.frame_options;
+    require(value.unified_renderer===true,"flare scene did not select existing unified renderer");
+    require(JSON.stringify(value.light_flares)===JSON.stringify(expected),"executed light state/options lost");
+    require(scene.light_flares===undefined,"input packet was mutated");
+    const off={...packet,metadata:{...packet.metadata,scene:{...scene,render_options:{light_flares:false}}}};
+    require(materialize(off).geom.frame_options.light_flares===undefined,"disabled flare created output");
+    const existing={enabled:false,size:.3,lights:[],occluders:[]};
+    const retained={...packet,metadata:{...packet.metadata,scene:{...scene,light_flares:existing}}};
+    require(materialize(retained).geom.frame_options.light_flares===existing,"explicit maintained presentation was replaced");
+    document.getElementById("result").textContent="PASS: evaluated scene option controls only; no native guest/render/time qualification";
+  } catch(error){document.getElementById("result").textContent="FAIL: "+(error.stack||error);throw error;}
+})();
+</script></body></html>

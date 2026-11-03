@@ -14238,6 +14238,19 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       : [0.267, 0.005, 0.329, 1];
   }
 
+  // Shared scene presentation contract: the native scene runtime and the
+  // evaluated arena path select the same maintained flare renderer. No guest
+  // evaluation, Physics advance, geometry or shader construction happens here.
+  function createLightFlareOptions(renderOptions, lights, occluders) {
+    renderOptions = renderOptions || {};
+    return {
+      enabled: renderOptions.light_flares === true,
+      size: Number(renderOptions.light_marker_size || 0.18),
+      lights: lights,
+      occluders: occluders
+    };
+  }
+
   function materializeRetainedSceneArena(packet) {
     if (!packet || String(packet.schema || "") !== "vektor-flow/retained-scene-arena" ||
         Number(packet.version) !== 1 || !packet.metadata ||
@@ -14317,6 +14330,11 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     });
     if (!Object.prototype.hasOwnProperty.call(scene, "background")) {
       scene.background = null;
+    }
+    if (!scene.light_flares && scene.render_options && scene.render_options.light_flares === true) {
+      scene.light_flares = createLightFlareOptions(
+        scene.render_options, scene.lights || [], scene.flare_occluders || []);
+      scene.unified_renderer = true;
     }
     applyRetainedScene3DDefaults(scene);
     if (source.native_plot_text === true) applyExamplePlotTheme(scene);
@@ -15233,6 +15251,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     updateNativeLabelFrameColor: updateNativeLabelFrameColor,
     renderFromJson: renderFromJson,
     renderRetainedSceneArena: renderRetainedSceneArena,
+    createLightFlareOptions: createLightFlareOptions,
     requestGeomFramePresentation: requestGeomFramePresentation,
     disposeGeomFrame: disposeGeomFrame,
     updateGeomFrameCamera: updateGeomFrameCamera,

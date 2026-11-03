@@ -4216,12 +4216,8 @@
       camera: state.camera,
       lights: state.lights,
       background: sceneBackground,
-      light_flares: {
-        enabled: renderOptions.light_flares === true,
-        size: Number(renderOptions.light_marker_size || 0.18),
-        lights: state.lights,
-        occluders: state.flare_occluders
-      },
+      light_flares: global.VfDisplay.createLightFlareOptions(
+        renderOptions, state.lights, state.flare_occluders),
       hit_regions: hitRegions,
       pick_context: {
         promotion_active: promotionActive

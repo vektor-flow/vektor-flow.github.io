@@ -1,0 +1,872 @@
+{
+  "owner": "e2187",
+  "label": "qualified256",
+  "rows": [
+    {
+      "width": 1280,
+      "initial": {
+        "text": "Hello World\n",
+        "outputOrigin": "saved-current-compiler"
+      },
+      "binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+      "errors": [
+        {
+          "id": "original-undefined-totals-0",
+          "result": {
+            "text": "compiler/source-semantic-lower: /browser/example.vkf:6:4: undefined identifier totals",
+            "outputKind": "error",
+            "outputOrigin": "run"
+          },
+          "position": {
+            "line": 6,
+            "column": 4
+          }
+        },
+        {
+          "id": "original-undefined-totals-1",
+          "result": {
+            "text": "compiler/source-semantic-lower: /browser/example.vkf:6:4: undefined identifier totals",
+            "outputKind": "error",
+            "outputOrigin": "run"
+          },
+          "position": {
+            "line": 6,
+            "column": 4
+          }
+        },
+        {
+          "id": "literal-this-name-undefined-base",
+          "result": {
+            "text": "compiler/source-semantic-lower: /browser/example.vkf:2:4: undefined identifier this",
+            "outputKind": "error",
+            "outputOrigin": "run"
+          },
+          "position": {
+            "line": 2,
+            "column": 4
+          }
+        },
+        {
+          "id": "indexed-expression-target",
+          "result": {
+            "text": "compiler/source-parse: /browser/example.vkf:2:1: indexed expressions are not assignable; declare a plain identifier and select indices at use",
+            "outputKind": "error",
+            "outputOrigin": "run"
+          },
+          "position": {
+            "line": 2,
+            "column": 1
+          }
+        },
+        {
+          "id": "indexed-literal-target",
+          "result": {
+            "text": "compiler/source-parse: /browser/example.vkf:1:1: indexed expressions are not assignable; declare a plain identifier and select indices at use",
+            "outputKind": "error",
+            "outputOrigin": "run"
+          },
+          "position": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "initialCompilerWorkers": [],
+      "initialCompilerRequests": [],
+      "normal": {
+        "text": "Hello World\n",
+        "outputOrigin": "run",
+        "outputKind": "stdout"
+      },
+      "edit": {
+        "text": "Hello again\n",
+        "outputKind": "stdout",
+        "outputOrigin": "run"
+      },
+      "copied": ":: \"Hello World\"",
+      "colors": [
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "i",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "1",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "values",
+          "classes": "token definition",
+          "color": "rgb(230, 237, 243)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": ":",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "[",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "1",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": ",",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "2",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "]",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "values",
+          "classes": "token variable",
+          "color": "rgb(210, 168, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "_",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "i",
+          "classes": "token dimension-index vkf-index-0",
+          "color": "rgb(86, 212, 221)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        }
+      ],
+      "noOverflow": true,
+      "anchors": true
+    },
+    {
+      "width": 390,
+      "initial": {
+        "text": "Hello World\n",
+        "outputOrigin": "saved-current-compiler"
+      },
+      "binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+      "errors": [],
+      "initialCompilerWorkers": [],
+      "initialCompilerRequests": [],
+      "normal": {
+        "text": "Hello World\n",
+        "outputOrigin": "run",
+        "outputKind": "stdout"
+      },
+      "edit": {
+        "text": "Hello again\n",
+        "outputKind": "stdout",
+        "outputOrigin": "run"
+      },
+      "copied": ":: \"Hello World\"",
+      "colors": [
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "i",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "1",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "values",
+          "classes": "token definition",
+          "color": "rgb(230, 237, 243)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": ":",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "[",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "1",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": ",",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "2",
+          "classes": "token number",
+          "color": "rgb(121, 192, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "]",
+          "classes": "token punctuation",
+          "color": "rgb(201, 209, 217)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "::",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "values",
+          "classes": "token variable",
+          "color": "rgb(210, 168, 255)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "_",
+          "classes": "token operator",
+          "color": "rgb(255, 123, 114)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        },
+        {
+          "text": "i",
+          "classes": "token dimension-index vkf-index-0",
+          "color": "rgb(86, 212, 221)",
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        }
+      ],
+      "noOverflow": true,
+      "anchors": true,
+      "menu": {
+        "open": true,
+        "rect": {
+          "x": 20,
+          "y": 64,
+          "width": 350,
+          "height": 343,
+          "top": 64,
+          "right": 370,
+          "bottom": 407,
+          "left": 20
+        },
+        "viewport": 390
+      }
+    }
+  ],
+  "errors": [],
+  "browserClosed": true,
+  "serverClosed": true,
+  "release": {
+    "schema": 1,
+    "release_version": "0.7.5",
+    "preview": true,
+    "status": "verified-examples",
+    "complete": false,
+    "published": true,
+    "stable": false,
+    "stable_release": false,
+    "release_qualified": false,
+    "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
+    "compiler_source_commit": "bd7e1823e118869ae84444263e39fe9180efca10",
+    "compiler_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+    "release_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+    "source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+    "browser_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+    "frontend_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+    "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
+    "files": {
+      "compiler-base.mjs": {
+        "bytes": 188078,
+        "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
+      },
+      "compiler.data": {
+        "bytes": 619732,
+        "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+      },
+      "compiler.mjs": {
+        "bytes": 1464,
+        "sha256": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113"
+      },
+      "compiler.wasm": {
+        "bytes": 20391843,
+        "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
+      },
+      "formatter.mjs": {
+        "bytes": 61416,
+        "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
+      },
+      "formatter.wasm": {
+        "bytes": 1042604,
+        "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
+      },
+      "package-tools/addresses.mjs": {
+        "bytes": 22794,
+        "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+      },
+      "package-tools/cli.mjs": {
+        "bytes": 4907,
+        "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
+      },
+      "package-tools/git-source.mjs": {
+        "bytes": 9262,
+        "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+      },
+      "package-tools/github.mjs": {
+        "bytes": 1579,
+        "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+      },
+      "package-tools/host.mjs": {
+        "bytes": 11443,
+        "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+      },
+      "package-tools/inputs.mjs": {
+        "bytes": 7238,
+        "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+      },
+      "package-tools/metadata.mjs": {
+        "bytes": 10834,
+        "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+      },
+      "package-tools/ownership.mjs": {
+        "bytes": 2891,
+        "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+      },
+      "package-tools/package.json": {
+        "bytes": 602,
+        "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+      },
+      "package-tools/project.mjs": {
+        "bytes": 7664,
+        "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
+      },
+      "package-tools/publish.mjs": {
+        "bytes": 5939,
+        "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
+      },
+      "package-tools/resolve.mjs": {
+        "bytes": 1773,
+        "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+      },
+      "prepare-formatter-ir.mjs": {
+        "bytes": 693,
+        "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+      },
+      "package-tools/owner-protection.mjs": {
+        "bytes": 2234,
+        "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+      },
+      "package.json": {
+        "bytes": 48256,
+        "sha256": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b"
+      },
+      "README.txt": {
+        "bytes": 422,
+        "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
+      },
+      "third-party/emscripten-toolchain-copyright.txt": {
+        "bytes": 131248,
+        "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+      },
+      "third-party/trigonometric-source-notices.txt": {
+        "bytes": 3359,
+        "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+      },
+      "third-party/emscripten-musl-copyright.txt": {
+        "bytes": 6204,
+        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+      },
+      "third-party/vkf-runtime-musl-license.txt": {
+        "bytes": 6204,
+        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+      },
+      "VERIFICATION.json": {
+        "bytes": 2194,
+        "sha256": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
+      }
+    },
+    "sha256": {
+      "compiler-base.mjs": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942",
+      "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+      "compiler.mjs": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113",
+      "compiler.wasm": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
+      "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
+      "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
+      "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
+      "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
+      "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
+      "package-tools/github.mjs": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0",
+      "package-tools/host.mjs": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c",
+      "package-tools/inputs.mjs": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20",
+      "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
+      "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
+      "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
+      "package-tools/project.mjs": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf",
+      "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
+      "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
+      "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
+      "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
+      "package.json": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b",
+      "README.txt": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54",
+      "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
+      "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
+      "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "VERIFICATION.json": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
+    },
+    "package": {
+      "module": "./playground/canonical/compiler.mjs?sha256=312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113",
+      "wasm": "./playground/canonical/compiler.wasm?sha256=b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
+      "data": "./playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+    },
+    "current_package_composition": {
+      "path": "CURRENT-COMPOSITION.json",
+      "bytes": 59120,
+      "sha256": "80fc4579b853a9022211d49ee8bea9e375deaf9b099aae72e473ec6b70d93167"
+    },
+    "publication_status": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
+    "download_packages_offered": true,
+    "physical_gpu_tested": false,
+    "current_distribution": {
+      "enabled": false,
+      "runEnabled": true,
+      "downloadsOffered": false,
+      "fullReleaseQualified": false,
+      "sharedUploadAvailable": false
+    },
+    "full_requested_075_requirements_complete": false,
+    "site_review_iteration": {
+      "enabled": true,
+      "runEnabled": true,
+      "downloadsOffered": true,
+      "fullReleaseQualified": false,
+      "compilerOptimization": "Current bd7 compiler semantic guard and positioned browser errors; fresh API130 with retained804 paired header/preload, other139 current consumed objects, full140 link, OWN normal postprocess. Native stays separately pinned6f. Maintained cb619 Node wrapper; required current motion glyph mapping generated from real demand."
+    },
+    "historical_prior_binding_evidence": {
+      "current_candidate_verification": {
+        "path": "verification/e1868-current075-browser-native.json",
+        "bytes": 10734,
+        "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1",
+        "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+        "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+        "namedBrowserNativeChecksPASS": true,
+        "publicRuntimePromoted": true,
+        "releaseQualified": false
+      },
+      "current_distribution_checksums": {
+        "path": "downloads/current075-checksums.json",
+        "bytes": 1581,
+        "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
+      },
+      "current_runtime_repair": {
+        "path": "verification/e1870-axis-routing-repair.json",
+        "bytes": 1178,
+        "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+      },
+      "current_distribution_evidence": {
+        "path": "verification/e1880-renderer-distribution.json",
+        "bytes": 58061,
+        "sha256": "4acec08b8f275c72c5e85d6976a4ab4a1d6be76f048a6126755295008dec03c2"
+      },
+      "current_source_progress": {
+        "path": "verification/e1872-source-progress.json",
+        "bytes": 11885,
+        "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
+      },
+      "current_owner_host": {
+        "path": "verification/e1878-owner-host.json",
+        "bytes": 45824,
+        "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
+      },
+      "current_renderer_correctness": {
+        "path": "verification/e1880-current-renderer.json",
+        "bytes": 617505,
+        "sha256": "0698497208150af4437b2c93a9a8060718ad293ec40a073b9550341b5d35da1e"
+      },
+      "current_benchmark_readiness": {
+        "path": "verification/e1893-local48-readiness.json",
+        "bytes": 107291,
+        "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
+      }
+    },
+    "current_review_site_evidence": {
+      "path": "verification/e2187-current-review-site.json",
+      "bytes": 0,
+      "sha256": "PENDING"
+    },
+    "historical_benchmark_readiness": {
+      "path": "verification/e2058-local48-readiness.json",
+      "bytes": 18569,
+      "sha256": "76b87aa146454f97507969866bfeda87aff7f445243451db9d243ba7d7bca4a6",
+      "selectionIdentity": "e191c575e2fab909a38b1f11338b4871cc6631c22627a21a7a7eaa9ffc94b7bf",
+      "matchedPassed": 4,
+      "parityPassed": 2,
+      "failed": 0,
+      "unrun": 66,
+      "comparativeSamples": 0
+    },
+    "pinned_downloads": {
+      "checksums": "downloads/current075-checksums.json",
+      "archives": [
+        "downloads/vkf-canonical-0.7.5-0c33370b-hostcb619656-notices.tar.gz",
+        "downloads/vkf-native-linux-x86_64-0.7.5-6a05590c-lib804892b6-notices.tar.gz"
+      ],
+      "qualification": "Current bd7 browser/Node compiler and separate unchanged6f native binary, maintained cb619 Node wrapper, explicitly retained804 library. Exact scoped controls/extracted usage/security only; corrected2185 new Physics and full SDK/GPU/benchmarks unqualified."
+    },
+    "current_package_qualification": {
+      "path": "verification/e2187-package-qualification.json",
+      "bytes": 29299,
+      "sha256": "a44c629d7167211f940ab97b7cf3f8faae0a1799d9d4ed72005e5bb0d2296377"
+    }
+  },
+  "scope": "Current final runtime initial seeds/HelloWorld distinct Run/Edit/errors/plain copy/phone colors/menu/anchors",
+  "initial38": [
+    {
+      "id": "syntax-example-3",
+      "expected": "Hello World\n",
+      "actual": "Hello World\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-values-and-types-0",
+      "expected": "42\n",
+      "actual": "42\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-1",
+      "expected": "72\n",
+      "actual": "72\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-function-calculation",
+      "expected": "42\n",
+      "actual": "42\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-6",
+      "expected": "15\n42\n42\n",
+      "actual": "15\n42\n42\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-12",
+      "expected": "4\n5\n",
+      "actual": "4\n5\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-11",
+      "expected": "7\n12\n",
+      "actual": "7\n12\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "spill-record",
+      "expected": "8\n",
+      "actual": "8\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "import-module",
+      "expected": "5\n",
+      "actual": "5\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-index-access-and-ranges-1",
+      "expected": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+      "actual": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-1",
+      "expected": "[15, 23, 20]\n[12, 18, 15]\n",
+      "actual": "[15, 23, 20]\n[12, 18, 15]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-2",
+      "expected": "[[57, 41], [26, 28]]\n",
+      "actual": "[[57, 41], [26, 28]]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-13",
+      "expected": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+      "actual": "[[58 - 2i, 64 - 2i], [139 - 8i, 154 - 8i]]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-15",
+      "expected": "[[21.4, 45], [22.1, 48]]\n[[[21, 45], [22, 48]], [[21.5, 46], [22.5, 49]]]\n",
+      "actual": "[[21.4, 45], [22.1, 48]]\n[[[21, 45], [22, 48]], [[21.5, 46], [22.5, 49]]]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-8",
+      "expected": "[0, 1.4, 2.1]\n",
+      "actual": "[0, 1.4, 2.1]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-lifting-and-structural-calls-0",
+      "expected": "[2, 3]\n",
+      "actual": "[2, 3]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-18",
+      "expected": "[21.4, 21.8, 22.1, 21.9]\n",
+      "actual": "[21.4, 21.8, 22.1, 21.9]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-operators-0",
+      "expected": "[20.3, 20.4]\n20.706\n",
+      "actual": "[20.3, 20.4]\n20.706\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-index-access-and-ranges-0",
+      "expected": "0\n1\n2\n3\n",
+      "actual": "0\n1\n2\n3\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-4",
+      "expected": "35\n",
+      "actual": "35\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-10",
+      "expected": "0.052809069334849225 + 0.22356251036508448i\n",
+      "actual": "0.052809069334849225 + 0.22356251036508448i\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-11",
+      "expected": "0\n0\n10\n1\n1\n20\n",
+      "actual": "0\n0\n10\n1\n1\n20\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "conditional-loop",
+      "expected": "1\n2\n3\n",
+      "actual": "1\n2\n3\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-12",
+      "expected": "multiple alarms\n",
+      "actual": "multiple alarms\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-13",
+      "expected": "sensor disconnected\n",
+      "actual": "sensor disconnected\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-9",
+      "expected": "13\n9\n",
+      "actual": "13\n9\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-15",
+      "expected": "6\n9\n",
+      "actual": "6\n9\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-16",
+      "expected": "230 cm\n[100, 200, 300] cm\n",
+      "actual": "230 cm\n[100, 200, 300] cm\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "more-example-25",
+      "expected": "temperature = 21.3\n[21.3, 45.5]\n",
+      "actual": "temperature = 21.3\n[21.3, 45.5]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-extra-geometry-views-and-physics-0",
+      "expected": "",
+      "actual": "",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "syntax-example-18",
+      "expected": "1\n2\n",
+      "actual": "1\n2\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "scientific-spectrum",
+      "expected": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5\n",
+      "actual": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "instrument-calibration",
+      "expected": "20.099999999999998\n25.199999999999999\n",
+      "actual": "20.099999999999998\n25.199999999999999\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "scalar-region-selection",
+      "expected": "-0.7568024953079282\n[2, 57]\n[[0.974775369328844, 0.979307053479467, 0.983731289059078, 0.987949456706617, 0.991833245866448, 0.995217052498954, 0.997888735697216, 0.999578565792015, 0.999946320673152, 0.998566737775324, 0.994913981628472, 0.988346544035424, 0.9780951826237, 0.963258250598542, 0.942811138543404, 0.915639400986441, 0.880607903276984, 0.836679657726565, 0.783095508576149, 0.719616071385776, 0.646807105524505, 0.566318735111993, 0.48107532074555, 0.395274865239997, 0.314119052925279, 0.243269516918947, 0.188129307970432, 0.153120883029785, 0.141120008059867, 0.153120883029785, 0.188129307970432, 0.243269516918947, 0.314119052925279, 0.395274865239997, 0.48107532074555, 0.566318735111993, 0.646807105524505, 0.719616071385776, 0.783095508576149, 0.836679657726565, 0.880607903276984, 0.915639400986441, 0.942811138543404, 0.963258250598542, 0.9780951826237, 0.988346544035424, 0.994913981628472, 0.998566737775324, 0.999946320673152, 0.999578565792015, 0.997888735697216, 0.995217052498954, 0.991833245866448, 0.987949456706617, 0.983731289059078, 0.979307053479467, 0.974775369328844], [0.99863643886619, 0.999794299767988, 0.999895484832152, 0.998632885820873, 0.995626124666558, 0.990406028787892, 0.982396893627006, 0.970896960714294, 0.955058178481949, 0.93386735296754, 0.906132399793748, 0.870479745992035, 0.825372100088273, 0.769159679963581, 0.70018189733056, 0.616938782428218, 0.518348872166351, 0.404097816805392, 0.275053562060028, 0.13367618869627, -0.0157100709007903, -0.166962085279843, -0.312643715755435, -0.445063999992281, -0.557609656325902, -0.645893822782835, -0.708175484761308, -0.744781856226867, -0.756802495307928, -0.744781856226867, -0.708175484761308, -0.645893822782835, -0.557609656325902, -0.445063999992281, -0.312643715755435, -0.166962085279843, -0.0157100709007903, 0.13367618869627, 0.275053562060028, 0.404097816805392, 0.518348872166351, 0.616938782428218, 0.70018189733056, 0.769159679963581, 0.825372100088273, 0.870479745992035, 0.906132399793748, 0.93386735296754, 0.955058178481949, 0.970896960714294, 0.982396893627006, 0.990406028787892, 0.995626124666558, 0.998632885820873, 0.999895484832152, 0.999794299767988, 0.99863643886619]]\n",
+      "actual": "-0.7568024953079282\n[2, 57]\n[[0.974775369328844, 0.979307053479467, 0.983731289059078, 0.987949456706617, 0.991833245866448, 0.995217052498954, 0.997888735697216, 0.999578565792015, 0.999946320673152, 0.998566737775324, 0.994913981628472, 0.988346544035424, 0.9780951826237, 0.963258250598542, 0.942811138543404, 0.915639400986441, 0.880607903276984, 0.836679657726565, 0.783095508576149, 0.719616071385776, 0.646807105524505, 0.566318735111993, 0.48107532074555, 0.395274865239997, 0.314119052925279, 0.243269516918947, 0.188129307970432, 0.153120883029785, 0.141120008059867, 0.153120883029785, 0.188129307970432, 0.243269516918947, 0.314119052925279, 0.395274865239997, 0.48107532074555, 0.566318735111993, 0.646807105524505, 0.719616071385776, 0.783095508576149, 0.836679657726565, 0.880607903276984, 0.915639400986441, 0.942811138543404, 0.963258250598542, 0.9780951826237, 0.988346544035424, 0.994913981628472, 0.998566737775324, 0.999946320673152, 0.999578565792015, 0.997888735697216, 0.995217052498954, 0.991833245866448, 0.987949456706617, 0.983731289059078, 0.979307053479467, 0.974775369328844], [0.99863643886619, 0.999794299767988, 0.999895484832152, 0.998632885820873, 0.995626124666558, 0.990406028787892, 0.982396893627006, 0.970896960714294, 0.955058178481949, 0.93386735296754, 0.906132399793748, 0.870479745992035, 0.825372100088273, 0.769159679963581, 0.70018189733056, 0.616938782428218, 0.518348872166351, 0.404097816805392, 0.275053562060028, 0.13367618869627, -0.0157100709007903, -0.166962085279843, -0.312643715755435, -0.445063999992281, -0.557609656325902, -0.645893822782835, -0.708175484761308, -0.744781856226867, -0.756802495307928, -0.744781856226867, -0.708175484761308, -0.645893822782835, -0.557609656325902, -0.445063999992281, -0.312643715755435, -0.166962085279843, -0.0157100709007903, 0.13367618869627, 0.275053562060028, 0.404097816805392, 0.518348872166351, 0.616938782428218, 0.70018189733056, 0.769159679963581, 0.825372100088273, 0.870479745992035, 0.906132399793748, 0.93386735296754, 0.955058178481949, 0.970896960714294, 0.982396893627006, 0.990406028787892, 0.995626124666558, 0.998632885820873, 0.999895484832152, 0.999794299767988, 0.99863643886619]]\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "motion-design",
+      "expected": "[0, 0, 3, -2]\n0.5\n1.5\n",
+      "actual": "[0, 0, 3, -2]\n0.5\n1.5\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "path-assertions",
+      "expected": "passed\n",
+      "actual": "passed\n",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "native-math-annotations",
+      "expected": "",
+      "actual": "",
+      "origin": "saved-current-compiler"
+    },
+    {
+      "id": "embed-panel-area",
+      "expected": "25\n",
+      "actual": "25\n",
+      "origin": "saved-current-compiler"
+    }
+  ],
+  "initialMotionSavedVisible": true,
+  "status": "PASS_CURRENT_INITIAL_RUN_EDIT_ERRORS_COPY_DESKTOP_PHONE_COLORS"
+}

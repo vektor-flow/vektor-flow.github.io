@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmph1c4jo6g.js
+// include: /tmp/tmpxbxvfcsj.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -78,7 +78,7 @@ if (ENVIRONMENT_IS_NODE) {
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2161-production-wasm-actual-20261103/wasm-inputs/linked/compiler.data';
+      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/inputs-library/linked/compiler.data';
       var REMOTE_PACKAGE_BASE = 'compiler.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
@@ -224,10 +224,10 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2161-production-wasm-actual-20261103/wasm-inputs/linked/compiler.data');
+          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/inputs-library/linked/compiler.data');
 
       };
-      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2161-production-wasm-actual-20261103/wasm-inputs/linked/compiler.data');
+      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/inputs-library/linked/compiler.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
@@ -252,7 +252,7 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
 
   })();
 
-// end include: /tmp/tmph1c4jo6g.js
+// end include: /tmp/tmpxbxvfcsj.js
 
 
 // Sometimes an existing Module object exists with properties

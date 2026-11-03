@@ -4,29 +4,29 @@
   "status": "private-candidate",
   "complete": false,
   "stable": false,
-  "source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "release_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "release_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
   "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
   "files": {
     "README.txt": {
-      "bytes": 823,
-      "sha256": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73"
+      "bytes": 422,
+      "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
     },
     "compiler-base.mjs": {
-      "bytes": 188012,
-      "sha256": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116"
+      "bytes": 188078,
+      "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
     },
     "compiler.data": {
       "bytes": 619732,
       "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
     },
     "compiler.mjs": {
-      "bytes": 1464,
-      "sha256": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0"
+      "bytes": 1248,
+      "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
     },
     "compiler.wasm": {
-      "bytes": 20414736,
-      "sha256": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae"
+      "bytes": 20391843,
+      "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
     },
     "formatter.mjs": {
       "bytes": 61416,
@@ -77,8 +77,8 @@
       "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
     },
     "package-tools/project.mjs": {
-      "bytes": 7058,
-      "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+      "bytes": 7664,
+      "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
     },
     "package-tools/publish.mjs": {
       "bytes": 5939,
@@ -110,8 +110,9 @@
     }
   },
   "verification": {
-    "status": "PASS_EXACT_CAPTURE_REGRESSIONS",
-    "evidence": "../../verification/e2161-wasm-regressions.json",
+    "status": "PASS_NAMED_NINETEEN_NODE_CONTROLS",
+    "extractedUsage": "Recorded separately in current package qualification after deterministic packaging",
+    "evidence": "VERIFICATION.json",
     "oldPassCarry": false
   },
   "historical_verification": {
@@ -145,17 +146,17 @@
       "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
     }
   },
-  "compiler_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "browser_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "compiler_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "browser_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
   "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-  "frontend_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "frontend_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
   "stable_release": false,
   "sha256": {
-    "README.txt": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73",
-    "compiler-base.mjs": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116",
+    "README.txt": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54",
+    "compiler-base.mjs": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942",
     "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-    "compiler.mjs": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0",
-    "compiler.wasm": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae",
+    "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
+    "compiler.wasm": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
     "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
     "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -168,7 +169,7 @@
     "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
     "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
     "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
-    "package-tools/project.mjs": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25",
+    "package-tools/project.mjs": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf",
     "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
@@ -188,7 +189,7 @@
       "ordinary retained plotting",
       "Node ESM compiler/guest/formatter embedding"
     ],
-    "qualification": "Current native8/14/17/12/29 and WASM public Node8/14/17/12/29 completeoutputs; current extracted Node usage/security/integrity. Full benchmark/parity/GPU release remain pending.",
+    "qualification": "Exact current name/index/diagnostic Node controls; extracted install/run/compile/security qualification is recorded separately. New Physics laws/full SDK/platform/GPU/benchmarks remain unqualified.",
     "evidence": "VERIFICATION.json",
     "linuxCompilerSDKQualified": false,
     "crossTargetParityQualified": false,
@@ -265,7 +266,7 @@
     "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
     "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
   },
-  "compiler_source_commit": "894b7128f71e74cd0227a0930676b2ec6389141c",
+  "compiler_source_commit": "bd7e1823e118869ae84444263e39fe9180efca10",
   "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
   "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
   "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",

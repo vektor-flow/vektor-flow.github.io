@@ -172,7 +172,7 @@ def verify_current_review_site(preview, release):
             need(record['pairedManifest']['sha256'] == native['pairedManifestSHA256'], 'native paired manifest differs')
             need(record['hostSourceCommit'] == checksums['nodePackageHostSourceCommit'] == host['nodePackageHostSourceCommit']
                  and current['durableHostSourceCommit'] == host['nodePackageHostDurableSourceCommit']
-                 and current['all13ExtractedHostMembersEqualMaintained96d'] is True, 'qualified Node host differs')
+                 and ((host['nodePackageHostSourceCommit'] == '96d0ff9831a09740b30d05f3d3a64f4ab61a8c87' and current['all13ExtractedHostMembersEqualMaintained96d'] is True) or (current.get('maintainedHostSourceCommit') == host['nodePackageHostSourceCommit'] and current.get('all13ExtractedHostMembersEqualMaintainedSource') is True and current.get('all13ExtractedHostMembersEqualMaintained96d') is False)), 'qualified Node host differs')
             need(record['formatterBinding'] == expected['formatterBinding'], 'qualified independent formatter differs')
             need(all(record[key] is False for key in ('fullReleaseClaim', 'nativeSDKClaim', 'physicalGPUClaim', 'benchmarkClaim')),
                  'scoped archives cannot qualify a full release')

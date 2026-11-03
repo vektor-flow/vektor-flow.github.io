@@ -1,0 +1,135 @@
+{
+  "owner": "e2187",
+  "library": {
+    "choice": "retained804",
+    "libraryCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
+    "physics": {
+      "path": "/mnt/development/VektorFlow-e2045-physics-units-actual-20261103/compiler-source/compiler/self_hosted/stdlib/physics.vkf",
+      "bytes": 28856,
+      "sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3"
+    },
+    "installedPhysics": {
+      "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/native-install/compiler/self_hosted/stdlib/physics.vkf",
+      "bytes": 28856,
+      "sha256": "a311aa4c5a9295508cc0554616c380c2dac80a87f745f25788c3e30a653539c3"
+    },
+    "pairedManifest": {
+      "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/paired-stdlib-final/vkf_packaged_stdlib.manifest.json",
+      "bytes": 8752,
+      "sha256": "9fb32101b419914d5ccfe47922782171e673af13a0def1930928b046d523bbaa"
+    },
+    "pairedHeader": {
+      "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/paired-stdlib-final/vkf_packaged_stdlib.generated.hpp",
+      "bytes": 622599,
+      "sha256": "a1383a322e58d5964582b5a268ef5afd40630d0fee0875e12493851df008335b"
+    },
+    "newLawQualification": "FAILED_OR_UNRUN_RETAINED_SEPARATELY",
+    "reference": "Baseline9a Physics prose retained; only maintained2e0 Motion fields declaration repair consumed; mirror matches actual selected library",
+    "embeddingAuthority": "Reusable physical state/topology/data-to-embedding functions may accompany laws; baseline reference contains no categorical exclusion, so no added API claim."
+  },
+  "binary": {
+    "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/native-install/bin/vkf",
+    "bytes": 32897816,
+    "sha256": "e8bf4097b9b4c24a2967f0f97d63f8f4f8b40f5b8901031c50ff3cf229bc2906"
+  },
+  "scope": "Existing3 generic collision/contact/mass/momentum controls on unchanged6f binary and exact retained804 source. No new-law qualification.",
+  "rows": [
+    {
+      "fixture": "compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke/main.vkf",
+        "bytes": 324,
+        "sha256": "7c7fd8b7fe93197cafbe91c769a39be2ef6913c8d734c3706fddf4765025c8e9"
+      },
+      "compile": {
+        "name": "retained-physics_collision_matrix_smoke-compile",
+        "command": [
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/native-install/bin/vkf",
+          "-b",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke/main.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke/program",
+          "--diagnostics"
+        ],
+        "cwd": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke",
+        "exit": 0,
+        "timeout": false,
+        "childJoined": true,
+        "elapsedSeconds": 46.75097679300234,
+        "stdout": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_collision_matrix_smoke-compile.stdout",
+        "stderr": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_collision_matrix_smoke-compile.stderr"
+      },
+      "passed": true,
+      "run": {
+        "name": "retained-physics_collision_matrix_smoke-run",
+        "command": [
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke/program"
+        ],
+        "cwd": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_collision_matrix_smoke",
+        "exit": 0,
+        "timeout": false,
+        "childJoined": true,
+        "elapsedSeconds": 0.0037593389861285686,
+        "stdout": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_collision_matrix_smoke-run.stdout",
+        "stderr": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_collision_matrix_smoke-run.stderr"
+      },
+      "stdout": "0.833333333333333\n10.8\n"
+    },
+    {
+      "fixture": "compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_contact_model_smoke/main.vkf",
+        "bytes": 648,
+        "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152"
+      },
+      "compile": {
+        "name": "retained-physics_contact_model_smoke-compile",
+        "command": [
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/native-install/bin/vkf",
+          "-b",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_contact_model_smoke/main.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_contact_model_smoke/program",
+          "--diagnostics"
+        ],
+        "cwd": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_contact_model_smoke",
+        "exit": 1,
+        "timeout": false,
+        "childJoined": true,
+        "elapsedSeconds": 57.73297384206671,
+        "stdout": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_contact_model_smoke-compile.stdout",
+        "stderr": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_contact_model_smoke-compile.stderr"
+      },
+      "passed": false
+    },
+    {
+      "fixture": "compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
+      "source": {
+        "path": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_rigid_body_smoke/main.vkf",
+        "bytes": 579,
+        "sha256": "3547a685b765a70d4d68c8cfc1835bfd8bea3564e8e66fc6891977066f64058b"
+      },
+      "compile": {
+        "name": "retained-physics_rigid_body_smoke-compile",
+        "command": [
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/native-install/bin/vkf",
+          "-b",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_rigid_body_smoke/main.vkf",
+          "-o",
+          "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_rigid_body_smoke/program",
+          "--diagnostics"
+        ],
+        "cwd": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/physics-retained-controls/physics_rigid_body_smoke",
+        "exit": 1,
+        "timeout": false,
+        "childJoined": true,
+        "elapsedSeconds": 36.98238588497043,
+        "stdout": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_rigid_body_smoke-compile.stdout",
+        "stderr": "/mnt/development/VektorFlow-e2187-controller-physics-mapping-release-actual-20261103/retained-physics_rigid_body_smoke-compile.stderr"
+      },
+      "passed": false
+    }
+  ],
+  "passed": 1,
+  "count": 3
+}

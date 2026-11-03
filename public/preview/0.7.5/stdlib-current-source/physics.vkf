@@ -1,0 +1,903 @@
+# Physics stdlib fixture.
+#
+# Rigid-body collision helpers are expressed in VKF so the scene/runtime can
+# compile the same source on web, desktop, and mobile hosts.
+
+:.math
+:.linalg
+errors: .errors
+
+Vector3: [num:3]
+Matrix3: [[num:3]:3]
+RigidMaterial: (
+    name:str,
+    density:num,
+    e_n:num,
+    e_t:num,
+    mu_s:num,
+    mu_d:num,
+    mu_r:num,
+    restitution_threshold:num,
+    normal_restitution:num,
+    tangent_restitution:num,
+    static_friction:num,
+    dynamic_friction:num,
+    rolling_friction:num
+)
+ContactMaterial: (
+    e_n:num,
+    e_t:num,
+    mu_s:num,
+    mu_d:num,
+    mu_r:num,
+    restitution_threshold:num,
+    normal_restitution:num,
+    tangent_restitution:num,
+    static_friction:num,
+    dynamic_friction:num,
+    rolling_friction:num
+)
+
+contact_static: 0
+contact_dynamic: 1
+contact_degenerate: 2
+
+# Rigid-body mass properties and inertial stepping are part of physics. There
+# is no separate `rigid_body` release module.
+
+rb_add3(a:any, b:any):
+    [a.0 + b.0, a.1 + b.1, a.2 + b.2]
+
+rb_sub3(a:any, b:any):
+    [a.0 - b.0, a.1 - b.1, a.2 - b.2]
+
+rb_scale3(s:num, v:any):
+    [s * v.0, s * v.1, s * v.2]
+
+rb_dot3(a:[num:3], b:[num:3]) -> num:
+    dot(a, b)
+
+rb_cross3(a:[num:3], b:[num:3]) -> [num:3]:
+    cross(a, b)
+
+rb_mat3(
+    a00:num, a01:num, a02:num,
+    a10:num, a11:num, a12:num,
+    a20:num, a21:num, a22:num
+):
+    [
+        [a00, a01, a02],
+        [a10, a11, a12],
+        [a20, a21, a22]
+    ]
+
+rb_identity3():
+    rb_mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+rb_scale_mat3(s:num, A:any):
+    rb_mat3(
+        s * A.(0, 0), s * A.(0, 1), s * A.(0, 2),
+        s * A.(1, 0), s * A.(1, 1), s * A.(1, 2),
+        s * A.(2, 0), s * A.(2, 1), s * A.(2, 2)
+    )
+
+rb_add_mat3(A:any, B:any):
+    rb_mat3(
+        A.(0, 0) + B.(0, 0), A.(0, 1) + B.(0, 1), A.(0, 2) + B.(0, 2),
+        A.(1, 0) + B.(1, 0), A.(1, 1) + B.(1, 1), A.(1, 2) + B.(1, 2),
+        A.(2, 0) + B.(2, 0), A.(2, 1) + B.(2, 1), A.(2, 2) + B.(2, 2)
+    )
+
+rb_outer3(a:[num:3], b:[num:3]) -> [[num:3]:3]:
+    rb_mat3(
+        a.0 * b.0, a.0 * b.1, a.0 * b.2,
+        a.1 * b.0, a.1 * b.1, a.1 * b.2,
+        a.2 * b.0, a.2 * b.1, a.2 * b.2
+    )
+
+rb_trace3(A:[[num:3]:3]) -> num:
+    trace(A)
+
+rb_det3(A:[[num:3]:3]) -> num:
+    determinant(A)
+
+rb_inverse3(A:[[num:3]:3]) -> [[num:3]:3]:
+    inverse(A)
+
+rb_mat_vec3(A:[[num:3]:3], v:[num:3]) -> [num:3]:
+    [
+        A.(0, 0) * v.0 + A.(0, 1) * v.1 + A.(0, 2) * v.2,
+        A.(1, 0) * v.0 + A.(1, 1) * v.1 + A.(1, 2) * v.2,
+        A.(2, 0) * v.0 + A.(2, 1) * v.1 + A.(2, 2) * v.2
+    ]
+
+rb_abs(x:num):
+    x < 0? @: 0 - x
+    @: x
+
+parallel_axis_shift3(mass:num, displacement:any):
+    d2: rb_dot3(displacement, displacement)
+    rb_add_mat3(
+        rb_scale_mat3(mass * d2, rb_identity3()),
+        rb_scale_mat3(0 - mass, rb_outer3(displacement, displacement))
+    )
+
+tetra_mass_properties3(a:any, b:any, c:any, d:any, density:num):
+    signed_six_volume: rb_dot3(rb_sub3(b, a), rb_cross3(rb_sub3(c, a), rb_sub3(d, a)))
+    volume: rb_abs(signed_six_volume) / 6
+    mass: volume * density
+    center: rb_scale3(0.25, rb_add3(rb_add3(a, b), rb_add3(c, d)))
+    summed: rb_add3(rb_add3(a, b), rb_add3(c, d))
+    point_moments: rb_add_mat3(
+        rb_add_mat3(rb_outer3(a, a), rb_outer3(b, b)),
+        rb_add_mat3(rb_outer3(c, c), rb_outer3(d, d))
+    )
+    second_moment: rb_scale_mat3(
+        volume / 20,
+        rb_add_mat3(point_moments, rb_outer3(summed, summed))
+    )
+    scaled_second_moment: rb_scale_mat3(density, second_moment)
+    inertia_origin: rb_add_mat3(
+        rb_scale_mat3(rb_trace3(scaled_second_moment), rb_identity3()),
+        rb_scale_mat3(0 - 1, scaled_second_moment)
+    )
+    inertia_tensor: rb_add_mat3(
+        inertia_origin,
+        rb_scale_mat3(0 - 1, parallel_axis_shift3(mass, center))
+    )
+    @: (
+        mass: mass,
+        volume: volume,
+        center_of_mass: center,
+        inertia_tensor: inertia_tensor
+    )
+
+combine_mass_properties3(a:any, b:any):
+    mass: a.mass + b.mass
+    center: rb_scale3(
+        1 / mass,
+        rb_add3(rb_scale3(a.mass, a.center_of_mass), rb_scale3(b.mass, b.center_of_mass))
+    )
+    inertia: rb_add_mat3(
+        rb_add_mat3(a.inertia_tensor, parallel_axis_shift3(a.mass, rb_sub3(a.center_of_mass, center))),
+        rb_add_mat3(b.inertia_tensor, parallel_axis_shift3(b.mass, rb_sub3(b.center_of_mass, center)))
+    )
+    @: (mass: mass, center_of_mass: center, inertia_tensor: inertia)
+
+rigid_state3(position:[num:3], momentum:[num:3], angular_momentum:[num:3]):
+    @: (position: position, momentum: momentum, angular_momentum: angular_momentum)
+
+force_at_point3(force:any, point:any, center_world:any):
+    torque: rb_cross3(rb_sub3(point, center_world), force)
+    @: (force: force, torque: torque)
+
+step_rigid_body_momentum3(
+    state:(position:[num:3], momentum:[num:3], angular_momentum:[num:3]),
+    properties:(mass:num, inertia_tensor:[[num:3]:3]),
+    dt:num,
+    force:[num:3],
+    torque:[num:3]
+):
+    momentum: rb_add3(state.momentum, rb_scale3(dt, force))
+    angular_momentum: rb_add3(state.angular_momentum, rb_scale3(dt, torque))
+    velocity: rb_scale3(1 / properties.mass, momentum)
+    angular_velocity: solve(properties.inertia_tensor, angular_momentum)
+    position: rb_add3(state.position, rb_scale3(dt, velocity))
+    @: (
+        momentum: momentum,
+        angular_momentum: angular_momentum,
+        velocity: velocity,
+        angular_velocity: angular_velocity,
+        position: position
+    )
+
+vec2(x:num, y:num):
+    [x, y]
+
+vec3(x:num, y:num, z:num):
+    [x, y, z]
+
+add2(a:any, b:any):
+    [a.0 + b.0, a.1 + b.1]
+
+add3(a:any, b:any):
+    [a.0 + b.0, a.1 + b.1, a.2 + b.2]
+
+sub2(a:any, b:any):
+    [a.0 - b.0, a.1 - b.1]
+
+sub3(a:any, b:any):
+    [a.0 - b.0, a.1 - b.1, a.2 - b.2]
+
+scale2(s:num, v:any):
+    [s * v.0, s * v.1]
+
+scale3(s:num, v:any):
+    [s * v.0, s * v.1, s * v.2]
+
+dot2(a:[num:2], b:[num:2]) -> num:
+    dot(a, b)
+
+dot3(a:[num:3], b:[num:3]) -> num:
+    dot(a, b)
+
+cross3(a:[num:3], b:[num:3]) -> [num:3]:
+    cross(a, b)
+
+mat2(a00:num, a01:num, a10:num, a11:num):
+    [[a00, a01], [a10, a11]]
+
+mat3(
+    a00:num, a01:num, a02:num,
+    a10:num, a11:num, a12:num,
+    a20:num, a21:num, a22:num
+):
+    [
+        [a00, a01, a02],
+        [a10, a11, a12],
+        [a20, a21, a22]
+    ]
+
+zero3x3():
+    mat3(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+identity3x3():
+    mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+scale_mat3(s:num, A:any):
+    mat3(
+        s * A.(0, 0), s * A.(0, 1), s * A.(0, 2),
+        s * A.(1, 0), s * A.(1, 1), s * A.(1, 2),
+        s * A.(2, 0), s * A.(2, 1), s * A.(2, 2)
+    )
+
+add_mat3(A:any, B:any):
+    mat3(
+        A.(0, 0) + B.(0, 0), A.(0, 1) + B.(0, 1), A.(0, 2) + B.(0, 2),
+        A.(1, 0) + B.(1, 0), A.(1, 1) + B.(1, 1), A.(1, 2) + B.(1, 2),
+        A.(2, 0) + B.(2, 0), A.(2, 1) + B.(2, 1), A.(2, 2) + B.(2, 2)
+    )
+
+neg_mat3(A:any):
+    scale_mat3(0 - 1, A)
+
+mat_vec3(A:[[num:3]:3], v:[num:3]) -> [num:3]:
+    [
+        A.(0, 0) * v.0 + A.(0, 1) * v.1 + A.(0, 2) * v.2,
+        A.(1, 0) * v.0 + A.(1, 1) * v.1 + A.(1, 2) * v.2,
+        A.(2, 0) * v.0 + A.(2, 1) * v.1 + A.(2, 2) * v.2
+    ]
+
+mat_mul3(A:[[num:3]:3], B:[[num:3]:3]) -> [[num:3]:3]:
+    matmul(A, B)
+
+diag_inv3(diagonal:any):
+    rb_inverse3(
+        mat3(
+            diagonal.0, 0, 0,
+            0, diagonal.1, 0,
+            0, 0, diagonal.2
+        )
+    )
+
+skew3(r:any):
+    mat3(
+        0, 0 - r.2, r.1,
+        r.2, 0, 0 - r.0,
+        0 - r.1, r.0, 0
+    )
+
+collision_body3(mass:num, inv_inertia:[[num:3]:3], contact_offset:[num:3]):
+    mass <= 0?
+        errors.ValueError("physics collision body mass must be positive")!
+    inv_mass: 1 / mass
+    @: (mass: mass, inv_mass: inv_mass, inv_inertia: inv_inertia, contact_offset: contact_offset)
+
+collision_body_inverse3(inv_mass:num, inv_inertia:[[num:3]:3], contact_offset:[num:3]):
+    @: (
+        mass: "derived_from_inverse",
+        inv_mass: inv_mass,
+        inv_inertia: inv_inertia,
+        contact_offset: contact_offset
+    )
+
+body_inv_mass3(body:any):
+    scale_mat3(body.inv_mass, identity3x3())
+
+body_pp3(body:any):
+    S: skew3(body.contact_offset)
+    # inv(m)I - S inv(I) S equals inv(m)I + [r]x inv(I) [r]x^T.
+    add_mat3(body_inv_mass3(body), neg_mat3(mat_mul3(mat_mul3(S, body.inv_inertia), S)))
+
+body_pL3(body:any):
+    neg_mat3(mat_mul3(skew3(body.contact_offset), body.inv_inertia))
+
+body_Lp3(body:any):
+    mat_mul3(body.inv_inertia, skew3(body.contact_offset))
+
+body_LL3(body:any):
+    body.inv_inertia
+
+collision_matrix3(body_a:any, body_b:any):
+    pp: add_mat3(body_pp3(body_a), body_pp3(body_b))
+    pL: add_mat3(body_pL3(body_a), body_pL3(body_b))
+    Lp: add_mat3(body_Lp3(body_a), body_Lp3(body_b))
+    LL: add_mat3(body_LL3(body_a), body_LL3(body_b))
+    @: (pp: pp, pL: pL, Lp: Lp, LL: LL)
+
+apply_collision_matrix3(matrix:any, linear_impulse:any, angular_impulse:any):
+    linear_delta: add3(mat_vec3(matrix.pp, linear_impulse), mat_vec3(matrix.pL, angular_impulse))
+    angular_delta: add3(mat_vec3(matrix.Lp, linear_impulse), mat_vec3(matrix.LL, angular_impulse))
+    @: (linear_delta: linear_delta, angular_delta: angular_delta)
+
+normal_restitution_impulse3(matrix:any, relative_velocity:any, normal:any, restitution:num):
+    effective_mass: dot3(normal, mat_vec3(matrix.pp, normal))
+    closing_speed: dot3(relative_velocity, normal)
+    abs_num(effective_mass) < 0.000000000001?
+        @: (magnitude: 0, impulse: [0, 0, 0])
+    magnitude: (0 - (1 + restitution) * closing_speed) / effective_mass
+    impulse: scale3(magnitude, normal)
+    @: (magnitude: magnitude, impulse: impulse)
+
+abs_num(x:num):
+    x < 0? @: 0 - x
+    @: x
+
+clamp_num(x:num, lo:num, hi:num):
+    x < lo? @: lo
+    x > hi? @: hi
+    @: x
+
+max_num(a:num, b:num):
+    (a + b + abs_num(a - b)) / 2
+
+length3(v:any):
+    sqrt(dot3(v, v))
+
+unit_or_zero3(v:any):
+    len: length3(v)
+    len < 0.000001? @: [0, 0, 0]
+    @: scale3(1 / len, v)
+
+project_normal3(v:any, normal:any):
+    scale3(dot3(v, normal), normal)
+
+project_tangent3(v:any, normal:any):
+    sub3(v, project_normal3(v, normal))
+
+tangential_friction_impulse3(matrix:any, relative_velocity:any, normal:any, normal_impulse_magnitude:num, contact:any):
+    tangent_velocity: project_tangent3(relative_velocity, normal)
+    tangent_speed: length3(tangent_velocity)
+    tangent_speed < 0.000001?
+        @: (mode: contact_static, impulse: [0, 0, 0], speed: 0)
+    tangent: scale3(1 / tangent_speed, tangent_velocity)
+    effective_mass: dot3(tangent, mat_vec3(matrix.pp, tangent))
+    abs_num(effective_mass) < 0.000000000001?
+        @: (mode: contact_static, impulse: [0, 0, 0], speed: tangent_speed)
+    desired_magnitude: (0 - (1 + contact.e_t) * tangent_speed) / effective_mass
+    static_limit: contact.mu_s * abs_num(normal_impulse_magnitude)
+    dynamic_limit: contact.mu_d * abs_num(normal_impulse_magnitude)
+    desired_abs: abs_num(desired_magnitude)
+    mode: contact_static
+    limited_magnitude: desired_magnitude
+    desired_abs > static_limit?
+        .mode: contact_dynamic
+        .limited_magnitude: clamp_num(desired_magnitude, 0 - dynamic_limit, dynamic_limit)
+    impulse: scale3(limited_magnitude, tangent)
+    speed: tangent_speed
+    @: (mode: mode, impulse: impulse, speed: speed)
+
+normal_contact_impulse3(matrix:any, relative_velocity:any, normal:any, contact:any):
+    effective_mass: dot3(normal, mat_vec3(matrix.pp, normal))
+    closing_speed: dot3(relative_velocity, normal)
+    abs_num(effective_mass) < 0.000000000001?
+        @: (impact: false, restitution: 0, desired_magnitude: 0, magnitude: 0, impulse: [0, 0, 0])
+    impact: closing_speed < 0 - contact.restitution_threshold
+    restitution: 0
+    impact?
+        .restitution: contact.e_n
+    desired_magnitude: (0 - (1 + restitution) * closing_speed) / effective_mass
+    magnitude: max_num(0, desired_magnitude)
+    impulse: scale3(magnitude, normal)
+    @: (
+        impact: impact,
+        restitution: restitution,
+        desired_magnitude: desired_magnitude,
+        magnitude: magnitude,
+        impulse: impulse
+    )
+
+rolling_resistance_impulse3(
+    matrix:any,
+    relative_angular_velocity:any,
+    normal:any,
+    normal_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+    rolling_velocity: project_tangent3(relative_angular_velocity, normal)
+    rolling_speed: length3(rolling_velocity)
+    rolling_axis: unit_or_zero3(rolling_velocity)
+    effective_mass: dot3(rolling_axis, mat_vec3(matrix.LL, rolling_axis)) + 0.000001
+    desired_magnitude: (0 - rolling_speed) / effective_mass
+    limit: contact.mu_r * contact_radius * abs_num(normal_impulse_magnitude)
+    limited_magnitude: clamp_num(desired_magnitude, 0 - limit, limit)
+    mode: contact_static
+    abs_num(desired_magnitude) > limit?
+        .mode: contact_dynamic
+    impulse: scale3(limited_magnitude, rolling_axis)
+    speed: rolling_speed
+    @: (mode: mode, impulse: impulse, speed: speed)
+
+spin_friction_impulse3(
+    matrix:any,
+    relative_angular_velocity:any,
+    normal:any,
+    normal_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+    spin_speed: dot3(relative_angular_velocity, normal)
+    effective_mass: dot3(normal, mat_vec3(matrix.LL, normal)) + 0.000001
+    desired_magnitude: (0 - spin_speed) / effective_mass
+    static_limit: contact.mu_s * contact_radius * abs_num(normal_impulse_magnitude)
+    dynamic_limit: contact.mu_d * contact_radius * abs_num(normal_impulse_magnitude)
+    limited_magnitude: desired_magnitude
+    mode: contact_static
+    abs_num(desired_magnitude) > static_limit?
+        .limited_magnitude: clamp_num(desired_magnitude, 0 - dynamic_limit, dynamic_limit)
+        .mode: contact_dynamic
+    impulse: scale3(limited_magnitude, normal)
+    speed: spin_speed
+    @: (mode: mode, impulse: impulse, speed: speed)
+
+coupled_contact_impulse3(
+    matrix:any,
+    relative_velocity:any,
+    relative_angular_velocity:any,
+    normal:any,
+    tangent:any,
+    rolling_axis:any,
+    normal_impulse_magnitude:num,
+    rolling_impulse_magnitude:num,
+    contact_radius:num,
+    contact:any
+):
+    normal_impulse: scale3(normal_impulse_magnitude, normal)
+    rolling_impulse: scale3(rolling_impulse_magnitude, rolling_axis)
+    normal_delta: apply_collision_matrix3(matrix, normal_impulse, rolling_impulse)
+    velocity_after_normal: add3(relative_velocity, normal_delta.linear_delta)
+    angular_after_normal: add3(relative_angular_velocity, normal_delta.angular_delta)
+    a: dot3(tangent, mat_vec3(matrix.pp, tangent))
+    b: dot3(tangent, mat_vec3(matrix.pL, normal))
+    c: dot3(normal, mat_vec3(matrix.Lp, tangent))
+    d: dot3(normal, mat_vec3(matrix.LL, normal))
+    determinant: a * d - b * c
+    tangent_speed: dot3(velocity_after_normal, tangent)
+    spin_speed: dot3(angular_after_normal, normal)
+    abs_num(determinant) < 0.000000000001?
+        @: (
+            linear_impulse: normal_impulse,
+            angular_impulse: rolling_impulse,
+            tangential_impulse: [0, 0, 0],
+            spin_impulse: [0, 0, 0],
+            mode: contact_degenerate
+        )
+    desired_tangent: (0 - (1 + contact.e_t) * (d * tangent_speed - b * spin_speed)) / determinant
+    desired_spin: (0 - (1 + contact.e_t) * (a * spin_speed - c * tangent_speed)) / determinant
+    static_tangent_limit: contact.mu_s * abs_num(normal_impulse_magnitude)
+    static_spin_limit: contact.mu_s * contact_radius * abs_num(normal_impulse_magnitude)
+    dynamic_tangent_limit: contact.mu_d * abs_num(normal_impulse_magnitude)
+    dynamic_spin_limit: contact.mu_d * contact_radius * abs_num(normal_impulse_magnitude)
+    mode: contact_static
+    tangent_magnitude: desired_tangent
+    spin_magnitude: desired_spin
+    abs_num(desired_tangent) > static_tangent_limit?
+        .mode: contact_dynamic
+    abs_num(desired_spin) > static_spin_limit?
+        .mode: contact_dynamic
+    mode = contact_dynamic?
+        .tangent_magnitude: clamp_num(desired_tangent, 0 - dynamic_tangent_limit, dynamic_tangent_limit)
+        .spin_magnitude: clamp_num(desired_spin, 0 - dynamic_spin_limit, dynamic_spin_limit)
+    linear_impulse: add3(normal_impulse, scale3(tangent_magnitude, tangent))
+    angular_impulse: add3(rolling_impulse, scale3(spin_magnitude, normal))
+    tangential_impulse: scale3(tangent_magnitude, tangent)
+    spin_impulse: scale3(spin_magnitude, normal)
+    @: (
+        linear_impulse: linear_impulse,
+        angular_impulse: angular_impulse,
+        tangential_impulse: tangential_impulse,
+        spin_impulse: spin_impulse,
+        mode: mode
+    )
+
+solid_contact_impulse3(
+    matrix:any,
+    relative_velocity:any,
+    relative_angular_velocity:any,
+    normal:any,
+    tangent:any,
+    rolling_axis:any,
+    contact_radius:num,
+    rolling_radius:num,
+    contact:any
+):
+    normal_hit: normal_contact_impulse3(matrix, relative_velocity, normal, contact)
+    rolling_hit: rolling_resistance_impulse3(
+        matrix,
+        relative_angular_velocity,
+        normal,
+        normal_hit.magnitude,
+        rolling_radius,
+        contact
+    )
+    rolling_magnitude: dot3(rolling_hit.impulse, rolling_axis)
+    coupled_hit: coupled_contact_impulse3(
+        matrix,
+        relative_velocity,
+        relative_angular_velocity,
+        normal,
+        tangent,
+        rolling_axis,
+        normal_hit.magnitude,
+        rolling_magnitude,
+        contact_radius,
+        contact
+    )
+    linear_impulse: coupled_hit.linear_impulse
+    angular_impulse: coupled_hit.angular_impulse
+    normal_impulse: normal_hit.impulse
+    tangential_impulse: coupled_hit.tangential_impulse
+    rolling_impulse: rolling_hit.impulse
+    spin_impulse: coupled_hit.spin_impulse
+    friction_mode: coupled_hit.mode
+    impact: normal_hit.impact
+    @: (
+        linear_impulse: linear_impulse,
+        angular_impulse: angular_impulse,
+        normal_impulse: normal_impulse,
+        tangential_impulse: tangential_impulse,
+        rolling_impulse: rolling_impulse,
+        spin_impulse: spin_impulse,
+        friction_mode: friction_mode,
+        impact: impact
+    )
+
+angular_damping3(angular_velocity:any, damping:num):
+    scale3(clamp_num(1 - damping, 0, 1), angular_velocity)
+
+dice_texture():
+    @: (
+        kind: "dice",
+        color_a: [0.98, 0.98, 1.0, 1.0],
+        color_b: [0.03, 0.03, 0.04, 1.0],
+        graph_width_px: 3.0
+    )
+
+rigid_material(
+    name:str,
+    density:num,
+    e_n:num,
+    e_t:num,
+    mu_s:num,
+    mu_d:num,
+    mu_r:num
+):
+    restitution_threshold: 0.5
+    normal_restitution: e_n
+    tangent_restitution: e_t
+    static_friction: mu_s
+    dynamic_friction: mu_d
+    rolling_friction: mu_r
+    @: (
+        name: name,
+        density: density,
+        e_n: e_n,
+        e_t: e_t,
+        mu_s: mu_s,
+        mu_d: mu_d,
+        mu_r: mu_r,
+        restitution_threshold: restitution_threshold,
+        normal_restitution: normal_restitution,
+        tangent_restitution: tangent_restitution,
+        static_friction: static_friction,
+        dynamic_friction: dynamic_friction,
+        rolling_friction: rolling_friction
+    )
+
+dice_material():
+    rigid_material("acrylic_dice", 1180, 0.46, 0.18, 0.62, 0.48, 0.055)
+
+felt_table_material():
+    rigid_material("felt_table", 220, 0.38, 0.10, 0.74, 0.58, 0.085)
+
+contact_material(a:any, b:any):
+    e_n: max_num(a.e_n, b.e_n)
+    e_t: max_num(a.e_t, b.e_t)
+    mu_s: sqrt(a.mu_s * b.mu_s)
+    mu_d: sqrt(a.mu_d * b.mu_d)
+    mu_r: sqrt(a.mu_r * b.mu_r)
+    restitution_threshold: max_num(a.restitution_threshold, b.restitution_threshold)
+    normal_restitution: max_num(a.e_n, b.e_n)
+    tangent_restitution: max_num(a.e_t, b.e_t)
+    static_friction: sqrt(a.mu_s * b.mu_s)
+    dynamic_friction: sqrt(a.mu_d * b.mu_d)
+    rolling_friction: sqrt(a.mu_r * b.mu_r)
+    @: (
+        e_n: e_n,
+        e_t: e_t,
+        mu_s: mu_s,
+        mu_d: mu_d,
+        mu_r: mu_r,
+        restitution_threshold: restitution_threshold,
+        normal_restitution: normal_restitution,
+        tangent_restitution: tangent_restitution,
+        static_friction: static_friction,
+        dynamic_friction: dynamic_friction,
+        rolling_friction: rolling_friction
+    )
+
+copy_rigid_material(value:any):
+    density: value.density
+    e_n: value.e_n
+    e_t: value.e_t
+    mu_s: value.mu_s
+    mu_d: value.mu_d
+    mu_r: value.mu_r
+    restitution_threshold: value.restitution_threshold
+    normal_restitution: value.normal_restitution
+    tangent_restitution: value.tangent_restitution
+    static_friction: value.static_friction
+    dynamic_friction: value.dynamic_friction
+    rolling_friction: value.rolling_friction
+    :
+
+infinite_plane3(normal:[num:3], offset:num, source_material:any):
+    mass: "infinite"
+    inv_mass: 0
+    inv_inertia: zero3x3()
+    material: copy_rigid_material(source_material)
+    @: (
+        normal: normal,
+        offset: offset,
+        material: material,
+        mass: mass,
+        inv_mass: inv_mass,
+        inv_inertia: inv_inertia
+    )
+
+cube_inv_inertia3(mass:num, size:num):
+    i: (mass * size * size) / 6
+    diag_inv3([i, i, i])
+
+dice_body3(
+    size:num,
+    mass:num,
+    center:[num:3],
+    linear_velocity:[num:3],
+    angular_velocity:[num:3],
+    source_material:any
+):
+    inv_mass: 1 / mass
+    inv_inertia: cube_inv_inertia3(mass, size)
+    texture: dice_texture()
+    material: copy_rigid_material(source_material)
+    @: (
+        size: size,
+        mass: mass,
+        center: center,
+        linear_velocity: linear_velocity,
+        angular_velocity: angular_velocity,
+        material: material,
+        inv_mass: inv_mass,
+        inv_inertia: inv_inertia,
+        texture: texture
+    )
+
+dice_roll_initial_state(seed:num):
+    # Deterministic seed-to-range mapping for examples until a source-owned RNG lands.
+    whole_seed: int(seed)
+    a0: whole_seed
+    a1: whole_seed * 7 + 3
+    a2: whole_seed * 11 + 5
+    a3: whole_seed * 13 + 7
+    a4: whole_seed * 17 + 11
+    r0: (a0 % 17) / 16
+    r1: (a1 % 19) / 18
+    r2: (a2 % 23) / 22
+    r3: (a3 % 29) / 28
+    r4: (a4 % 31) / 30
+    linear_velocity: [
+        1.2 + 2.1 * r0,
+        0.8 + 1.6 * r1,
+        4.8 + 2.7 * r2
+    ]
+    angular_velocity: [
+        7.0 + 9.0 * r3,
+        9.0 + 11.0 * r4,
+        5.0 + 7.0 * r2
+    ]
+    @: (linear_velocity: linear_velocity, angular_velocity: angular_velocity)
+
+first_plane_bounce3(dice:any, plane:any, contact:any):
+    normal: plane.normal
+    impact_linear_velocity: [
+        dice.linear_velocity.0,
+        dice.linear_velocity.1,
+        0 - abs_num(dice.linear_velocity.2)
+    ]
+    relative_velocity: impact_linear_velocity
+    body: collision_body3(dice.mass, dice.inv_inertia, scale3(0 - dice.size / 2, normal))
+    plane_body: collision_body_inverse3(0, zero3x3(), [0.0, 0.0, 0.0])
+    matrix: collision_matrix3(body, plane_body)
+    normal_hit: normal_contact_impulse3(matrix, relative_velocity, normal, contact)
+    friction_hit: tangential_friction_impulse3(
+        matrix,
+        relative_velocity,
+        normal,
+        normal_hit.magnitude,
+        contact
+    )
+    linear_impulse: add3(normal_hit.impulse, friction_hit.impulse)
+    angular_impulse_from_friction: cross3(body.contact_offset, friction_hit.impulse)
+    after_linear_velocity: add3(impact_linear_velocity, scale3(dice.inv_mass, linear_impulse))
+    after_angular_velocity_raw: add3(dice.angular_velocity, mat_vec3(dice.inv_inertia, angular_impulse_from_friction))
+    rolling_hit: rolling_resistance_impulse3(
+        matrix,
+        after_angular_velocity_raw,
+        normal,
+        normal_hit.magnitude,
+        dice.size / 2,
+        contact
+    )
+    spin_hit: spin_friction_impulse3(
+        matrix,
+        after_angular_velocity_raw,
+        normal,
+        normal_hit.magnitude,
+        dice.size / 2,
+        contact
+    )
+    angular_impulse: add3(angular_impulse_from_friction, add3(rolling_hit.impulse, spin_hit.impulse))
+    after_angular_velocity: add3(dice.angular_velocity, mat_vec3(dice.inv_inertia, angular_impulse))
+    normal_impulse: normal_hit.impulse
+    tangential_impulse: friction_hit.impulse
+    rolling_impulse: rolling_hit.impulse
+    spin_impulse: spin_hit.impulse
+    friction_mode: friction_hit.mode
+    tangential_speed: friction_hit.speed
+    @: (
+        after_linear_velocity: after_linear_velocity,
+        after_angular_velocity: after_angular_velocity,
+        normal_impulse: normal_impulse,
+        tangential_impulse: tangential_impulse,
+        rolling_impulse: rolling_impulse,
+        spin_impulse: spin_impulse,
+        friction_mode: friction_mode,
+        tangential_speed: tangential_speed
+    )
+
+dice_transform_frame(center:any, rotation_degrees:any):
+    rx: rotation_degrees.0 * pi / 180
+    ry: rotation_degrees.1 * pi / 180
+    rz: rotation_degrees.2 * pi / 180
+    cx: cos(rx)
+    sx: sin(rx)
+    cy: cos(ry)
+    sy: sin(ry)
+    cz: cos(rz)
+    sz: sin(rz)
+    [
+        [cz * cy, cz * sy * sx - sz * cx, cz * sy * cx + sz * sx, center.0],
+        [sz * cy, sz * sy * sx + cz * cx, sz * sy * cx - cz * sx, center.1],
+        [0 - sy, cy * sx, cy * cx, center.2],
+        [0.0, 0.0, 0.0, 1.0]
+    ]
+
+dice_roll_path3(dice:any, plane:any, contact:any):
+    bounce: first_plane_bounce3(dice, plane, contact)
+    half_size: dice.size / 2
+    rest_center: [
+        dice.center.0 + dice.linear_velocity.0 * 1.38,
+        dice.center.1 + dice.linear_velocity.1 * 0.92,
+        half_size
+    ]
+    frames: [
+        dice_transform_frame(dice.center, [22.0, 0.0 - 34.0, 16.0]),
+        dice_transform_frame(
+            [
+                dice.center.0 + dice.linear_velocity.0 * 0.18,
+                dice.center.1 + dice.linear_velocity.1 * 0.18,
+                1.55
+            ],
+            [72.0, 31.0, 58.0]
+        ),
+        dice_transform_frame(
+            [
+                dice.center.0 + dice.linear_velocity.0 * 0.34,
+                dice.center.1 + dice.linear_velocity.1 * 0.34,
+                half_size + 0.03
+            ],
+            [126.0, 76.0, 104.0]
+        ),
+        dice_transform_frame(
+            [
+                dice.center.0 + bounce.after_linear_velocity.0 * 0.35,
+                dice.center.1 + bounce.after_linear_velocity.1 * 0.35,
+                1.05
+            ],
+            [194.0, 142.0, 181.0]
+        ),
+        dice_transform_frame(
+            [
+                dice.center.0 + bounce.after_linear_velocity.0 * 0.58,
+                dice.center.1 + bounce.after_linear_velocity.1 * 0.58,
+                half_size + 0.14
+            ],
+            [271.0, 211.0, 246.0]
+        ),
+        dice_transform_frame(
+            [
+                rest_center.0 - 0.18,
+                rest_center.1 - 0.08,
+                half_size + 0.02
+            ],
+            [344.0, 278.0, 319.0]
+        ),
+        dice_transform_frame(rest_center, [360.0, 270.0, 360.0])
+    ]
+    duration_seconds: 2.9
+    rest_linear_velocity: [0, 0, 0]
+    rest_angular_velocity: [0, 0, 0]
+    first_contact: bounce
+    @: (
+        frames: frames,
+        duration_seconds: duration_seconds,
+        rest_linear_velocity: rest_linear_velocity,
+        rest_angular_velocity: rest_angular_velocity,
+        first_contact: first_contact
+    )
+
+settled_face_from_angular_velocity(angular_velocity:any):
+    ax: angular_velocity.0
+    ay: angular_velocity.1
+    az: angular_velocity.2
+    ax_abs: abs_num(ax)
+    ay_abs: abs_num(ay)
+    az_abs: abs_num(az)
+    ax_abs >= ay_abs?
+        ax_abs >= az_abs?
+            ax > 0? @: 3
+            @: 4
+    ay_abs >= az_abs?
+        ay > 0? @: 2
+        @: 5
+    az > 0? @: 1
+    @: 6
+
+physics_stdlib_capability:
+    name: "physics_collision_matrix_seed"
+    collision_matrix: [
+        "M_pp maps linear impulse to contact relative linear velocity",
+        "M_pL maps angular impulse to contact relative linear velocity",
+        "M_Lp maps linear impulse to relative angular velocity",
+        "M_LL maps angular impulse to relative angular velocity"
+    ]
+    restitution: [
+        "normal_contact_impulse3 disables restitution below the resting-contact threshold",
+        "coupled_contact_impulse3 solves tangential p and normal-axis L through all matrix blocks",
+        "rolling_resistance_impulse3 bounds tangent-plane torque by mu_r R delta p_n"
+    ]
+    dice_roll: [
+        "dice_body3 provides cube inertia, material, six-face dice texture, and initial state",
+        "infinite_plane3 models the table as zero inverse mass and zero inverse inertia",
+        "first_plane_bounce3 applies normal restitution and tangential friction to the first table impact",
+        "dice_roll_path3 returns transform frames from launch to rest for scene_3d animation"
+    ]
+    ledger: [
+        "tetra mass properties, parallel-axis aggregation, and rigid stepping are VKF source",
+        "F = p dot and tau = L dot",
+        "position and velocity updates can live in the runtime variable ledger",
+        "code changes define functions while running loops consume mutable state"
+    ]
+    :

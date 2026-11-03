@@ -595,24 +595,20 @@ advance(p, v, a, dt): (p: p + v dt + a dt ^ 2 / 2, v: v + a dt)
 state: advance(0m, 2m / 1s, 1m / 1s ^ 2, 2s)
 
 :: state.p
-:: state.v.to(m / s)</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><section class="additional-example"><h3>Motion fields</h3><section id="example-stdlib-example-30" class="readme-example" data-compiler-status="loading" data-vkf-example-id="stdlib-example-30"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">: .physics.units
+:: state.v.to(m / s)</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p><section class="additional-example"><h3>Motion fields</h3><section id="example-stdlib-example-30" class="readme-example" data-compiler-status="loading" data-vkf-example-id="stdlib-example-30"><div class="readme-example-bar"><span>Editable example</span><button class="readme-example-play" type="button" disabled aria-disabled="true" aria-describedby="execution-status" title="Loading browser compiler">Run</button></div><div class="readme-example-layout"><div class="readme-example-workspace"><div class="readme-example-editor"><pre aria-hidden="true" class="readme-example-highlight"><code class="language-vkf">:.physics.units
 
-advance(p, v, dt): (p: p + v dt, v: v)
-
-state:
-    p_ic: [[0, 0, 0], [1, 0, 0]]m
-    v_ic: [[0, 1, 0], [0, 2, 0]]m / 1s
-    advance_ic(p, v, 2s)
+advance(p, v, dt): (p: p + v*dt, v: v)
+positions: [[0, 0, 0], [1, 0, 0]]m
+velocities: [[0, 1, 0], [0, 2, 0]]m / 1s
+state: advance(positions, velocities, 2s)
 
 :: state.p
-:: state.v.to(m / s)</code></pre><textarea aria-label="Editable VKF source: Motion fields" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="stdlib-example-30" spellcheck="false">: .physics.units
+:: state.v.to(m / s)</code></pre><textarea aria-label="Editable VKF source: Motion fields" autocapitalize="off" autocomplete="off" class="readme-example-source" data-example-id="stdlib-example-30" spellcheck="false">:.physics.units
 
-advance(p, v, dt): (p: p + v dt, v: v)
-
-state:
-    p_ic: [[0, 0, 0], [1, 0, 0]]m
-    v_ic: [[0, 1, 0], [0, 2, 0]]m / 1s
-    advance_ic(p, v, 2s)
+advance(p, v, dt): (p: p + v*dt, v: v)
+positions: [[0, 0, 0], [1, 0, 0]]m
+velocities: [[0, 1, 0], [0, 2, 0]]m / 1s
+state: advance(positions, velocities, 2s)
 
 :: state.p
 :: state.v.to(m / s)</textarea></div><section aria-label="Example output" class="readme-example-terminal"><span>Output</span><pre aria-live="polite" class="readme-example-output"></pre></section></div></div></section><p class="example-back"><a href="#content">Back to top</a></p></section><details class="api-source"><summary>Source signatures</summary><p><a href="stdlib-source/physics.vkf">Read the packaged source</a>. Listed intrinsics may be implemented by the compiler rather than in this file.</p><div class="signature-list" role="region" aria-label="API signatures (reference)"><code class="language-vkf"><span class="token function-definition"><span class="token function">rb_add3</span><span class="token parameter">(a: any, b: any)</span><span class="token punctuation">:</span></span><span class="token function-definition"><span class="token function">

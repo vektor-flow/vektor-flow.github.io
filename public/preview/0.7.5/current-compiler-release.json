@@ -9,17 +9,17 @@
   "stable_release": false,
   "release_qualified": false,
   "qualification": "CURRENT_NAMED_SCOPES_FULL_RELEASE_INCOMPLETE",
-  "compiler_source_commit": "894b7128f71e74cd0227a0930676b2ec6389141c",
-  "compiler_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "release_source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "source": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "browser_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
-  "frontend_binding": "25669408b7e4a4f6fbf05139f69aa9f41884b40350259a0bdf967864445b7e8e",
+  "compiler_source_commit": "bd7e1823e118869ae84444263e39fe9180efca10",
+  "compiler_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "release_source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "source": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "browser_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
+  "frontend_binding": "0c33370b6f2f6c59a270cc77a58d401bb5e67b98599cced70268421fe63c35f6",
   "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
   "files": {
     "compiler-base.mjs": {
-      "bytes": 188012,
-      "sha256": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116"
+      "bytes": 188078,
+      "sha256": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942"
     },
     "compiler.data": {
       "bytes": 619732,
@@ -27,11 +27,11 @@
     },
     "compiler.mjs": {
       "bytes": 1464,
-      "sha256": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0"
+      "sha256": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113"
     },
     "compiler.wasm": {
-      "bytes": 20414736,
-      "sha256": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae"
+      "bytes": 20391843,
+      "sha256": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b"
     },
     "formatter.mjs": {
       "bytes": 61416,
@@ -78,8 +78,8 @@
       "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
     },
     "package-tools/project.mjs": {
-      "bytes": 7058,
-      "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
+      "bytes": 7664,
+      "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
     },
     "package-tools/publish.mjs": {
       "bytes": 5939,
@@ -98,12 +98,12 @@
       "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
     },
     "package.json": {
-      "bytes": 48154,
-      "sha256": "fdc116ee5ab8b275684e048b294f23cba5eb14b90d2bb003c8286920777493fa"
+      "bytes": 48256,
+      "sha256": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b"
     },
     "README.txt": {
-      "bytes": 823,
-      "sha256": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73"
+      "bytes": 422,
+      "sha256": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54"
     },
     "third-party/emscripten-toolchain-copyright.txt": {
       "bytes": 131248,
@@ -120,13 +120,17 @@
     "third-party/vkf-runtime-musl-license.txt": {
       "bytes": 6204,
       "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "VERIFICATION.json": {
+      "bytes": 2194,
+      "sha256": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
     }
   },
   "sha256": {
-    "compiler-base.mjs": "b74eed38589d4da2052d3b2267421e402509a61f02206ec871a18ee2e201d116",
+    "compiler-base.mjs": "1e4e1b01ac186254f6a89799605e82cb7b4b460d367c5913f2fbba0997056942",
     "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-    "compiler.mjs": "705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0",
-    "compiler.wasm": "d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae",
+    "compiler.mjs": "312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113",
+    "compiler.wasm": "b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
     "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
     "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
@@ -138,27 +142,28 @@
     "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
     "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
     "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
-    "package-tools/project.mjs": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25",
+    "package-tools/project.mjs": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf",
     "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
     "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
-    "package.json": "fdc116ee5ab8b275684e048b294f23cba5eb14b90d2bb003c8286920777493fa",
-    "README.txt": "3451943ebe7e796bdb798b5b6af3fa156a9ba4fe73bfdfa8600a8419d42c7c73",
+    "package.json": "8c3030c9ebd2ac72074cc53d09c44600d702c50b4300d6bc1a33ccaf57eb2a5b",
+    "README.txt": "db3d69d2394d42d98d1f9aeec6edaa5574be25e525faaa9139a0b12057ecdd54",
     "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
     "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
     "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
-    "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+    "VERIFICATION.json": "67e3bb1172b35885d3dfcb9919ca95d6391c579a43b347289b8518b2d0196f52"
   },
   "package": {
-    "module": "./playground/canonical/compiler.mjs?sha256=705ff59c9346476f840e998849491c7204095d122c2c771bdeadb73840e203a0",
-    "wasm": "./playground/canonical/compiler.wasm?sha256=d2729c087a087fa69ad08fd816accb8f06344294ecdb003c7a4c6a6c5edd9cae",
+    "module": "./playground/canonical/compiler.mjs?sha256=312d153d81f3ff3d7891c25253ecd4fc498e82c78c99c63790f8016064430113",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=b2e707665e0ab4a1ab5f6754ecb086275521d39e4c01f39d6a17b88edb1b0f5b",
     "data": "./playground/canonical/compiler.data?sha256=9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
   },
   "current_package_composition": {
     "path": "CURRENT-COMPOSITION.json",
-    "bytes": 57430,
-    "sha256": "993744852aebcdb001d07ff170ac7f00a8af28b9dff79ba8b479e28611b9a935"
+    "bytes": 59120,
+    "sha256": "80fc4579b853a9022211d49ee8bea9e375deaf9b099aae72e473ec6b70d93167"
   },
   "publication_status": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
   "download_packages_offered": true,
@@ -176,7 +181,7 @@
     "runEnabled": true,
     "downloadsOffered": true,
     "fullReleaseQualified": false,
-    "compilerOptimization": "Corrected 894b7128f71e74cd0227a0930676b2ec6389141c captured-overload compiler:3 affected current WASM objects plus137 valid objects, full140response,116O1, genuine sameTU dependency binding; normal simplify/coalesce/engine validation; maintained host96d/formatter9de and paired804 library. Full benchmark/parity deferred."
+    "compilerOptimization": "Current bd7 compiler semantic guard and positioned browser errors; fresh API130 with retained804 paired header/preload, other139 current consumed objects, full140 link, OWN normal postprocess. Native stays separately pinned6f. Maintained cb619 Node wrapper; required current motion glyph mapping generated from real demand."
   },
   "historical_prior_binding_evidence": {
     "current_candidate_verification": {
@@ -227,9 +232,9 @@
     }
   },
   "current_review_site_evidence": {
-    "path": "verification/e2161-current-review-site.json",
-    "bytes": 952148,
-    "sha256": "c489ba11a9d75463c12367f0b37db197780029c28f5e260b66e067a10969d286"
+    "path": "verification/e2187-current-review-site.json",
+    "bytes": 60582,
+    "sha256": "3e40c9972d29203178b81fd89b4fc458e9cff97c51b1e199d2671ac61662ba7e"
   },
   "historical_benchmark_readiness": {
     "path": "verification/e2058-local48-readiness.json",
@@ -245,9 +250,14 @@
   "pinned_downloads": {
     "checksums": "downloads/current075-checksums.json",
     "archives": [
-      "downloads/vkf-canonical-0.7.5-25669408-host96d0ff98-notices.tar.gz",
-      "downloads/vkf-native-linux-x86_64-0.7.5-305da34c-lib804892b2-notices.tar.gz"
+      "downloads/vkf-canonical-0.7.5-0c33370b-hostcb619656-notices.tar.gz",
+      "downloads/vkf-native-linux-x86_64-0.7.5-6a05590c-lib804892b6-notices.tar.gz"
     ],
-    "qualification": "Current 894b7128f71e74cd0227a0930676b2ec6389141c browser/Node compiler with separately paired library804; extracted Node install/run/compile and scoped security/integrity checks. Unchanged native305da/library804 archive retains its original qualification. Full compiler/SDK/GPU/benchmark release unqualified."
+    "qualification": "Current bd7 browser/Node compiler and separate unchanged6f native binary, maintained cb619 Node wrapper, explicitly retained804 library. Exact scoped controls/extracted usage/security only; corrected2185 new Physics and full SDK/GPU/benchmarks unqualified."
+  },
+  "current_package_qualification": {
+    "path": "verification/e2187-package-qualification.json",
+    "bytes": 29299,
+    "sha256": "a44c629d7167211f940ab97b7cf3f8faae0a1799d9d4ed72005e5bb0d2296377"
   }
 }

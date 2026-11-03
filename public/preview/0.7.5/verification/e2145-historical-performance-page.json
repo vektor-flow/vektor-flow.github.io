@@ -1,0 +1,83 @@
+{
+  "owner": "e2145",
+  "mode": "local",
+  "status": "PASS_FOCUSED_HISTORICAL_PERFORMANCE_PAGE_AND_READINESS_LINK",
+  "scope": "Accepted historical Performance labels and checkpoint link only; current compiler/UI qualification reused by reference, no Run or benchmark retake",
+  "historicalSelectionIdentity": "e191c575e2fab909a38b1f11338b4871cc6631c22627a21a7a7eaa9ffc94b7bf",
+  "browserClosed": true,
+  "serverClosed": true,
+  "checks": [
+    {
+      "name": "actual Performance HTTP200",
+      "passed": true
+    },
+    {
+      "name": "served exact accepted historical label page bytes",
+      "passed": true
+    },
+    {
+      "name": "rendered Performance heading",
+      "passed": true
+    },
+    {
+      "name": "historical checkpoint counts rendered",
+      "passed": true
+    },
+    {
+      "name": "e2058 and earlier checkpoint identities remain separate",
+      "passed": true
+    },
+    {
+      "name": "historical labels do not qualify current compiler",
+      "passed": true
+    },
+    {
+      "name": "historical identity anchor target retained",
+      "passed": true
+    },
+    {
+      "name": "every comparison cell remains unavailable",
+      "passed": true,
+      "detail": {
+        "cells": 360
+      }
+    },
+    {
+      "name": "all platform comparison tables retain pending publication",
+      "passed": true
+    },
+    {
+      "name": "historical checkpoint evidence link visible",
+      "passed": true
+    },
+    {
+      "name": "historical checkpoint report HTTP200 exact bytes",
+      "passed": true
+    },
+    {
+      "name": "historical report retains its checkpoint selection and counts",
+      "passed": true
+    },
+    {
+      "name": "ordinary menu Performance entry remains current",
+      "passed": true
+    },
+    {
+      "name": "no browser page errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no engine or unchanged example retake",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "compilerRequests": [],
+  "historicalTableText": "Historical compiler checkpoints · correctness before comparison timing\nScope\tStatus\tIdentity / evidence\nHistorical selection · e2058 checkpoint\t6 of 72 checks accepted; 66 UNRUN; 0 failed\te191c575e2fa; checkpoint compiler identities. The current package is a different compiler selection.\nAccepted checkpoint controls\t4 matched + 2 parity accepted\tSpectral norm: native and Node WebAssembly controls plus cross-target parity. Fannkuch-redux: native and Node WebAssembly controls plus cross-target parity. Independently accepted, 3 November 2026. Checkpoint identities, all check states and raw evidence hashes; these checks do not qualify the current compiler.\nComparative timing\tUNRUN · 0 samples\tAll 48 matched controls and 24 parity checks must pass for the same selection before comparative timing. Ratios remain unavailable.\nEarlier historical selection\t8 matched + 4 parity passed; 60 UNRUN; 0 comparative samples\tHistorical 12/72 checkpoint; selection eb8742a0b288, WASM 4a05eb5b, library 9abaf175. These results do not qualify the current selection.",
+  "screenshot": {
+    "sha256": "dd2fc4e1c4a07265398554ac6d667a48c65d45d8859fe2bb3e900a07209c22c6",
+    "bytes": 168450
+  }
+}

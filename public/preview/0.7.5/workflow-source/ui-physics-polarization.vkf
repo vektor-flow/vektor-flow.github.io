@@ -1,0 +1,29 @@
+# POM filter/analyzer bench: isotropic interface, no birefringent specimen.
+# Angular experiment, not time animation. Pan/zoom with existing toolbar/wheel.
+:.physics.optics
+:.math
+s_power(angle:num):
+    output: reflected_stokes(linear(1,0),1,1.5,cos(angle))
+    detector(output)
+p_power(angle:num):
+    output: reflected_stokes(linear(1,pi/2),1,1.5,cos(angle))
+    detector(output)
+filter_power(angle:num):
+    source: unpolarized(1)
+    first: polarizer(source,0)
+    sample: transmitted_stokes(first,1,1.5,1)
+    analyzer: polarizer(sample,angle)
+    detector(analyzer)
+scene():
+    angles: [0..180]*pi/360
+    degrees: [0..180]/2
+    rp: p_power(angles_i)
+    rs: s_power(angles_i)
+    signal: filter_power(angles_i)
+    view: .ui.viewport
+    view.add(x:degrees_u,y:rs_u,id:"s-reflected",color:[0.2,0.6,1,1],w:2)
+    view.add(x:degrees_u,y:rp_u,id:"p-reflected",color:[1,0.4,0.15,1],w:2)
+    view.add(x:degrees_u,y:signal_u,id:"filter-detector",color:[0.3,0.8,0.25,1],w:2)
+    view.push(x_label:"Incidence / analyzer angle (degrees)",y_label:"Power fraction",y_min:0,y_max:1)
+    view.show()
+scene()

@@ -1168,6 +1168,8 @@ struct Scene {
   shadow2_pts               : array<vec4<f32>, 32>,
   shadow3_pts               : array<vec4<f32>, 32>,
   depth_params              : vec4<f32>,
+  material_optics           : vec4<f32>, // roughness(-1 legacy), reflectivity, emission, IOR metadata
+  material_detail           : vec4<f32>, // roughness modulation, bump strength, frequency, reserved
 }
 @group(0) @binding(0) var<uniform> sc: Scene;
 @group(0) @binding(1) var surfaceSampler: sampler;
@@ -1437,6 +1439,14 @@ fn clusteredReceiverIndex(worldPos: vec3<f32>) -> u32 {
   return ((z * ySlices) + y) * xSlices + x;
 }
 
+// Existing Blinn shading approximation; physical Fresnel transport is VKF-owned.
+fn materialSpecularExponent(worldPos: vec3<f32>) -> f32 {
+  if (sc.material_optics.x < 0.0) { return 40.0; }
+  let pattern = sin(worldPos.x * sc.material_detail.z) * sin(worldPos.y * sc.material_detail.z);
+  let roughness = clamp(sc.material_optics.x + sc.material_detail.x * pattern, 0.0, 1.0);
+  return mix(256.0, 2.0, roughness * roughness);
+}
+
 fn clusteredAdditionalDirectLights(
   base: vec3<f32>,
   alpha: f32,
@@ -1479,7 +1489,7 @@ fn clusteredAdditionalDirectLights(
     result.diffuse += (litScale * diffuseFactor) * light.color_intensity.rgb * base;
     if (light.direction_kind.w < 1.5) {
       let H = normalize(L + V);
-      let specularFactor = pow(max(dot(N, H), 0.0), 40.0);
+      let specularFactor = pow(max(dot(N, H), 0.0), materialSpecularExponent(worldPos));
       result.specular += (litScale * specularFactor) * light.color_intensity.rgb *
         (1.8 * specularScale * alpha * sc.specular_strength);
     }
@@ -3055,7 +3065,7 @@ fn shadeLitBaseScaled(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNor
     diffuse += (litScale0 * diff0) * lc0 * base;
     if (sc.light0_spot_params.w < 1.5) {
       let H0 = normalize(L0 + V);
-      let spec0 = pow(max(dot(N, H0), 0.0), 40.0);
+      let spec0 = pow(max(dot(N, H0), 0.0), materialSpecularExponent(worldPos));
       specular += (litScale0 * spec0) * lc0 * (1.8 * specularScale * a * sc.specular_strength);
     }
   }
@@ -3079,7 +3089,7 @@ fn shadeLitBaseScaled(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNor
     diffuse += (litScale1 * diff1) * lc1 * base;
     if (sc.light1_spot_params.w < 1.5) {
       let H1 = normalize(L1 + V);
-      let spec1 = pow(max(dot(N, H1), 0.0), 40.0);
+      let spec1 = pow(max(dot(N, H1), 0.0), materialSpecularExponent(worldPos));
       specular += (litScale1 * spec1) * lc1 * (1.8 * specularScale * a * sc.specular_strength);
     }
   }
@@ -3103,7 +3113,7 @@ fn shadeLitBaseScaled(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNor
     diffuse += (litScale2 * diff2) * lc2 * base;
     if (sc.light2_spot_params.w < 1.5) {
       let H2 = normalize(L2 + V);
-      let spec2 = pow(max(dot(N, H2), 0.0), 40.0);
+      let spec2 = pow(max(dot(N, H2), 0.0), materialSpecularExponent(worldPos));
       specular += (litScale2 * spec2) * lc2 * (1.8 * specularScale * a * sc.specular_strength);
     }
   }
@@ -3127,7 +3137,7 @@ fn shadeLitBaseScaled(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNor
     diffuse += (litScale3 * diff3) * lc3 * base;
     if (sc.light3_spot_params.w < 1.5) {
       let H3 = normalize(L3 + V);
-      let spec3 = pow(max(dot(N, H3), 0.0), 40.0);
+      let spec3 = pow(max(dot(N, H3), 0.0), materialSpecularExponent(worldPos));
       specular += (litScale3 * spec3) * lc3 * (1.8 * specularScale * a * sc.specular_strength);
     }
   }
@@ -3150,14 +3160,16 @@ fn shadeLitBaseScaled(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNor
 
 fn shadeLitBase(base: vec3<f32>, alpha: f32, worldPos: vec3<f32>, inputNormal: vec3<f32>, backfaceSpecularOff: bool) -> vec4f {
   if ((sc.receive_shadow & 2u) != 0u) {
-    return vec4f(base, alpha * sc.alpha_mul);
+    return vec4f(base * (1.0 + sc.material_optics.z), alpha * sc.alpha_mul);
   }
   var specularScale = 1.0;
   if (sc.texture_params.x > 3.1 && sc.texture_params.x < 3.4) {
     let roughness = clamp(sc.texture_extra.x, 0.0, 1.0);
     specularScale = 0.34 * (1.0 - roughness) * (1.0 - roughness);
   }
-  return shadeLitBaseScaled(base, alpha, worldPos, inputNormal, backfaceSpecularOff, specularScale);
+  specularScale *= sc.material_optics.y;
+  let shaded = shadeLitBaseScaled(base, alpha, worldPos, inputNormal, backfaceSpecularOff, specularScale);
+  return vec4f(shaded.rgb + base * sc.material_optics.z * alpha * sc.alpha_mul, shaded.a);
 }
 
 fn readableShadowVisibility(visibility: f32) -> f32 {
@@ -3445,6 +3457,20 @@ fn fs(i: Vout) -> @location(0) vec4f {
   var materialNormal = i.normal;
   if (sc.texture_params.x > 3.1 && sc.texture_params.x < 3.4) {
     materialNormal = grassPerturbedNormal(i.local_pos, i.normal, max(sc.texture_extra.y, 0.20), max(sc.texture_extra.z, 0.25), 0.42);
+  }
+  let detailPosition = i.local_pos.xy * sc.material_detail.z;
+  let height = sin(detailPosition.x) * sin(detailPosition.y);
+  let detailStrength = sc.material_detail.y;
+  let dp1 = dpdx(i.world_pos);
+  let dp2 = dpdy(i.world_pos);
+  let dh1 = dpdx(height);
+  let dh2 = dpdy(height);
+  let normalBase = normalize(materialNormal);
+  let r1 = cross(dp2, normalBase);
+  let r2 = cross(normalBase, dp1);
+  let determinant = dot(dp1, r1);
+  if (detailStrength > 0.0 && abs(determinant) > 1e-10) {
+    materialNormal = normalize(abs(determinant) * normalBase - sign(determinant) * detailStrength * (dh1 * r1 + dh2 * r2));
   }
   return shadeLitBase(base, i.color.a, i.world_pos, materialNormal, sc.surface_cam_up_pad.w > 0.5);
 }
@@ -4685,6 +4711,19 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
     f32[depthParamsBase + 1] = clusteredCameraForward[0];
     f32[depthParamsBase + 2] = clusteredCameraForward[1];
     f32[depthParamsBase + 3] = clusteredCameraForward[2];
+    var materialBase = depthParamsBase + 4;
+    var roughness = meshLike && meshLike.roughness;
+    var reflectivity = meshLike && meshLike.reflectivity;
+    var emissivity = meshLike && meshLike.emissivity;
+    var emission = meshLike && meshLike.emission;
+    f32[materialBase] = roughness == null ? -1.0 : Math.max(0, Math.min(1, Number(roughness)));
+    f32[materialBase + 1] = reflectivity == null ? 1.0 : Math.max(0, Math.min(1, Number(reflectivity)));
+    f32[materialBase + 2] = Math.max(0, Number(emission == null ? emissivity : emission) || 0);
+    f32[materialBase + 3] = Math.max(0, Number(meshLike && meshLike.optical_index) || 0);
+    var detail = texture && typeof texture === "object" ? texture : {};
+    f32[materialBase + 4] = Math.max(0, Math.min(1, Number(detail.roughness_modulation) || 0));
+    f32[materialBase + 5] = Math.max(0, Math.min(1, Number(detail.bump_strength) || 0));
+    f32[materialBase + 6] = Math.max(0.01, Number(detail.detail_frequency) || 8);
 
     return f32;
   }

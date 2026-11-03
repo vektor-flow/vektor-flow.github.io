@@ -807,7 +807,7 @@
     var cameraCfg = config.camera || {};
     var props = cameraCfg && cameraCfg.properties && typeof cameraCfg.properties === "object"
       ? cameraCfg.properties
-      : {};
+      : cameraCfg;
     var mirrorMeshId = String(props.reflect_mirror_mesh_id || "").trim();
     if (!mirrorMeshId) { return null; }
     var debug = camera && camera._mirrorDebug && typeof camera._mirrorDebug === "object"
@@ -3194,7 +3194,15 @@
         marker_space: String(entityProp(spec, "marker_space", String(renderMode).toLowerCase() === "marker_impostor" ? "pixel" : "world")),
         casts_shadow: entityProp(spec, "casts_shadow", true) !== false,
         receives_shadow: entityProp(spec, "receives_shadow", true) !== false,
-        no_lighting: entityProp(spec, "receives_lighting", true) === false,
+        no_lighting: entityProp(spec, "no_lighting", entityProp(spec, "receives_lighting", true) === false) === true,
+        texture: entityProp(spec, "texture", null),
+        roughness: entityProp(spec, "roughness", null),
+        reflectivity: entityProp(spec, "reflectivity", null),
+        optical_index: entityProp(spec, "optical_index", null),
+        transparency: entityProp(spec, "transparency", null),
+        emissivity: entityProp(spec, "emissivity", null),
+        emission: entityProp(spec, "emission", null),
+        surface_system: resolveSurfaceSystem(entityProp(spec, "surface_system", null), viewerCamera, seconds),
         no_cull: entityProp(spec, "no_cull", false) === true,
         specular_strength: Math.max(0.0, Math.min(4.0, Number(entityProp(spec, "specular_strength", 1.0) || 0.0))),
         depth_write: entityProp(spec, "depth_write", false) === true,
@@ -3466,6 +3474,13 @@
             casts_shadow: mesh.casts_shadow !== false,
             receives_shadow: mesh.receives_shadow !== false,
             specular_strength: Math.max(0.0, Math.min(4.0, Number(mesh.specular_strength == null ? 1.0 : mesh.specular_strength))),
+            texture: mesh.texture == null ? null : mesh.texture,
+            roughness: mesh.roughness == null ? null : mesh.roughness,
+            reflectivity: mesh.reflectivity == null ? null : mesh.reflectivity,
+            optical_index: mesh.optical_index == null ? null : mesh.optical_index,
+            transparency: mesh.transparency == null ? null : mesh.transparency,
+            emissivity: mesh.emissivity == null ? null : mesh.emissivity,
+            emission: mesh.emission == null ? null : mesh.emission,
             no_backface_specular: mesh.no_backface_specular === true,
             reverse_facing: mesh.reverse_facing === true,
             no_cull: mesh.no_cull === true,
@@ -3515,6 +3530,13 @@
         casts_shadow: mesh.casts_shadow !== false,
         receives_shadow: mesh.receives_shadow !== false,
         specular_strength: Math.max(0.0, Math.min(4.0, Number(mesh.specular_strength == null ? 1.0 : mesh.specular_strength))),
+        texture: mesh.texture == null ? null : mesh.texture,
+        roughness: mesh.roughness == null ? null : mesh.roughness,
+        reflectivity: mesh.reflectivity == null ? null : mesh.reflectivity,
+        optical_index: mesh.optical_index == null ? null : mesh.optical_index,
+        transparency: mesh.transparency == null ? null : mesh.transparency,
+        emissivity: mesh.emissivity == null ? null : mesh.emissivity,
+        emission: mesh.emission == null ? null : mesh.emission,
         no_backface_specular: mesh.no_backface_specular === true,
         reverse_facing: mesh.reverse_facing === true,
         no_cull: mesh.no_cull === true,
@@ -7595,7 +7617,7 @@
     var cameraCfg = config.camera || {};
     var props = cameraCfg && cameraCfg.properties && typeof cameraCfg.properties === "object"
       ? cameraCfg.properties
-      : {};
+      : cameraCfg;
     var sourceFrameId = String(props.reflect_of_frame_id || "").trim();
     var mirrorMeshId = String(props.reflect_mirror_mesh_id || "").trim();
     if (!sourceFrameId || !mirrorMeshId) {
@@ -7662,7 +7684,7 @@
     var cameraCfg = config.camera || {};
     var props = cameraCfg && cameraCfg.properties && typeof cameraCfg.properties === "object"
       ? cameraCfg.properties
-      : {};
+      : cameraCfg;
     var mirrorMeshId = String(props.aperture_mirror_mesh_id || "").trim();
     if (!mirrorMeshId) {
       return baseCamera;
@@ -7699,7 +7721,7 @@
     var cameraCfg = config.camera || {};
     var props = cameraCfg && cameraCfg.properties && typeof cameraCfg.properties === "object"
       ? cameraCfg.properties
-      : {};
+      : cameraCfg;
     if (cameraCfg && typeof cameraCfg === "object") {
       if (cameraCfg.controls_enabled !== undefined && props.controls_enabled === undefined) {
         props.controls_enabled = cameraCfg.controls_enabled;

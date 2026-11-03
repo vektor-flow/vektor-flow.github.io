@@ -1,0 +1,32 @@
+# Flat water cross-section: same surface endpoints/normal and IOR in draw/law.
+# This is optical water, not a fluid pressure/boundary simulation.
+# Drag pan and wheel/toolbar zoom out/in are actual renderer controls.
+:.physics.optics
+scene():
+    view: .ui.viewport
+    a: [-2,0]
+    b: [2,0]
+    source: [-1,1.5]
+    direction: unit2([0.6,-0.8])
+    normal: normal2(a,b,direction)
+    n_water: 1.333
+    hit: line_hit(source,direction,a,b)
+    (hit.hit=1)?! "water missed"
+    refracted: refract2(direction,normal,1,n_water)
+    reflected: reflect2(direction,normal)
+    ci: 0-direction.0*normal.0-direction.1*normal.1
+    incoming: unpolarized(1)
+    transmitted: transmitted_stokes(incoming,1,n_water,ci)
+    bounced: reflected_stokes(incoming,1,n_water,ci)
+    surface: [a,b]
+    ray_in: [source,hit.point]
+    ray_out: [hit.point,[hit.point.0+2*refracted.direction.0,hit.point.1+2*refracted.direction.1]]
+    ray_reflect: [hit.point,[hit.point.0+reflected.0,hit.point.1+reflected.1]]
+    view.add(p:surface_uc,id:"water-surface",color:[0.1,0.5,0.9,1],w:3,optical_index:n_water,transparency:transmitted.0,reflectivity:bounced.0,roughness:0)
+    view.add(p:ray_in_uc,id:"incoming",color:[1,0.7,0.1,1],w:2)
+    view.add(p:ray_out_uc,id:"transmitted",color:[1,0.7,0.1,transmitted.0],w:2)
+    view.add(p:ray_reflect_uc,id:"reflected",color:[1,0.7,0.1,bounced.0],w:2)
+    view.push(x_label:"x (m)",y_label:"y (m)")
+    view.show()
+    :: detector(transmitted)
+scene()

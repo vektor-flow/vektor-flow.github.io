@@ -1,0 +1,210 @@
+{
+  "owner": "e2139",
+  "mode": "local",
+  "status": "PASS_CURRENT_WASM_ORDINARY_RUN_EDIT_AND_ARTIFACTS",
+  "checks": [
+    {
+      "name": "no-replacement-home-math-example",
+      "passed": true
+    },
+    {
+      "name": "current-reviewed-mathematics-paragraph",
+      "passed": true,
+      "detail": {
+        "text": "Start with the mathematics of the model. Numbers, complex values, vectors and matrices represent quantities and relationships; the mathematics library supplies constants and operations such as trigonometric and exponential functions. Linear algebra supplies vector products, matrix multiplication and linear-system solving."
+      }
+    },
+    {
+      "name": "desktop-no-overflow",
+      "passed": true
+    },
+    {
+      "name": "phone-no-overflow",
+      "passed": true
+    },
+    {
+      "name": "descriptor-current-built-binding",
+      "passed": true,
+      "detail": {
+        "binding": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
+        "source": "01d1cb2858bc896efa672caf48dfcd9e4d4c2578"
+      }
+    },
+    {
+      "name": "ordinary-editable-example-exact-source",
+      "passed": true
+    },
+    {
+      "name": "ordinary-run-complete-current-units-output",
+      "passed": true,
+      "detail": {
+        "expected": "230 cm\n[100, 200, 300] cm\n",
+        "stdout": "230 cm\n[100, 200, 300] cm\n",
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "name": "ordinary-edit-then-run-new-output",
+      "passed": true,
+      "detail": {
+        "expected": "230 cm\n[100, 200, 300] cm\n7\n",
+        "stdout": "230 cm\n[100, 200, 300] cm\n7\n",
+        "origin": "run",
+        "kind": "stdout",
+        "isolated": true
+      }
+    },
+    {
+      "name": "ordinary-current-scientific-output-and-visible-scene",
+      "passed": true,
+      "detail": {
+        "expected": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5",
+        "actual": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5",
+        "sourceSHA256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:compiler.mjs",
+      "passed": true,
+      "detail": {
+        "name": "compiler.mjs",
+        "status": 200,
+        "bytes": 1464,
+        "sha256": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460",
+        "expectedSha256": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:compiler-base.mjs",
+      "passed": true,
+      "detail": {
+        "name": "compiler-base.mjs",
+        "status": 200,
+        "bytes": 188048,
+        "sha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73",
+        "expectedSha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:compiler.wasm",
+      "passed": true,
+      "detail": {
+        "name": "compiler.wasm",
+        "status": 200,
+        "bytes": 20414072,
+        "sha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648",
+        "expectedSha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:compiler.data",
+      "passed": true,
+      "detail": {
+        "name": "compiler.data",
+        "status": 200,
+        "bytes": 619732,
+        "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+        "expectedSha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:formatter.mjs",
+      "passed": true,
+      "detail": {
+        "name": "formatter.mjs",
+        "status": 200,
+        "bytes": 61416,
+        "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
+        "expectedSha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:formatter.wasm",
+      "passed": true,
+      "detail": {
+        "name": "formatter.wasm",
+        "status": 200,
+        "bytes": 1042604,
+        "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
+        "expectedSha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
+      }
+    },
+    {
+      "name": "actual-current-served-artifact:package.json",
+      "passed": true,
+      "detail": {
+        "name": "package.json",
+        "status": 200,
+        "bytes": 23338,
+        "sha256": "b413908669aa38b71c86ed4bcf3bfa93c74148c85f641835d90d6b8cbac1feba",
+        "expectedSha256": "b413908669aa38b71c86ed4bcf3bfa93c74148c85f641835d90d6b8cbac1feba"
+      }
+    },
+    {
+      "name": "no-browser-errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "browserClosed": true,
+  "serverClosed": true,
+  "base": "http://127.0.0.1:42205/preview/0.7.5/",
+  "scientific": {
+    "sourceSHA256": "226eba4c5ff96f47b528e4131ccd0cef47bad8da1eba31b6521bd1d7ea0248db",
+    "fullStdoutTrimmed": "[0.99009900990099, 1.98019801980198, 2.97029702970297, 3.96039603960396]\n3\n5"
+  },
+  "served": [
+    {
+      "name": "compiler.mjs",
+      "status": 200,
+      "bytes": 1464,
+      "sha256": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460",
+      "expectedSha256": "3889b93ef38ff6208bf7bb863965162dcd91e94dd57086f52b3af9551226d460"
+    },
+    {
+      "name": "compiler-base.mjs",
+      "status": 200,
+      "bytes": 188048,
+      "sha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73",
+      "expectedSha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73"
+    },
+    {
+      "name": "compiler.wasm",
+      "status": 200,
+      "bytes": 20414072,
+      "sha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648",
+      "expectedSha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648"
+    },
+    {
+      "name": "compiler.data",
+      "status": 200,
+      "bytes": 619732,
+      "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
+      "expectedSha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
+    },
+    {
+      "name": "formatter.mjs",
+      "status": 200,
+      "bytes": 61416,
+      "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
+      "expectedSha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
+    },
+    {
+      "name": "formatter.wasm",
+      "status": 200,
+      "bytes": 1042604,
+      "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
+      "expectedSha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
+    },
+    {
+      "name": "package.json",
+      "status": 200,
+      "bytes": 23338,
+      "sha256": "b413908669aa38b71c86ed4bcf3bfa93c74148c85f641835d90d6b8cbac1feba",
+      "expectedSha256": "b413908669aa38b71c86ed4bcf3bfa93c74148c85f641835d90d6b8cbac1feba"
+    }
+  ]
+}

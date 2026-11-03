@@ -21,13 +21,13 @@ sample_color(x:num,y:num,source_x:num) -> [num:4]:
     target: [x,y]
     direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)
     reflection: optics.reflected_light2(source,target,mirror_a,mirror_b,reflectivity,0.10,falloff,walls,base_penumbra,growth)
-    room: int(x+1.5)
+    room: (x+1.5)//1
     room>2?
         .room: 2
     lx: (x+1.5-room)*225
     ly: (y+0.5)*225
-    tx: int(lx/48)
-    ty: int(ly/48)
+    tx: lx//48
+    ty: ly//48
     checker: 0
     (tx+ty)%2=0?
         .checker: 1

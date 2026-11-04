@@ -35,13 +35,13 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
   if(packageDescriptor.expectedSourceBinding!==undefined&&packageDescriptor.expectedSourceBinding!==sourceBinding)throw new TypeError('Compiler source binding mismatch');
   let pending=Promise.resolve();
   const execute=async(source,filename,options)=>{
-      const began=now();const program=compiler.compileSource(source,filename,options);
-      if(owner.formatterOwner){const prepared=prepareFormatterIr(formatter,program.typedIRText);if(prepared!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));}
-      const compiled=now();const module=await WebAssembly.compile(program.wasm);
+      const trace=(phase)=>console.warn("[e2212-current-host-phase] "+phase+" ms="+now().toFixed(3));const began=now();trace("compileSource.entry");const program=compiler.compileSource(source,filename,options);trace("compileSource.return");
+      trace("prepareFormatterIr.entry");if(owner.formatterOwner){const prepared=prepareFormatterIr(formatter,program.typedIRText);if(prepared!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));}
+      trace("prepareFormatterIr.return");const compiled=now();trace("WebAssembly.compile.entry");const module=await WebAssembly.compile(program.wasm);trace("WebAssembly.compile.return");
       const imports=WebAssembly.Module.imports(module);let prepared,host,api,retained;
       try{
         if(imports.length===1&&imports[0].module==='vkf.retained'&&imports[0].name==='invoke_v1'&&imports[0].kind==='function'){
-          retained=await executeRetainedViaWindow(program.wasm,program.manifest);
+          trace("executeRetainedViaWindow.entry");retained=await executeRetainedViaWindow(program.wasm,program.manifest);trace("executeRetainedViaWindow.return");
         }else if(imports.length){
           if(imports.length!==1||imports[0].module!=='vkf.concurrent'||imports[0].name!=='invoke'||imports[0].kind!=='function'){
             throw new TypeError('Compiled program requires an unavailable host capability');
@@ -52,7 +52,7 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
         if(!retained) api=new WebAssembly.Instance(module,host??{}).exports;
         const entry=program.manifest.functions.$vkf_main;
         if(!entry||entry.parameters!==0)throw new TypeError('Current program entry is unavailable');
-        const status=retained?0:api.vkf_vm_invoke(entry.index,0);
+        trace("vkf_vm_invoke.entry");const status=retained?0:api.vkf_vm_invoke(entry.index,0);trace("vkf_vm_invoke.return");
         if(status!==0)throw new Error('VKF program failed with status '+status);
         host?.materializeOutput();
         const executed=now();
@@ -65,12 +65,12 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
         try{
           const allocatedAt=now();
           formatter.HEAPU8.set(memory,pointer);const copiedAt=now();
-          checked('vkf_browser_format_stdout',pointer,used,outputPointer);
+          trace("formatter.stdout.entry");checked('vkf_browser_format_stdout',pointer,used,outputPointer);trace("formatter.stdout.return");
           const stdout=formatter.ccall('vkf_browser_stdout','string',[],[]);const stdoutAt=now();
           const binaryRetained=typeof formatter._vkf_browser_format_retained_ui_packets_binary==='function';
-          checked(binaryRetained?'vkf_browser_format_retained_ui_packets_binary':'vkf_browser_format_retained_ui_packets',pointer,used,outputPointer);
-          const retainedFormatAt=now();const packetJSON=formatter.ccall('vkf_browser_retained_ui_packets','string',[],[]);const packetReadAt=now();
-          const packets=JSON.parse(packetJSON);const parsedAt=now();
+          trace("formatter.retained.entry");checked(binaryRetained?'vkf_browser_format_retained_ui_packets_binary':'vkf_browser_format_retained_ui_packets',pointer,used,outputPointer);
+          trace("formatter.retained.return");const retainedFormatAt=now();const packetJSON=formatter.ccall('vkf_browser_retained_ui_packets','string',[],[]);const packetReadAt=now();
+          trace("packetJSON.parse.entry");const packets=JSON.parse(packetJSON);trace("packetJSON.parse.return");const parsedAt=now();
           if(!Array.isArray(packets))throw new TypeError('Compiler returned malformed retained output');
           const output={kind:packets.length?'visual':'console',stdout,stderr:''};
           const ownedPackets=binaryRetained?copyCanonicalRetainedPackets(formatter,packets):packets.map(packet=>({...packet,arena:Uint8Array.from(packet.arena)}));

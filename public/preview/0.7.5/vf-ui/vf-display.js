@@ -2917,9 +2917,16 @@
     rec.pendingTextFrameEl = frameEl;
     rec.pendingTextGeomSpec = geomSpec;
     if (rec.textOverlayRaf) { return; }
+    var generation = rec.textOverlayGeneration || 0;
     rec.textOverlayRaf = global.requestAnimationFrame(function () {
+      // Teardown can race an already dequeued callback, and a new retained
+      // owner can reuse the same Frame record. Never consume its pending work.
+      if (frameRecs[fid] !== rec || (rec.textOverlayGeneration || 0) !== generation) { return; }
       rec.textOverlayRaf = 0;
-      renderGeomTextOverlay(fid, rec.pendingTextFrameEl || frameEl, rec.pendingTextGeomSpec || geomSpec);
+      var target = rec.pendingTextFrameEl;
+      var spec = rec.pendingTextGeomSpec;
+      if (!target || target.isConnected === false || findFrameEl(geomTargetFrameId(fid)) !== target) { return; }
+      renderGeomTextOverlay(fid, target, spec);
     });
   }
 
@@ -8605,6 +8612,15 @@
     var opts = options || {};
     var rec = frameRecs[fid];
     if (!rec || !rec.entries) { return; }
+    // Retained scene disposal also comes through this path while its Frame
+    // remains mounted. Release the guarded scene before any later overlay RAF.
+    rec.textOverlayGeneration = (rec.textOverlayGeneration || 0) + 1;
+    if (rec.textOverlayRaf) {
+      global.cancelAnimationFrame(rec.textOverlayRaf);
+      rec.textOverlayRaf = 0;
+    }
+    rec.pendingTextFrameEl = null;
+    rec.pendingTextGeomSpec = null;
     releaseNativeLabelLayer(rec);
     releaseGeomTextOverlayTracking(fid);
     for (var j = 0; j < rec.entries.length; j += 1) {

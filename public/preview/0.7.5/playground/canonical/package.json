@@ -1,44 +1,82 @@
 {
   "schema": 1,
   "version": "0.7.5",
-  "status": "private-candidate",
+  "status": "PASS_NAMED_CURRENT_MATCHED_SCOPES_FULL_RELEASE_UNQUALIFIED",
+  "source": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "release_source": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "compiler_source": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "browser_binding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "frontend_binding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "formatter_binding": "2f0a880111b6f71370c139f9699cb965616cbfbd54fb17427ae4b51a21e3701c",
+  "compiler_source_commit": "9420e54605e038bebaff3997445f5eae2d45e47b",
+  "library_source_identity": "da95de8a619a497a95bf42305c08b90e0f33bf1975244ce5e449d3362776ec4f",
+  "library_sources": 34,
+  "registry_entries": 27,
   "complete": false,
   "stable": false,
-  "source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
-  "release_source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
-  "library_source": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
+  "stable_release": false,
+  "published": false,
+  "release_qualified": false,
+  "physical_gpu_tested": false,
+  "verification": {
+    "evidence": "VERIFICATION.json",
+    "status": "PASS_SCOPED_CURRENT_EXTRACTED_USAGE_SECURITY_INTEGRITY",
+    "oldPassCarry": false
+  },
+  "scoped_release": {
+    "components": [
+      "browser-WASM compiler and matched independent formatter",
+      "Node ESM compiler/guest/formatter embedding",
+      "ordinary retained local browser plotting"
+    ],
+    "fullReleaseQualified": false,
+    "nativeSDKQualified": false,
+    "crossTargetParityQualified": false,
+    "comparativeBenchmarksQualified": false
+  },
+  "limitations": [
+    "Full authored EX01 retained execution remains unresolved; ebc/a955 normal240s timeout retained. Diagnostic is not completion.",
+    "Native ABI2 consumer closure/supported embedded engine/native AND deployed/full scenes/all mentioned features remain OPEN.",
+    "Local browser uses SOFTWARE Vulkan; physicalGPU/fullframe10ms and GPUlabel/font completion unmeasured.",
+    "Current contact19/combinedpolicy failures retained; no solver/tolerance changes.",
+    "These archives qualify only recorded focused scopes after extracted usage/security checks. No full stable release, full SDK or comparative benchmark claim."
+  ],
   "files": {
+    "PAIRED-STDLIB-MANIFEST.json": {
+      "bytes": 5428,
+      "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+    },
     "README.txt": {
-      "bytes": 448,
-      "sha256": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826"
+      "bytes": 778,
+      "sha256": "681b397987486f6eb8ba01492839354cd901289f689259b84d2e80f6dcc726aa"
     },
     "VERIFICATION.json": {
-      "bytes": 3078,
-      "sha256": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec"
+      "bytes": 15532,
+      "sha256": "4085e317e09c8a8c5ed66159eb14d3821415f361be9741a44e0055bb6cfb9f9a"
     },
     "compiler-base.mjs": {
-      "bytes": 188042,
-      "sha256": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309"
+      "bytes": 188262,
+      "sha256": "6ef6ac12a6988af9753af1d2644785d68a147875e0e9bfad663b5d1f3187a64c"
     },
     "compiler.data": {
-      "bytes": 620301,
-      "sha256": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a"
+      "bytes": 644660,
+      "sha256": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
     },
     "compiler.mjs": {
-      "bytes": 1248,
-      "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
+      "bytes": 1464,
+      "sha256": "164345b6b047f31779dc0c794e56ca8e252344ec7ea438c3ccb7d195a31f8560"
     },
     "compiler.wasm": {
-      "bytes": 20393313,
-      "sha256": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d"
+      "bytes": 20492417,
+      "sha256": "0dfaf47c7f1020343e76183c5419d88ab1dc130233aa38944d2307a4724221a6"
     },
     "formatter.mjs": {
-      "bytes": 61416,
-      "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
+      "bytes": 61671,
+      "sha256": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3"
     },
     "formatter.wasm": {
-      "bytes": 1042604,
-      "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
+      "bytes": 2096298,
+      "sha256": "3586ebc5dda88fd289791245e43769c77ded65de3ae28aaf49d22262918978da"
     },
     "package-tools/addresses.mjs": {
       "bytes": 22794,
@@ -105,65 +143,24 @@
       "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
     },
     "third-party/trigonometric-source-notices.txt": {
-      "bytes": 3359,
-      "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
+      "bytes": 2927,
+      "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
     },
     "third-party/vkf-runtime-musl-license.txt": {
       "bytes": 6204,
       "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
     }
   },
-  "verification": {
-    "status": "PASS_NAMED_FIVE_AFFECTED_NODE_CONTROLS",
-    "extractedUsage": "Recorded separately in current package qualification after deterministic packaging",
-    "evidence": "VERIFICATION.json",
-    "oldPassCarry": false
-  },
-  "historical_verification": {
-    "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
-    "scope": "Original historic evidence remains in prior site tree; no qualification transferred to current compiler."
-  },
-  "previous_candidate": {
-    "source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-    "release_source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-    "files": {
-      "compiler.mjs": {
-        "sha256": "362deeacd3dd200d9f13b3aea7d75b48f083e3c88d4d5ea7f7befbd9dcdb7226",
-        "bytes": 184885
-      },
-      "compiler.wasm": {
-        "sha256": "51ab559f70552199a316b997c4129a4bb98362e52e99235cab7fc129c1923985",
-        "bytes": 65392809
-      },
-      "compiler.data": {
-        "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
-        "bytes": 610088
-      },
-      "README.txt": {
-        "sha256": "0c2e14ed829429db75bf9f3953777b478e91352d7ec2d9072079496c6ba11809",
-        "bytes": 331
-      }
-    },
-    "verification": {
-      "status": "PRIVATE_UNQUALIFIED_CAUSAL_PACKET_GC_CANDIDATE",
-      "oldPassCarry": false,
-      "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
-    }
-  },
-  "compiler_source": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
-  "browser_binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
-  "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-  "frontend_binding": "103091b26cc1de826dc14d5208d50f6325f7e7f4bf12a66e70009374c5f1d796",
-  "stable_release": false,
   "sha256": {
-    "README.txt": "798cfe84d8cf72df480579ab708aa9cb0c1b446b2cf678fdbb5584ce4aba5826",
-    "VERIFICATION.json": "a8e9d96148a8f1a547ea89a3260a6e0325b7a98e3e1826ecbad7a69a4d27a5ec",
-    "compiler-base.mjs": "e6c546ae6ac71f1f551e146314c6b9c34fcdf83ad93913e882f32d8cb78cd309",
-    "compiler.data": "faecbdaf29867bfd8d8dcd7b0adb2ab5cd185827386c495572a755ea8605190a",
-    "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-    "compiler.wasm": "4d83120ba9fc116a4426e4bf6983beecd599985a8ba45e955cb8e45c119de93d",
-    "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
-    "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
+    "PAIRED-STDLIB-MANIFEST.json": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5",
+    "README.txt": "681b397987486f6eb8ba01492839354cd901289f689259b84d2e80f6dcc726aa",
+    "VERIFICATION.json": "4085e317e09c8a8c5ed66159eb14d3821415f361be9741a44e0055bb6cfb9f9a",
+    "compiler-base.mjs": "6ef6ac12a6988af9753af1d2644785d68a147875e0e9bfad663b5d1f3187a64c",
+    "compiler.data": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c",
+    "compiler.mjs": "164345b6b047f31779dc0c794e56ca8e252344ec7ea438c3ccb7d195a31f8560",
+    "compiler.wasm": "0dfaf47c7f1020343e76183c5419d88ab1dc130233aa38944d2307a4724221a6",
+    "formatter.mjs": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3",
+    "formatter.wasm": "3586ebc5dda88fd289791245e43769c77ded65de3ae28aaf49d22262918978da",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
     "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
     "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
@@ -180,868 +177,7 @@
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
     "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
     "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
-    "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
+    "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-  },
-  "published": false,
-  "publication_status": "SCOPED_CANDIDATE_ARCHIVE_HOSTING_RECORDED_SEPARATELY",
-  "physical_gpu_tested": false,
-  "release_qualified": false,
-  "scoped_release": {
-    "version": "0.7.5",
-    "components": [
-      "browser-WASM compiler and independent formatter",
-      "ordinary retained plotting",
-      "Node ESM compiler/guest/formatter embedding"
-    ],
-    "qualification": "Exact scoped contact9/inverse9/arity compatibility/positioned error/Hello Node controls; native824 contact+inverse separately accepted. Extracted install/run/compile/security checks recorded separately. Broader Physics/full SDK/platform/GPU/benchmarks remain unqualified.",
-    "evidence": "VERIFICATION.json",
-    "linuxCompilerSDKQualified": false,
-    "crossTargetParityQualified": false,
-    "comparativeBenchmarksQualified": false,
-    "fullGpuWorldQualified": false,
-    "comparativeSamples": 0
-  },
-  "library_update": {
-    "pairedLibrarySourceCommit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9",
-    "scope": "Retained804 plus12line full-mass record adapter; other31 selected sources byte-identical, current paired header and preload. No corrected972 law replacement or calibrated adoption."
-  },
-  "historical_before_ae0e200": {
-    "verification": {
-      "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
-      "evidence": "../../verification/e1615-current-renderer-queue.json",
-      "oldPassCarry": false,
-      "required5MRenderViewOrdinaryColor": true,
-      "native10000Qualified": false,
-      "fullGpuWorldComplete": false,
-      "multiRendererQueueCorrectness": true,
-      "native10000OrdinaryUiComplete": true,
-      "nativeLiveEngineEntry": true,
-      "native8OriginalWitnessesPassed": 8,
-      "native8OriginalWitnessesTotal": 8,
-      "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
-      "currentCanonical57": {
-        "passed": 57,
-        "total": 57,
-        "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-        "oldPassCarry": false,
-        "evidence": "../../verification/e1625-current-qualification.json",
-        "newExecution": false,
-        "reusedByExplicitComponentImpact": true,
-        "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
-      },
-      "normalSymbolicRendererLibrary": {
-        "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
-        "evidence": "../../verification/e1642-symbolic-renderer-library.json"
-      }
-    },
-    "scoped_release": {
-      "version": "0.7.5",
-      "components": [
-        "browser-WASM compiler and formatter",
-        "browser retained plotting",
-        "Node ESM compiler/guest/formatter embedding"
-      ],
-      "qualification": "Named supported controls only; full release remains unqualified.",
-      "existingBrowserPrograms": {
-        "passed": 57,
-        "total": 57,
-        "newExecution": false,
-        "reusedByExplicitComponentImpact": true,
-        "evidence": "../../verification/e1625-current-qualification.json"
-      },
-      "evidence": "../../verification/e1642-symbolic-renderer-library.json",
-      "linuxCompilerSDKQualified": false,
-      "crossTargetParityQualified": false,
-      "comparativeBenchmarksQualified": false,
-      "originalAffectedSymbolicRows": {
-        "passed": 2,
-        "total": 48,
-        "unrun": 46,
-        "parityPassed": 1,
-        "parityTotal": 24
-      },
-      "normalBrowserLoaderCase": {
-        "passed": 1,
-        "total": 1
-      },
-      "normalNodeEsmStdout": "7\n"
-    },
-    "physical_gpu_tested": true,
-    "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-    "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
-  },
-  "compiler_source_commit": "9fc68bf207fe6a9ad48d6130b5c517a3b3bbba9b",
-  "native_binding": "8c59af92cabfe07967106464033e674995784b4ad63942bd0f0709ea14a6cd5f",
-  "native_binary_source_commit": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
-  "node_package_host_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
-  "node_package_host_durable_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
-  "historical_package_metadata_before_e2116_correction": {
-    "schema": 1,
-    "version": "0.7.5",
-    "status": "private-candidate",
-    "complete": false,
-    "stable": false,
-    "source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
-    "release_source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
-    "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-    "files": {
-      "compiler-base.mjs": {
-        "bytes": 187991,
-        "sha256": "7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4"
-      },
-      "compiler.data": {
-        "bytes": 619732,
-        "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
-      },
-      "compiler.mjs": {
-        "bytes": 1248,
-        "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
-      },
-      "compiler.wasm": {
-        "bytes": 20406990,
-        "sha256": "98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4"
-      },
-      "formatter.mjs": {
-        "bytes": 61416,
-        "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
-      },
-      "formatter.wasm": {
-        "bytes": 1042604,
-        "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
-      },
-      "package-tools/addresses.mjs": {
-        "bytes": 22794,
-        "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
-      },
-      "package-tools/cli.mjs": {
-        "bytes": 4907,
-        "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
-      },
-      "package-tools/git-source.mjs": {
-        "bytes": 9262,
-        "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
-      },
-      "package-tools/github.mjs": {
-        "bytes": 1579,
-        "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
-      },
-      "package-tools/host.mjs": {
-        "bytes": 11443,
-        "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
-      },
-      "package-tools/inputs.mjs": {
-        "bytes": 7238,
-        "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
-      },
-      "package-tools/metadata.mjs": {
-        "bytes": 10834,
-        "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
-      },
-      "package-tools/owner-protection.mjs": {
-        "bytes": 2234,
-        "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
-      },
-      "package-tools/ownership.mjs": {
-        "bytes": 2891,
-        "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
-      },
-      "package-tools/package.json": {
-        "bytes": 602,
-        "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
-      },
-      "package-tools/project.mjs": {
-        "bytes": 7058,
-        "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
-      },
-      "package-tools/publish.mjs": {
-        "bytes": 5939,
-        "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
-      },
-      "package-tools/resolve.mjs": {
-        "bytes": 1773,
-        "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
-      },
-      "prepare-formatter-ir.mjs": {
-        "bytes": 693,
-        "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
-      },
-      "third-party/emscripten-musl-copyright.txt": {
-        "bytes": 6204,
-        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-      },
-      "third-party/emscripten-toolchain-copyright.txt": {
-        "bytes": 131248,
-        "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
-      },
-      "third-party/trigonometric-source-notices.txt": {
-        "bytes": 3359,
-        "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
-      },
-      "third-party/vkf-runtime-musl-license.txt": {
-        "bytes": 6204,
-        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-      }
-    },
-    "verification": {
-      "status": "PASS_EXACT_CAPTURE_REGRESSIONS",
-      "evidence": "../../verification/e2116-wasm-regressions.json",
-      "oldPassCarry": false
-    },
-    "historical_verification": {
-      "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
-      "scope": "Original historic evidence remains in prior site tree; no qualification transferred to current compiler."
-    },
-    "previous_candidate": {
-      "source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-      "release_source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-      "files": {
-        "compiler.mjs": {
-          "sha256": "362deeacd3dd200d9f13b3aea7d75b48f083e3c88d4d5ea7f7befbd9dcdb7226",
-          "bytes": 184885
-        },
-        "compiler.wasm": {
-          "sha256": "51ab559f70552199a316b997c4129a4bb98362e52e99235cab7fc129c1923985",
-          "bytes": 65392809
-        },
-        "compiler.data": {
-          "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
-          "bytes": 610088
-        },
-        "README.txt": {
-          "sha256": "0c2e14ed829429db75bf9f3953777b478e91352d7ec2d9072079496c6ba11809",
-          "bytes": 331
-        }
-      },
-      "verification": {
-        "status": "PRIVATE_UNQUALIFIED_CAUSAL_PACKET_GC_CANDIDATE",
-        "oldPassCarry": false,
-        "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
-      }
-    },
-    "compiler_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-    "browser_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-    "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-    "frontend_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-    "stable_release": false,
-    "sha256": {
-      "compiler.mjs": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308",
-      "compiler-base.mjs": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
-      "compiler.wasm": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
-      "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-      "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
-      "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
-      "README.txt": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3"
-    },
-    "published": false,
-    "publication_status": "PENDING_INDEPENDENT_REVIEW_AND_HOSTED_PUBLICATION",
-    "physical_gpu_tested": false,
-    "release_qualified": false,
-    "scoped_release": {
-      "version": "0.7.5",
-      "components": [
-        "browser-WASM compiler and independent formatter",
-        "ordinary retained plotting",
-        "Node ESM compiler/guest/formatter embedding"
-      ],
-      "qualification": "Fresh native and regenerated WASM 17/17 named controls per target; current extracted archive usage, security/integrity and typed ownership; affected local browser eight canonical programs, real source edit/rerun and both archive HTTP byte/hash checks. Hosted verification and publication pending. Full compiler/SDK/GPU/benchmark release unqualified.",
-      "evidence": "../../verification/e2045-package-qualification.json",
-      "linuxCompilerSDKQualified": false,
-      "crossTargetParityQualified": false,
-      "comparativeBenchmarksQualified": false,
-      "fullGpuWorldQualified": false,
-      "comparativeSamples": 0
-    },
-    "library_update": {
-      "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-      "changed": "One Physics SI catalog exposed by :.physics.units with :.units and :.units.si compatibility forwarders; fresh browser/WASM binding, unchanged native binary with separately paired current library. Node host and formatter retain their separately identified bytes.",
-      "evidence": "../../verification/e2045-package-qualification.json"
-    },
-    "historical_before_ae0e200": {
-      "verification": {
-        "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
-        "evidence": "../../verification/e1615-current-renderer-queue.json",
-        "oldPassCarry": false,
-        "required5MRenderViewOrdinaryColor": true,
-        "native10000Qualified": false,
-        "fullGpuWorldComplete": false,
-        "multiRendererQueueCorrectness": true,
-        "native10000OrdinaryUiComplete": true,
-        "nativeLiveEngineEntry": true,
-        "native8OriginalWitnessesPassed": 8,
-        "native8OriginalWitnessesTotal": 8,
-        "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
-        "currentCanonical57": {
-          "passed": 57,
-          "total": 57,
-          "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-          "oldPassCarry": false,
-          "evidence": "../../verification/e1625-current-qualification.json",
-          "newExecution": false,
-          "reusedByExplicitComponentImpact": true,
-          "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
-        },
-        "normalSymbolicRendererLibrary": {
-          "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
-          "evidence": "../../verification/e1642-symbolic-renderer-library.json"
-        }
-      },
-      "scoped_release": {
-        "version": "0.7.5",
-        "components": [
-          "browser-WASM compiler and formatter",
-          "browser retained plotting",
-          "Node ESM compiler/guest/formatter embedding"
-        ],
-        "qualification": "Named supported controls only; full release remains unqualified.",
-        "existingBrowserPrograms": {
-          "passed": 57,
-          "total": 57,
-          "newExecution": false,
-          "reusedByExplicitComponentImpact": true,
-          "evidence": "../../verification/e1625-current-qualification.json"
-        },
-        "evidence": "../../verification/e1642-symbolic-renderer-library.json",
-        "linuxCompilerSDKQualified": false,
-        "crossTargetParityQualified": false,
-        "comparativeBenchmarksQualified": false,
-        "originalAffectedSymbolicRows": {
-          "passed": 2,
-          "total": 48,
-          "unrun": 46,
-          "parityPassed": 1,
-          "parityTotal": 24
-        },
-        "normalBrowserLoaderCase": {
-          "passed": 1,
-          "total": 1
-        },
-        "normalNodeEsmStdout": "7\n"
-      },
-      "physical_gpu_tested": true,
-      "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-      "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
-    },
-    "compiler_source_commit": "b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d",
-    "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
-    "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-    "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
-    "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6"
-  },
-  "historical_package_metadata_before_e2139_correction": {
-    "schema": 1,
-    "version": "0.7.5",
-    "status": "private-candidate",
-    "complete": false,
-    "stable": false,
-    "source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-    "release_source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-    "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-    "files": {
-      "compiler-base.mjs": {
-        "bytes": 188048,
-        "sha256": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73"
-      },
-      "compiler.data": {
-        "bytes": 619732,
-        "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
-      },
-      "compiler.mjs": {
-        "bytes": 1248,
-        "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
-      },
-      "compiler.wasm": {
-        "bytes": 20414072,
-        "sha256": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648"
-      },
-      "formatter.mjs": {
-        "bytes": 61416,
-        "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
-      },
-      "formatter.wasm": {
-        "bytes": 1042604,
-        "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
-      },
-      "package-tools/addresses.mjs": {
-        "bytes": 22794,
-        "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
-      },
-      "package-tools/cli.mjs": {
-        "bytes": 4907,
-        "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
-      },
-      "package-tools/git-source.mjs": {
-        "bytes": 9262,
-        "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
-      },
-      "package-tools/github.mjs": {
-        "bytes": 1579,
-        "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
-      },
-      "package-tools/host.mjs": {
-        "bytes": 11443,
-        "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
-      },
-      "package-tools/inputs.mjs": {
-        "bytes": 7238,
-        "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
-      },
-      "package-tools/metadata.mjs": {
-        "bytes": 10834,
-        "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
-      },
-      "package-tools/owner-protection.mjs": {
-        "bytes": 2234,
-        "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
-      },
-      "package-tools/ownership.mjs": {
-        "bytes": 2891,
-        "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
-      },
-      "package-tools/package.json": {
-        "bytes": 602,
-        "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
-      },
-      "package-tools/project.mjs": {
-        "bytes": 7058,
-        "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
-      },
-      "package-tools/publish.mjs": {
-        "bytes": 5939,
-        "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
-      },
-      "package-tools/resolve.mjs": {
-        "bytes": 1773,
-        "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
-      },
-      "prepare-formatter-ir.mjs": {
-        "bytes": 693,
-        "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
-      },
-      "third-party/emscripten-musl-copyright.txt": {
-        "bytes": 6204,
-        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-      },
-      "third-party/emscripten-toolchain-copyright.txt": {
-        "bytes": 131248,
-        "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
-      },
-      "third-party/trigonometric-source-notices.txt": {
-        "bytes": 3359,
-        "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
-      },
-      "third-party/vkf-runtime-musl-license.txt": {
-        "bytes": 6204,
-        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-      }
-    },
-    "verification": {
-      "status": "PASS_EXACT_CAPTURE_REGRESSIONS",
-      "evidence": "../../verification/e2139-wasm-regressions.json",
-      "oldPassCarry": false
-    },
-    "historical_verification": {
-      "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
-      "scope": "Original historic evidence remains in prior site tree; no qualification transferred to current compiler."
-    },
-    "previous_candidate": {
-      "source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-      "release_source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-      "files": {
-        "compiler.mjs": {
-          "sha256": "362deeacd3dd200d9f13b3aea7d75b48f083e3c88d4d5ea7f7befbd9dcdb7226",
-          "bytes": 184885
-        },
-        "compiler.wasm": {
-          "sha256": "51ab559f70552199a316b997c4129a4bb98362e52e99235cab7fc129c1923985",
-          "bytes": 65392809
-        },
-        "compiler.data": {
-          "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
-          "bytes": 610088
-        },
-        "README.txt": {
-          "sha256": "0c2e14ed829429db75bf9f3953777b478e91352d7ec2d9072079496c6ba11809",
-          "bytes": 331
-        }
-      },
-      "verification": {
-        "status": "PRIVATE_UNQUALIFIED_CAUSAL_PACKET_GC_CANDIDATE",
-        "oldPassCarry": false,
-        "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
-      }
-    },
-    "compiler_source": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-    "browser_binding": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-    "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-    "frontend_binding": "83ffc669344910ec2241637ecc1cd6bf9ea518a78cc58820819d4ff2ab322b69",
-    "stable_release": false,
-    "sha256": {
-      "compiler-base.mjs": "55f11afeabad08485d9cf1b343cf0943f3a1e0fb8863e9da32dfe3780451ac73",
-      "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-      "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
-      "compiler.wasm": "1668936086914953c76e97b551a668cf0a5426a06ad2281cd561648876076648",
-      "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
-      "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
-      "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
-      "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
-      "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
-      "package-tools/github.mjs": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0",
-      "package-tools/host.mjs": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c",
-      "package-tools/inputs.mjs": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20",
-      "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
-      "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
-      "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
-      "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
-      "package-tools/project.mjs": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25",
-      "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
-      "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
-      "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
-      "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
-      "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
-      "third-party/trigonometric-source-notices.txt": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0",
-      "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-    },
-    "published": false,
-    "publication_status": "PENDING_INDEPENDENT_REVIEW_AND_HOSTED_PUBLICATION",
-    "physical_gpu_tested": false,
-    "release_qualified": false,
-    "scoped_release": {
-      "version": "0.7.5",
-      "qualification": "Current native14/17/12/29 and WASM public Node14/17/12/29 completeoutputs; current extracted Node usage/security/integrity. Full benchmark/parity/GPU release remain pending.",
-      "evidence": "VERIFICATION.json",
-      "linuxCompilerSDKQualified": false,
-      "crossTargetParityQualified": false,
-      "comparativeBenchmarksQualified": false,
-      "fullGpuWorldQualified": false,
-      "comparativeSamples": 0
-    },
-    "library_update": {
-      "pairedLibrarySourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-      "scope": "Paired library bytes unchanged; no compiler PASS carried from historical metadata."
-    },
-    "historical_before_ae0e200": {
-      "verification": {
-        "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
-        "evidence": "../../verification/e1615-current-renderer-queue.json",
-        "oldPassCarry": false,
-        "required5MRenderViewOrdinaryColor": true,
-        "native10000Qualified": false,
-        "fullGpuWorldComplete": false,
-        "multiRendererQueueCorrectness": true,
-        "native10000OrdinaryUiComplete": true,
-        "nativeLiveEngineEntry": true,
-        "native8OriginalWitnessesPassed": 8,
-        "native8OriginalWitnessesTotal": 8,
-        "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
-        "currentCanonical57": {
-          "passed": 57,
-          "total": 57,
-          "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-          "oldPassCarry": false,
-          "evidence": "../../verification/e1625-current-qualification.json",
-          "newExecution": false,
-          "reusedByExplicitComponentImpact": true,
-          "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
-        },
-        "normalSymbolicRendererLibrary": {
-          "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
-          "evidence": "../../verification/e1642-symbolic-renderer-library.json"
-        }
-      },
-      "scoped_release": {
-        "version": "0.7.5",
-        "components": [
-          "browser-WASM compiler and formatter",
-          "browser retained plotting",
-          "Node ESM compiler/guest/formatter embedding"
-        ],
-        "qualification": "Named supported controls only; full release remains unqualified.",
-        "existingBrowserPrograms": {
-          "passed": 57,
-          "total": 57,
-          "newExecution": false,
-          "reusedByExplicitComponentImpact": true,
-          "evidence": "../../verification/e1625-current-qualification.json"
-        },
-        "evidence": "../../verification/e1642-symbolic-renderer-library.json",
-        "linuxCompilerSDKQualified": false,
-        "crossTargetParityQualified": false,
-        "comparativeBenchmarksQualified": false,
-        "originalAffectedSymbolicRows": {
-          "passed": 2,
-          "total": 48,
-          "unrun": 46,
-          "parityPassed": 1,
-          "parityTotal": 24
-        },
-        "normalBrowserLoaderCase": {
-          "passed": 1,
-          "total": 1
-        },
-        "normalNodeEsmStdout": "7\n"
-      },
-      "physical_gpu_tested": true,
-      "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-      "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
-    },
-    "compiler_source_commit": "01d1cb2858bc896efa672caf48dfcd9e4d4c2578",
-    "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
-    "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-    "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
-    "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6",
-    "historical_package_metadata_before_e2116_correction": {
-      "schema": 1,
-      "version": "0.7.5",
-      "status": "private-candidate",
-      "complete": false,
-      "stable": false,
-      "source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
-      "release_source": "dba3302f48d261c8a69a030fdaca02d688cba3702c18ad66b2fd0ce448dea388",
-      "library_source": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-      "files": {
-        "compiler-base.mjs": {
-          "bytes": 187991,
-          "sha256": "7528ecc611af15707cdaca3b0d722a3f99004ae416a9d212b21bebcbf1345ae4"
-        },
-        "compiler.data": {
-          "bytes": 619732,
-          "sha256": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1"
-        },
-        "compiler.mjs": {
-          "bytes": 1248,
-          "sha256": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a"
-        },
-        "compiler.wasm": {
-          "bytes": 20406990,
-          "sha256": "98d78d84ea82be3466b51be8d9d11bcc2bf032da171be55f3c39fb127db392f4"
-        },
-        "formatter.mjs": {
-          "bytes": 61416,
-          "sha256": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f"
-        },
-        "formatter.wasm": {
-          "bytes": 1042604,
-          "sha256": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6"
-        },
-        "package-tools/addresses.mjs": {
-          "bytes": 22794,
-          "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
-        },
-        "package-tools/cli.mjs": {
-          "bytes": 4907,
-          "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
-        },
-        "package-tools/git-source.mjs": {
-          "bytes": 9262,
-          "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
-        },
-        "package-tools/github.mjs": {
-          "bytes": 1579,
-          "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
-        },
-        "package-tools/host.mjs": {
-          "bytes": 11443,
-          "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
-        },
-        "package-tools/inputs.mjs": {
-          "bytes": 7238,
-          "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
-        },
-        "package-tools/metadata.mjs": {
-          "bytes": 10834,
-          "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
-        },
-        "package-tools/owner-protection.mjs": {
-          "bytes": 2234,
-          "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
-        },
-        "package-tools/ownership.mjs": {
-          "bytes": 2891,
-          "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
-        },
-        "package-tools/package.json": {
-          "bytes": 602,
-          "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
-        },
-        "package-tools/project.mjs": {
-          "bytes": 7058,
-          "sha256": "e7ea9825c2f361794e8aea60db0765edd273bbdae4d1a5e2d5b2502a5f1d0c25"
-        },
-        "package-tools/publish.mjs": {
-          "bytes": 5939,
-          "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
-        },
-        "package-tools/resolve.mjs": {
-          "bytes": 1773,
-          "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
-        },
-        "prepare-formatter-ir.mjs": {
-          "bytes": 693,
-          "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
-        },
-        "third-party/emscripten-musl-copyright.txt": {
-          "bytes": 6204,
-          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-        },
-        "third-party/emscripten-toolchain-copyright.txt": {
-          "bytes": 131248,
-          "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
-        },
-        "third-party/trigonometric-source-notices.txt": {
-          "bytes": 3359,
-          "sha256": "2d2460021acbdd52d28056efd835e099a50f481dfd0d06aa083c7ca7a1b803c0"
-        },
-        "third-party/vkf-runtime-musl-license.txt": {
-          "bytes": 6204,
-          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-        }
-      },
-      "verification": {
-        "status": "PASS_EXACT_CAPTURE_REGRESSIONS",
-        "evidence": "../../verification/e2116-wasm-regressions.json",
-        "oldPassCarry": false
-      },
-      "historical_verification": {
-        "source": "ec86ff6febc4f82ad6397bb73aa441928a172d95d64d94b7de2ae7aa1e1a2347",
-        "scope": "Original historic evidence remains in prior site tree; no qualification transferred to current compiler."
-      },
-      "previous_candidate": {
-        "source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-        "release_source": "752bcd40f84776e5544d2ab2cff3224fa2796604d5c395dda001d6083305d7f2",
-        "files": {
-          "compiler.mjs": {
-            "sha256": "362deeacd3dd200d9f13b3aea7d75b48f083e3c88d4d5ea7f7befbd9dcdb7226",
-            "bytes": 184885
-          },
-          "compiler.wasm": {
-            "sha256": "51ab559f70552199a316b997c4129a4bb98362e52e99235cab7fc129c1923985",
-            "bytes": 65392809
-          },
-          "compiler.data": {
-            "sha256": "31083d2be1eb6eda1ecef036b0876d6d2d9e2588242521732fa67ea1dcc3c12f",
-            "bytes": 610088
-          },
-          "README.txt": {
-            "sha256": "0c2e14ed829429db75bf9f3953777b478e91352d7ec2d9072079496c6ba11809",
-            "bytes": 331
-          }
-        },
-        "verification": {
-          "status": "PRIVATE_UNQUALIFIED_CAUSAL_PACKET_GC_CANDIDATE",
-          "oldPassCarry": false,
-          "scope": "Current changed artifacts; finite correctness, full5M output/render/updates and other release gates require fresh evidence."
-        }
-      },
-      "compiler_source": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-      "browser_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-      "formatter_binding": "9de7854202a73faef61a0774a52a6870ef92845c521f6e3f8b354239dcd77ac0",
-      "frontend_binding": "1af3f96fb8d66e610a1ccad91b2030afda03acf2987f3db7d2f145753dc011b5",
-      "stable_release": false,
-      "sha256": {
-        "compiler.mjs": "8641d6cbd74822bfb7db1a00419e6c30f19c1b063ec5c22e5a784c2f9a37f308",
-        "compiler-base.mjs": "9696dd5aad8ff52c84d48a8f022c21caa8b04cbe728320710141f740d092d075",
-        "compiler.wasm": "1d359ffd6e5719d519f9d9458e3d4fca0a6cc427d8bd514de1883e9a607f34d7",
-        "compiler.data": "9fda3516a883c9a5754f82e0c946c4035aab902badba035edf0933a813a344f1",
-        "formatter.mjs": "09d2c19339b97bf47cbe3f95e6f0e9dfe762f463ef27fc4fe8cc913a7b12d53f",
-        "formatter.wasm": "474cc08820c38053d1377d17646688fecb7bc6df07b09133ca959c06f73ae7e6",
-        "README.txt": "ced30db40a6179410a05fe9d3c24824fc1fe3d82618673f39f5e4e672a2302d3"
-      },
-      "published": false,
-      "publication_status": "PENDING_INDEPENDENT_REVIEW_AND_HOSTED_PUBLICATION",
-      "physical_gpu_tested": false,
-      "release_qualified": false,
-      "scoped_release": {
-        "version": "0.7.5",
-        "components": [
-          "browser-WASM compiler and independent formatter",
-          "ordinary retained plotting",
-          "Node ESM compiler/guest/formatter embedding"
-        ],
-        "qualification": "Fresh native and regenerated WASM 17/17 named controls per target; current extracted archive usage, security/integrity and typed ownership; affected local browser eight canonical programs, real source edit/rerun and both archive HTTP byte/hash checks. Hosted verification and publication pending. Full compiler/SDK/GPU/benchmark release unqualified.",
-        "evidence": "../../verification/e2045-package-qualification.json",
-        "linuxCompilerSDKQualified": false,
-        "crossTargetParityQualified": false,
-        "comparativeBenchmarksQualified": false,
-        "fullGpuWorldQualified": false,
-        "comparativeSamples": 0
-      },
-      "library_update": {
-        "sourceCommit": "804892b62f3dd938fd67d820f322a72c0c1ed96c",
-        "changed": "One Physics SI catalog exposed by :.physics.units with :.units and :.units.si compatibility forwarders; fresh browser/WASM binding, unchanged native binary with separately paired current library. Node host and formatter retain their separately identified bytes.",
-        "evidence": "../../verification/e2045-package-qualification.json"
-      },
-      "historical_before_ae0e200": {
-        "verification": {
-          "status": "SCOPED_CURRENT_RETAINED_UI_CORRECTNESS_FULL_RELEASE_INCOMPLETE",
-          "evidence": "../../verification/e1615-current-renderer-queue.json",
-          "oldPassCarry": false,
-          "required5MRenderViewOrdinaryColor": true,
-          "native10000Qualified": false,
-          "fullGpuWorldComplete": false,
-          "multiRendererQueueCorrectness": true,
-          "native10000OrdinaryUiComplete": true,
-          "nativeLiveEngineEntry": true,
-          "native8OriginalWitnessesPassed": 8,
-          "native8OriginalWitnessesTotal": 8,
-          "nativeLabelEvidence": "../../verification/e1623-current-native-mesh.json",
-          "currentCanonical57": {
-            "passed": 57,
-            "total": 57,
-            "source": "3a6a07dd411a94039577b4bc1dae08be6801b41c8fc272ec2252fdcded679e03",
-            "oldPassCarry": false,
-            "evidence": "../../verification/e1625-current-qualification.json",
-            "newExecution": false,
-            "reusedByExplicitComponentImpact": true,
-            "componentImpactEvidence": "../../verification/e1642-symbolic-renderer-library.json"
-          },
-          "normalSymbolicRendererLibrary": {
-            "status": "PASS_NAMED_ORIGINAL_NATIVE_WASM_ROW_AND_PARITY_ONLY",
-            "evidence": "../../verification/e1642-symbolic-renderer-library.json"
-          }
-        },
-        "scoped_release": {
-          "version": "0.7.5",
-          "components": [
-            "browser-WASM compiler and formatter",
-            "browser retained plotting",
-            "Node ESM compiler/guest/formatter embedding"
-          ],
-          "qualification": "Named supported controls only; full release remains unqualified.",
-          "existingBrowserPrograms": {
-            "passed": 57,
-            "total": 57,
-            "newExecution": false,
-            "reusedByExplicitComponentImpact": true,
-            "evidence": "../../verification/e1625-current-qualification.json"
-          },
-          "evidence": "../../verification/e1642-symbolic-renderer-library.json",
-          "linuxCompilerSDKQualified": false,
-          "crossTargetParityQualified": false,
-          "comparativeBenchmarksQualified": false,
-          "originalAffectedSymbolicRows": {
-            "passed": 2,
-            "total": 48,
-            "unrun": 46,
-            "parityPassed": 1,
-            "parityTotal": 24
-          },
-          "normalBrowserLoaderCase": {
-            "passed": 1,
-            "total": 1
-          },
-          "normalNodeEsmStdout": "7\n"
-        },
-        "physical_gpu_tested": true,
-        "ui_source_commit": "44f71074a7496efcf23c6d2d4fe9ffe4100acb71",
-        "native_label_source_commit": "2ae71910c480f7c41b028f8987e807ab9c4bc8a7"
-      },
-      "compiler_source_commit": "b09689e2ff23f8d7c54b1dda08ea89bc2a6a9c0d",
-      "native_binding": "305da34c347e2d75f5216347d7e5b22ebe0fe4e04ff3588b552345a7b284a352",
-      "native_binary_source_commit": "9abaf17558a5e8b74f6ab5e9381484c194ca0612",
-      "node_package_host_source_commit": "96d0ff9831a09740b30d05f3d3a64f4ab61a8c87",
-      "node_package_host_durable_source_commit": "4ad2dedae91f028c5a79c1f8b5eb67c3db504af6"
-    }
-  },
-  "paired_library_source_commit": "0b63a99a4e6901cf54c31ed5555f5fdc7e98c9f9"
+  }
 }

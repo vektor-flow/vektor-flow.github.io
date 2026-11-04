@@ -1,0 +1,517 @@
+{
+  "schema": "vektor-flow.current-focused-distribution/1",
+  "status": "PASS_NAMED_CURRENT_MATCHED_SCOPES_FULL_RELEASE_UNQUALIFIED",
+  "owner": "e2243",
+  "compilerBinding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "formatterBinding": "2f0a880111b6f71370c139f9699cb965616cbfbd54fb17427ae4b51a21e3701c",
+  "sourceCommit": "9420e54605e038bebaff3997445f5eae2d45e47b",
+  "compositionInputSHA256": "e746da93d763916c283118673c91a0451a5e31741054966832d6bc34b7e5c44d",
+  "browserLibrarySources": 34,
+  "browserRegistryEntries": 27,
+  "nativeLibrarySources": 35,
+  "nativeRegistryEntries": 28,
+  "fullReleaseQualified": false,
+  "nativeABI2Qualified": false,
+  "physicalGPUQualified": false,
+  "tests": {
+    "originalIntegerWholeStdoutBytes": 271,
+    "originalIntegerSourceSHA256": "f808342aac7636e13c65a70b4737d49d1badd2c2e953e9ce706eebdb204bf1e0",
+    "strictNodeWholeOutputPassed": 7,
+    "packageSecurityPassed": 30,
+    "packageSecurityFailed": 0,
+    "packageSecuritySkipped": 0
+  },
+  "browser": {
+    "compilerBinding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+    "sourceSHA256": "a13675cc66aa8e7add75c555ed0668aa5d9bfb30af940e147a76f3500b0e82a6",
+    "liveAndFormattedChannels": 240,
+    "distinctEntryCanvases": 2,
+    "allEntryCurrentGPUFences": true,
+    "navigation": {
+      "zoomOut": true,
+      "zoomIn": true,
+      "drag": true,
+      "currentViewFenceMatched": true
+    },
+    "labelReadiness": "SUBMITTED_COMPLETION_UNMEASURED",
+    "pageErrors": [],
+    "productConsoleErrors": [],
+    "browserClosed": true,
+    "serverClosed": true,
+    "backend": "Chromium tested SOFTWARE Vulkan/SwiftShader configuration; no physical/universal browser claim"
+  },
+  "realEdit": {
+    "authoredHeightIncrementOne": true,
+    "all240LiveAndFormatterValues": true,
+    "oldOwnerReplacedWithoutErrors": true,
+    "requiredLabelsReady": true,
+    "currentAllEntryGPUFences": true
+  },
+  "extractedUsage": {
+    "node": {
+      "status": "PASS",
+      "allExit0Joined": true,
+      "commandCount": 3
+    },
+    "native": {
+      "status": "PASS",
+      "allExit0Joined": true,
+      "commandCount": 3
+    },
+    "security": {
+      "status": "PASS",
+      "allExit0Joined": true,
+      "commandCount": 1
+    }
+  },
+  "archives": {
+    "canonical": {
+      "root": "vkf-canonical-0.7.5-current",
+      "entries": [
+        {
+          "path": "LICENSE.txt",
+          "bytes": 1071,
+          "sha256": "6cd2adfa839b3c3e1e96635d81e89fff3658b21b073f1bb85e8db45d96ebc01d"
+        },
+        {
+          "path": "PAIRED-STDLIB-MANIFEST.json",
+          "bytes": 5428,
+          "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+        },
+        {
+          "path": "README.txt",
+          "bytes": 778,
+          "sha256": "681b397987486f6eb8ba01492839354cd901289f689259b84d2e80f6dcc726aa"
+        },
+        {
+          "path": "VERIFICATION.json",
+          "bytes": 15532,
+          "sha256": "4085e317e09c8a8c5ed66159eb14d3821415f361be9741a44e0055bb6cfb9f9a"
+        },
+        {
+          "path": "compiler-base.mjs",
+          "bytes": 188262,
+          "sha256": "6ef6ac12a6988af9753af1d2644785d68a147875e0e9bfad663b5d1f3187a64c"
+        },
+        {
+          "path": "compiler.data",
+          "bytes": 644660,
+          "sha256": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+        },
+        {
+          "path": "compiler.mjs",
+          "bytes": 1464,
+          "sha256": "164345b6b047f31779dc0c794e56ca8e252344ec7ea438c3ccb7d195a31f8560"
+        },
+        {
+          "path": "compiler.wasm",
+          "bytes": 20492417,
+          "sha256": "0dfaf47c7f1020343e76183c5419d88ab1dc130233aa38944d2307a4724221a6"
+        },
+        {
+          "path": "formatter.mjs",
+          "bytes": 61671,
+          "sha256": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3"
+        },
+        {
+          "path": "formatter.wasm",
+          "bytes": 2096298,
+          "sha256": "3586ebc5dda88fd289791245e43769c77ded65de3ae28aaf49d22262918978da"
+        },
+        {
+          "path": "package-tools/addresses.mjs",
+          "bytes": 22794,
+          "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+        },
+        {
+          "path": "package-tools/cli.mjs",
+          "bytes": 4907,
+          "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
+        },
+        {
+          "path": "package-tools/git-source.mjs",
+          "bytes": 9262,
+          "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+        },
+        {
+          "path": "package-tools/github.mjs",
+          "bytes": 1579,
+          "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+        },
+        {
+          "path": "package-tools/host.mjs",
+          "bytes": 11443,
+          "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+        },
+        {
+          "path": "package-tools/inputs.mjs",
+          "bytes": 7238,
+          "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+        },
+        {
+          "path": "package-tools/metadata.mjs",
+          "bytes": 10834,
+          "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+        },
+        {
+          "path": "package-tools/owner-protection.mjs",
+          "bytes": 2234,
+          "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+        },
+        {
+          "path": "package-tools/ownership.mjs",
+          "bytes": 2891,
+          "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+        },
+        {
+          "path": "package-tools/package.json",
+          "bytes": 602,
+          "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+        },
+        {
+          "path": "package-tools/project.mjs",
+          "bytes": 7664,
+          "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
+        },
+        {
+          "path": "package-tools/publish.mjs",
+          "bytes": 5939,
+          "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
+        },
+        {
+          "path": "package-tools/resolve.mjs",
+          "bytes": 1773,
+          "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+        },
+        {
+          "path": "package.json",
+          "bytes": 8892,
+          "sha256": "8981bc11af3c104a6d8224ae46197b02c7f6ad0f576cf0035c2e362762bad935"
+        },
+        {
+          "path": "prepare-formatter-ir.mjs",
+          "bytes": 693,
+          "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+        },
+        {
+          "path": "third-party/emscripten-musl-copyright.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+        },
+        {
+          "path": "third-party/emscripten-toolchain-copyright.txt",
+          "bytes": 131248,
+          "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+        },
+        {
+          "path": "third-party/trigonometric-source-notices.txt",
+          "bytes": 2927,
+          "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
+        },
+        {
+          "path": "third-party/vkf-runtime-musl-license.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+        }
+      ],
+      "safeExtraction": true,
+      "allArchiveMembersMatchCheckedInputs": true,
+      "onlyMetadataChangedAfterUsage": true,
+      "archive": {
+        "path": "downloads/vkf-canonical-0.7.5-a5aca8d2-matched-current-notices.tar.gz",
+        "bytes": 4999218,
+        "sha256": "2bc4e847c642430dbe7cae5b802f987cc6435aea2066e68cf69a4097fee0a084"
+      }
+    },
+    "native": {
+      "root": "vkf-native-linux-x86_64-0.7.5-current",
+      "entries": [
+        {
+          "path": "LICENSE.txt",
+          "bytes": 1071,
+          "sha256": "6cd2adfa839b3c3e1e96635d81e89fff3658b21b073f1bb85e8db45d96ebc01d"
+        },
+        {
+          "path": "PAIRED-STDLIB-MANIFEST.json",
+          "bytes": 5337,
+          "sha256": "9f7d5af43aaa2c1e866fafb1e04c8934c10d5e3ae3e2bae518aab7a4b65d4da1"
+        },
+        {
+          "path": "README.txt",
+          "bytes": 439,
+          "sha256": "4bc94183a02b1efac5ade63bb65adf1c1462e4d8c3b5013ef4d4c9dbc66a43a6"
+        },
+        {
+          "path": "VERIFICATION.json",
+          "bytes": 9920,
+          "sha256": "4cd77fb9792549de0c8362c65443de8ccc4b42f156b26d84c0214340af20b0ea"
+        },
+        {
+          "path": "bin/vkf",
+          "bytes": 32960024,
+          "sha256": "2f47740183616fbf70057d01b59822c20791b84271f586d0d2f621f7c44be931"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/collections.vkf",
+          "bytes": 605,
+          "sha256": "57014c51de253c74998cdeb450771135d434c50e350d0555ebc032b61307a7a1"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/command.vkf",
+          "bytes": 389,
+          "sha256": "1d7b751e40daaf1689bb78dbac8fb593a998841e6b05de50e49130089ac63d34"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/concurrent.vkf",
+          "bytes": 1096,
+          "sha256": "0309f6be8a254f1a9282f0ddab9edfdd5f76724bf5870f2bf815fd9883fea8f9"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/errors.vkf",
+          "bytes": 592,
+          "sha256": "150851cae3b6b1f2fc275de0d8678435a2e765f6b8f085a2c76c06584b7a7345"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/interpolation.vkf",
+          "bytes": 2750,
+          "sha256": "ecb7a741e256f5e7b796ebf587fcc8342e33ea5aebd0da3e38ef1f736355d936"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/interpolation/polynomial.vkf",
+          "bytes": 3904,
+          "sha256": "31886179a3b94e795b2cc581db127b76571c34903f160af69c8f6ffce7f4f343"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/interpolation/tensor.vkf",
+          "bytes": 2813,
+          "sha256": "21ab3900bc7d0974d6bcaaa6b16f9881c7c38b8dcac2f9de692904503e1ed929"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/io.vkf",
+          "bytes": 543,
+          "sha256": "0df4f64fa1597f619743fb0ff01105f59c1e7883e19bc095f00ba48e9a3e7d80"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/io_direct_smoke.vkf",
+          "bytes": 286,
+          "sha256": "400c1f216fe490cc77ac4ddb67b2a3f33b85058382737c17e154b70289d80b74"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/linalg.vkf",
+          "bytes": 44156,
+          "sha256": "2675281ce2b70948248e857a3bd4ca7c806bb66f5cb4e78b7fb1161bbdd60ff4"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/math.vkf",
+          "bytes": 3955,
+          "sha256": "ca670afda7c9edc010ca25428f61f79c0fb45bdf5655a4a240d2162e744a2f3f"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics.vkf",
+          "bytes": 37104,
+          "sha256": "96d42a6f2757f1d9e74aa018f36d5983861ff127232bdb25aec5bee2472f7291"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/convex_preparation.vkf",
+          "bytes": 6793,
+          "sha256": "b09e39a0f3186ae3c7c6fc7dfb30edbdade8dbd3cee6e6980ffb4b857262d24f"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/electrical.vkf",
+          "bytes": 15996,
+          "sha256": "2d33927cae5ffe44b3aa2da3ccaeb0031a3083995030797b951da87c2f1eb296"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/flow.vkf",
+          "bytes": 3170,
+          "sha256": "dd24b1d6473f20bd55c4b4b48ed7a59f0b5dc97015b61fe80f27b7e11eccfc14"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/optics.vkf",
+          "bytes": 12191,
+          "sha256": "ff5e225fc362cc445ffba6a03898d37bde3b369a3fd231eb7ca269f83b5cd17e"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/preparation.vkf",
+          "bytes": 2830,
+          "sha256": "02b008fb837933f2a975847fc26e63753988bdec27e7b7004af40f517d4696a8"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/rigid.vkf",
+          "bytes": 10046,
+          "sha256": "44ba578abc45acbcca83f94487878d212542648e50bf951261d281c54f01d03c"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/runtime.vkf",
+          "bytes": 340,
+          "sha256": "28ba2b827cb93c24ae0dad07ee56f444a8e1e7d229c3ece6a4f3dbba272e375b"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/supported_contact.vkf",
+          "bytes": 7224,
+          "sha256": "9005c4186c9896fecee7dfcfe645c019048ae4d741486e8c593796e43bef6a05"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/units.vkf",
+          "bytes": 214,
+          "sha256": "79039b8d5f00479b1682532f0739d2132694895334dc983b0b6fd524645b2cf2"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics/units/si.vkf",
+          "bytes": 290,
+          "sha256": "d209486b3645d3faf1ed499356cda2fb268c28c813a100c9d17821f78b5f1f05"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf",
+          "bytes": 324,
+          "sha256": "7c7fd8b7fe93197cafbe91c769a39be2ef6913c8d734c3706fddf4765025c8e9"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf",
+          "bytes": 648,
+          "sha256": "203f7d090045469d6459016607c570bd60af87c84cdb2c915e56f1044b4a8152"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf",
+          "bytes": 579,
+          "sha256": "3547a685b765a70d4d68c8cfc1835bfd8bea3564e8e66fc6891977066f64058b"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/random.vkf",
+          "bytes": 2295,
+          "sha256": "f1bf76f090e09c8858e45492f1f7f858a89d22dd08e559735bfb69278d4eabe5"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/regex.vkf",
+          "bytes": 460,
+          "sha256": "748c91c569cb4e0c19d253f8eba7b47b403353ab21fea9539bccf4b1a2b11df7"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/stat.vkf",
+          "bytes": 9721,
+          "sha256": "60e6e00c16f3d784409a5de4acbd788d1aff94f3b5737a16b8698951afe71b62"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/symbolic.vkf",
+          "bytes": 483399,
+          "sha256": "0cfceb3ced5c928d58954c0b8c870760275fdd645a68b9456fa0274d562f88a4"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/system.vkf",
+          "bytes": 375,
+          "sha256": "5c676dc0a433d85cfbaa117b4572516457d8bec92d6cb0d5435f1279f1b89ed9"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/time.vkf",
+          "bytes": 3986,
+          "sha256": "5f0f6f742cf1a585323e5e562dcf8d99b06164ae3c8d2790c9aefcce77b3c9bc"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/ui.vkf",
+          "bytes": 26,
+          "sha256": "1a71dc8e6b57885c8df654998c2be686a788ec5c47b4575d6b79cc2e9e2f30eb"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/ui/colormaps.vkf",
+          "bytes": 1396,
+          "sha256": "1b990601fb9c33eb64c0c72017dcdc0f930ad8d83dbc881566d263d573577c82"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/units.vkf",
+          "bytes": 76,
+          "sha256": "c20912bb329371215b241670919d439a03cee578dbaea5b3ae2b6fd9a6080b12"
+        },
+        {
+          "path": "compiler/self_hosted/stdlib/units/si.vkf",
+          "bytes": 84,
+          "sha256": "d5fb024e6c13d91088fd7dc7dc2d0423d399906a28eefc9b32dd680cdd6cb1ff"
+        },
+        {
+          "path": "third-party/emscripten-musl-copyright.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+        },
+        {
+          "path": "third-party/emscripten-toolchain-copyright.txt",
+          "bytes": 131248,
+          "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+        },
+        {
+          "path": "third-party/trigonometric-source-notices.txt",
+          "bytes": 2927,
+          "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
+        },
+        {
+          "path": "third-party/vkf-runtime-musl-license.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+        }
+      ],
+      "safeExtraction": true,
+      "allArchiveMembersMatchCheckedInputs": true,
+      "onlyMetadataChangedAfterUsage": true,
+      "archive": {
+        "path": "downloads/vkf-native-linux-x86_64-0.7.5-df9feb23-current-cli-notices.tar.gz",
+        "bytes": 10174977,
+        "sha256": "3d7388674cb4f20f39fd5c7d119c9292be02cfd58dfa0c32671ebcc4681eee90"
+      }
+    }
+  },
+  "fullEX01": {
+    "sourceSHA256": "3035ea9478c142aa9928aecff799442f1d64fe0f5b338281e49bd9a4129ba364",
+    "completed": false,
+    "normalPriorFailure": "ORDINARY_UI_OUTPUT_TIMEOUT_240S",
+    "baselineCompiler": "ebc05fc48543b3969265de090a96bcdcdbf7aa6ee170641a9c6af15cd73d5da0",
+    "changedIntegerPairFullScene": "UNRUN_NOT_BLINDLY_RETRIED",
+    "boundedCapture": "Original guest298149B and actualpoll/locals captured; no rootcause/completion claim"
+  },
+  "limitations": [
+    "Full authored EX01 retained execution remains unresolved; ebc/a955 normal240s timeout retained. Diagnostic is not completion.",
+    "Native ABI2 consumer closure/supported embedded engine/native AND deployed/full scenes/all mentioned features remain OPEN.",
+    "Local browser uses SOFTWARE Vulkan; physicalGPU/fullframe10ms and GPUlabel/font completion unmeasured.",
+    "Current contact19/combinedpolicy failures retained; no solver/tolerance changes.",
+    "These archives qualify only recorded focused scopes after extracted usage/security checks. No full stable release, full SDK or comparative benchmark claim."
+  ],
+  "sourceAndTestEvidenceByReference": {
+    "build": {
+      "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/integer-build/BUILD-SUCCESS.json",
+      "bytes": 847844,
+      "sha256": "ee042e7d0d39fac7197029166f364ecef2510ca1d02850ed283345be07b5302e"
+    },
+    "strictNode": {
+      "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/GUEST-LOOP-REGRESSIONS.json",
+      "bytes": 144167,
+      "sha256": "9293c8570fd2b2cefddcfea29229e84335d7a943ca57b427eafcfd23e239b662"
+    },
+    "realBrowser": {
+      "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/BROWSER-integer-overlay-current-colored-navigation.json",
+      "bytes": 162853,
+      "sha256": "390360cbccc2dae26735eb6579618330ccda21a4dcc7f6af7e065823233d9aef"
+    },
+    "realEditorReentry": {
+      "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/BROWSER-current-real-editor-reentry.json",
+      "bytes": 173956,
+      "sha256": "776a878e9f15ec3a4f0fc087e8e42798dc5a5cc846e63df3e273e4eb4ba1f522"
+    }
+  },
+  "remotePublication": "NOT_ESTABLISHED_BY_THIS_LOCAL_REPORT",
+  "pagesMode": {
+    "status": "PASS_NORMAL_RUN_SERVICEWORKER_ISOLATION_CURRENT_COLOR_NAV_LABELS",
+    "compilerBinding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+    "navigation": {
+      "zoomOut": true,
+      "zoomIn": true,
+      "drag": true,
+      "currentViewFenceMatched": true
+    },
+    "pageErrors": [],
+    "productConsoleErrors": [],
+    "browserClosed": true,
+    "serverClosed": true,
+    "sourceReport": {
+      "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/BROWSER-pages-mode-current-colored-navigation.json",
+      "bytes": 163364,
+      "sha256": "36796645d120e4616ce46a1141da6897642697752668d5a02203d19115551236"
+    }
+  }
+}

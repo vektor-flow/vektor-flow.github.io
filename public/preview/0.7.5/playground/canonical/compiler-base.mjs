@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmpt0vlm4at.js
+// include: /tmp/tmphg3mgzzt.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -78,7 +78,7 @@ if (ENVIRONMENT_IS_NODE) {
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/inputs/linked/compiler.data';
+      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/integer-build/linked/compiler.data';
       var REMOTE_PACKAGE_BASE = 'compiler.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
@@ -224,10 +224,10 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/inputs/linked/compiler.data');
+          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/integer-build/linked/compiler.data');
 
       };
-      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2199-corrected-wasm-package-release-actual-20261103/inputs/linked/compiler.data');
+      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/integer-build/linked/compiler.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
@@ -248,11 +248,11 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/interpolation.vkf", "start": 2682, "end": 5432}, {"filename": "/compiler/self_hosted/stdlib/interpolation/polynomial.vkf", "start": 5432, "end": 9336}, {"filename": "/compiler/self_hosted/stdlib/interpolation/tensor.vkf", "start": 9336, "end": 12149}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 12149, "end": 12692}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 12692, "end": 12978}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 12978, "end": 57002}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 57002, "end": 60957}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 60957, "end": 90382}, {"filename": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf", "start": 90382, "end": 95988}, {"filename": "/compiler/self_hosted/stdlib/physics/preparation.vkf", "start": 95988, "end": 98818}, {"filename": "/compiler/self_hosted/stdlib/physics/rigid.vkf", "start": 98818, "end": 108864}, {"filename": "/compiler/self_hosted/stdlib/physics/runtime.vkf", "start": 108864, "end": 109204}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 109204, "end": 116428}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 116428, "end": 116642}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 116642, "end": 116932}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 116932, "end": 117256}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 117256, "end": 117904}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 117904, "end": 118483}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 118483, "end": 120778}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 120778, "end": 121238}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 121238, "end": 130959}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 130959, "end": 614358}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 614358, "end": 614733}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 614733, "end": 618719}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 618719, "end": 618745}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 618745, "end": 620141}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 620141, "end": 620217}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 620217, "end": 620301}], "remote_package_size": 620301});
+    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/interpolation.vkf", "start": 2682, "end": 5432}, {"filename": "/compiler/self_hosted/stdlib/interpolation/polynomial.vkf", "start": 5432, "end": 9336}, {"filename": "/compiler/self_hosted/stdlib/interpolation/tensor.vkf", "start": 9336, "end": 12149}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 12149, "end": 12692}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 12692, "end": 12978}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 12978, "end": 57134}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 57134, "end": 61089}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 61089, "end": 98193}, {"filename": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf", "start": 98193, "end": 104986}, {"filename": "/compiler/self_hosted/stdlib/physics/flow.vkf", "start": 104986, "end": 108156}, {"filename": "/compiler/self_hosted/stdlib/physics/optics.vkf", "start": 108156, "end": 120347}, {"filename": "/compiler/self_hosted/stdlib/physics/preparation.vkf", "start": 120347, "end": 123177}, {"filename": "/compiler/self_hosted/stdlib/physics/rigid.vkf", "start": 123177, "end": 133223}, {"filename": "/compiler/self_hosted/stdlib/physics/runtime.vkf", "start": 133223, "end": 133563}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 133563, "end": 140787}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 140787, "end": 141001}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 141001, "end": 141291}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 141291, "end": 141615}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 141615, "end": 142263}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 142263, "end": 142842}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 142842, "end": 145137}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 145137, "end": 145597}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 145597, "end": 155318}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 155318, "end": 638717}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 638717, "end": 639092}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 639092, "end": 643078}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 643078, "end": 643104}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 643104, "end": 644500}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 644500, "end": 644576}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 644576, "end": 644660}], "remote_package_size": 644660});
 
   })();
 
-// end include: /tmp/tmpt0vlm4at.js
+// end include: /tmp/tmphg3mgzzt.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -830,7 +830,7 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  903488: () => { return Module['vkf075StructuralFlowDiagnostic'] === true; }
+  930784: () => { return Module['vkf075StructuralFlowDiagnostic'] === true; }
 };
 
 // end include: preamble.js
@@ -4860,10 +4860,10 @@ function invoke_viiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
   }
 }
 
-function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
+function invoke_viiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
   var sp = stackSave();
   try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8);
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -4871,10 +4871,10 @@ function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
   }
 }
 
-function invoke_viiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
+function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
   var sp = stackSave();
   try {
-    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

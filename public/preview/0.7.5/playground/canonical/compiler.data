@@ -286,11 +286,11 @@ io.write_bytes(bytes_path, "byte-exact UTF-8")
 # Linear algebra over ordinary VKF vectors and rectangular nested vectors.
 # Algorithms live in VKF source; no Matrix wrapper or host-language fallback.
 
-m: .math
+_linalg_math: .math
 errors: .errors
 
 _linalg_abs(value:num) -> num:
-    m.abs(value)
+    _linalg_math.abs(value)
 
 _linalg_numeric_dot(left:[num:n], right:[num:n]) -> num:
     result: 0
@@ -601,7 +601,7 @@ cholesky(matrix:[[num:n]:n], tolerance:num=0.000000000001) -> [[num:n]:n]:
                 row = column?
                     total <= tolerance?
                         errors.ValueError("linalg.cholesky matrix is not positive definite")!
-                    lower.(row, column): m.sqrt(total)
+                    lower.(row, column): _linalg_math.sqrt(total)
                 row != column?
                     lower.(row, column): total / lower.(column, column)
     lower
@@ -637,7 +637,7 @@ qr(matrix:[[num:c]:r], tolerance:num=0.000000000001) -> (q:[[num:c]:r],r:[[num:c
             ..row_count - 1 >>
                 row: $
                 .total+: vector.(row) * vector.(row)
-            .norm: m.sqrt(total)
+            .norm: _linalg_math.sqrt(total)
             norm <= tolerance?
                 errors.ValueError("linalg.qr matrix has dependent columns")!
             r_upper.(column, column): norm
@@ -699,7 +699,7 @@ _eigen_householder_reference(
                 values.($): values.($) / scale
                 .h+: values.($) * values.($)
             .f: values.(reduction_index - 1)
-            .g: m.sqrt(h)
+            .g: _linalg_math.sqrt(h)
             f > 0?
                 .g: -g
             off_diagonal.(reduction_index): scale * g
@@ -823,7 +823,7 @@ _eigen_householder_reference(
                 (values.(next_index) - g) /
                 (2 * off_diagonal.(eigen_index))
             )
-            .radius: m.sqrt(p * p + 1)
+            .radius: _linalg_math.sqrt(p * p + 1)
             p < 0?
                 .radius: -radius
             values.(eigen_index): (
@@ -852,7 +852,7 @@ _eigen_householder_reference(
                 .previous_sine: sine
                 .g: cosine * off_diagonal.(rotation_index)
                 .h: cosine * p
-                .radius: m.sqrt(
+                .radius: _linalg_math.sqrt(
                     p * p + off_diagonal.(rotation_index) *
                     off_diagonal.(rotation_index)
                 )
@@ -997,12 +997,12 @@ eigen(
                     _linalg_abs(off_diagonal) > tolerance?
                         .diagonal_left: working.(pivot_row, pivot_row)
                         .diagonal_right: working.(pivot_column, pivot_column)
-                        .angle: 0.5 * m.atan2(
+                        .angle: 0.5 * _linalg_math.atan2(
                             2 * off_diagonal,
                             diagonal_right - diagonal_left
                         )
-                        .cosine: m.cos(angle)
-                        .sine: m.sin(angle)
+                        .cosine: _linalg_math.cos(angle)
+                        .sine: _linalg_math.sin(angle)
 
                         ..size - 1 >>
                             row: $
@@ -1139,7 +1139,7 @@ svd(
             .selected_value: 0
         selected_value < 0?
             errors.ValueError("linalg.svd encountered a negative Gram eigenvalue")!
-        singular_values.(target): m.sqrt(selected_value)
+        singular_values.(target): _linalg_math.sqrt(selected_value)
         ..size - 1 >>
             row: $
             right_vectors.(row, target): spectral.vectors.(row, best_source)
@@ -1183,7 +1183,7 @@ svd(
                                 basis_candidate.(row) -
                                 projection * left_vectors.(row, prior)
                             )
-                .candidate_norm: m.sqrt(_linalg_numeric_dot(
+                .candidate_norm: _linalg_math.sqrt(_linalg_numeric_dot(
                     basis_candidate,
                     basis_candidate
                 ))
@@ -1660,17 +1660,16 @@ erf(value:num) -> num:
     t: 1 / (1 + 0.3275911 * x)
     polynomial: (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t
     sign_value * (1 - polynomial * math.exp(0 - x * x))
-# Physics stdlib fixture.
-#
-# Rigid-body collision helpers are expressed in VKF so the scene/runtime can
-# compile the same source on web, desktop, and mobile hosts.
+# Physics: general physical laws over ordinary VKF values and arrays.
+# SI units are selected through .physics.units. No scene or simulation presets.
+# Three-dimensional contact/inertia constraints describe spatial mechanics,
+# not a separate fixed-size matrix type system.
 
 :.math
 :.linalg
 errors: .errors
+physical_units: .physics.units
 
-Vector3: [num:3]
-Matrix3: [[num:3]:3]
 RigidMaterial: (
     name:str,
     density:num,
@@ -1722,40 +1721,21 @@ rb_dot3(a:[num:3], b:[num:3]) -> num:
 rb_cross3(a:[num:3], b:[num:3]) -> [num:3]:
     cross(a, b)
 
-rb_mat3(
-    a00:num, a01:num, a02:num,
-    a10:num, a11:num, a12:num,
-    a20:num, a21:num, a22:num
-):
-    [
-        [a00, a01, a02],
-        [a10, a11, a12],
-        [a20, a21, a22]
-    ]
-
 rb_identity3():
-    rb_mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
+    diag([1, 1, 1])
 
 rb_scale_mat3(s:num, A:any):
-    rb_mat3(
-        s * A.(0, 0), s * A.(0, 1), s * A.(0, 2),
-        s * A.(1, 0), s * A.(1, 1), s * A.(1, 2),
-        s * A.(2, 0), s * A.(2, 1), s * A.(2, 2)
-    )
+    s * A
 
 rb_add_mat3(A:any, B:any):
-    rb_mat3(
-        A.(0, 0) + B.(0, 0), A.(0, 1) + B.(0, 1), A.(0, 2) + B.(0, 2),
-        A.(1, 0) + B.(1, 0), A.(1, 1) + B.(1, 1), A.(1, 2) + B.(1, 2),
-        A.(2, 0) + B.(2, 0), A.(2, 1) + B.(2, 1), A.(2, 2) + B.(2, 2)
-    )
+    A + B
 
 rb_outer3(a:[num:3], b:[num:3]) -> [[num:3]:3]:
-    rb_mat3(
-        a.0 * b.0, a.0 * b.1, a.0 * b.2,
-        a.1 * b.0, a.1 * b.1, a.1 * b.2,
-        a.2 * b.0, a.2 * b.1, a.2 * b.2
-    )
+    [
+        [a.0 * b.0, a.0 * b.1, a.0 * b.2],
+        [a.1 * b.0, a.1 * b.1, a.1 * b.2],
+        [a.2 * b.0, a.2 * b.1, a.2 * b.2]
+    ]
 
 rb_trace3(A:[[num:3]:3]) -> num:
     trace(A)
@@ -1865,13 +1845,6 @@ step_rigid_body_momentum3(
     inertial_properties: (mass: properties.mass, inertia_tensor: properties.inertia_tensor)
     step_rigid_body_momentum3(state, inertial_properties, dt, force, torque)
 
-
-vec2(x:num, y:num):
-    [x, y]
-
-vec3(x:num, y:num, z:num):
-    [x, y, z]
-
 add2(a:any, b:any):
     [a.0 + b.0, a.1 + b.1]
 
@@ -1899,39 +1872,17 @@ dot3(a:[num:3], b:[num:3]) -> num:
 cross3(a:[num:3], b:[num:3]) -> [num:3]:
     cross(a, b)
 
-mat2(a00:num, a01:num, a10:num, a11:num):
-    [[a00, a01], [a10, a11]]
-
-mat3(
-    a00:num, a01:num, a02:num,
-    a10:num, a11:num, a12:num,
-    a20:num, a21:num, a22:num
-):
-    [
-        [a00, a01, a02],
-        [a10, a11, a12],
-        [a20, a21, a22]
-    ]
-
 zero3x3():
-    mat3(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    diag([0, 0, 0])
 
 identity3x3():
-    mat3(1, 0, 0, 0, 1, 0, 0, 0, 1)
+    diag([1, 1, 1])
 
 scale_mat3(s:num, A:any):
-    mat3(
-        s * A.(0, 0), s * A.(0, 1), s * A.(0, 2),
-        s * A.(1, 0), s * A.(1, 1), s * A.(1, 2),
-        s * A.(2, 0), s * A.(2, 1), s * A.(2, 2)
-    )
+    s * A
 
 add_mat3(A:any, B:any):
-    mat3(
-        A.(0, 0) + B.(0, 0), A.(0, 1) + B.(0, 1), A.(0, 2) + B.(0, 2),
-        A.(1, 0) + B.(1, 0), A.(1, 1) + B.(1, 1), A.(1, 2) + B.(1, 2),
-        A.(2, 0) + B.(2, 0), A.(2, 1) + B.(2, 1), A.(2, 2) + B.(2, 2)
-    )
+    A + B
 
 neg_mat3(A:any):
     scale_mat3(0 - 1, A)
@@ -1946,21 +1897,15 @@ mat_vec3(A:[[num:3]:3], v:[num:3]) -> [num:3]:
 mat_mul3(A:[[num:3]:3], B:[[num:3]:3]) -> [[num:3]:3]:
     matmul(A, B)
 
-diag_inv3(diagonal:any):
-    rb_inverse3(
-        mat3(
-            diagonal.0, 0, 0,
-            0, diagonal.1, 0,
-            0, 0, diagonal.2
-        )
-    )
+diag_inv3(diagonal:[num:3]):
+    inverse(diag(diagonal))
 
-skew3(r:any):
-    mat3(
-        0, 0 - r.2, r.1,
-        r.2, 0, 0 - r.0,
-        0 - r.1, r.0, 0
-    )
+skew3(r:[num:3]):
+    [
+        [0, 0 - r.2, r.1],
+        [r.2, 0, 0 - r.0],
+        [0 - r.1, r.0, 0]
+    ]
 
 collision_body3(mass:num, inv_inertia:[[num:3]:3], contact_offset:[num:3]):
     mass <= 0?
@@ -2241,14 +2186,6 @@ solid_contact_impulse3(
 angular_damping3(angular_velocity:any, damping:num):
     scale3(clamp_num(1 - damping, 0, 1), angular_velocity)
 
-dice_texture():
-    @: (
-        kind: "dice",
-        color_a: [0.98, 0.98, 1.0, 1.0],
-        color_b: [0.03, 0.03, 0.04, 1.0],
-        graph_width_px: 3.0
-    )
-
 rigid_material(
     name:str,
     density:num,
@@ -2279,12 +2216,6 @@ rigid_material(
         dynamic_friction: dynamic_friction,
         rolling_friction: rolling_friction
     )
-
-dice_material():
-    rigid_material("acrylic_dice", 1180, 0.46, 0.18, 0.62, 0.48, 0.055)
-
-felt_table_material():
-    rigid_material("felt_table", 220, 0.38, 0.10, 0.74, 0.58, 0.085)
 
 contact_material(a:any, b:any):
     e_n: max_num(a.e_n, b.e_n)
@@ -2345,237 +2276,300 @@ cube_inv_inertia3(mass:num, size:num):
     i: (mass * size * size) / 6
     diag_inv3([i, i, i])
 
-dice_body3(
-    size:num,
-    mass:num,
-    center:[num:3],
-    linear_velocity:[num:3],
-    angular_velocity:[num:3],
-    source_material:any
-):
-    inv_mass: 1 / mass
-    inv_inertia: cube_inv_inertia3(mass, size)
-    texture: dice_texture()
-    material: copy_rigid_material(source_material)
-    @: (
-        size: size,
-        mass: mass,
-        center: center,
-        linear_velocity: linear_velocity,
-        angular_velocity: angular_velocity,
-        material: material,
-        inv_mass: inv_mass,
-        inv_inertia: inv_inertia,
-        texture: texture
-    )
+# Local evolution laws. Spatial derivatives and field samples are inputs:
+# their topology, metric/embedding and boundary conditions belong to the caller.
+# These functions return rates; they neither choose a time step nor solve a PDE.
+# Dimension order: length, mass, time, current, temperature, amount, luminosity.
 
-dice_roll_initial_state(seed:num):
-    # Deterministic seed-to-range mapping for examples until a source-owned RNG lands.
-    whole_seed: int(seed)
-    a0: whole_seed
-    a1: whole_seed * 7 + 3
-    a2: whole_seed * 11 + 5
-    a3: whole_seed * 13 + 7
-    a4: whole_seed * 17 + 11
-    r0: (a0 % 17) / 16
-    r1: (a1 % 19) / 18
-    r2: (a2 % 23) / 22
-    r3: (a3 % 29) / 28
-    r4: (a4 % 31) / 30
-    linear_velocity: [
-        1.2 + 2.1 * r0,
-        0.8 + 1.6 * r1,
-        4.8 + 2.7 * r2
-    ]
-    angular_velocity: [
-        7.0 + 9.0 * r3,
-        9.0 + 11.0 * r4,
-        5.0 + 7.0 * r2
-    ]
-    @: (linear_velocity: linear_velocity, angular_velocity: angular_velocity)
+_law_finite(x:num):
+    (x=x) /\ ((abs(x) - abs(x))=0) /\ ((x=abs(x)) \/ (x=0 - abs(x)))
 
-first_plane_bounce3(dice:any, plane:any, contact:any):
-    normal: plane.normal
-    impact_linear_velocity: [
-        dice.linear_velocity.0,
-        dice.linear_velocity.1,
-        0 - abs_num(dice.linear_velocity.2)
+# Nonrelativistic Lorentz acceleration q(E + v cross B)/mass, right-handed axes.
+# All components must be finite. Positive finite mass; signed finite charge.
+charged_particle_velocity_rate(
+    mass:quantity<0,1,0,0,0,0,0>,
+    charge:quantity<0,0,1,1,0,0,0>,
+    velocity:[quantity<1,0,-1,0,0,0,0>:3],
+    electric_field:[quantity<1,1,-3,-1,0,0,0>:3],
+    magnetic_field:[quantity<0,1,-2,-1,0,0,0>:3]
+) -> [quantity<1,0,-2,0,0,0,0>:3]:
+    mass_si: num(mass / physical_units.kg)
+    charge_si: num(charge / physical_units.C)
+    (~_law_finite(mass_si) \/ mass_si<=0 \/ ~_law_finite(charge_si))?
+        errors.ValueError("finite positive mass and finite charge required")!
+    [..2] >>
+        (~_law_finite(num(velocity.($)/(physical_units.m/physical_units.s))) \/
+         ~_law_finite(num(electric_field.($)/(physical_units.V/physical_units.m))) \/
+         ~_law_finite(num(magnetic_field.($)/physical_units.T)))?
+            errors.ValueError("finite velocity and electromagnetic fields required")!
+    magnetic_term: [
+        velocity.1*magnetic_field.2 - velocity.2*magnetic_field.1,
+        velocity.2*magnetic_field.0 - velocity.0*magnetic_field.2,
+        velocity.0*magnetic_field.1 - velocity.1*magnetic_field.0
     ]
-    relative_velocity: impact_linear_velocity
-    body: collision_body3(dice.mass, dice.inv_inertia, scale3(0 - dice.size / 2, normal))
-    plane_body: collision_body_inverse3(0, zero3x3(), [0.0, 0.0, 0.0])
-    matrix: collision_matrix3(body, plane_body)
-    normal_hit: normal_contact_impulse3(matrix, relative_velocity, normal, contact)
-    friction_hit: tangential_friction_impulse3(
-        matrix,
-        relative_velocity,
-        normal,
-        normal_hit.magnitude,
-        contact
-    )
-    linear_impulse: add3(normal_hit.impulse, friction_hit.impulse)
-    angular_impulse_from_friction: cross3(body.contact_offset, friction_hit.impulse)
-    after_linear_velocity: add3(impact_linear_velocity, scale3(dice.inv_mass, linear_impulse))
-    after_angular_velocity_raw: add3(dice.angular_velocity, mat_vec3(dice.inv_inertia, angular_impulse_from_friction))
-    rolling_hit: rolling_resistance_impulse3(
-        matrix,
-        after_angular_velocity_raw,
-        normal,
-        normal_hit.magnitude,
-        dice.size / 2,
-        contact
-    )
-    spin_hit: spin_friction_impulse3(
-        matrix,
-        after_angular_velocity_raw,
-        normal,
-        normal_hit.magnitude,
-        dice.size / 2,
-        contact
-    )
-    angular_impulse: add3(angular_impulse_from_friction, add3(rolling_hit.impulse, spin_hit.impulse))
-    after_angular_velocity: add3(dice.angular_velocity, mat_vec3(dice.inv_inertia, angular_impulse))
-    normal_impulse: normal_hit.impulse
-    tangential_impulse: friction_hit.impulse
-    rolling_impulse: rolling_hit.impulse
-    spin_impulse: spin_hit.impulse
-    friction_mode: friction_hit.mode
-    tangential_speed: friction_hit.speed
-    @: (
-        after_linear_velocity: after_linear_velocity,
-        after_angular_velocity: after_angular_velocity,
-        normal_impulse: normal_impulse,
-        tangential_impulse: tangential_impulse,
-        rolling_impulse: rolling_impulse,
-        spin_impulse: spin_impulse,
-        friction_mode: friction_mode,
-        tangential_speed: tangential_speed
-    )
+    (electric_field + magnetic_term)*(charge/mass)
 
-dice_transform_frame(center:any, rotation_degrees:any):
-    rx: rotation_degrees.0 * pi / 180
-    ry: rotation_degrees.1 * pi / 180
-    rz: rotation_degrees.2 * pi / 180
-    cx: cos(rx)
-    sx: sin(rx)
-    cy: cos(ry)
-    sy: sin(ry)
-    cz: cos(rz)
-    sz: sin(rz)
+# Fick flux for amount concentration c [mol/m^3]: J = -D grad(c).
+# D is isotropic and nonnegative; the caller supplies the spatial gradient.
+# n is the number of spatial components, not a fixed matrix facade.
+diffusion_flux(
+    diffusivity:quantity<2,0,-1,0,0,0,0>,
+    concentration_gradient:[quantity<-4,0,0,0,0,1,0>:n]
+) -> [quantity<-2,0,-1,0,0,1,0>:n]:
+    coefficient: num(diffusivity / (physical_units.m^2/physical_units.s))
+    (~_law_finite(coefficient) \/ coefficient<0)?
+        errors.ValueError("finite nonnegative diffusivity required")!
+    (-1*diffusivity) * concentration_gradient
+
+# dc/dt = D laplacian(c), only for spatially constant isotropic D.
+# For varying D, compute -div(J) from diffusion_flux with the caller's operators.
+diffusion_rate(
+    diffusivity:quantity<2,0,-1,0,0,0,0>,
+    concentration_laplacian:quantity<-5,0,0,0,0,1,0>
+) -> quantity<-3,0,-1,0,0,1,0>:
+    coefficient: num(diffusivity / (physical_units.m^2/physical_units.s))
+    (~_law_finite(coefficient) \/ coefficient<0)?
+        errors.ValueError("finite nonnegative diffusivity required")!
+    diffusivity * concentration_laplacian
+
+# Mass continuity: d(rho)/dt = -div(rho velocity).
+# The supplied divergence includes both density transport and compression.
+mass_density_rate(mass_flux_divergence:quantity<-3,1,-1,0,0,0,0>) -> quantity<-3,1,-1,0,0,0,0>:
+    -1 * mass_flux_divergence
+
+# Constant-density incompressible Newtonian momentum balance, uniform viscosity:
+# dv/dt = body_acceleration - grad(p)/rho + nu laplacian(v) - (v.grad)v.
+# Finite positive rho and finite nonnegative nu. All spatial terms must be
+# finite and use the same coordinates/metric. Caller enforces div(v)=0 and
+# supplies pressure/boundaries/advection; this is not a pressure/fluid solver.
+fluid_velocity_rate(
+    density:quantity<-3,1,0,0,0,0,0>,
+    kinematic_viscosity:quantity<2,0,-1,0,0,0,0>,
+    pressure_gradient:[quantity<-2,1,-2,0,0,0,0>:n],
+    velocity_laplacian:[quantity<-1,0,-1,0,0,0,0>:n],
+    body_acceleration:[quantity<1,0,-2,0,0,0,0>:n],
+    advection:[quantity<1,0,-2,0,0,0,0>:n]
+) -> [quantity<1,0,-2,0,0,0,0>:n]:
+    density_si: num(density / (physical_units.kg/physical_units.m^3))
+    viscosity_si: num(kinematic_viscosity / (physical_units.m^2/physical_units.s))
+    (~_law_finite(density_si) \/ density_si<=0 \/
+     ~_law_finite(viscosity_si) \/ viscosity_si<0)?
+        errors.ValueError("finite positive density and nonnegative viscosity required")!
+    body_acceleration - pressure_gradient/density + kinematic_viscosity*velocity_laplacian - advection
+
+# Clamped, straight circular Euler-Bernoulli edge, in a fixed local frame.
+# This is a small-deformation law, not a mesh/world/contact solver. The first
+# endpoint and its frame are fixed; q=[u,v,w,twist,theta_y,theta_z] at the tip.
+# Numeric core: translations m, angles rad, time s, loads [N,N,N,Nm,Nm,Nm].
+# The mixed-coordinate matrices contain SI coefficients, not one common unit.
+# Material modulus (Pa) is distinct from the assembled stiffness matrix.
+ElasticEdge: (
+    length:num, radius:num, mass:num,
+    stiffness:[[num:6]:6], mass_matrix:[[num:6]:6],
+    mass_damping:num, stiffness_damping:num
+)
+ElasticEdgeState: (coordinate:[num:6], velocity:[num:6])
+
+elastic_edge_circular_si(length:num, radius:num, young:num, poisson:num, density:num, mass_damping:num=0, stiffness_damping:num=0) -> ElasticEdge:
+    checks: [length, radius, young, poisson, density, mass_damping, stiffness_damping]
+    [..6] >>
+        ~_law_finite(checks.($))?
+            errors.ValueError("finite elastic edge parameters required")!
+    (length<=0 \/ radius<=0 \/ young<=0 \/ density<=0 \/ poisson<= -1 \/ poisson>=0.5 \/ mass_damping<0 \/ stiffness_damping<0)?
+        errors.ValueError("positive elastic edge size modulus density and valid Poisson ratio/damping required")!
+    radius/length>0.05?
+        errors.ValueError("elastic edge requires a slender circular section")!
+    area: pi*radius^2
+    second_area: pi*radius^4/4
+    polar_area: 2*second_area
+    shear: young/(2*(1 + poisson))
+    mass: density*area*length
+    axial: young*area/length
+    bend: young*second_area/length^3
+    twist: shear*polar_area/length
+    stiffness: [
+        [axial,0,0,0,0,0],
+        [0,12*bend,0,0,0,-6*length*bend],
+        [0,0,12*bend,0,6*length*bend,0],
+        [0,0,0,twist,0,0],
+        [0,0,6*length*bend,0,4*length^2*bend,0],
+        [0,-6*length*bend,0,0,0,4*length^2*bend]
+    ]
+    # Integrate rho*A*N^T*N along the Hermite centreline. Bending rotary
+    # inertia is omitted consistently with slender Euler-Bernoulli dynamics.
+    # Torsion retains rho*Jp*L/3 for the linear twist interpolation.
+    mass_matrix: [
+        [mass/3,0,0,0,0,0],
+        [0,156*mass/420,0,0,0,-22*length*mass/420],
+        [0,0,156*mass/420,0,22*length*mass/420,0],
+        [0,0,0,density*polar_area*length/3,0,0],
+        [0,0,22*length*mass/420,0,4*length^2*mass/420,0],
+        [0,-22*length*mass/420,0,0,0,4*length^2*mass/420]
+    ]
+    [..35] >>
+        row: int(($-($%6))/6)
+        column: int($)%6
+        (~_law_finite(stiffness.(row,column)) \/ ~_law_finite(mass_matrix.(row,column)))?
+            errors.ValueError("elastic edge coefficients overflow")!
+    (mass<=0 \/ axial<=0 \/ bend<=0 \/ twist<=0 \/ mass_matrix.(0,0)<=0 \/ mass_matrix.(1,1)<=0 \/ mass_matrix.(3,3)<=0 \/ mass_matrix.(4,4)<=0)?
+        errors.ValueError("elastic edge coefficients underflow")!
+    (length:length, radius:radius, mass:mass, stiffness:stiffness, mass_matrix:mass_matrix, mass_damping:mass_damping, stiffness_damping:stiffness_damping)
+
+# Unit-aware admission; the returned numerical core remains explicitly SI.
+elastic_edge_circular(
+    length:quantity<1,0,0,0,0,0,0>, radius:quantity<1,0,0,0,0,0,0>,
+    young:quantity<-1,1,-2,0,0,0,0>, poisson:num,
+    density:quantity<-3,1,0,0,0,0,0>,
+    mass_damping:quantity<0,0,-1,0,0,0,0>, stiffness_damping:quantity<0,0,1,0,0,0,0>
+) -> ElasticEdge:
+    elastic_edge_circular_si(num(length/physical_units.m), num(radius/physical_units.m), num(young/physical_units.Pa), poisson, num(density/(physical_units.kg/physical_units.m^3)), num(mass_damping*physical_units.s), num(stiffness_damping/physical_units.s))
+
+_elastic_edge_product(matrix:[[num:6]:6], value:[num:6]) -> [num:6]:
+    [dot(matrix.0,value),dot(matrix.1,value),dot(matrix.2,value),dot(matrix.3,value),dot(matrix.4,value),dot(matrix.5,value)]
+
+# Conservative domain bound on the ENTIRE cubic centreline, not only its tip.
+# |h'|<=1.5/L and |hrot'|<=1; 0.01 bounds strain/slope/rotation in radians.
+elastic_edge_state(edge:ElasticEdge, coordinate:[num:6], velocity:[num:6]) -> ElasticEdgeState:
+    [..5] >>
+        (~_law_finite(coordinate.($)) \/ ~_law_finite(velocity.($)))?
+            errors.ValueError("finite elastic edge state required")!
+    slope_y: 1.5*abs(coordinate.1)/edge.length + abs(coordinate.5)
+    slope_z: 1.5*abs(coordinate.2)/edge.length + abs(coordinate.4)
+    curvature_y: 6*abs(coordinate.1)/edge.length^2 + 4*abs(coordinate.5)/edge.length
+    curvature_z: 6*abs(coordinate.2)/edge.length^2 + 4*abs(coordinate.4)/edge.length
+    fiber_strain: abs(coordinate.0)/edge.length + edge.radius*sqrt(curvature_y^2 + curvature_z^2)
+    (fiber_strain>0.01 \/ sqrt(slope_y^2 + slope_z^2)>0.01 \/ abs(coordinate.3)>0.01)?
+        errors.ValueError("elastic edge exceeds small deformation domain")!
+    (coordinate:coordinate, velocity:velocity)
+
+elastic_edge_energy(edge:ElasticEdge, state:ElasticEdgeState) -> num:
+    0.5*(dot(state.velocity,_elastic_edge_product(edge.mass_matrix,state.velocity)) + dot(state.coordinate,_elastic_edge_product(edge.stiffness,state.coordinate)))
+
+# Constant generalized load over this step. Implicit midpoint preserves the
+# quadratic undamped energy/work identity; C=alpha*M+beta*K dissipates energy.
+# Finite dt is positive; temporal accuracy still requires resolved frequencies.
+# Returns state separately, allowing repeated stepping without record widening.
+step_elastic_edge(edge:ElasticEdge, state:ElasticEdgeState, dt:num, load:[num:6]):
+    (~_law_finite(dt) \/ dt<=0)?
+        errors.ValueError("finite positive elastic edge time step required")!
+    [..5] >>
+        ~_law_finite(load.($))?
+            errors.ValueError("finite elastic edge load required")!
+    initial: elastic_edge_state(edge,state.coordinate,state.velocity)
+    damping: edge.mass_damping*edge.mass_matrix + edge.stiffness_damping*edge.stiffness
+    step_matrix: edge.mass_matrix + (dt/2)*damping + (dt^2/4)*edge.stiffness
+    right: _elastic_edge_product(edge.mass_matrix,initial.velocity) + (dt/2)*(load - _elastic_edge_product(edge.stiffness,initial.coordinate))
+    # Zero absolute pivot tolerance: dimensions/scales differ between rows.
+    # The constructor's positive physical parameters give SPD M and K.
+    midpoint_velocity: solve(step_matrix,right,0)
+    next_coordinate: initial.coordinate + dt*midpoint_velocity
+    next_velocity: 2*midpoint_velocity - initial.velocity
+    next_state: elastic_edge_state(edge,next_coordinate,next_velocity)
+    work: dt*dot(load,midpoint_velocity)
+    dissipated: dt*dot(midpoint_velocity,_elastic_edge_product(damping,midpoint_velocity))
+    energy_before: elastic_edge_energy(edge,initial)
+    energy_after: elastic_edge_energy(edge,next_state)
+    (~_law_finite(work) \/ ~_law_finite(dissipated) \/ ~_law_finite(energy_before) \/ ~_law_finite(energy_after))?
+        errors.ValueError("elastic edge energy ledger overflow")!
+    (state:next_state, external_work:work, dissipated_energy:dissipated, energy_before:energy_before, energy_after:energy_after, balance_residual:energy_after - energy_before - work + dissipated)
+
+# Derivative of the SAME first-order section embedding used below. Material
+# point=[x,y,z] in the undeformed local circular section. J maps qdot to point
+# velocity; J^T maps a point force/impulse to generalized load/impulse. This
+# exposes deformable mobility to a future contact adapter, without claiming
+# that the existing rigid-only collision matrix already consumes these DOFs.
+elastic_edge_point_jacobian(edge:ElasticEdge, point:[num:3]) -> [[num:6]:3]:
+    [..2] >>
+        ~_law_finite(point.($))?
+            errors.ValueError("finite elastic edge material point required")!
+    (point.0<0 \/ point.0>edge.length \/ point.1^2 + point.2^2>edge.radius^2)?
+        errors.ValueError("material point outside elastic edge")!
+    fraction: point.0/edge.length
+    shape: 3*fraction^2 - 2*fraction^3
+    rotation_shape: edge.length*(fraction^3 - fraction^2)
+    slope_shape: 6*fraction*(1 - fraction)/edge.length
+    rotation_slope: 3*fraction^2 - 2*fraction
     [
-        [cz * cy, cz * sy * sx - sz * cx, cz * sy * cx + sz * sx, center.0],
-        [sz * cy, sz * sy * sx + cz * cx, sz * sy * cx - cz * sx, center.1],
-        [0 - sy, cy * sx, cy * cx, center.2],
-        [0.0, 0.0, 0.0, 1.0]
+        [fraction,0 - slope_shape*point.1,0 - slope_shape*point.2,0,rotation_slope*point.2,0 - rotation_slope*point.1],
+        [0,shape,0,0 - fraction*point.2,0,rotation_shape],
+        [0,0,shape,fraction*point.1,0 - rotation_shape,0]
     ]
 
-dice_roll_path3(dice:any, plane:any, contact:any):
-    bounce: first_plane_bounce3(dice, plane, contact)
-    half_size: dice.size / 2
-    rest_center: [
-        dice.center.0 + dice.linear_velocity.0 * 1.38,
-        dice.center.1 + dice.linear_velocity.1 * 0.92,
-        half_size
-    ]
-    frames: [
-        dice_transform_frame(dice.center, [22.0, 0.0 - 34.0, 16.0]),
-        dice_transform_frame(
-            [
-                dice.center.0 + dice.linear_velocity.0 * 0.18,
-                dice.center.1 + dice.linear_velocity.1 * 0.18,
-                1.55
-            ],
-            [72.0, 31.0, 58.0]
-        ),
-        dice_transform_frame(
-            [
-                dice.center.0 + dice.linear_velocity.0 * 0.34,
-                dice.center.1 + dice.linear_velocity.1 * 0.34,
-                half_size + 0.03
-            ],
-            [126.0, 76.0, 104.0]
-        ),
-        dice_transform_frame(
-            [
-                dice.center.0 + bounce.after_linear_velocity.0 * 0.35,
-                dice.center.1 + bounce.after_linear_velocity.1 * 0.35,
-                1.05
-            ],
-            [194.0, 142.0, 181.0]
-        ),
-        dice_transform_frame(
-            [
-                dice.center.0 + bounce.after_linear_velocity.0 * 0.58,
-                dice.center.1 + bounce.after_linear_velocity.1 * 0.58,
-                half_size + 0.14
-            ],
-            [271.0, 211.0, 246.0]
-        ),
-        dice_transform_frame(
-            [
-                rest_center.0 - 0.18,
-                rest_center.1 - 0.08,
-                half_size + 0.02
-            ],
-            [344.0, 278.0, 319.0]
-        ),
-        dice_transform_frame(rest_center, [360.0, 270.0, 360.0])
-    ]
-    duration_seconds: 2.9
-    rest_linear_velocity: [0, 0, 0]
-    rest_angular_velocity: [0, 0, 0]
-    first_contact: bounce
-    @: (
-        frames: frames,
-        duration_seconds: duration_seconds,
-        rest_linear_velocity: rest_linear_velocity,
-        rest_angular_velocity: rest_angular_velocity,
-        first_contact: first_contact
-    )
+elastic_edge_point(edge:ElasticEdge, state:ElasticEdgeState, point:[num:3]) -> [num:3]:
+    checked: elastic_edge_state(edge,state.coordinate,state.velocity)
+    jacobian: elastic_edge_point_jacobian(edge,point)
+    point + [dot(jacobian.0,checked.coordinate),dot(jacobian.1,checked.coordinate),dot(jacobian.2,checked.coordinate)]
 
-settled_face_from_angular_velocity(angular_velocity:any):
-    ax: angular_velocity.0
-    ay: angular_velocity.1
-    az: angular_velocity.2
-    ax_abs: abs_num(ax)
-    ay_abs: abs_num(ay)
-    az_abs: abs_num(az)
-    ax_abs >= ay_abs?
-        ax_abs >= az_abs?
-            ax > 0? @: 3
-            @: 4
-    ay_abs >= az_abs?
-        ay > 0? @: 2
-        @: 5
-    az > 0? @: 1
-    @: 6
+elastic_edge_point_load(edge:ElasticEdge, point:[num:3], force:[num:3]) -> [num:6]:
+    [..2] >>
+        ~_law_finite(force.($))?
+            errors.ValueError("finite elastic edge point force required")!
+    jacobian: elastic_edge_point_jacobian(edge,point)
+    [
+        jacobian.(0,0)*force.0 + jacobian.(1,0)*force.1 + jacobian.(2,0)*force.2,
+        jacobian.(0,1)*force.0 + jacobian.(1,1)*force.1 + jacobian.(2,1)*force.2,
+        jacobian.(0,2)*force.0 + jacobian.(1,2)*force.1 + jacobian.(2,2)*force.2,
+        jacobian.(0,3)*force.0 + jacobian.(1,3)*force.1 + jacobian.(2,3)*force.2,
+        jacobian.(0,4)*force.0 + jacobian.(1,4)*force.1 + jacobian.(2,4)*force.2,
+        jacobian.(0,5)*force.0 + jacobian.(1,5)*force.1 + jacobian.(2,5)*force.2
+    ]
 
-physics_stdlib_capability:
-    name: "physics_collision_matrix_seed"
-    collision_matrix: [
-        "M_pp maps linear impulse to contact relative linear velocity",
-        "M_pL maps angular impulse to contact relative linear velocity",
-        "M_Lp maps linear impulse to relative angular velocity",
-        "M_LL maps angular impulse to relative angular velocity"
+# Map a reference mesh ONCE; pass these exact positions/topology to both the
+# existing geometry preparation and embedding/render path. Closedness and
+# convexity still belong to preparation; this map confers neither property.
+elastic_edge_geometry(edge:ElasticEdge, state:ElasticEdgeState, points:[[num:3]:n]) -> [[num:3]:n]:
+    [points >> elastic_edge_point(edge,state,$)]
+
+elastic_edge_point_velocity(edge:ElasticEdge, state:ElasticEdgeState, point:[num:3]) -> [num:3]:
+    checked: elastic_edge_state(edge,state.coordinate,state.velocity)
+    jacobian: elastic_edge_point_jacobian(edge,point)
+    [dot(jacobian.0,checked.velocity),dot(jacobian.1,checked.velocity),dot(jacobian.2,checked.velocity)]
+
+# Local point mobility J*M^-1*J^T, including both bending coordinates and
+# rotations. This is the deformable contribution a contact assembly needs;
+# it cannot be replaced by inverse rigid mass/inertia. Anchor points have
+# zero mobility. No contact selection/friction/iteration is performed here.
+elastic_edge_point_inverse_mass(edge:ElasticEdge, point:[num:3]) -> [[num:3]:3]:
+    jacobian: elastic_edge_point_jacobian(edge,point)
+    first: solve(edge.mass_matrix,jacobian.0,0)
+    second: solve(edge.mass_matrix,jacobian.1,0)
+    third: solve(edge.mass_matrix,jacobian.2,0)
+    [
+        [dot(jacobian.0,first),dot(jacobian.0,second),dot(jacobian.0,third)],
+        [dot(jacobian.1,first),dot(jacobian.1,second),dot(jacobian.1,third)],
+        [dot(jacobian.2,first),dot(jacobian.2,second),dot(jacobian.2,third)]
     ]
-    restitution: [
-        "normal_contact_impulse3 disables restitution below the resting-contact threshold",
-        "coupled_contact_impulse3 solves tangential p and normal-axis L through all matrix blocks",
-        "rolling_resistance_impulse3 bounds tangent-plane torque by mu_r R delta p_n"
-    ]
-    dice_roll: [
-        "dice_body3 provides cube inertia, material, six-face dice texture, and initial state",
-        "infinite_plane3 models the table as zero inverse mass and zero inverse inertia",
-        "first_plane_bounce3 applies normal restitution and tangential friction to the first table impact",
-        "dice_roll_path3 returns transform frames from launch to rest for scene_3d animation"
-    ]
-    ledger: [
-        "tetra mass properties, parallel-axis aggregation, and rigid stepping are VKF source",
-        "F = p dot and tau = L dot",
-        "position and velocity updates can live in the runtime variable ledger",
-        "code changes define functions while running loops consume mutable state"
-    ]
-    :
+
+# Instantaneous local impulse [N*s], q continuous and generalized momentum
+# changes by J^T*impulse. Root constraint exchanges reaction with environment;
+# the edge alone is not an isolated momentum-conserving body. Caller owns the
+# opposite rigid impulse and anchor ledger. Existing contact solver is not
+# silently invoked or replaced by this law.
+impulse_elastic_edge(edge:ElasticEdge, state:ElasticEdgeState, point:[num:3], impulse:[num:3]):
+    initial: elastic_edge_state(edge,state.coordinate,state.velocity)
+    generalized_impulse: elastic_edge_point_load(edge,point,impulse)
+    delta_velocity: solve(edge.mass_matrix,generalized_impulse,0)
+    next_state: elastic_edge_state(edge,initial.coordinate,initial.velocity + delta_velocity)
+    energy_change: dot(initial.velocity,generalized_impulse) + 0.5*dot(generalized_impulse,delta_velocity)
+    ~_law_finite(energy_change)?
+        errors.ValueError("elastic edge impulse energy overflow")!
+    (state:next_state, generalized_impulse:generalized_impulse, kinetic_energy_change:energy_change)
+
+# Columns of frame are the fixed right-handed local axes in world space.
+# Appearance/debug selection is external and cannot advance physical state.
+elastic_edge_world_point(edge:ElasticEdge, state:ElasticEdgeState, point:[num:3], origin:[num:3], frame:[[num:3]:3]) -> [num:3]:
+    [..2] >>
+        ~_law_finite(origin.($))?
+            errors.ValueError("finite elastic edge origin required")!
+    axes: transpose(frame)
+    [..2] >>
+        ~_law_finite(dot(axes.($),axes.($)))?
+            errors.ValueError("finite elastic edge frame required")!
+        abs(dot(axes.($),axes.($)) - 1)>0.000000000001?
+            errors.ValueError("orthonormal elastic edge frame required")!
+    (abs(dot(axes.0,axes.1))>0.000000000001 \/ abs(dot(axes.0,axes.2))>0.000000000001 \/ abs(dot(axes.1,axes.2))>0.000000000001 \/ dot(cross(axes.0,axes.1),axes.2)<0.999999999999)?
+        errors.ValueError("right handed orthonormal elastic edge frame required")!
+    origin + rb_mat_vec3(frame,elastic_edge_point(edge,state,point))
 # Ordinary source preparation, not a backend resource or authorization token.
 # This numerical core accepts explicitly SI numeric coordinates and mass.
 # A public unit-aware wrapper must retain unit facts before converting inputs.
@@ -2683,6 +2677,355 @@ prepare_convex_si(points:[[num:3]:n],faces:[[int:3]:nf],massvalue:num,mu_s:num,m
  minor:tensor.0.0*tensor.1.1-tensor.0.1*tensor.1.0
  (~preparation.finite(determinant) \/ ~preparation.finite(minor) \/ tensor.0.0<=0 \/ minor<=0 \/ determinant<=0)? errors.RuntimeError("positive definite convex inertia required")!
  (mass:massvalue,volume:volumevalue,center_of_mass:center,inertia_tensor:tensor,geometry:(vertices:points,faces:faces),material:(mu_s:mu_s,mu_d:mu_d,restitution:restitution))
+
+# One pure preparation boundary for a sampled elastic CONVEX surface. The
+# returned prepared.geometry is the sole spatial geometry for both collider
+# and visible embedding. Validate before returning any new revision. The
+# caller owns revision sequencing, retained reference material coordinates,
+# anchor/parent coupling and the real engine's contact/cache lifecycle.
+# This does not transplant a running rigid body or turn rigid mobility into
+# deformable mobility. Curve sampling must actually be a convex closed shell;
+# an arbitrary bent branch surface can fail the existing convex validation.
+prepare_elastic_convex_si(
+ edge:(length:num,radius:num,mass:num,stiffness:[[num:6]:6],mass_matrix:[[num:6]:6],mass_damping:num,stiffness_damping:num),
+ state:(coordinate:[num:6],velocity:[num:6]),
+ reference_points:[[num:3]:n],faces:[[int:3]:nf],massvalue:num,mu_s:num,mu_d:num,restitution:num,revision:int
+):
+ revision<0? errors.ValueError("nonnegative elastic geometry revision required")!
+ shared:physics.elastic_edge_geometry(edge,state,reference_points)
+ prepared:prepare_convex_si(shared,faces,massvalue,mu_s,mu_d,restitution)
+ (revision:revision,state:state,prepared:prepared)
+# Analytic inviscid incompressible slip flow past a circular cylinder.
+# A narrow reusable reference field, NOT a pressure/mesh/fullCFD solver.
+# Coordinates SI m, speed m/s, density kg/m^3; origin is cylinder centre.
+_flow_math:.math
+_flow_physics:.physics
+_flow_units:.physics.units
+_flow_optics:.physics.optics
+
+cylinder_velocity(point:[num:2],radius:num,speed:num) -> [num:2]:
+    x: point.0
+    y: point.1
+    r2: x*x+y*y
+    (_flow_optics.finite(radius) /\ radius>0 /\ _flow_optics.finite(speed) /\ _flow_optics.finite(x) /\ _flow_optics.finite(y) /\ r2>=radius*radius)?! "flow: sample must be outside finite cylinder"
+    [speed*(1-radius^2*(x*x-y*y)/(r2*r2)),0-2*speed*radius^2*x*y/(r2*r2)]
+
+cylinder_material_acceleration(point:[num:2],radius:num,speed:num) -> [num:2]:
+    velocity: cylinder_velocity(point,radius,speed)
+    x: point.0
+    y: point.1
+    r2: x*x+y*y
+    # Analytic derivatives: du/dx=-dv/dy; du/dy=dv/dx.
+    ux: 2*speed*radius^2*x*(x*x-3*y*y)/(r2^3)
+    uy: 2*speed*radius^2*y*(3*x*x-y*y)/(r2^3)
+    [velocity.0*ux+velocity.1*uy,velocity.0*uy-velocity.1*ux]
+
+cylinder_pressure_gradient(point:[num:2],radius:num,speed:num,density:num) -> [num:2]:
+    (_flow_optics.finite(density) /\ density>0)?! "flow: positive finite density required"
+    acceleration: cylinder_material_acceleration(point,radius,speed)
+    [0-density*acceleration.0,0-density*acceleration.1]
+
+# Verify the reference field through the EXISTING dimensioned local fluid law.
+# For this steady inviscid field, dp/rho balances (u.grad)u, so Eulerian rate0.
+cylinder_eulerian_rate(point:[num:2],radius:num,speed:num,density:num) -> [num:2]:
+    acceleration: cylinder_material_acceleration(point,radius,speed)
+    gradient: cylinder_pressure_gradient(point,radius,speed,density)
+    unit_accel: _flow_units.m/(_flow_units.s^2)
+    unit_gradient: _flow_units.kg/(_flow_units.m^2*_flow_units.s^2)
+    rate: _flow_physics.fluid_velocity_rate(density*_flow_units.kg/(_flow_units.m^3),0*_flow_units.m^2/_flow_units.s,gradient*unit_gradient,[0,0]/(_flow_units.m*_flow_units.s),[0,0]*unit_accel,acceleration*unit_accel)
+    [num(rate.0/unit_accel),num(rate.1/unit_accel)]
+
+# Lagrangian parcel under analytic pressure force; existing momentum integrator.
+# Density cancels in -grad(p)/rho. Finite integration error is not a wall solver.
+cylinder_parcel(initial:[num:2],radius:num,speed:num,time:num,dt:num) -> [num:2]:
+    (_flow_optics.finite(time) /\ time>=0 /\ _flow_optics.finite(dt) /\ dt>0)?! "flow: valid integration duration and timestep required"
+    velocity: cylinder_velocity(initial,radius,speed)
+    state: _flow_physics.rigid_state3([initial.0,initial.1,0],[velocity.0,velocity.1,0],[0,0,0])
+    inertial: (mass:1,inertia_tensor:[[1,0,0],[0,1,0],[0,0,1]])
+    i: 0
+    steps: int(time/dt)
+    i<steps?>
+        acceleration: cylinder_material_acceleration([state.position.0,state.position.1],radius,speed)
+        next: _flow_physics.step_rigid_body_momentum3(state,inertial,dt,[acceleration.0,acceleration.1,0],[0,0,0])
+        .state: _flow_physics.rigid_state3(next.position,next.momentum,next.angular_momentum)
+        .i: i+1
+    [state.position.0,state.position.1]
+# Geometrical, isotropic lossless dielectric optics. Angles in radians.
+# Stokes [I,Q,U,V]: Q=Is-Ip, U=2Re(Es Ep*), V=2Im(Es Ep*).
+# Each ray owns a transverse (s,p) basis. Interfaces below require that basis;
+# rotate_stokes changes its axes before/after a differently oriented interface.
+# No coherence between separate rays, interference, dispersion or scattering.
+_optics_math: .math
+
+finite(x:num) -> bit:
+    (x = x) /\ ((_optics_math.abs(x) - _optics_math.abs(x)) = 0)
+
+validate_stokes(s:[num:4]) -> [num:4]:
+    (finite(s.0) /\ finite(s.1) /\ finite(s.2) /\ finite(s.3) /\ s.0 >= 0)?! "optics: invalid Stokes state"
+    s.0 = 0?
+        (s.1 = 0 /\ s.2 = 0 /\ s.3 = 0)?! "optics: zero power must have zero polarization"
+        @: s
+    # Relative admission keeps dim signals physical; no absolute power floor.
+    q: s.1/s.0
+    u: s.2/s.0
+    v: s.3/s.0
+    (q*q+u*u+v*v <= 1.000000000001)?! "optics: polarization exceeds total power"
+    s
+
+unpolarized(power:num) -> [num:4]:
+    (finite(power) /\ power >= 0)?! "optics: nonnegative finite power required"
+    [power,0,0,0]
+
+linear(power:num,angle:num) -> [num:4]:
+    (finite(power) /\ power >= 0 /\ finite(angle))?! "optics: invalid linear source"
+    [power,power*_optics_math.cos(2*angle),power*_optics_math.sin(2*angle),0]
+
+rotate_stokes(state:[num:4],angle:num) -> [num:4]:
+    s: validate_stokes(state)
+    (finite(angle))?! "optics: finite basis angle required"
+    c: _optics_math.cos(2*angle)
+    h: _optics_math.sin(2*angle)
+    [s.0,c*s.1+h*s.2,0-h*s.1+c*s.2,s.3]
+
+# Ideal linear polarizer: absorbs rejected power; no artificial renormalization.
+polarizer(state:[num:4],angle:num) -> [num:4]:
+    s: validate_stokes(state)
+    (finite(angle))?! "optics: finite polarizer angle required"
+    c: _optics_math.cos(2*angle)
+    h: _optics_math.sin(2*angle)
+    power: (s.0+c*s.1+h*s.2)/2
+    # Only admitted relative floating roundoff may fall slightly below zero.
+    power < 0?
+        .power: 0
+    [power,power*c,power*h,0]
+
+# Real indices, nonmagnetic media, cos_i in [0,1], normal against incidence.
+# ts/tp are power transmittances (not electric field amplitudes).
+fresnel(n1:num,n2:num,cos_i:num) -> (rs:num,rp:num,ts:num,tp:num,cos_t:num,tir:num,cross_re:num,cross_im:num):
+    (finite(n1) /\ finite(n2) /\ n1 > 0 /\ n2 > 0 /\ finite(cos_i) /\ cos_i >= 0 /\ cos_i <= 1)?! "optics: positive indices and incidence cosine in [0,1] required"
+    n1 = n2? @: (rs:0,rp:0,ts:1,tp:1,cos_t:cos_i,tir:0,cross_re:0,cross_im:0)
+    ratio: n1/n2
+    sin_t2: ratio^2*(1-cos_i^2)
+    sin_t2 >= 1?
+        # TIR complex Fresnel phase retained for polarization within each ray.
+        gamma: _optics_math.sqrt(sin_t2-1)
+        a: n1*cos_i
+        b: n2*gamma
+        c: n2*cos_i
+        d: n1*gamma
+        sr: (a*a-b*b)/(a*a+b*b)
+        si: (0-2*a*b)/(a*a+b*b)
+        pr: (c*c-d*d)/(c*c+d*d)
+        pi: (0-2*c*d)/(c*c+d*d)
+        @: (rs:1,rp:1,ts:0,tp:0,cos_t:0,tir:1,cross_re:sr*pr+si*pi,cross_im:si*pr-sr*pi)
+    ct: _optics_math.sqrt(1-sin_t2)
+    rs: (n1*cos_i-n2*ct)/(n1*cos_i+n2*ct)
+    rp: (n2*cos_i-n1*ct)/(n2*cos_i+n1*ct)
+    (rs:rs^2,rp:rp^2,ts:1-rs^2,tp:1-rp^2,cos_t:ct,tir:0,cross_re:rs*rp,cross_im:0)
+
+reflected_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
+    s: validate_stokes(state)
+    f: fresnel(n1,n2,cos_i)
+    a: (f.rs+f.rp)/2
+    b: (f.rs-f.rp)/2
+    [a*s.0+b*s.1,b*s.0+a*s.1,f.cross_re*s.2-f.cross_im*s.3,f.cross_im*s.2+f.cross_re*s.3]
+
+transmitted_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
+    s: validate_stokes(state)
+    f: fresnel(n1,n2,cos_i)
+    a: (f.ts+f.tp)/2
+    b: (f.ts-f.tp)/2
+    c: _optics_math.sqrt(f.ts*f.tp)
+    [a*s.0+b*s.1,b*s.0+a*s.1,c*s.2,c*s.3]
+
+# Detector sums ray powers incoherently; value is watts if source I is watts.
+detector(state:[num:4]) -> num:
+    s: validate_stokes(state)
+    s.0
+
+unit2(v:[num:2]) -> [num:2]:
+    length: _optics_math.sqrt(v.0*v.0+v.1*v.1)
+    (finite(length) /\ length > 0)?! "optics: nonzero finite direction required"
+    [v.0/length,v.1/length]
+
+reflect2(direction:[num:2],normal:[num:2]) -> [num:2]:
+    d: unit2(direction)
+    n: unit2(normal)
+    c: d.0*n.0+d.1*n.1
+    [d.0-2*c*n.0,d.1-2*c*n.1]
+
+# Normal points into incident medium; n1/n2 selected by caller, never guessed.
+refract2(direction:[num:2],normal:[num:2],n1:num,n2:num) -> (direction:[num:2],tir:num):
+    d: unit2(direction)
+    n: unit2(normal)
+    ci: 0-d.0*n.0-d.1*n.1
+    f: fresnel(n1,n2,ci)
+    f.tir = 1? @: (direction:reflect2(d,n),tir:1)
+    k: (n1/n2)*ci-f.cos_t
+    (direction:[(n1/n2)*d.0+k*n.0,(n1/n2)*d.1+k*n.1],tir:0)
+
+# Nearest positive intersection with finite line segment; no infinite mirror.
+line_hit(origin:[num:2],direction:[num:2],a:[num:2],b:[num:2]) -> (hit:num,distance:num,point:[num:2]):
+    (finite(origin.0) /\ finite(origin.1) /\ finite(a.0) /\ finite(a.1) /\ finite(b.0) /\ finite(b.1))?! "optics: finite line geometry required"
+    d: unit2(direction)
+    ex: b.0-a.0
+    ey: b.1-a.1
+    determinant: d.0*ey-d.1*ex
+    _optics_math.abs(determinant) < 0.000000000001? @: (hit:0,distance:0,point:origin)
+    qx: a.0-origin.0
+    qy: a.1-origin.1
+    distance: (qx*ey-qy*ex)/determinant
+    u: (qx*d.1-qy*d.0)/determinant
+    (distance <= 0)? @: (hit:0,distance:0,point:origin)
+    (u < 0 \/ u > 1)? @: (hit:0,distance:0,point:origin)
+    (hit:1,distance:distance,point:[origin.0+distance*d.0,origin.1+distance*d.1])
+
+# Incoherent ray power incident on an ideal oriented line detector/receiver.
+# 3D point-source inverse-square law evaluated on a 2D scene cross-section.
+point_irradiance(power:num,distance:num,cosine:num) -> num:
+    (finite(power) /\ power >= 0 /\ finite(distance) /\ distance > 0 /\ finite(cosine) /\ cosine >= 0 /\ cosine <= 1)?! "optics: invalid point receiver"
+    power*cosine/(4*_optics_math.pi*distance^2)
+
+# Segment normal derives from the SAME endpoints used to draw and intersect.
+normal2(a:[num:2],b:[num:2],incident:[num:2]) -> [num:2]:
+    n: unit2([a.1-b.1,b.0-a.0])
+    (n.0*incident.0+n.1*incident.1 > 0)?
+        @: [0-n.0,0-n.1]
+    n
+
+# Positive circle boundary intersection, used for both entry and exit.
+circle_hit(origin:[num:2],direction:[num:2],center:[num:2],radius:num) -> (hit:num,distance:num,point:[num:2]):
+    (finite(origin.0) /\ finite(origin.1) /\ finite(center.0) /\ finite(center.1) /\ finite(radius) /\ radius > 0)?! "optics: finite circle and positive radius required"
+    d: unit2(direction)
+    qx: origin.0-center.0
+    qy: origin.1-center.1
+    b: qx*d.0+qy*d.1
+    c: qx*qx+qy*qy-radius*radius
+    disc: b*b-c
+    disc < 0? @: (hit:0,distance:0,point:origin)
+    root: _optics_math.sqrt(disc)
+    distance: 0-b-root
+    distance <= 0.000000001?
+        .distance: 0-b+root
+    distance <= 0.000000001? @: (hit:0,distance:0,point:origin)
+    (hit:1,distance:distance,point:[origin.0+distance*d.0,origin.1+distance*d.1])
+
+# First transmitted branch of an isotropic circular/ball lens cross-section.
+# No internalscattering or recursive ghost paths; discarded reflected power kept.
+ball_lens_ray(height:num,radius:num,index:num,detector_x:num) -> (points:[[num:2]:4],state:[num:4],rejected_power:num):
+    (finite(height) /\ finite(radius) /\ radius > 0 /\ _optics_math.abs(height) < radius /\ finite(detector_x) /\ detector_x > radius)?! "optics: invalid lens aperture/detector"
+    source: [0-3*radius,height]
+    enter: circle_hit(source,[1,0],[0,0],radius)
+    (enter.hit=1)?! "optics: lens entry missed"
+    n: unit2(enter.point)
+    first: refract2([1,0],n,1,index)
+    (first.tir=0)?! "optics: unsupported lens entry TIR"
+    inside_origin: [enter.point.0+0.00000001*radius*first.direction.0,enter.point.1+0.00000001*radius*first.direction.1]
+    exit: circle_hit(inside_origin,first.direction,[0,0],radius)
+    (exit.hit=1)?! "optics: lens exit missed"
+    outward: unit2(exit.point)
+    inside_normal: [0-outward.0,0-outward.1]
+    second: refract2(first.direction,inside_normal,index,1)
+    (second.tir=0 /\ second.direction.0 > 0)?! "optics: detector unreachable for this lens ray"
+    distance: (detector_x-exit.point.0)/second.direction.0
+    detector_point: [detector_x,exit.point.1+distance*second.direction.1]
+    incoming: unpolarized(1)
+    ci: 0-n.0
+    internal: transmitted_stokes(incoming,1,index,ci)
+    co: 0-first.direction.0*inside_normal.0-first.direction.1*inside_normal.1
+    output: transmitted_stokes(internal,index,1,co)
+    (points:[source,enter.point,exit.point,detector_point],state:output,rejected_power:1-output.0)
+
+# General analytic 2D lighting primitives. Soft-edge model is geometric/numerical,
+# not wave diffraction. Falloff below is normalized finite-source display light,
+# not calibrated point-source watts; exact ray-power Fresnel remains separate.
+clamp01(value:num) -> num:
+    value < 0? @: 0
+    value > 1? @: 1
+    value
+
+smooth_edge(edge0:num,edge1:num,value:num) -> num:
+    edge0 = edge1?
+        value >= edge1? @: 1
+        @: 0
+    t: clamp01((value-edge0)/(edge1-edge0))
+    t*t*(3-2*t)
+
+min2(a:num,b:num) -> num:
+    a < b? @: a
+    b
+max2(a:num,b:num) -> num:
+    a > b? @: a
+    b
+
+# Segment endpoints as [ax,ay,bx,by], fully generic orientation.
+eased_segment_visibility(source:[num:2],target:[num:2],wall:[num:4],base:num,growth:num) -> num:
+    dx: target.0-source.0
+    dy: target.1-source.1
+    ex: wall.2-wall.0
+    ey: wall.3-wall.1
+    determinant: dx*ey-dy*ex
+    _optics_math.abs(determinant)<0.000000000001? @: 1
+    qx: wall.0-source.0
+    qy: wall.1-source.1
+    t: (qx*ey-qy*ex)/determinant
+    u: (qx*dy-qy*dx)/determinant
+    (t<=0 \/ t>=1 \/ u<0 \/ u>1)? @: 1
+    gap: (1-t)*_optics_math.sqrt(dx*dx+dy*dy)
+    edge_distance: min2(u,1-u)*_optics_math.sqrt(ex*ex+ey*ey)
+    1-smooth_edge(0,base+growth*gap,edge_distance)
+
+soft_visibility(source:[num:2],target:[num:2],walls:[[num:4]:n],base:num,growth:num) -> num:
+    (finite(base) /\ finite(growth) /\ base>=0 /\ growth>=0)?! "optics: nonnegative shadow easing required"
+    visible: 1
+    i: 0
+    i<walls.length()?>
+        .visible: min2(visible,eased_segment_visibility(source,target,walls.(i),base,growth))
+        .i: i+1
+    visible
+
+virtual_source2(source:[num:2],a:[num:2],b:[num:2]) -> [num:2]:
+    n: unit2([a.1-b.1,b.0-a.0])
+    distance: (source.0-a.0)*n.0+(source.1-a.1)*n.1
+    [source.0-2*distance*n.0,source.1-2*distance*n.1]
+
+normalized_light2(source:[num:2],target:[num:2],falloff:num,walls:[[num:4]:n],base:num,growth:num) -> num:
+    (finite(falloff) /\ falloff>0)?! "optics: positive light falloff radius required"
+    dx: target.0-source.0
+    dy: target.1-source.1
+    soft_visibility(source,target,walls,base,growth)/(1+(dx*dx+dy*dy)/(falloff*falloff))
+
+# One front-sided finite mirror. Neutral coating reflectivity scales Stokes power.
+# The virtual source is analytic geometry; no camera/texture/zero-area3D aperture.
+# Feather outside segment is declared finite-source aperture easing, same oldmodel.
+reflected_light2(source:[num:2],target:[num:2],a:[num:2],b:[num:2],reflectivity:num,spread:num,falloff:num,walls:[[num:4]:n],base:num,growth:num) -> num:
+    (finite(reflectivity) /\ reflectivity>=0 /\ reflectivity<=1 /\ finite(spread) /\ spread>=0 /\ finite(falloff) /\ falloff>0)?! "optics: invalid reflected light material"
+    normal: unit2([a.1-b.1,b.0-a.0])
+    side_source: (source.0-a.0)*normal.0+(source.1-a.1)*normal.1
+    side_target: (target.0-a.0)*normal.0+(target.1-a.1)*normal.1
+    (side_source<=0 \/ side_target<=0)? @: 0
+    virtual: virtual_source2(source,a,b)
+    dx: target.0-virtual.0
+    dy: target.1-virtual.1
+    ex: b.0-a.0
+    ey: b.1-a.1
+    determinant: dx*ey-dy*ex
+    _optics_math.abs(determinant)<0.000000000001? @: 0
+    qx: a.0-virtual.0
+    qy: a.1-virtual.1
+    t: (qx*ey-qy*ex)/determinant
+    u: (qx*dy-qy*dx)/determinant
+    (t<=0 \/ t>=1)? @: 0
+    outside: max2(0,max2(0-u,u-1))
+    gate: 1-smooth_edge(0,spread,outside)
+    spread=0?
+        .gate: 0
+        (u>=0 /\ u<=1)?
+            .gate: 1
+    hit: [virtual.0+t*dx,virtual.1+t*dy]
+    visibility_in: soft_visibility(source,hit,walls,base,growth)
+    visibility_out: soft_visibility(hit,target,walls,base,growth)
+    reflectivity*gate*visibility_in*visibility_out/(1+(dx*dx+dy*dy)/(falloff*falloff))
 # Ordinary unit-aware tetrahedron mass-property preparation candidate.
 # Uses existing physics.tetra_mass_properties3 unchanged. This record is not a
 # backend world/state, and carries no backend lease or numeric resource handle.

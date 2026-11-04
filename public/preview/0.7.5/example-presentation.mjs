@@ -1,4 +1,4 @@
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=79a84ff45f0dfa426cc7bb32c9b7bb0af2fd939db44114a43f3ea7852298d061';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=f0deb6dda3d988704bf4ec4955fe24d461078a53eefac796118d4f9db37d7829';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=43588bb9e9cc14190a85f6b51c6d1f252b965952af4fbdf7ebeb022b94f2adc6';
 
 const presentations = new WeakMap();

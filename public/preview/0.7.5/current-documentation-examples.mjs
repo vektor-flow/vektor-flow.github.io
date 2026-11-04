@@ -1,10 +1,10 @@
-import {prepareExamplePresentation} from './example-presentation.mjs?sha256=62262c9f4423fb27437c8849921220de64b9f9ecbaccef4cf07862a291c0777e';
+import {prepareExamplePresentation} from './example-presentation.mjs?sha256=546d6fe538e862cc845ade8dd0578e5a1ff8fa98bc300b10667be3f63030b151';
 import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=8c332ba7d810ee29ed480970742b1ae0b5567c17a1749a8793c40c3acdeb9d9a';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {createInlineRunner} from './inline-runner.mjs?sha256=f6b1de2c154ff21be75835261bfaeaea5eb3d90abafecacef7c4a1d0a63960fd';
+import {createInlineRunner} from './inline-runner.mjs?sha256=c12eebce2237fecc35197f3fd9a3023dcd22e9e570dbc9f5dcfeb5cded24d5c7';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=43588bb9e9cc14190a85f6b51c6d1f252b965952af4fbdf7ebeb022b94f2adc6';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=79a84ff45f0dfa426cc7bb32c9b7bb0af2fd939db44114a43f3ea7852298d061';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=f0deb6dda3d988704bf4ec4955fe24d461078a53eefac796118d4f9db37d7829';
 
 const release = await fetch(new URL('./current-compiler-release.json', import.meta.url),
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);

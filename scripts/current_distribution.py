@@ -11,6 +11,9 @@ from current_package import need, read, pinned
 
 
 def verify_current_distribution(preview, release):
+    if release.get("current_focused_distribution"):
+        from current_focused_distribution import verify_current_focused_distribution
+        return verify_current_focused_distribution(preview, release)
     expected = read(Path(__file__).with_name('current-package-selection.json'))
     composition = read(pinned(preview, release['current_package_composition']))
     need(expected['schema'] == 2 and composition['schema'] == 'vektor-flow.current-composition/1', 'distribution identity schema')

@@ -1,0 +1,88 @@
+{
+  "owner": "e2243",
+  "state": "PRIVATE_UNQUALIFIED_INTEGRATION_PREPARATION",
+  "composition": {
+    "path": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/site/public/preview/0.7.5/CURRENT-COMPOSITION.json",
+    "bytes": 12703,
+    "sha256": "3c1d0549a929105f8fad8076d430d65bf7878fad7742c696f3926a3ecfeaa625"
+  },
+  "published": false,
+  "remoteMutations": 0,
+  "checks": "Normal affected dependency/link/engine/formatteridentity PASS; strict semantic/UI checks pending",
+  "priorPublishedEvidence": {
+    "pinnedDownloads": {
+      "checksums": "downloads/current075-checksums.json",
+      "archives": [
+        "downloads/vkf-canonical-0.7.5-103091b2-hostcb619656-notices.tar.gz",
+        "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz"
+      ],
+      "qualification": "Browser9fc binding103091b2 with selected0b63 and cb619 host; native824 binding8c59 separately qualified full normal contact9+inverse9 by reference. Current focused Node/browser and extracted package/security/integrity checks only. Full release/PhysicsWorld/SDK/GPU/benchmarks/model adoption remain unqualified."
+    },
+    "packageQualification": {
+      "path": "verification/e2237-private-completion-candidate.json",
+      "bytes": 1565,
+      "sha256": "2717dab4bdf29e17e517f9176e61d246098f2c4b47735c0923b943aa0d06956f"
+    },
+    "reviewSiteEvidence": {
+      "status": "LOCAL_ONLY_NO_NEW_DEPLOYMENT",
+      "pending": true
+    },
+    "composition": {
+      "path": "CURRENT-COMPOSITION.json",
+      "bytes": 5746,
+      "sha256": "9dc6c982b90e858ad3ef97a71e246ead27f95374b061590290dd7488d0a0c501"
+    }
+  },
+  "rendererCanvasOwnershipFix": {
+    "owner": "e2237",
+    "status": "MINIMAL_CANVAS_OWNERSHIP_SOURCE_READY_FRAME_UNRUN",
+    "preimageSHA256": "24393c862f87290b922bedcf8eaf263b66da9f28ae006f33b7009b99939a1334",
+    "postimageSHA256": "0f63f91fe428e2b9e1201622e9c30572c6eaa4668aaa27790f8cb200e50b4e93",
+    "patch": "/mnt/development/VektorFlow-e2237-ui-completion-full-scene-integration-actual-20261104/renderer-canvas-ownership.patch",
+    "actualWitness": "Savedcanvasclass contains bothvf-geom-canvas-0 and1; two rec.entries foruv-flat/uv-tilted but oneWebGPUdrawcanvas. Screenshot onlyaxes/labels; no claimauthoredmeshvisible.",
+    "sourceCause": "geomHostCanvas fallback unconditionally returnsanyprimarydrawcanvas foridx1. Exactindexlookup nowfirst, legacyfallback onlyindex0; higherentrycreatesnormalindependentownedcanvas. No shader/material/geometry/sourcepopulation/formatter/compiler change."
+  },
+  "overlayLifecycleFix": {
+    "owner": "e2241",
+    "status": "SOURCE_ONLY_FROZEN_UNRUN_NOT_PRODUCT_QUALIFIED",
+    "repository": "/mnt/development/VektorFlow-e2241-stable-ui-retained-guest-release-actual-20261104/site",
+    "commit": "9b0d1ba4fbb282ce0dc61592286546f7c7f9f420",
+    "baseCommit": "5de32c0a48273e89c7691caa9cd2cdd3c96ac48c",
+    "patch": {
+      "path": "/mnt/development/VektorFlow-e2241-stable-ui-retained-guest-release-actual-20261104/retained-overlay-lifecycle.patch",
+      "bytes": 7828,
+      "sha256": "64b202d18c90a9c1deaa1cf156b1a794ddc977c7d58d574d6f3ff88bf34e7216"
+    },
+    "preimage": {
+      "path": "/mnt/development/VektorFlow-e2237-ui-completion-full-scene-integration-actual-20261104/site-canvas/public/preview/0.7.5/vf-ui/vf-display.js",
+      "bytes": 678065,
+      "sha256": "0f63f91fe428e2b9e1201622e9c30572c6eaa4668aaa27790f8cb200e50b4e93"
+    },
+    "postimage": {
+      "path": "/mnt/development/VektorFlow-e2241-stable-ui-retained-guest-release-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-display.js",
+      "bytes": 678929,
+      "sha256": "16cd670c3892de8e4756776851be181da9989b1db2139957135bc5712acbe2a8"
+    },
+    "regression": {
+      "path": "/mnt/development/VektorFlow-e2241-stable-ui-retained-guest-release-actual-20261104/site/tests/retained-overlay-lifecycle.mjs",
+      "bytes": 5185,
+      "sha256": "f4e3a9c6574ad7181e0a50c6351a793b70b213b8a0e580dd148335856142aba4"
+    },
+    "cause": "Retained owner dispose sets alive=false then calls stopGeomFrameRenderers, which releases resize tracking but did not cancel textOverlayRaf or clear pendingTextGeomSpec. Queued callback captured original retained scene, then renderGeomTextOverlay reads camera guarded by live(). disposeGeomFrame cancels RAF but retained-session dispose does not use that function.",
+    "change": "Stop cancels overlay RAF, increments record generation and clears queued frame/spec. Callback verifies record/generation before changing current RAF and checks mounted frame identity before invoking unchanged label rendering. Strict retained camera/foreign/disposed guards unchanged. Existing derivative hoist/per-index canvas fixes retained.",
+    "testPlan": {
+      "baseline": "Use same regression against exact preimage in separate staging; expect cancellation/foreign-disposed failure, save original error. NOT RUN here.",
+      "focused": "node tests/retained-overlay-lifecycle.mjs; actual scheduler/render/owner with controlled DOM/RAF; live label, dispose twice, canceled/dequeued callback, replacement-owner label and detached root. NOT RUN here.",
+      "ordinary": "Existing2237 check-current-surface-native-label-settlement.mjs minimally adapt owner/root; unchangeda13675 3x2fixture/all240live+normalformatter values/twoownedcoloredcanvases/currentallentryGPUnavfences/realOUT-INdrag/labelready; explicit SOFTWARE Vulkan args. NOT RUN here."
+    },
+    "risks": [
+      "Test source has not been syntax checked or executed; may require mock boundary correction before product claim.",
+      "No ordinary UI/browser or compiler regression executed against changed display.",
+      "Cache hashes and runtime composition intentionally still select old0f63; successor must stage minimal patch and refresh normal hash references/integration binding before current-candidate tests.",
+      "Postclose source preparation is not a completed product seal under continuousFD."
+    ],
+    "noProductExecutionAfterClose": true,
+    "published": false
+  },
+  "integerBuild": "/mnt/development/VektorFlow-e2243-stable-ui-integer-guest-release-actual-20261104/integer-build/BUILD-SUCCESS.json"
+}

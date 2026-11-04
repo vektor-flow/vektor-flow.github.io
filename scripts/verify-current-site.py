@@ -42,7 +42,7 @@ if preview.exists():
  if current_release.get('current_distribution', {}).get('enabled') is True:
   assert current_release['status'] == 'verified-examples'
   assert current_release['release_version'] == '0.7.5'
-  assert manifest['publication'] == current_release['publication_status'] == 'PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS'
+  assert manifest['publication'] == current_release['publication_status'] == ('CURRENT_NAMED_FOCUSED_CANDIDATE_DOWNLOADS' if current_release.get('current_focused_distribution') else 'PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS')
   from current_distribution import verify_current_distribution
   expected_preview = verify_current_distribution(preview, current_release)
  elif review_mode:

@@ -1,0 +1,25 @@
+{
+  "owner": "e2237",
+  "state": "PRIVATE_UNQUALIFIED_COMPLETION_CANDIDATE",
+  "composition": {
+    "path": "/mnt/development/VektorFlow-e2237-ui-completion-full-scene-integration-actual-20261104/site/public/preview/0.7.5/CURRENT-COMPOSITION.json",
+    "bytes": 5746,
+    "sha256": "9dc6c982b90e858ad3ef97a71e246ead27f95374b061590290dd7488d0a0c501"
+  },
+  "published": false,
+  "complete": false,
+  "stable": false,
+  "releaseQualified": false,
+  "remoteMutations": 0,
+  "checks": "Source hash/dependency preparation only; controlled regression and real ordinary output remain distinct.",
+  "rendererDerivativeFix": {
+    "owner": "e2237",
+    "state": "SOURCE_PREPARED_UNRUN_NOT_APPLIED",
+    "basis": "/mnt/development/VektorFlow-e2237-ui-completion-full-scene-integration-actual-20261104/SAVED-SHADER-ERROR-ASDATA.json",
+    "patch": "/mnt/development/VektorFlow-e2237-ui-completion-full-scene-integration-actual-20261104/renderer-derivative-uniformity.patch",
+    "preimageSHA256": "65c10d08dc54d30f62a8295ac77ead3da7206bb6c4ae05c922f279dbaa5e4575",
+    "postimageSHA256": "116f53f363a150de0e50ed418c769d60a16394510ed1109f2621b4e02c236d37",
+    "change": "Move existing mainfragment worldposition/materialheight derivative evaluations before nonuniform screenSurface earlyreturns. Formula/noise/normal/material/quality/output remain same for ordinaryfragments; no replacementshader/capraise/diagnosticdisable.",
+    "applyAfter": "Frozen2235 currentrealerror job normally joined; keep originalerror result before changedshader meaningfulrealframe check."
+  }
+}

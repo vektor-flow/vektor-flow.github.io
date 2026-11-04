@@ -1,0 +1,21 @@
+{
+  "owner": "e2279",
+  "cases": [
+    {
+      "id": "more-example-1",
+      "source": "transfers: [[12, 2, 1], [3, 18, 2], [1, 4, 15]]\n\n:: sum_j(transfers_ij)\n:: transfers_ii",
+      "sourceSHA256": "acc0ae92f1a0e1cfded16af27297c59c46739997ba568dbe81856cc0d6a52bb7",
+      "stdout": "[15, 23, 20]\n[12, 18, 15]\n",
+      "actualCompilerEvidence": "/mnt/development/VektorFlow-e2279-index-at-use-examples-actual-20261104/transfers-point-of-use.raw-compiler.json"
+    },
+    {
+      "id": "more-example-2",
+      "source": "composition: [[2, 1], [1, 3], [4, 2]]\nbatches: [[10, 5, 8], [4, 6, 3]]\n\ntotals: sum_k(batches_ik * composition_kj)\n\n:: totals",
+      "sourceSHA256": "72e441452b17bb67b25d3db31e637910a095cb3552725944c7eb8726c04de917",
+      "stdout": "[[57, 41], [26, 28]]\n",
+      "actualCompilerEvidence": "/mnt/development/VektorFlow-e2279-index-at-use-examples-actual-20261104/85-after.raw-compiler.json"
+    }
+  ],
+  "compilerBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "scope": "Active current source mirrors now equal current visible programs and complete actual stdout; historical fields preserved. No engine/runtime changes."
+}

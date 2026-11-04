@@ -1,4 +1,4 @@
-import './current-documentation-examples.mjs?sha256=d69afb5538eac61a2fdea2835c2f1ff272cd6c5904f6f2b6eed99d59cfb7c98b';
+import './current-documentation-examples.mjs?sha256=6325886ad1b2551d3b6ed9d09837458fca00c44ed8d7b267ae3a61adcc607aee';
 const form=document.querySelector('#calculation');
 const input=document.querySelector('#number');
 const example=document.querySelector('[data-vkf-example-id="embed-panel-area"]');

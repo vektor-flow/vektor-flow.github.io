@@ -1,5 +1,5 @@
 import {highlightVkf} from '../code-highlight.mjs?sha256=2c470e1811e017a0d6748fc183de7a320f74dce1adf8ee4cf1fbce3ae94bfebd';
-const stylesheet = new URL('./inline-source.css',import.meta.url).href;
+const stylesheet = new URL('./inline-source.css?sha256=822b5201434632004c7bd663ee71f18894aef0dd4e13df478f823900dd2b62d4',import.meta.url).href;
 if (!document.querySelector(`link[href="${stylesheet}"]`)) {
   const link=document.createElement('link'); link.rel='stylesheet';link.href=stylesheet;document.head.append(link);
 }
@@ -16,8 +16,9 @@ export function bindInlineSource(source, highlight, code) {
   const sync=()=>{
     highlight.style.width=`${source.clientWidth}px`;
     highlight.style.height=`${source.clientHeight}px`;
-    highlight.scrollTop=source.scrollTop;
-    highlight.scrollLeft=source.scrollLeft;
+    // The textarea is the only scroll owner. Translating the inert text avoids
+    // a second scroll range clamping the mirror before the final column.
+    code.style.transform=`translate(${-source.scrollLeft}px,${-source.scrollTop}px)`;
   };
   const refresh=()=>{code.innerHTML=highlightVkf(source.value+'\n');sync();};
   source.addEventListener('scroll',sync,{passive:true});

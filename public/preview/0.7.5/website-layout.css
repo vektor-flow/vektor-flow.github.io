@@ -25,6 +25,8 @@ article.readme { width: min(860px, calc(100% - 48px)); }
 .readme-example-highlight code { padding:0; background:transparent; border:0; white-space:pre; }
 code,pre,textarea,.token { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-style:normal; }
 pre { max-width:100%; overflow:auto; }
+.readme pre:not(.readme-example-highlight),.readme-example-terminal { overscroll-behavior:contain; }
+.readme pre:not(.readme-example-highlight):not(.readme-example-output) { max-height:36rem; }
 .code-snippet { margin:16px 0; }
 .code-snippet pre { padding:16px; border-radius:6px; background:#0d1117; color:#e6edf3; white-space:pre; }
 .code-snippet-bar { display:flex; justify-content:space-between; gap:10px; font-size:13px; }
@@ -40,7 +42,7 @@ pre code { background:transparent!important; padding:0!important; }
 .token.function,.token.binding,.token.variable { color:#d2a8ff; }
 .token.builtin,.token.class-name,.token.namespace { color:#ffa657; }
 .token.dimension,.token.attached-dimension { color:#56d4dd; }
-.token.punctuation { color:#c9d1d9; }
+.token.punctuation { color:#e6edf3; }
 /* First eight distinct indices in each source; shared by blocks and editors. */
 code { --vkf-index-0:#56d4dd; --vkf-index-1:#ffa657; --vkf-index-2:#7ee787; --vkf-index-3:#d2a8ff; --vkf-index-4:#ff9fcb; --vkf-index-5:#79c0ff; --vkf-index-6:#e3d171; --vkf-index-7:#ff7b72; }
 .token.dimension-index.vkf-index-0 { color:var(--vkf-index-0); }
@@ -60,7 +62,7 @@ code { --vkf-index-0:#56d4dd; --vkf-index-1:#ffa657; --vkf-index-2:#7ee787; --vk
 :not(pre)>code .token.function,:not(pre)>code .token.binding,:not(pre)>code .token.variable { color:#6639ba; }
 :not(pre)>code .token.builtin,:not(pre)>code .token.class-name,:not(pre)>code .token.namespace { color:#953800; }
 :not(pre)>code .token.dimension { color:#096e78; }
-:not(pre)>code .token.punctuation { color:#424a53; }
+:not(pre)>code .token.punctuation { color:#1f2328; }
 .expected-result { color:var(--muted); font-size:14px; }
 .expected-result pre { padding:12px; background:var(--rule); }
 .feature-grid>*,.three-columns>* { margin-bottom:1.5rem; }
@@ -110,6 +112,7 @@ code { --vkf-index-0:#56d4dd; --vkf-index-1:#ffa657; --vkf-index-2:#7ee787; --vk
  :not(pre)>code .token.number { color:#79c0ff; }
  :not(pre)>code .token.function,:not(pre)>code .token.binding,:not(pre)>code .token.variable { color:#d2a8ff; }
  :not(pre)>code .token.operator { color:#ff7b72; }
+ :not(pre)>code .token.punctuation { color:#e6edf3; }
  :not(pre)>code .token.dimension { color:#56d4dd; }
  :not(pre)>code .token.string { color:#a5d6ff; }
  :not(pre)>code .token.builtin,:not(pre)>code .token.class-name { color:#ffa657; }

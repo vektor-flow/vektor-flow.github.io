@@ -15,7 +15,7 @@
   overflow:hidden; background:transparent;
 }
 .readme .readme-example-editor > .readme-example-highlight > code {
-  display:block; min-width:max-content; margin:0; border:0; padding:0;
+  display:block; width:max-content; min-width:100%; margin:0; border:0; padding:0;
   background:transparent; color:inherit; white-space:inherit;
   font:inherit; letter-spacing:inherit; word-spacing:inherit; tab-size:inherit;
 }
@@ -24,7 +24,8 @@
   position:relative; z-index:1; display:block; resize:vertical;
   overflow:auto; background:transparent; color:transparent;
   -webkit-text-fill-color:transparent; caret-color:#e6edf3;
-  pointer-events:auto; touch-action:auto;
+  pointer-events:auto; touch-action:pan-x pan-y pinch-zoom;
+  overscroll-behavior:contain;
 }
 .readme .readme-example-editor > .readme-example-source::selection {
   color:transparent; -webkit-text-fill-color:transparent; background:#264f7880;

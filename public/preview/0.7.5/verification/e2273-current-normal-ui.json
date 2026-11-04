@@ -1,0 +1,2913 @@
+{
+  "owner": "e2273",
+  "label": "current-normal-ui-required-label-navigation",
+  "sourcePath": "/mnt/development/VektorFlow-e2270-first-authored-vkf-video-actual-20261104/focused-authored-axis-presentation.vkf",
+  "sourceSHA256": "2310bf52141a7bb94bc74be16564a712fa9edbebff3cfb8e7fd86e835d402faa",
+  "scope": "Focused existing nine-vertex axis/capture navigation regression ONLY. Never full authored EX01 proof.",
+  "rows": [],
+  "errors": [],
+  "console": [
+    "[e2212-current-host-phase] compileSource.entry ms=72.220",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=1.345",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-prepare",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=1.805",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-lex",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=23.075",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-parse",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=29.015",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-link",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=7.290",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=2.135",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.035",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.325",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.605",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=4.030",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=4.945",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=5.655",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=6.455",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=7.760",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=8.150",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=8.895",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=32.080",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=32.805",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=33.325",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=38.960",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=39.695",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=39.845",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=40.165",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=40.715",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=44.765",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=44.880",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=44.970",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=45.645",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=46.540",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=46.830",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=51.470",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=x elapsed_ms=51.700",
+    "[vkf075-semantic-lower] step=statement-lower name=x elapsed_ms=51.820",
+    "[vkf075-semantic-lower] step=statement-complete name=x elapsed_ms=99.155",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=y elapsed_ms=99.375",
+    "[vkf075-semantic-lower] step=statement-lower name=y elapsed_ms=99.490",
+    "[vkf075-semantic-lower] step=statement-complete name=y elapsed_ms=106.155",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=106.300",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=106.465",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=153.590",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=153.810",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=153.950",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=166.275",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=166.450",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=166.560",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=169.860",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=169.980",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=177.060",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=179.690",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=180.400",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=180.840",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=181.380",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=184.565",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=184.690",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=184.790",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=184.890",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=184.985",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=185.085",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=185.175",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=185.270",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=185.370",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=222.845",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=223.125",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=244.800",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-private-browser-lower",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-private-browser-lower elapsed_ms=28.905",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=10.205",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.235",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=4.625",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=3.660",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=15.635",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions",
+    "[vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main",
+    "[vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=20.035",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.430",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=47.535",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=13.955",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=manifest",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=6.155",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=9.340",
+    "[e2212-current-host-phase] compileSource.return ms=602.465",
+    "[e2212-current-host-phase] prepareFormatterIr.entry ms=602.540",
+    "[e2212-current-host-phase] prepareFormatterIr.return ms=638.375",
+    "[e2212-current-host-phase] WebAssembly.compile.entry ms=638.475",
+    "[e2212-current-host-phase] WebAssembly.compile.return ms=640.555",
+    "[e2212-current-host-phase] executeRetainedViaWindow.entry ms=640.615",
+    "[e2212-current-host-phase] executeRetainedViaWindow.return ms=863.960",
+    "[e2212-current-host-phase] vkf_vm_invoke.entry ms=864.055",
+    "[e2212-current-host-phase] vkf_vm_invoke.return ms=865.525",
+    "[vf-geom-wgpu] getSharedWgpu: requestAdapter\u2026",
+    "[vf-geom-wgpu] getSharedWgpu: requestDevice\u2026",
+    "[e2212-current-host-phase] formatter.stdout.entry ms=872.460",
+    "[vf-geom-wgpu] format: rgba8unorm",
+    "[e2212-current-host-phase] formatter.stdout.return ms=872.995",
+    "[e2212-current-host-phase] formatter.retained.entry ms=873.115",
+    "[vf-geom-wgpu] getSharedWgpu: OK",
+    "[vf-geom-wgpu] init OK 898x498 objectId=1",
+    "[e2212-current-host-phase] formatter.retained.return ms=1155.875",
+    "[e2212-current-host-phase] packetJSON.parse.entry ms=1156.110",
+    "[e2212-current-host-phase] packetJSON.parse.return ms=1156.195",
+    "[vf-geom-wgpu] init OK 956x518 objectId=1"
+  ],
+  "errorConsole": [
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=1.345",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-prepare",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=1.805",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-lex",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=23.075",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-parse",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=29.015",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-link",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=7.290",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=2.135",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower",
+    "[vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.035",
+    "[vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.325",
+    "[vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.605",
+    "[vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=4.030",
+    "[vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=4.945",
+    "[vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=5.655",
+    "[vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=6.455",
+    "[vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=7.760",
+    "[vkf075-semantic-lower] step=write-prepass name= elapsed_ms=8.150",
+    "[vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=8.895",
+    "[vkf075-semantic-lower] step=binding-collect name= elapsed_ms=32.080",
+    "[vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=32.805",
+    "[vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=33.325",
+    "[vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=38.960",
+    "[vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=39.695",
+    "[vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=39.845",
+    "[vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=40.165",
+    "[vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=40.715",
+    "[vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=44.765",
+    "[vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=44.880",
+    "[vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=44.970",
+    "[vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=45.645",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=46.540",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=46.830",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=51.470",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=x elapsed_ms=51.700",
+    "[vkf075-semantic-lower] step=statement-lower name=x elapsed_ms=51.820",
+    "[vkf075-semantic-lower] step=statement-complete name=x elapsed_ms=99.155",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name=y elapsed_ms=99.375",
+    "[vkf075-semantic-lower] step=statement-lower name=y elapsed_ms=99.490",
+    "[vkf075-semantic-lower] step=statement-complete name=y elapsed_ms=106.155",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=106.300",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=106.465",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=153.590",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=153.810",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=153.950",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=166.275",
+    "[vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=166.450",
+    "[vkf075-semantic-lower] step=statement-lower name= elapsed_ms=166.560",
+    "[vkf075-semantic-lower] step=statement-complete name= elapsed_ms=169.860",
+    "[vkf075-semantic-lower] step=generated-functions name= elapsed_ms=169.980",
+    "[vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=177.060",
+    "[vkf075-semantic-lower] step=structural-flow name= elapsed_ms=179.690",
+    "[vkf075-semantic-lower] step=character-ownership name= elapsed_ms=180.400",
+    "[vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=180.840",
+    "[vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=181.380",
+    "[vkf075-semantic-graph-dump] phase=entry nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=nodes-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=steps-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=constraints-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-graph-dump] phase=assembled nodes=76 steps=0 constraints=0 analytic_constraints=0",
+    "[vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=184.565",
+    "[vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=184.690",
+    "[vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=184.790",
+    "[vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=184.890",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=184.985",
+    "[vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=185.085",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=185.175",
+    "[vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=185.270",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=185.370",
+    "[vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=222.845",
+    "[vkf075-semantic-lower] step=module-exit name= elapsed_ms=223.125",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=244.800",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-private-browser-lower",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-private-browser-lower elapsed_ms=28.905",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=10.205",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.235",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=4.625",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=3.660",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=15.635",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions",
+    "[vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main",
+    "[vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers",
+    "[vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=20.035",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.430",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=47.535",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=13.955",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=manifest",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=6.155",
+    "[vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json",
+    "[vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=9.340"
+  ],
+  "browserClosed": true,
+  "serverClosed": true,
+  "under10ms": "UNMEASURED",
+  "target": "http://127.0.0.1:36633/preview/0.7.5/stdlib.html",
+  "extraBrowserArgs": [
+    "--enable-features=Vulkan",
+    "--use-vulkan=swiftshader",
+    "--disable-vulkan-surface"
+  ],
+  "pageSetupMs": 900.394429,
+  "device": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "hardwareConcurrency": 16,
+    "deviceMemory": 32,
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": ""
+    },
+    "backend": "Chromium WebGPU SwiftShader headless software, not physical GPU"
+  },
+  "release": {
+    "schema": 1,
+    "release_version": "0.7.5",
+    "preview": true,
+    "status": "private-unqualified-normal-candidate",
+    "complete": false,
+    "published": false,
+    "stable": false,
+    "stable_release": false,
+    "release_qualified": false,
+    "qualification": "Private normal2D navigation transform candidate; unchanged compiler+formatter+authoredsource+fiveglyph resources; new focused/full visual checks pending.",
+    "compiler_source_commit": "0cd03bd37d5ddaecf23d95029fb2e14f5de13b97",
+    "compiler_source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+    "release_source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+    "source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+    "browser_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+    "frontend_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+    "formatter_binding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+    "files": {
+      "compiler-base.mjs": {
+        "bytes": 188226,
+        "sha256": "e21ea1482e7623a238903006a9a559b8f74456b7822fbb2002a5e39359c94789"
+      },
+      "compiler.data": {
+        "bytes": 644660,
+        "sha256": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+      },
+      "compiler.mjs": {
+        "bytes": 1464,
+        "sha256": "680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b"
+      },
+      "compiler.wasm": {
+        "bytes": 20493019,
+        "sha256": "5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9"
+      },
+      "formatter.mjs": {
+        "bytes": 61671,
+        "sha256": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3"
+      },
+      "formatter.wasm": {
+        "bytes": 2101385,
+        "sha256": "1b0a89d3c12c64844634884beb8347c1d8f1f9b18b3ffce6daa1878a18046b09"
+      },
+      "package-tools/addresses.mjs": {
+        "bytes": 22794,
+        "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+      },
+      "package-tools/cli.mjs": {
+        "bytes": 4907,
+        "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
+      },
+      "package-tools/git-source.mjs": {
+        "bytes": 9262,
+        "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+      },
+      "package-tools/github.mjs": {
+        "bytes": 1579,
+        "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+      },
+      "package-tools/host.mjs": {
+        "bytes": 11443,
+        "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+      },
+      "package-tools/inputs.mjs": {
+        "bytes": 7238,
+        "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+      },
+      "package-tools/metadata.mjs": {
+        "bytes": 10834,
+        "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+      },
+      "package-tools/ownership.mjs": {
+        "bytes": 2891,
+        "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+      },
+      "package-tools/package.json": {
+        "bytes": 602,
+        "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+      },
+      "package-tools/project.mjs": {
+        "bytes": 7664,
+        "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
+      },
+      "package-tools/publish.mjs": {
+        "bytes": 5939,
+        "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
+      },
+      "package-tools/resolve.mjs": {
+        "bytes": 1773,
+        "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+      },
+      "prepare-formatter-ir.mjs": {
+        "bytes": 693,
+        "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+      },
+      "package-tools/owner-protection.mjs": {
+        "bytes": 2234,
+        "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+      },
+      "package.json": {
+        "bytes": 8417,
+        "sha256": "d21940f763cbbeb6aafa84f0846ce57e94767c33b5ae9083c44e99e90efc6e5a"
+      },
+      "README.txt": {
+        "bytes": 700,
+        "sha256": "316c599e188b6f5606e2f9815ede775d2dbe71b94541e1b8bae97714166531e7"
+      },
+      "third-party/emscripten-toolchain-copyright.txt": {
+        "bytes": 131248,
+        "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+      },
+      "third-party/trigonometric-source-notices.txt": {
+        "bytes": 2927,
+        "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
+      },
+      "third-party/emscripten-musl-copyright.txt": {
+        "bytes": 6204,
+        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+      },
+      "third-party/vkf-runtime-musl-license.txt": {
+        "bytes": 6204,
+        "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+      },
+      "VERIFICATION.json": {
+        "bytes": 1069,
+        "sha256": "f9ec332711196765e07dec5c47402b0783aa91c8b6739f6d944779f732eca9a6"
+      },
+      "PAIRED-STDLIB-MANIFEST.json": {
+        "bytes": 5428,
+        "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+      }
+    },
+    "sha256": {
+      "compiler-base.mjs": "e21ea1482e7623a238903006a9a559b8f74456b7822fbb2002a5e39359c94789",
+      "compiler.data": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c",
+      "compiler.mjs": "680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b",
+      "compiler.wasm": "5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9",
+      "formatter.mjs": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3",
+      "formatter.wasm": "1b0a89d3c12c64844634884beb8347c1d8f1f9b18b3ffce6daa1878a18046b09",
+      "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
+      "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
+      "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
+      "package-tools/github.mjs": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0",
+      "package-tools/host.mjs": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c",
+      "package-tools/inputs.mjs": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20",
+      "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
+      "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
+      "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
+      "package-tools/project.mjs": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf",
+      "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
+      "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
+      "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
+      "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
+      "package.json": "d21940f763cbbeb6aafa84f0846ce57e94767c33b5ae9083c44e99e90efc6e5a",
+      "README.txt": "316c599e188b6f5606e2f9815ede775d2dbe71b94541e1b8bae97714166531e7",
+      "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
+      "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
+      "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "VERIFICATION.json": "f9ec332711196765e07dec5c47402b0783aa91c8b6739f6d944779f732eca9a6",
+      "PAIRED-STDLIB-MANIFEST.json": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+    },
+    "package": {
+      "module": "./playground/canonical/compiler.mjs?sha256=680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b",
+      "wasm": "./playground/canonical/compiler.wasm?sha256=5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9",
+      "data": "./playground/canonical/compiler.data?sha256=1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+    },
+    "current_package_composition": {
+      "path": "CURRENT-COMPOSITION.json",
+      "bytes": 12260,
+      "sha256": "9987926afb02780cab082d0dc75d8c0cf9dac0d5f6e933cd57b992652cf38d23"
+    },
+    "publication_status": "CURRENT_NAMED_FOCUSED_CANDIDATE_DOWNLOADS",
+    "download_packages_offered": false,
+    "physical_gpu_tested": false,
+    "current_distribution": {
+      "enabled": true,
+      "runEnabled": true,
+      "downloadsOffered": false,
+      "fullReleaseQualified": false,
+      "sharedUploadAvailable": false
+    },
+    "full_requested_075_requirements_complete": false,
+    "historical_prior_binding_evidence": {
+      "current_candidate_verification": {
+        "path": "verification/e1868-current075-browser-native.json",
+        "bytes": 10734,
+        "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1",
+        "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+        "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+        "namedBrowserNativeChecksPASS": true,
+        "publicRuntimePromoted": true,
+        "releaseQualified": false
+      },
+      "current_distribution_checksums": {
+        "path": "downloads/current075-checksums.json",
+        "bytes": 1581,
+        "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
+      },
+      "current_runtime_repair": {
+        "path": "verification/e1870-axis-routing-repair.json",
+        "bytes": 1178,
+        "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+      },
+      "current_distribution_evidence": {
+        "path": "verification/e1880-renderer-distribution.json",
+        "bytes": 58061,
+        "sha256": "4acec08b8f275c72c5e85d6976a4ab4a1d6be76f048a6126755295008dec03c2"
+      },
+      "current_source_progress": {
+        "path": "verification/e1872-source-progress.json",
+        "bytes": 11885,
+        "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
+      },
+      "current_owner_host": {
+        "path": "verification/e1878-owner-host.json",
+        "bytes": 45824,
+        "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
+      },
+      "current_renderer_correctness": {
+        "path": "verification/e1880-current-renderer.json",
+        "bytes": 617505,
+        "sha256": "0698497208150af4437b2c93a9a8060718ad293ec40a073b9550341b5d35da1e"
+      },
+      "current_benchmark_readiness": {
+        "path": "verification/e1893-local48-readiness.json",
+        "bytes": 107291,
+        "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
+      }
+    },
+    "current_review_site_evidence": {
+      "status": "LOCAL_ONLY_NO_NEW_DEPLOYMENT",
+      "pending": true
+    },
+    "historical_benchmark_readiness": {
+      "path": "verification/e2058-local48-readiness.json",
+      "bytes": 18569,
+      "sha256": "76b87aa146454f97507969866bfeda87aff7f445243451db9d243ba7d7bca4a6",
+      "selectionIdentity": "e191c575e2fab909a38b1f11338b4871cc6631c22627a21a7a7eaa9ffc94b7bf",
+      "matchedPassed": 4,
+      "parityPassed": 2,
+      "failed": 0,
+      "unrun": 66,
+      "comparativeSamples": 0
+    },
+    "current_package_qualification": {
+      "path": "verification/e2265-exact-axis-mapping-candidate.json",
+      "bytes": 671,
+      "sha256": "c937b05bbf295324e43ceea9bfadff891ed1409e31631b6977e2d43c6a6f4a3b"
+    },
+    "native_binary_source_commit": "824ede2e1c53ba3bcc417e4a0ff8fb493843c971",
+    "native_binding": "8c59af92cabfe07967106464033e674995784b4ad63942bd0f0709ea14a6cd5f",
+    "library_source": "7ee1f08986f43c36762bd3eb95005953d8ac7c67",
+    "node_package_host_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
+    "lastPublishedReference": {
+      "reference": "fd43/native824/browser9fc/library0b63",
+      "newDeployment": false,
+      "evidence": "/mnt/development/VektorFlow-e2226-current-normal-release-integration-actual-20261104/PUBLICATION-PREPARATION.json"
+    },
+    "integration_binding": "bb14a1cb45dc6dd281e977839efd6c1aa38a124160410b087f12ddc6e2b00323",
+    "runtime_files": [
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-retained-scene-view.mjs",
+        "bytes": 14187,
+        "sha256": "e06b2ecd23a3bdd7a70ca2e76a2af6fc9a5bb2f41b97d49f63cd36f221c2cf38"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-renderer-loader.mjs",
+        "bytes": 6856,
+        "sha256": "80dfe2780cfbcc3dd615f5271cf60f61aff070ec503ad86f1b7ed87119eeabe9"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-display.js",
+        "bytes": 689266,
+        "sha256": "dab12661c61f682345c74adbae8ae907c574a2e9999a68f9e8ad62670a682240"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "bytes": 432961,
+        "sha256": "f5cec9afc924ac3f3fd7220d4cdc4d9d3648d1eab66e2eabc3bbbfa93e786a5c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+        "bytes": 32832,
+        "sha256": "8be387c7ca8d28cc4d4d0ad11d1b155cd81557d883d886f119fecb3b00c345e6"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+        "bytes": 6849,
+        "sha256": "5d796b10616e53744c0908bf2ec5815f58b8bd4d989ed942f2f41f71e9bc7402"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-runner.mjs",
+        "bytes": 7434,
+        "sha256": "be2f339fbee332685f3dafab2e875d4bff1fe3be698646fa2ce08146f8ec905d"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/current-documentation-examples.mjs",
+        "bytes": 9014,
+        "sha256": "e5c893616f096e6a8d656d3bcce3bd34545dd3a311bcd9224c10f7265208c05e"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-media-capture.mjs",
+        "bytes": 12572,
+        "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-current-plot-toolbar.mjs",
+        "bytes": 6442,
+        "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+        "bytes": 258359,
+        "sha256": "6eea1505003a53cc81c0525f90318f25f34e937e055b9275cf8b492a3081c528"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/binding.json",
+        "bytes": 154243,
+        "sha256": "b099ab9d043d49f15f5c8217087c883a0cb711ff1c439afaa37e368fa987235e"
+      },
+      {
+        "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+        "bytes": 9157,
+        "sha256": "ee6d411cdd9fb446bcf7d946da75d7211072d9b5ec2dc63b6ee81106fd40761a"
+      }
+    ],
+    "historical_last_published_evidence": {
+      "pinnedDownloads": {
+        "checksums": "downloads/current075-checksums.json",
+        "archives": [
+          "downloads/vkf-canonical-0.7.5-103091b2-hostcb619656-notices.tar.gz",
+          "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz"
+        ],
+        "qualification": "Browser9fc binding103091b2 with selected0b63 and cb619 host; native824 binding8c59 separately qualified full normal contact9+inverse9 by reference. Current focused Node/browser and extracted package/security/integrity checks only. Full release/PhysicsWorld/SDK/GPU/benchmarks/model adoption remain unqualified."
+      },
+      "packageQualification": {
+        "path": "verification/e2237-private-completion-candidate.json",
+        "bytes": 1565,
+        "sha256": "2717dab4bdf29e17e517f9176e61d246098f2c4b47735c0923b943aa0d06956f"
+      },
+      "reviewSiteEvidence": {
+        "status": "LOCAL_ONLY_NO_NEW_DEPLOYMENT",
+        "pending": true
+      },
+      "composition": {
+        "path": "CURRENT-COMPOSITION.json",
+        "bytes": 5746,
+        "sha256": "9dc6c982b90e858ad3ef97a71e246ead27f95374b061590290dd7488d0a0c501"
+      }
+    },
+    "publication_recorded_separately": true,
+    "inherited_candidate_evidence": {
+      "current_focused_distribution": {
+        "path": "verification/e2243-current-focused-distribution.json",
+        "bytes": 20035,
+        "sha256": "cc465c54ddef433646aefd1efee6d5282633bed0219f4a49914babe3efe7d2bb"
+      },
+      "current_distribution_evidence": {
+        "path": "verification/e2243-current-focused-distribution.json",
+        "bytes": 20035,
+        "sha256": "cc465c54ddef433646aefd1efee6d5282633bed0219f4a49914babe3efe7d2bb"
+      },
+      "current_distribution_checksums": {
+        "path": "downloads/current075-checksums.json",
+        "bytes": 1015,
+        "sha256": "6b09987eddb314b410488696b4550f6c0c8e3c084cf90f1f6976e4d2c3fe1d24"
+      },
+      "scoped_release": {
+        "version": "0.7.5",
+        "status": "named-focused-correctness-only",
+        "stable": false,
+        "fullReleaseQualified": false,
+        "components": [
+          "integer modulecarrier and strict wholeoutput",
+          "retained overlay lifecycle/current colored3x2 realedit/navigation",
+          "extracted Node ESM package and native Linux CLI named controls"
+        ],
+        "evidence": "verification/e2243-current-focused-distribution.json"
+      }
+    },
+    "priorPrivateRelease": {
+      "path": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/site/public/preview/0.7.5/current-compiler-release.json",
+      "bytes": 16809,
+      "sha256": "85ec473415d1e922869eb55793dfc38c81070f4621c916f01ad8480ce112d310"
+    }
+  },
+  "compileExecuteFirstOutputMs": 13234.955454,
+  "output": {
+    "text": "",
+    "outputOrigin": "run",
+    "outputKind": "stdout"
+  },
+  "graphicsContexts": [
+    {
+      "canvas": 1,
+      "type": "webgpu",
+      "success": true,
+      "error": null,
+      "className": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0",
+      "id": "",
+      "stack": null
+    },
+    {
+      "canvas": 2,
+      "type": "webgpu",
+      "success": true,
+      "error": null,
+      "className": "vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0",
+      "id": "",
+      "stack": null
+    },
+    {
+      "canvas": 3,
+      "type": "webgl2",
+      "success": true,
+      "error": null,
+      "className": "vf-native-label-canvas",
+      "id": "",
+      "stack": null
+    },
+    {
+      "canvas": 4,
+      "type": "webgl2",
+      "success": true,
+      "error": null,
+      "className": "vf-native-label-canvas",
+      "id": "",
+      "stack": null
+    }
+  ],
+  "uiSettled": {
+    "busy": false,
+    "disabled": false,
+    "renderStates": [
+      "visible"
+    ],
+    "canvases": 3
+  },
+  "focusedOnly": true,
+  "productConsoleErrors": [],
+  "initial": {
+    "html": "=\"token punctuation\">,</span><span class=\"token definition\">c</span><span class=\"token operator\">:</span><span class=\"token punctuation\">[</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span><span class=\"token number\">0.25</span><span class=\"token punctuation\">,</span><span class=\"token number\">0.5</span><span class=\"token punctuation\">,</span><span class=\"token number\">1</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span><span class=\"token definition\">id</span><span class=\"token operator\">:</span><span class=\"token string\">\"caption-regression\"</span><span class=\"token punctuation\">,</span><span class=\"token definition\">receives_lighting</span><span class=\"token operator\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">,</span><span class=\"token definition\">mode3d</span><span class=\"token operator\">:</span><span class=\"token boolean\">false</span><span class=\"token punctuation\">)</span>\n<span class=\"token variable\">view</span><span class=\"token operator\">.</span><span class=\"token function\">push</span><span class=\"token punctuation\">(</span><span class=\"token definition\">x_lim</span><span class=\"token operator\">:</span><span class=\"token punctuation\">[</span><span class=\"token operator\">-</span><span class=\"token number\">1.5</span><span class=\"token punctuation\">,</span><span class=\"token number\">1.5</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span><span class=\"token definition\">y_lim</span><span class=\"token operator\">:</span><span class=\"token punctuation\">[</span><span class=\"token operator\">-</span><span class=\"token number\">0.5</span><span class=\"token punctuation\">,</span><span class=\"token number\">0.5</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span><span class=\"token definition\">x_label</span><span class=\"token operator\">:</span><span class=\"token string\">\"x (room widths)\"</span><span class=\"token punctuation\">,</span><span class=\"token definition\">y_label</span><span class=\"token operator\">:</span><span class=\"token string\">\"y (room widths)\"</span><span class=\"token punctuation\">,</span><span class=\"token definition\">axis_type</span><span class=\"token operator\">:</span><span class=\"token string\">\"Open\"</span><span class=\"token punctuation\">,</span><span class=\"token definition\">grid_mode</span><span class=\"token operator\">:</span><span class=\"token string\">\"None\"</span><span class=\"token punctuation\">)</span>\n<span class=\"token variable\">view</span><span class=\"token operator\">.</span><span class=\"token function\">show</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>\n\n</code></pre><textarea class=\"readme-example-source\" aria-label=\"EX01 VKF source\" spellcheck=\"false\" wrap=\"off\" autocapitalize=\"off\" autocomplete=\"off\" style=\"height: 420px;\"># EX01, consolidated original cfb0f75c (2026-07-04), room/light/mirror unchanged.\n# Original three1x1 rooms; shared wall middle-thirds open, eased shadows OUT.\n# All lighting/occlusion/virtualsource arithmetic is VKF, host only draws arrays.\n# Original source position retained; edit source_x and Run to move coherently.\n# Actual pan/zoom OUT+IN through existing renderer controls.\noptics: .physics.optics\n:.math\nwalls: [[-0.5,-0.5,-0.5,-1/6],[-0.5,1/6,-0.5,0.5],[0.5,-0.5,0.5,-1/6],[0.5,1/6,0.5,0.5]]\nmirror_a: [-0.22,-0.28]\nmirror_b: [0.34,-0.28]\nreflectivity: 0.72\nfalloff: 0.7666666667\nbase_penumbra: 0.0166666667\ngrowth: 0.16\nwall_material(x:num,y:num) -&gt; bit:\n    (abs(y)&gt;0.5-0.0266666667 \\/ abs(x)&gt;1.5-0.0266666667)? @: true\n    ((abs(x+0.5)&lt;0.01333333335 \\/ abs(x-0.5)&lt;0.01333333335) /\\ abs(y)&gt;1/6)? @: true\n    false\nsample_color(x:num,y:num,source_x:num) -&gt; [num:4]:\n    source: [source_x,0]\n    target: [x,y]\n    direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)\n    reflection: optics.reflected_light2(source,target,mirror_a,mirror_b,reflectivity,0.10,falloff,walls,base_penumbra,growth)\n    room: (x+1.5)//1\n    room&gt;2?\n        .room: 2\n    lx: (x+1.5-room)*225\n    ly: (y+0.5)*225\n    tx: lx//48\n    ty: ly//48\n    checker: 0\n    (tx+ty)%2=0?\n        .checker: 1\n    variation: ((tx*37+ty*17)%11)/10\n    texture: 0.70+0.12*checker+0.07*variation\n    ((lx-tx*48)&lt;3 \\/ (ly-ty*48)&lt;3)?\n        .texture: texture*0.58\n    material: [46*texture/255,60*texture/255,74*texture/255]\n    diffuse: 0.42\n    glow: 0.58\n    wall_material(x,y)?\n        .material: [216/255,220/255,228/255]\n        .direct: optics.max2(direct,0.22/(1+((x-source_x)^2+y*y)/(falloff*falloff)))\n        .diffuse: 1.05\n        .glow: 0.26\n    # Original1.35 reflected display exposure kept OUTSIDE opticalenergy law.\n    midpoint: [(mirror_a.0+mirror_b.0)/2,(mirror_a.1+mirror_b.1)/2]\n    incoming_to_mirror: optics.normalized_light2(source,midpoint,falloff,walls,base_penumbra,growth)\n    reflected_display: 1.35*reflection*incoming_to_mirror\n    strength: optics.min2(1.35,direct+reflected_display)\n    lighting: 0.22+diffuse*strength\n    red: material.0*lighting+(direct+reflected_display)*glow\n    green: material.1*lighting+(248/255)*(direct+reflected_display)*glow*0.93\n    blue: material.2*lighting+(168/255)*(direct+reflected_display)*glow*0.66\n    [optics.clamp01(red),optics.clamp01(green),optics.clamp01(blue),1]\n# UI effects execute at the normal program root; helpers remain ordinary VKF.\nview: .ui.viewport\n# Current explicit sampling:675x225 cells, near original proof floor pixels.\nx: [0..675]/225-1.5\ny: [0..225]/225-0.5\nsource_x: -0.35\ncolor: sample_color(x_u,y_v,source_x)\nline: [mirror_a,mirror_b]\nview.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))\nview.add(x:x_u,y:y_v,z:0,c:color_uv,id:\"original-three-room-lightfield\",receives_lighting:false,mode3d:false,roughness:0.65)\nview.add(p:line_uc,id:\"layer_1_silver_mirror\",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)\nview.add_light(id:\"layer_1_light_source\",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)\nview.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:\"x (room widths)\",y_label:\"y (room widths)\",axis_type:\"Open\",grid_mode:\"None\")\nview.show()\n</textarea></div><pre class=\"readme-example-output\" aria-live=\"polite\" data-output-origin=\"run\" data-output-kind=\"stdout\"></pre></div><section class=\"readme-example-viewport\" data-example-result=\"\" aria-label=\"Interactive plot viewport\"><p class=\"readme-example-viewport-hint\" data-result-hint=\"\" hidden=\"\">Run to draw this example.</p><div class=\"readme-example-retained-layer\" data-vf-render-state=\"visible\"><vkf-viewport class=\"vf-frame vf-frame--frameless vf-plot-host\" data-vf-frame-id=\"vf-inline-result-1--frame_0\" data-vf-container-kind=\"viewport\" data-vf-min-dock=\"bl\" data-vf-alpha=\"1\" aria-hidden=\"false\" data-toolbar-dock=\"top\" data-toolbar-inset=\"true\" style=\"opacity: 1; --vf-ui-alpha: 1; z-index: 1001; inset: 0% auto auto 0%; width: 100%; height: 100%;\" data-vf-plot-toolbar-root=\"1\"><div class=\"vf-frame__minibar\" hidden=\"\"><span class=\"vf-frame__minibar-text\"></span></div><div class=\"vf-frame__body vf-frame__view-stack vf-frame__body--transparent vf-plot-frame\" data-vf-frame-content=\"1\" style=\"position: absolute; inset: 0px; touch-action: none; padding: 0px; overflow: hidden; pointer-events: auto;\"><canvas class=\"vf-frame__draw-canvas vf-geom-canvas vf-geom-canvas-0\" aria-hidden=\"true\" width=\"956\" height=\"518\" style=\"inset: auto; width: 956px; height: 518px; pointer-events: none; opacity: 1;\" data-vf-geom-canvas=\"1\" tabindex=\"-1\"></canvas><div class=\"vf-geom-text-overlay\" data-vf-geom-text-fid=\"vf-inline-result-1--frame_0\" style=\"pointer-events: none; overflow: hidden; visibility: visible; position: absolute; z-index: 46; left: 0px; top: 0px; width: 956px; height: 518px;\"><div class=\"vf-geom-text-overlay__content\" style=\"position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none; overflow: visible; will-change: auto;\"><div style=\"position: absolute; inset: 0px; pointer-events: none;\"><canvas class=\"vf-native-label-canvas\" width=\"956\" height=\"518\" data-vf-native-label-state=\"SUBMITTED_COMPLETION_UNMEASURED\" style=\"position: absolute; inset: 0px; width: 100%; height: 100%; pointer-events: none;\"></canvas></div><div style=\"position: absolute; inset: 0px; pointer-events: none;\"><canvas class=\"vf-native-label-canvas\" width=\"956\" height=\"518\" data-vf-native-label-state=\"SUBMITTED_COMPLETION_UNMEASURED\" style=\"position: absolute; inset: 0px; width: 100%; height: 100%; pointer-events: none;\"></canvas></div></div></div></div><div class=\"vf-plot-toolbar\" role=\"toolbar\" data-vf-frame-chrome=\"1\" aria-label=\"Plot view controls\" data-font-status=\"ready\" data-recording=\"false\" data-theme=\"light\"><div class=\"vf-plot-toolbar__controls\"><button type=\"button\" class=\"vf-plot-toolbar__grip\" aria-label=\"Move toolbar. Drag to an edge; arrow keys dock; Home resets automatic position.\" title=\"Move toolbar\" aria-grabbed=\"false\"><svg viewBox=\"0 0 12 24\" aria-hidden=\"true\" fill=\"currentColor\"><circle cx=\"4\" cy=\"6\" r=\"1\"></circle><circle cx=\"8\" cy=\"6\" r=\"1\"></circle><circle cx=\"4\" cy=\"12\" r=\"1\"></circle><circle cx=\"8\" cy=\"12\" r=\"1\"></circle><circle cx=\"4\" cy=\"18\" r=\"1\"></circle><circle cx=\"8\" cy=\"18\" r=\"1\"></circle></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"first\" aria-label=\"First view\" title=\"First view\" disabled=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 5v14M19 12H9m5-5-5 5 5 5\"></path></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"back\" aria-label=\"Previous view\" title=\"Previous view\" disabled=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m14 6-6 6 6 6\"></path></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"forward\" aria-label=\"Next view\" title=\"Next view\" disabled=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m10 6 6 6-6 6\"></path></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"last\" aria-label=\"Last view\" title=\"Last view\" disabled=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M19 5v14M5 12h10m-5-5 5 5-5 5\"></path></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"zoom-out\" aria-label=\"Zoom out\" title=\"Zoom out\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 4 4M7.5 10.5h6\"></path></svg></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"zoom-in\" aria-label=\"Zoom in\" title=\"Zoom in\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 4 4M7.5 10.5h6m-3-3v6\"></path></svg></button><div class=\"vf-plot-toolbar__capture\"><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"capture\" aria-label=\"Capture\" title=\"Capture frame or record video\" aria-haspopup=\"menu\" aria-expanded=\"false\" aria-controls=\"vf-plot-capture-1\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M8 6l1.5-2h5L16 6h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z\"></path><circle cx=\"12\" cy=\"13\" r=\"4\"></circle></svg></button><div id=\"vf-plot-capture-1\" class=\"vf-plot-toolbar__menu\" role=\"menu\" aria-label=\"Capture\" hidden=\"\"><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"frame-pdf\" aria-label=\"Frame shot (PDF)\" title=\"Frame shot (PDF) unavailable: no qualified provider\" role=\"menuitem\" disabled=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Zm0 0v6h6M8 13h8m-8 4h5\"></path></svg><span>Frame shot (PDF)</span></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"frame-png\" aria-label=\"Frame shot (PNG)\" title=\"Frame shot (PNG)\" role=\"menuitem\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"></rect><circle cx=\"8\" cy=\"8\" r=\"1.5\"></circle><path d=\"m3 17 5-5 4 4 4-6 5 7\"></path></svg><span>Frame shot (PNG)</span></button><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"capture-video\" aria-label=\"Start video recording\" title=\"Start video recording\" role=\"menuitem\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"3\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"m15 10 6-3v10l-6-3\"></path></svg><span>Start video recording</span></button></div></div><button type=\"button\" class=\"vf-plot-toolbar__button\" data-vf-toolbar-action=\"play-pause\" aria-label=\"Play animation\" title=\"Play animation (Space)\" aria-keyshortcuts=\"Space\" hidden=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m8 5 11 7-11 7Z\"></path></svg></button><div class=\"vf-plot-toolbar__rate\" hidden=\"\"><input class=\"vf-plot-toolbar__speed\" type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" aria-label=\"Playback rate\" title=\"Playback rate: negative reverses, zero holds\" list=\"vf-rate-ticks-1\" aria-valuetext=\"+1.0x forward\"><output class=\"vf-plot-toolbar__rate-value\" aria-live=\"off\">+1.0x</output><div class=\"vf-plot-toolbar__rate-ticks\" aria-hidden=\"true\"><span style=\"left: 0%;\">-4</span><span style=\"left: 12.5%;\">-3</span><span style=\"left: 25%;\">-2</span><span style=\"left: 37.5%;\">-1</span><span style=\"left: 50%;\">0</span><span style=\"left: 62.5%;\">+1</span><span style=\"left: 75%;\">+2</span><span style=\"left: 87.5%;\">+3</span><span style=\"left: 100%;\">+4</span></div><datalist id=\"vf-rate-ticks-1\"><option value=\"-4\"></option><option value=\"-3\"></option><option value=\"-2\"></option><option value=\"-1\"></option><option value=\"0\"></option><option value=\"1\"></option><option value=\"2\"></option><option value=\"3\"></option><option value=\"4\"></option></datalist></div></div><span class=\"vf-plot-toolbar__status\" role=\"status\"></span></div></vkf-viewport></div></section></div>",
+    "canvases": [
+      {
+        "width": 956,
+        "height": 518,
+        "rect": {
+          "x": 162,
+          "y": 807.53125,
+          "width": 956,
+          "height": 518,
+          "top": 807.53125,
+          "right": 1118,
+          "bottom": 1325.53125,
+          "left": 162
+        },
+        "dataset": {
+          "vfGeomCanvas": "1"
+        }
+      },
+      {
+        "width": 956,
+        "height": 518,
+        "rect": {
+          "x": 162,
+          "y": 807.53125,
+          "width": 956,
+          "height": 518,
+          "top": 807.53125,
+          "right": 1118,
+          "bottom": 1325.53125,
+          "left": 162
+        },
+        "dataset": {
+          "vfNativeLabelState": "SUBMITTED_COMPLETION_UNMEASURED"
+        }
+      },
+      {
+        "width": 956,
+        "height": 518,
+        "rect": {
+          "x": 162,
+          "y": 807.53125,
+          "width": 956,
+          "height": 518,
+          "top": 807.53125,
+          "right": 1118,
+          "bottom": 1325.53125,
+          "left": 162
+        },
+        "dataset": {
+          "vfNativeLabelState": "SUBMITTED_COMPLETION_UNMEASURED"
+        }
+      }
+    ]
+  },
+  "presentationPredicate": "Everyownedrenderer has completedGPUfence forCURRENTrequestedview serial+exactsnapshot; continuousnewidenticalframes neednotallbeidle.",
+  "nativeLabelReadiness": {
+    "initial": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "statistics": {
+          "status": "SUBMITTED_COMPLETION_UNMEASURED",
+          "route": "current-vkf-latex-scene",
+          "generation": 1,
+          "rows": 27,
+          "pixelRatio": 1,
+          "groups": [
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 14213.275000095367,
+              "cpuThroughSubmitMs": 28.074999928474426,
+              "census": {
+                "labels": 26,
+                "distinctSources": 22,
+                "glyphInstances": 106,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 106,
+                  "instances": 106,
+                  "triangles": 7608,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 900046,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 318,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 238,
+                  "bytes": 63382896,
+                  "atlasBytes": 57781508,
+                  "sampleBytes": 828776,
+                  "poseBytes": 98904,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 26.34500002861023,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 13392
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 13392,
+                "coverageBytes": 31693312,
+                "uploads": 212,
+                "verifiedInstanceSamples": 0,
+                "draws": 212,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            },
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 14289.730000019073,
+              "cpuThroughSubmitMs": 9.590000033378601,
+              "census": {
+                "labels": 1,
+                "distinctSources": 1,
+                "glyphInstances": 4,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 4,
+                  "instances": 4,
+                  "triangles": 660,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 38924,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 12,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 14,
+                  "bytes": 9346670,
+                  "atlasBytes": 8747622,
+                  "sampleBytes": 63870,
+                  "poseBytes": 3758,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 1.4500000476837158,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 15264
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 15264,
+                "coverageBytes": 31693312,
+                "uploads": 8,
+                "verifiedInstanceSamples": 0,
+                "draws": 8,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "canvases": [
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          },
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          }
+        ]
+      }
+    ],
+    "zoomOut": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "statistics": {
+          "status": "SUBMITTED_COMPLETION_UNMEASURED",
+          "route": "current-vkf-latex-scene",
+          "generation": 5,
+          "rows": 17,
+          "pixelRatio": 1,
+          "groups": [
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 19845.025000095367,
+              "cpuThroughSubmitMs": 10.504999995231628,
+              "census": {
+                "labels": 16,
+                "distinctSources": 16,
+                "glyphInstances": 67,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 67,
+                  "instances": 67,
+                  "triangles": 5384,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 629854,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 201,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 331,
+                  "bytes": 78580180,
+                  "atlasBytes": 72536996,
+                  "sampleBytes": 1219722,
+                  "poseBytes": 149754,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 9.884999990463257,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 13392
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 13392,
+                "coverageBytes": 31693312,
+                "uploads": 346,
+                "verifiedInstanceSamples": 0,
+                "draws": 346,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            },
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 19877.330000042915,
+              "cpuThroughSubmitMs": 2.5199999809265137,
+              "census": {
+                "labels": 1,
+                "distinctSources": 1,
+                "glyphInstances": 14,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 14,
+                  "instances": 14,
+                  "triangles": 1504,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 137020,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 42,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 48,
+                  "bytes": 17960616,
+                  "atlasBytes": 16621040,
+                  "sampleBytes": 157774,
+                  "poseBytes": 15966,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 2.0850000381469727,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 15264
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 15264,
+                "coverageBytes": 31693312,
+                "uploads": 36,
+                "verifiedInstanceSamples": 0,
+                "draws": 36,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "canvases": [
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          },
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          }
+        ]
+      }
+    ],
+    "zoomIn": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "statistics": {
+          "status": "SUBMITTED_COMPLETION_UNMEASURED",
+          "route": "current-vkf-latex-scene",
+          "generation": 8,
+          "rows": 23,
+          "pixelRatio": 1,
+          "groups": [
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 21727.100000023842,
+              "cpuThroughSubmitMs": 13.990000009536743,
+              "census": {
+                "labels": 22,
+                "distinctSources": 18,
+                "glyphInstances": 92,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 92,
+                  "instances": 92,
+                  "triangles": 6956,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 769054,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 276,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 461,
+                  "bytes": 88518244,
+                  "atlasBytes": 81870980,
+                  "sampleBytes": 1752328,
+                  "poseBytes": 221228,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 13.47000002861023,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 13680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 13680,
+                "coverageBytes": 31693312,
+                "uploads": 530,
+                "verifiedInstanceSamples": 0,
+                "draws": 530,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            },
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 21765.570000052452,
+              "cpuThroughSubmitMs": 2.450000047683716,
+              "census": {
+                "labels": 1,
+                "distinctSources": 1,
+                "glyphInstances": 14,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 14,
+                  "instances": 14,
+                  "triangles": 1332,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 137908,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 42,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 84,
+                  "bytes": 27984072,
+                  "atlasBytes": 25523740,
+                  "sampleBytes": 274700,
+                  "poseBytes": 28202,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 2.084999918937683,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 15264
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 15264,
+                "coverageBytes": 31693312,
+                "uploads": 64,
+                "verifiedInstanceSamples": 0,
+                "draws": 64,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "canvases": [
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          },
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          }
+        ]
+      }
+    ],
+    "drag": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "statistics": {
+          "status": "SUBMITTED_COMPLETION_UNMEASURED",
+          "route": "current-vkf-latex-scene",
+          "generation": 26,
+          "rows": 24,
+          "pixelRatio": 1,
+          "groups": [
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 26416.71500003338,
+              "cpuThroughSubmitMs": 29.289999961853027,
+              "census": {
+                "labels": 23,
+                "distinctSources": 19,
+                "glyphInstances": 96,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 96,
+                  "instances": 96,
+                  "triangles": 7124,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 806678,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 288,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 1013,
+                  "bytes": 110619934,
+                  "atlasBytes": 102740900,
+                  "sampleBytes": 2539666,
+                  "poseBytes": 665660,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 28.679999947547913,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 13680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 13680,
+                "coverageBytes": 31693312,
+                "uploads": 2050,
+                "verifiedInstanceSamples": 0,
+                "draws": 2050,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            },
+            {
+              "status": "SUBMITTED_COMPLETION_UNMEASURED",
+              "updateKind": "opaque-color",
+              "renderingPolicy": "required",
+              "releaseQualified": false,
+              "inputAt": 21765.570000052452,
+              "cpuThroughSubmitMs": 2.450000047683716,
+              "census": {
+                "labels": 1,
+                "distinctSources": 1,
+                "glyphInstances": 14,
+                "ruleInstances": 0,
+                "meshBuilds": 0,
+                "meshBuildMs": 0,
+                "maxMeshLevels": 4,
+                "maxMeshBytes": 134217728,
+                "meshCPUBytes": 0,
+                "toleranceDevice": 0.04,
+                "profile": "default-native9a86-inline10/7/5",
+                "font_size": "explicit unsupported until independent profile qualification",
+                "downsampling": false,
+                "last": {
+                  "meshBuilds": 0,
+                  "meshBuildMs": 0,
+                  "meshCPUBytes": 0,
+                  "maxMeshBytes": 134217728
+                }
+              },
+              "renderer": {
+                "styleColor": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 14,
+                  "instances": 14,
+                  "triangles": 1332,
+                  "width": 956,
+                  "height": 518,
+                  "pixelRatio": 1,
+                  "instanceBytes": 137908,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "hits": 42,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 84,
+                  "bytes": 27984072,
+                  "atlasBytes": 25523740,
+                  "sampleBytes": 274700,
+                  "poseBytes": 28202,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 2.084999918937683,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.038543701171875,
+                  "residentRasterEnvelope": 0.0604248046875,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    -1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 15264
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 15264,
+                "coverageBytes": 31693312,
+                "uploads": 64,
+                "verifiedInstanceSamples": 0,
+                "draws": 64,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  -1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              },
+              "engineIdentity": "current-vkf-native:03d6b2f014709e4a01ace7bfbb5651e2bebf81a4168e5389d2a5d3d64c56f960:096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+              "resourceIdentity": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4:ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+              "frameTransform": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "viewCamera": [
+                1,
+                0,
+                0,
+                -1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "canvases": [
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          },
+          {
+            "width": 956,
+            "height": 518,
+            "visibility": "",
+            "state": "SUBMITTED_COMPLETION_UNMEASURED"
+          }
+        ]
+      }
+    ]
+  },
+  "beforeNav": [
+    {
+      "id": "vf-inline-result-1--frame_0",
+      "recordViewSerial": 2,
+      "framePresented": {
+        "serial": 2,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.5,
+                "x_max": 1.5,
+                "y_min": -0.5,
+                "y_max": 0.5
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.5,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          }
+        ]
+      },
+      "entryCanvasCount": 1,
+      "entryMeshes": [
+        {
+          "id": "caption-regression",
+          "vertices": 90,
+          "indices": 24,
+          "noCull": false,
+          "topology": "triangle-list",
+          "presented": 2
+        }
+      ],
+      "camera": {
+        "pos": [
+          0,
+          0,
+          5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "ortho_scale": 0.5,
+        "viewport_width_px": 956,
+        "viewport_height_px": 518
+      },
+      "view": {
+        "serial": 2,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.5,
+                "x_max": 1.5,
+                "y_min": -0.5,
+                "y_max": 0.5
+              }
+            }
+          ]
+        }
+      },
+      "parts": [],
+      "perf": null,
+      "lastPerf": null,
+      "lastPresented": {
+        "sequence": 2,
+        "camera": {
+          "pos": [
+            0,
+            0,
+            5
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic",
+          "ortho_scale": 0.5,
+          "viewport_width_px": 956,
+          "viewport_height_px": 518
+        },
+        "view": {
+          "serial": 2,
+          "snapshot": {
+            "camera": null,
+            "axis3d": {},
+            "axes": [
+              {
+                "index": 0,
+                "fields": {
+                  "x_min": -1.5,
+                  "x_max": 1.5,
+                  "y_min": -0.5,
+                  "y_max": 0.5
+                }
+              }
+            ]
+          }
+        },
+        "endpoint": "gpu-queue-completed"
+      },
+      "lights": [],
+      "mode3d": false,
+      "lightFlares": null
+    }
+  ],
+  "optionalStill": "UNRUN_OPTIONAL_STILL_NOT_A_CORRECTNESS_GATE",
+  "gestureTarget": {
+    "x": 640,
+    "y": 640.53125,
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "tag": "DIV",
+    "className": "vf-frame__body vf-frame__view-stack vf-frame__body--transparent vf-plot-frame",
+    "ownedFrame": true
+  },
+  "zoomOut": [
+    {
+      "id": "vf-inline-result-1--frame_0",
+      "recordViewSerial": 4,
+      "framePresented": {
+        "serial": 4,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -2.2022181625229837,
+                "x_max": 2.2022181625229837,
+                "y_min": -0.7345528410454223,
+                "y_max": 0.733592600636567
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.7340727258630483,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          }
+        ]
+      },
+      "entryCanvasCount": 1,
+      "entryMeshes": [
+        {
+          "id": "caption-regression",
+          "vertices": 90,
+          "indices": 24,
+          "noCull": false,
+          "topology": "triangle-list",
+          "presented": 14
+        }
+      ],
+      "camera": {
+        "pos": [
+          0,
+          0,
+          5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "ortho_scale": 0.7340727258630483,
+        "viewport_width_px": 956,
+        "viewport_height_px": 518
+      },
+      "view": {
+        "serial": 4,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -2.2022181625229837,
+                "x_max": 2.2022181625229837,
+                "y_min": -0.7345528410454223,
+                "y_max": 0.733592600636567
+              }
+            }
+          ]
+        }
+      },
+      "parts": [],
+      "perf": null,
+      "lastPerf": null,
+      "lastPresented": {
+        "sequence": 14,
+        "camera": {
+          "pos": [
+            0,
+            0,
+            5
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic",
+          "ortho_scale": 0.7340727258630483,
+          "viewport_width_px": 956,
+          "viewport_height_px": 518
+        },
+        "view": {
+          "serial": 4,
+          "snapshot": {
+            "camera": null,
+            "axis3d": {},
+            "axes": [
+              {
+                "index": 0,
+                "fields": {
+                  "x_min": -2.2022181625229837,
+                  "x_max": 2.2022181625229837,
+                  "y_min": -0.7345528410454223,
+                  "y_max": 0.733592600636567
+                }
+              }
+            ]
+          }
+        },
+        "endpoint": "gpu-queue-completed"
+      },
+      "lights": [],
+      "mode3d": false,
+      "lightFlares": null
+    }
+  ],
+  "nativeAfterZoomIn": [
+    {
+      "source": "-1.4",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-1.2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-1",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.8",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.6",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.4",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.4",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.6",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.8",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "1",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "1.2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "1.4",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.5",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.3",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-0.1",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.1",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.3",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "0.5",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "x (room widths)",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "y (room widths)",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "\\begin{pmatrix}0\\\\0\\end{pmatrix}",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "-1.5",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "1.5",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "2",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "\\begin{pmatrix}0\\\\-0.00048012\\end{pmatrix}",
+      "complete": true,
+      "missingGlyphKeys": []
+    },
+    {
+      "source": "\\begin{pmatrix}0\\\\9.3877\\times 10^{-5}\\end{pmatrix}",
+      "complete": true,
+      "missingGlyphKeys": []
+    }
+  ],
+  "zoomIn": [
+    {
+      "id": "vf-inline-result-1--frame_0",
+      "recordViewSerial": 6,
+      "framePresented": {
+        "serial": 6,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.362696024103059,
+                "x_max": 1.362696024103059,
+                "y_min": -0.4541381306377053,
+                "y_max": 0.4543258854310008
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.4542320223144531,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          }
+        ]
+      },
+      "entryCanvasCount": 1,
+      "entryMeshes": [
+        {
+          "id": "caption-regression",
+          "vertices": 90,
+          "indices": 24,
+          "noCull": false,
+          "topology": "triangle-list",
+          "presented": 19
+        }
+      ],
+      "camera": {
+        "pos": [
+          0,
+          0,
+          5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "ortho_scale": 0.4542320223144531,
+        "viewport_width_px": 956,
+        "viewport_height_px": 518
+      },
+      "view": {
+        "serial": 6,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.362696024103059,
+                "x_max": 1.362696024103059,
+                "y_min": -0.4541381306377053,
+                "y_max": 0.4543258854310008
+              }
+            }
+          ]
+        }
+      },
+      "parts": [],
+      "perf": null,
+      "lastPerf": null,
+      "lastPresented": {
+        "sequence": 19,
+        "camera": {
+          "pos": [
+            0,
+            0,
+            5
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic",
+          "ortho_scale": 0.4542320223144531,
+          "viewport_width_px": 956,
+          "viewport_height_px": 518
+        },
+        "view": {
+          "serial": 6,
+          "snapshot": {
+            "camera": null,
+            "axis3d": {},
+            "axes": [
+              {
+                "index": 0,
+                "fields": {
+                  "x_min": -1.362696024103059,
+                  "x_max": 1.362696024103059,
+                  "y_min": -0.4541381306377053,
+                  "y_max": 0.4543258854310008
+                }
+              }
+            ]
+          }
+        },
+        "endpoint": "gpu-queue-completed"
+      },
+      "lights": [],
+      "mode3d": false,
+      "lightFlares": null
+    }
+  ],
+  "drag": [
+    {
+      "id": "vf-inline-result-1--frame_0",
+      "recordViewSerial": 7,
+      "framePresented": {
+        "serial": 7,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.4909833067069036,
+                "x_max": 1.2344087414992144,
+                "y_min": -0.41029334221740116,
+                "y_max": 0.4981706738513049
+              }
+            }
+          ]
+        },
+        "endpoint": "gpu-queue-completed",
+        "renderCameras": [
+          {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.4542320223144531,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          }
+        ]
+      },
+      "entryCanvasCount": 1,
+      "entryMeshes": [
+        {
+          "id": "caption-regression",
+          "vertices": 90,
+          "indices": 24,
+          "noCull": false,
+          "topology": "triangle-list",
+          "presented": 28
+        }
+      ],
+      "camera": {
+        "pos": [
+          0,
+          0,
+          5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "ortho_scale": 0.4542320223144531,
+        "viewport_width_px": 956,
+        "viewport_height_px": 518
+      },
+      "view": {
+        "serial": 7,
+        "snapshot": {
+          "camera": null,
+          "axis3d": {},
+          "axes": [
+            {
+              "index": 0,
+              "fields": {
+                "x_min": -1.4909833067069036,
+                "x_max": 1.2344087414992144,
+                "y_min": -0.41029334221740116,
+                "y_max": 0.4981706738513049
+              }
+            }
+          ]
+        }
+      },
+      "parts": [],
+      "perf": null,
+      "lastPerf": null,
+      "lastPresented": {
+        "sequence": 28,
+        "camera": {
+          "pos": [
+            0,
+            0,
+            5
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic",
+          "ortho_scale": 0.4542320223144531,
+          "viewport_width_px": 956,
+          "viewport_height_px": 518
+        },
+        "view": {
+          "serial": 7,
+          "snapshot": {
+            "camera": null,
+            "axis3d": {},
+            "axes": [
+              {
+                "index": 0,
+                "fields": {
+                  "x_min": -1.4909833067069036,
+                  "x_max": 1.2344087414992144,
+                  "y_min": -0.41029334221740116,
+                  "y_max": 0.4981706738513049
+                }
+              }
+            ]
+          }
+        },
+        "endpoint": "gpu-queue-completed"
+      },
+      "lights": [],
+      "mode3d": false,
+      "lightFlares": null
+    }
+  ],
+  "completionEvidence": {
+    "events": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "type": "mousemove",
+        "at": 16087.780000090599,
+        "deltaY": null,
+        "buttons": 0
+      },
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "type": "wheel",
+        "at": 16618.009999990463,
+        "deltaY": 320,
+        "buttons": 0
+      },
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "type": "wheel",
+        "at": 20159.615000009537,
+        "deltaY": -520,
+        "buttons": 0
+      },
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "type": "mousemove",
+        "at": 22936.180000066757,
+        "deltaY": null,
+        "buttons": 0
+      }
+    ],
+    "completions": [
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "at": 15559.400000095367,
+        "presentation": {
+          "sequence": 3,
+          "camera": {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.5,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          },
+          "view": {
+            "serial": 2,
+            "snapshot": {
+              "camera": null,
+              "axis3d": {},
+              "axes": [
+                {
+                  "index": 0,
+                  "fields": {
+                    "x_min": -1.5,
+                    "x_max": 1.5,
+                    "y_min": -0.5,
+                    "y_max": 0.5
+                  }
+                }
+              ]
+            }
+          },
+          "endpoint": "gpu-queue-completed"
+        },
+        "cpu": null
+      },
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "at": 16083.560000061989,
+        "presentation": {
+          "sequence": 4,
+          "camera": {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.5,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          },
+          "view": {
+            "serial": 2,
+            "snapshot": {
+              "camera": null,
+              "axis3d": {},
+              "axes": [
+                {
+                  "index": 0,
+                  "fields": {
+                    "x_min": -1.5,
+                    "x_max": 1.5,
+                    "y_min": -0.5,
+                    "y_max": 0.5
+                  }
+                }
+              ]
+            }
+          },
+          "endpoint": "gpu-queue-completed"
+        },
+        "cpu": null
+      },
+      {
+        "id": "vf-inline-result-1--frame_0",
+        "at": 16610.81500005722,
+        "presentation": {
+          "sequence": 5,
+          "camera": {
+            "pos": [
+              0,
+              0,
+              5
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "projection": "orthographic",
+            "ortho_scale": 0.5,
+            "viewport_width_px": 956,
+            "viewport_height_px": 518
+          },
+          "view": {
+            "serial": 2,
+            "snapshot": {
+              "camera": null,
+              "axis3d": {},
+              "axes": [
+                {
+                  "index": 0,
+                  "fields": {
+                    "x_min": -1.5,
+                    "x_max": 1.5,
+                    "y_min": -0.5,
+                    "y_max": 0.5
+                  }
+                }
+              ]
+            }
+          },
+          "endpoint": "gpu-queue-completed"
+        },
+        "cpu": null
+      }
+    ]
+  },
+  "navigationAssertions": {
+    "zoomOut": true,
+    "zoomIn": true,
+    "drag": true,
+    "currentViewFenceMatched": true
+  },
+  "visibleCanvases": 3,
+  "status": "FOCUSED_NINE_VERTEX_CURRENT_NORMAL_UI_NAVIGATION_PASS",
+  "limits": "This report target only. Full normal output oracle plus visible currentGPUfence/nav, not nativeSCENE/deployed-other-target/fullframe<10ms or physicalGPU qualification. Setup/compile/firstoutput separate; existing render aggregate costs remain partial. Sharedlighting2260 changes require their own affected qualification.",
+  "normalRetainedDisposed": true,
+  "cleanupTrace": {
+    "maps": [
+      {
+        "id": 1,
+        "start": 16612.325000047684,
+        "size": 768,
+        "end": 17281.34500002861,
+        "status": "mapped",
+        "unmapped": 27568.365000009537,
+        "destroyed": 28103.014999985695
+      },
+      {
+        "id": 1,
+        "start": 23529.240000009537,
+        "size": 768,
+        "end": 24181.389999985695,
+        "status": "mapped",
+        "unmapped": 27568.37000000477,
+        "destroyed": 28103.0300000906
+      },
+      {
+        "id": 1,
+        "start": 24813.925000071526,
+        "size": 768,
+        "end": 25516.055000066757,
+        "status": "mapped",
+        "unmapped": 27568.37000000477,
+        "destroyed": 28103.0300000906
+      },
+      {
+        "id": 1,
+        "start": 26953.290000081062,
+        "size": 768,
+        "end": 27568.22000002861,
+        "status": "mapped",
+        "unmapped": 27568.37000000477,
+        "destroyed": 28103.0300000906
+      }
+    ],
+    "tracks": [],
+    "recorder": []
+  },
+  "inheritedRawStatus": "FULL_EX01_COMPLETE_NORMAL_UI_OUTPUT_NAVIGATION_OBSERVED",
+  "fullAuthoredEX01": false
+}

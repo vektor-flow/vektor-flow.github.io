@@ -1,4 +1,4 @@
-import {dispatchRetainedExecution,cancelRetainedExecutions} from './playground/vkf-retained-window-execution.mjs?sha256=a03a9a0a77cbd2b6ca79af096a343554efffdd487e04b65af817b2c2a6973576';
+import {dispatchRetainedExecution,cancelRetainedExecutions} from './playground/vkf-retained-window-execution.mjs?sha256=5d796b10616e53744c0908bf2ec5815f58b8bd4d989ed942f2f41f71e9bc7402';
 import {ensureBrowserIsolation} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 const DEFAULT_WASM_URL=new URL('./playground/canonical/compiler.wasm',import.meta.url);
 const WORKER_URL=new URL('./canonical-inline-worker.mjs?sha256=aa33d66274851d1c6da795365615c1b704e2f92a84520215dc1c8a9caa81f9d6',import.meta.url);

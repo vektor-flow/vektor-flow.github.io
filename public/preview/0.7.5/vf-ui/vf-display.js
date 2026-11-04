@@ -1951,6 +1951,18 @@
     return mesh;
   }
 
+  // Analytic instance positions/radii are consumed directly in world space.
+  // Retained Layers carry their parent View transform in _modelMatrix; bake it
+  // once before camera sizing/extension, then keep the expanded mesh identity.
+  function analyticImpostorParentTransform(spec) {
+    var matrix = spec._modelMatrix;
+    if (!matrix || matrix.length !== 16) { return null; }
+    return { matrix: matrix, radiusScale: Math.max(
+      Math.hypot(matrix[0], matrix[1], matrix[2]),
+      Math.hypot(matrix[4], matrix[5], matrix[6]),
+      Math.hypot(matrix[8], matrix[9], matrix[10])) };
+  }
+
   function buildAnalyticPointImpostorMesh(spec, camera, lights) {
     var sizingCamera = camera && camera._marker_size_camera ? camera._marker_size_camera : camera;
     var verts = spec.vertices || [];
@@ -1995,16 +2007,21 @@
     var globalScale = scales ? null : Number(spec.vertex_scale == null ? 1.0 : spec.vertex_scale);
     var viewportHeight = markerViewportHeight(sizingCamera, Number(sizingCamera && sizingCamera.viewport_height_px) || 0);
     var markerSpace = fieldMeshMarkerSpace(spec);
+    var parentTransform = analyticImpostorParentTransform(spec);
     for (var pi = 0; pi < pointCount; pi += 1) {
       var sourceIndex = Number(inds[pi]) * 10;
       var px = Number(verts[sourceIndex] || 0);
       var py = Number(verts[sourceIndex + 1] || 0);
       var pz = Number(verts[sourceIndex + 2] || 0);
+      if (parentTransform) {
+        var worldPoint = transformPointMat4(parentTransform.matrix, px, py, pz);
+        px = worldPoint[0]; py = worldPoint[1]; pz = worldPoint[2];
+      }
       var sizeScale = scales ? Number(scales[pi] == null ? 1.0 : scales[pi]) : globalScale;
       if (!(sizeScale > 0)) { sizeScale = 1.0; }
       var radius = markerSpace === "pixel"
         ? impostorWorldRadius(sizingCamera, viewportHeight, [px, py, pz], vertexRadius * sizeScale)
-        : (vertexRadius * sizeScale);
+        : (vertexRadius * sizeScale * (parentTransform ? parentTransform.radiusScale : 1));
       var cr = Number(verts[sourceIndex + 6] == null ? 0.8 : verts[sourceIndex + 6]);
       var cg = Number(verts[sourceIndex + 7] == null ? 0.8 : verts[sourceIndex + 7]);
       var cb = Number(verts[sourceIndex + 8] == null ? 0.8 : verts[sourceIndex + 8]);
@@ -2080,6 +2097,7 @@
     var inst = new Float32Array(segmentCount * 12);
     var viewportHeight = markerViewportHeight(sizingCamera, Number(sizingCamera && sizingCamera.viewport_height_px) || 0);
     var markerSpace = fieldMeshMarkerSpace(spec);
+    var parentTransform = analyticImpostorParentTransform(spec);
     var strokeRadiusScale = shouldUseAnalyticLineStroke(spec) ? 0.5 : 1.0;
     for (var si = 0; si < segmentCount; si += 1) {
       var aIdx = Number(inds[si * 2]);
@@ -2092,6 +2110,12 @@
       var bx = Number(verts[bBase] || 0);
       var by = Number(verts[bBase + 1] || 0);
       var bz = Number(verts[bBase + 2] || 0);
+      if (parentTransform) {
+        var worldA = transformPointMat4(parentTransform.matrix, ax, ay, az);
+        var worldB = transformPointMat4(parentTransform.matrix, bx, by, bz);
+        ax = worldA[0]; ay = worldA[1]; az = worldA[2];
+        bx = worldB[0]; by = worldB[1]; bz = worldB[2];
+      }
       if (spec.axis_screen_extend === true && mesh.mode3d !== false) {
         var extended = extendSegmentToScreenInset(
           sizingCamera,
@@ -2107,15 +2131,15 @@
       var bWidth = hasVertexWidths ? Number(vertexWidths[bIdx] || 0) : edgeRadius;
       var aRadius = markerSpace === "pixel"
         ? impostorWorldRadius(sizingCamera, viewportHeight, [ax, ay, az], aWidth * strokeRadiusScale)
-        : (aWidth * strokeRadiusScale);
+        : (aWidth * strokeRadiusScale * (parentTransform ? parentTransform.radiusScale : 1));
       var bRadius = markerSpace === "pixel"
         ? impostorWorldRadius(sizingCamera, viewportHeight, [bx, by, bz], bWidth * strokeRadiusScale)
-        : (bWidth * strokeRadiusScale);
+        : (bWidth * strokeRadiusScale * (parentTransform ? parentTransform.radiusScale : 1));
       var cr = Number(verts[aBase + 6] == null ? 0.8 : verts[aBase + 6]);
       var cg = Number(verts[aBase + 7] == null ? 0.8 : verts[aBase + 7]);
       var cb = Number(verts[aBase + 8] == null ? 0.8 : verts[aBase + 8]);
       var ca = Number(verts[aBase + 9] == null ? 1.0 : verts[aBase + 9]);
-      if (mesh.mode3d === false || spec.receives_lighting === false || spec.no_lighting === true) {
+      if ((mesh.mode3d === false && spec.receives_lighting !== true) || spec.receives_lighting === false || spec.no_lighting === true) {
         ca = -Math.max(1e-4, Math.abs(ca));
       }
       var base = si * 12;
@@ -2607,6 +2631,10 @@
       parts: parts,
       source_specs: specs.slice(),
       camera: camera || null,
+      // Scene effects share this view only when all parts use the same 2D axes.
+      __vfPlotProjection: parts[0].__vfPlotProjection && parts.every(function(part) {
+        return part.__vfPlotProjection && String(part.__vfPlotProjection) === String(parts[0].__vfPlotProjection);
+      }) ? parts[0].__vfPlotProjection : null,
       lights: lights || [],
       light_flares: lightFlares || null,
       background: Array.isArray(background) ? background.slice(0, 4) : null,
@@ -2619,8 +2647,20 @@
     };
   }
 
+  function applySceneAmbientLevel(geom) {
+    var options = geom.render_options || {};
+    var value = geom.ambient_level == null ? options.ambient_level : geom.ambient_level;
+    if (value == null) { return; }
+    if (typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+      throw new TypeError("render_options.ambient_level requires finite nonnegative num");
+    }
+    geom.ambient_level = value;
+    (geom.meshes || []).forEach(function (mesh) { mesh.ambient_level = value; });
+  }
+
   function geomSpecNeedsUnifiedRenderer(spec) {
     if (!spec || typeof spec !== "object") { return false; }
+    if (spec.emission != null || Number(spec.emissivity) > 0) { return true; }
     if (spec.instance_kind && spec.instances && Number(spec.instance_count || 0) > 0) {
       return true;
     }
@@ -2632,12 +2672,35 @@
       shouldUseAnalyticLineStroke(spec);
   }
 
+  // Linear 2D world geometry uses the SAME data-to-pixel view as native axes.
+  // Keep world positions/materials/lights intact; this is only the GPU view.
+  function axis2DProjectionMatrix(spec, camera) {
+    var cfg = spec && spec.axis_ticks;
+    var w = Number(camera && camera.viewport_width_px), h = Number(camera && camera.viewport_height_px);
+    if (!spec || spec.mode3d !== false || !cfg || spec.axis_plot2d || spec.axis_polar === true ||
+        isLogTickMode(cfg.x_mode) || isLogTickMode(cfg.y_mode) || !(w > 0) || !(h > 0)) return null;
+    var view = axisViewport(spec, cfg, w, h);
+    if (!view) return null;
+    var o = view.dataToPoint(0, 0), x = view.dataToPoint(1, 0), y = view.dataToPoint(0, 1);
+    return new Float32Array([
+      2*(x[0]-o[0])/w, -2*(x[1]-o[1])/h, 0, 0,
+      2*(y[0]-o[0])/w, -2*(y[1]-o[1])/h, 0, 0,
+      0, 0, -1, 0,
+      2*o[0]/w-1, 1-2*o[1]/h, 0, 1
+    ]);
+  }
+
   // Build a single-mesh object for the renderer from a spec
   function buildSingleMesh(spec, camera, lights) {
     var Core = global.VfGeomCore;
     if (!Core) {
       vlog("error", "buildSingleMesh: VfGeomCore not loaded");
       return null;
+    }
+    var plotProjection = axis2DProjectionMatrix(spec, camera);
+    if (plotProjection && camera) {
+      // Existing pixel-width impostors need the current world units per pixel.
+      camera = Object.assign({}, camera, {ortho_scale:1/Math.hypot(plotProjection[1],plotProjection[5])});
     }
     var dataRev = Number(spec && spec.__dataRevision || 0) || 0;
     var cameraRev = meshNeedsCameraRebuild(spec) ? cameraRevisionKey(camera) : "";
@@ -2782,7 +2845,9 @@
     }
     var out = {};
     for (var k in mesh) { out[k] = mesh[k]; }
+    out._authored_id = spec.id == null ? null : String(spec.id);
     out.camera   = camera || null;
+    out.__vfPlotProjection = plotProjection;
     out.lights   = lights  || [];
     // Field point/line overlays are expanded into world-space impostor meshes.
     // Do not apply the source field TRS a second time.
@@ -2792,6 +2857,7 @@
     out.rotation = out.overlay_expanded ? [0,0,0] : (mesh.rotation || spec.rotation || [0,0,0]);
     out.scale    = out.overlay_expanded ? [1,1,1] : (mesh.scale    || spec.scale    || [1,1,1]);
     out.alpha    = meshAlpha(spec);
+    out.visible  = spec.visible === false ? false : mesh.visible;
     out.transparent = spec.transparent === true || out.alpha < 0.999;
     out.depth_write = spec.depth_write === true;
     out.no_lighting = spec.no_lighting === true || spec.receives_lighting === false;
@@ -2800,6 +2866,9 @@
     out.casts_shadow = spec.casts_shadow === false ? false : mesh.casts_shadow;
     out.interpolation = spec.interpolation === true || mesh.interpolation === true;
     out.light_model = spec.light_model || mesh.light_model || null;
+    ["roughness", "reflectivity", "optical_index", "transparency", "emissivity", "emission", "ambient_level"].forEach(function (name) {
+      if (spec[name] != null) { out[name] = spec[name]; }
+    });
     out.specular_strength = spec.specular_strength == null ? mesh.specular_strength : spec.specular_strength;
     out.blend_mode = spec.blend_mode || mesh.blend_mode || null;
     out.no_cull = spec.no_cull === true || mesh.no_cull === true;
@@ -8249,6 +8318,20 @@
     return out;
   }
 
+  function geomCaptureGlyphCanvases(rec) {
+    var glyphs=rec.nativePlotTextLayer ? rec.nativePlotTextLayer.captureCanvases() : [];
+    if (rec.nativeLabelLayer && rec.nativeLabelLayer.canvas) {
+      // As with native plot groups, the default GL buffer can be cleared after
+      // presentation. Redraw the same accepted native scene/camera, not source.
+      var renderer=rec.nativeLabelLayer.renderer;
+      if (renderer && typeof renderer.nativeStatistics === "function" && typeof renderer.setNativeCamera === "function") {
+        renderer.setNativeCamera(renderer.nativeStatistics().camera);
+      }
+      glyphs=glyphs.concat([rec.nativeLabelLayer.canvas]);
+    }
+    return glyphs;
+  }
+
   // Product capture composes only the existing plot and visible native glyph
   // canvases. Floating toolbar/menu/grips are chrome, never capture content.
   function captureGeomFrameCanvas(fid) {
@@ -8262,61 +8345,140 @@
     var scene=_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[String(fid)];
     if (scene && scene.background) {context.fillStyle=runtimeColorCss(scene.background);context.fillRect(0,0,canvas.width,canvas.height);}
     context.drawImage(source,0,0,canvas.width,canvas.height);
-    var glyphs=rec.nativePlotTextLayer ? rec.nativePlotTextLayer.captureCanvases() : [];
+    var glyphs=geomCaptureGlyphCanvases(rec);
     glyphs.forEach(function(layer) {
       if (layer.style.visibility !== "hidden") context.drawImage(layer,0,0,canvas.width,canvas.height);
     });
     return canvas;
   }
 
-  async function captureGeomFrameDataUrl(fid) {
-    var rec = frameRecs[String(fid)] || null;
-    if (!rec || !Array.isArray(rec.entries)) { return null; }
-    if (rec.simple2DCanvas && rec.simple2DGeomSpec && rec.simple2DGeomSpec.native_plot_text === true) {
-      var ready;
-      do {ready=rec.nativeLabelReady;await ready;} while (ready !== rec.nativeLabelReady);
-      if (frameRecs[String(fid)] !== rec) return null;
-      var plot=captureGeomFrameCanvas(fid);
-      return plot ? plot.toDataURL("image/png") : null;
+  // Capture only this Frame/widget's owned surfaces, never the first canvas
+  // in a surrounding pane. Readback is of the maintained final display texture.
+  function geomFrameCaptureSurfaces(fid) {
+    var rec=frameRecs[String(fid)], owner=findFrameEl(geomTargetFrameId(fid));
+    var host=owner && geomFrameHost(owner,fid);
+    function owned(canvas) { return canvas && canvas.width>0 && canvas.height>0 &&
+      canvas.isConnected !== false && host && host.contains(canvas); }
+    if (!rec || !owner || owner.isConnected === false) return null;
+    if (owned(rec.simple2DCanvas)) return {rec:rec,owner:owner,simple:rec.simple2DCanvas};
+    var entries=rec.entries || [];
+    if (!entries.length || !entries.every(function(entry) {
+      return owned(entry.canvas) && entry.renderer && !entry.presentationFailed &&
+        typeof entry.renderer._debugReadFrameTexture === "function" &&
+        typeof entry.renderer._debugGetFrameTextureRef === "function" &&
+        entry.renderer._debugGetFrameTextureRef();
+    })) return null;
+    return {rec:rec,owner:owner,entries:entries.slice()};
+  }
+
+  function canCaptureGeomFrame(fid) { return !!geomFrameCaptureSurfaces(fid); }
+
+  function watchGeomFramePresentation(fid, callback) {
+    return listenFrameView(frameViewRecord(String(fid)), callback);
+  }
+
+  function waitGeomCapture(promise, signal) {
+    if (!signal) return Promise.resolve(promise);
+    return new Promise(function(resolve,reject) {
+      function aborted() { reject(signal.reason || new DOMException("Capture canceled","AbortError")); }
+      if (signal.aborted) { aborted(); return; }
+      signal.addEventListener("abort",aborted,{once:true});
+      Promise.resolve(promise).then(resolve,reject).finally(function() {signal.removeEventListener("abort",aborted);});
+    });
+  }
+
+  async function captureGeomFrameCanvasAsync(fid, options) {
+    fid=String(fid);options=options || {};
+    var signal=options.signal, surfaces=geomFrameCaptureSurfaces(fid);
+    if (!surfaces) return null;
+    var rec=surfaces.rec, owner=surfaces.owner;
+    function current() {
+      if (signal && signal.aborted) throw signal.reason || new DOMException("Capture canceled","AbortError");
+      var now=geomFrameCaptureSurfaces(fid);
+      return now && now.rec === rec && now.owner === owner &&
+        _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid] &&
+        (surfaces.simple ? now.simple === surfaces.simple : !now.simple &&
+          now.entries.length === surfaces.entries.length && now.entries.every(function(entry,i) {
+            return entry === surfaces.entries[i] && entry.renderer === renderers[i] && entry.canvas === canvases[i];
+          }));
     }
-    for (var i = 0; i < rec.entries.length; i += 1) {
-      var entry = rec.entries[i];
-      var renderer = entry && entry.renderer;
-      if (!renderer || typeof renderer._debugReadFrameTexture !== "function") { continue; }
-      var frame = await renderer._debugReadFrameTexture();
-      if (!frame || !frame.width || !frame.height || !frame.pixels) { continue; }
-      var sourceCanvas = document.createElement("canvas");
-      sourceCanvas.width = frame.width;
-      sourceCanvas.height = frame.height;
-      var sourceCtx = sourceCanvas.getContext("2d");
-      if (!sourceCtx) { return null; }
-      var image = sourceCtx.createImageData(frame.width, frame.height);
-      image.data.set(frame.pixels);
-      sourceCtx.putImageData(image, 0, 0);
-      if (!frame.flipU && !frame.flipV) {
-        return sourceCanvas.toDataURL("image/png");
+    var renderers=surfaces.entries && surfaces.entries.map(function(entry) {return entry.renderer;});
+    var canvases=surfaces.entries && surfaces.entries.map(function(entry) {return entry.canvas;});
+    // Wait on existing presentation, without requesting or recursively rendering
+    // another view. A gesture may supersede the frontier while we await labels.
+    while (current()) {
+      var ready=rec.nativeLabelReady;
+      await waitGeomCapture(ready,signal);
+      if (!current()) return null;
+      if (ready !== rec.nativeLabelReady) continue;
+      if (surfaces.simple) return captureGeomFrameCanvas(fid);
+      var serial=Number(rec.viewSerial || 0);
+      if (!rec.presentedView || rec.presentedView.serial < serial) {
+        await new Promise(function(resolve,reject) {
+          var unlisten=listenFrameView(rec,function(view) {if (view.serial>=serial) finish();},finish);
+          function aborted() {finish(signal.reason || new DOMException("Capture canceled","AbortError"));}
+          function finish(error) {
+            unlisten();if(signal)signal.removeEventListener("abort",aborted);
+            if(error)reject(error);else resolve();
+          }
+          if(signal) {signal.addEventListener("abort",aborted,{once:true});if(signal.aborted)aborted();}
+        });
+        continue;
       }
-      var finalCanvas = document.createElement("canvas");
-      finalCanvas.width = frame.width;
-      finalCanvas.height = frame.height;
-      var finalCtx = finalCanvas.getContext("2d");
-      if (!finalCtx) { return sourceCanvas.toDataURL("image/png"); }
-      finalCtx.save();
-      finalCtx.translate(frame.flipU ? frame.width : 0, frame.flipV ? frame.height : 0);
-      finalCtx.scale(frame.flipU ? -1 : 1, frame.flipV ? -1 : 1);
-      finalCtx.drawImage(sourceCanvas, 0, 0);
-      finalCtx.restore();
-      return finalCanvas.toDataURL("image/png");
+      break;
     }
-    var frameEl = findFrameEl(geomTargetFrameId(fid));
-    if (!frameEl) { return null; }
-    var canvas = frameEl.querySelector("canvas.vf-geom-canvas");
-    if (!canvas || typeof canvas.toDataURL !== "function") { return null; }
-    try {
-      return canvas.toDataURL("image/png");
-    } catch (_) {
-      return null;
+    if (!current()) return null;
+    var view=rec.presentedView;
+    var scene=_lastDisplayPayload.geom[fid];
+    var background=scene && scene.background ? runtimeColorCss(scene.background) : null;
+    var opacities=canvases.map(function(canvas) {return Math.max(0,Math.min(1,Number(canvas.style.opacity || 1)));});
+    // Snapshot visible labels in the same JS turn that submits all texture
+    // copies. Later camera/label updates cannot alter this sampled frame.
+    var glyphs=geomCaptureGlyphCanvases(rec);
+    glyphs=glyphs.filter(function(layer) {
+      var style=typeof global.getComputedStyle === "function" ? global.getComputedStyle(layer) : layer.style;
+      return layer.width>0 && layer.height>0 && (!style || style.visibility !== "hidden" && style.display !== "none");
+    }).map(function(layer) {
+      var copy=document.createElement("canvas");copy.width=layer.width;copy.height=layer.height;
+      copy.getContext("2d").drawImage(layer,0,0);return copy;
+    });
+    // All copies are issued synchronously before the first mapAsync completes.
+    var frames=await Promise.all(renderers.map(function(renderer) {return renderer._debugReadFrameTexture({signal:signal});}));
+    if (!current()) return null;
+    if (frames.some(function(frame) {return !frame || !frame.pixels || !frame.presentation ||
+      !frame.presentation.view || frame.presentation.view.serial !== view.serial;
+    })) return null;
+    var canvas=document.createElement("canvas"), primary=frames[0];
+    canvas.width=primary.width;canvas.height=primary.height;
+    var context=canvas.getContext("2d");if(!context)return null;
+    if(background) {context.fillStyle=background;context.fillRect(0,0,canvas.width,canvas.height);}
+    frames.forEach(function(frame,i) {
+      var source=document.createElement("canvas");source.width=frame.width;source.height=frame.height;
+      var ctx=source.getContext("2d"),image=ctx.createImageData(frame.width,frame.height);
+      image.data.set(frame.pixels);ctx.putImageData(image,0,0);
+      context.save();
+      context.globalAlpha=opacities[i];
+      context.translate(frame.flipU ? canvas.width : 0,frame.flipV ? canvas.height : 0);
+      context.scale(frame.flipU ? -1 : 1,frame.flipV ? -1 : 1);
+      context.drawImage(source,0,0,canvas.width,canvas.height);context.restore();
+    });
+    glyphs.forEach(function(layer) {context.drawImage(layer,0,0,canvas.width,canvas.height);});
+    // This is the sampled submitted/completed pose, not a claim that the latest
+    // UI request at map completion has already rendered.
+    canvas.__vfCaptureView=cloneFrameView(view);
+    return canvas;
+  }
+
+  async function captureGeomFrameDataUrl(fid) {
+    var canvas=await captureGeomFrameCanvasAsync(fid);
+    if (!canvas) {
+      var rec=frameRecs[String(fid)],owner=findFrameEl(geomTargetFrameId(fid));
+      var host=owner && geomFrameHost(owner,fid);
+      var entry=rec && rec.entries && rec.entries[0];
+      if (rec && rec.software3DFrameEl === owner && entry && host && host.contains(entry.canvas)) canvas=entry.canvas;
     }
+    if (!canvas) return null;
+    try { return canvas.toDataURL("image/png"); } catch (_) { return null; }
   }
 
   function debugGeomFrameCaptureState(fid) {
@@ -12678,6 +12840,7 @@
       }
     }
 
+    applySceneAmbientLevel(geomSpec);
     var frameView = tagFrameView(String(fid), geomSpec);
     var specs   = geomSpec.meshes || [];
     var renderableSpecs = renderableGeomSpecs(specs);
@@ -12724,7 +12887,9 @@
           viewport_width_px: viewportWidth,
           viewport_height_px: viewportHeight
         })
-      : (renderableSpecs.some(shouldUseAnalyticLineStroke)
+      : (renderableSpecs.some(shouldUseAnalyticLineStroke) ||
+          (renderableSpecs.every(function(spec) {return spec.mode3d === false;}) &&
+           renderableSpecs.some(function(spec) {return !!spec.axis_ticks;}))
           ? {
               pos: [0, 0, 5],
               target: [0, 0, 0],
@@ -12741,6 +12906,7 @@
     )
       ? buildUnifiedFrameScene(renderableSpecs, effectiveCamera, lights, authoredFrameLightFlares(geomSpec), geomSpec.background || null)
       : null;
+    if (unifiedScene) { unifiedScene.ambient_level = geomSpec.ambient_level; }
     var combinedTransparent = !unifiedScene && geomSpec && geomSpec.combine_transparent === true && renderableSpecs.length > 1
       ? buildCombinedTransparentMesh(renderableSpecs, effectiveCamera, lights)
       : null;
@@ -13106,6 +13272,9 @@
     if (!scene) {
       throw new Error("dynamic geom provider did not produce a unified scene");
     }
+    applySceneAmbientLevel(geomSpec);
+    scene.ambient_level = geomSpec.ambient_level;
+    scene.parts.forEach(function (part) { part.ambient_level = geomSpec.ambient_level; });
     if (Array.isArray(geomSpec.optical_parts)) {
       scene.optical_parts = geomSpec.optical_parts.slice();
     }
@@ -15330,6 +15499,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     nativeLabelFrameStatus: nativeLabelFrameStatus,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     setNativePlotTextRendererFactory: function(fn) {if (typeof fn !== "function") throw new TypeError("native plot text factory required"); _nativePlotTextRendererFactory=fn;},
+    watchGeomFramePresentation: watchGeomFramePresentation,
+    canCaptureGeomFrame: canCaptureGeomFrame,
+    captureGeomFrameCanvasAsync: captureGeomFrameCanvasAsync,
     captureGeomFrameCanvas: captureGeomFrameCanvas,
     captureGeomFrameDataUrl: captureGeomFrameDataUrl,
     setPlotScreen: setPlotScreen,
@@ -15413,6 +15585,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       continuousCurvePaths: continuousCurvePaths,
       axisMathText: axisMathText,
       collectAxisTickLabelSpecs: collectAxisTickLabelSpecs,
+      axis2DProjectionMatrix: axis2DProjectionMatrix,
       geomTextToPx: geomTextToPx,
       geomTextAnchorPercent: geomTextAnchorPercent,
       renderMathText: renderMathText,
@@ -15420,6 +15593,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       buildCombinedTriangleMesh: buildCombinedTriangleMesh,
       buildCombinedTransparentMesh: buildCombinedTransparentMesh,
       analyzeSurfaceTextures: analyzeSurfaceTextures,
+      watchGeomFramePresentation: watchGeomFramePresentation,
+      canCaptureGeomFrame: canCaptureGeomFrame,
+      captureGeomFrameCanvasAsync: captureGeomFrameCanvasAsync,
       captureGeomFrameCanvas: captureGeomFrameCanvas,
       captureGeomFrameDataUrl: captureGeomFrameDataUrl,
       debugGeomFrameCaptureState: debugGeomFrameCaptureState,

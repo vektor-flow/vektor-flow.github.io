@@ -11,6 +11,9 @@ from current_package import need, read, pinned
 
 
 def verify_current_distribution(preview, release):
+    if release.get("current_normal_ex01"):
+        from current_focused_distribution import verify_current_normal_ex01
+        return verify_current_normal_ex01(preview, release)
     if release.get("current_focused_distribution"):
         from current_focused_distribution import verify_current_focused_distribution
         return verify_current_focused_distribution(preview, release)

@@ -15,6 +15,9 @@
   var config = rootConfig.scene_ir || rootConfig;
   var frameSpec = config.frame || {};
   var renderOptions = config.render_options || {};
+  if (renderOptions.ambient_level != null && (typeof renderOptions.ambient_level !== "number" || !Number.isFinite(renderOptions.ambient_level) || renderOptions.ambient_level < 0)) {
+    throw new TypeError("render_options.ambient_level requires finite nonnegative num");
+  }
   if (
     global.chrome &&
     global.chrome.webview &&
@@ -4209,8 +4212,10 @@
         }
       }
     }
+    state.meshes.forEach(function (mesh) { mesh.ambient_level = renderOptions.ambient_level; });
     var geom = {};
     geom[String(frameSpec.frame_id || config.frame_id)] = {
+      ambient_level: renderOptions.ambient_level,
       meshes: state.meshes,
       optical_parts: state.optical_parts,
       camera: state.camera,

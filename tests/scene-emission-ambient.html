@@ -1,0 +1,107 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Shared scene emission and ambient controls</title>
+<script src="../public/preview/0.7.5/vf-ui/vf-runtime-shell.js"></script></head>
+<body data-vf-runtime-autoboot="false"><pre id="result">UNRUN</pre><script>
+(async()=>{
+  const require=(value,message)=>{if(!value)throw Error(message)};
+  try {
+    await VfRuntimeShell.ensureSceneDependencies();
+    const util=VfGeomWgpuUtil;
+    for(const mode3d of [false,true]) {
+      const emitter={id:"lamp",mode3d,emission:[2,1,.5],color:[0,0,0,1],
+        vertices:[-1,-1,.4,0,0,1,1,1,1,1, 1,-1,.4,0,0,1,1,1,1,1, 0,1,.4,0,0,1,1,1,1,1],indices:[0,1,2]};
+      const scene={ambient_level:0,parts:[emitter]};
+      const light=util.resolveSceneLights([],scene,0);
+      require(light.length===1 && light[0].intensity===2,"material did not become incident light");
+      require(light[0].pos[0]===0 && light[0].pos[1]===0 && Math.abs(light[0].pos[2]-.4)<1e-12,"geometry-derived source");
+      require(JSON.stringify(light[0].color_f32)==='[1,0.5,0.25,1]',"authored emission RGB lost or base-tinted");
+      require(light[0].casts_shadow && light[0].emission_mesh_id==='lamp',"emitter shadow/self identity");
+      emitter.center=[1,2,3];
+      const moved=util.resolveSceneLights([],scene,0)[0];
+      require(moved.pos[0]===1 && moved.pos[1]===2 && Math.abs(moved.pos[2]-3.4)<1e-12,"normal transform did not update emitted source");
+      const descriptor={id:'lamp',kind:'spot',pos:[0,0,9],intensity:99,color:[1,1,1,1],range:7};
+      const explicit=util.resolveSceneLights([descriptor],scene,0);
+      require(explicit.length===1 && explicit[0].id==='lamp','explicit same-object light descriptor doubled emitted energy');
+      require(explicit[0].pos[0]===1 && explicit[0].pos[1]===2 && Math.abs(explicit[0].pos[2]-3.4)<1e-12 && explicit[0].intensity===2 && explicit[0].color_f32[1]===.5 && explicit[0].range===7 && explicit[0].kind==='spot','descriptor disconnected actual object position/emission or lost shape controls');
+      emitter.visible=false;
+      require(util.resolveSceneLights([descriptor],scene,0)[0].intensity===0,'hidden linked object left direct light emitting');
+      emitter.visible=true;
+      emitter.emission=[0,0,0];
+      require(util.resolveSceneLights([],scene,0).length===0,"zero emission created a source/default key despite ambient=0");
+      require(util.resolveSceneLights([descriptor],scene,0)[0].intensity===0,'zero-emission linked object left descriptor power emitting');
+      emitter.emission=null;emitter.emissivity=.4;emitter.color=[.5,.25,0,1];
+      require(JSON.stringify(util.materialEmissionRgb(emitter))==='[0.2,0.1,0]',"legacy emissivity/base-colour convention");
+      emitter.visible=false;
+      require(util.resolveSceneLights([],scene,0).length===0,"hidden geometry kept emitting");
+    }
+    // Exercise the NORMAL field-mesh construction used after Frame.add,
+    // including its analytic instances; the template quad is not the geometry.
+    const build=VfDisplay.__test.buildSingleMesh;
+    const close=(a,b,message)=>require(a.length===b.length&&a.every((x,i)=>Math.abs(x-b[i])<2e-6),message);
+    const vertex=p=>[...p,0,0,1,1,.5,.25,1];
+    for(const mode3d of [false,true]) for(const kind of ['point','line']) {
+      const spec={type:'field_mesh',mode3d,render_mode:'marker_impostor',marker_space:'world',
+        topology:kind==='point'?'point-list':'line-list',vertex_size:.125,edge_width:.125,
+        vertices:kind==='point'?vertex([-.35,0,-.1]):[...vertex([-.5,.125,-.25]),...vertex([.25,.375,-.25])],
+        indices:kind==='point'?[0]:[0,1],emission:[2,1,.5],visible:false};
+      const current=()=>build(spec,null,[]);
+      const resolve=mesh=>util.resolveSceneLights([],{ambient_level:0,parts:[mesh]},0);
+      let mesh=current();
+      require(mesh.instance_kind===kind+'-impostor','normal ADD missed analytic instance route');
+      require(mesh.visible===false&&resolve(mesh).length===0,'normal ADD lost hidden visibility before source/draw');
+      spec.visible=true;mesh=current();let light=resolve(mesh)[0];
+      close(light.pos,kind==='point'?[-.35,0,-.1]:[-.125,.25,-.25],'normal ADD template center replaced actual instance');
+      if(kind==='point') require(Math.abs(light.source_radius-Math.sqrt(3)*.125)<2e-6,'actual marker radius missing');
+      // Same-count replacement and in-place position changes use current data.
+      spec.vertices=spec.vertices.slice();spec.vertices[0]+=.25;
+      if(kind==='line')spec.vertices[10]+=.25;
+      mesh=current();light=resolve(mesh)[0];
+      close(light.pos,kind==='point'?[-.1,0,-.1]:[.125,.25,-.25],'same-count normal ADD movement stale');
+      // Retained View parent matrix: rotate90Z and translate. Camera shaders
+      // read WORLD instance records; they must never get a second model pass.
+      spec._modelMatrix=new Float32Array([0,1,0,0,-1,0,0,0,0,0,1,0,.25,-.125,.0625,1]);
+      mesh=current();light=resolve(mesh)[0];
+      close(light.pos,kind==='point'?[.25,-.225,-.0375]:[0,0,-.1875],'normal ADD parent transform lost/doubled');
+      const descriptor={id:'bound',kind:'spot',pos:[9,9,9],intensity:99,color:[1,1,1,1],range:7};
+      spec.id='bound';spec.visible=false;mesh=current();
+      require(util.resolveSceneLights([descriptor],{ambient_level:0,parts:[mesh]},0)[0].intensity===0,'normal hidden ADD kept linked descriptor emitting');
+      spec.visible=true;spec.emission=[0,0,0];mesh=current();
+      require(util.resolveSceneLights([descriptor],{ambient_level:0,parts:[mesh]},0)[0].intensity===0,'normal zero material kept descriptor emitting');
+      // Count/radius/endpoint changes are drawn-instance data, not a template
+      // revision cache. Trailing capacity outside instance_count is ignored.
+      spec.emission=[2,1,.5];delete spec._modelMatrix;
+      if(kind==='point') {
+        spec.vertices=[...vertex([-.5,0,-.25]),...vertex([.5,0,-.25])];spec.indices=[0,1];
+        mesh=current();light=resolve(mesh)[0];close(light.pos,[0,0,-.25],'multiple point instances dropped');
+        spec.indices=[1];spec.vertex_size=.25;mesh=current();light=resolve(mesh)[0];
+        close(light.pos,[.5,0,-.25],'point count update stale');
+        require(Math.abs(light.source_radius-Math.sqrt(3)*.25)<2e-6,'point radius update stale');
+      } else {
+        spec.vertex_widths=[.0625,.125];spec.vertices=[...vertex([-.5,.125,-.25]),...vertex([.25,.375,-.25])];
+        mesh=current();light=resolve(mesh)[0];close(light.pos,[-.09375,.28125,-.25],'actual unequal endpoint radii ignored');
+      }
+      // Direct instance records already contain WORLD geometry, even if a
+      // decorative/model matrix is present; match current vertex shader schema.
+      mesh._modelMatrix=[1,0,0,0,0,1,0,0,0,0,1,0,100,100,100,1];
+      close(resolve(mesh)[0].pos,light.pos,'WORLD instances transformed twice');
+      mesh.instance_count=0;
+      require(resolve(mesh).length===0,'empty instance population still emitted');
+      require(util.resolveSceneLights([descriptor],{ambient_level:0,parts:[mesh]},0)[0].intensity===0,'empty population kept linked descriptor emitting');
+    }
+    // Optional labels are not ownership. Two ordinary unnamed field meshes
+    // must not make an emissive object disable the wall's shadow casting.
+    const vertices=[-1,-1,0,0,0,1,1,1,1,1, 1,-1,0,0,0,1,1,1,1,1, 0,1,0,0,0,1,1,1,1,1];
+    const lamp={id:'field_mesh',_authored_id:null,vertices,indices:[0,1,2],emission:[1,0,0]};
+    const wall={id:'field_mesh',_authored_id:null,vertices:vertices.slice(),indices:[0,1,2]};
+    const light=util.resolveSceneLights([],{ambient_level:0,parts:[lamp,wall]},0)[0];
+    require(light.emission_owner===util.lightingOwnerKey(lamp),'actual emitter ownership lost');
+    const casters=util.shadowCasterPartsForLight([{mesh:lamp},{mesh:wall}],light,0);
+    require(casters.length===1 && casters[0].mesh===wall,'unnamed emitter excluded unrelated wall caster');
+    const other={...lamp,emission:[0,1,0]};
+    const both=util.resolveSceneLights([],{ambient_level:0,parts:[lamp,other]},0);
+    require(both.length===2 && both[0].id!==both[1].id && both[0].emission_owner!==both[1].emission_owner,'unnamed source ownership collision');
+    const packed=util.packClusteredLightRecords(both),words=new Uint32Array(packed.buffer);
+    require(packed.length===104 && words[48]===both[0].emission_owner && words[100]===both[1].emission_owner,'clustered source ownership wire');
+    document.getElementById('result').textContent='PASS: normal scene contributor/API controls only; image, full scene and timings unqualified';
+  } catch(error){document.getElementById('result').textContent='FAIL: '+(error.stack||error);throw error;}
+})();
+</script></body></html>

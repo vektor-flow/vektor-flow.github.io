@@ -1,0 +1,71 @@
+{
+  "owner": "e2273",
+  "mode": "node",
+  "jobs": [
+    {
+      "name": "install",
+      "argv": [
+        "node",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/package-tools/cli.mjs",
+        "install",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/project",
+        "--compiler",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/compiler.mjs",
+        "--cache",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/cache"
+      ],
+      "capSeconds": 60,
+      "exit": 0,
+      "joined": true,
+      "elapsedSeconds": 0.36474333005025983,
+      "stdout": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/install.stdout",
+      "stderr": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/install.stderr"
+    },
+    {
+      "name": "run",
+      "argv": [
+        "node",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/package-tools/cli.mjs",
+        "run",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/project",
+        "--compiler",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/compiler.mjs",
+        "--cache",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/cache",
+        "--locked"
+      ],
+      "capSeconds": 60,
+      "exit": 0,
+      "joined": true,
+      "elapsedSeconds": 1.9180969569133595,
+      "stdout": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/run.stdout",
+      "stderr": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/run.stderr"
+    },
+    {
+      "name": "compile",
+      "argv": [
+        "node",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/package-tools/cli.mjs",
+        "compile",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/project",
+        "--compiler",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/extracted/vkf-canonical-0.7.5-current/compiler.mjs",
+        "--cache",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/cache",
+        "--out",
+        "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/artifact",
+        "--locked"
+      ],
+      "capSeconds": 60,
+      "exit": 0,
+      "joined": true,
+      "elapsedSeconds": 1.818255370017141,
+      "stdout": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/compile.stdout",
+      "stderr": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-node/compile.stderr"
+    }
+  ],
+  "compiler": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "formatter": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "native": "df9feb23d8c23cb9f7ac94953dcf5dd4cb1756dfd074017e7e8d51ba00a6c465",
+  "status": "PASS"
+}

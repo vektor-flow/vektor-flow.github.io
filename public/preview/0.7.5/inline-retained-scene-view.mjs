@@ -1,4 +1,4 @@
-import {mountCurrentPlotToolbar} from './vf-ui/vf-current-plot-toolbar.mjs?sha256=3dd1d261d28757978f170be821cf088e42e580fe3346dda898c368b807b92971';
+import {mountCurrentPlotToolbar} from './vf-ui/vf-current-plot-toolbar.mjs?sha256=58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c';
 
 function retainedPacket(packet) {
   return packet

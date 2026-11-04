@@ -1,0 +1,653 @@
+{
+  "owner": "e2273",
+  "scope": "Existing normal contributor construction/state and real GPU-completed pixel regressions for frozen V4+2264. Not compiled Frame.add/full EX01/native/deployed/performance acceptance.",
+  "backend": "Chromium SwiftShader software Vulkan/WebGPU, not physical GPU",
+  "errors": [],
+  "consoleErrors": [],
+  "browserClosed": true,
+  "serverClosed": true,
+  "inventory": {
+    "owner": "e2273",
+    "files": [
+      {
+        "path": "public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+        "bytes": 432961,
+        "sha256": "f5cec9afc924ac3f3fd7220d4cdc4d9d3648d1eab66e2eabc3bbbfa93e786a5c"
+      },
+      {
+        "path": "public/preview/0.7.5/vf-ui/vf-current-plot-toolbar.mjs",
+        "bytes": 6442,
+        "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
+      },
+      {
+        "path": "public/preview/0.7.5/vf-ui/vf-display.js",
+        "bytes": 689266,
+        "sha256": "dab12661c61f682345c74adbae8ae907c574a2e9999a68f9e8ad62670a682240"
+      },
+      {
+        "path": "public/preview/0.7.5/vf-ui/vf-media-capture.mjs",
+        "bytes": 12572,
+        "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
+      },
+      {
+        "path": "public/preview/0.7.5/vf-ui/vf-native-scene.js",
+        "bytes": 429259,
+        "sha256": "b0167ff9bc0ea09d0d8c4f47b454bc83e0ec59916ca03a706b0b7e7520ce7e72"
+      },
+      {
+        "path": "tests/scene-emission-ambient.html",
+        "bytes": 8717,
+        "sha256": "d71ff2fa247c405efd75e5cac6aa4e103d5ae6c2fc6e480e409cdb6ac3673374"
+      },
+      {
+        "path": "tests/shared-lighting-render.mjs",
+        "bytes": 14376,
+        "sha256": "8f93fd10482b48badb2f598f6e043beb3bb890cbec14665d6341571d94377956"
+      }
+    ]
+  },
+  "target": "http://127.0.0.1:38121/tests/scene-emission-ambient.html",
+  "contributorResult": "PASS: normal scene contributor/API controls only; image, full scene and timings unqualified",
+  "pixels": {
+    "status": "PASS_NORMAL_SHARED_EMISSION_LAYER_WALL_AMBIENT_PIXELS_ONLY",
+    "rows": [
+      {
+        "mode3d": false,
+        "dark": {
+          "behind": 0,
+          "wall": 0,
+          "sourcePixel": 0,
+          "contributor": null,
+          "imageSequence": 2
+        },
+        "blocked": {
+          "behind": 0,
+          "wall": 107.33333333333333,
+          "sourcePixel": 550.1111111111111,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 6
+        },
+        "clear": {
+          "behind": 46.666666666666664,
+          "wall": 240.66666666666666,
+          "sourcePixel": 550.1111111111111,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 9
+        },
+        "below": {
+          "behind": 46.666666666666664,
+          "wall": 240.66666666666666,
+          "sourcePixel": 550.1111111111111,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 12
+        },
+        "moved": {
+          "behind": 264,
+          "wall": 269.8888888888889,
+          "sourcePixel": 552.2222222222222,
+          "contributor": {
+            "pos": [
+              0.19999999552965164,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 15
+        },
+        "ambientLow": {
+          "behind": 39,
+          "wall": 39,
+          "sourcePixel": 10,
+          "contributor": null,
+          "imageSequence": 18
+        },
+        "ambientHigh": {
+          "behind": 153,
+          "wall": 153,
+          "sourcePixel": 39,
+          "contributor": null,
+          "imageSequence": 21
+        },
+        "reactivated": {
+          "behind": 46.666666666666664,
+          "wall": 240.66666666666666,
+          "sourcePixel": 550.1111111111111,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 24
+        },
+        "reblocked": {
+          "behind": 0,
+          "wall": 107.33333333333333,
+          "sourcePixel": 550.1111111111111,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 27
+        },
+        "instanceRows": [
+          {
+            "sourceKind": "point",
+            "hidden": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 0,
+              "instanceKind": "point-impostor",
+              "visible": false,
+              "contributor": null,
+              "imageSequence": 30
+            },
+            "shown": {
+              "behind": 46.666666666666664,
+              "wall": 240.66666666666666,
+              "sourcePixel": 666.2222222222222,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  -0.699999988079071,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 33
+            },
+            "movedObject": {
+              "behind": 264,
+              "wall": 619.3333333333334,
+              "sourcePixel": 668.5555555555555,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  0.20000000298023224,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 36
+            },
+            "movedParent": {
+              "behind": 264,
+              "wall": 619.3333333333334,
+              "sourcePixel": 668.5555555555555,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  0.19999998807907104,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 39
+            },
+            "zero": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 400.6666666666667,
+              "instanceKind": "point-impostor",
+              "contributor": null,
+              "imageSequence": 42
+            }
+          },
+          {
+            "sourceKind": "line",
+            "hidden": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 0,
+              "instanceKind": "line-impostor",
+              "visible": false,
+              "contributor": null,
+              "imageSequence": 45
+            },
+            "shown": {
+              "behind": 46.666666666666664,
+              "wall": 240.66666666666666,
+              "sourcePixel": 664.6666666666666,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  -0.699999988079071,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 48
+            },
+            "movedObject": {
+              "behind": 264,
+              "wall": 619.3333333333334,
+              "sourcePixel": 666,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  0.20000000298023224,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 51
+            },
+            "movedParent": {
+              "behind": 264,
+              "wall": 619.3333333333334,
+              "sourcePixel": 666,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  0.19999998807907104,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 54
+            },
+            "zero": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 424.3333333333333,
+              "instanceKind": "line-impostor",
+              "contributor": null,
+              "imageSequence": 57
+            }
+          }
+        ],
+        "legacyBase": {
+          "left": 204,
+          "right": 408
+        },
+        "legacyGain": {
+          "left": 307,
+          "right": 611
+        },
+        "leftRatio": 1.5049019607843137,
+        "rightRatio": 1.4975490196078431,
+        "captureRow": {
+          "width": 400,
+          "height": 58,
+          "view": {
+            "serial": 21,
+            "snapshot": {
+              "camera": null,
+              "axis3d": {},
+              "axes": []
+            },
+            "endpoint": "gpu-queue-completed",
+            "renderCameras": [
+              null
+            ]
+          },
+          "hash": 3032419907
+        }
+      },
+      {
+        "mode3d": true,
+        "dark": {
+          "behind": 0,
+          "wall": 0,
+          "sourcePixel": 0,
+          "contributor": null,
+          "imageSequence": 1
+        },
+        "blocked": {
+          "behind": 0,
+          "wall": 108.33333333333333,
+          "sourcePixel": 578.5555555555555,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 6
+        },
+        "clear": {
+          "behind": 46,
+          "wall": 244.88888888888889,
+          "sourcePixel": 578.5555555555555,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 10
+        },
+        "below": {
+          "behind": 46,
+          "wall": 244.88888888888889,
+          "sourcePixel": 578.5555555555555,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 14
+        },
+        "moved": {
+          "behind": 250.44444444444446,
+          "wall": 270.1111111111111,
+          "sourcePixel": 576.3333333333334,
+          "contributor": {
+            "pos": [
+              0.19999999552965164,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 18
+        },
+        "ambientLow": {
+          "behind": 39,
+          "wall": 39,
+          "sourcePixel": 18.333333333333332,
+          "contributor": null,
+          "imageSequence": 22
+        },
+        "ambientHigh": {
+          "behind": 153,
+          "wall": 153,
+          "sourcePixel": 69,
+          "contributor": null,
+          "imageSequence": 26
+        },
+        "reactivated": {
+          "behind": 46,
+          "wall": 244.88888888888889,
+          "sourcePixel": 578.5555555555555,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 30
+        },
+        "reblocked": {
+          "behind": 0,
+          "wall": 108.33333333333333,
+          "sourcePixel": 578.5555555555555,
+          "contributor": {
+            "pos": [
+              -0.7000000178813934,
+              0,
+              -0.10000000149011612
+            ],
+            "intensity": 1
+          },
+          "imageSequence": 34
+        },
+        "instanceRows": [
+          {
+            "sourceKind": "point",
+            "hidden": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 0,
+              "instanceKind": "point-impostor",
+              "visible": false,
+              "contributor": null,
+              "imageSequence": 38
+            },
+            "shown": {
+              "behind": 46,
+              "wall": 244.88888888888889,
+              "sourcePixel": 663.8888888888889,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  -0.699999988079071,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 42
+            },
+            "movedObject": {
+              "behind": 250.44444444444446,
+              "wall": 605.5555555555555,
+              "sourcePixel": 673.7777777777778,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  0.20000000298023224,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 46
+            },
+            "movedParent": {
+              "behind": 250.44444444444446,
+              "wall": 605.5555555555555,
+              "sourcePixel": 673.7777777777778,
+              "instanceKind": "point-impostor",
+              "contributor": {
+                "pos": [
+                  0.19999998807907104,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 50
+            },
+            "zero": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 245.11111111111111,
+              "instanceKind": "point-impostor",
+              "contributor": null,
+              "imageSequence": 54
+            }
+          },
+          {
+            "sourceKind": "line",
+            "hidden": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 0,
+              "instanceKind": "line-impostor",
+              "visible": false,
+              "contributor": null,
+              "imageSequence": 58
+            },
+            "shown": {
+              "behind": 46,
+              "wall": 244.88888888888889,
+              "sourcePixel": 664.1111111111111,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  -0.699999988079071,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 62
+            },
+            "movedObject": {
+              "behind": 250.44444444444446,
+              "wall": 605.5555555555555,
+              "sourcePixel": 671.4444444444445,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  0.20000000298023224,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 66
+            },
+            "movedParent": {
+              "behind": 250.44444444444446,
+              "wall": 605.5555555555555,
+              "sourcePixel": 671.4444444444445,
+              "instanceKind": "line-impostor",
+              "contributor": {
+                "pos": [
+                  0.19999998807907104,
+                  0,
+                  -0.10000000149011612
+                ],
+                "intensity": 1
+              },
+              "imageSequence": 70
+            },
+            "zero": {
+              "behind": 0,
+              "wall": 0,
+              "sourcePixel": 246.11111111111111,
+              "instanceKind": "line-impostor",
+              "contributor": null,
+              "imageSequence": 74
+            }
+          }
+        ],
+        "legacyBase": {
+          "left": 204,
+          "right": 408
+        },
+        "legacyGain": {
+          "left": 306,
+          "right": 612
+        },
+        "leftRatio": 1.5,
+        "rightRatio": 1.5,
+        "captureRow": {
+          "width": 400,
+          "height": 58,
+          "view": {
+            "serial": 21,
+            "snapshot": {
+              "camera": {
+                "pos": [
+                  0,
+                  0,
+                  4
+                ],
+                "target": [
+                  0,
+                  0,
+                  -0.8
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1,
+                "position": [
+                  0,
+                  0,
+                  4
+                ]
+              },
+              "axis3d": {},
+              "axes": []
+            },
+            "endpoint": "gpu-queue-completed",
+            "renderCameras": [
+              {
+                "pos": [
+                  0,
+                  0,
+                  4
+                ],
+                "target": [
+                  0,
+                  0,
+                  -0.8
+                ],
+                "up": [
+                  0,
+                  1,
+                  0
+                ],
+                "projection": "orthographic",
+                "ortho_scale": 1,
+                "position": [
+                  0,
+                  0,
+                  4
+                ],
+                "viewport_width_px": 400,
+                "viewport_height_px": 58
+              }
+            ]
+          },
+          "hash": 2311014652,
+          "navigationHash": 2792778133
+        }
+      }
+    ],
+    "scope": "Small current normal renderer only; VKF/formatter compilation, EX01 population, native/deployed and frame<10ms remain separate"
+  },
+  "controlDownloads": [
+    {
+      "suggested": "vektor-flow-view.webm",
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/LIGHTING-CONTROL-VKF-0.webm",
+      "bytes": 260
+    },
+    {
+      "suggested": "vektor-flow-view.webm",
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/LIGHTING-CONTROL-VKF-1.webm",
+      "bytes": 260
+    }
+  ],
+  "status": "PASS_EXISTING_NORMAL_LIGHTING_STATE_AND_GPU_PIXELS"
+}

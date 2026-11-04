@@ -1,6 +1,6 @@
 import {mountPlotToolbar} from './vf-plot-toolbar.mjs?sha256=3c5af61acf193f8c2824acacbe17bfe83707b493e58b890532872b62870edb39';
 import {createPlotDocking} from './vf-plot-docking.mjs?sha256=2d937dc67282c6305305905b0546b36205a3112e018ab40647f3cac2e0022fe3';
-import {createSceneMediaCapture,createLayeredCanvasCaptureStream} from './vf-media-capture.mjs?sha256=5a8d44e043e379f22c8bbdaeb86f91690f083acea7b306302ffd937ac7643306';
+import {createSceneMediaCapture,createLayeredCanvasCaptureStream} from './vf-media-capture.mjs?sha256=afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe';
 
 // Uses the renderer's own bounded history and physical canvas capture.
 // Callers supply playback only when their runtime can actually control time.
@@ -31,14 +31,15 @@ export function mountCurrentPlotToolbar(frame, scene, {
       const url=URL.createObjectURL(new Blob([bytes],{type})),anchor=document.createElement('a');
       anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),0);
     };
-    const media=createSceneMediaCapture({requestStream:()=>createLayeredCanvasCaptureStream({document,
-      layers:[()=>VfDisplay.captureGeomFrameCanvas(fid)]})});
+    const media=createSceneMediaCapture({requestStream:({signal})=>createLayeredCanvasCaptureStream({document,signal,
+      frameProvider:({signal})=>VfDisplay.captureGeomFrameCanvasAsync(fid,{signal})})});
     const video={get recording(){return media.recording;},start:()=>media.startMovie(),async stop(){
       const blob=await media.stopMovie();if (!blob) throw new Error('PLOT_VIDEO_CAPTURE_EMPTY');
       download(new Uint8Array(await blob.arrayBuffer()),blob.type,'vektor-flow-view.webm');return blob;
     }};
-    const canvasCapture=(scene.meshes || []).length>0 && (scene.meshes || []).every(mesh=>mesh.mode3d === false);
-    const capture={formats:canvasCapture ? ['png'] : [],video:canvasCapture && typeof document.defaultView?.MediaRecorder === 'function' ? video : null,
+    const canvasCapture=()=>VfDisplay.canCaptureGeomFrame?.(fid) === true;
+    const capture={get formats(){return canvasCapture() ? ['png'] : [];},
+      get video(){return (media.recording || canvasCapture()) && typeof document.defaultView?.MediaRecorder === 'function' ? video : null;},
       async frame(){
         const url=await VfDisplay.captureGeomFrameDataUrl(fid);if (!url) throw new Error('PLOT_PNG_CAPTURE_UNAVAILABLE');
         const bytes=new Uint8Array(await(await fetch(url)).arrayBuffer());
@@ -67,6 +68,7 @@ export function mountCurrentPlotToolbar(frame, scene, {
       onError:error=>{root.dispatchEvent(new CustomEvent('vf-plot-toolbar-error',{bubbles:true,detail:{message:error.message}}));}
     });
     const refresh=()=>toolbar.refresh();root.addEventListener('vf-view-animation-state',refresh);
+    toolbarCleanup.push(VfDisplay.watchGeomFramePresentation?.(fid,refresh) || (()=>{}));
     const appearance=document.defaultView?.matchMedia?.('(prefers-color-scheme:dark)');
     const theme=()=>{const selected=document.documentElement.dataset.theme;toolbar.element.dataset.theme=['light','dark'].includes(selected) ? selected : appearance?.matches ? 'dark' : 'light';};
     theme();appearance?.addEventListener?.('change',theme);const themeObserver=typeof MutationObserver === 'function' ? new MutationObserver(theme) : null;

@@ -1,0 +1,1455 @@
+TAP version 13
+# Subtest: first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+ok 1 - first build creates exactly one vkf.lock; settings survive; URL aliases dedupe by canonical address
+  ---
+  duration_ms: 121.395244
+  type: 'test'
+  ...
+# Subtest: normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+ok 2 - normal build pins old commit after HEAD change; explicit update advances; offline locked reads no Git metadata
+  ---
+  duration_ms: 144.933899
+  type: 'test'
+  ...
+# Subtest: old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+ok 3 - old locked Git tree refetches by exact commit only; missing offline cache/tamper/path/link/unknown provider fail
+  ---
+  duration_ms: 151.883233
+  type: 'test'
+  ...
+# Subtest: direct Git file and personal unmerged branch work without central registration/approval
+ok 4 - direct Git file and personal unmerged branch work without central registration/approval
+  ---
+  duration_ms: 90.638023
+  type: 'test'
+  ...
+# Subtest: local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+ok 5 - local file/folder/absolute paths re-read and fingerprint edits; frozen refuses mutable source
+  ---
+  duration_ms: 68.696919
+  type: 'test'
+  ...
+# Subtest: same source URL uses editable override inside sole lock, then restores verified cached commit
+ok 6 - same source URL uses editable override inside sole lock, then restores verified cached commit
+  ---
+  duration_ms: 90.914466
+  type: 'test'
+  ...
+# Subtest: fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+ok 7 - fixed-point discovery mounts transitive addresses; unknown/stalled requests and locked source changes fail
+  ---
+  duration_ms: 105.746355
+  type: 'test'
+  ...
+# Subtest: package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+ok 8 - package embedded Git dependency pin survives explicit consumer update; source graph conflicts fail
+  ---
+  duration_ms: 206.332001
+  type: 'test'
+  ...
+# Subtest: concurrent source-address cache population exposes complete verified data only
+ok 9 - concurrent source-address cache population exposes complete verified data only
+  ---
+  duration_ms: 116.155364
+  type: 'test'
+  ...
+# Subtest: direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+ok 10 - direct root-local file has no metadata self-hash loop after first build creates vkf.lock
+  ---
+  duration_ms: 59.441175
+  type: 'test'
+  ...
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=2.301
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=1.815
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=4.126
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=3.697
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=17.471
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=4.133
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.051
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.187
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.362
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.906
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=2.290
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=2.830
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=3.757
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=5.070
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=5.395
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=6.193
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=17.520
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=17.970
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=18.359
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=27.507
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=28.910
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=29.001
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=29.121
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=29.610
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=34.547
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=41.126
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=42.498
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=43.363
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=43.734
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=44.285
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=45.334
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=46.031
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=46.122
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=46.263
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=46.328
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=46.436
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=47.917
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=55.998
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=56.337
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=104.038
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=104.166
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=104.207
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=104.632
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=113.108
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=113.454
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=162.313
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=162.408
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=162.437
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=162.550
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=175.069
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=175.186
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=191.972
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=192.129
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=192.171
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=217.171
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=217.278
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=217.310
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=217.380
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=229.365
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=229.483
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=234.594
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=234.660
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=234.738
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=238.085
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=238.704
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=239.070
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=239.372
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=241.156
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=241.185
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=241.202
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=241.263
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=241.311
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=241.332
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=241.370
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=241.391
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=241.426
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=268.857
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=269.200
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=285.680
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=4.703
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.163
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.758
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.961
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=11.569
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=18.350
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.320
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=34.323
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=8.173
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=3.355
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=7.110
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.141
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.173
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.817
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.410
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=10.653
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.856
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.027
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.090
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.199
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.374
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.543
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.681
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.881
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.973
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.037
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=9.449
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=9.664
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=9.774
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=12.242
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=12.431
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=12.483
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=12.564
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=12.683
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=13.559
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=14.142
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=14.736
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=15.322
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=15.348
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=15.377
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=15.429
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=15.482
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=15.535
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=15.605
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=15.652
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=15.709
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=16.117
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=19.210
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=19.257
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=28.540
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=28.623
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=28.648
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=28.709
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=34.273
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=34.338
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=49.665
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=49.755
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=49.780
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=49.839
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=57.896
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=57.988
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=74.395
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=74.509
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=74.542
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=76.139
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=76.182
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=76.204
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=76.265
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=88.597
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=88.726
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=92.402
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=92.456
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=92.536
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=93.248
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=93.403
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=93.578
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=93.764
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=94.317
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=94.349
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=94.376
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=94.401
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=94.422
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=94.444
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=94.467
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=94.490
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=94.521
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=116.515
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=116.774
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=121.445
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=4.347
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.096
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.651
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=1.025
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=5.529
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=2.773
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.064
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=18.228
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=8.396
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=2.140
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=6.903
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.220
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.237
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=2.098
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.569
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=9.095
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.826
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.027
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.088
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.137
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.311
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.467
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.602
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.794
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.893
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=1.958
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=8.754
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=8.921
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=9.022
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=12.443
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=12.828
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=12.926
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=13.068
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=13.305
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=14.713
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=15.301
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=15.864
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=16.428
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=16.454
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=16.481
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=16.532
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.582
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.626
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.691
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.736
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=16.792
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=17.010
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=20.824
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=20.902
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=31.289
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=31.372
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=31.397
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=31.454
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=36.963
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=37.020
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=51.550
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=51.630
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=51.676
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=51.738
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=59.809
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=59.884
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=75.316
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=75.393
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=75.422
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=76.932
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=76.972
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=76.994
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=77.048
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=87.637
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=87.692
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=91.190
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=91.223
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=91.272
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=91.695
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=91.818
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=91.952
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=92.105
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=92.568
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=92.585
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=92.599
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=92.611
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=92.622
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=92.634
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=92.651
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=92.663
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=92.676
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=110.495
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=110.658
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=114.522
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=3.035
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.051
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.446
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.736
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=4.924
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=2.608
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.071
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=16.599
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.718
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=2.181
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=7.075
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.039
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.155
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.825
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.548
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=9.420
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.822
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.002
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.038
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.103
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.214
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.389
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.547
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.687
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.885
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.980
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.053
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=9.049
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=9.217
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=9.319
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=11.764
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=11.958
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=12.008
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=12.082
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=12.194
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=13.534
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=14.398
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=15.342
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=16.350
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=16.395
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=16.442
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=16.527
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.611
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.690
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.803
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.885
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=16.994
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=17.208
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=20.134
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=20.177
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=29.111
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=29.185
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=29.209
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=29.266
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=35.011
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=35.113
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=50.020
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=50.137
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=50.164
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=50.225
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=58.480
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=58.571
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=73.864
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=73.976
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=74.015
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=75.660
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=75.708
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=75.732
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=75.794
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=86.618
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=86.706
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=90.651
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=90.715
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=90.773
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=91.254
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=91.403
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=91.577
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=91.741
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=92.223
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=92.241
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=92.255
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=92.267
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=92.278
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=92.290
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=92.302
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=92.314
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=92.326
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=110.472
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=110.677
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=114.661
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=3.219
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.075
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.977
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.793
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=5.745
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=3.324
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.066
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=18.141
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=9.621
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=2.272
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=6.927
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.045
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.217
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.870
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.400
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=9.099
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=1.278
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.002
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.034
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.124
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.238
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.462
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=2.069
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=2.265
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=2.545
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=2.684
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.787
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=9.600
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=9.871
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=10.026
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=12.483
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=12.720
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=12.798
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=12.925
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=13.087
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=14.033
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=14.641
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=15.220
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=15.834
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=15.863
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=15.903
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=15.985
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.072
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=16.150
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.259
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=16.348
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=16.456
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=16.731
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=19.750
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=19.799
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=28.837
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=28.915
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=28.939
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=28.994
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=34.372
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=34.421
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=52.688
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=52.773
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=52.798
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=52.856
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=61.777
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=61.865
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=77.675
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=77.771
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=77.813
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=79.530
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=79.580
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=79.616
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=79.704
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=90.344
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=90.440
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=93.978
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=94.020
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=94.100
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=94.602
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=94.766
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=94.945
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=95.142
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=95.729
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=95.760
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=95.786
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=95.808
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=95.827
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=95.847
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=95.868
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=95.891
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=95.913
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=115.555
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=115.734
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=119.900
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=3.859
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.075
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.427
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.750
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=5.156
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=3.078
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.081
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=17.838
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.831
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=2.149
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=7.105
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.044
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.219
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=2.631
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.951
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=4.627
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-cache-lookup
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.024
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.157
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.880
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.378
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=8.899
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.787
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.029
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.109
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.163
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.335
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.492
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.693
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.888
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.977
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.038
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=8.853
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=9.018
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=9.117
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=11.499
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=11.683
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=11.732
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=11.804
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=11.915
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=12.778
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=13.320
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=13.865
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=14.410
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=14.433
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=14.481
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=14.531
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=14.578
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=14.619
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=14.681
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=14.723
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=14.777
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=14.973
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=17.901
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=17.938
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=27.215
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=27.268
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=27.289
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=27.343
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=32.742
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=32.788
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=47.574
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=47.620
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=47.641
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=47.709
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=57.001
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=57.062
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=71.816
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=71.878
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=71.906
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=73.393
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=73.433
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=73.454
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=73.518
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=84.004
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=84.050
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=87.413
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=87.444
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=87.502
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=87.914
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=88.032
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=88.162
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=88.313
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=88.917
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=88.941
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=88.959
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=88.975
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=88.988
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=89.002
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=89.019
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=89.035
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=89.052
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=106.816
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=106.966
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=110.730
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=2.974
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.042
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.491
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.698
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=4.934
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=2.294
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.053
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=16.285
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.589
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=1.991
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=6.804
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.103
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.149
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.969
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=2.276
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=9.949
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.860
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.002
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.036
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.100
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=1.164
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.394
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.569
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.711
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.908
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.995
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=2.058
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=8.842
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=9.044
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=9.149
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=11.577
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=11.772
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=11.821
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=11.895
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=12.006
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=12.883
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=13.453
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=13.986
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=14.539
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=14.573
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=14.599
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=14.648
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=14.697
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=14.741
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=14.803
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=14.846
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=14.899
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=15.097
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=18.068
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=18.122
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=27.256
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=27.311
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=27.333
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=27.388
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=32.831
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=32.878
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=47.133
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=47.174
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=47.195
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=47.257
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=55.216
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=55.262
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=69.917
+# [vkf075-semantic-lower] step=statement-dependency-plan name=address elapsed_ms=69.980
+# [vkf075-semantic-lower] step=statement-lower name=address elapsed_ms=70.007
+# [vkf075-semantic-lower] step=statement-complete name=address elapsed_ms=71.525
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=71.565
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=71.586
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=71.638
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=82.058
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=82.119
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=85.510
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=85.547
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=85.594
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=86.001
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=86.125
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=86.263
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=86.422
+# [vkf075-semantic-graph-dump] phase=entry nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=16 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=86.859
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=86.875
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=86.886
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=86.897
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=86.907
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=86.918
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=86.928
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=86.938
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=86.948
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=105.776
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=106.011
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=109.853
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=2.985
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.044
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.469
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.714
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=4.919
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=2.291
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.053
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=15.971
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.573
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=2.135
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=6.746
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.096
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.113
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.222
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=1.662
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=9.599
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.706
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.024
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.079
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=0.998
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=1.155
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=1.294
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=1.418
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=1.614
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=1.699
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=1.746
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=7.693
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=7.834
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=7.918
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=10.187
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=10.354
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=10.393
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=10.473
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=10.581
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_1__value elapsed_ms=11.163
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_2__value elapsed_ms=11.713
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module___vkf_address_0__value elapsed_ms=12.229
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=12.783
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=12.806
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=12.831
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_1__value elapsed_ms=12.877
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=12.922
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_2__value elapsed_ms=12.962
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=13.022
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module___vkf_address_0__value elapsed_ms=13.063
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=13.115
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=13.300
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_1__value elapsed_ms=16.271
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_1__value elapsed_ms=16.307
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_1__value elapsed_ms=24.902
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=24.941
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=24.961
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=25.013
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_2__value elapsed_ms=30.337
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_2__value elapsed_ms=30.381
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_2__value elapsed_ms=44.440
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=44.479
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=44.500
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=44.566
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module___vkf_address_0__value elapsed_ms=52.524
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module___vkf_address_0__value elapsed_ms=52.582
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module___vkf_address_0__value elapsed_ms=67.140
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=67.188
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=67.208
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=67.261
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=77.761
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=77.820
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=77.878
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=89.697
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=89.783
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=93.367
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=93.483
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=93.545
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=93.983
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=94.104
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=94.255
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=94.405
+# [vkf075-semantic-graph-dump] phase=entry nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=14 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=94.816
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=94.830
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=94.842
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=94.853
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=94.862
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=94.872
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=94.882
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=94.892
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=94.902
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=111.707
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=111.867
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=114.896
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=2.847
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.044
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=1.627
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.655
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=4.263
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_1__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_2__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module___vkf_address_0__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=2.112
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.053
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=16.651
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.345
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=1.977
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=6.531
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.110
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.124
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.100
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=1.455
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=2.004
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.598
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.024
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.054
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=0.391
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=0.468
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=0.536
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=0.613
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=0.697
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=0.742
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=0.771
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=2.895
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=2.963
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=3.005
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=3.749
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=3.833
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=3.859
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=3.892
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=3.937
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module_foo__value elapsed_ms=4.163
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=4.679
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=4.702
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module_foo__value elapsed_ms=4.725
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module_foo__value elapsed_ms=4.770
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=4.808
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=4.881
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module_foo__value elapsed_ms=5.736
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module_foo__value elapsed_ms=5.769
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module_foo__value elapsed_ms=13.601
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=13.639
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=13.659
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=13.712
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=16.687
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=16.728
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=19.506
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=19.534
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=19.577
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=19.769
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=19.837
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=19.900
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=19.984
+# [vkf075-semantic-graph-dump] phase=entry nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=20.210
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=20.225
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=20.235
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=20.245
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=20.254
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=20.263
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=20.272
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=20.282
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=20.292
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=26.989
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=27.109
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=28.730
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=1.285
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.044
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=0.785
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.364
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=2.216
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module_foo__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module_foo__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=1.115
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.053
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=17.831
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.106
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=1.702
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=5.404
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-frontend
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-frontend elapsed_ms=0.101
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-prepare
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-prepare elapsed_ms=0.121
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-lex
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-lex elapsed_ms=1.309
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-parse
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-parse elapsed_ms=1.607
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-link
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-link elapsed_ms=1.624
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-function-demand
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-function-demand elapsed_ms=0.255
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-semantic-lower
+# [vkf075-semantic-lower] step=module-entry name= elapsed_ms=0.001
+# [vkf075-semantic-lower] step=reject-removed-declarations name= elapsed_ms=0.024
+# [vkf075-semantic-lower] step=module-identity name= elapsed_ms=0.055
+# [vkf075-semantic-lower] step=normalization-copy name= elapsed_ms=0.412
+# [vkf075-semantic-lower] step=reserve-symbols name= elapsed_ms=0.489
+# [vkf075-semantic-lower] step=nominal-scope-collect name= elapsed_ms=0.561
+# [vkf075-semantic-lower] step=nominal-binding-rewrite name= elapsed_ms=0.623
+# [vkf075-semantic-lower] step=returned-lambda-normalize name= elapsed_ms=0.704
+# [vkf075-semantic-lower] step=write-prepass name= elapsed_ms=0.748
+# [vkf075-semantic-lower] step=source-occurrence-registration name= elapsed_ms=0.778
+# [vkf075-semantic-lower] step=binding-collect name= elapsed_ms=2.978
+# [vkf075-semantic-lower] step=module-write-analysis name= elapsed_ms=3.061
+# [vkf075-semantic-lower] step=module-cell-read-abi name= elapsed_ms=3.104
+# [vkf075-semantic-lower] step=immutable-binding-analysis name= elapsed_ms=3.868
+# [vkf075-semantic-lower] step=type-alias-discovery name= elapsed_ms=3.954
+# [vkf075-semantic-lower] step=type-alias-resolution name= elapsed_ms=3.978
+# [vkf075-semantic-lower] step=ui-identity-discovery name= elapsed_ms=4.014
+# [vkf075-semantic-lower] step=worker-type-preinfer name= elapsed_ms=4.058
+# [vkf075-semantic-lower] step=function-predeclare name=__vkf_module_foo__value elapsed_ms=4.285
+# [vkf075-semantic-lower] step=callback-discovery name= elapsed_ms=4.802
+# [vkf075-semantic-lower] step=callback-discovery-pass name= elapsed_ms=4.826
+# [vkf075-semantic-lower] step=producer-discovery name=__vkf_module_foo__value elapsed_ms=4.849
+# [vkf075-semantic-lower] step=callback-contract-discovery name=__vkf_module_foo__value elapsed_ms=4.894
+# [vkf075-semantic-lower] step=callable-factory-discovery name= elapsed_ms=4.932
+# [vkf075-semantic-lower] step=sequential-statements name= elapsed_ms=5.007
+# [vkf075-semantic-lower] step=statement-dependency-plan name=__vkf_module_foo__value elapsed_ms=5.873
+# [vkf075-semantic-lower] step=statement-lower name=__vkf_module_foo__value elapsed_ms=5.909
+# [vkf075-semantic-lower] step=statement-complete name=__vkf_module_foo__value elapsed_ms=13.751
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=13.793
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=13.813
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=13.865
+# [vkf075-semantic-lower] step=statement-dependency-plan name= elapsed_ms=16.894
+# [vkf075-semantic-lower] step=statement-lower name= elapsed_ms=16.941
+# [vkf075-semantic-lower] step=statement-complete name= elapsed_ms=19.626
+# [vkf075-semantic-lower] step=generated-functions name= elapsed_ms=19.654
+# [vkf075-semantic-lower] step=unit-preferences name= elapsed_ms=19.685
+# [vkf075-semantic-lower] step=structural-flow name= elapsed_ms=19.873
+# [vkf075-semantic-lower] step=character-ownership name= elapsed_ms=19.959
+# [vkf075-semantic-lower] step=provider-receipt-seal name= elapsed_ms=20.023
+# [vkf075-semantic-lower] step=semantic-graph-dump name= elapsed_ms=20.090
+# [vkf075-semantic-graph-dump] phase=entry nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=nodes-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=steps-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=constraints-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=analytic-constraints-complete nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-graph-dump] phase=assembled nodes=6 steps=0 constraints=0 analytic_constraints=0
+# [vkf075-semantic-lower] step=semantic-graph-dump-returned name= elapsed_ms=20.317
+# [vkf075-semantic-lower] step=semantic-graph-assignment-complete name= elapsed_ms=20.333
+# [vkf075-semantic-lower] step=semantic-graph-full-expression-complete name= elapsed_ms=20.351
+# [vkf075-semantic-lower] step=semantic-demand-produce name= elapsed_ms=20.372
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow name= elapsed_ms=20.383
+# [vkf075-semantic-lower] step=semantic-demand-module-borrow-complete name= elapsed_ms=20.393
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest name= elapsed_ms=20.405
+# [vkf075-semantic-lower] step=semantic-demand-ast-digest-complete name= elapsed_ms=20.416
+# [vkf075-semantic-lower] step=semantic-demand-produce-body name= elapsed_ms=20.427
+# [vkf075-semantic-lower] step=semantic-demand-produce-body-complete name= elapsed_ms=27.398
+# [vkf075-semantic-lower] step=module-exit name= elapsed_ms=27.521
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-semantic-lower elapsed_ms=29.149
+# [vkf075-compile-stage] boundary=compiler event=start stage=source-context-identity
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=source-context-identity elapsed_ms=1.297
+# [vkf075-compile-stage] boundary=compiler event=start stage=provider-execution-ir
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=provider-execution-ir elapsed_ms=0.057
+# [vkf075-compile-stage] boundary=compiler event=start stage=canonical-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=canonical-ir-copy elapsed_ms=0.707
+# [vkf075-compile-stage] boundary=compiler event=start stage=executable-ir-copy
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=executable-ir-copy elapsed_ms=0.361
+# [vkf075-compile-stage] boundary=compiler event=start stage=typed-program-lowering
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=typed-program-lowering elapsed_ms=2.226
+# [vkf075-compile-stage] boundary=compiler event=start stage=bytecode-lowering
+# [vkf075-compile-stage] boundary=bytecode event=start stage=source-context-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=provider-plan-validation
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-functions
+# [vkf075-compile-stage] boundary=bytecode event=start stage=collect-referenced-globals
+# [vkf075-compile-stage] boundary=bytecode event=start stage=predeclare-constants
+# [vkf075-compile-stage] boundary=bytecode event=start stage=lower-functions
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=__vkf_module_foo__value
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=__vkf_module_foo__value
+# [vkf075-compile-stage] boundary=bytecode-function event=start stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode-function event=end stage=$vkf_main
+# [vkf075-compile-stage] boundary=bytecode event=start stage=append-public-providers
+# [vkf075-compile-stage] boundary=bytecode event=start stage=validate-bytecode
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=bytecode-lowering elapsed_ms=1.134
+# [vkf075-compile-stage] boundary=compiler event=start stage=ordinary-flow-worker-bridge
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=ordinary-flow-worker-bridge elapsed_ms=0.051
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-emission
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-emission elapsed_ms=16.932
+# [vkf075-compile-stage] boundary=compiler event=start stage=wasm-hex-transport
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=wasm-hex-transport elapsed_ms=7.059
+# [vkf075-compile-stage] boundary=compiler event=start stage=manifest
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=manifest elapsed_ms=1.697
+# [vkf075-compile-stage] boundary=compiler event=start stage=compile-response-json
+# [vkf075-compile-stage] boundary=compiler event=interval-end stage=compile-response-json elapsed_ms=5.401
+# {"status":"ADDRESS_IMPORT_REAL_GUEST_VERIFIED","sourceBinding":"ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09","outputs":["7","9","5","7"],"optionalAliases":"7","bareLocal":["7","7"],"runner":"7"}
+# Subtest: real compiler inline/string-binding/optional module aliases; Git imports/local edits/cache restoration
+ok 11 - real compiler inline/string-binding/optional module aliases; Git imports/local edits/cache restoration
+  ---
+  duration_ms: 4202.241453
+  type: 'test'
+  ...
+# Subtest: complete large UTF8 IR uses its formatter heap and is freed on all returns
+ok 12 - complete large UTF8 IR uses its formatter heap and is freed on all returns
+  ---
+  duration_ms: 18.751581
+  type: 'test'
+  ...
+# Subtest: publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+ok 13 - publish creates real source-tree/commit/unique branch/PR requests; never default ref or auto-merge
+  ---
+  duration_ms: 86.222984
+  type: 'test'
+  ...
+# Subtest: nonowner/trusted-base owner transfer and new registration cannot self-authorize
+ok 14 - nonowner/trusted-base owner transfer and new registration cannot self-authorize
+  ---
+  duration_ms: 59.443336
+  type: 'test'
+  ...
+# Subtest: proposal ownership does not authorize merge; server restricts current-head publication to maintainers
+ok 15 - proposal ownership does not authorize merge; server restricts current-head publication to maintainers
+  ---
+  duration_ms: 0.574488
+  type: 'test'
+  ...
+# Subtest: unprotected public main refuses upload before proposal writes
+ok 16 - unprotected public main refuses upload before proposal writes
+  ---
+  duration_ms: 60.325257
+  type: 'test'
+  ...
+# Subtest: private visibility and null PR requirements refuse before writes
+ok 17 - private visibility and null PR requirements refuse before writes
+  ---
+  duration_ms: 58.559263
+  type: 'test'
+  ...
+# Subtest: readback rejects broadened merge writers, bypasses and legacy Actions ownership signals
+ok 18 - readback rejects broadened merge writers, bypasses and legacy Actions ownership signals
+  ---
+  duration_ms: 1.168466
+  type: 'test'
+  ...
+# Subtest: base drift after branch creation preserves recovery pointer and does not open stale-policy PR
+ok 19 - base drift after branch creation preserves recovery pointer and does not open stale-policy PR
+  ---
+  duration_ms: 60.457779
+  type: 'test'
+  ...
+# Subtest: uncertain PR creation retains explicit source branch/commit recovery and never retries
+ok 20 - uncertain PR creation retains explicit source branch/commit recovery and never retries
+  ---
+  duration_ms: 60.654042
+  type: 'test'
+  ...
+# Subtest: approved Git ref resolves once; moving HEAD never upgrades ordinary installs; explicit update does
+ok 21 - approved Git ref resolves once; moving HEAD never upgrades ordinary installs; explicit update does
+  ---
+  duration_ms: 278.065071
+  type: 'test'
+  ...
+# Subtest: one Git source per package: compatible diamond resolves; conflicting exact commits fail and retain lock
+ok 22 - one Git source per package: compatible diamond resolves; conflicting exact commits fail and retain lock
+  ---
+  duration_ms: 421.589322
+  type: 'test'
+  ...
+# Subtest: ref/metadata/compiler/target/missing commit and unmerged source errors are explicit
+ok 23 - ref/metadata/compiler/target/missing commit and unmerged source errors are explicit
+  ---
+  duration_ms: 216.673689
+  type: 'test'
+  ...
+# Subtest: locked fetch reads no discovery; old commit remains reproducible after HEAD advances; offline missing/tamper fails
+ok 24 - locked fetch reads no discovery; old commit remains reproducible after HEAD advances; offline missing/tamper fails
+  ---
+  duration_ms: 161.39145
+  type: 'test'
+  ...
+# Subtest: altered download/normalized traversal/link objects/working symlinks/Git symlinks are refused
+ok 25 - altered download/normalized traversal/link objects/working symlinks/Git symlinks are refused
+  ---
+  duration_ms: 115.734919
+  type: 'test'
+  ...
+# Subtest: concurrent content-addressed writers publish only complete verified blobs
+ok 26 - concurrent content-addressed writers publish only complete verified blobs
+  ---
+  duration_ms: 57.848084
+  type: 'test'
+  ...
+# Subtest: editable overrides change inputs but preserve exact lock and cached commit restoration
+ok 27 - editable overrides change inputs but preserve exact lock and cached commit restoration
+  ---
+  duration_ms: 98.291806
+  type: 'test'
+  ...
+# Subtest: ordinary nested exports/multiple modules/native map and duplicates preserve bounded verified inputs
+ok 28 - ordinary nested exports/multiple modules/native map and duplicates preserve bounded verified inputs
+  ---
+  duration_ms: 193.166294
+  type: 'test'
+  ...
+# Subtest: same commit cannot acquire rewritten normalized source on explicit update (mock transport contract)
+ok 29 - same commit cannot acquire rewritten normalized source on explicit update (mock transport contract)
+  ---
+  duration_ms: 94.398544
+  type: 'test'
+  ...
+# Subtest: one installed vkf bin exposes run/compile/install/update/publish; discovery requires actual compiler
+ok 30 - one installed vkf bin exposes run/compile/install/update/publish; discovery requires actual compiler
+  ---
+  duration_ms: 542.360468
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4420.444733

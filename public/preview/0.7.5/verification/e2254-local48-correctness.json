@@ -1,0 +1,2156 @@
+{
+  "schema": "vkf-current075-local48-correctness/1",
+  "owner": "e2254",
+  "date": "2026-11-04",
+  "selectionIdentity": "758eb90e7492558c5696f4559ad010d9c7a3182ec58cee784a6d990f81caf226",
+  "nativeBinding": "12835f795004b24c80f3c1b9683064d6d225ea14c57e0009ecf24879d601bd82",
+  "wasmBinding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "formatterBinding": "2f0a880111b6f71370c139f9699cb965616cbfbd54fb17427ae4b51a21e3701c",
+  "compilerSourceCommit": "9420e54605e038bebaff3997445f5eae2d45e47b",
+  "nativeExecutableCompilerSourceCommit": null,
+  "nativeSourceConstruction": {
+    "baseSourceCommit": "e17f02b8ce76486a73b47a73c0620a28864ccf34",
+    "portsFromCurrentBrowser": [
+      26,
+      27,
+      31,
+      32,
+      52
+    ],
+    "nativeAffected": [
+      76,
+      77,
+      81,
+      82,
+      89,
+      158,
+      90,
+      237,
+      238
+    ],
+    "native89Header": "75657f92263840139d08a6b5eb68e4d50834f2221aded2a2c08210ceeab68a84",
+    "native237HeaderClaim": false,
+    "validReusedObjects": 231,
+    "singleGitCommitClaim": false
+  },
+  "nativeLibrarySources": 35,
+  "browserLibrarySources": 34,
+  "sharedLibrarySourcesByteIdentical": 34,
+  "nativeAdditionalModule": "physics/electrical.vkf",
+  "nativeRegistryEntries": 28,
+  "browserRegistryEntries": 27,
+  "matched": {
+    "passed": 23,
+    "total": 48
+  },
+  "parity": {
+    "passed": 11,
+    "total": 24
+  },
+  "failed": 1,
+  "unrun": 37,
+  "comparativeSamples": 0,
+  "comparativeTimingEligible": false,
+  "jobs": [
+    {
+      "id": "preflight.linux.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.spectral-norm-large.json",
+        "sha256": "2ef5511142e1eabeef008cabc30deb2ceb3c1a1cad1bbc88cb7aa2f94960fd32",
+        "bytes": 6712
+      }
+    },
+    {
+      "id": "preflight.linux.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.fannkuch-redux-large.json",
+        "sha256": "4e58e42f8c1278996b39abbe8ec2d17b3a9950569845c9e5d45322b044ac34a8",
+        "bytes": 6691
+      }
+    },
+    {
+      "id": "preflight.linux.core.n-body-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.n-body-large.json",
+        "sha256": "833da94b403b409f6afc62bde96659e835996ad3823b16512dfb49fc0bc32b70",
+        "bytes": 6580
+      }
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.combined-kernels-large.json",
+        "sha256": "c504e0950fa4771792644644271bfa3c3e8be5fc4622281ec37feb9a594ee848",
+        "bytes": 6820
+      }
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.combined-kernels-parallel-large.json",
+        "sha256": "26360f776243f05afb3edb2e319fcd0a82b90a52905c1e125edcae7ebd1c9768",
+        "bytes": 7039
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=32.1098879212514\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067510000000000001\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12568099999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.170122\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.solve-general-96.json",
+        "sha256": "8f7aa734564c0444d5fff573a1c9266a4aaee5cb121231d79d806d948a97e9fb",
+        "bytes": 9761
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=29.6786330873147\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.085320999999999994\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10897200000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14194200000000001\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.least-squares-tall-96x48.json",
+        "sha256": "1e90f32edc308cd31b735713a652e143c0a0400b567279d481a1a5c7e09a98a5",
+        "bytes": 9878
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.7169330082834\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.10068100000000001\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13641200000000001\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.113121\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.lu-general-96.json",
+        "sha256": "e6b6d176b61e5c52955d7ec79c2d90ab1119da6817391e552f26cd1e991d5ae8",
+        "bytes": 9557
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=10.2932750014588\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.13859199999999999\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13482200000000000\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.19614200000000001\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.qr-tall-96x48.json",
+        "sha256": "6a723a3cf8dcb2a9a1f56d8057b6f3dd139d8e7f9526f8728154c26c5385a8bf",
+        "bytes": 9741
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=12.8672280116007\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062191000000000003\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02956000000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.072261000000000006\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.cholesky-spd-96.json",
+        "sha256": "7e865f7126cb3fb19fb4e3e1ff75d9158657937349e09abab91a74d0540fdb34",
+        "bytes": 9578
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=138.438057038002\nchecksum=227.490533764522\nreconstruction=2.15308049532107e-15\northogonality=3.58086695551246e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Gram eigen thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=3.3901818970597263e-15\northogonality=2.8877878795324314e-16\nelapsed_ms=0.61166799999999999\nchecksum=227.49053376452167\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.37228499999999998\nchecksum=227.49053376452152975\nreconstruction=0.00000000000000313\northogonality=0.00000000000000029\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=thin SVD\n"
+        },
+        {
+          "row_id": "linux.linalg.svd-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.59598799999999996\nchecksum=227.49053376452144\nreconstruction=2.1994104211035047e-15\northogonality=2.6453611017596328e-16\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gesdd thin SVD\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.svd-tall-96x48.json",
+        "sha256": "ddfb014aea6697f4f2d93445213632b4a06861e8caaefc1ef7695d365151a3ef",
+        "bytes": 9720
+      }
+    },
+    {
+      "id": "preflight.linux.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=801.292769028805\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.74709000000000003\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.78537999999999997\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.7355719999999999\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.linalg.eigen-symmetric-96.json",
+        "sha256": "6813bfef3eb9cd6d9c8984315a15644597435786ed23f59c3c8f3a1eceff7049",
+        "bytes": 9943
+      }
+    },
+    {
+      "id": "preflight.linux.symbolic.expand1",
+      "phase": "preflight",
+      "status": "FAIL",
+      "observations": [],
+      "error": null,
+      "reason": "command failed: /mnt/development/VektorFlow-e2254-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.symbolic.expand1/vkf/compile.0/compile.join.json",
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.symbolic.expand1.json",
+        "sha256": "f811f60fe517ee946888e7d2570d7aae2540adb81fba493b67530e4f72b29185",
+        "bytes": 5110
+      }
+    },
+    {
+      "id": "preflight.linux.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.spectral-norm-large.json",
+        "sha256": "e47716dd859c9ac31112ec6f760ab551134bc85508abb87a1daff3336861164b",
+        "bytes": 6798
+      }
+    },
+    {
+      "id": "preflight.wasm.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.fannkuch-redux-large.json",
+        "sha256": "700f3972ca84f7be05723d352ecef89d7986bd0a1a8b26d73c65e2ba542a261f",
+        "bytes": 6769
+      }
+    },
+    {
+      "id": "preflight.wasm.core.n-body-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.n-body-large.json",
+        "sha256": "59347082bca92b2ae45b4be49548b5596dbddb84c86c448bca87f3891cf74f36",
+        "bytes": 6666
+      }
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.combined-kernels-large.json",
+        "sha256": "9af107a833dd28344e85c253b48fbee820d965ca45671d54113f3c1dd939a717",
+        "bytes": 6906
+      }
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.combined-kernels-parallel-large.json",
+        "sha256": "5fd6a84d7ff577f67317b12e6ff0d83d5bf7eea00213127e7db38357c32c38af",
+        "bytes": 7125
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=568.871452000025\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067401000000000003\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.11497199999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.168573\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.solve-general-96.json",
+        "sha256": "116485afc108b57f14bf56df0025d35abd865baeb644c76405d2144680743f5f",
+        "bytes": 9756
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=232.218684000003\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.057690999999999999\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12194100000000001\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14264199999999999\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.least-squares-tall-96x48.json",
+        "sha256": "26287ab3a7c10d131e49256518b0a7838f7d497dee128cbb838f5c1d545a020e",
+        "bytes": 9873
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=4105.150673\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.065450999999999995\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12809099999999998\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.105821\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.lu-general-96.json",
+        "sha256": "a7a8e1ec08496671f931a82a8d6992780dd11a87ef3ef2fa407924b6e13fc5b3",
+        "bytes": 9548
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=161.816622000003\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.15310199999999999\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.08779099999999999\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.230823\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.qr-tall-96x48.json",
+        "sha256": "760a084f3724781ccedc920eb27ac695cdfa210a00dbde04e586e641be6c1e2a",
+        "bytes": 9725
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=91.7610380000156\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.040591000000000002\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.03434100000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.088830999999999993\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.cholesky-spd-96.json",
+        "sha256": "3af15a536de488014eb976971ffc804732e88e4941d8f9ae72de1f96b7a55a9c",
+        "bytes": 9573
+      }
+    },
+    {
+      "id": "preflight.wasm.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=82825.755839\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.76390000000000002\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.76791999999999994\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1436550000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.linalg.eigen-symmetric-96.json",
+        "sha256": "be3fdd27f5bd7a679e63b94b206b59d4bc31e55fec6f310e6b92d682ff35a5f4",
+        "bytes": 9934
+      }
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.core.spectral-norm-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.spectral-norm-large.json",
+        "sha256": "fac124f9aa8708c6fd7c1029d24d6634b528f79ad88cbd95718d5d6e25ef1510",
+        "bytes": 12449
+      }
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.fannkuch-redux-large.json",
+        "sha256": "ae0b74b60ce3c1d8ed34c4d3728d015ddb0149881dd9411c764f0028e6052e7b",
+        "bytes": 12397
+      }
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.n-body-large.json",
+        "sha256": "7a3751c7f1463742c717527ac1f120231662462988a9f963618f5be07c6dffba",
+        "bytes": 12199
+      }
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.combined-kernels-large.json",
+        "sha256": "4207c313e9b69c1eb77a173e599ff4d25627f030cfe6a05e98ff5bb64d9a31b8",
+        "bytes": 12656
+      }
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "linux.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "vkf",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "cpp",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "rust",
+          "value": 1725861.452170343
+        },
+        {
+          "row_id": "wasm.core.combined-kernels-parallel-large",
+          "language": "zig",
+          "value": 1725861.452170343
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.combined-kernels-parallel-large.json",
+        "sha256": "f82960155396f96b04e99a5409f8bd2c7737643d98d95a9de930bd0fda71428f",
+        "bytes": 13076
+      }
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=32.1098879212514\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067510000000000001\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12568099999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "linux.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.170122\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=568.871452000025\nchecksum=-1.1296691573225\nresidual=5.80380845202349e-17\nsolution_error=6.34126959243324e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot Gaussian solve"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "eigen",
+          "stdout": "residual=3.3748651661446721e-17\nsolution_error=3.7494163758015353e-16\nelapsed_ms=0.067401000000000003\nchecksum=-1.1296691573224955\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.11497199999999999\nchecksum=-1.12966915732249396\nresidual=0.00000000000000005\nsolution_error=0.00000000000000055\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU factorization and solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.solve-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.168573\nchecksum=-1.1296691573224953\nresidual=5.9355795404372624e-17\nsolution_error=6.4650656120195586e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK general solve\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.solve-general-96.json",
+        "sha256": "bba3fec157abe392898ecc6a191c3413e49eab0f7c0f3b803fbcf04275e5ff17",
+        "bytes": 18455
+      }
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=29.6786330873147\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.085320999999999994\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.10897200000000000\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "linux.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14194200000000001\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=232.218684000003\nchecksum=5.57161744683932\nresidual=9.37223630129986e-15\nsolution_error=1.88876552706326e-12\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt QR solve"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "eigen",
+          "stdout": "residual=8.4645321069389553e-15\nsolution_error=5.3227472817907676e-15\nelapsed_ms=0.057690999999999999\nchecksum=5.5716174468398156\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12194100000000001\nchecksum=5.57161744683980231\nresidual=0.00000000000000761\nsolution_error=0.00000000000001898\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=column-pivot QR least-squares solve\n"
+        },
+        {
+          "row_id": "wasm.linalg.least-squares-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.14264199999999999\nchecksum=5.571617446839789\nresidual=1.4022303464685051e-14\nsolution_error=4.7412896869312537e-14\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK gelsy pivoted QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.least-squares-tall-96x48.json",
+        "sha256": "20bc4f46840757e7a8e93adc8fa3c2614a524a4f68c50aa4381674d5e305c0f7",
+        "bytes": 18673
+      }
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=31.7169330082834\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.10068100000000001\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13641200000000001\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "linux.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.113121\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=4105.150673\nchecksum=4847.53991454224\nreconstruction=4.05694980484159e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=partial-pivot LU"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "eigen",
+          "stdout": "reconstruction=1.6839143917548268e-16\nelapsed_ms=0.065450999999999995\nchecksum=287.53991454224354\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.12809099999999998\nchecksum=287.53991454224251356\nreconstruction=0.00000000000000013\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=partial-pivot LU\n"
+        },
+        {
+          "row_id": "wasm.linalg.lu-general-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.105821\nchecksum=4751.5399145422434\nreconstruction=4.0570351731850453e-16\ninput_sha256=fcce237fa774912fdfaca4dbf253fd2ad0e1e5572ad2b7723853cce7e1e810dc\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK partial-pivot LU\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.lu-general-96.json",
+        "sha256": "4753316103a50c4b76abc4ced98d1d8461000729f4a40abca17dee5e1a8dc7c5",
+        "bytes": 18049
+      }
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=10.2932750014588\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.13859199999999999\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.13482200000000000\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "linux.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.19614200000000001\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "vkf",
+          "stdout": "elapsed_ms=161.816622000003\nchecksum=206.561373205015\nreconstruction=2.30277491476612e-16\northogonality=2.47687094975418e-15\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=modified Gram-Schmidt thin QR"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "eigen",
+          "stdout": "reconstruction=4.3908708013728584e-16\northogonality=7.0480556685998873e-17\nelapsed_ms=0.15310199999999999\nchecksum=-65.758785618154405\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.08779099999999999\nchecksum=-65.75878561815441969\nreconstruction=0.00000000000000045\northogonality=0.00000000000000006\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=Householder QR with explicit thin Q\n"
+        },
+        {
+          "row_id": "wasm.linalg.qr-tall-96x48",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.230823\nchecksum=-65.75878561815432\nreconstruction=5.8547575015361131e-16\northogonality=9.1090310714841813e-17\ninput_sha256=635db7b206a61172d749a9132d9ec8946d2e4699ecbf41b9b6b0b0f66c7f20a6\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK economic QR\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.qr-tall-96x48.json",
+        "sha256": "dc8402624ce03dce600d1eb57ccbae2e1de39d08cd54e7446909b50c92fd4910",
+        "bytes": 18410
+      }
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=12.8672280116007\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.062191000000000003\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.02956000000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "linux.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.072261000000000006\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=91.7610380000156\nchecksum=209.336716423146\nreconstruction=3.43530568890067e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=lower Cholesky"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "eigen",
+          "stdout": "reconstruction=8.6238728246443205e-17\nelapsed_ms=0.040591000000000002\nchecksum=209.33671642314584\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.03434100000000000\nchecksum=209.33671642314584460\nreconstruction=0.00000000000000031\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=LLT Cholesky\n"
+        },
+        {
+          "row_id": "wasm.linalg.cholesky-spd-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=0.088830999999999993\nchecksum=209.33671642314584\nreconstruction=3.4353139718209599e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK lower Cholesky\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.cholesky-spd-96.json",
+        "sha256": "d445253eaf0b45cd56d187ef83c12210601fbfcdfdd1908887a069debfc7db3c",
+        "bytes": 18091
+      }
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=801.292769028805\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.74709000000000003\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.78537999999999997\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "linux.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.7355719999999999\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "vkf",
+          "stdout": "elapsed_ms=82825.755839\nchecksum=459.866216072684\nresidual=3.65017378063175e-13\nreconstruction=3.65008651218799e-13\northogonality=2.41146223668928e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=VKF .linalg\nbackend=direct native machine code; one thread\nalgorithm=Householder plus implicit QL symmetric eigen"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "eigen",
+          "stdout": "residual=2.5592495117126399e-15\nreconstruction=4.8751696044167951e-15\northogonality=2.7611483694832317e-16\nelapsed_ms=0.76390000000000002\nchecksum=459.8662160726841\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=Eigen 5.0.0 (single-thread)\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "faer",
+          "stdout": "elapsed_ms=0.76791999999999994\nchecksum=459.86621607268386924\nresidual=0.00000000000000275\nreconstruction=0.00000000000000509\northogonality=0.00000000000000028\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=faer 0.24.4\nbackend=faer native kernels; parallelism=sequential\nalgorithm=self-adjoint eigendecomposition\n"
+        },
+        {
+          "row_id": "wasm.linalg.eigen-symmetric-96",
+          "language": "scipy",
+          "stdout": "elapsed_ms=1.1436550000000001\nchecksum=459.8662160726841\nresidual=1.6116320822505799e-15\nreconstruction=2.6430355312162118e-15\northogonality=1.9757482096759654e-16\ninput_sha256=e746ff139801b6e92b61d6fcdc8dc18dfaa482901d417aac144f4d0574b61f5d\nimplementation=SciPy 1.16.3\nbackend=blas 3.12.1\nalgorithm=LAPACK evd symmetric eigen\n"
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.linalg.eigen-symmetric-96.json",
+        "sha256": "b4a6cb1c9044c056eb79a44179418338a332746a1d976851f1b63d91b81d0d91",
+        "bytes": 18811
+      }
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.series",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    }
+  ],
+  "nextRequiredControl": "Remaining same-selection controls before any comparative timing.",
+  "stopReason": "Finite normal batch boundary; preserve all attempted UNRUN and partial old WASM SVD guest without replay.",
+  "originalClockPreserved": true,
+  "retainedToolsByOriginalProofReference": 15,
+  "currentPeerExecutableAndVersionRevalidation": true,
+  "namedNativeRegression": {
+    "passed": 2,
+    "total": 2,
+    "cases": [
+      {
+        "name": "named-call-runtime-cartesian",
+        "sourceSHA256": "f808342aac7636e13c65a70b4737d49d1badd2c2e953e9ce706eebdb204bf1e0",
+        "wholeStdoutBytes": 271,
+        "wholeStdoutEqual": true
+      },
+      {
+        "name": "record-counted-return-join",
+        "sourceSHA256": "3965cc294ac7ff603d0aa659dbbe406944510491302ab5a9dbc4ef8c6e28fc01",
+        "wholeStdoutBytes": 2,
+        "wholeStdoutEqual": true
+      }
+    ],
+    "benchmarkCredit": 0
+  },
+  "normalRunnerRegression": {
+    "passed": 9,
+    "total": 9,
+    "sourceCommit": "8007130decc134ece990cfd5b07fa8696e517dd3",
+    "benchmarkCredit": 0,
+    "acceptedPriorExactScope": true
+  },
+  "normalRunnerUnsupported": [
+    "Legacy fullbatch/Executor route remains unsupported; later full operations that cannot fit retain UNRUN."
+  ],
+  "evidence": [
+    {
+      "name": "BUDGET-COMPOSITION-REGRESSION.json",
+      "sha256": "568bbf4bbd40c43916e891bab986743d22640ce470e2d4cbfee2afebb47aefc7"
+    },
+    {
+      "name": "CHECKPOINT.json",
+      "sha256": "8412d56e6db15b33509e03a1041efadf5c262590ecd886d2fcfabcbdd078f8dd"
+    }
+  ],
+  "errors": [],
+  "evidenceScope": "Actual unchanged authored matched correctness and cross-target parity only. No new comparative measurement, ratios or full release qualification. All original peer/output/oracle/workload/warmup contracts retained. Exact old named-native and final800 runner evidence reused separately.",
+  "fullReleaseQualified": false,
+  "physicalGPUQualified": false,
+  "nativeSDKQualified": false,
+  "nativeABI2Qualified": false,
+  "allFeaturesQualified": false,
+  "independentAcceptedCheckpoint": false,
+  "sourceCommit": "a314b219b71d74aee0f40358a8f0d1e745a63b35",
+  "budgetCompositionRegression": {
+    "passed": 9,
+    "total": 9,
+    "sourceCommit": "a314b219b71d74aee0f40358a8f0d1e745a63b35",
+    "benchmarkCredit": 0,
+    "syntheticFixturesIsolated": true
+  },
+  "aggregateBudgetSemantics": "Redundant aggregate Python wrapper timers removed explicitly; full1200 native compile/600 other commands+40 cleanup independently admit against real original controller job end and original owner STOP-minus510/420. Complete row or full sequence worst-case completion not guaranteed.",
+  "originalWorkloadsOraclesLeafOperationCapsPreserved": true,
+  "linalgExecutionContext": {
+    "vkfNative": "native-generated-ELF",
+    "vkfWasm": "compiler-VM-WASM32 under Node-V8-WASM32",
+    "originalPeersBothTargets": [
+      "Eigen Linux-native",
+      "faer Linux-native",
+      "SciPy Linux-native"
+    ],
+    "fixedAuthoredStdoutBackendLabel": "backend=direct native machine code; one thread",
+    "backendLabelQualification": "Frozen fixture diagnostic text is preserved verbatim on both targets and does not identify the actual WASM engine. Original peers run Linux-native for both VKF targets. Correctness only; no timing or native performance claim."
+  },
+  "firstBatchStopReasonPreserved": {
+    "job": "preflight.linux.linalg.qr-tall-96x48",
+    "error": "normal job did not pass: preflight.linux.linalg.qr-tall-96x48",
+    "status": "UNRUN",
+    "action": "Preserve diagnostics; repair causal failure in this session"
+  },
+  "priorAcceptedEvidenceByReference": [
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/parity.core.combined-kernels-large.json",
+      "sha256": "4207c313e9b69c1eb77a173e599ff4d25627f030cfe6a05e98ff5bb64d9a31b8",
+      "bytes": 12656
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/parity.core.combined-kernels-parallel-large.json",
+      "sha256": "f82960155396f96b04e99a5409f8bd2c7737643d98d95a9de930bd0fda71428f",
+      "bytes": 13076
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/parity.core.fannkuch-redux-large.json",
+      "sha256": "ae0b74b60ce3c1d8ed34c4d3728d015ddb0149881dd9411c764f0028e6052e7b",
+      "bytes": 12397
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/parity.core.n-body-large.json",
+      "sha256": "7a3751c7f1463742c717527ac1f120231662462988a9f963618f5be07c6dffba",
+      "bytes": 12199
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/parity.core.spectral-norm-large.json",
+      "sha256": "fac124f9aa8708c6fd7c1029d24d6634b528f79ad88cbd95718d5d6e25ef1510",
+      "bytes": 12449
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/parity.linalg.least-squares-tall-96x48.json",
+      "sha256": "20bc4f46840757e7a8e93adc8fa3c2614a524a4f68c50aa4381674d5e305c0f7",
+      "bytes": 18673
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/parity.linalg.lu-general-96.json",
+      "sha256": "4753316103a50c4b76abc4ced98d1d8461000729f4a40abca17dee5e1a8dc7c5",
+      "bytes": 18049
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/parity.linalg.solve-general-96.json",
+      "sha256": "bba3fec157abe392898ecc6a191c3413e49eab0f7c0f3b803fbcf04275e5ff17",
+      "bytes": 18455
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.core.combined-kernels-large.json",
+      "sha256": "c504e0950fa4771792644644271bfa3c3e8be5fc4622281ec37feb9a594ee848",
+      "bytes": 6820
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.core.combined-kernels-parallel-large.json",
+      "sha256": "26360f776243f05afb3edb2e319fcd0a82b90a52905c1e125edcae7ebd1c9768",
+      "bytes": 7039
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.linux.core.fannkuch-redux-large.json",
+      "sha256": "4e58e42f8c1278996b39abbe8ec2d17b3a9950569845c9e5d45322b044ac34a8",
+      "bytes": 6691
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.linux.core.n-body-large.json",
+      "sha256": "833da94b403b409f6afc62bde96659e835996ad3823b16512dfb49fc0bc32b70",
+      "bytes": 6580
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.linux.core.spectral-norm-large.json",
+      "sha256": "2ef5511142e1eabeef008cabc30deb2ceb3c1a1cad1bbc88cb7aa2f94960fd32",
+      "bytes": 6712
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.linalg.least-squares-tall-96x48.json",
+      "sha256": "1e90f32edc308cd31b735713a652e143c0a0400b567279d481a1a5c7e09a98a5",
+      "bytes": 9878
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.linalg.lu-general-96.json",
+      "sha256": "e6b6d176b61e5c52955d7ec79c2d90ab1119da6817391e552f26cd1e991d5ae8",
+      "bytes": 9557
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.linalg.solve-general-96.json",
+      "sha256": "8f7aa734564c0444d5fff573a1c9266a4aaee5cb121231d79d806d948a97e9fb",
+      "bytes": 9761
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.core.combined-kernels-large.json",
+      "sha256": "9af107a833dd28344e85c253b48fbee820d965ca45671d54113f3c1dd939a717",
+      "bytes": 6906
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.core.combined-kernels-parallel-large.json",
+      "sha256": "5fd6a84d7ff577f67317b12e6ff0d83d5bf7eea00213127e7db38357c32c38af",
+      "bytes": 7125
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.wasm.core.fannkuch-redux-large.json",
+      "sha256": "700f3972ca84f7be05723d352ecef89d7986bd0a1a8b26d73c65e2ba542a261f",
+      "bytes": 6769
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.wasm.core.n-body-large.json",
+      "sha256": "59347082bca92b2ae45b4be49548b5596dbddb84c86c448bca87f3891cf74f36",
+      "bytes": 6666
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/queue/preflight.wasm.core.spectral-norm-large.json",
+      "sha256": "e47716dd859c9ac31112ec6f760ab551134bc85508abb87a1daff3336861164b",
+      "bytes": 6798
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.linalg.cholesky-spd-96.json",
+      "sha256": "3af15a536de488014eb976971ffc804732e88e4941d8f9ae72de1f96b7a55a9c",
+      "bytes": 9573
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.linalg.least-squares-tall-96x48.json",
+      "sha256": "26287ab3a7c10d131e49256518b0a7838f7d497dee128cbb838f5c1d545a020e",
+      "bytes": 9873
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.linalg.lu-general-96.json",
+      "sha256": "a7a8e1ec08496671f931a82a8d6992780dd11a87ef3ef2fa407924b6e13fc5b3",
+      "bytes": 9548
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.linalg.qr-tall-96x48.json",
+      "sha256": "760a084f3724781ccedc920eb27ac695cdfa210a00dbde04e586e641be6c1e2a",
+      "bytes": 9725
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2252-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.wasm.linalg.solve-general-96.json",
+      "sha256": "116485afc108b57f14bf56df0025d35abd865baeb644c76405d2144680743f5f",
+      "bytes": 9756
+    }
+  ],
+  "priorAcceptedCheckpoint": "64c4c33c4bcaaab03dd08aff85eeabdfa38681c7",
+  "failedControls": 1,
+  "compilerFailures": 1,
+  "numericalMismatchFailures": 0,
+  "firstRealError": {
+    "job": "preflight.linux.symbolic.expand1",
+    "operation": "native VKF compile",
+    "compilerExit": 1,
+    "normalFullCapSeconds": 1200,
+    "timedOut": false,
+    "allOwnedJoined": true,
+    "compileMilliseconds": 362098.513882,
+    "stderr": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/local48-selection/native-package/compiler/self_hosted/stdlib/symbolic.vkf:4654:9: in function _symbolic_affine_elimination_numeric_system: root closure capture storage or module ownership changed\n        nonlinear_residual,\n        ^\n",
+    "stdout": "{\"stdout\": \"\", \"compile_ms\": 362098.513882, \"argv\": [\"/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/local48-selection/native-package/bin/vkf-0.7.5\", \"-b\", \"/mnt/development/VektorFlow-e2254-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.symbolic.expand1/vkf/compile.0/program.vkf\", \"-o\", \"/mnt/development/VektorFlow-e2254-local48-correctness-continuation-actual-20261104/benchmarks-current/queue/preflight.linux.symbolic.expand1/vkf/compile.0/program\", \"--diagnostics\"], \"pid\": 3, \"exit\": 1, \"waited\": true}\n",
+    "dependency": "/mnt/development/VektorFlow-e2250-current-benchmark-correctness-actual-20261104/benchmarks-current/local48-selection/native-package/compiler/self_hosted/stdlib/symbolic.vkf:4654:9"
+  },
+  "partialWasmSVDReuseLimit": {
+    "status": "UNRUN",
+    "credit": 0,
+    "oldArtifactsPreserved": true,
+    "currentRunnerStagedReuse": false,
+    "limitation": "bench-driver node_run unconditionally executes guest; no supported staged reuse found. No unchanged partial guest replay solely for owner change; progress independent unattempted controls and preserve gap."
+  }
+}

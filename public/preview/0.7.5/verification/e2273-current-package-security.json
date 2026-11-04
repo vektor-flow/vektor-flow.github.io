@@ -1,0 +1,28 @@
+{
+  "owner": "e2273",
+  "mode": "security",
+  "jobs": [
+    {
+      "name": "import-security-integrity",
+      "argv": [
+        "node",
+        "--test",
+        "tests/packages/compiler-import.test.mjs",
+        "tests/packages/toolchain.test.mjs",
+        "tests/packages/addresses.test.mjs",
+        "tests/packages/publish.test.mjs",
+        "tests/packages/formatter-transport.test.mjs"
+      ],
+      "capSeconds": 180,
+      "exit": 0,
+      "joined": true,
+      "elapsedSeconds": 4.5721622329438105,
+      "stdout": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-security/import-security-integrity.stdout",
+      "stderr": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/package-usage-security/import-security-integrity.stderr"
+    }
+  ],
+  "compiler": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "formatter": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "native": "df9feb23d8c23cb9f7ac94953dcf5dd4cb1756dfd074017e7e8d51ba00a6c465",
+  "status": "PASS"
+}

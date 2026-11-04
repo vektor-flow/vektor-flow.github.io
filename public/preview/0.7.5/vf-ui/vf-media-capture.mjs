@@ -26,17 +26,21 @@ export function createSceneMediaCapture(options = {}) {
 
   async function startMovie({ delayMs = 0 } = {}) {
     if (movie || frameMovie) return false;
-    const stream = await requestStream({ kind: 'video' });
-    setClean(true, 'video');
+    const active = { controller: new AbortController(), stream: null, recording: null, clean: false };
+    movie = active; // Reserve startup too; cancel/dispose must reach it.
     try {
+      active.stream = await requestStream({ kind: 'video', signal: active.controller.signal });
+      if (active.controller.signal.aborted) throw active.controller.signal.reason;
+      setClean(true, 'video'); active.clean = true;
       await wait(Math.max(0, Number(delayMs) || 0));
-      const recording = createRecorder(stream, options);
-      movie = { stream, recording };
-      recording.start();
+      if (active.controller.signal.aborted) throw active.controller.signal.reason;
+      active.recording = createRecorder(active.stream, options);
+      active.recording.start();
       return true;
     } catch (error) {
-      stopStream(stream);
-      setClean(false, 'video');
+      stopStream(active.stream);
+      if (movie === active) movie = null;
+      if (active.clean) { active.clean = false; setClean(false, 'video'); }
       throw error;
     }
   }
@@ -67,12 +71,13 @@ export function createSceneMediaCapture(options = {}) {
     }
     if (!movie) return null;
     const active = movie;
-    movie = null;
+    if (!active.recording) { cancel(); return null; }
     try {
       return await active.recording.stop();
     } finally {
+      if (movie === active) movie = null;
       stopStream(active.stream);
-      setClean(false, 'video');
+      if (active.clean) { active.clean = false; setClean(false, 'video'); }
     }
   }
 
@@ -85,9 +90,11 @@ export function createSceneMediaCapture(options = {}) {
     if (!movie) return false;
     const active = movie;
     movie = null;
-    active.recording.cancel?.();
-    stopStream(active.stream);
-    setClean(false, 'video');
+    active.controller.abort(new DOMException('Capture canceled', 'AbortError'));
+    try { active.recording?.cancel?.(); } finally {
+      stopStream(active.stream);
+      if (active.clean) { active.clean = false; setClean(false, 'video'); }
+    }
     return true;
   }
 
@@ -143,46 +150,79 @@ export function createLayeredCanvasCaptureStream(options = {}) {
   const requestFrame = options.requestFrame
     || globalThis.requestAnimationFrame?.bind(globalThis)
     || ((callback) => setTimeout(callback, 1000 / frameRate));
+  const cancelFrame = options.cancelFrame
+    || globalThis.cancelAnimationFrame?.bind(globalThis) || clearTimeout;
+  const controller = new AbortController();
+  let closed = false, scheduled = null, stream = null;
   const output = documentRef?.createElement?.('canvas');
   const context = output?.getContext?.('2d');
   if (!output || !context || typeof output.captureStream !== 'function') {
     throw new Error('Layered canvas capture is unavailable');
   }
-
-  const resolveLayers = () => layers
-    .map((layer) => typeof layer === 'function' ? layer() : layer)
-    .filter((layer) => layer?.width > 0 && layer?.height > 0);
-  const initialLayers = resolveLayers();
-  if (!initialLayers.length) throw new Error('Layered canvas capture requires a canvas layer');
-  output.width = initialLayers[0].width;
-  output.height = initialLayers[0].height;
-
-  const stream = output.captureStream(frameRate);
-  const videoTracks = () => stream?.getVideoTracks?.() || [];
-
-  const compositeFrame = () => {
-    const tracks = videoTracks();
-    if (tracks.length && tracks.every((track) => track.readyState === 'ended')) return;
-
-    options.beforeDraw?.();
-    const activeLayers = resolveLayers();
+  const resolveLayers = () => options.frameProvider
+    ? options.frameProvider({ signal: controller.signal })
+    : layers.map(layer => typeof layer === 'function' ? layer() : layer);
+  const canvases = value => (Array.isArray(value) ? value : [value])
+    .filter(layer => layer?.width > 0 && layer?.height > 0);
+  function close() {
+    if (closed) return;
+    closed = true;
+    controller.abort(new DOMException('Capture canceled', 'AbortError'));
+    if (scheduled !== null) { cancelFrame(scheduled); scheduled = null; }
+    options.signal?.removeEventListener('abort', close);
+    for (const track of stream?.getTracks?.() || []) track.stop();
+  }
+  function draw(activeLayers) {
     const primary = activeLayers[0];
-    if (primary && (output.width !== primary.width || output.height !== primary.height)) {
-      output.width = primary.width;
-      output.height = primary.height;
+    if (!primary) throw new Error('Layered canvas capture requires a canvas layer');
+    if (output.width !== primary.width || output.height !== primary.height) {
+      output.width = primary.width; output.height = primary.height;
     }
     context.clearRect(0, 0, output.width, output.height);
-    for (const layer of activeLayers) {
-      context.drawImage(layer, 0, 0, output.width, output.height);
+    for (const layer of activeLayers) context.drawImage(layer, 0, 0, output.width, output.height);
+  }
+  function begin(value) {
+    if (closed) throw controller.signal.reason;
+    try {
+      draw(canvases(value));
+      stream = output.captureStream(frameRate);
+      stream.__vfCaptureCleanup = close;
+      // Readback frames are explicitly requested only after composition. The
+      // synchronous layer API retains its normal canvas capture cadence.
+      for (const track of stream.getVideoTracks?.() || []) track.requestFrame?.();
+      scheduled = requestFrame(compositeFrame);
+      return stream;
+    } catch (error) { close(); throw error; }
+  }
+  async function compositeFrame() {
+    scheduled = null;
+    if (closed) return;
+    const tracks = stream?.getVideoTracks?.() || [];
+    if (tracks.length && tracks.every(track => track.readyState === 'ended')) { close(); return; }
+    try {
+      options.beforeDraw?.();
+      const activeLayers = canvases(await resolveLayers());
+      if (closed) return;
+      // A changed/removed owner cannot be replaced by a cached image.
+      draw(activeLayers);
+      for (const track of tracks) if (track.readyState !== 'ended') track.requestFrame?.();
+      // One awaited provider at a time; never pile up GPU readback buffers.
+      scheduled = requestFrame(compositeFrame);
+    } catch (error) {
+      if (closed) return;
+      stream.__vfCaptureError = error;
+      close(); options.onError?.(error);
     }
-    for (const track of tracks) {
-      if (track.readyState !== 'ended') track.requestFrame?.();
-    }
-    requestFrame(compositeFrame);
-  };
-
-  compositeFrame();
-  return stream;
+  }
+  options.signal?.addEventListener('abort', close, { once: true });
+  if (options.signal?.aborted) close();
+  try {
+    if (closed) throw controller.signal.reason;
+    options.beforeDraw?.();
+    const initial = resolveLayers();
+    // Preserve the synchronous return contract for existing canvas layers.
+    return initial?.then ? initial.then(begin, error => { close(); throw error; }) : begin(initial);
+  } catch (error) { close(); throw error; }
 }
 
 export async function requestSceneCaptureStream({
@@ -234,20 +274,22 @@ function defaultRecorder(stream, options = {}) {
   const mimeType = supportedMovieType(Recorder);
   const recorder = new Recorder(stream, mimeType ? { mimeType } : undefined);
   const chunks = [];
-  let stopped = null;
+  // Attach before start: track closure/error can stop MediaRecorder before
+  // the user presses Stop. That completed event must remain awaitable.
+  const stopped = new Promise((resolve, reject) => {
+    recorder.addEventListener('error', () => { stopStream(stream); reject(recorder.error || new Error('Movie capture failed')); }, { once: true });
+    recorder.addEventListener('stop', () => stream.__vfCaptureError ? reject(stream.__vfCaptureError) : resolve(new Blob(chunks, {
+      type: recorder.mimeType || mimeType || 'video/webm'
+    })), { once: true });
+  });
+  stopped.catch(() => {});
   recorder.addEventListener('dataavailable', (event) => {
     if (event.data?.size) chunks.push(event.data);
   });
   return {
     start() { recorder.start(250); },
     stop() {
-      stopped ||= new Promise((resolve, reject) => {
-        recorder.addEventListener('error', () => reject(recorder.error || new Error('Movie capture failed')), { once: true });
-        recorder.addEventListener('stop', () => resolve(new Blob(chunks, {
-          type: recorder.mimeType || mimeType || 'video/webm'
-        })), { once: true });
-        recorder.stop();
-      });
+      if (recorder.state !== 'inactive') recorder.stop();
       return stopped;
     },
     cancel() {
@@ -262,6 +304,7 @@ function supportedMovieType(Recorder) {
 }
 
 function stopStream(stream) {
+  stream?.__vfCaptureCleanup?.();
   for (const track of stream?.getTracks?.() || []) track.stop();
 }
 

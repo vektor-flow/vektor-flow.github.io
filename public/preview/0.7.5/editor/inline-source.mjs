@@ -12,8 +12,19 @@ export function bindInlineSource(source, highlight, code) {
   source.setAttribute('autocapitalize','off');
   source.setAttribute('autocomplete','off');
   source.spellcheck=false;
-  source.style.height=`${Math.min(420,Math.max(100,source.value.split('\n').length*24+32))}px`;
+  let textMetrics;
   const sync=()=>{
+    const style=getComputedStyle(source);
+    const metrics=[style.fontSize,style.lineHeight,style.paddingTop,style.paddingBottom].join('/');
+    if (metrics!==textMetrics) {
+      textMetrics=metrics;
+      const lineHeight=parseFloat(style.lineHeight);
+      const padding=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+      // Browser text enlargement changes line metrics without enlarging the
+      // fixed editor box. Refit when those metrics change; a manual resize
+      // with unchanged metrics keeps its native height and scroll positions.
+      source.style.height=`${Math.min(420,Math.max(100,Math.ceil(source.value.split('\n').length*lineHeight+padding)))}px`;
+    }
     highlight.style.width=`${source.clientWidth}px`;
     highlight.style.height=`${source.clientHeight}px`;
     // The textarea is the only scroll owner. Translating the inert text avoids

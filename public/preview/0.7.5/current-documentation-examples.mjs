@@ -1,5 +1,5 @@
 import {prepareExamplePresentation} from './example-presentation.mjs?sha256=752ecdcc851ae9eccb27cb6804210605b3d2482b880d63e79a3b67adb0e5c8e6';
-import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=438f2aeeb5d4aca52e5a354b573fd690e032653c02f53a363a531f104e5165e0';
+import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=34dd1bdbaced7b4c68ca1922801fa36196b0eb13b392e81a2b08955aceac076f';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
 import {createInlineRunner} from './inline-runner.mjs?sha256=be2f339fbee332685f3dafab2e875d4bff1fe3be698646fa2ce08146f8ec905d';

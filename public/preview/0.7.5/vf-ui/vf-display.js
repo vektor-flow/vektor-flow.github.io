@@ -611,12 +611,14 @@
 
   function geomHostCanvas(hostEl, idx) {
     if (!hostEl || typeof hostEl.querySelector !== "function") { return null; }
-    var directPlotCanvas = hostEl.querySelector(":scope > canvas.vf-w-plot-panel__canvas");
-    if (directPlotCanvas) { return directPlotCanvas; }
-    var cls = "vf-geom-canvas-" + (idx == null ? 0 : idx);
-    var directGeomCanvas = hostEl.querySelector(":scope > canvas." + cls);
-    if (directGeomCanvas) { return directGeomCanvas; }
-    return hostEl.querySelector("canvas." + cls) ||
+    var index = idx == null ? 0 : idx;
+    var cls = "vf-geom-canvas-" + index;
+    var exact = hostEl.querySelector(":scope > canvas." + cls) || hostEl.querySelector("canvas." + cls);
+    if (exact) { return exact; }
+    // The frame's legacy draw surface belongs only to renderer zero. Reusing
+    // it for another entry lets two GPU contexts overwrite the same canvas.
+    if (index !== 0) { return null; }
+    return hostEl.querySelector(":scope > canvas.vf-w-plot-panel__canvas") ||
       hostEl.querySelector("canvas[data-vf-geom-canvas='1']") ||
       hostEl.querySelector("canvas.vf-frame__draw-canvas");
   }

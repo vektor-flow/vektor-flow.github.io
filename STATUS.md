@@ -1,3 +1,13 @@
+## Authentic common Latin ligatures — 2026-11-05
+
+Actual native offline UI first-view failure CURRENT_NATIVE_FONT_MAPPING isolated
+to Offline (ffl). Actual current native producer regression fixtures additionally
+exercise office, affinity, waffle, flower, file, difficult and coffee. Genuine
+closed Type1 resource join adds exactly text/@text:{ff,ffi,ffl,fi,fl}, preserving
+existing mappings/font closure/catalog/engine. Actual WASM/native font test now
+passes. No letter substitution, synthetic outlines or font aliasing. Product
+intake/native offline rerun remains downstream qualification.
+
 ## Generic authored presentation qualification — 2026-11-05
 
 Shared VKF source/player/transition now owns ordinary add(text:) text blocks and

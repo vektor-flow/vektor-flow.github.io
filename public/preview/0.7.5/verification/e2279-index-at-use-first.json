@@ -1,0 +1,43 @@
+{
+  "owner": "e2279",
+  "compilerBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "formatterBinding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "packageRoot": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/playground/canonical",
+  "normalAPI": "vkf075_compile -> normal guest entry -> paired native formatter",
+  "cases": [
+    {
+      "id": "screenshot-transfers-original",
+      "source": "transfers: [[12, 2, 1], [3, 18, 2], [1, 4, 15]]_ij\n\n:: sum_j(transfers)\n:: transfers_ii",
+      "sourceSHA256": "00a477e3fc7639c283a8b8bd6124bccd273bd7561534c5f02552804df28e8aa8",
+      "filename": "/browser/screenshot-transfers-original.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2279-index-at-use-examples-actual-20261104/screenshot-transfers-original.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[15, 23, 20]\n[12, 18, 15]\n",
+      "passed": true,
+      "elapsedMs": 976.7970029999999
+    },
+    {
+      "id": "transfers-point-of-use",
+      "source": "transfers: [[12, 2, 1], [3, 18, 2], [1, 4, 15]]\n\n:: sum_j(transfers_ij)\n:: transfers_ii",
+      "sourceSHA256": "acc0ae92f1a0e1cfded16af27297c59c46739997ba568dbe81856cc0d6a52bb7",
+      "filename": "/browser/transfers-point-of-use.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2279-index-at-use-examples-actual-20261104/transfers-point-of-use.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[15, 23, 20]\n[12, 18, 15]\n",
+      "passed": true,
+      "elapsedMs": 892.9363090000002
+    }
+  ],
+  "status": "CURRENT_NORMAL_TRANSFERS_EQUIVALENT_COMPLETE_OUTPUT",
+  "compilerRebuilt": false,
+  "equivalentCompleteOutput": true,
+  "scope": "Exact original and changed transfers full programs normal compiler guest formatter; complete stdout equality only, no full release/native/scene/timing claim"
+}

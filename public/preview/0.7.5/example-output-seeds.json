@@ -1994,6 +1994,17 @@
       "actualExecution": true,
       "evidence": "verification/e2276-style-focused.json",
       "origin": "Actual e2276 exact current package/normal guest/paired formatter output; narrow requested style page correction"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-1",
+      "source_sha256": "acc0ae92f1a0e1cfded16af27297c59c46739997ba568dbe81856cc0d6a52bb7",
+      "stdout": "[15, 23, 20]\n[12, 18, 15]\n",
+      "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "actualExecution": true,
+      "evidence": "verification/e2279-index-at-use-first.json",
+      "origin": "Actual e2279 exact current normal compiler/guest/paired formatter; plain matrix declaration and indices at actual use"
     }
   ],
   "editorial_relocation": "Canonical documentation code now lives in Syntax + Examples and separate Standard Library. Source/output/scene identities are unchanged; new route/layout checks remain required."

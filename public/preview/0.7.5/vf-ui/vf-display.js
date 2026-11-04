@@ -2572,6 +2572,14 @@
     };
   }
 
+  function authoredFrameLightFlares(spec) {
+    if (spec.light_flares) { return spec.light_flares; }
+    var options = spec.render_options || {};
+    if (options.light_flares !== true) { return null; }
+    return { enabled: true, size: Number(options.light_marker_size || 0.18),
+      occluders: spec.flare_occluders || [] };
+  }
+
   function buildUnifiedFrameScene(specs, camera, lights, lightFlares, background) {
     if (!Array.isArray(specs) || !specs.length) { return null; }
     var parts = [];
@@ -5660,7 +5668,6 @@
 
   function captureFrameViewSnapshot(geom) {
     var snapshot = { camera: null, axis3d: {}, axes: [] };
-    if (geom && Number.isSafeInteger(geom.physics_accepted_generation)) { snapshot.physicsGeneration = geom.physics_accepted_generation; }
     if (geom && geom.camera) {
       snapshot.camera = JSON.parse(JSON.stringify(geom.camera));
       delete snapshot.camera.__vf_live_mutated;
@@ -5739,40 +5746,20 @@
     for (var i = 0; i < listeners.length; i += 1) { listeners[i](rec.presentedView); }
   }
 
-  function listenFrameView(rec, callback, onError) {
+  function listenFrameView(rec, callback) {
     if (!rec.viewListeners) { rec.viewListeners = []; }
     rec.viewListeners.push(callback);
-    if (!rec.viewErrorListeners) { rec.viewErrorListeners = []; }
-    if (onError) { rec.viewErrorListeners.push(onError); }
     return function () {
       var i = rec.viewListeners.indexOf(callback);
       if (i >= 0) { rec.viewListeners.splice(i, 1); }
-      var e = rec.viewErrorListeners.indexOf(onError);
-      if (e >= 0) { rec.viewErrorListeners.splice(e, 1); }
     };
-  }
-
-  function failFrameView(rec, error) {
-    var listeners = (rec.viewErrorListeners || []).slice();
-    // Every request detaches before invoking its callback. A failing consumer
-    // cannot leave the other native waits attached forever.
-    var callbackError;
-    for (var i = 0; i < listeners.length; i += 1) {
-      try { listeners[i](error); } catch (failure) { callbackError = callbackError || failure; }
-    }
-    if (callbackError) { throw callbackError; }
   }
 
   function observeFrameViewRenderer(fid, rec, entry) {
     var renderer = entry.renderer;
     var owner = findFrameEl(geomTargetFrameId(fid));
-    renderer._onFramePresentationError = function (error) {
-      if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 ||
-          !owner || owner.isConnected === false || findFrameEl(geomTargetFrameId(fid)) !== owner) { return; }
-      entry.presentationFailed = true;
-      entry.presentationError = error;
-      try { if (rec.viewTransition) { rec.viewTransition.cancel(); } }
-      finally { failFrameView(rec, error); }
+    renderer._onFramePresentationError = function () {
+      if (rec.viewTransition) { rec.viewTransition.cancel(); }
     };
     renderer._onFramePresented = function (presented) {
       if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 || !presented.view ||
@@ -5794,45 +5781,6 @@
     return rec && rec.presentedView && findFrameEl(geomTargetFrameId(fid)) ? cloneFrameView(rec.presentedView) : null;
   }
 
-  function watchFrameViewPresentation(rec, serial, signature, options) {
-    if (typeof options.afterPresented !== "function" && typeof options.onPresentationError !== "function") { return; }
-    var active = true;
-    function cancel() {
-      if (!active) { return; }
-      active = false;
-      unlisten();
-      if (options.signal) { options.signal.removeEventListener("abort", aborted); }
-    }
-    function failed(error) {
-      if (!active) { return; }
-      cancel();
-      if (typeof options.onPresentationError === "function") { options.onPresentationError(error); }
-    }
-    function aborted() {
-      var error = options.signal.reason;
-      if (error === undefined) { error = new Error("Frame presentation cancelled"); error.name = "AbortError"; }
-      failed(error);
-    }
-    var unlisten = listenFrameView(rec, function (presented) {
-      if (!active || presented.serial < serial) { return; }
-      // A camera supersession may satisfy a native wait only for the SAME
-      // accepted Physics generation and after the renderer's complete fence.
-      var needsGeneration = Number.isSafeInteger(options.physicsGeneration) && options.physicsGeneration >= 0;
-      var sameGeneration = needsGeneration && presented.snapshot.physicsGeneration === options.physicsGeneration;
-      var sameView = JSON.stringify(presented.snapshot) === signature;
-      if (needsGeneration && sameGeneration && presented.endpoint !== "gpu-queue-completed") {
-        failed(new Error("Native Physics presentation has no completed GPU fence"));
-      } else if (needsGeneration ? sameGeneration : sameView) {
-        cancel();
-        if (typeof options.afterPresented === "function") { options.afterPresented(cloneFrameView(presented)); }
-      } else {
-        failed(new Error("Frame presentation was superseded"));
-      }
-    }, failed);
-    if (options.signal) { options.signal.addEventListener("abort", aborted, { once: true }); }
-    return cancel;
-  }
-
   // Static retained Frames use the same updateGeomFrame path as ordinary UI
   // controls. This fence is registered before requesting the draw, including
   // the first draw while renderer initialization is still pending.
@@ -5845,13 +5793,18 @@
     if (options.signal && options.signal.aborted) { return false; }
     var serial = Number(rec.viewSerial || 0) + 1;
     var signature = JSON.stringify(captureFrameViewSnapshot(geom));
-    watchFrameViewPresentation(rec, serial, signature, options);
-    // Native/error-aware waits fail closed on an already failed entry. Legacy
-    // browser callers keep their existing ability to request another redraw.
-    if (typeof options.onPresentationError === "function") {
-      for (var i = 0; i < rec.entries.length; i += 1) {
-        if (rec.entries[i].presentationFailed) { failFrameView(rec, rec.entries[i].presentationError); return false; }
+    if (typeof options.afterPresented === "function") {
+      function cancel() {
+        unlisten();
+        if (options.signal) { options.signal.removeEventListener("abort", cancel); }
       }
+      var unlisten = listenFrameView(rec, function (presented) {
+        if (presented.serial < serial) { return; }
+        cancel();
+        // A superseded pose has no success callback.
+        if (JSON.stringify(presented.snapshot) === signature) { options.afterPresented(cloneFrameView(presented)); }
+      });
+      if (options.signal) { options.signal.addEventListener("abort", cancel, { once: true }); }
     }
     if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
     updateGeomFrame(fid, geom);
@@ -5869,15 +5822,11 @@
     ["axis3DOverlayRaf", "textOverlayRaf"].forEach(function (key) {
       if (rec[key]) { global.cancelAnimationFrame(rec[key]); rec[key] = 0; }
     });
-    try { failFrameView(rec, new Error("Frame presentation disposed")); }
-    finally {
-      rec.viewListeners = [];
-      rec.viewErrorListeners = [];
-      stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
-      delete frameRecs[fid];
-      if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
-      if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
-    }
+    rec.viewListeners = [];
+    stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
+    delete frameRecs[fid];
+    if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
+    if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
   }
 
   function updateGeomFrameCamera(fid, camera, options) {
@@ -7672,6 +7621,21 @@
     });
   }
 
+  // Shared by gesture owners and representation-change cleanup.
+  function cancelAxis3DDragRaf(drag) {
+    if (drag && drag.raf) {
+      try { global.cancelAnimationFrame(drag.raf); } catch (_) {}
+      drag.raf = 0;
+    }
+  }
+
+  function cancelAxis3DWheelRaf(state) {
+    if (state && state.raf) {
+      try { global.cancelAnimationFrame(state.raf); } catch (_) {}
+      state.raf = 0;
+    }
+  }
+
   function ensureAxis3DControls(fid, frameEl, geomSpec) {
     if (plotControlKind(geomSpec) !== "axis3d") { return; }
     if (!geomSpec || geomSpec.axis3d_controls !== true) { return; }
@@ -7877,20 +7841,6 @@
       }
       axis3DCommitAndRebuild(fid, body, drag);
       refreshAxis3DRuntimeFrame(fid, true);
-    }
-
-    function cancelAxis3DDragRaf(drag) {
-      if (drag && drag.raf) {
-        try { global.cancelAnimationFrame(drag.raf); } catch (_) {}
-        drag.raf = 0;
-      }
-    }
-
-    function cancelAxis3DWheelRaf(state) {
-      if (state && state.raf) {
-        try { global.cancelAnimationFrame(state.raf); } catch (_) {}
-        state.raf = 0;
-      }
     }
 
     function flushAxis3DWheel() {
@@ -12712,7 +12662,7 @@
       geomSpec.unified_renderer === true ||
       renderableSpecs.some(geomSpecNeedsUnifiedRenderer)
     )
-      ? buildUnifiedFrameScene(renderableSpecs, effectiveCamera, lights, geomSpec.light_flares || null, geomSpec.background || null)
+      ? buildUnifiedFrameScene(renderableSpecs, effectiveCamera, lights, authoredFrameLightFlares(geomSpec), geomSpec.background || null)
       : null;
     var combinedTransparent = !unifiedScene && geomSpec && geomSpec.combine_transparent === true && renderableSpecs.length > 1
       ? buildCombinedTransparentMesh(renderableSpecs, effectiveCamera, lights)
@@ -13074,7 +13024,7 @@
       throw new Error("dynamic geom provider returned invalid spec");
     }
     var scene = geomSpec && geomSpec.unified_renderer === true
-      ? buildUnifiedFrameScene(geomSpec.meshes, geomSpec.camera || null, geomSpec.lights || [], geomSpec.light_flares || null, geomSpec.background || null)
+      ? buildUnifiedFrameScene(geomSpec.meshes, geomSpec.camera || null, geomSpec.lights || [], authoredFrameLightFlares(geomSpec), geomSpec.background || null)
       : null;
     if (!scene) {
       throw new Error("dynamic geom provider did not produce a unified scene");
@@ -14297,19 +14247,6 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       : [0.267, 0.005, 0.329, 1];
   }
 
-  // Shared scene presentation contract: the native scene runtime and the
-  // evaluated arena path select the same maintained flare renderer. No guest
-  // evaluation, Physics advance, geometry or shader construction happens here.
-  function createLightFlareOptions(renderOptions, lights, occluders) {
-    renderOptions = renderOptions || {};
-    return {
-      enabled: renderOptions.light_flares === true,
-      size: Number(renderOptions.light_marker_size || 0.18),
-      lights: lights,
-      occluders: occluders
-    };
-  }
-
   function materializeRetainedSceneArena(packet) {
     if (!packet || String(packet.schema || "") !== "vektor-flow/retained-scene-arena" ||
         Number(packet.version) !== 1 || !packet.metadata ||
@@ -14390,14 +14327,8 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     if (!Object.prototype.hasOwnProperty.call(scene, "background")) {
       scene.background = null;
     }
-    if (!scene.light_flares && scene.render_options && scene.render_options.light_flares === true) {
-      scene.light_flares = createLightFlareOptions(
-        scene.render_options, scene.lights || [], scene.flare_occluders || []);
-      scene.unified_renderer = true;
-    }
     applyRetainedScene3DDefaults(scene);
     if (source.native_plot_text === true) applyExamplePlotTheme(scene);
-    scene = applyAcceptedPhysicsToScene(scene);
     var geom = {};
     geom[frameId] = scene;
     return { geom: geom };
@@ -14603,13 +14534,21 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           if (Object.hasOwn(args, flag) && flag !== "receives_lighting") this[flag] = args[flag];
         }
         if (!Object.hasOwn(args, "no_lighting") && Object.hasOwn(args, "receives_lighting")) this.no_lighting = !args.receives_lighting;
-        for (var material of ["roughness", "reflectivity", "emissivity", "transparency", "optical_index", "emission"]) {
+        for (var material of ["roughness", "reflectivity", "emissivity", "transparency", "optical_index"]) {
           if (!Object.hasOwn(args, material)) continue;
           var scalar = finite(args[material], "retained Layer " + material);
-          if ((material === "optical_index" && !(scalar > 0)) || (material === "emission" && scalar < 0) ||
-              (material !== "optical_index" && material !== "emission" && (scalar < 0 || scalar > 1)))
+          if ((material === "optical_index" && !(scalar > 0)) ||
+              (material !== "optical_index" && (scalar < 0 || scalar > 1)))
             throw new RangeError("retained Layer " + material + " is outside its physical scalar domain");
           this[material] = scalar;
+        }
+        if (Object.hasOwn(args, "emission")) {
+          // Match the normal Frame.add RGB emission contract; keep the
+          // evaluated radiance values rather than treating the vector as a scalar.
+          if (!Array.isArray(args.emission) || args.emission.length !== 3 ||
+              args.emission.some(function(v) {return typeof v !== "number" || !Number.isFinite(v) || v < 0;}))
+            throw new TypeError("retained Layer emission requires three finite nonnegative RGB components");
+          this.emission = args.emission.slice();
         }
         if (Object.hasOwn(args, "transparency")) {
           this.alpha = 1 - args.transparency; this.transparent = args.transparency > 0 || vertices.some(function(v,i){return i%10 === 9 && v < 0.999;});
@@ -14741,115 +14680,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     return api;
   }
 
-  // Display-only accepted state protocol. The native typed Frame owner is the
-  // ONLY stepper. This channel cannot construct, resume or select a backend.
-  if (!global.VfNativePhysicsAccepted) {
-    global.VfNativePhysicsAccepted = (function () {
-      var bindings = Object.create(null);
-      function vector(value, count, name) {
-        if (!Array.isArray(value) || value.length !== count || value.some(function (v) { return typeof v !== "number" || !Number.isFinite(v); })) {
-          throw new Error("invalid accepted physics " + name);
-        }
-        return Object.freeze(value.slice());
-      }
-      function register(frame, geometry, initial) {
-        frame = String(frame);
-        if (!frame || bindings[frame] || !Array.isArray(geometry) || !geometry.length) { throw new Error("invalid or duplicate physics display binding"); }
-        var seen = Object.create(null);
-        var ids = geometry.map(function (id) {
-          if (typeof id !== "string" || !id || seen[id]) { throw new Error("invalid physics display geometry id"); }
-          seen[id] = true; return id;
-        });
-        var baseline = initial || { generation: 0, time_s: 0 };
-        if (!Number.isSafeInteger(baseline.generation) || baseline.generation < 0 || typeof baseline.time_s !== "number" || !Number.isFinite(baseline.time_s) || baseline.time_s < 0) {
-          throw new Error("invalid native accepted physics baseline");
-        }
-        var expected = { generation: baseline.generation, time_s: baseline.time_s };
-        if (initial) { expected.principal = vector(initial.principal, 13, "baseline state"); expected.transform = vector(initial.transform, 16, "baseline transform"); }
-        bindings[frame] = { geometry: Object.freeze(ids), initial: Object.freeze(expected), accepted: null };
-      }
-      function publish(frame, value) {
-        frame = String(frame);
-        var binding = bindings[frame];
-        if (!binding || !value || !Number.isSafeInteger(value.generation) || value.generation < 0 || typeof value.time_s !== "number" || !Number.isFinite(value.time_s) || value.time_s < 0) {
-          throw new Error("invalid accepted physics display generation");
-        }
-        var state = vector(value.principal, 13, "state");
-        var transform = vector(value.transform, 16, "transform");
-        if (transform[3] !== 0 || transform[7] !== 0 || transform[11] !== 0 || transform[15] !== 1) { throw new Error("accepted physics transform must be affine"); }
-        var norm = state[3]*state[3] + state[4]*state[4] + state[5]*state[5] + state[6]*state[6];
-        if (Math.abs(norm-1) > 1e-10) { throw new Error("invalid accepted physics orientation"); }
-        var previous = binding.accepted;
-        if (previous && value.generation === previous.generation) {
-          if (value.time_s !== previous.time_s || state.some(function (v,i) { return v !== previous.principal[i]; }) || transform.some(function (v,i) { return v !== previous.transform[i]; })) {
-            throw new Error("accepted physics generation changed its state");
-          }
-          return previous;
-        }
-        if ((!previous && (value.generation !== binding.initial.generation || value.time_s !== binding.initial.time_s ||
-            (binding.initial.principal && state.some(function(v,i){return v!==binding.initial.principal[i];})) ||
-            (binding.initial.transform && transform.some(function(v,i){return v!==binding.initial.transform[i];})))) ||
-            (previous && (value.generation !== previous.generation+1 || value.time_s <= previous.time_s))) {
-          throw new Error("accepted physics display generations must be contiguous");
-        }
-        var accepted = Object.freeze({ generation: value.generation, time_s: value.time_s, principal: state, transform: transform, geometry: binding.geometry });
-        binding.accepted = accepted; // ONE atomic JS publication after all checks/copies
-        if (typeof global.dispatchEvent === "function" && typeof global.CustomEvent === "function") {
-          global.dispatchEvent(new global.CustomEvent("vf-physics-accepted", { detail: { frame: frame, generation: accepted.generation } }));
-        }
-        return accepted;
-      }
-      return Object.freeze({ register: register, publish: publish, read: function (frame) { var value=bindings[String(frame)]; return value ? value.accepted : null; }, close: function (frame) { delete bindings[String(frame)]; } });
-    }());
-  }
-  function applyAcceptedPhysicsToScene(scene) {
-    var binding=scene && scene.physics_binding;
-    if (!binding) { return scene; }
-    var accepted=global.VfNativePhysicsAccepted.read(binding.source_frame_id);
-    if (!accepted) { throw new Error("native physics Frame lacks an accepted initial state"); }
-    if (!Array.isArray(binding.geometry_ids) || binding.geometry_ids.length!==accepted.geometry.length || binding.geometry_ids.some(function(id,i){return id!==accepted.geometry[i];})) {
-      throw new Error("physics display binding differs from executed source");
-    }
-    if (scene.physics_accepted_generation===accepted.generation) { return scene; }
-    var found=Object.create(null);
-    var meshes=(scene.meshes||[]).map(function(mesh){
-      var id=String(mesh.id||"");
-      if(accepted.geometry.indexOf(id)<0)return mesh;
-      if(found[id] || mesh._layer_time)throw new Error("physics requires unique non-temporal geometry ids");
-      found[id]=true;
-      return Object.assign({},mesh,{_modelMatrix:accepted.transform.slice(),transform:accepted.transform.slice(),
-        __dataRevision:Number(mesh.__dataRevision||0)+1,__revision:Number(mesh.__revision||0)+1,
-        physics_accepted_generation:accepted.generation});
-    });
-    if(accepted.geometry.some(function(id){return !found[id];}))throw new Error("physics display geometry group is incomplete");
-    return Object.assign({},scene,{meshes:meshes,physics_accepted_generation:accepted.generation,
-      physics_accepted_time_s:accepted.time_s,__revision:Number(scene.__revision||0)+1});
-  }
-  if(typeof global.addEventListener === "function") global.addEventListener("vf-physics-accepted",function(event){
-    var source=event.detail && String(event.detail.frame);
-    var frames=_lastDisplayPayload && _lastDisplayPayload.geom;
-    if(!source || !frames)return;
-    var next=Object.assign({},frames);
-    var changed=[];
-    Object.keys(frames).forEach(function(fid){
-      var scene=frames[fid];
-      if(scene && scene.physics_binding && String(scene.physics_binding.source_frame_id)===source){
-        next[fid]=applyAcceptedPhysicsToScene(scene);changed.push(fid);
-      }
-    });
-    // Validate/copy ALL dependent geometry before changing the accepted payload.
-    if(!changed.length)return;
-    _lastDisplayPayload=Object.assign({},_lastDisplayPayload,{geom:next});
-    changed.forEach(function(fid){updateGeomFrame(fid,next[fid]);});
-  });
-
   function renderRetainedSceneArena(packet, options) {
     var display = materializeRetainedSceneArena(packet);
     var frames = Object.assign({}, _lastDisplayPayload && _lastDisplayPayload.geom || {});
     Object.keys(frames).forEach(function (fid) { if (!findFrameEl(geomTargetFrameId(fid))) { delete frames[fid]; } });
     Object.assign(frames, display.geom);
     renderFromJson(Object.assign({}, _lastDisplayPayload || {}, display, { geom: frames }));
-    if (options && (typeof options.afterPresented === "function" || typeof options.onPresentationError === "function")) {
+    if (options && typeof options.afterPresented === "function") {
       requestGeomFramePresentation(Object.keys(display.geom)[0], options);
     }
     return display;
@@ -15437,7 +15274,6 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     updateNativeLabelFrameColor: updateNativeLabelFrameColor,
     renderFromJson: renderFromJson,
     renderRetainedSceneArena: renderRetainedSceneArena,
-    createLightFlareOptions: createLightFlareOptions,
     requestGeomFramePresentation: requestGeomFramePresentation,
     disposeGeomFrame: disposeGeomFrame,
     updateGeomFrameCamera: updateGeomFrameCamera,
@@ -15468,9 +15304,6 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     createAxisVisualStateApplier: createAxisVisualStateApplier,
     createAxisTickModeStateApplier: createAxisTickModeStateApplier,
     __test: {
-      frameViewRecord: frameViewRecord,
-      observeFrameViewRenderer: observeFrameViewRenderer,
-      watchFrameViewPresentation: watchFrameViewPresentation,
       smooth01: smooth01,
       captureFrameViewSnapshot: captureFrameViewSnapshot,
       applyFrameViewSnapshot: applyFrameViewSnapshot,

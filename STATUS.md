@@ -26,9 +26,10 @@ Observed bounded evidence: native compiler65 translation samples; native view
 unit tests1280x675,360x720,800x800 preserve centers and equal units; actual browser
 source authoring/Copy3views and native font-size40 math; exact equation pixel hash
 before versus midpoint matches after waiting for native text (failed capture
-before readiness fix retained in consumer attempt2 logs). Native export recording
-is pending; attempt3 passed pixel/unit checks then hit a Product YUV crop alignment
-error, not a VKF rendering failure. No full-suite, physical GPU/phone, full glyph
+before readiness fix retained in consumer attempt2 logs). Final release188 actual app export passes:17s,1280x720,24fps,408frames; all54
+emitted native states retain rigid triangle areas and fixed equation/view. Native
+Linux extracted archive also passes offline edit/restart, no page errors. Public
+proof: https://staging.platonicplay.com/_expo/static/proof/pythagoras-20261104/. No full-suite, physical GPU/phone, full glyph
 state-transition, spectral reveal integration or broad release claim. The current
 spectral unfolding source remains VKF-owned; no replacement is implemented here.
 

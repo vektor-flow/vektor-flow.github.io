@@ -4,7 +4,7 @@ t: .time
 
 x: R
 
-expression: (x ^ 2 + 1) / (x + 2)
+expression: (x^2 + 1) / (x + 2)
 
 first_started: t.monotonic()
 first_result: s.differentiate(expression, x)

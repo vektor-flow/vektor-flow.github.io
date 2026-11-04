@@ -5,65 +5,65 @@
 # Actual pan/zoom OUT+IN through existing renderer controls.
 optics: .physics.optics
 :.math
-walls: [[-0.5,-0.5,-0.5,-1/6],[-0.5,1/6,-0.5,0.5],[0.5,-0.5,0.5,-1/6],[0.5,1/6,0.5,0.5]]
-mirror_a: [-0.22,-0.28]
-mirror_b: [0.34,-0.28]
+walls: [[-0.5, -0.5, -0.5, -1 / 6], [-0.5, 1 / 6, -0.5, 0.5], [0.5, -0.5, 0.5, -1 / 6], [0.5, 1 / 6, 0.5, 0.5]]
+mirror_a: [-0.22, -0.28]
+mirror_b: [0.34, -0.28]
 reflectivity: 0.72
 falloff: 0.7666666667
 base_penumbra: 0.0166666667
 growth: 0.16
-wall_material(x:num,y:num) -> bit:
+wall_material(x: num, y: num) -> bit:
     (abs(y)>0.5-0.0266666667 \/ abs(x)>1.5-0.0266666667)? @: true
-    ((abs(x+0.5)<0.01333333335 \/ abs(x-0.5)<0.01333333335) /\ abs(y)>1/6)? @: true
+    ((abs(x + 0.5)<0.01333333335 \/ abs(x - 0.5)<0.01333333335) /\ abs(y)>1/6)? @: true
     false
-sample_color(x:num,y:num,source_x:num) -> [num:4]:
-    source: [source_x,0]
-    target: [x,y]
-    direct: optics.normalized_light2(source,target,falloff,walls,base_penumbra,growth)
-    reflection: optics.reflected_light2(source,target,mirror_a,mirror_b,reflectivity,0.10,falloff,walls,base_penumbra,growth)
-    room: (x+1.5)//1
-    room>2?
+sample_color(x: num, y: num, source_x: num) -> [num: 4]:
+    source: [source_x, 0]
+    target: [x, y]
+    direct: optics.normalized_light2(source, target, falloff, walls, base_penumbra, growth)
+    reflection: optics.reflected_light2(source, target, mirror_a, mirror_b, reflectivity, 0.10, falloff, walls, base_penumbra, growth)
+    room: (x + 1.5) // 1
+    room > 2?
         .room: 2
-    lx: (x+1.5-room)*225
-    ly: (y+0.5)*225
-    tx: lx//48
-    ty: ly//48
+    lx: (x + 1.5 - room) * 225
+    ly: (y + 0.5) * 225
+    tx: lx // 48
+    ty: ly // 48
     checker: 0
-    (tx+ty)%2=0?
+    (tx + ty)%2 = 0?
         .checker: 1
-    variation: ((tx*37+ty*17)%11)/10
-    texture: 0.70+0.12*checker+0.07*variation
-    ((lx-tx*48)<3 \/ (ly-ty*48)<3)?
-        .texture: texture*0.58
-    material: [46*texture/255,60*texture/255,74*texture/255]
+    variation: ((tx*37 + ty*17) % 11) / 10
+    texture: 0.70 + 0.12*checker + 0.07*variation
+    ((lx - tx*48)<3 \/ (ly - ty*48)<3)?
+        .texture: texture * 0.58
+    material: [46 * texture / 255, 60 * texture / 255, 74 * texture / 255]
     diffuse: 0.42
     glow: 0.58
-    wall_material(x,y)?
-        .material: [216/255,220/255,228/255]
-        .direct: optics.max2(direct,0.22/(1+((x-source_x)^2+y*y)/(falloff*falloff)))
+    wall_material(x, y)?
+        .material: [216 / 255, 220 / 255, 228 / 255]
+        .direct: optics.max2(direct, 0.22 / (1 + ((x - source_x)^2 + y*y)/(falloff * falloff)))
         .diffuse: 1.05
         .glow: 0.26
     # Original1.35 reflected display exposure kept OUTSIDE opticalenergy law.
-    midpoint: [(mirror_a.0+mirror_b.0)/2,(mirror_a.1+mirror_b.1)/2]
-    incoming_to_mirror: optics.normalized_light2(source,midpoint,falloff,walls,base_penumbra,growth)
-    reflected_display: 1.35*reflection*incoming_to_mirror
-    strength: optics.min2(1.35,direct+reflected_display)
-    lighting: 0.22+diffuse*strength
-    red: material.0*lighting+(direct+reflected_display)*glow
-    green: material.1*lighting+(248/255)*(direct+reflected_display)*glow*0.93
-    blue: material.2*lighting+(168/255)*(direct+reflected_display)*glow*0.66
-    [optics.clamp01(red),optics.clamp01(green),optics.clamp01(blue),1]
+    midpoint: [(mirror_a.0 + mirror_b.0) / 2, (mirror_a.1 + mirror_b.1) / 2]
+    incoming_to_mirror: optics.normalized_light2(source, midpoint, falloff, walls, base_penumbra, growth)
+    reflected_display: 1.35 * reflection * incoming_to_mirror
+    strength: optics.min2(1.35, direct + reflected_display)
+    lighting: 0.22 + diffuse*strength
+    red: material.0*lighting + (direct + reflected_display)*glow
+    green: material.1*lighting + (248 / 255)*(direct + reflected_display)*glow*0.93
+    blue: material.2*lighting + (168 / 255)*(direct + reflected_display)*glow*0.66
+    [optics.clamp01(red), optics.clamp01(green), optics.clamp01(blue), 1]
 # UI effects execute at the normal program root; helpers remain ordinary VKF.
 view: .ui.viewport
 # Current explicit sampling:675x225 cells, near original proof floor pixels.
-x: [0..675]/225-1.5
-y: [0..225]/225-0.5
+x: [0..675]/225 - 1.5
+y: [0..225]/225 - 0.5
 source_x: -0.35
-color: sample_color(x_u,y_v,source_x)
-line: [mirror_a,mirror_b]
-view.set_geom_options(background:[34/255,36/255,45/255,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.1))
-view.add(x:x_u,y:y_v,z:0,c:color_uv,id:"original-three-room-lightfield",receives_lighting:false,mode3d:false,roughness:0.65)
-view.add(p:line_uc,id:"layer_1_silver_mirror",color:[244/255,248/255,1,1],w:3,reflectivity:reflectivity,roughness:0.04,mode3d:false)
-view.add_light(id:"layer_1_light_source",pos:[source_x,0,0.1],color:[1,248/255,168/255,1],intensity:1,source_radius:0.1,range:4,show_marker:true,casts_shadow:false)
-view.push(x_lim:[-1.5,1.5],y_lim:[-0.5,0.5],x_label:"x (room widths)",y_label:"y (room widths)",axis_type:"Open",grid_mode:"None")
+color: sample_color(x_u, y_v, source_x)
+line: [mirror_a, mirror_b]
+view.set_geom_options(background: [34 / 255, 36 / 255, 45 / 255, 1], render_options: (show_light_markers: true, light_flares: true, light_marker_size: 0.1))
+view.add(x: x_u, y: y_v, z: 0, c: color_uv, id: "original-three-room-lightfield", receives_lighting: false, mode3d: false, roughness: 0.65)
+view.add(p: line_uc, id: "layer_1_silver_mirror", color: [244 / 255, 248 / 255, 1, 1], w: 3, reflectivity: reflectivity, roughness: 0.04, mode3d: false)
+view.add_light(id: "layer_1_light_source", pos: [source_x, 0, 0.1], color: [1, 248 / 255, 168 / 255, 1], intensity: 1, source_radius: 0.1, range: 4, show_marker: true, casts_shadow: false)
+view.push(x_lim: [-1.5, 1.5], y_lim: [-0.5, 0.5], x_label: "x (room widths)", y_label: "y (room widths)", axis_type: "Open", grid_mode: "None")
 view.show()

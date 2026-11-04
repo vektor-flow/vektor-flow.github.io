@@ -4,7 +4,7 @@ t: .time
 
 x: R
 
-expression: (x + 1) ^ 16 + x ^ 9 + 3 * x
+expression: (x + 1)^16 + x^9 + 3*x
 
 first_started: t.monotonic()
 first_result: s.differentiate(expression, x)

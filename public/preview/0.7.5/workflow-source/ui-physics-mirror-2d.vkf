@@ -2,32 +2,32 @@
 # Drag to pan; wheel/toolbar zoom OUT and IN. Edit then Run.
 :.physics.optics
 
-point2(x:num,y:num) -> [num:2]: [x,y]
-point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
+point2(x: num, y: num) -> [num: 2]: [x, y]
+point3(x: num, y: num, z: num) -> [num: 3]: [x, y, z]
 scene():
     view: .ui.viewport
-    a: [-2,0]
-    b: [2,0]
-    origin: [-1,2]
-    incident: unit2([0.6,-0.8])
-    n: normal2(a,b,incident)
+    a: [-2, 0]
+    b: [2, 0]
+    origin: [-1, 2]
+    incident: unit2([0.6, -0.8])
+    n: normal2(a, b, incident)
     index: 1.5
-    h: line_hit(origin,incident,a,b)
-    (h.hit=1)?! "beam misses finite mirror"
-    reflected: reflect2(incident,n)
-    ci: 0-incident.0*n.0-incident.1*n.1
+    h: line_hit(origin, incident, a, b)
+    (h.hit = 1)?! "beam misses finite mirror"
+    reflected: reflect2(incident, n)
+    ci: 0 - incident.0*n.0 - incident.1*n.1
     source: unpolarized(1)
-    power: reflected_stokes(source,1,index,ci)
-    transmitted: transmitted_stokes(source,1,index,ci)
+    power: reflected_stokes(source, 1, index, ci)
+    transmitted: transmitted_stokes(source, 1, index, ci)
     measured: detector(power)
-    end: [h.point.0+2*reflected.0,h.point.1+2*reflected.1]
-    mirror: [a,b]
-    incoming: [point2(origin.0,origin.1),point2(h.point.0,h.point.1)]
-    outgoing: [point2(h.point.0,h.point.1),point2(end.0,end.1)]
-    view.add(p:mirror_uc,id:"mirror",color:[0.7,0.8,0.9,1],w:3,receives_lighting:true,roughness:0.05,reflectivity:measured,optical_index:index,transparency:transmitted.0)
-    view.add(p:incoming_uc,id:"incident",color:[1,0.7,0.1,1],w:2)
-    view.add(p:outgoing_uc,id:"reflected",color:[1,0.7,0.1,measured],w:2)
-    view.add_light(id:"source",pos:[-1,2,1],color:[1,0.85,0.6,1],intensity:4,range:10,casts_shadow:false)
+    end: [h.point.0 + 2*reflected.0, h.point.1 + 2*reflected.1]
+    mirror: [a, b]
+    incoming: [point2(origin.0, origin.1), point2(h.point.0, h.point.1)]
+    outgoing: [point2(h.point.0, h.point.1), point2(end.0, end.1)]
+    view.add(p: mirror_uc, id: "mirror", color: [0.7, 0.8, 0.9, 1], w: 3, receives_lighting: true, roughness: 0.05, reflectivity: measured, optical_index: index, transparency: transmitted.0)
+    view.add(p: incoming_uc, id: "incident", color: [1, 0.7, 0.1, 1], w: 2)
+    view.add(p: outgoing_uc, id: "reflected", color: [1, 0.7, 0.1, measured], w: 2)
+    view.add_light(id: "source", pos: [-1, 2, 1], color: [1, 0.85, 0.6, 1], intensity: 4, range: 10, casts_shadow: false)
     view.push()
     view.show()
     :: measured

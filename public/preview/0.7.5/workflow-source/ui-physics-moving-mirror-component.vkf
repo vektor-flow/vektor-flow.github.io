@@ -4,73 +4,73 @@
 physics: .physics
 optics: .physics.optics
 :.math
-mirror_state(time:num):
+mirror_state(time: num):
     mass: 0.1
     length: 4
-    inertia: mass*length^2/12
-    initial: physics.rigid_state3([0,0,0],[0.002,0,0],[0,0,0.006])
-    material: (mass:mass,inertia_tensor:[[inertia,0,0],[0,inertia,0],[0,0,inertia]])
-    motion: physics.step_rigid_body_momentum3(initial,material,time,[0,0,0],[0,0,0])
-    angle: motion.angular_velocity.2*time
-    a: [motion.position.0-2*cos(angle),motion.position.1-2*sin(angle)]
-    b: [motion.position.0+2*cos(angle),motion.position.1+2*sin(angle)]
-    incident: optics.unit2([0.6,-0.8])
-    n: optics.normal2(a,b,incident)
-    hit: optics.line_hit([-1,2],incident,a,b)
-    (hit.hit=1)?! "source misses moving mirror"
-    reflected: optics.reflect2(incident,n)
-    ci: 0-incident.0*n.0-incident.1*n.1
-    reflected_state: optics.reflected_stokes(optics.unpolarized(1),1,1.5,ci)
-    (a:a,b:b,normal:n,hit:hit.point,direction:reflected,state:reflected_state)
-mirror_x(time:num,end:num):
+    inertia: mass * length^2 / 12
+    initial: physics.rigid_state3([0, 0, 0], [0.002, 0, 0], [0, 0, 0.006])
+    material: (mass: mass, inertia_tensor: [[inertia, 0, 0], [0, inertia, 0], [0, 0, inertia]])
+    motion: physics.step_rigid_body_momentum3(initial, material, time, [0, 0, 0], [0, 0, 0])
+    angle: motion.angular_velocity.2 * time
+    a: [motion.position.0 - 2*cos(angle), motion.position.1 - 2*sin(angle)]
+    b: [motion.position.0 + 2*cos(angle), motion.position.1 + 2*sin(angle)]
+    incident: optics.unit2([0.6, -0.8])
+    n: optics.normal2(a, b, incident)
+    hit: optics.line_hit([-1, 2], incident, a, b)
+    (hit.hit = 1)?! "source misses moving mirror"
+    reflected: optics.reflect2(incident, n)
+    ci: 0 - incident.0*n.0 - incident.1*n.1
+    reflected_state: optics.reflected_stokes(optics.unpolarized(1), 1, 1.5, ci)
+    (a: a, b: b, normal: n, hit: hit.point, direction: reflected, state: reflected_state)
+mirror_x(time: num, end: num):
     state: mirror_state(time)
-    state.a.0+(end+1)*(state.b.0-state.a.0)/2
-mirror_y(time:num,end:num):
+    state.a.0 + (end + 1)*(state.b.0 - state.a.0)/2
+mirror_y(time: num, end: num):
     state: mirror_state(time)
-    state.a.1+(end+1)*(state.b.1-state.a.1)/2
-beam_x(time:num,end:num):
+    state.a.1 + (end + 1)*(state.b.1 - state.a.1)/2
+beam_x(time: num, end: num):
     state: mirror_state(time)
-    state.hit.0+end*2*state.direction.0
-beam_y(time:num,end:num):
+    state.hit.0 + end*2*state.direction.0
+beam_y(time: num, end: num):
     state: mirror_state(time)
-    state.hit.1+end*2*state.direction.1
-incoming_x(time:num,end:num):
+    state.hit.1 + end*2*state.direction.1
+incoming_x(time: num, end: num):
     state: mirror_state(time)
-    -1+end*(state.hit.0+1)
-incoming_y(time:num,end:num):
+    -1 + end*(state.hit.0 + 1)
+incoming_y(time: num, end: num):
     state: mirror_state(time)
-    2+end*(state.hit.1-2)
-beam_color(time:num):
+    2 + end*(state.hit.1 - 2)
+beam_color(time: num):
     state: mirror_state(time)
-    [1,0.6,0.12,optics.detector(state.state)]
-strip_x(time:num,u:num,v:num): mirror_x(time,u)
-strip_y(time:num,u:num,v:num):
+    [1, 0.6, 0.12, optics.detector(state.state)]
+strip_x(time: num, u: num, v: num): mirror_x(time, u)
+strip_y(time: num, u: num, v: num):
     state: mirror_state(time)
-    mirror_y(time,u)+v*0.025
+    mirror_y(time, u) + v*0.025
 scene():
     view: .ui.viewport
-    time: [0..120]/20
-    ends: [-1,1]
-    fractions: [0,1]
-    across: [-1,1]
-    x: mirror_x(time_t,ends_u)
-    y: mirror_y(time_t,ends_u)
-    bx: beam_x(time_t,fractions_u)
-    by: beam_y(time_t,fractions_u)
-    ix: incoming_x(time_t,fractions_u)
-    iy: incoming_y(time_t,fractions_u)
-    sx: strip_x(time_t,ends_u,across_v)
-    sy: strip_y(time_t,ends_u,across_v)
+    time: [0..120] / 20
+    ends: [-1, 1]
+    fractions: [0, 1]
+    across: [-1, 1]
+    x: mirror_x(time_t, ends_u)
+    y: mirror_y(time_t, ends_u)
+    bx: beam_x(time_t, fractions_u)
+    by: beam_y(time_t, fractions_u)
+    ix: incoming_x(time_t, fractions_u)
+    iy: incoming_y(time_t, fractions_u)
+    sx: strip_x(time_t, ends_u, across_v)
+    sy: strip_y(time_t, ends_u, across_v)
     colors: beam_color(time_t)
-    panel: [[-3,-1,-0.4],[3,-1,-0.4],[3,4,-0.4],[-3,4,-0.4]]
-    faces: [[0,1,2],[0,2,3]]
-    view.set_geom_options(background:[0.025,0.04,0.07,1],render_options:(show_light_markers:true,light_flares:true,light_marker_size:0.12))
-    view.add(p_up:panel,faces_uvw:faces,id:"shadow-receiver",color:[0.14,0.22,0.32,1],roughness:0.65,mode3d:false)
-    view.add(x:sx_tuv,y:sy_tuv,z:0.2,t:time,t_mode:"mirror",id:"mirror-strip-shadow-caster",color:[0.7,0.82,0.92,1],roughness:0.03,reflectivity:0.6,optical_index:1.5,casts_shadow:true,mode3d:false)
-    view.add(x:x_tu,y:y_tu,t:time,t_mode:"mirror",id:"mirror-line",color:[0.8,0.9,1,1],w:3,receives_lighting:true,roughness:0.03,reflectivity:0.6,optical_index:1.5)
-    view.add(x:ix_tu,y:iy_tu,t:time,t_mode:"mirror",id:"source-ray",color:[1,0.7,0.15,1],w:2)
-    view.add(x:bx_tu,y:by_tu,c:colors_tc,t:time,t_mode:"mirror",id:"reflected-detector-ray",w:3)
-    view.add_light(id:"source",pos:[-1,2,3],color:[1,0.8,0.45,1],intensity:12,source_radius:0.15,spread:1,range:15,casts_shadow:true,show_marker:true)
-    view.push(x_lim:[-3,3],y_lim:[-1,4],x_label:"x (m)",y_label:"y (m)")
+    panel: [[-3, -1, -0.4], [3, -1, -0.4], [3, 4, -0.4], [-3, 4, -0.4]]
+    faces: [[0, 1, 2], [0, 2, 3]]
+    view.set_geom_options(background: [0.025, 0.04, 0.07, 1], render_options: (show_light_markers: true, light_flares: true, light_marker_size: 0.12))
+    view.add(p_up: panel, faces_uvw: faces, id: "shadow-receiver", color: [0.14, 0.22, 0.32, 1], roughness: 0.65, mode3d: false)
+    view.add(x: sx_tuv, y: sy_tuv, z: 0.2, t: time, t_mode: "mirror", id: "mirror-strip-shadow-caster", color: [0.7, 0.82, 0.92, 1], roughness: 0.03, reflectivity: 0.6, optical_index: 1.5, casts_shadow: true, mode3d: false)
+    view.add(x: x_tu, y: y_tu, t: time, t_mode: "mirror", id: "mirror-line", color: [0.8, 0.9, 1, 1], w: 3, receives_lighting: true, roughness: 0.03, reflectivity: 0.6, optical_index: 1.5)
+    view.add(x: ix_tu, y: iy_tu, t: time, t_mode: "mirror", id: "source-ray", color: [1, 0.7, 0.15, 1], w: 2)
+    view.add(x: bx_tu, y: by_tu, c: colors_tc, t: time, t_mode: "mirror", id: "reflected-detector-ray", w: 3)
+    view.add_light(id: "source", pos: [-1, 2, 3], color: [1, 0.8, 0.45, 1], intensity: 12, source_radius: 0.15, spread: 1, range: 15, casts_shadow: true, show_marker: true)
+    view.push(x_lim: [-3, 3], y_lim: [-1, 4], x_label: "x (m)", y_label: "y (m)")
     view.show()
 scene()

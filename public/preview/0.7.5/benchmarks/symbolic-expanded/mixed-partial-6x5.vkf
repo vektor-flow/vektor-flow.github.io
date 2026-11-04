@@ -5,7 +5,7 @@ t: .time
 x: R
 y: R
 
-expression: x ^ 6 * y ^ 5 + 3 * x ^ 4 * y ^ 3 + x * y
+expression: x^6*y^5 + 3*x^4*y^3 + x*y
 
 first_started: t.monotonic()
 first_result: s.differentiate(s.differentiate(expression, x), y)

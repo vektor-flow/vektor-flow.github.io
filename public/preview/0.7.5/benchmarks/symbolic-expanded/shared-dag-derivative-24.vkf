@@ -4,10 +4,10 @@ t: .time
 
 x: R
 
-shared: x ^ 2 + 1
+shared: x^2 + 1
 expression: shared
 2..24 >>
-    .expression: expression + shared ^ $
+    .expression: expression + shared^$
 
 first_started: t.monotonic()
 first_result: s.differentiate(expression, x)

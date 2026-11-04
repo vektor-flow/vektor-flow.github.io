@@ -2,31 +2,31 @@
 # Pan/zoom OUT and IN with drag/wheel/toolbar; edit aperture or IOR then Run.
 :.physics.optics
 :.math
-circle_x(angle:num): cos(angle)
-circle_y(angle:num): sin(angle)
+circle_x(angle: num): cos(angle)
+circle_y(angle: num): sin(angle)
 
-point2(x:num,y:num) -> [num:2]: [x,y]
-point3(x:num,y:num,z:num) -> [num:3]: [x,y,z]
+point2(x: num, y: num) -> [num: 2]: [x, y]
+point3(x: num, y: num, z: num) -> [num: 3]: [x, y, z]
 scene():
     view: .ui.viewport
     index: 1.5
     aperture: 0.2
-    top: ball_lens_ray(aperture,1,index,1.5)
-    center: ball_lens_ray(0,1,index,1.5)
-    bottom: ball_lens_ray(0-aperture,1,index,1.5)
-    angle: [0..96]*2*pi/96
+    top: ball_lens_ray(aperture, 1, index, 1.5)
+    center: ball_lens_ray(0, 1, index, 1.5)
+    bottom: ball_lens_ray(0 - aperture, 1, index, 1.5)
+    angle: [0..96] * 2 * pi / 96
     x: circle_x(angle_i)
     y: circle_y(angle_i)
-    f: fresnel(1,index,1)
-    view.add(x:x_u,y:y_u,id:"ball-lens",color:[0.3,0.65,1,1],w:2,optical_index:index,reflectivity:f.rs,transparency:0.2,roughness:0)
-    view.add(p:top.points_uc,id:"upper-ray",color:[1,0.6,0.1,top.state.0],w:2)
-    view.add(p:center.points_uc,id:"axis-ray",color:[1,0.6,0.1,center.state.0],w:2)
-    view.add(p:bottom.points_uc,id:"lower-ray",color:[1,0.6,0.1,bottom.state.0],w:2)
-    opening: [[-2,0-aperture],[-2,aperture]]
-    view.add(p:opening_uc,id:"aperture",color:[0.9,0.2,0.3,1],w:3)
-    detector_line: [[1.5,-0.4],[1.5,0.4]]
-    view.add(p:detector_line_uc,id:"detector",color:[0.3,0.8,0.4,1],w:3)
-    view.push(x_label:"x (m)",y_label:"y (m)")
+    f: fresnel(1, index, 1)
+    view.add(x: x_u, y: y_u, id: "ball-lens", color: [0.3, 0.65, 1, 1], w: 2, optical_index: index, reflectivity: f.rs, transparency: 0.2, roughness: 0)
+    view.add(p: top.points_uc, id: "upper-ray", color: [1, 0.6, 0.1, top.state.0], w: 2)
+    view.add(p: center.points_uc, id: "axis-ray", color: [1, 0.6, 0.1, center.state.0], w: 2)
+    view.add(p: bottom.points_uc, id: "lower-ray", color: [1, 0.6, 0.1, bottom.state.0], w: 2)
+    opening: [[-2, 0 - aperture], [-2, aperture]]
+    view.add(p: opening_uc, id: "aperture", color: [0.9, 0.2, 0.3, 1], w: 3)
+    detector_line: [[1.5, -0.4], [1.5, 0.4]]
+    view.add(p: detector_line_uc, id: "detector", color: [0.3, 0.8, 0.4, 1], w: 3)
+    view.push(x_label: "x (m)", y_label: "y (m)")
     view.show()
     :: detector(top.state)
 scene()

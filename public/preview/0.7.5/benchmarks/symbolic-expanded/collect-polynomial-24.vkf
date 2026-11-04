@@ -4,7 +4,7 @@ t: .time
 
 x: R
 
-expression: (x + 1) ^ 24 + (x - 1) ^ 23 + x * (x + 2) ^ 12
+expression: (x + 1)^24 + (x - 1)^23 + x*(x + 2)^12
 
 first_started: t.monotonic()
 first_result: s.collect(expression)

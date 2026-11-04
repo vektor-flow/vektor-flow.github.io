@@ -4,7 +4,7 @@ t: .time
 
 x: R
 
-expression: s.exp(x) * s.sin(x) + s.cos(x ^ 2)
+expression: s.exp(x)*s.sin(x) + s.cos(x ^ 2)
 
 first_started: t.monotonic()
 first_result: s.differentiate(expression, x)

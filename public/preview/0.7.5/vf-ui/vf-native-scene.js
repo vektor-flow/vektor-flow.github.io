@@ -39,6 +39,37 @@
   var boundary = String(timingCfg.boundary || "repeat");
   var frameCount = Math.max(1, Math.round(fps * durationSeconds));
   var nativeWorldAnimationPresence = null;
+  // Accepted display protocol is installed by the maintained VfDisplay module.
+  var acceptedPhysicsForRender = null;
+  var sceneDirtyTuple = null;
+  var sceneDirtyRevision = 0;
+  function readAcceptedPhysics() {
+    var binding = config.physics_binding;
+    if (!binding) { return null; }
+    var value = global.VfNativePhysicsAccepted.read(binding.source_frame_id);
+    if (!value) { failFast("native physics Frame has no accepted initial state"); }
+    if (!Array.isArray(binding.geometry_ids) || binding.geometry_ids.length !== value.geometry.length || binding.geometry_ids.some(function (id,i) { return id !== value.geometry[i]; })) {
+      failFast("native physics geometry binding differs from executed source");
+    }
+    return value;
+  }
+  function applyAcceptedPhysicsMeshes(meshes) {
+    var accepted = acceptedPhysicsForRender;
+    if (!accepted) { return meshes; }
+    var found = Object.create(null);
+    var updated = meshes.map(function (mesh) {
+      var id = String(mesh.id || "");
+      if (accepted.geometry.indexOf(id) < 0) { return mesh; }
+      if (found[id] || mesh.kind !== "field_mesh" || entityHasAnimatedTracks(mesh)) { failFast("physics geometry requires unique non-temporal authored field_mesh ids"); }
+      found[id] = true;
+      // Current normalizeMeshSpec/buildMeshPayload feeds this matrix to
+      // _modelMatrix. RAW principal q/full basis/COM were converted ONCE native.
+      return Object.assign({}, mesh, { transform: accepted.transform.slice(), physics_accepted_generation: accepted.generation });
+    });
+    if (accepted.geometry.some(function (id) { return !found[id]; })) { failFast("physics geometry group is incomplete"); }
+    return updated;
+  }
+
   var AXIS_TAGGED_KEY = "__vf_axis_tagged__";
 
   function startupDebugMark(frameId, mark) {
@@ -905,7 +936,7 @@
     if (config.plane && typeof config.plane === "object") {
       out.push(Object.assign({ id: "ground_plane", kind: "quad" }, config.plane));
     }
-    return out;
+    return applyAcceptedPhysicsMeshes(out);
   }
 
   function meshHasGrassTexture(mesh) {
@@ -4393,6 +4424,7 @@
     if (chessInteractionConfig() && worldAnimationActive) { return false; }
     if (sceneHasNativeGeometryOrCameraAnimations()) { return false; }
     if (dirtyVersion === visibleLastDirtyVersionValue) { return true; }
+    if (acceptedPhysicsForRender) { return false; } // changed pose requires geometry rebuild
     return sceneHasNativeWorldAnimations();
   }
 
@@ -4402,7 +4434,12 @@
   }
 
   function currentSceneWorldDirtyVersion(seconds) {
-    return (currentChessSceneDirtyVersion() * 1000000000) + currentNativeSceneAnimationDirtyVersion(seconds);
+    var tuple = JSON.stringify([currentChessSceneDirtyVersion(), currentNativeSceneAnimationDirtyVersion(seconds), acceptedPhysicsForRender ? acceptedPhysicsForRender.generation : -1]);
+    if (tuple !== sceneDirtyTuple) {
+      if (!Number.isSafeInteger(sceneDirtyRevision+1)) { failFast("scene dirty generation exhausted"); }
+      sceneDirtyTuple = tuple; sceneDirtyRevision += 1;
+    }
+    return sceneDirtyRevision;
   }
 
   function chessAnimationsPending() {
@@ -9276,6 +9313,7 @@
         if (chessInteractionConfig()) {
           ensureChessRuntimeEventsAttached();
         }
+        acceptedPhysicsForRender = readAcceptedPhysics(); // pin ONE immutable generation for this whole render
         controlState.rendering = true;
         controlState.debugRenderFrameCount = Number(controlState.debugRenderFrameCount || 0) + 1;
         var debugRenderStartMs = global.performance && typeof global.performance.now === "function"
@@ -9551,6 +9589,20 @@
           renderFrame();
         });
       };
+    }
+
+    var physicsDisplayFramePending = false;
+    if (config.physics_binding && typeof global.addEventListener === "function") {
+      global.addEventListener("vf-physics-accepted", function (event) {
+        if (!event.detail || String(event.detail.frame) !== String(config.physics_binding.source_frame_id) || physicsDisplayFramePending) { return; }
+        physicsDisplayFramePending = true;
+        function presentAccepted() {
+          if (controlState.rendering === true) { global.requestAnimationFrame(presentAccepted); return; }
+          physicsDisplayFramePending = false;
+          renderFrame(); // display only: NEVER advances Physics
+        }
+        global.requestAnimationFrame(presentAccepted);
+      });
     }
 
     function startInitialSceneRender() {

@@ -14338,6 +14338,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     }
     applyRetainedScene3DDefaults(scene);
     if (source.native_plot_text === true) applyExamplePlotTheme(scene);
+    scene = applyAcceptedPhysicsToScene(scene);
     var geom = {};
     geom[frameId] = scene;
     return { geom: geom };
@@ -14656,6 +14657,99 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     retainedFrameScenesV1.set(frameRoot, api);
     return api;
   }
+
+  // Display-only accepted state protocol. The native typed Frame owner is the
+  // ONLY stepper. This channel cannot construct, resume or select a backend.
+  if (!global.VfNativePhysicsAccepted) {
+    global.VfNativePhysicsAccepted = (function () {
+      var bindings = Object.create(null);
+      function vector(value, count, name) {
+        if (!Array.isArray(value) || value.length !== count || value.some(function (v) { return typeof v !== "number" || !Number.isFinite(v); })) {
+          throw new Error("invalid accepted physics " + name);
+        }
+        return Object.freeze(value.slice());
+      }
+      function register(frame, geometry) {
+        frame = String(frame);
+        if (!frame || bindings[frame] || !Array.isArray(geometry) || !geometry.length) { throw new Error("invalid or duplicate physics display binding"); }
+        var seen = Object.create(null);
+        var ids = geometry.map(function (id) {
+          if (typeof id !== "string" || !id || seen[id]) { throw new Error("invalid physics display geometry id"); }
+          seen[id] = true; return id;
+        });
+        bindings[frame] = { geometry: Object.freeze(ids), accepted: null };
+      }
+      function publish(frame, value) {
+        frame = String(frame);
+        var binding = bindings[frame];
+        if (!binding || !value || !Number.isSafeInteger(value.generation) || value.generation < 0 || typeof value.time_s !== "number" || !Number.isFinite(value.time_s) || value.time_s < 0) {
+          throw new Error("invalid accepted physics display generation");
+        }
+        var state = vector(value.principal, 13, "state");
+        var transform = vector(value.transform, 16, "transform");
+        if (transform[3] !== 0 || transform[7] !== 0 || transform[11] !== 0 || transform[15] !== 1) { throw new Error("accepted physics transform must be affine"); }
+        var norm = state[3]*state[3] + state[4]*state[4] + state[5]*state[5] + state[6]*state[6];
+        if (Math.abs(norm-1) > 1e-10) { throw new Error("invalid accepted physics orientation"); }
+        var previous = binding.accepted;
+        if (previous && value.generation === previous.generation) {
+          if (value.time_s !== previous.time_s || state.some(function (v,i) { return v !== previous.principal[i]; }) || transform.some(function (v,i) { return v !== previous.transform[i]; })) {
+            throw new Error("accepted physics generation changed its state");
+          }
+          return previous;
+        }
+        if ((!previous && (value.generation !== 0 || value.time_s !== 0)) || (previous && (value.generation !== previous.generation+1 || value.time_s <= previous.time_s))) {
+          throw new Error("accepted physics display generations must be contiguous");
+        }
+        var accepted = Object.freeze({ generation: value.generation, time_s: value.time_s, principal: state, transform: transform, geometry: binding.geometry });
+        binding.accepted = accepted; // ONE atomic JS publication after all checks/copies
+        if (typeof global.dispatchEvent === "function" && typeof global.CustomEvent === "function") {
+          global.dispatchEvent(new global.CustomEvent("vf-physics-accepted", { detail: { frame: frame, generation: accepted.generation } }));
+        }
+        return accepted;
+      }
+      return Object.freeze({ register: register, publish: publish, read: function (frame) { var value=bindings[String(frame)]; return value ? value.accepted : null; }, close: function (frame) { delete bindings[String(frame)]; } });
+    }());
+  }
+  function applyAcceptedPhysicsToScene(scene) {
+    var binding=scene && scene.physics_binding;
+    if (!binding) { return scene; }
+    var accepted=global.VfNativePhysicsAccepted.read(binding.source_frame_id);
+    if (!accepted) { throw new Error("native physics Frame lacks an accepted initial state"); }
+    if (!Array.isArray(binding.geometry_ids) || binding.geometry_ids.length!==accepted.geometry.length || binding.geometry_ids.some(function(id,i){return id!==accepted.geometry[i];})) {
+      throw new Error("physics display binding differs from executed source");
+    }
+    if (scene.physics_accepted_generation===accepted.generation) { return scene; }
+    var found=Object.create(null);
+    var meshes=(scene.meshes||[]).map(function(mesh){
+      var id=String(mesh.id||"");
+      if(accepted.geometry.indexOf(id)<0)return mesh;
+      if(found[id] || mesh._layer_time)throw new Error("physics requires unique non-temporal geometry ids");
+      found[id]=true;
+      return Object.assign({},mesh,{_modelMatrix:accepted.transform.slice(),transform:accepted.transform.slice(),
+        __dataRevision:Number(mesh.__dataRevision||0)+1,__revision:Number(mesh.__revision||0)+1,
+        physics_accepted_generation:accepted.generation});
+    });
+    if(accepted.geometry.some(function(id){return !found[id];}))throw new Error("physics display geometry group is incomplete");
+    return Object.assign({},scene,{meshes:meshes,physics_accepted_generation:accepted.generation,
+      physics_accepted_time_s:accepted.time_s,__revision:Number(scene.__revision||0)+1});
+  }
+  if(typeof global.addEventListener === "function") global.addEventListener("vf-physics-accepted",function(event){
+    var source=event.detail && String(event.detail.frame);
+    var frames=_lastDisplayPayload && _lastDisplayPayload.geom;
+    if(!source || !frames)return;
+    var next=Object.assign({},frames);
+    var changed=[];
+    Object.keys(frames).forEach(function(fid){
+      var scene=frames[fid];
+      if(scene && scene.physics_binding && String(scene.physics_binding.source_frame_id)===source){
+        next[fid]=applyAcceptedPhysicsToScene(scene);changed.push(fid);
+      }
+    });
+    // Validate/copy ALL dependent geometry before changing the accepted payload.
+    if(!changed.length)return;
+    _lastDisplayPayload=Object.assign({},_lastDisplayPayload,{geom:next});
+    changed.forEach(function(fid){updateGeomFrame(fid,next[fid]);});
+  });
 
   function renderRetainedSceneArena(packet, options) {
     var display = materializeRetainedSceneArena(packet);

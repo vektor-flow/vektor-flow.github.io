@@ -5660,6 +5660,7 @@
 
   function captureFrameViewSnapshot(geom) {
     var snapshot = { camera: null, axis3d: {}, axes: [] };
+    if (geom && Number.isSafeInteger(geom.physics_accepted_generation)) { snapshot.physicsGeneration = geom.physics_accepted_generation; }
     if (geom && geom.camera) {
       snapshot.camera = JSON.parse(JSON.stringify(geom.camera));
       delete snapshot.camera.__vf_live_mutated;
@@ -5794,7 +5795,11 @@
         if (presented.serial < serial) { return; }
         cancel();
         // A superseded pose has no success callback.
-        if (JSON.stringify(presented.snapshot) === signature) { options.afterPresented(cloneFrameView(presented)); }
+        if (JSON.stringify(presented.snapshot) === signature ||
+            (Number.isSafeInteger(options.physicsGeneration) && options.physicsGeneration >= 0 &&
+             presented.snapshot.physicsGeneration === options.physicsGeneration)) {
+          options.afterPresented(cloneFrameView(presented));
+        }
       });
       if (options.signal) { options.signal.addEventListener("abort", cancel, { once: true }); }
     }
@@ -14669,7 +14674,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         }
         return Object.freeze(value.slice());
       }
-      function register(frame, geometry) {
+      function register(frame, geometry, initial) {
         frame = String(frame);
         if (!frame || bindings[frame] || !Array.isArray(geometry) || !geometry.length) { throw new Error("invalid or duplicate physics display binding"); }
         var seen = Object.create(null);
@@ -14677,7 +14682,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           if (typeof id !== "string" || !id || seen[id]) { throw new Error("invalid physics display geometry id"); }
           seen[id] = true; return id;
         });
-        bindings[frame] = { geometry: Object.freeze(ids), accepted: null };
+        var baseline = initial || { generation: 0, time_s: 0 };
+        if (!Number.isSafeInteger(baseline.generation) || baseline.generation < 0 || typeof baseline.time_s !== "number" || !Number.isFinite(baseline.time_s) || baseline.time_s < 0) {
+          throw new Error("invalid native accepted physics baseline");
+        }
+        var expected = { generation: baseline.generation, time_s: baseline.time_s };
+        if (initial) { expected.principal = vector(initial.principal, 13, "baseline state"); expected.transform = vector(initial.transform, 16, "baseline transform"); }
+        bindings[frame] = { geometry: Object.freeze(ids), initial: Object.freeze(expected), accepted: null };
       }
       function publish(frame, value) {
         frame = String(frame);
@@ -14697,7 +14708,10 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           }
           return previous;
         }
-        if ((!previous && (value.generation !== 0 || value.time_s !== 0)) || (previous && (value.generation !== previous.generation+1 || value.time_s <= previous.time_s))) {
+        if ((!previous && (value.generation !== binding.initial.generation || value.time_s !== binding.initial.time_s ||
+            (binding.initial.principal && state.some(function(v,i){return v!==binding.initial.principal[i];})) ||
+            (binding.initial.transform && transform.some(function(v,i){return v!==binding.initial.transform[i];})))) ||
+            (previous && (value.generation !== previous.generation+1 || value.time_s <= previous.time_s))) {
           throw new Error("accepted physics display generations must be contiguous");
         }
         var accepted = Object.freeze({ generation: value.generation, time_s: value.time_s, principal: state, transform: transform, geometry: binding.geometry });

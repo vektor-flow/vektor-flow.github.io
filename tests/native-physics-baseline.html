@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Accepted native Physics baseline control</title>
+<script src="../public/preview/0.7.5/vf-ui/vf-runtime-shell.js?v=native-physics-baseline-v1"></script></head>
+<body data-vf-runtime-autoboot="false"><pre id="result">UNRUN</pre><script>
+// Display-protocol data control only. This cannot create a PhysicsSession, step
+// a backend, or establish normal source/nativeSCENE/frame performance evidence.
+(async()=>{
+  const require=(ok,message)=>{if(!ok)throw Error(message)};
+  const refuses=(action,message)=>{let refused=false;try{action()}catch(_){refused=true}require(refused,message)};
+  const state=(generation,time_s)=>({generation,time_s,
+    principal:[0,0,1,0,0,0,1,0,0,0,0,0,0],
+    transform:[1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1]});
+  try {
+    await VfRuntimeShell.ensureSceneDependencies();
+    const protocol=window.VfNativePhysicsAccepted;
+    require(protocol,"matched accepted native Physics display protocol absent");
+    const initial=state(7,.125);
+    protocol.register("baseline",["die","die-pips"],initial);
+    // Registration takes an owned copy of the actual baseline.
+    initial.principal[0]=99;
+    refuses(()=>protocol.publish("baseline",initial),"mutated baseline was accepted");
+    refuses(()=>protocol.publish("baseline",state(0,0)),"advanced resource was reset to initial zero");
+    const first=protocol.publish("baseline",state(7,.125));
+    require(first.generation===7 && first.time_s===.125,"actual baseline generation/time changed");
+    require(protocol.publish("baseline",state(7,.125))===first,"same accepted generation forked state");
+    refuses(()=>protocol.publish("baseline",state(9,.15)),"generation gap was accepted");
+    refuses(()=>protocol.publish("baseline",state(8,.125)),"unchanged time was accepted");
+    const next=protocol.publish("baseline",state(8,.14));
+    require(next.generation===8 && protocol.read("baseline")===next,"contiguous accepted update missing");
+    const changed=state(8,.14);changed.transform[12]=.5;
+    refuses(()=>protocol.publish("baseline",changed),"same generation changed transform");
+    protocol.register("legacy",["body"]);
+    refuses(()=>protocol.publish("legacy",state(7,.125)),"legacy zero-baseline contract changed");
+    require(protocol.publish("legacy",state(0,0)).generation===0,"legacy initial baseline rejected");
+    protocol.close("baseline");protocol.close("legacy");
+    document.getElementById("result").textContent="PASS: actual-baseline display protocol control only; no native resource/scene/performance qualification";
+  } catch(error){document.getElementById("result").textContent="FAIL: "+(error.stack||error);throw error;}
+})();
+</script></body></html>

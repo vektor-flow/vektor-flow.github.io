@@ -1,0 +1,33 @@
+# Renderer-only adapter exports; the state/field/unfolding algorithms are VKF's.
+contour_field(vertices:[num],rings:[int],size:int)->[num]:b.polygon_field(vertices,rings,size)
+Surface:(plan:GeometryPlan,values:[num],scale:num,neck:num)
+prepare_surface(plan:GeometryPlan,coordinate:num,scale:num)->Surface:presentation.prepare_surface(plan,coordinate,scale)
+surface_row(surface:Surface,size:int,row:int,lo:[num],hi:[num],extent:num,color:[num])->[num]:presentation.surface_row(surface,size,row,lo,hi,extent,color)
+
+# One presentation clock, independent of linear/cubic state selection.
+time_coordinate(q:num)->num:
+    (q>=0 /\ q<=1)?! "presentation coordinate outside 0–1"
+    q<0.5? @:2*q*q
+    @:1-2*(1-q)*(1-q)
+
+unfold_alpha(distance:num,k:num)->num:unfold.alpha(distance,k)
+unfold_growth(a:num,coefficient:num)->num:unfold.growth(a,coefficient)
+unfold_coefficient(overshoot:num)->num:unfold.back_coefficient(overshoot)
+unfold_color(a:num,channel:int)->num:unfold.color_channel(a,channel)
+unfold_reading(offset:num,line:int,local:num,k:num)->num:unfold.reading_coordinate(offset,line,local,k)
+# Palette mapping of the existing spectral finish to the authored ink color.
+unfold_ink_color(a:num,channel:int,finish:num)->num:
+    value:unfold.color_channel(a,channel)
+    a<=0.8? @:value
+    @:value+(finish-1)*unfold.color_channel(a,1)
+# One prepared field and one contour packet per cohort/frame. The existing
+# prepared-axis kernel avoids resampling all state channels for every row.
+contour_mesh(values:[num],size:int,extent:num,color:[num])->[num]:presentation.triangles(values,size,extent,color)
+# Existing dispatch control layout, supplied by VKF rather than host arithmetic.
+gpu_controls(plan:GeometryPlan,coordinate:num,desired:num,resolution:int,lattice:int,extent:num,offset_x:num,offset_y:num)->[num]:
+    i:s.interval(plan.curve.knots,coordinate)
+    h:plan.curve.knots.(i+1)-plan.curve.knots.(i)
+    u:(coordinate-plan.curve.knots.(i))/h
+    neck:plan.join*16*u*u*(1-u)*(1-u)
+    spacing:2/num(resolution)
+    @:[num(plan.dimension),num(plan.size),num(plan.stride),num(plan.carriers),num(resolution),-1,-1,0,1,1,0,1,neck,spacing,spacing*spacing,desired,0.0001,0.125,4,0,extent,num(i),u,h,num(plan.curve.count),num(plan.curve.width),0,0,0,1,0,0,0,num(lattice),offset_x,offset_y]

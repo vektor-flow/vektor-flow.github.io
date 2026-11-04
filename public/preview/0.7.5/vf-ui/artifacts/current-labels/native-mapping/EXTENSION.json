@@ -1,73 +1,20 @@
 {
-  "status": "EXACT_USED_GLYPH_RESOURCES_GENERATED_NOT_RENDER_QUALIFIED",
-  "usedKeys": [
-    "script/+",
-    "script/1",
-    "script/2",
-    "script/3",
-    "script/\\pi",
-    "script/a",
-    "script/b",
-    "script/i",
-    "script/n",
-    "text/+",
-    "text/0",
-    "text/=",
-    "text/\\alpha",
-    "text/a",
-    "text/e",
-    "text/x"
-  ],
+  "status": "EXACT_NATIVE_QUERY_TO_AUTHENTIC_TYPE1_OUTLINE_JOIN",
   "addedKeys": [
-    "script/3",
-    "script/\\pi",
-    "script/a",
-    "script/b",
-    "script/i",
-    "script/n",
-    "text/0",
-    "text/a"
+    "text/\\bullet"
   ],
-  "originalKeys": 53,
-  "newKeys": 61,
   "fontClosureUnchanged": true,
-  "actualBoxes": [
-    {
-      "path": "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/required-layout-0.json",
-      "bytes": 9610,
-      "sha256": "6d9cbe036372bca79f6e02648a73b44a510aa4c7c4e7779cdd0f62ee969540d1"
-    },
-    {
-      "path": "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/required-layout-1.json",
-      "bytes": 2221,
-      "sha256": "455f661d3e379a4e6a65be6a4f98612a341f59d16afbcfc6f845a85c0f5f6471"
-    },
-    {
-      "path": "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/required-layout-2.json",
-      "bytes": 2803,
-      "sha256": "5806a677154d048c63d5eea079a389dfa75c6aebb17ce9bfda8c1a53cf7e9ad2"
-    },
-    {
-      "path": "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/required-layout-3.json",
-      "bytes": 9610,
-      "sha256": "89010a4c689784726217ff67f055fe31eff406bc6c69ae397eff599299e620bb"
-    }
-  ],
-  "command": [
-    "/usr/bin/python3",
-    "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/site/scripts/produce-native-font-resources.py",
-    "--clock",
-    "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/mapping-clock.json",
-    "--lock-path",
-    "/home/viktor/Projects/Vektor Flow/.worktrees/gpu-math-20261014-libraries/integration/0.7.4/hello-world-continuation-446/native-heavy.lock",
-    "--native-pin",
-    "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/site/public/preview/0.7.5/vf-ui/native-labels/current-mapping-complete/requirements-pin.json",
-    "--catalogue-pin",
-    "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/site/public/preview/0.7.5/vf-ui/native-labels/current-mapping-complete/catalog-pin.json",
-    "--output",
-    "/mnt/development/VektorFlow-e1796-math-ui-fix-20261101/site/public/preview/0.7.5/vf-ui/native-labels/current-mapping-complete/physical",
-    "--inherited-lock-fd",
-    "9"
-  ],
-  "finishedMonotonic": 396623.752571824
+  "nativeResults": {
+    "bytes": 137260,
+    "sha256": "596cda14c1c7a82f7074b7aa277f1067886a759154c608e83589e286f48ba53e"
+  },
+  "catalogue": {
+    "bytes": 16871821,
+    "sha256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4"
+  },
+  "generator": {
+    "bytes": 8364,
+    "sha256": "59cef6dfc0ec809097e6aeb0e28efadb82f797539ae1b8a83685aefd233714c0"
+  },
+  "nativeExecution": false
 }

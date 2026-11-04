@@ -41,6 +41,7 @@ function ownRetainedScenePackets(packets) {
 }
 
 export function mountRetainedSceneResult(container, packets, {
+  axisVisible,
   document = globalThis.document,
   VfFrame = globalThis.VfFrame,
   VfDisplay = globalThis.VfDisplay,
@@ -191,7 +192,7 @@ export function mountRetainedSceneResult(container, packets, {
       animationElapsed = 0;
       animationLast = null;
       for (const packet of ownedPackets) updateRetainedSceneTime(packet, 0);
-      for (const packet of ownedPackets) VfDisplay.renderRetainedSceneArena(packet);
+      for (const packet of ownedPackets) VfDisplay.renderRetainedSceneArena(packet,{axisVisible});
     } else return;
     publishAnimationState();
   };
@@ -248,7 +249,7 @@ export function mountRetainedSceneResult(container, packets, {
     animationLast = timestamp;
     for (const packet of ownedPackets) {
       updateRetainedSceneTime(packet, animationElapsed);
-      VfDisplay.renderRetainedSceneArena(packet);
+      VfDisplay.renderRetainedSceneArena(packet,{axisVisible});
     }
     presentFrame = requestAnimationFrame(animate);
   };
@@ -258,6 +259,7 @@ export function mountRetainedSceneResult(container, packets, {
     layer.dataset.vfRenderState = "presenting";
     for (const packet of ownedPackets) {
       VfDisplay.renderRetainedSceneArena(packet, {
+        axisVisible,
         signal: presentationAbort.signal,
         afterPresented: record => firstPresented(packet.metadata.scene.frame, record),
       });

@@ -47,7 +47,7 @@ export function snapshotOutline(input){
  const p=input.provenance;
  need(typeof p?.engineIdentity==='string'&&p.engineIdentity.length>0&&typeof p.resourceIdentity==='string'&&p.resourceIdentity.length>0&&typeof p.source==='string','NATIVE_ACCURACY_PROVENANCE');
  need((input.clips===undefined||(Array.isArray(input.clips)&&input.clips.length===0))&&(input.fillRule===undefined||input.fillRule==='nonzero'),'NATIVE_ACCURACY_CLIP_OR_FILL_PROFILE');
- const color=[...(input.color??[0,0,0,1])];need(['[0,0,0,1]','[1,0,0,0.5]'].includes(JSON.stringify(color)),'NATIVE_ACCURACY_COLOR_PROFILE');
+ const color=[...(input.color??[0,0,0,1])];need(color.length===4&&color.every(v=>Number.isFinite(v)&&v>=0&&v<=1),'NATIVE_ACCURACY_COLOR_PROFILE');
  need(Array.isArray(input.matrix)&&input.matrix.length===6&&input.matrix.every(Number.isFinite),'OUTLINE_CACHE_MATRIX');
  const provenance=copy(p),physical=copy(input.physicalIdentity??null);
  const shapeKey=exactKey([physicalCommands.key,p.engineIdentity,p.resourceIdentity,p.fontProgramSha256??null,p.fontMetricsSha256??null,p.fontRevision??null,physical]);

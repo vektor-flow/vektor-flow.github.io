@@ -77,7 +77,7 @@ async function instantiate(source, imports = {}) {
   return result instanceof WebAssembly.Instance ? result : result.instance;
 }
 
-export function createSymbolicKernel({ instance, manifest }) {
+export function createSymbolicKernel({ instance, manifest, diagnostics = false }) {
   if (!(instance instanceof WebAssembly.Instance)) {
     throw new TypeError("VKF symbolic kernel requires a WebAssembly.Instance");
   }
@@ -92,7 +92,7 @@ export function createSymbolicKernel({ instance, manifest }) {
   const allocate = requireFunction(exportsObject, "vkf_vm_alloc");
   const heapPointer = requireFunction(exportsObject, "vkf_vm_heap_ptr");
   const rewind = requireFunction(exportsObject, "vkf_vm_rewind");
-  const invokeWasm = requireFunction(exportsObject, "vkf_vm_invoke");
+  const invokeWasm = requireFunction(exportsObject, diagnostics ? metadata.runtimeDiagnostic.invokeExport : "vkf_vm_invoke");
   const slotSize = requireFunction(exportsObject, "vkf_vm_value_slot_size")();
   if (slotSize !== SLOT_SIZE && slotSize !== 24) {
     throw new RangeError(`unsupported VKF value slot size ${slotSize}`);
@@ -282,6 +282,11 @@ export function createSymbolicKernel({ instance, manifest }) {
     args.forEach((value, index) => writeValue(base + index * slotSize, value));
     const status = invokeWasm(signature.index, args.length);
     if (status !== 0) {
+      if(diagnostics && status===metadata.runtimeDiagnostic.errorStatus){
+        const descriptor=metadata.runtimeDiagnostic, control=exportsObject[descriptor.controlExport]?.value;
+        const pointer=dataView().getUint32(control+descriptor.valueOffset,true), error=decodeValue(pointer);
+        throw new Error(typeof error==='string'?error:error.message??JSON.stringify(error));
+      }
       throw new Error(`VKF invocation "${name}" failed with status ${status}`);
     }
     return resultPointer();

@@ -1,5 +1,5 @@
 import {createAdaptiveNativeLabelBatches} from './vf-adaptive-native-labels.mjs';
-import {createSharedAreaRenderer} from './vf-shared-area-renderer.mjs';
+import {createTiledNativeLabelRenderer} from './vf-native-tiled-label-renderer.mjs';
 import {loadCurrentNativeTypography} from './vf-current-native-provider.mjs';
 
 const need = (ok, message) => { if (!ok) throw new Error(message); };
@@ -15,7 +15,7 @@ const compose = (a,b) => [a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],
  * A different engine/resource context requires a new installation/bundle.
  */
 export async function installCurrentNativeLabelEngine({VfDisplay=globalThis.VfDisplay,
-  bundle,typeset,fetch:fetcher=globalThis.fetch,renderingPolicy='required',rendererFactory=createSharedAreaRenderer}={}) {
+  bundle,typeset,fetch:fetcher=globalThis.fetch,renderingPolicy='required',rendererFactory=createTiledNativeLabelRenderer}={}) {
   need(typeof typeset==='function','NATIVE_LABEL_LIVE_ENGINE_REQUIRED');
   const typography=await loadCurrentNativeTypography({files:bundle?.files,identity:bundle?.identity,fetch:fetcher,typeset});
   let uninstall;
@@ -33,7 +33,7 @@ export async function installCurrentNativeLabelEngine({VfDisplay=globalThis.VfDi
  * observed explicitly as an UNQUALIFIED candidate; it inherits no PASS.
  */
 export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, typography,
-  renderingPolicy = 'required', rendererFactory = createSharedAreaRenderer} = {}) {
+  renderingPolicy = 'required', rendererFactory = createTiledNativeLabelRenderer} = {}) {
   need(typeof VfDisplay?.setNativeLabelRendererFactory === 'function' && typography?.prepare, 'NATIVE_LABEL_DISPLAY_BRIDGE');
   need(['required', 'adaptive-candidate'].includes(renderingPolicy), 'NATIVE_LABEL_RENDERING_POLICY');
   const factory = ({container}) => {
@@ -43,27 +43,30 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
     container.appendChild(canvas);
     const renderer = rendererFactory(canvas, {pixelRatio: () => globalThis.devicePixelRatio || 1,
       nativeAccuracy: renderingPolicy === 'required' ? 'required' : 'diagnostic-uncertified', samplesPerAxis: 4});
+    let inputSerial = 0, acceptedState = null;
     let closed = false, scene = null, census = null, signature = null, width = 0, height = 0, tail = Promise.resolve();
     let state = {status: 'PENDING', renderingPolicy, releaseQualified: false};
     let viewCamera = [1,0,0,1,0,0], frameTransform = [1,0,0,1,0,0];
-    const initialized = Promise.resolve().then(() => renderer.initialize());
+    const initialized = Promise.resolve().then(() => closed ? null : renderer.initialize());
     initialized.catch(() => {});
     function update({specs, camera, width: w, height: h}) {
-      const inputAt = performance.now();
+      const inputAt = performance.now(), serial = ++inputSerial;
       need(!closed, 'NATIVE_LABEL_LAYER_CLOSED');
       need(Array.isArray(camera) && camera.length === 6 && camera.every(Number.isFinite), 'NATIVE_LABEL_AFFINE_CAMERA');
       need(Array.isArray(specs) && specs.length <= 10000, 'NATIVE_LABEL_SPECS');
       // Snapshot at input time, including edits made in-place by the app.
       // Only actual camera changes can reuse a layout/instance population.
       const key = JSON.stringify(specs), snapshot = JSON.parse(key), nextCamera = [...camera];
-      state = {...state, status: 'PENDING', inputAt};
+      if(!scene||key!==signature||width!==w||height!==h||!nextCamera.every((v,i)=>v===viewCamera[i]))state = {...state, status: 'PENDING', inputAt};
       const job = tail.then(async () => {
         await initialized; if (closed) return {status: 'DISPOSED'};
+        if(serial!==inputSerial)return {status:'SUPERSEDED'};
+        if(scene&&key===signature&&width===w&&height===h&&nextCamera.every((v,i)=>v===viewCamera[i]))return state=acceptedState;
         let next = scene;
         if (key !== signature) {
           next = await createAdaptiveNativeLabelBatches({typography, specs: snapshot,
             coordinates: {worldToScreen: ([x, y]) => [nextCamera[0]*x + nextCamera[2]*y + nextCamera[4], nextCamera[1]*x + nextCamera[3]*y + nextCamera[5]]}});
-          if (closed) { next.close(); return {status: 'DISPOSED'}; }
+          if (closed || serial!==inputSerial) { next.close(); return {status: closed?'DISPOSED':'SUPERSEDED'}; }
         }
         try {
           if (width !== w || height !== h) { renderer.resize(w, h); width = w; height = h; }
@@ -75,7 +78,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
         state = {status: 'SUBMITTED_COMPLETION_UNMEASURED', renderingPolicy, releaseQualified: false,
           inputAt, cpuThroughSubmitMs: performance.now() - inputAt, census: {...census, last: scene.statistics()}, renderer: renderer.nativeStatistics(),
           engineIdentity: typography.engineIdentity, resourceIdentity: typography.resourceIdentity};
-        canvas.dataset.vfNativeLabelState = state.status;
+        acceptedState = state; canvas.dataset.vfNativeLabelState = state.status;
         return state;
       });
       tail = job.catch(error => {
@@ -101,7 +104,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
         state = {status:'SUBMITTED_COMPLETION_UNMEASURED', renderingPolicy, releaseQualified:false,
           inputAt, cpuThroughSubmitMs:performance.now()-inputAt, census:{...census,last:scene.statistics()},
           renderer:renderer.nativeStatistics(),engineIdentity:typography.engineIdentity,resourceIdentity:typography.resourceIdentity};
-        canvas.dataset.vfNativeLabelState = state.status;
+        acceptedState = state; canvas.dataset.vfNativeLabelState = state.status;
         canvas.style.visibility = '';
         return state;
       });
@@ -120,7 +123,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
           inputAt,cpuThroughSubmitMs:performance.now()-inputAt,census:{...census,last:scene.statistics()},
           renderer:renderer.nativeStatistics(),engineIdentity:typography.engineIdentity,resourceIdentity:typography.resourceIdentity,
           frameTransform:[...frameTransform],viewCamera:[...viewCamera]};
-        canvas.dataset.vfNativeLabelState = state.status; canvas.style.visibility = ''; return state;
+        acceptedState = state; canvas.dataset.vfNativeLabelState = state.status; canvas.style.visibility = ''; return state;
       });
       tail = job.catch(error => {
         state = {status:'FAILED',renderingPolicy,releaseQualified:false,error:String(error.stack || error)};
@@ -141,7 +144,7 @@ export function installCurrentNativeLabels({VfDisplay = globalThis.VfDisplay, ty
       const next = [...color];
       return residentCommand('opaque-color', () => renderer.setNativeColor(next));
     }
-    return {update, updateView, updateAnimation, updateColor, statistics: () => state, canvas, renderer,
+    return {update, updateView, updateAnimation, updateColor, sourceOutlines:()=>scene?scene.nativeSourceOutlines(viewCamera):[], statistics: () => state, canvas, renderer,
       destroy() {
         if (closed) return tail; closed = true;
         renderer.destroy(); scene?.close(); scene = null; canvas.remove();

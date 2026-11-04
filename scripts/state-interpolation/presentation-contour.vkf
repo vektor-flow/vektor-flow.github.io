@@ -1,0 +1,11 @@
+# Rendering-only embedding of the existing current VKF field contour packet.
+g:.morphing.dispatch
+kernel(index:int,params:[num],values:[num])->[num]:
+    packet:g.triangle_packet(index,params,values)
+    i:0
+    i<12?>
+        packet.(i*6):packet.(i*6)+params.(34)
+        packet.(i*6+1):packet.(i*6+1)+params.(35)
+        .i:i+1
+    @:packet
+::kernel(0,[2,3,13,1,3,-1,-1,0,1,1,0,1,0,1,1,1,0.0001,0.125,4,1,2,0,0,1,2,13,0,0,0,1,1,0,1,3,0,0],[-1,-1,-1,-1,1,-1,-1,-1,-1])

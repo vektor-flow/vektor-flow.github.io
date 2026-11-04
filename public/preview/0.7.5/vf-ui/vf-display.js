@@ -9434,8 +9434,11 @@
     if (!sz || !sz.w || !sz.h) { return false; }
     var ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) { return false; }
-    var w = canvas.width || sz.w;
-    var h = canvas.height || sz.h;
+    var w = sz.w, h = sz.h;
+    var dpr = Math.max(1, Number(global.devicePixelRatio) || 1);
+    if(canvas.width!==Math.round(w*dpr)) canvas.width=Math.round(w*dpr);
+    if(canvas.height!==Math.round(h*dpr)) canvas.height=Math.round(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
     var toolbarInset = toolbarBottomInsetPx(body);
     for (var meshIndex = 0; meshIndex < meshes.length; meshIndex += 1) {
       var meshCfg = meshes[meshIndex] && meshes[meshIndex].axis_ticks;
@@ -9856,6 +9859,7 @@
     }
 
     function drawAxisBoxFrame(mesh) {
+      if (mesh.axis_ticks && mesh.axis_ticks.enabled === false) { return true; }
       if (mesh.axis_box !== true) { return false; }
       var box = axisBoxRect(mesh, w, h);
       ctx.moveTo(box.left, box.bottom);
@@ -9867,6 +9871,7 @@
     }
 
     function drawAxisPolarFrame(mesh) {
+      if (mesh.axis_ticks && mesh.axis_ticks.enabled === false) { return true; }
       if (mesh.axis_polar !== true) { return false; }
       var metrics = axisPolarMetrics(mesh);
       if (!metrics) { return false; }
@@ -9901,6 +9906,7 @@
     }
 
     function drawAxisFullFrameLines(mesh) {
+      if (mesh.axis_ticks && mesh.axis_ticks.enabled === false) { return true; }
       var cfg = mesh.axis_ticks || null;
       var view = cfg ? axisViewport(mesh, cfg, w, h) : null;
       if (!view) { return false; }
@@ -11752,7 +11758,7 @@
 
   async function waitForNativeLabelFrame(fid, options) {
     options=options||{};fid=String(fid);
-    var deadline=performance.now()+Math.min(15000,Math.max(1,Number(options.timeoutMs)||15000));
+    var deadline=performance.now()+Math.min(60000,Math.max(1,Number(options.timeoutMs)||60000));
     var owner=frameRecs[fid];
     if(!owner)throw new Error("native text frame is unavailable");
     function current(){
@@ -11800,6 +11806,19 @@
     rec.nativeLabelReady = rec.nativeLabelLayer.updateAnimation(transform);
     rec.nativeLabelReady.catch(function(error) {vlog("error","native label animation ["+fid+"]: "+String(error.stack || error));});
     return rec.nativeLabelReady;
+  }
+
+  function nativeLabelFrameSources(fid) {
+    var rec = frameRecs[String(fid)];
+    return rec && rec.nativeLabelLayer ? structuredClone(rec.nativeLabelLayer.sourceOutlines()) : [];
+  }
+  function presentStateFrameScene(fid, scene, options) {
+    fid=String(fid);
+    if(!findFrameEl(geomTargetFrameId(fid)) || !scene || !Array.isArray(scene.meshes)) throw new TypeError("state scene requires an actual mounted Frame");
+    if(!_lastDisplayPayload)_lastDisplayPayload={};
+    if(!_lastDisplayPayload.geom)_lastDisplayPayload.geom={};
+    _lastDisplayPayload.geom[fid]=scene;
+    return requestGeomFramePresentation(fid,options);
   }
 
   function updateNativeLabelFrameColor(fid, color) {
@@ -11858,9 +11877,11 @@
       // Standalone math strings are evaluated by the normal compiler, then
       // passed unchanged to the current VKF math producer. No host typesetter.
       function standaloneMath(t) {return typeof t.text === "string" && (t.z || 0) === 0 && !t.rotate && (!geomSpec.camera || String(geomSpec.camera.projection || "orthographic") === "orthographic");}
-      var nativeTexts = (geomSpec && geomSpec.texts || []).slice();
+      var nativeTexts = (geomSpec && geomSpec.texts || []).slice(), nativeTickKeys = new Set();
       (geomSpec && geomSpec.meshes || []).forEach(function(mesh) {
-        if (mesh && mesh.axis_ticks && mesh.mode3d !== true) nativeTexts.push.apply(nativeTexts,collectAxisTickLabelSpecs(mesh,w,h));
+        if (mesh && mesh.axis_ticks && mesh.mode3d !== true) collectAxisTickLabelSpecs(mesh,w,h).forEach(function(tick) {
+          var key=JSON.stringify(tick); if(!nativeTickKeys.has(key)){nativeTickKeys.add(key);nativeTexts.push(tick);}
+        });
       });
       var mathTexts = nativeTexts.filter(standaloneMath);
       var hasCompiledMath = !geomSpec.native_labels && mathTexts.length > 0;
@@ -12286,6 +12307,16 @@
     frameRecs[fid].latestGeomSpec = geomSpec;
     if (!renderableSpecs.length) {
       renderGeomTextOverlay(fid, frameEl, geomSpec);
+      // Axis-free text-only views have no geometry renderer to signal readiness.
+      // Join the real native text job and a composite turn instead of hanging
+      // the ordinary Frame's presentation fence on an invisible marker.
+      var labelRec=frameRecs[fid];
+      Promise.resolve(labelRec.nativeLabelReady).then(function(){
+        return new Promise(function(resolve){global.requestAnimationFrame(resolve);});
+      }).then(function(){
+        if(frameRecs[fid]===labelRec && _lastDisplayPayload.geom[fid]===geomSpec)
+          publishFrameView(fid,labelRec,frameView,"native-label-command-completed",[]);
+      }).catch(function(error){vlog("error","native text-only frame ["+fid+"]: "+String(error.message||error));});
       return;
     }
     if ((!(global.navigator && global.navigator.gpu) ||
@@ -14298,6 +14329,12 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
 
   function renderRetainedSceneArena(packet, options) {
     var display = materializeRetainedSceneArena(packet);
+    if (options && options.axisVisible !== undefined) {
+      if (typeof options.axisVisible !== "boolean") throw new TypeError("axisVisible requires bit");
+      Object.values(display.geom).forEach(function(scene) {
+        (scene.meshes || []).forEach(function(mesh) {if(mesh.axis_ticks) mesh.axis_ticks = {...mesh.axis_ticks, enabled:options.axisVisible};});
+      });
+    }
     var frames = Object.assign({}, _lastDisplayPayload && _lastDisplayPayload.geom || {});
     Object.keys(frames).forEach(function (fid) { if (!findFrameEl(geomTargetFrameId(fid))) { delete frames[fid]; } });
     Object.assign(frames, display.geom);
@@ -14864,6 +14901,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
   installGlobalWheelBridge();
   installGlobalDragBridge();
   global.VfDisplay = {
+    nativeLabelFrameSources: nativeLabelFrameSources,
+    presentStateFrameScene: presentStateFrameScene,
+    materializeRetainedSceneArena: materializeRetainedSceneArena,
     setNativeLabelRendererFactory: setNativeLabelRendererFactory,
     joinNativeLabelCleanup: joinNativeLabelCleanup,
     nativeLabelFrameStatus: nativeLabelFrameStatus,

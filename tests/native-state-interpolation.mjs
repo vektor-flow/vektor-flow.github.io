@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {loadNativeStateKernel,prepareNativeLabelTransition} from '../public/preview/0.7.5/vf-ui/native-labels/vf-state-interpolation.mjs';
+const {kernel,provenance}=await loadNativeStateKernel({fetch:async url=>new Response(await readFile(url))});
+assert.equal(provenance.libraryCommit,'b1c40844b4cb118bcb18e0cdc8b74370df7562fa');
+const common={matrix:[1,0,0,1,20,30],color:[0,0,0,1],provenance:{engineIdentity:'native-vector-test',resourceIdentity:'native-vector-test',source:'arbitrary outline',elementId:'owner-authored-shape'}};
+const from={...common,commands:[['M',0,0],['L',20,0],['L',0,20],['Z']]};
+const to={...common,matrix:[1,0,0,1,70,30],commands:[['M',0,0],['L',20,0],['L',20,20],['L',0,20],['Z']]};
+const exact=prepareNativeLabelTransition({from:[from],to:[{...from,matrix:to.matrix}],kernel,provenance,computeBackend:'native-reference'});
+assert.deepEqual(exact.sample(.5)[0].matrix,[1,0,0,1,45,30]);
+const state=prepareNativeLabelTransition({from:[from],to:[to],kernel,provenance,computeBackend:'native-reference'});
+assert.deepEqual(state.sample(0),[from]);assert.deepEqual(state.sample(1),[to]);
+const middle=state.sample(.5);assert.equal(middle.length,1);assert(middle[0].fieldVertices.length>18);assert(middle[0].provenance.nativeStateMeasure>0);
+assert.equal(middle[0].physicalIdentity.kind,'native-state-field');
+assert.throws(()=>state.sample(-1),/COORDINATE/);
+console.log(JSON.stringify({passed:true,cohorts:state.cohorts,middleContourVertices:middle[0].fieldVertices.length/6,measure:middle[0].provenance.nativeStateMeasure,source:provenance.libraryCommit}));

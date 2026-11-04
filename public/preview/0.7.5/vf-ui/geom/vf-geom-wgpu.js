@@ -664,6 +664,9 @@
     }
     if (!renderer || !renderer._device || !renderer._device.queue || typeof renderer._device.queue.onSubmittedWorkDone !== "function") {
       renderer._runtimeError = "submitted frame has no GPU completion fence";
+      if (renderer && typeof renderer._onFramePresentationError === "function") {
+        renderer._onFramePresentationError(new Error(renderer._runtimeError));
+      }
       return;
     }
     var scheduler = gpuSchedulerState(renderer);
@@ -678,7 +681,15 @@
     renderer._debugGpuSubmitCount = Number(renderer._debugGpuSubmitCount || 0) + 1;
     renderer._debugGpuPendingStartMs = perfNowMs();
     var queue = renderer._device.queue;
-    queue.onSubmittedWorkDone().then(function () {
+    var completion;
+    try {
+      completion = queue.onSubmittedWorkDone();
+      if (!completion || typeof completion.then !== "function") {
+        throw new Error("GPU completion fence did not return a promise");
+      }
+    }
+    catch (error) { completion = Promise.reject(error); }
+    Promise.resolve(completion).then(function () {
       var schedulerNow = gpuSchedulerState(renderer);
       var pendingMs = perfNowMs() - Number((schedulerNow && schedulerNow.pendingStartMs) || renderer._debugGpuPendingStartMs || perfNowMs());
       var queuedCount = schedulerNow && schedulerNow.order ? schedulerNow.order.length : 0;
@@ -3441,6 +3452,13 @@ fn vs_line_impostor(v: CylinderInstVin) -> LineImpostorVOut {
 @fragment
 fn fs(i: Vout) -> @location(0) vec4f {
   let materialFootprint = max(length(dpdx(i.local_pos)), length(dpdy(i.local_pos))) * max(sc.texture_params.y, sc.texture_params.z);
+  // Derivatives require uniform control flow before the screen-surface early return.
+  let detailPosition = i.local_pos.xy * sc.material_detail.z;
+  let height = sin(detailPosition.x) * sin(detailPosition.y);
+  let dp1 = dpdx(i.world_pos);
+  let dp2 = dpdy(i.world_pos);
+  let dh1 = dpdx(height);
+  let dh2 = dpdy(height);
   if (sc.texture_params.x > 3.5) {
     let packedScreenFlags = max(sc.texture_params.w, 0.0);
     let baseTextureKind = floor(packedScreenFlags / 32.0);
@@ -3458,13 +3476,7 @@ fn fs(i: Vout) -> @location(0) vec4f {
   if (sc.texture_params.x > 3.1 && sc.texture_params.x < 3.4) {
     materialNormal = grassPerturbedNormal(i.local_pos, i.normal, max(sc.texture_extra.y, 0.20), max(sc.texture_extra.z, 0.25), 0.42);
   }
-  let detailPosition = i.local_pos.xy * sc.material_detail.z;
-  let height = sin(detailPosition.x) * sin(detailPosition.y);
   let detailStrength = sc.material_detail.y;
-  let dp1 = dpdx(i.world_pos);
-  let dp2 = dpdy(i.world_pos);
-  let dh1 = dpdx(height);
-  let dh2 = dpdy(height);
   let normalBase = normalize(materialNormal);
   let r1 = cross(dp2, normalBase);
   let r2 = cross(normalBase, dp1);
@@ -9568,7 +9580,8 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
             global.__vfGeomRuntimeErrorHandler(msg);
           }
         } catch (_) {}
-        self._running = false;
+        self.stop();
+        if (typeof self._onFramePresentationError === "function") { self._onFramePresentationError(e); }
         return;
       }
       if (self._renderOnDemand === true) { return; }
@@ -9600,6 +9613,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
           } catch (e) {
             self._runtimeError = e && e.message ? String(e.message) : String(e);
             wlog("error", "render error: " + self._runtimeError);
+            if (typeof self._onFramePresentationError === "function") { self._onFramePresentationError(e); }
           }
         });
         return;
@@ -9754,6 +9768,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
   VfGeomWgpu.__vfRuntimeAssetVersion = RUNTIME_ASSET_VERSION;
   global.VfGeomWgpu    = VfGeomWgpu;
   global.VfGeomWgpuUtil = {
+    __test: { markSubmittedGpuWork: markSubmittedGpuWork },
     __vfRuntimeAssetVersion: RUNTIME_ASSET_VERSION,
     parseColor: parseColor,
     LIGHT_MODELS: LIGHT_MODELS,

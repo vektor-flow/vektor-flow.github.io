@@ -5668,6 +5668,7 @@
 
   function captureFrameViewSnapshot(geom) {
     var snapshot = { camera: null, axis3d: {}, axes: [] };
+    if (geom && Number.isSafeInteger(geom.physics_accepted_generation)) { snapshot.physicsGeneration = geom.physics_accepted_generation; }
     if (geom && geom.camera) {
       snapshot.camera = JSON.parse(JSON.stringify(geom.camera));
       delete snapshot.camera.__vf_live_mutated;
@@ -5746,20 +5747,40 @@
     for (var i = 0; i < listeners.length; i += 1) { listeners[i](rec.presentedView); }
   }
 
-  function listenFrameView(rec, callback) {
+  function listenFrameView(rec, callback, onError) {
     if (!rec.viewListeners) { rec.viewListeners = []; }
     rec.viewListeners.push(callback);
+    if (!rec.viewErrorListeners) { rec.viewErrorListeners = []; }
+    if (onError) { rec.viewErrorListeners.push(onError); }
     return function () {
       var i = rec.viewListeners.indexOf(callback);
       if (i >= 0) { rec.viewListeners.splice(i, 1); }
+      var e = rec.viewErrorListeners.indexOf(onError);
+      if (e >= 0) { rec.viewErrorListeners.splice(e, 1); }
     };
+  }
+
+  function failFrameView(rec, error) {
+    var listeners = (rec.viewErrorListeners || []).slice();
+    // Every request detaches before invoking its callback. A failing consumer
+    // cannot leave the other native waits attached forever.
+    var callbackError;
+    for (var i = 0; i < listeners.length; i += 1) {
+      try { listeners[i](error); } catch (failure) { callbackError = callbackError || failure; }
+    }
+    if (callbackError) { throw callbackError; }
   }
 
   function observeFrameViewRenderer(fid, rec, entry) {
     var renderer = entry.renderer;
     var owner = findFrameEl(geomTargetFrameId(fid));
-    renderer._onFramePresentationError = function () {
-      if (rec.viewTransition) { rec.viewTransition.cancel(); }
+    renderer._onFramePresentationError = function (error) {
+      if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 ||
+          !owner || owner.isConnected === false || findFrameEl(geomTargetFrameId(fid)) !== owner) { return; }
+      entry.presentationFailed = true;
+      entry.presentationError = error;
+      try { if (rec.viewTransition) { rec.viewTransition.cancel(); } }
+      finally { failFrameView(rec, error); }
     };
     renderer._onFramePresented = function (presented) {
       if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 || !presented.view ||
@@ -5781,6 +5802,45 @@
     return rec && rec.presentedView && findFrameEl(geomTargetFrameId(fid)) ? cloneFrameView(rec.presentedView) : null;
   }
 
+  function watchFrameViewPresentation(rec, serial, signature, options) {
+    if (typeof options.afterPresented !== "function" && typeof options.onPresentationError !== "function") { return; }
+    var active = true;
+    function cancel() {
+      if (!active) { return; }
+      active = false;
+      unlisten();
+      if (options.signal) { options.signal.removeEventListener("abort", aborted); }
+    }
+    function failed(error) {
+      if (!active) { return; }
+      cancel();
+      if (typeof options.onPresentationError === "function") { options.onPresentationError(error); }
+    }
+    function aborted() {
+      var error = options.signal.reason;
+      if (error === undefined) { error = new Error("Frame presentation cancelled"); error.name = "AbortError"; }
+      failed(error);
+    }
+    var unlisten = listenFrameView(rec, function (presented) {
+      if (!active || presented.serial < serial) { return; }
+      // A camera supersession may satisfy a native wait only for the SAME
+      // accepted Physics generation and after the renderer's complete fence.
+      var needsGeneration = Number.isSafeInteger(options.physicsGeneration) && options.physicsGeneration >= 0;
+      var sameGeneration = needsGeneration && presented.snapshot.physicsGeneration === options.physicsGeneration;
+      var sameView = JSON.stringify(presented.snapshot) === signature;
+      if (needsGeneration && sameGeneration && presented.endpoint !== "gpu-queue-completed") {
+        failed(new Error("Native Physics presentation has no completed GPU fence"));
+      } else if (needsGeneration ? sameGeneration : sameView) {
+        cancel();
+        if (typeof options.afterPresented === "function") { options.afterPresented(cloneFrameView(presented)); }
+      } else {
+        failed(new Error("Frame presentation was superseded"));
+      }
+    }, failed);
+    if (options.signal) { options.signal.addEventListener("abort", aborted, { once: true }); }
+    return cancel;
+  }
+
   // Static retained Frames use the same updateGeomFrame path as ordinary UI
   // controls. This fence is registered before requesting the draw, including
   // the first draw while renderer initialization is still pending.
@@ -5793,18 +5853,13 @@
     if (options.signal && options.signal.aborted) { return false; }
     var serial = Number(rec.viewSerial || 0) + 1;
     var signature = JSON.stringify(captureFrameViewSnapshot(geom));
-    if (typeof options.afterPresented === "function") {
-      function cancel() {
-        unlisten();
-        if (options.signal) { options.signal.removeEventListener("abort", cancel); }
+    watchFrameViewPresentation(rec, serial, signature, options);
+    // Native/error-aware waits fail closed on an already failed entry. Legacy
+    // browser callers keep their existing ability to request another redraw.
+    if (typeof options.onPresentationError === "function") {
+      for (var i = 0; i < rec.entries.length; i += 1) {
+        if (rec.entries[i].presentationFailed) { failFrameView(rec, rec.entries[i].presentationError); return false; }
       }
-      var unlisten = listenFrameView(rec, function (presented) {
-        if (presented.serial < serial) { return; }
-        cancel();
-        // A superseded pose has no success callback.
-        if (JSON.stringify(presented.snapshot) === signature) { options.afterPresented(cloneFrameView(presented)); }
-      });
-      if (options.signal) { options.signal.addEventListener("abort", cancel, { once: true }); }
     }
     if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
     updateGeomFrame(fid, geom);
@@ -5822,11 +5877,15 @@
     ["axis3DOverlayRaf", "textOverlayRaf"].forEach(function (key) {
       if (rec[key]) { global.cancelAnimationFrame(rec[key]); rec[key] = 0; }
     });
-    rec.viewListeners = [];
-    stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
-    delete frameRecs[fid];
-    if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
-    if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
+    try { failFrameView(rec, new Error("Frame presentation disposed")); }
+    finally {
+      rec.viewListeners = [];
+      rec.viewErrorListeners = [];
+      stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
+      delete frameRecs[fid];
+      if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
+      if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
+    }
   }
 
   function updateGeomFrameCamera(fid, camera, options) {
@@ -14686,7 +14745,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     Object.keys(frames).forEach(function (fid) { if (!findFrameEl(geomTargetFrameId(fid))) { delete frames[fid]; } });
     Object.assign(frames, display.geom);
     renderFromJson(Object.assign({}, _lastDisplayPayload || {}, display, { geom: frames }));
-    if (options && typeof options.afterPresented === "function") {
+    if (options && (typeof options.afterPresented === "function" || typeof options.onPresentationError === "function")) {
       requestGeomFramePresentation(Object.keys(display.geom)[0], options);
     }
     return display;
@@ -15304,6 +15363,9 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     createAxisVisualStateApplier: createAxisVisualStateApplier,
     createAxisTickModeStateApplier: createAxisTickModeStateApplier,
     __test: {
+      frameViewRecord: frameViewRecord,
+      observeFrameViewRenderer: observeFrameViewRenderer,
+      watchFrameViewPresentation: watchFrameViewPresentation,
       smooth01: smooth01,
       captureFrameViewSnapshot: captureFrameViewSnapshot,
       applyFrameViewSnapshot: applyFrameViewSnapshot,

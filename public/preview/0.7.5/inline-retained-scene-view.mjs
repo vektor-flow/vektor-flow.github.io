@@ -135,10 +135,11 @@ export function mountRetainedSceneResult(container, packets, {
   const renderError = event => {
     if (disposed) return;
     layer.dataset.vfRenderState = 'failed';
-    const message = String(event.detail?.message ?? 'Current VKF plot rendering failed');
-    rejectPresented(new Error(message));
-    container.dispatchEvent(new CustomEvent('vf-example-render-error',{bubbles:true,detail:{message}}));
-    dispose();
+    const error = event.detail?.error ?? new Error(String(event.detail?.message ?? 'Current VKF plot rendering failed'));
+    const message = String(error?.message ?? error);
+    rejectPresented(error);
+    container.dispatchEvent(new CustomEvent('vf-example-render-error',{bubbles:true,detail:{message,error}}));
+    dispose(error);
   };
   layer.addEventListener('vf-inline-render-error',renderError);
   const firstPresentations = new Map();
@@ -153,7 +154,7 @@ export function mountRetainedSceneResult(container, packets, {
       if (disposed) return;
       const status = VfDisplay.nativeLabelFrameStatus?.(frameId)?.statistics;
       if (status?.status === 'FAILED') throw new Error(status.error);
-    } catch (error) {renderError({detail:{message:error.message}});return;}
+    } catch (error) {renderError({detail:{error}});return;}
     firstPresentations.set(frameId, record);
     if (firstPresentations.size !== ownedPackets.length) return;
     layer.dataset.vfRenderState = "visible";
@@ -226,18 +227,22 @@ export function mountRetainedSceneResult(container, packets, {
     presentFrame = 0;
     if (disposed) return;
     layer.dataset.vfRenderState = "presenting";
-    for (const packet of ownedPackets) {
-      VfDisplay.renderRetainedSceneArena(packet, {
-        signal: presentationAbort.signal,
-        afterPresented: record => firstPresented(packet.metadata.scene.frame, record),
-      });
-    }
+    try {
+      for (const packet of ownedPackets) {
+        if (disposed) break;
+        VfDisplay.renderRetainedSceneArena(packet, {
+          signal: presentationAbort.signal,
+          afterPresented: record => firstPresented(packet.metadata.scene.frame, record),
+          onPresentationError: error => renderError({detail:{error}}),
+        });
+      }
+    } catch (error) { renderError({detail:{error}}); }
   });
-  const dispose = () => {
+  function dispose(reason) {
     if (disposed) return;
     disposed = true;
     layer.removeEventListener("vf-inline-render-error",renderError);
-    presentationAbort.abort();
+    presentationAbort.abort(reason);
     resolvePresented(null);
     if (presentFrame) cancelAnimationFrame(presentFrame);
     for (const cleanup of toolbarCleanup) cleanup();
@@ -246,7 +251,7 @@ export function mountRetainedSceneResult(container, packets, {
       frame?.root?.remove?.();
     }
     viewport.remove?.();
-  };
+  }
   // Scoped actual Frame identities and a real renderer completion endpoint.
   // Null means disposed before first presentation; never a successful draw.
   dispose.presented = presented;

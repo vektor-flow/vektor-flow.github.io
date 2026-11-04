@@ -5771,8 +5771,8 @@
           !owner || owner.isConnected === false || findFrameEl(geomTargetFrameId(fid)) !== owner) { return; }
       entry.presentationFailed = true;
       entry.presentationError = error;
-      if (rec.viewTransition) { rec.viewTransition.cancel(); }
-      failFrameView(rec, error);
+      try { if (rec.viewTransition) { rec.viewTransition.cancel(); } }
+      finally { failFrameView(rec, error); }
     };
     renderer._onFramePresented = function (presented) {
       if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 || !presented.view ||
@@ -5817,10 +5817,12 @@
       if (!active || presented.serial < serial) { return; }
       // A camera supersession may satisfy a native wait only for the SAME
       // accepted Physics generation and after the renderer's complete fence.
-      var sameGeneration = Number.isSafeInteger(options.physicsGeneration) && options.physicsGeneration >= 0 &&
-        presented.snapshot.physicsGeneration === options.physicsGeneration;
+      var needsGeneration = Number.isSafeInteger(options.physicsGeneration) && options.physicsGeneration >= 0;
+      var sameGeneration = needsGeneration && presented.snapshot.physicsGeneration === options.physicsGeneration;
       var sameView = JSON.stringify(presented.snapshot) === signature;
-      if (sameGeneration || sameView) {
+      if (needsGeneration && sameGeneration && presented.endpoint !== "gpu-queue-completed") {
+        failed(new Error("Native Physics presentation has no completed GPU fence"));
+      } else if (needsGeneration ? sameGeneration : sameView) {
         cancel();
         if (typeof options.afterPresented === "function") { options.afterPresented(cloneFrameView(presented)); }
       } else {
@@ -5844,10 +5846,12 @@
     var serial = Number(rec.viewSerial || 0) + 1;
     var signature = JSON.stringify(captureFrameViewSnapshot(geom));
     watchFrameViewPresentation(rec, serial, signature, options);
-    // A completion failure is terminal for this renderer entry. Do not attach
-    // a later native wait to an already failed fence or request another step.
-    for (var i = 0; i < rec.entries.length; i += 1) {
-      if (rec.entries[i].presentationFailed) { failFrameView(rec, rec.entries[i].presentationError); return false; }
+    // Native/error-aware waits fail closed on an already failed entry. Legacy
+    // browser callers keep their existing ability to request another redraw.
+    if (typeof options.onPresentationError === "function") {
+      for (var i = 0; i < rec.entries.length; i += 1) {
+        if (rec.entries[i].presentationFailed) { failFrameView(rec, rec.entries[i].presentationError); return false; }
+      }
     }
     if (_plotCameraRaf[fid]) { global.cancelAnimationFrame(_plotCameraRaf[fid]); delete _plotCameraRaf[fid]; }
     updateGeomFrame(fid, geom);
@@ -5865,13 +5869,15 @@
     ["axis3DOverlayRaf", "textOverlayRaf"].forEach(function (key) {
       if (rec[key]) { global.cancelAnimationFrame(rec[key]); rec[key] = 0; }
     });
-    failFrameView(rec, new Error("Frame presentation disposed"));
-    rec.viewListeners = [];
-    rec.viewErrorListeners = [];
-    stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
-    delete frameRecs[fid];
-    if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
-    if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
+    try { failFrameView(rec, new Error("Frame presentation disposed")); }
+    finally {
+      rec.viewListeners = [];
+      rec.viewErrorListeners = [];
+      stopGeomFrameRenderers(fid, { destroy: true, removeSimple2DCanvas: true });
+      delete frameRecs[fid];
+      if (global.__vfGeomFrameIds) { delete global.__vfGeomFrameIds[fid]; }
+      if (_lastDisplayPayload && _lastDisplayPayload.geom) { delete _lastDisplayPayload.geom[fid]; }
+    }
   }
 
   function updateGeomFrameCamera(fid, camera, options) {

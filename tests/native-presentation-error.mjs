@@ -55,6 +55,24 @@ assert.equal(presented.snapshot.physicsGeneration,8);assert.equal(camera.rec.vie
 const newer=frame('newer'),wrong=wait(newer.rec);
 submit(newer.renderer,record(2,9));newer.completion.resolve();
 assert.match(String((await wrong.outcome).error),/superseded/,'a future generation cannot acknowledge the old tick');
+// Even an exact camera signature cannot acknowledge a different generation.
+const mismatch=frame('mismatch');
+const mismatchWait=new Promise((resolve,reject)=>display.watchFrameViewPresentation(mismatch.rec,1,
+  JSON.stringify({physicsGeneration:9}),{physicsGeneration:8,afterPresented:resolve,onPresentationError:reject}));
+const mismatchOutcome=mismatchWait.then(value=>({value}),error=>({error}));
+submit(mismatch.renderer,record(2,9));mismatch.completion.resolve();
+assert.match(String((await mismatchOutcome).error),/superseded/);
+// Ordinary browser requests retain exact-view success without a Physics generation.
+const legacy=frame('legacy'),legacyWait=wait(legacy.rec,{physicsGeneration:undefined});
+// Use the actual signature in the same maintained watcher, without inventing a fence.
+let legacySuccess=0;
+display.watchFrameViewPresentation(legacy.rec,1,JSON.stringify({physicsGeneration:0}),{afterPresented(){legacySuccess++;}});
+submit(legacy.renderer,record(2,0));legacy.completion.resolve();await legacyWait.outcome;
+assert.equal(legacySuccess,1);
+// An opted-in native wait cannot succeed on a non-GPU endpoint.
+const noFence=frame('no-fence'),unfenced=wait(noFence.rec);
+noFence.renderer._onFramePresented({...record(2,8),endpoint:'canvas-draw-completed'});
+assert.match(String((await unfenced.outcome).error),/completed GPU fence/);
 const stale=frame('stale'),staleWait=wait(stale.rec);stale.rec.entries.length=0;
 stale.renderer._onFramePresentationError(original);assert.equal(staleWait.settled,false,'removed renderer cannot poison current requests');
 // Cancellation rejects an opted-in waiter with the original reason and detaches both listeners.
@@ -73,18 +91,19 @@ const cpp=await readFile(windowSource,'utf8');
 const html=cpp.split('R"HTML(')[1]?.split(')HTML";')[0];assert.ok(html,'actual native bootstrap missing');
 const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(match=>match[1]).filter(Boolean);
 assert.equal(scripts.length,2);
-const native=frame('native'),notices=[],counts={publish:0,close:0,dispose:0},events={};
+const native=frame('native'),sibling=frame('native-sibling'),notices=[],counts={publish:0,close:0,dispose:0},events={};
 const accepted={generation:7,time_s:.125,principal:[],transform:[]};
 const packet={metadata:{scene:{frame:'frame_probe',physics_binding:{source_frame_id:'source'}}},arena:{storage:'compiler-binary',index:0,byte_length:0}};
+const siblingPacket={...packet,metadata:{scene:{...packet.metadata.scene,frame:'frame_sibling'}}};
 const nativeSandbox={console,AbortController,Uint8Array,Map,Set,Error,
   isSecureContext:true,navigator:{userAgent:'DETERMINISTIC_CONTROL',gpu:{requestAdapter:async()=>({info:{}})}},
   webkit:{messageHandlers:{vkfNative:{postMessage:text=>notices.push(JSON.parse(text))}}},
   addEventListener(name,callback){events[name]=callback;},
-  fetch:async path=>({ok:true,json:async()=>({source_sha256:'control',physics:[{frame:'source',geometry:['body'],accepted}],packets:[packet]}),arrayBuffer:async()=>new ArrayBuffer(0)}),
+  fetch:async path=>({ok:true,json:async()=>({source_sha256:'control',physics:[{frame:'source',geometry:['body'],accepted}],packets:[packet,siblingPacket]}),arrayBuffer:async()=>new ArrayBuffer(0)}),
   VfRuntimeShell:{ensureSceneDependencies:async()=>{},ensureSceneHostStyles(){},ensureShellDom(){},mountLaunchFrames(){}},
   VfNativePhysicsAccepted:{register(){},publish(){counts.publish++;},close(){counts.close++;}},
   VfDisplay:{renderRetainedSceneArena(_packet,options){options.afterPresented({endpoint:'CONTROL_INITIAL_BOUNDARY'});},
-    requestGeomFramePresentation(_id,options){display.watchFrameViewPresentation(native.rec,1,'original-view',options);return true;},
+    requestGeomFramePresentation(id,options){display.watchFrameViewPresentation(id==='frame_probe'?native.rec:sibling.rec,1,'original-view',options);return true;},
     disposeGeomFrame(){counts.dispose++;}}
 };
 nativeSandbox.window=nativeSandbox;const nativeContext=vm.createContext(nativeSandbox);
@@ -97,10 +116,11 @@ assert.equal(state.failure,original);assert.equal(state.closed,true);assert.equa
 assert.equal(notices.filter(n=>n.type==='fatal').length,1);
 assert.equal(notices.find(n=>n.type==='fatal').message,original.message);
 assert.equal(notices.filter(n=>n.type==='physics-presented').length,0);
-assert.equal(counts.close,1);assert.equal(counts.dispose,1);
+assert.equal(counts.close,1);assert.equal(counts.dispose,2);
 assert.equal(native.rec.viewListeners.length,0);assert.equal(native.rec.viewErrorListeners.length,0);
+assert.equal(sibling.rec.viewListeners.length,0);assert.equal(sibling.rec.viewErrorListeners.length,0);
 // Late error/pagehide and another invocation cannot close or advance again.
 nativeSandbox.nativeFatal(original);events.pagehide();await nativeSandbox.__vfNativeApplyAccepted([],2);
-assert.equal(counts.close,1);assert.equal(counts.dispose,1);assert.equal(counts.publish,2);
+assert.equal(counts.close,1);assert.equal(counts.dispose,2);assert.equal(counts.publish,2);
 assert.equal(notices.filter(n=>n.type==='fatal').length,1);
 console.log(JSON.stringify({status:'PASS_DETERMINISTIC_PRESENTATION_ERROR_CONTROL_ONLY',originalErrorIdentity:true,pendingWaitsSettled:true,cleanupOnce:true,physicalGpu:false,nativeFrameQualified:false}));

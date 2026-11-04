@@ -9225,11 +9225,11 @@
     var xSpan = x1 - x0;
     var ySpan = y1 - y0;
     if (String(mesh.aspect || "").toLowerCase() === "equal") {
-      if (w >= h) {
-        xSpan = xSpan * (w / Math.max(1, h));
-      } else {
-        ySpan = ySpan * (h / Math.max(1, w));
-      }
+      // One data unit occupies the same number of pixels on both axes.
+      // Fit the declared ranges without changing their center or the source.
+      var pixelsPerUnit = Math.min(w / xSpan, h / ySpan);
+      xSpan = w / pixelsPerUnit;
+      ySpan = h / pixelsPerUnit;
     }
     var vx0Coord = cx - xSpan * 0.5;
     var vx1Coord = cx + xSpan * 0.5;
@@ -11727,6 +11727,34 @@
     } : null;
   }
 
+  async function waitForNativeLabelFrame(fid, options) {
+    options=options||{};fid=String(fid);
+    var deadline=performance.now()+Math.min(15000,Math.max(1,Number(options.timeoutMs)||15000));
+    var owner=frameRecs[fid];
+    if(!owner)throw new Error("native text frame is unavailable");
+    function current(){
+      if(options.signal && options.signal.aborted)throw options.signal.reason || new Error("native text wait cancelled");
+      if(frameRecs[fid]!==owner)throw new Error("native text frame was disposed");
+      if(performance.now()>deadline)throw new Error("native text did not finish presenting");
+    }
+    for(;;){
+      current();
+      var pending=owner.nativeLabelReady;
+      if(pending){
+        await pending;current();
+        // A renderer geometry callback can precede lazy native text setup or a
+        // resize. Observe the actual final label job through a compositor turn.
+        await new Promise(function(resolve){global.requestAnimationFrame(resolve);});current();
+        if(owner.nativeLabelReady===pending && owner.nativeLabelLayer){
+          var state=owner.nativeLabelLayer.statistics();
+          if(state.status==="FAILED")throw new Error(state.error || "native text rendering failed");
+          return state;
+        }
+      }
+      await new Promise(function(resolve){global.requestAnimationFrame(resolve);});
+    }
+  }
+
   function updateNativeLabelFrameView(fid, camera) {
     fid = String(fid);
     var rec = frameRecs[fid];
@@ -11814,15 +11842,15 @@
         var mathRec = frameRecs[String(fid)] || (frameRecs[String(fid)] = {entries:[]});
         var mathGeneration = mathRec.nativeMathGeneration = (mathRec.nativeMathGeneration || 0) + 1;
         var snapshot = mathTexts.map(function(t,index) {
-          if ((t.z || 0) !== 0 || t.rotate || t.font_size !== undefined ||
+          if ((t.z || 0) !== 0 || t.rotate || (t.font_size!==undefined && (typeof t.font_size!=="number" || !Number.isFinite(t.font_size) || t.font_size<=0 || t.font_size>256)) ||
               (t.color && JSON.stringify(t.color) !== "[0,0,0,1]"))
-            throw new Error("current native math text profile requires black unrotated default-size 2D text");
+            throw new Error("current native math text requires black unrotated 2D text with a font_size in (0,256]");
           var point = geomTextToPx(t,w,h,geomSpec.camera || null,geomSpec);
           if (!point) throw new Error("current native math text position is unavailable");
           var ha = String(t.ha || "center").toLowerCase(), va = String(t.va || "center").toLowerCase();
           var ap = geomTextAnchorPercent(t,ha,va);
           return {id:"compiled-math-"+index,kind:"math",source:t.text.slice(1,-1),anchor:[point[0],-point[1]],
-            scale:12/(10*7200/7227),sizeSpace:"world",anchorFraction:[-ap[0]/100,-ap[1]/100]};
+            scale:(t.font_size===undefined?12:t.font_size)/(10*7200/7227),sizeSpace:"world",anchorFraction:[-ap[0]/100,-ap[1]/100]};
         });
         mathRec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function() {
           if (frameRecs[String(fid)] !== mathRec || mathRec.nativeMathGeneration !== mathGeneration || !findFrameEl(String(fid))) return;
@@ -13923,6 +13951,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           throw new TypeError("retained scene " + collectionName + " entry must be an object");
         }
         var materialized = Object.assign({}, geometry);
+        if (geometry.mode3d !== true && geometry.aspect == null) materialized.aspect = "equal";
         materialized.vertices = retainedArenaView(
           geometry.vertices, arena, "float32", collectionName + "[" + index + "].vertices");
         materialized.indices = retainedArenaView(
@@ -14088,7 +14117,8 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         var allowed = line ? ["x_u", "y_u", "c", "c_ic", "c_uc", "w", "pickable", "id", "__renderer_line_packet_v1"] :
           ["p_ic", "p_u", "x_i", "y_i", "x", "y", "c", "c_ic", "c_uc", "s", "s_u", "s_mode", "pickable", "id", "__renderer_point_packet_v1"];
         if (v2) allowed = allowed.concat(["p_ic", "p_uc", "edge_bm", "color", "__renderer_line_packet_v2", "__renderer_point_packet_v2"]);
-        allowed = allowed.concat(["text", "label_color", "anchor", "interp", "interpolation"]);
+        allowed = allowed.concat(["text", "label_color", "anchor", "font_size", "interp", "interpolation"]);
+        if(args.font_size!==undefined && (typeof args.font_size!=="number" || !Number.isFinite(args.font_size) || args.font_size<=0 || args.font_size>256)) throw new TypeError("retained text font_size requires CSS pixels in (0,256]");
         for (var flag of ["interp", "interpolation"]) if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean")
           throw new TypeError("retained Layer " + flag + " requires bit");
         for (var key of Object.keys(args)) if (!allowed.includes(key))
@@ -14128,6 +14158,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (world && (args.s_mode !== 0 || sizes.length !== indices.length))
           throw new TypeError("compiled World point packet requires s_mode:data and matching sizes");
         this.type = "field_mesh"; this.topology = line ? "line-list" : "point-list";
+        if(dimension===2)this.aspect="equal";
         this.render_mode = line ? "line" : "marker_impostor";
         this.axis_ticks = evaluatedAxisRanges([{vertices: vertices, mode3d:dimension === 3}]);
         if (line) { this.edge_width = size; this.curve_path = "open-continuous"; }
@@ -14147,7 +14178,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (args.anchor !== undefined && (!Array.isArray(args.anchor) || args.anchor.length !== 2 || args.anchor.some(function(x){return !Number.isFinite(x) || x<0 || x>1;})))
           throw new TypeError("retained text anchor requires two values in 0..1");
         var addText = (text,index) => this.texts.push({text:text,world:line || !!world,pixel:!line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
-          ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.label_color===undefined?{}:{color:args.label_color})});
+          ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.font_size===undefined?{}:{font_size:args.font_size}),...(args.label_color===undefined?{}:{color:args.label_color})});
         if (args.text !== undefined) addText(args.text,0);
         own(this, "parent", frameRoot); own(this, "viewport", viewport); own(this, "world", world);
         if (args.id !== undefined) own(this, "id", sourceId(args.id));
@@ -14816,6 +14847,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     setNativeLabelRendererFactory: setNativeLabelRendererFactory,
     joinNativeLabelCleanup: joinNativeLabelCleanup,
     nativeLabelFrameStatus: nativeLabelFrameStatus,
+    waitForNativeLabelFrame: waitForNativeLabelFrame,
     setNativeMathLabelInstaller: function(fn) {if (fn !== null && typeof fn !== "function") throw new TypeError("math label installer required"); _nativeMathLabelInstaller=fn;},
     updateNativeLabelFrameView: updateNativeLabelFrameView,
     updateNativeLabelFrameAnimation: updateNativeLabelFrameAnimation,
@@ -14851,6 +14883,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     createAxisTickModeStateApplier: createAxisTickModeStateApplier,
     __test: {
       smooth01: smooth01,
+      axisViewport: axisViewport,
       captureFrameViewSnapshot: captureFrameViewSnapshot,
       applyFrameViewSnapshot: applyFrameViewSnapshot,
       interpolateFrameView: interpolateFrameView,

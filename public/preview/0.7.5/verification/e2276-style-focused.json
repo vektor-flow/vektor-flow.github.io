@@ -1,0 +1,181 @@
+{
+  "owner": "e2276",
+  "status": "EXACT_CURRENT_NORMAL_STYLE_EXAMPLES_AND_NAME_INDEX_CHECKS_PASS",
+  "compilerBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "formatterBinding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "normalAPI": "vkf075_compile -> normal guest entry -> paired native formatter",
+  "compilerRebuilt": false,
+  "cases": [
+    {
+      "id": "literal-name-does-not-bind-base",
+      "source": "a_ij: [[1, 2], [3, 4]]\n:: a\n",
+      "sourceSHA256": "67d161f6834c0410be78f500f07a406b45ea106c289fbd9d103a98c145440856",
+      "filename": "/browser/literal-name-does-not-bind-base.vkf",
+      "ok": false,
+      "phase": "source-semantic-lower",
+      "diagnostics": null,
+      "error": "undefined identifier a",
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/literal-name-does-not-bind-base.raw-compiler.json",
+      "expected": "COMPILE_ERROR",
+      "passed": true,
+      "expectedReference": {
+        "line": 2,
+        "column": 4
+      },
+      "elapsedMs": 136.646049,
+      "sourceLocation": [
+        "/browser/literal-name-does-not-bind-base.vkf",
+        2,
+        4
+      ],
+      "sourcePositionPassed": true
+    },
+    {
+      "id": "literal-name-itself",
+      "source": "a_ij: [[1, 2], [3, 4]]\n:: a_ij\n",
+      "sourceSHA256": "1d4c25e7e3bd5f81552d5fbf6bf31e62175f60e9a78d18f4d89eaff70cb82dd8",
+      "filename": "/browser/literal-name-itself.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/literal-name-itself.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[[1, 2], [3, 4]]\n",
+      "passed": true,
+      "elapsedMs": 184.94472199999996
+    },
+    {
+      "id": "index-literal-name-in-rvalue",
+      "source": "a_ij: [[1, 2], [3, 4]]\n:: sum_i(a_ij_ij)\n",
+      "sourceSHA256": "3bf74b10d0a9512031b6c034341881aee7a9923a24327bfb5038fbce7cde96ec",
+      "filename": "/browser/index-literal-name-in-rvalue.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/index-literal-name-in-rvalue.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[4, 6]\n",
+      "passed": true,
+      "elapsedMs": 559.785532
+    },
+    {
+      "id": "bare-definition-index-at-use",
+      "source": "a: [[1, 2], [3, 4]]\n:: sum_i(a_ij)\n:: a\n",
+      "sourceSHA256": "1e7346c0b023ce4d2eff33496f894f6ada31eda878d6bd58494fcb2adebbcdbb",
+      "filename": "/browser/bare-definition-index-at-use.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/bare-definition-index-at-use.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[4, 6]\n[[1, 2], [3, 4]]\n",
+      "passed": true,
+      "elapsedMs": 386.46804399999996
+    },
+    {
+      "id": "corrected-contraction",
+      "source": "composition: [[2, 1], [1, 3], [4, 2]]\nbatches: [[10, 5, 8], [4, 6, 3]]\n\ntotals: sum_k(batches_ik * composition_kj)\n\n:: totals",
+      "sourceSHA256": "72e441452b17bb67b25d3db31e637910a095cb3552725944c7eb8726c04de917",
+      "filename": "/browser/corrected-contraction.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/corrected-contraction.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[[57, 41], [26, 28]]\n",
+      "passed": true,
+      "elapsedMs": 916.9833770000002
+    },
+    {
+      "id": "literal-this-name-scalar",
+      "source": "this_name: 7\n:: this_name\n.this_name: 8\n:: this_name",
+      "sourceSHA256": "49e03d9afa435a7bc6ce3dfd236e0edfb90955247060c629bdd28d360d310030",
+      "filename": "/browser/literal-this-name-scalar.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/literal-this-name-scalar.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "7\n8\n",
+      "passed": true,
+      "elapsedMs": 73.59943900000007
+    },
+    {
+      "id": "indexed-expression-target",
+      "source": "values: [1, 2]\n(values)_i: [3, 4]",
+      "sourceSHA256": "23abc7c949311784f9449d056159decc129cd11f7fad5a2b57d8ca263214d710",
+      "filename": "/browser/indexed-expression-target.vkf",
+      "ok": false,
+      "phase": "source-parse",
+      "diagnostics": null,
+      "error": "indexed expressions are not assignable; declare a plain identifier and select indices at use",
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/indexed-expression-target.raw-compiler.json",
+      "expected": "COMPILE_ERROR",
+      "passed": true,
+      "expectedReference": {
+        "line": 2,
+        "column": 1
+      },
+      "elapsedMs": 4.724252999999862,
+      "sourceLocation": [
+        "/browser/indexed-expression-target.vkf",
+        2,
+        1
+      ],
+      "sourcePositionPassed": true
+    }
+  ],
+  "initialOutputCaptures": [
+    {
+      "id": "syntax-example-3",
+      "source": ":: \"Hello World\"",
+      "sourceSHA256": "af5c2d7c3a4286e7d5674fa63ce1fe66e29e431b8a67eb4a5e24fb531b082bac",
+      "filename": "/browser/syntax-example-3.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/syntax-example-3.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "Hello World\n",
+      "passed": true,
+      "elapsedMs": 185.765546
+    },
+    {
+      "id": "syntax-extra-values-and-types-0",
+      "source": "x: 3\n\n:: 2x + 4x^2",
+      "sourceSHA256": "707603caa05c5a42b6f5305726271df5529b7e99cfc5dab8e5f74a9aa0ec1d57",
+      "filename": "/browser/syntax-extra-values-and-types-0.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/syntax-extra-values-and-types-0.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "42\n",
+      "passed": true,
+      "elapsedMs": 173.00455800000003
+    },
+    {
+      "id": "more-example-2",
+      "source": "composition: [[2, 1], [1, 3], [4, 2]]\nbatches: [[10, 5, 8], [4, 6, 3]]\n\ntotals: sum_k(batches_ik * composition_kj)\n\n:: totals",
+      "sourceSHA256": "72e441452b17bb67b25d3db31e637910a095cb3552725944c7eb8726c04de917",
+      "filename": "/browser/corrected-contraction.vkf",
+      "ok": true,
+      "phase": null,
+      "diagnostics": null,
+      "error": null,
+      "rawCompilerResult": "/mnt/development/VektorFlow-e2276-indexed-assignment-style-actual-20261104/corrected-contraction.raw-compiler.json",
+      "expected": "SUCCESS",
+      "stdout": "[[57, 41], [26, 28]]\n",
+      "passed": true,
+      "elapsedMs": 916.9833770000002
+    }
+  ],
+  "scope": "Only named current compiler tests and three exact-source initial console outputs; no full-release/native/scene/timing qualification."
+}

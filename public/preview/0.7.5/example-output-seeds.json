@@ -1961,6 +1961,39 @@
       "status": "UNVALIDATED_EXPECTED_OUTPUT_DATA",
       "origin": "Authored e2177 corrected plain binding/index-at-use expectation; actual current qualified engine capture required before publication",
       "visualOutputPending": false
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-example-3",
+      "source_sha256": "af5c2d7c3a4286e7d5674fa63ce1fe66e29e431b8a67eb4a5e24fb531b082bac",
+      "stdout": "Hello World\n",
+      "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "actualExecution": true,
+      "evidence": "verification/e2276-style-focused.json",
+      "origin": "Actual e2276 exact current package/normal guest/paired formatter output; narrow requested style page correction"
+    },
+    {
+      "page": "syntax.html",
+      "id": "syntax-extra-values-and-types-0",
+      "source_sha256": "707603caa05c5a42b6f5305726271df5529b7e99cfc5dab8e5f74a9aa0ec1d57",
+      "stdout": "42\n",
+      "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "actualExecution": true,
+      "evidence": "verification/e2276-style-focused.json",
+      "origin": "Actual e2276 exact current package/normal guest/paired formatter output; narrow requested style page correction"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-2",
+      "source_sha256": "72e441452b17bb67b25d3db31e637910a095cb3552725944c7eb8726c04de917",
+      "stdout": "[[57, 41], [26, 28]]\n",
+      "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "actualExecution": true,
+      "evidence": "verification/e2276-style-focused.json",
+      "origin": "Actual e2276 exact current package/normal guest/paired formatter output; narrow requested style page correction"
     }
   ],
   "editorial_relocation": "Canonical documentation code now lives in Syntax + Examples and separate Standard Library. Source/output/scene identities are unchanged; new route/layout checks remain required."

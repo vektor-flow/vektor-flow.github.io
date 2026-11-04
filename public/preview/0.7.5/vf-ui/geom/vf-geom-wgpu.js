@@ -9754,6 +9754,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
   VfGeomWgpu.__vfRuntimeAssetVersion = RUNTIME_ASSET_VERSION;
   global.VfGeomWgpu    = VfGeomWgpu;
   global.VfGeomWgpuUtil = {
+    __test: { markSubmittedGpuWork: markSubmittedGpuWork },
     __vfRuntimeAssetVersion: RUNTIME_ASSET_VERSION,
     parseColor: parseColor,
     LIGHT_MODELS: LIGHT_MODELS,

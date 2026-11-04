@@ -1,0 +1,1208 @@
+{
+  "schema": "vkf-current075-local48-correctness/1",
+  "owner": "e2250",
+  "date": "2026-11-04",
+  "selectionIdentity": "758eb90e7492558c5696f4559ad010d9c7a3182ec58cee784a6d990f81caf226",
+  "nativeBinding": "12835f795004b24c80f3c1b9683064d6d225ea14c57e0009ecf24879d601bd82",
+  "wasmBinding": "a5aca8d239dc2273c7399d0273cd3debdba1c60792d22e1bb6575912e3b0ebe3",
+  "formatterBinding": "2f0a880111b6f71370c139f9699cb965616cbfbd54fb17427ae4b51a21e3701c",
+  "compilerSourceCommit": "9420e54605e038bebaff3997445f5eae2d45e47b",
+  "nativeExecutableCompilerSourceCommit": null,
+  "nativeSourceConstruction": {
+    "baseSourceCommit": "e17f02b8ce76486a73b47a73c0620a28864ccf34",
+    "portsFromCurrentBrowser": [
+      26,
+      27,
+      31,
+      32,
+      52
+    ],
+    "nativeAffected": [
+      76,
+      77,
+      81,
+      82,
+      89,
+      158,
+      90,
+      237,
+      238
+    ],
+    "native89Header": "75657f92263840139d08a6b5eb68e4d50834f2221aded2a2c08210ceeab68a84",
+    "native237HeaderClaim": false,
+    "validReusedObjects": 231,
+    "singleGitCommitClaim": false
+  },
+  "nativeLibrarySources": 35,
+  "browserLibrarySources": 34,
+  "sharedLibrarySourcesByteIdentical": 34,
+  "nativeAdditionalModule": "physics/electrical.vkf",
+  "nativeRegistryEntries": 28,
+  "browserRegistryEntries": 27,
+  "matched": {
+    "passed": 6,
+    "total": 48
+  },
+  "parity": {
+    "passed": 3,
+    "total": 24
+  },
+  "failed": 0,
+  "unrun": 63,
+  "comparativeSamples": 0,
+  "comparativeTimingEligible": false,
+  "jobs": [
+    {
+      "id": "preflight.linux.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.spectral-norm-large.json",
+        "sha256": "2ef5511142e1eabeef008cabc30deb2ceb3c1a1cad1bbc88cb7aa2f94960fd32",
+        "bytes": 6712
+      }
+    },
+    {
+      "id": "preflight.linux.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.fannkuch-redux-large.json",
+        "sha256": "4e58e42f8c1278996b39abbe8ec2d17b3a9950569845c9e5d45322b044ac34a8",
+        "bytes": 6691
+      }
+    },
+    {
+      "id": "preflight.linux.core.n-body-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.n-body-large.json",
+        "sha256": "833da94b403b409f6afc62bde96659e835996ad3823b16512dfb49fc0bc32b70",
+        "bytes": 6580
+      }
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": "UNRUN: full normal command cap + normal cleanup does not fit; command not spawned; cap=1200s cleanup=40s available=1193.200419333065s boundary=673754.763645595",
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.linux.core.combined-kernels-large.json",
+        "sha256": "1a3904b7c1dcfc478292d307fe6fb251997bee7250ff2ce139a957fa376334c4",
+        "bytes": 4998
+      }
+    },
+    {
+      "id": "preflight.linux.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.expand1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.core.spectral-norm-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.spectral-norm-large.json",
+        "sha256": "e47716dd859c9ac31112ec6f760ab551134bc85508abb87a1daff3336861164b",
+        "bytes": 6798
+      }
+    },
+    {
+      "id": "preflight.wasm.core.fannkuch-redux-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.fannkuch-redux-large.json",
+        "sha256": "700f3972ca84f7be05723d352ecef89d7986bd0a1a8b26d73c65e2ba542a261f",
+        "bytes": 6769
+      }
+    },
+    {
+      "id": "preflight.wasm.core.n-body-large",
+      "phase": "preflight",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "preflight.wasm.core.n-body-large.json",
+        "sha256": "59347082bca92b2ae45b4be49548b5596dbddb84c86c448bca87f3891cf74f36",
+        "bytes": 6666
+      }
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-large",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.core.combined-kernels-parallel-large",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.solve-general-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.least-squares-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.lu-general-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.qr-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.cholesky-spd-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.svd-tall-96x48",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.linalg.eigen-symmetric-96",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.expand2",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.add1",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.series",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.linux.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-polynomial-16",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.mixed-partial-6x5",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-rational",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.diff-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-polynomial-12",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.substitute-transcendental",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.collect-polynomial-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "preflight.wasm.symbolic.shared-dag-derivative-24",
+      "phase": "preflight",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.core.spectral-norm-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "linux.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "vkf",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "cpp",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "rust",
+          "value": 1.2742241159529055
+        },
+        {
+          "row_id": "wasm.core.spectral-norm-large",
+          "language": "zig",
+          "value": 1.2742241159529055
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.spectral-norm-large.json",
+        "sha256": "fac124f9aa8708c6fd7c1029d24d6634b528f79ad88cbd95718d5d6e25ef1510",
+        "bytes": 12449
+      }
+    },
+    {
+      "id": "parity.core.fannkuch-redux-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "linux.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638.0
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "vkf",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "cpp",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "rust",
+          "value": 7319638
+        },
+        {
+          "row_id": "wasm.core.fannkuch-redux-large",
+          "language": "zig",
+          "value": 7319638
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.fannkuch-redux-large.json",
+        "sha256": "ae0b74b60ce3c1d8ed34c4d3728d015ddb0149881dd9411c764f0028e6052e7b",
+        "bytes": 12397
+      }
+    },
+    {
+      "id": "parity.core.n-body-large",
+      "phase": "parity",
+      "status": "PASS",
+      "observations": [
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "linux.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "vkf",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "cpp",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "rust",
+          "value": 0.1779462269170188
+        },
+        {
+          "row_id": "wasm.core.n-body-large",
+          "language": "zig",
+          "value": 0.17794622691804032
+        }
+      ],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": {
+        "name": "parity.core.n-body-large.json",
+        "sha256": "7a3751c7f1463742c717527ac1f120231662462988a9f963618f5be07c6dffba",
+        "bytes": 12199
+      }
+    },
+    {
+      "id": "parity.core.combined-kernels-large",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.core.combined-kernels-parallel-large",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.solve-general-96",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.least-squares-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.lu-general-96",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.qr-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.cholesky-spd-96",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.svd-tall-96x48",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.linalg.eigen-symmetric-96",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.expand1",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.expand2",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.add1",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.series",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-polynomial-16",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.mixed-partial-6x5",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-rational",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.diff-transcendental",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.substitute-polynomial-12",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.substitute-transcendental",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.collect-polynomial-24",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    },
+    {
+      "id": "parity.symbolic.shared-dag-derivative-24",
+      "phase": "parity",
+      "status": "UNRUN",
+      "observations": [],
+      "error": null,
+      "reason": null,
+      "failure_type": null,
+      "normal_cap_seconds": null,
+      "localReceipt": null
+    }
+  ],
+  "nextRequiredControl": "Remaining same-selection controls before any comparative timing.",
+  "stopReason": {
+    "job": "preflight.linux.core.combined-kernels-large",
+    "error": "normal job did not pass: preflight.linux.core.combined-kernels-large",
+    "status": "UNRUN",
+    "action": "Preserve diagnostics; repair causal failure in this session"
+  },
+  "originalClockPreserved": true,
+  "originalWorkloadsOraclesCapsPreserved": true,
+  "retainedToolsByOriginalProofReference": 15,
+  "currentPeerExecutableAndVersionRevalidation": true,
+  "namedNativeRegression": {
+    "passed": 2,
+    "total": 2,
+    "cases": [
+      {
+        "name": "named-call-runtime-cartesian",
+        "sourceSHA256": "f808342aac7636e13c65a70b4737d49d1badd2c2e953e9ce706eebdb204bf1e0",
+        "wholeStdoutBytes": 271,
+        "wholeStdoutEqual": true
+      },
+      {
+        "name": "record-counted-return-join",
+        "sourceSHA256": "3965cc294ac7ff603d0aa659dbbe406944510491302ab5a9dbc4ef8c6e28fc01",
+        "wholeStdoutBytes": 2,
+        "wholeStdoutEqual": true
+      }
+    ],
+    "benchmarkCredit": 0
+  },
+  "normalRunnerRegression": {
+    "passed": 9,
+    "total": 9,
+    "sourceCommit": "8007130decc134ece990cfd5b07fa8696e517dd3",
+    "benchmarkCredit": 0,
+    "acceptedPriorExactScope": true
+  },
+  "normalRunnerUnsupported": [
+    "Legacy fullbatch/Executor route remains unsupported; later full operations that cannot fit retain UNRUN."
+  ],
+  "evidence": [
+    {
+      "name": "BUDGET-COMPOSITION-REGRESSION.json",
+      "sha256": "568bbf4bbd40c43916e891bab986743d22640ce470e2d4cbfee2afebb47aefc7"
+    },
+    {
+      "name": "CORRECTNESS-BATCH.json",
+      "sha256": "c065f35ecf785bcd81ab4814b70b2f46de8900188a22aa58d8f1eb9af30ca644"
+    }
+  ],
+  "errors": [
+    "Initial own root absent; created for ordinary administrative publication.",
+    "Overbroad file and source-terminal metadata outputs truncated; narrowed to supported command/closure metadata.",
+    "Initial closure check required every finite command status completed; corrected to accept terminal failed commands with exit codes/timestamps, retaining three source command failures."
+  ],
+  "evidenceScope": "Actual unchanged authored matched correctness and cross-target parity only. No new comparative measurement, ratios or full release qualification. All original peer/output/oracle/workload/warmup contracts retained. Exact old named-native and final800 runner evidence reused separately.",
+  "fullReleaseQualified": false,
+  "physicalGPUQualified": false,
+  "nativeSDKQualified": false,
+  "nativeABI2Qualified": false,
+  "allFeaturesQualified": false,
+  "independentAcceptedCheckpoint": false,
+  "sourceCommit": "a314b219b71d74aee0f40358a8f0d1e745a63b35",
+  "budgetCompositionRegression": {
+    "passed": 9,
+    "total": 9,
+    "sourceCommit": "a314b219b71d74aee0f40358a8f0d1e745a63b35",
+    "benchmarkCredit": 0,
+    "syntheticFixturesIsolated": true
+  },
+  "aggregateBudgetSemantics": "Redundant aggregate Python wrapper timers removed explicitly; full1200 native compile/600 other commands+40 cleanup independently admit against real original controller job end and original owner STOP-minus510/420. Complete row or full sequence worst-case completion not guaranteed."
+}

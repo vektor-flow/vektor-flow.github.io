@@ -39,8 +39,10 @@ def command_deadline(deadline, timeout):
         inherited=float(inherited)
         require(math.isfinite(inherited), 'UNRUN: invalid inherited command deadline; command not spawned')
         deadline=min(deadline,inherited)
-    require(time.monotonic()+timeout+NORMAL_CLEANUP_SECONDS<deadline,
-            'UNRUN: full normal command cap + normal cleanup does not fit; command not spawned')
+    now=time.monotonic()
+    require(now+timeout+NORMAL_CLEANUP_SECONDS<deadline,
+            'UNRUN: full normal command cap + normal cleanup does not fit; command not spawned'
+            +f'; cap={timeout}s cleanup={NORMAL_CLEANUP_SECONDS}s available={deadline-now}s boundary={deadline}')
     return deadline
 
 def _process_identity(pid):

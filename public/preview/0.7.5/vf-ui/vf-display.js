@@ -11189,6 +11189,29 @@
     }
   }
 
+  // Ordinary add(text:) and generated tick labels share native VKF typography.
+  // This only frames plain spans for the existing native parser/layout engine.
+  function nativeTextSource(raw) {
+    var text = String(raw == null ? "" : raw);
+    function roman(span) {
+      if (!span) return "";
+      return "\\text{" + span.replace(/[\\{}%$#&_]/g, function(c) {return "\\" + c;}) + "}";
+    }
+    return text.split("\n").map(function(line) {
+      var out = "", plain = "", at = 0;
+      while (at < line.length) {
+        if (line[at] === "\\" && line[at+1] === "$") {plain += "$"; at += 2; continue;}
+        if (line[at] !== "$") {plain += line[at++]; continue;}
+        out += roman(plain); plain = "";
+        var marker = line[at+1] === "$" ? "$$" : "$";
+        var end = line.indexOf(marker, at+marker.length);
+        if (end < 0) throw new Error("Close the dollar signs in add(text:)");
+        out += line.slice(at+marker.length,end); at = end+marker.length;
+      }
+      return out + roman(plain);
+    }).join("\\\\");
+  }
+
   function renderMathText(el, raw) {
     el.innerHTML = "";
     var s = raw != null ? String(raw) : "";
@@ -11834,22 +11857,25 @@
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
       // Standalone math strings are evaluated by the normal compiler, then
       // passed unchanged to the current VKF math producer. No host typesetter.
-      function standaloneMath(t) {return !_generatedAxisMathTexts.has(t) && typeof t.text === "string" && t.text.length > 2 && t.text[0] === "$" && t.text[t.text.length-1] === "$";}
-      var mathTexts = (geomSpec && geomSpec.texts || []).filter(standaloneMath);
+      function standaloneMath(t) {return typeof t.text === "string" && (t.z || 0) === 0 && !t.rotate && (!geomSpec.camera || String(geomSpec.camera.projection || "orthographic") === "orthographic");}
+      var nativeTexts = (geomSpec && geomSpec.texts || []).slice();
+      (geomSpec && geomSpec.meshes || []).forEach(function(mesh) {
+        if (mesh && mesh.axis_ticks && mesh.mode3d !== true) nativeTexts.push.apply(nativeTexts,collectAxisTickLabelSpecs(mesh,w,h));
+      });
+      var mathTexts = nativeTexts.filter(standaloneMath);
       var hasCompiledMath = !geomSpec.native_labels && mathTexts.length > 0;
       if (hasCompiledMath) {
         if (!_nativeMathLabelInstaller) throw new Error("current VKF math label installer is unavailable");
         var mathRec = frameRecs[String(fid)] || (frameRecs[String(fid)] = {entries:[]});
         var mathGeneration = mathRec.nativeMathGeneration = (mathRec.nativeMathGeneration || 0) + 1;
         var snapshot = mathTexts.map(function(t,index) {
-          if ((t.z || 0) !== 0 || t.rotate || (t.font_size!==undefined && (typeof t.font_size!=="number" || !Number.isFinite(t.font_size) || t.font_size<=0 || t.font_size>256)) ||
-              (t.color && JSON.stringify(t.color) !== "[0,0,0,1]"))
+          if ((t.z || 0) !== 0 || t.rotate || (t.font_size!==undefined && (typeof t.font_size!=="number" || !Number.isFinite(t.font_size) || t.font_size<=0 || t.font_size>256)))
             throw new Error("current native math text requires black unrotated 2D text with a font_size in (0,256]");
           var point = geomTextToPx(t,w,h,geomSpec.camera || null,geomSpec);
           if (!point) throw new Error("current native math text position is unavailable");
           var ha = String(t.ha || "center").toLowerCase(), va = String(t.va || "center").toLowerCase();
           var ap = geomTextAnchorPercent(t,ha,va);
-          return {id:"compiled-math-"+index,kind:"math",source:t.text.slice(1,-1),anchor:[point[0],-point[1]],
+          return {id:t.id===undefined?"native-text-"+index:String(t.id),kind:"math",source:nativeTextSource(t.text),anchor:[point[0],-point[1]],
             scale:(t.font_size===undefined?12:t.font_size)/(10*7200/7227),sizeSpace:"world",anchorFraction:[-ap[0]/100,-ap[1]/100]};
         });
         mathRec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function() {
@@ -11881,15 +11907,9 @@
         contentLayer.textContent = "";
       }
       var items = [];
-      var texts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts : [];
+      var texts = nativeTexts;
       for (var ti = 0; ti < texts.length; ti += 1) {
         if (!hasCompiledMath || !standaloneMath(texts[ti])) items.push(texts[ti]);
-      }
-      var meshes = geomSpec && Array.isArray(geomSpec.meshes) ? geomSpec.meshes : [];
-      for (var mi = 0; mi < meshes.length; mi += 1) {
-        if (!(meshes[mi] && meshes[mi].axis_ticks)) { continue; }
-        var tickTexts = collectAxisTickLabelSpecs(meshes[mi], w, h);
-        for (var ai = 0; ai < tickTexts.length; ai += 1) { items.push(tickTexts[ai]); }
       }
       if (!frameRecs[String(fid)]) { frameRecs[String(fid)] = { entries: [] }; }
       var rec = frameRecs[String(fid)];
@@ -14177,7 +14197,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (args.text !== undefined && typeof args.text !== "string") throw new TypeError("retained text requires str");
         if (args.anchor !== undefined && (!Array.isArray(args.anchor) || args.anchor.length !== 2 || args.anchor.some(function(x){return !Number.isFinite(x) || x<0 || x>1;})))
           throw new TypeError("retained text anchor requires two values in 0..1");
-        var addText = (text,index) => this.texts.push({text:text,world:line || !!world,pixel:!line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
+        var addText = (text,index) => this.texts.push({...(args.id===undefined?{}:{id:args.id}),text:text,world:line || !!world,pixel:!line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
           ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.font_size===undefined?{}:{font_size:args.font_size}),...(args.label_color===undefined?{}:{color:args.label_color})});
         if (args.text !== undefined) addText(args.text,0);
         own(this, "parent", frameRoot); own(this, "viewport", viewport); own(this, "world", world);
@@ -14914,6 +14934,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       collectAxisTickLabelSpecs: collectAxisTickLabelSpecs,
       geomTextToPx: geomTextToPx,
       geomTextAnchorPercent: geomTextAnchorPercent,
+      nativeTextSource: nativeTextSource,
       renderMathText: renderMathText,
       buildSingleMesh: buildSingleMesh,
       buildCombinedTriangleMesh: buildCombinedTriangleMesh,

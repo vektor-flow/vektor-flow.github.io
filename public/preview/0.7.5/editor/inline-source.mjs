@@ -1,5 +1,5 @@
 import {highlightVkf} from '../code-highlight.mjs?sha256=2c470e1811e017a0d6748fc183de7a320f74dce1adf8ee4cf1fbce3ae94bfebd';
-const stylesheet = new URL('./inline-source.css?sha256=822b5201434632004c7bd663ee71f18894aef0dd4e13df478f823900dd2b62d4',import.meta.url).href;
+const stylesheet = new URL('./inline-source.css?sha256=cd5f88552eab0382167fe4e44a69393affbbba1fd640ee9cf9d68127537e30b3',import.meta.url).href;
 if (!document.querySelector(`link[href="${stylesheet}"]`)) {
   const link=document.createElement('link'); link.rel='stylesheet';link.href=stylesheet;document.head.append(link);
 }

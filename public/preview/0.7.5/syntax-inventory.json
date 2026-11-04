@@ -116,12 +116,14 @@
         },
         {
           "id": "more-example-11",
-          "source_sha256": "abd5c0e7beb7f2e5fdbfc49de93b66faf98ce62dc73b337ccb7de86ab06f4ca1",
+          "source_sha256": "609e1da86554ce00ab5e1dbb579371ad7503d6995beaa4d71139dea0e9a91635",
           "expected_stdout": "7\n12\n",
           "runtime_verification": {
-            "status": "UNVALIDATED_CURRENT_SOURCE",
-            "proof": null,
-            "actual_execution": false
+            "status": "PASS",
+            "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+            "proof": "verification/e2316-operator-example.json",
+            "actual_execution": true,
+            "match": "Exact source_sha256 and complete stdout from current normal browser Run/Edit/reset"
           },
           "previous_runtime_verification": {
             "source_sha256": "8ca69eca3f244eb7b2e5c99084ddca005f6565bdf64769f4d489d1c664de96c5",

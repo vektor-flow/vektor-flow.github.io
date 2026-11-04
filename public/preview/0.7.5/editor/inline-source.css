@@ -25,7 +25,8 @@
   overflow:auto; background:transparent; color:transparent;
   -webkit-text-fill-color:transparent; caret-color:#e6edf3;
   pointer-events:auto; touch-action:pan-x pan-y pinch-zoom;
-  overscroll-behavior:contain;
+  overscroll-behavior-x:contain;
+  overscroll-behavior-y:auto;
 }
 .readme .readme-example-editor > .readme-example-source::selection {
   color:transparent; -webkit-text-fill-color:transparent; background:#264f7880;

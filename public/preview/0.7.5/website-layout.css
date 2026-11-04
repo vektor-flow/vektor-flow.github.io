@@ -25,7 +25,7 @@ article.readme { width: min(860px, calc(100% - 48px)); }
 .readme-example-highlight code { padding:0; background:transparent; border:0; white-space:pre; }
 code,pre,textarea,.token { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-style:normal; }
 pre { max-width:100%; overflow:auto; }
-.readme pre:not(.readme-example-highlight),.readme-example-terminal { overscroll-behavior:contain; }
+.readme pre:not(.readme-example-highlight),.readme-example-terminal { overscroll-behavior-x:contain; overscroll-behavior-y:auto; }
 .readme pre:not(.readme-example-highlight):not(.readme-example-output) { max-height:36rem; }
 .code-snippet { margin:16px 0; }
 .code-snippet pre { padding:16px; border-radius:6px; background:#0d1117; color:#e6edf3; white-space:pre; }

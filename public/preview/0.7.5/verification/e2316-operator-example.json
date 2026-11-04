@@ -1,0 +1,82 @@
+{
+  "owner": "e2316",
+  "scope": "Only changed more-example-11 current normal compiler output, Run/Edit/undo/reset/source-bound preRun consistency",
+  "source": "add: +\n\n:: add(3, 4)\n:: add(10, 2)",
+  "sourceSha256": "609e1da86554ce00ab5e1dbb579371ad7503d6995beaa4d71139dea0e9a91635",
+  "compilerBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "actualCompleteStdout": "7\n12\n",
+  "checks": [
+    {
+      "name": "clear named operator authored source",
+      "ok": true,
+      "observed": "add: +\n\n:: add(3, 4)\n:: add(10, 2)"
+    },
+    {
+      "name": "existing exact compiler and formatter",
+      "ok": true
+    },
+    {
+      "name": "current compiler actual complete changed lesson output",
+      "ok": true,
+      "stdout": "7\n12\n",
+      "kind": "stdout",
+      "source": "add: +\n\n:: add(3, 4)\n:: add(10, 2)",
+      "highlight": "add: +\n\n:: add(3, 4)\n:: add(10, 2)\n"
+    },
+    {
+      "name": "edit clears stale output",
+      "ok": true
+    },
+    {
+      "name": "real Edit and Run full output",
+      "ok": true,
+      "stdout": "8\n12\n",
+      "kind": "stdout",
+      "source": "add: +\n\n:: add(3, 5)\n:: add(10, 2)",
+      "highlight": "add: +\n\n:: add(3, 5)\n:: add(10, 2)\n"
+    },
+    {
+      "name": "native undo restores original source",
+      "ok": true
+    },
+    {
+      "name": "native redo restores edited source",
+      "ok": true
+    },
+    {
+      "name": "source reset and Run restore original complete output",
+      "ok": true,
+      "stdout": "7\n12\n",
+      "kind": "stdout",
+      "source": "add: +\n\n:: add(3, 4)\n:: add(10, 2)",
+      "highlight": "add: +\n\n:: add(3, 4)\n:: add(10, 2)\n"
+    },
+    {
+      "name": "active catalog exact changed source hash and complete expected output",
+      "ok": true,
+      "rows": [
+        {
+          "id": "more-example-11",
+          "source_sha256": "609e1da86554ce00ab5e1dbb579371ad7503d6995beaa4d71139dea0e9a91635",
+          "expected_stdout": "7\n12\n",
+          "runtime_verification": {
+            "status": "UNVALIDATED_CURRENT_SOURCE",
+            "proof": null,
+            "actual_execution": false
+          },
+          "previous_runtime_verification": {
+            "source_sha256": "8ca69eca3f244eb7b2e5c99084ddca005f6565bdf64769f4d489d1c664de96c5",
+            "expected_stdout": "5\n6\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "physicalIPhone": false
+}

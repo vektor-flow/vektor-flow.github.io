@@ -2115,6 +2115,18 @@
       "actualExecution": true,
       "evidence": "verification/e2279-all-current-examples-style.json",
       "origin": "Actual e2279 full normal browser compiler/guest/formatter/retained renderer output, same complete stdout before/after indices-at-use rewrite"
+    },
+    {
+      "page": "syntax.html",
+      "id": "more-example-11",
+      "source_sha256": "609e1da86554ce00ab5e1dbb579371ad7503d6995beaa4d71139dea0e9a91635",
+      "stdout": "7\n12\n",
+      "compiler_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+      "status": "VERIFIED_CURRENT_NORMAL_RUNNER_SOURCE_BOUND_OUTPUT",
+      "actualExecution": true,
+      "origin": "Actual e2316 changed named-addition lesson current normal browser Run/Edit",
+      "visualOutputPending": false,
+      "evidence": "verification/e2316-operator-example.json"
     }
   ],
   "editorial_relocation": "Canonical documentation code now lives in Syntax + Examples and separate Standard Library. Source/output/scene identities are unchanged; new route/layout checks remain required."

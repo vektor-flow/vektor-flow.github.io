@@ -292,7 +292,7 @@
           !Number.isSafeInteger(descriptor.origin_index) || descriptor.origin_index < 0 ||
           Object.hasOwn(descriptor, "declaration_json"))
         throw new TypeError("malformed retained producer call descriptor");
-      if ((descriptor.concrete_type === "Layer" && !["direct-points-v1", "direct-lines-v1", "direct-points-v2", "direct-lines-v2"].includes(descriptor.render_packet_v1)) ||
+      if ((descriptor.concrete_type === "Layer" && !["direct-points-v1", "direct-lines-v1", "direct-points-v2", "direct-lines-v2", "grid-surface-v2"].includes(descriptor.render_packet_v1)) ||
           (descriptor.concrete_type !== "Layer" && descriptor.render_packet_v1 !== undefined))
         throw new TypeError("retained producer requires its concrete compiler graphics packet contract");
       if (descriptor.world_sequence !== undefined &&
@@ -316,8 +316,10 @@
         const v2 = descriptor.render_packet_v1.endsWith("-v2");
         const line = descriptor.render_packet_v1.startsWith("direct-lines-");
         const suffix = v2 ? "v2" : "v1";
-        if (!Object.hasOwn(argumentsValue, line ? "__renderer_line_packet_"+suffix : "__renderer_point_packet_"+suffix) ||
-            Object.hasOwn(argumentsValue, line ? "__renderer_point_packet_"+suffix : "__renderer_line_packet_"+suffix))
+        const packetName = descriptor.render_packet_v1 === "grid-surface-v2" ? "__renderer_surface_packet_v2" :
+          line ? "__renderer_line_packet_"+suffix : "__renderer_point_packet_"+suffix;
+        if (!Object.hasOwn(argumentsValue, packetName) ||
+            Object.keys(argumentsValue).some(name => /^__renderer_(?:point|line|surface)_packet_v[12]$/.test(name) && name !== packetName))
           throw new TypeError("retained Layer descriptor/graphics packet mismatch");
       }
       const parent = tag(parentPointer) === 0 ? nullValue(parentPointer) : requireHandle(parentPointer);

@@ -14541,22 +14541,25 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         // bytecode from original evaluated operands. The renderer validates and
         // consumes that packet; it does not evaluate channels, infer topology,
         // broadcast values, or construct geometry from source/metadata.
-        var v2 = Object.hasOwn(args, "__renderer_line_packet_v2") || Object.hasOwn(args, "__renderer_point_packet_v2");
+        var surface = Object.hasOwn(args, "__renderer_surface_packet_v2");
+        var v2 = surface || Object.hasOwn(args, "__renderer_line_packet_v2") || Object.hasOwn(args, "__renderer_point_packet_v2");
         var line = Object.hasOwn(args, "__renderer_line_packet_v2") || Object.hasOwn(args, "__renderer_line_packet_v1");
         var allowed = line ? ["x_u", "y_u", "c", "c_ic", "c_uc", "w", "pickable", "id", "__renderer_line_packet_v1"] :
           ["p_ic", "p_u", "x_i", "y_i", "x", "y", "c", "c_ic", "c_uc", "s", "s_u", "s_mode", "pickable", "id", "__renderer_point_packet_v1"];
         if (v2) allowed = allowed.concat(["p_ic", "p_uc", "edge_bm", "color", "__renderer_line_packet_v2", "__renderer_point_packet_v2"]);
+        if (surface) allowed = ["x_u", "y_v", "z", "z_uv", "c", "c_uv", "color", "pickable", "id", "__renderer_surface_packet_v2"];
+        allowed = allowed.concat(["receives_lighting", "no_lighting", "mode3d", "roughness", "reflectivity", "emissivity", "transparency", "optical_index", "emission", "casts_shadow", "receives_shadow", "depth_write", "visible"]);
         allowed = allowed.concat(["text", "label_color", "anchor", "interp", "interpolation"]);
         for (var flag of ["interp", "interpolation"]) if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean")
           throw new TypeError("retained Layer " + flag + " requires bit");
         for (var key of Object.keys(args)) if (!allowed.includes(key))
           throw new TypeError("unsupported retained Layer channel " + key);
-        var packet = v2 ? (line ? args.__renderer_line_packet_v2 : args.__renderer_point_packet_v2) : (line ? args.__renderer_line_packet_v1 : args.__renderer_point_packet_v1);
+        var packet = surface ? args.__renderer_surface_packet_v2 : v2 ? (line ? args.__renderer_line_packet_v2 : args.__renderer_point_packet_v2) : (line ? args.__renderer_line_packet_v1 : args.__renderer_point_packet_v1);
         if (!Array.isArray(packet) || packet.length !== (v2 ? 9 : 8) || packet[0] !== (v2 ? 2 : 1) ||
             packet[1] !== (world ? "world" : "pixel") ||
             !Array.isArray(packet[2]) || !Array.isArray(packet[3]) || !Array.isArray(packet[4]) ||
             typeof packet[6] !== "boolean" || typeof packet[7] !== "boolean")
-          throw new TypeError("actual compiler direct-point graphics packet v1 is required");
+          throw new TypeError("actual compiler retained graphics packet is required");
         var vertices = packet[2], indices = packet[3], sizes = packet[4], size = packet[5];
         var vertexCount = vertices.length / 10;
         var dimension = v2 ? packet[8] : 2;
@@ -14565,9 +14568,11 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (line && (world || !Number.isInteger(vertexCount) || vertexCount < 1 || (!v2 && vertexCount > Math.floor(1024 / 10)) ||
             (authoredEdges ? indices.length % 2 !== 0 : indices.length !== (vertexCount - 1) * 2) || sizes.length))
           throw new RangeError("retained compiler line packet has inconsistent extents");
-        if (!line && (indices.length < 1 || (!v2 && indices.length > Math.floor(1024 / 10)) || vertices.length !== indices.length * 10 ||
+        if (!line && !surface && (indices.length < 1 || (!v2 && indices.length > Math.floor(1024 / 10)) || vertices.length !== indices.length * 10 ||
             (sizes.length && (!world || sizes.length !== indices.length))))
           throw new RangeError("retained compiler point packet has inconsistent extents");
+        if (surface && (world || dimension !== 3 || vertexCount < 4 || indices.length < 6 || indices.length % 6 !== 0 || sizes.length || packet[7]))
+          throw new RangeError("retained compiler surface packet has inconsistent extents or missing authored color");
         vertices.forEach(function(v, index) {
           finite(v, "compiler vertex value");
           if (index % 10 >= 6 && (v < 0 || v > 1)) throw new RangeError("retained compiler RGBA must be in 0..1");
@@ -14585,12 +14590,31 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (!(size > 0)) throw new RangeError("retained compiler marker size must be positive");
         if (world && (args.s_mode !== 0 || sizes.length !== indices.length))
           throw new TypeError("compiled World point packet requires s_mode:data and matching sizes");
-        this.type = "field_mesh"; this.topology = line ? "line-list" : "point-list";
-        this.render_mode = line ? "line" : "marker_impostor";
+        this.type = "field_mesh"; this.topology = surface ? "triangle-list" : line ? "line-list" : "point-list";
+        if (!surface) this.render_mode = line ? "line" : "marker_impostor";
         this.axis_ticks = evaluatedAxisRanges([{vertices: vertices, mode3d:dimension === 3}]);
         if (line) { this.edge_width = size; this.curve_path = "open-continuous"; }
         this.marker_space = packet[1]; this.mode3d = dimension === 3;
-        this.no_lighting = true; this.casts_shadow = false;
+        this.no_lighting = !surface; this.casts_shadow = false;
+        // Material properties are already evaluated source values, just as on
+        // the normal formatter mesh route. Geometry is exclusively compiler-owned.
+        for (var flag of ["receives_lighting", "no_lighting", "mode3d", "casts_shadow", "receives_shadow", "depth_write", "visible"]) {
+          if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean") throw new TypeError("retained Layer " + flag + " requires bit");
+          if (Object.hasOwn(args, flag) && flag !== "receives_lighting") this[flag] = args[flag];
+        }
+        if (!Object.hasOwn(args, "no_lighting") && Object.hasOwn(args, "receives_lighting")) this.no_lighting = !args.receives_lighting;
+        for (var material of ["roughness", "reflectivity", "emissivity", "transparency", "optical_index", "emission"]) {
+          if (!Object.hasOwn(args, material)) continue;
+          var scalar = finite(args[material], "retained Layer " + material);
+          if ((material === "optical_index" && !(scalar > 0)) || (material === "emission" && scalar < 0) ||
+              (material !== "optical_index" && material !== "emission" && (scalar < 0 || scalar > 1)))
+            throw new RangeError("retained Layer " + material + " is outside its physical scalar domain");
+          this[material] = scalar;
+        }
+        if (Object.hasOwn(args, "transparency")) {
+          this.alpha = 1 - args.transparency; this.transparent = args.transparency > 0 || vertices.some(function(v,i){return i%10 === 9 && v < 0.999;});
+          if (!Object.hasOwn(args, "depth_write")) this.depth_write = !this.transparent;
+        }
         this.interpolation = args.interpolation === true;
         this.vertex_size = size; this.vertex_scale = sizes.length ? sizes : 1;
         this.pickable = packet[6]; this.use_vertex_color = true;
@@ -14604,7 +14628,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (args.text !== undefined && typeof args.text !== "string") throw new TypeError("retained text requires str");
         if (args.anchor !== undefined && (!Array.isArray(args.anchor) || args.anchor.length !== 2 || args.anchor.some(function(x){return !Number.isFinite(x) || x<0 || x>1;})))
           throw new TypeError("retained text anchor requires two values in 0..1");
-        var addText = (text,index) => this.texts.push({text:text,world:line || !!world,pixel:!line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
+        var addText = (text,index) => this.texts.push({text:text,world:surface || line || !!world,pixel:!surface && !line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
           ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.label_color===undefined?{}:{color:args.label_color})});
         if (args.text !== undefined) addText(args.text,0);
         own(this, "parent", frameRoot); own(this, "viewport", viewport); own(this, "world", world);

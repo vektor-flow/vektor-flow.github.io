@@ -61,18 +61,18 @@ def copy(spec, destination):
     return result
 
 
-def main(root, output):
+def main(root, output, restored_path, recipe_path=RECIPE):
     root, output = root.resolve(strict=True), output.resolve()
     need(output.is_relative_to(root), 'selection data must belong to actual root')
     need(not output.exists(), 'fresh append-only selection output required')
-    recipe = read(RECIPE)
+    recipe = read(recipe_path)
     template = read(verify(recipe['original_template']))
     roles = recipe['components']
     output.mkdir(parents=True)
     metadata = output / 'metadata'
     package = output / 'native-package'
     components = {}
-    dependency_specs = [pin(RECIPE), recipe['original_template']]
+    dependency_specs = [pin(recipe_path), recipe['original_template']]
     historical_package = Path(template['native_package'])
 
     def component(name, binding, files, origins, bindings, evidence, config, installs):
@@ -92,13 +92,16 @@ def main(root, output):
                                 source_manifest=source, abi=abi, config=config)
         dependency_specs.extend(evidence + [source, abi, config])
 
-    cli = roles['linux-cli']
-    cli_file = copy(cli['files'][0], package / 'bin/vkf-0.7.5')
-    verify(cli['config'])
-    component('linux-cli', cli['source_binding'], [cli_file],
-              {cli_file['path']: cli['files'][0]},
-              {cli_file['path']: cli['source_binding']}, cli['evidence'],
-              cli['config'], ['bin/vkf-0.7.5'])
+    restored = read(restored_path)
+    dependency_specs.append(pin(restored_path))
+    native = Path(restored['native_package'])
+    current_native_binding = restored['native_binding']
+    cli_origin = restored['native_cli']
+    cli_file = copy(cli_origin, package / 'bin/vkf-0.7.5')
+    native_evidence = restored['native_evidence']
+    component('linux-cli', current_native_binding, [cli_file],
+              {cli_file['path']: cli_origin}, {cli_file['path']: current_native_binding},
+              native_evidence, native_evidence[0], ['bin/vkf-0.7.5'])
 
     for name in ('linux-helper', 'native-runtime'):
         old = roles[name]['unchanged_component_template']
@@ -106,49 +109,71 @@ def main(root, output):
         verify(old['abi'])
         files, origins, bindings, installs = [], {}, {}, []
         need(len(old['files']) == len(old['installs']), 'complete native install mapping')
-        for original, relative in zip(old['files'], old['installs']):
+        for historical, relative in zip(old['files'], old['installs']):
             relative = Path(relative)
             need(not relative.is_absolute() and '..' not in relative.parts, 'native install path')
-            need(Path(original['path']).relative_to(historical_package) == relative,
-                 'unchanged native file/install correspondence')
+            candidate = native / relative
+            # Current stdlib comes from the same selected native package as CLI.
+            # Existing Linux helper/DSOs remain separately pinned components.
+            use_current = relative.parts[0] == 'compiler'
+            original = pin(candidate) if use_current else historical
+            if use_current:
+                need(str(relative) in restored['native_runtime_files'], 'unlisted current native source file')
+                need(original == restored['native_runtime_files'][str(relative)], 'native runtime source changed')
             result = copy(original, package / relative)
-            files.append(result)
-            origins[result['path']] = original
-            bindings[result['path']] = source['file_source_bindings'][original['path']]
+            files.append(result); origins[result['path']] = original
+            bindings[result['path']] = restored.get('native_library_binding', current_native_binding) if use_current else source['file_source_bindings'][historical['path']]
             installs.append(str(relative))
+        # Include current stdlib additions as well as updated historical paths.
+        # Omitting these would assemble a partial library tree for the new CLI.
+        if name == 'native-runtime':
+            for relative, original in sorted(restored['native_runtime_files'].items()):
+                relative = Path(relative)
+                need(not relative.is_absolute() and '..' not in relative.parts and
+                     relative.parts[0] == 'compiler', 'current native source path')
+                if str(relative) in installs:
+                    continue
+                need(pin(native / relative) == original, 'current native source changed')
+                result = copy(original, package / relative)
+                files.append(result); origins[result['path']] = original
+                bindings[result['path']] = restored.get('native_library_binding', current_native_binding)
+                installs.append(str(relative))
         config = write(metadata / (name + '.config.json'), dict(
-            status='EXACT_COPIED_COMPONENT_CURRENT_COMPATIBILITY_UNRUN',
+            status='EXACT_CURRENT_COMPONENT_DATA_COMPATIBILITY_UNRUN',
             original_config=old['config'], original_source=old['source_manifest'],
             original_abi=old['abi'], files=files, current_cli=cli_file,
             global_pass_inherited=False))
-        component(name, old['source_binding'], files, origins, bindings,
-                  old['evidence'] + [old['source_manifest'], old['abi']], config, installs)
+        binding = ('native-files:' + hashlib.sha256(canonical(bindings)).hexdigest()) if name == 'native-runtime' else old['source_binding']
+        component(name, binding, files, origins, bindings,
+                  old['evidence'] + [old['source_manifest'], old['abi']] + native_evidence, config, installs)
 
     site = root / 'site'
     preview = site / 'public/preview/0.7.5'
     release_pin = pin(preview / 'current-compiler-release.json')
     release = read(release_pin['path'])
     frontend, formatter = release['frontend_binding'], release['formatter_binding']
-    current = read('/mnt/development/VektorFlow-e1625-20261030/NODE-ESM-BENCHMARK-CONTROL-FINAL-REQUEST.json')['component']
-    need(current['source_binding'] == frontend and current['formatter_source_binding'] == formatter,
-         'actual current frontend/formatter identities')
+    need(release['compiler_source'] == restored['wasm_binding'] and frontend == restored['wasm_binding'],
+         'exact current WASM source binding')
     node_files = []
-    for original in current['files']:
-        actual = pin(preview / 'playground/canonical' / Path(original['path']).name)
+    node_origins = {}
+    for name in restored['canonical_names']:
+        original = restored['canonical_files'][name]
+        actual = pin(preview / 'playground/canonical' / name)
         need(actual['sha256'] == original['sha256'] and actual['bytes'] == original['bytes'],
-             'changed current ESM package input')
-        node_files.append(actual)
-    bindings = {p['path']: formatter if Path(p['path']).name.startswith('formatter') or Path(p['path']).name == 'compiler.mjs' else frontend for p in node_files}
-    evidence = [release_pin, pin('/mnt/development/VektorFlow-e1625-20261030/NODE-ESM-BENCHMARK-COMPONENT-CONTROL.json')]
-    component('node', frontend, node_files, {p['path']: old for p, old in zip(node_files, current['files'])},
-              bindings, evidence, release_pin, ['node/' + Path(p['path']).name for p in node_files])
+             'changed current ESM package input: ' + name)
+        node_files.append(actual); node_origins[actual['path']] = original
+    bindings = {p['path']: restored.get('canonical_file_bindings', {}).get(
+        str(Path(p['path']).relative_to(preview / 'playground/canonical')),
+        formatter if Path(p['path']).name.startswith('formatter') else frontend) for p in node_files}
+    evidence = [release_pin] + restored['canonical_evidence']
+    component('node', frontend, node_files, node_origins, bindings, evidence, release_pin,
+              ['node/' + str(Path(p['path']).relative_to(preview / 'playground/canonical')) for p in node_files])
     components['node'].update(package_source_binding=release['compiler_source'], formatter_source_binding=formatter)
     browser_files = node_files + [pin(preview / 'playground/canonical/package.json')]
     browser_bindings = dict(bindings, **{browser_files[-1]['path']: release['compiler_source']})
     component('browser', release['compiler_source'], browser_files,
-              {p['path']: p for p in browser_files}, browser_bindings,
-              [release_pin, pin('/mnt/development/VektorFlow-e1625-20261030/BROWSER-CANONICAL57-RESULT.json')],
-              release_pin, ['browser/' + Path(p['path']).name for p in browser_files])
+              {p['path']: p for p in browser_files}, browser_bindings, evidence,
+              release_pin, ['browser/' + str(Path(p['path']).relative_to(preview / 'playground/canonical')) for p in browser_files])
 
     # Bind every current075 public file, including final native kernel assets
     # when present. A later build/edit changes these pins and needs a fresh
@@ -177,13 +202,15 @@ def main(root, output):
     driver = root / 'local48-source'
     need((driver / 'overnight.py').is_file() and (driver / 'actual-peer32.py').is_file(),
          'own complete existing driver directory required')
-    driver_inputs = [pin(p) for p in sorted(driver.iterdir())
+    driver_inputs = [pin(p) for p in sorted(driver.rglob('*'))
                      if p.is_file() and p.suffix in ('.py', '.mjs', '.json', '.cpp', '.jl')]
-    # Keep the genuine frozen host consumers. Their compatibility with current
-    # selected VM/native artifacts remains a fresh actual preflight question.
-    for spec in template['node_host'].values():
-        verify(spec)
-    dependency_specs.extend(template['node_host'].values())
+    # Six existing maintained host inputs, copied together in the complete driver.
+    host_names = dict(consumer='web/vf-ui/vf-emitted-program-consumer.mjs',
+                      diagnostic='diagnostic-codec.mjs', codec='runtime-value-codec.mjs',
+                      capabilities='program-capabilities.mjs', concurrent='node-concurrent.mjs',
+                      documents='immutable-host-documents.mjs')
+    node_host = {key: pin(driver / 'host' / name) for key, name in host_names.items()}
+    dependency_specs.extend(node_host.values())
     dependency_specs.extend(driver_inputs)
     compatibility = write(metadata / 'source-compatibility.json', dict(
         components={name: hashlib.sha256(canonical(value)).hexdigest()
@@ -196,7 +223,12 @@ def main(root, output):
     selection = dict(template)
     selection.update(components=components, compatibility=compatibility,
                      driver_inputs=driver_inputs, native_package=str(package),
-                     tools={}, installed_peer_receipts={},
+                     tools={}, tool_candidates=restored['tool_candidates'], installed_peer_receipts={}, node_host=node_host,
+                     retained_peer_selection=restored['retained_peer_selection'],
+                     restored_dependency_inventory=restored['symbolic_mapping'],
+                     restored_julia_inventory=restored['julia_inventory'],
+                     peer_source_variants=restored['peer_source_variants'],
+                     symbolic_stdlib_source=pin(package / 'compiler/self_hosted/stdlib/symbolic.vkf'),
                      status='METADATA_ONLY_CURRENT_SELECTION_ACTUAL_PREFLIGHT_UNRUN',
                      performance_claim=False, global_pass_inherited=False)
     result = write(output / 'selection.json', selection)
@@ -209,5 +241,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('root', type=Path)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--restored', type=Path, required=True,
+                        help='Exact current native/WASM/peer prerequisite data; no historical default')
+    parser.add_argument('--recipe', type=Path, default=RECIPE)
     args = parser.parse_args()
-    main(args.root, args.output or args.root / 'local48-selection')
+    main(args.root, args.output or args.root / 'local48-selection', args.restored, args.recipe)

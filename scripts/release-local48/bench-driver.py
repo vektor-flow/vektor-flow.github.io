@@ -148,8 +148,10 @@ def main(request_path):
         oracle=work/'original-oracle-request.json';atomic(oracle,dict(result=str(work/'oracle-input-result.json'),expectation=expectation))
         _,_,j=execute(['/usr/bin/node',D/'benchmark-oracle.mjs',oracle],work,'original-oracle',owner)
         result.update(status='PASS',original_oracle_join=j);closure(selection)
-    except (Blocked,OSError,KeyError,ValueError,AssertionError) as error:
+    except (Blocked,OSError,KeyError,ValueError,AssertionError,subprocess.TimeoutExpired) as error:
         result.update(status='UNRUN' if 'UNRUN' in str(error) or isinstance(error,(FileNotFoundError,KeyError)) else 'FAIL',reason=str(error),new_timing_cell='-')
+        if isinstance(error,subprocess.TimeoutExpired):
+            result.update(failure_type='TimeoutExpired',normal_cap_seconds=error.timeout)
     finally:atomic(work/'result.json',result)
     return 0 if result['status']=='PASS' else 2
 if __name__=='__main__':raise SystemExit(main(sys.argv[1]))

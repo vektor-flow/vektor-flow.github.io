@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0;background:#000}canvas{width:160px;height:80px}</style>
+<script type="module">
+import {createScreenSpaceSimplexRenderer,createRetainedScreenSpaceSimplexScene} from '../../public/preview/0.7.5/vf-ui/geom/vf-screen-simplex-renderer.mjs';
+window.run=async()=>{
+ const reports=[];for(const control of [true,false]){const canvas=document.createElement('canvas');document.body.append(canvas);const renderer=createScreenSpaceSimplexRenderer(canvas,{backend:'webgl2',pixelRatio:()=>1,...(control?{preserveDrawingBuffer:false}:{})});await renderer.initialize();renderer.resize(160,80);const scene=createRetainedScreenSpaceSimplexScene(),frames=[];
+ const records=i=>[['fixed',{kind:'face',points:[[8,8],[56,8],[56,56],[8,56]],color:[1,1,1,1]}],['changed',{kind:'face',points:[[80,8],[140,8],[140,56],[80,56]],color:i%2?[0,1,1,1]:[1,1,0,1]}],['edge',{kind:'edge',from:[8,66],to:[144,66],width:3,color:[1,1,1,1]}]];
+ const read=()=>{const rgba=new Uint8Array(canvas.width*canvas.height*4),gl=canvas.getContext('webgl2');gl.readPixels(0,0,canvas.width,canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,rgba);let fixed=0,total=0;for(let y=0;y<canvas.height;y++)for(let x=0;x<canvas.width;x++){const at=(y*canvas.width+x)*4;if(rgba[at+3]>0)total++;if(x>=8&&x<56&&y>=canvas.height-56&&y<canvas.height-8&&rgba[at]>250&&rgba[at+3]>250)fixed++;}return {fixed,total};};
+ const present=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+ for(let i=0;i<8;i++){scene.replace(records(i<3?i:2));const changed=scene.commit(renderer),immediate=read();await present();const settled=read();frames.push({i,changed,immediate,settled});}renderer.resize(176,96);await present();const resized=read();const attrs=canvas.getContext('webgl2').getContextAttributes();reports.push({control,attributes:attrs,frames,resized});renderer.destroy();canvas.remove();}
+ return reports;
+};
+</script>

@@ -392,3 +392,12 @@ Source runtime/controller frozen at0b2a4af and rootintaken; remaining follow-up
 is docs/test-only one native parameter packet per generated fixture frame.
 Root owns actual8s2view193q preflight and final12view recording. No artifact/
 font/library math/PP source changes.
+
+## Retained framebuffer preservation — 2026-11-05
+
+Separate from frozen refined-text source4034401/nativec9e70dd: real WebGL2 component
+RED discard control versus GREEN default preservation, 2304 fixed pixels across
+partial updates/no-op commits/resize. Default preserveDrawingBuffer true; explicit
+false available for continuous callers. Existing incompatible context rejects
+explicitly; reload/fresh canvas required. Parent owns actual PP navigation check.
+No native numerical/font/text artifact bytes changed.

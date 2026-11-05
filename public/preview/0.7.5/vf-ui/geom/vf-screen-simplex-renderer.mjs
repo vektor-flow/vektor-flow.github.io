@@ -202,7 +202,7 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
         return null;
       });
     }
-    if (!backend) backend = createWebGl2Backend(canvas);
+    if (!backend) backend = createWebGl2Backend(canvas, options);
     if (!backend) throw new Error('A WebGPU or WebGL2 GPU backend is required');
     backend.resize(cssWidth, cssHeight);
     backend.render(vertices);
@@ -568,13 +568,18 @@ async function createWebGpuBackend(canvas, options = {}) {
   };
 }
 
-function createWebGl2Backend(canvas) {
+function createWebGl2Backend(canvas, options = {}) {
+  const preserveDrawingBuffer = options.preserveDrawingBuffer ?? true;
+  if (typeof preserveDrawingBuffer !== 'boolean') throw new TypeError('preserveDrawingBuffer must be boolean');
   const gl = canvas.getContext('webgl2', {
     alpha: true,
     antialias: true,
-    premultipliedAlpha: true
+    premultipliedAlpha: true,
+    preserveDrawingBuffer
   });
   if (!gl) return null;
+  if (preserveDrawingBuffer && gl.getContextAttributes && !gl.getContextAttributes()?.preserveDrawingBuffer)
+    throw new Error('Retained rendering requires a fresh WebGL canvas with preserveDrawingBuffer');
   const program = createWebGlProgram(gl, `#version 300 es
     in vec2 a_position;
     in vec4 a_color;

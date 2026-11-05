@@ -32,6 +32,13 @@ window.start=async()=>{
   const from=[fixed,{...make('flow','Warm ink',170,[1,.7,.2,1]),anchor:[100,170]}],to=[{...fixed,anchor:[35,55],color:[1,1,1,1]},{...make('flow','Cool stroke',260,[.15,.85,1,1]),anchor:[300,260]}];
   const p=await prepareNativeTextModes({fromSpecs:from,toSpecs:to,width:640,height:360,pixelRatio:1,typography,interp:{mode:'vapor',seed:17},maxCarriers:256});document.querySelector('#host').append(p.element);window.player=p;return {source:p.sourceCount,target:p.targetCount};
  };
+ window.materialPerformance=async(profile,fixture)=>{
+  window.player.close();document.querySelector('#host').style.cssText=`position:relative;width:${fixture.width}px;height:${fixture.height}px;background:#000`;
+  const {prepareNativeTextModes:prepare}=await import(`/mode/${profile}/vf-ui/native-labels/vf-native-text-modes.mjs`);
+  const start=performance.now(),p=await prepare({...fixture,pixelRatio:1,typography,interp:{mode:'vapor',seed:17},maxCarriers:4096});document.querySelector('#host').append(p.element);window.player=p;const prepareMs=performance.now()-start,frames=[];
+  for(const q of [0,.25,.5,.75,1]){const receipt=await p.sample(q),bytes=p.canvas.getContext('2d').getImageData(0,0,p.canvas.width,p.canvas.height).data;const sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');frames.push({q,sha,receipt});}
+  return {profile,prepareMs,source:p.sourceCount,target:p.targetCount,frames};
+ };
  window.materialEdges=async()=>{
   const fixed=make('fixed','Fixed',55,[1,1,1,1]);
   const same=await prepareNativeTextModes({fromSpecs:[fixed],toSpecs:[{...fixed}],width:640,height:360,pixelRatio:1,typography,interp:{mode:'vapor'},maxCarriers:32});

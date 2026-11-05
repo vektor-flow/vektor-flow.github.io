@@ -334,3 +334,20 @@ Actual native parser/controller damped oscillator plot PASS on software WebGPU
 and WebGL2; decoded VP8 cyan curve visible, zero diagnostics/errors. Evidence
 docs/symbolic-exp; root imports existing pinned075 controller relative closure
 for durable intake, no node_modules mutation/package release.
+
+## Exact material performance gate — 2026-11-05
+
+Final numerical pin0e7ff86: safe nested-array/count/destination-coordinate hoists
+only; no changed scalar math/order/settings/cap. Actual163→180glyph/4096carrier
+five complete RGBA frames match before/after exactly,128Mi cap unchanged. Native
+compute4701–4856→1960–2094ms (~2.3x); prep56784→42649ms. Quick1024carrier
+native170glyph measure139ms sample/1336ms prep; not actual-font/60fps claim.
+Current same-artifact kernel/scalar tests pass. Native4k complete packets exact
+and final sampler source bytes identical to qualified hoisted function.
+Block/basis prototypes excluded (no sampling gain); no new schema/algorithm.
+Minimal record-array mutation controls PASS, so no unisolated compiler defect
+claim. Prepared result handle across subsequent invocation was unsafe; final
+code retains supported immutable tagged-value copies. Generic WASM throughput
+remains explicit. Evidence/engine handoff docs/text-modes/MATERIAL-PERFORMANCE.md.
+Parent will choose existing1024 carrier budget and qualify actual final density
+and full24fps movie; no PP edits, fonts/capture/numeric formulas/push/deployment.

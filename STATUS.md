@@ -223,3 +223,34 @@ encoder export PASS4frames, ffprobe times0,.042,.083,.125, zero page errors.
 Evidence docs/media-capture/MANUAL-QUALIFICATION.json; API MANUAL-SOURCE.md.
 No claims of full Product export/performance, physical GPU or deployment. Root
 owns final PP producer/control/intake and capture; PP files untouched here.
+
+## Measured170-glyph rendering correction — 2026-11-05
+
+Bounded genuine fixture profile reproduces1.2–2.2s samples; composite/encoding
+not involved. Found redundant native resize redraw before each intended tile,
+and exact AA certificates coupled to evicted mutable proof-accelerator IDs.
+
+Changes: tiled resize opts out of intermediate redraw (shared default preserved);
+immutable exact pose keys retain full physical/matrix/phase contracts without
+allocation IDs; unpinned accelerators evict before their small immutable cells,
+within unchanged134,217,728-byte cap; pose hits renew sample ownership/LRU.
+Repeated identical accepted q/front returns completed canvas; prepared colors
+snapshotted. No quality/bounds/font/math changes, no native artifact rebuild.
+
+Actual170-glyph/mint-legend before/after8complete RGBA SHA256 hashes identical.
+Completed q1 sample2189–2248ms→100–117ms; warmq.5 1199→97ms. First-useq.25
+~265ms remains. Two ordered passes, shared-host Vulkan/SwiftShader only; no
+physicalGPU/60fps/general10k acceptance. Same owner cap, observedpeak133,531,238.
+Full profile evidence docs/text-modes/PERFORMANCE-QUALIFICATION.json.
+
+Checks PASS142 independent original per-sample comparisons +2 matched refusals;
+source mutation/nonfinite/byte-node-pixel/ownership tests;4100-instance bounded
+stream regression; specific accelerator eviction/certificate reuse/changed-phase
+reproof; actual default resize late-refusal/full-RGBA retention; full153-glyph
+52sample wave/vapor/endpoints/underlay/abort regression. Semantic-key change alone
+did not stop immutable-cell eviction; accelerator-first bounded eviction was also
+needed. That failed partial approach is retained in performance evidence.
+
+Root running video/browser/PP authoring untouched. Changed public native paths:
+vf-native-outline-cache, vf-shared-area-renderer, vf-native-tiled-label-renderer,
+vf-native-text-modes. Ready for final owner intake; no push/deployment.

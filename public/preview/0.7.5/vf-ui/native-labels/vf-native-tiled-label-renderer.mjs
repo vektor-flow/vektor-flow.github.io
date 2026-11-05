@@ -20,12 +20,14 @@ export function createTiledNativeLabelRenderer(canvas,options={}) {
   const rows=[];let currentScene=null;
   for(let y=0;y<h;y+=960)for(let x=0;x<w;x+=960){
    const tw=Math.min(960,w-x),th=Math.min(960,h-y),c=[...nextCamera];c[4]-=x/dpr;c[5]-=y/dpr;
-   renderer.resize(tw/dpr,th/dpr);
+   // Only the following intended scene/camera draw is copied to the tile.
+   // Preparing its target must not re-certify/present the previous scene.
+   const resizeAt=performance.now();renderer.resize(tw/dpr,th/dpr,{redraw:false});const resizeMs=performance.now()-resizeAt,drawAt=performance.now();
    if(currentScene!==nextScene){renderer.setNativeScene(nextScene,c);currentScene=nextScene;}else renderer.setNativeCamera(c);
    if(nextColor)renderer.setNativeColor(nextColor);
    need(tile.width===tw&&tile.height===th,'NATIVE_LABEL_TILES_EXACT_PIXELS');
-   ctx.drawImage(tile,0,0,tw,th,x,y,tw,th);
-   rows.push({x,y,width:tw,height:th,renderer:renderer.nativeStatistics()});
+   const sourceDrawMs=performance.now()-drawAt,copyAt=performance.now();ctx.drawImage(tile,0,0,tw,th,x,y,tw,th);const tileCopyMs=performance.now()-copyAt;
+   rows.push({x,y,width:tw,height:th,resizeMs,sourceDrawMs,tileCopyMs,renderer:renderer.nativeStatistics()});
   }
   const display=canvas.getContext('2d',{alpha:true});need(display,'NATIVE_LABEL_TILES_DISPLAY');
   if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;

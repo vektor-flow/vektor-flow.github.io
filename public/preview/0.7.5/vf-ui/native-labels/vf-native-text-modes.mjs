@@ -38,7 +38,7 @@ function checkSpecs(specs){
 async function outlines(typography,specs,check,pixelRatio){
  checkSpecs(specs);if(!specs.length)return [];
  const scene=await createAdaptiveNativeLabelBatches({typography,specs:specs.map(s=>({...s,sizeSpace:'world',anchor:[s.anchor[0],-s.anchor[1]]})),coordinates:{worldToScreen:([x,y])=>[x,-y]},pixelRatio});
- try{check();return scene.nativeSourceOutlines([1,0,0,-1,0,0],{maxInstances:4096});}finally{scene.close();}
+ try{check();return scene.nativeSourceOutlines([1,0,0,-1,0,0],{maxInstances:4096}).map(s=>({...s,color:[...s.color]}));}finally{scene.close();}
 }
 function readingCoordinates(sources,specs,k,kernel){
  const byId=new Map(specs.map((s,i)=>[s.id,{spec:s,order:i}])),offsets=new Map();let previous=0;
@@ -90,6 +90,7 @@ export async function prepareNativeTextModes({fromSpecs=[],toSpecs=[],width,heig
   async function render(q,options,serial){
    check();if(serial!==generation)return {status:'SUPERSEDED'};need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_TEXT_COORDINATE');
    const start=performance.now(),coordinate=kernel.invokeValue('time_coordinate',[q]),front=options.front??(options.elapsed===undefined?(velocity===0?0:coordinate*travel):kernel.invokeValue('reveal_advance',[settings,0,options.elapsed]));need(Number.isFinite(front),'NATIVE_TEXT_FRONT');
+   if(last&&last.coordinate===q&&last.front===front){last={...last,status:'REUSED_ACCEPTED_FRAME',reusedAcceptedFrame:true,nativeComputeMs:0,cpuThroughSubmitMs:performance.now()-start};return last;}
    const before=performance.now(),packet=kernel.invokeValue('text_frame',[settings,coordinate,ink,reading,front]),computeMs=performance.now()-before;check();
    let zeroAreaGlyphs=0;
    const sources=q===1?to:q===0?[]:to.flatMap((s,i)=>{const [a,g,r,b,c]=packet.target.slice(i*5,i*5+5);if(a<=0)return [];need(Number.isFinite(g),'NATIVE_TEXT_GROWTH');const m=s.matrix,color=s.color??[0,0,0,1],linear=[m[0]*g,m[1]*g,m[2]*g,m[3]*g];if(g<=0||linear.every(v=>v===0)){zeroAreaGlyphs++;return [];}return [{...s,matrix:[...linear,m[4],m[5]],color:[r*color[0],b*color[1],c*color[2],a*color[3]]}];});

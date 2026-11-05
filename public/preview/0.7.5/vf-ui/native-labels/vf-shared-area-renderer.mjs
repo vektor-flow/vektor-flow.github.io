@@ -91,10 +91,10 @@ export function createSharedAreaRenderer(canvas,options={}) {
       resize(canvas.clientWidth||cssWidth,canvas.clientHeight||cssHeight);return 'webgl2-area';
     }catch(error){destroy();throw error}
   }
-  function resize(width=canvas.clientWidth,height=canvas.clientHeight){live();const nextWidth=Math.max(1,Number(width)||1),nextHeight=Math.max(1,Number(height)||1);
+  function resize(width=canvas.clientWidth,height=canvas.clientHeight,{redraw=true}={}){live();const nextWidth=Math.max(1,Number(width)||1),nextHeight=Math.max(1,Number(height)||1);
     if(!gl){cssWidth=nextWidth;cssHeight=nextHeight;return;}
     const next=areaTarget({cssWidth:nextWidth,cssHeight:nextHeight,pixelRatio:ratio(),samplesPerAxis:sampleCount,maxTextureSize:gl.getParameter(gl.MAX_TEXTURE_SIZE),maxBytes:options.maxCoverageBytes??536870912});
-    const accepted=accuracyScene?prepareAccuracy(accuracyScene,camera,nextWidth,nextHeight,next):null;
+    const accepted=redraw&&accuracyScene?prepareAccuracy(accuracyScene,camera,nextWidth,nextHeight,next):null;
     const previous={width:cssWidth,height:cssHeight,target};
     cssWidth=nextWidth;cssHeight=nextHeight;
     try{
@@ -105,7 +105,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
       gl.bindFramebuffer(gl.FRAMEBUFFER,framebuffer);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);
       if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw failure('PLOT_COVERAGE_FRAMEBUFFER','BLOCKED');
     }
-    target=next;draw(accepted);
+    target=next;if(redraw)draw(accepted);
     }catch(error){
       cssWidth=previous.width;cssHeight=previous.height;target=previous.target;
       // Certification may fail after partial offscreen submission. The canvas

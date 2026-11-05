@@ -110,16 +110,25 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
  for(const n of [maxEntries,maxBytes,maxNewProofs,maxNewNodes,maxNewPixels,maxGeometryNodes,maxTriangles])need(Number.isSafeInteger(n)&&n>0,'OUTLINE_CACHE_LIMIT');
  need(Number.isInteger(maxDepth)&&maxDepth>=0&&maxDepth<=64,'NATIVE_SAMPLE_LIMIT');
  const geometry=new Map(),samples=new Map(),atlases=new Map(),poses=new Map(),pinned=new Set();let bytes=0,closed=false,clock=0,stats={};
- function reset(){stats={instances:0,geometryBuilds:0,sampleBuilds:0,meshBuilds:0,queryNodes:0,poseSkips:0,hits:0,newNodes:0,newPixels:0,newGeometryNodes:0};}
+ function reset(){stats={instances:0,geometryBuilds:0,sampleBuilds:0,meshBuilds:0,queryNodes:0,poseSkips:0,poseReuses:0,hits:0,newNodes:0,newPixels:0,newGeometryNodes:0};}
  reset();
  function live(){need(!closed,'OUTLINE_CACHE_CLOSED');}
+ // Mutable decision DAGs accelerate proof construction only. Evict an
+ // unpinned accelerator before discarding the small immutable proof cells it
+ // produced; both remain charged to the SAME owner cap, with LRU per tier.
+ function victim(){let selected;
+  for(const m of [atlases,geometry,samples,poses]){
+   for(const [k,v] of m)if(!pinned.has(v.value)&&(!selected||v.used<selected.value.used))selected={m,k,value:v};
+   if(m===atlases&&selected)return selected;
+  }return selected;
+ }
+ function evict(v){v.m.delete(v.k);bytes-=v.value.bytes;if(v.m===samples)for(const [k,p] of poses)if(p.value.template===v.value.value){poses.delete(k);bytes-=p.bytes;}}
  function insert(map,key,value,size,{optional=false}={}){
   if(optional&&size>maxBytes)return;
   need(size<=maxBytes,'OUTLINE_CACHE_BYTES');
   while(geometry.size+samples.size+atlases.size+poses.size>=maxEntries||bytes+size>maxBytes){
-   let victim;for(const m of [geometry,samples,atlases,poses])for(const [k,v] of m)if(!pinned.has(v.value)&&(!victim||v.used<victim.value.used))victim={m,k,value:v};
-   if(optional&&!victim)return;
-   need(victim,'OUTLINE_CACHE_BYTES');victim.m.delete(victim.k);bytes-=victim.value.bytes;if(victim.m===samples)for(const [k,v] of poses)if(v.value.template===victim.value.value){poses.delete(k);bytes-=v.bytes;}
+   const removed=victim();if(optional&&!removed)return;
+   need(removed,'OUTLINE_CACHE_BYTES');evict(removed);
   }
   map.set(key,{value,bytes:size,used:++clock});bytes+=size;pinned.add(value);return value;
  }
@@ -150,8 +159,18 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
    phase={matrix:[...s.matrix],shift:[0,0],normalized:false};coords=coordinates(s.matrix);pad=[0,0];canonical=[...s.matrix];fullPose=true;
   }
   const coordinateExponent=canonical.slice(4).some(v=>dyad(v).e < -64)?-1074:-64;
+  // The immutable AA-cell certificate belongs to this complete physical pose,
+  // not to the allocation/lifetime of its mutable proof-search accelerator.
+  // Source, material, matrix/phase and exact translation guards above still run.
+  need(canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
+  const poseKey=exactKey([s.shapeKey,phase.matrix,pixelRatio,maxDepth,fullPose,'exact-AA16-pose/2']);
+  const pose=poses.get(poseKey);let template=pose?.value.template,atlas;
+  if(pose){
+   const sample=samples.get(pose.value.sampleKey);need(sample?.value===template,'OUTLINE_CACHE_POSE_OWNERSHIP');
+   pose.used=++clock;sample.used=++clock;stats.hits++;stats.poseReuses++;pinned.add(template);
+  }else{
   const atlasKey=exactKey([s.shapeKey,phase.matrix.slice(0,4),pixelRatio,maxDepth,coordinateExponent,'exact-source-decision-DAG/1']);
-  let atlas=hit(atlases,atlasKey);
+  atlas=hit(atlases,atlasKey);
   if(!atlas){
    need(stats.sampleBuilds<maxNewProofs,'OUTLINE_CACHE_NEW_PROOF_BUDGET');
    let entry;
@@ -161,19 +180,12 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
     onAllocate(size){
      // The mutable proof tree never escapes this owner. Account conservative
      // retained bounds/children/BigInts BEFORE allocation, under the same LRU.
-     while(bytes+size>maxBytes){let victim;for(const m of [geometry,samples,atlases,poses])for(const [k,v] of m)if(!pinned.has(v.value)&&(!victim||v.used<victim.value.used))victim={m,k,value:v};need(victim,'OUTLINE_CACHE_BYTES');victim.m.delete(victim.k);bytes-=victim.value.bytes;if(victim.m===samples)for(const [k,v] of poses)if(v.value.template===victim.value.value){poses.delete(k);bytes-=v.bytes;}}
+     while(bytes+size>maxBytes){const removed=victim();need(removed,'OUTLINE_CACHE_BYTES');evict(removed);}
      entry.bytes+=size;bytes+=size;
     }});
    insert(atlases,atlasKey,atlas,8192+s.commands.length*4096+atlasKey.length*2);entry=atlases.get(atlasKey);atlas.cacheId=++clock;stats.sampleBuilds++;
   }
-  need(canonical.slice(4).every((v,i)=>differenceIs(v,pad[i],phase.matrix[i+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');
   const extent=[0,1].map(k=>Math.ceil(Math.max(...coords.map(p=>p[k]))+pad[k])+2);
-  // Every request certifies its actual phase against the source atlas. Only
-  // resulting identical AA sample cells share resident draw geometry.
-  const poseKey=exactKey([atlas.cacheId,phase.matrix,pixelRatio,maxDepth,fullPose]);
-  const pose=poses.get(poseKey);let template=pose?.value.template;
-  if(pose){pose.used=++clock;stats.hits++;pinned.add(template);}
-  else{
    const mesh=certifiedNativeAtlasMesh(atlas,s.commands,canonical,{width:extent[0],height:extent[1],pixelRatio,maxPixels:maxNewPixels-stats.newPixels,maxTriangles});
    const [x0,y0,x1,y1]=mesh.bounds;need(x0>0&&y0>0&&x1<extent[0]*pixelRatio&&y1<extent[1]*pixelRatio,'OUTLINE_CACHE_UNCLIPPED_PROOF');
    stats.newPixels+=(x1-x0)*(y1-y0);
@@ -190,7 +202,7 @@ export function createCertifiedOutlineCache({maxEntries=4096,maxBytes=134217728,
     template=freeze(value);
     insert(samples,key,template,estimate(template)+key.length*2+256);
    }
-   const value={template};if(!insert(poses,poseKey,value,512+poseKey.length*2,{optional:true}))stats.poseSkips++;pinned.delete(value);
+   const value={template,sampleKey:key};if(!insert(poses,poseKey,value,512+poseKey.length*2,{optional:true}))stats.poseSkips++;pinned.delete(value);
   }
   const translation=phase.shift.map((v,k)=>v-pad[k]);
   need(translation.every((v,k)=>differenceIs(s.matrix[k+4],v,canonical[k+4])),'OUTLINE_CACHE_TRANSLATION_EXACTNESS');

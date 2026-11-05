@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {createCertifiedOutlineCache} from '../public/preview/0.7.5/vf-ui/native-labels/vf-native-outline-cache.mjs';
+const commands=[['M',0,0],['C',3,-1,-2,3,2,2],['L',0,2],['Z']];
+const first={commands,matrix:[1,0,0,1,4.125,4.125],provenance:{engineIdentity:'pose-eviction',resourceIdentity:'first',source:'native curve'}};
+const cache=createCertifiedOutlineCache({maxEntries:7});
+cache.begin();const original=cache.get(first),cells=[...original.template.cells];cache.release(original);
+const other=cache.get({...first,provenance:{...first.provenance,resourceIdentity:'other'}});cache.release(other);
+assert.equal(cache.statistics().entries,7);
+cache.begin();const reused=cache.get(first);assert.deepEqual(reused.template.cells,cells);assert.equal(cache.statistics().poseReuses,1);assert.equal(cache.statistics().sampleBuilds,0);assert.equal(cache.statistics().newNodes,0);cache.release(reused);
+cache.begin();const shifted=cache.get({...first,matrix:[1,0,0,1,5.125,4.125]});assert.deepEqual(shifted.template.cells,cells);assert.equal(cache.statistics().poseReuses,1);assert.equal(cache.statistics().newNodes,0);cache.release(shifted);
+cache.begin();const changed=cache.get({...first,matrix:[1,0,0,1,4.125000000001,4.125]});assert.equal(cache.statistics().poseReuses,0);assert.equal(cache.statistics().sampleBuilds,1);assert(cache.statistics().queryNodes>0);cache.release(changed);
+assert(cache.statistics().entries<=7);assert(cache.statistics().bytes<=cache.statistics().maxBytes);cache.close();
+console.log('PASS immutable exact pose reuse after accelerator eviction; exact translation reuse; changed phase reproof; same ownership/resource bounds');

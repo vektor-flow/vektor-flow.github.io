@@ -34,8 +34,8 @@
         0,
         0
       ],
-      "nativeComputeMs": 22,
-      "cpuThroughSubmitMs": 31.699999928474426,
+      "nativeComputeMs": 11.100000023841858,
+      "cpuThroughSubmitMs": 29.700000047683716,
       "computeBackend": "canonical VKF WASM; CPU",
       "gasRenderingBackend": "webgl2",
       "nativeRenderer": {
@@ -49,6 +49,9 @@
             "y": 0,
             "width": 640,
             "height": 360,
+            "resizeMs": 2.5,
+            "sourceDrawMs": 2.8000000715255737,
+            "tileCopyMs": 0,
             "renderer": {
               "styleColor": null,
               "nativeAccuracy": {
@@ -66,6 +69,7 @@
                 "meshBuilds": 0,
                 "queryNodes": 0,
                 "poseSkips": 0,
+                "poseReuses": 0,
                 "hits": 0,
                 "newNodes": 0,
                 "newPixels": 0,
@@ -90,7 +94,7 @@
                 "indexed10kAccuracy": "OPEN",
                 "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
                 "allFontsCertificate": false,
-                "sourcePreparationMs": 0,
+                "sourcePreparationMs": 0.20000004768371582,
                 "packedBytes": 0,
                 "rasterErrorEnvelopeAreaTexels": 0.0068359375,
                 "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
@@ -173,7 +177,7 @@
         0
       ],
       "nativeComputeMs": 4.600000023841858,
-      "cpuThroughSubmitMs": 34.200000047683716,
+      "cpuThroughSubmitMs": 35,
       "computeBackend": "canonical VKF WASM; CPU",
       "gasRenderingBackend": "webgl2",
       "nativeRenderer": {
@@ -187,6 +191,9 @@
             "y": 0,
             "width": 640,
             "height": 360,
+            "resizeMs": 0.10000002384185791,
+            "sourceDrawMs": 27,
+            "tileCopyMs": 0.10000002384185791,
             "renderer": {
               "styleColor": null,
               "nativeAccuracy": {
@@ -204,16 +211,17 @@
                 "meshBuilds": 3,
                 "queryNodes": 165648,
                 "poseSkips": 0,
+                "poseReuses": 0,
                 "hits": 0,
                 "newNodes": 536,
                 "newPixels": 439,
                 "newGeometryNodes": 518,
                 "pinnedEntries": 0,
                 "entries": 12,
-                "bytes": 3611294,
+                "bytes": 3654912,
                 "atlasBytes": 3065278,
                 "sampleBytes": 40608,
-                "poseBytes": 2792,
+                "poseBytes": 46410,
                 "maxEntries": 4096,
                 "maxBytes": 134217728,
                 "maxNewProofs": 4096,
@@ -228,7 +236,7 @@
                 "indexed10kAccuracy": "OPEN",
                 "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
                 "allFontsCertificate": false,
-                "sourcePreparationMs": 26,
+                "sourcePreparationMs": 26.5,
                 "packedBytes": 0,
                 "rasterErrorEnvelopeAreaTexels": 0.0068359375,
                 "residentRasterEnvelope": 0.021484375,
@@ -311,8 +319,8 @@
         0,
         0
       ],
-      "nativeComputeMs": 4.100000023841858,
-      "cpuThroughSubmitMs": 64.19999992847443,
+      "nativeComputeMs": 5,
+      "cpuThroughSubmitMs": 62.199999928474426,
       "computeBackend": "canonical VKF WASM; CPU",
       "gasRenderingBackend": "webgl2",
       "nativeRenderer": {
@@ -326,6 +334,9 @@
             "y": 0,
             "width": 640,
             "height": 360,
+            "resizeMs": 0.10000002384185791,
+            "sourceDrawMs": 53.39999997615814,
+            "tileCopyMs": 0.10000002384185791,
             "renderer": {
               "styleColor": null,
               "nativeAccuracy": {
@@ -343,16 +354,17 @@
                 "meshBuilds": 8,
                 "queryNodes": 498298,
                 "poseSkips": 0,
+                "poseReuses": 0,
                 "hits": 3,
                 "newNodes": 2654,
                 "newPixels": 1273,
                 "newGeometryNodes": 1246,
                 "pinnedEntries": 0,
                 "entries": 41,
-                "bytes": 18778540,
+                "bytes": 18953082,
                 "atlasBytes": 16905296,
                 "sampleBytes": 159188,
-                "poseBytes": 9832,
+                "poseBytes": 184374,
                 "maxEntries": 4096,
                 "maxBytes": 134217728,
                 "maxNewProofs": 4096,
@@ -367,7 +379,7 @@
                 "indexed10kAccuracy": "OPEN",
                 "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
                 "allFontsCertificate": false,
-                "sourcePreparationMs": 53.799999952316284,
+                "sourcePreparationMs": 53.09999990463257,
                 "packedBytes": 0,
                 "rasterErrorEnvelopeAreaTexels": 0.0068359375,
                 "residentRasterEnvelope": 0.021484375,
@@ -390,9 +402,9 @@
               "submittedVertices": 0,
               "gpuBytes": 20304,
               "coverageBytes": 14745600,
-              "uploads": 14,
+              "uploads": 11,
               "verifiedInstanceSamples": 0,
-              "draws": 14,
+              "draws": 11,
               "camera": [
                 1,
                 0,
@@ -450,8 +462,8 @@
         0.3397325184301942,
         0.031384686642133744
       ],
-      "nativeComputeMs": 2.899999976158142,
-      "cpuThroughSubmitMs": 48.799999952316284,
+      "nativeComputeMs": 3,
+      "cpuThroughSubmitMs": 55,
       "computeBackend": "canonical VKF WASM; CPU",
       "gasRenderingBackend": "webgl2",
       "nativeRenderer": {
@@ -465,6 +477,9 @@
             "y": 0,
             "width": 640,
             "height": 360,
+            "resizeMs": 0,
+            "sourceDrawMs": 47.699999928474426,
+            "tileCopyMs": 0.10000002384185791,
             "renderer": {
               "styleColor": null,
               "nativeAccuracy": {
@@ -482,16 +497,17 @@
                 "meshBuilds": 9,
                 "queryNodes": 548934,
                 "poseSkips": 0,
-                "hits": 26,
+                "poseReuses": 8,
+                "hits": 18,
                 "newNodes": 4421,
                 "newPixels": 1485,
                 "newGeometryNodes": 2107,
                 "pinnedEntries": 0,
                 "entries": 75,
-                "bytes": 43947406,
+                "bytes": 44275712,
                 "atlasBytes": 39954156,
-                "sampleBytes": 292324,
-                "poseBytes": 17946,
+                "sampleBytes": 292320,
+                "poseBytes": 346256,
                 "maxEntries": 4096,
                 "maxBytes": 134217728,
                 "maxNewProofs": 4096,
@@ -506,7 +522,7 @@
                 "indexed10kAccuracy": "OPEN",
                 "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
                 "allFontsCertificate": false,
-                "sourcePreparationMs": 42.10000002384186,
+                "sourcePreparationMs": 47.39999997615814,
                 "packedBytes": 0,
                 "rasterErrorEnvelopeAreaTexels": 0.0068359375,
                 "residentRasterEnvelope": 0.021484375,
@@ -529,9 +545,9 @@
               "submittedVertices": 0,
               "gpuBytes": 20304,
               "coverageBytes": 14745600,
-              "uploads": 39,
+              "uploads": 28,
               "verifiedInstanceSamples": 0,
-              "draws": 39,
+              "draws": 28,
               "camera": [
                 1,
                 0,
@@ -589,8 +605,8 @@
         1,
         1
       ],
-      "nativeComputeMs": 2.200000047683716,
-      "cpuThroughSubmitMs": 26.800000071525574,
+      "nativeComputeMs": 2.600000023841858,
+      "cpuThroughSubmitMs": 22.100000023841858,
       "computeBackend": "canonical VKF WASM; CPU",
       "gasRenderingBackend": "webgl2",
       "nativeRenderer": {
@@ -604,6 +620,9 @@
             "y": 0,
             "width": 640,
             "height": 360,
+            "resizeMs": 0,
+            "sourceDrawMs": 17.899999976158142,
+            "tileCopyMs": 0.10000002384185791,
             "renderer": {
               "styleColor": null,
               "nativeAccuracy": {
@@ -621,16 +640,17 @@
                 "meshBuilds": 3,
                 "queryNodes": 204762,
                 "poseSkips": 0,
-                "hits": 48,
+                "poseReuses": 14,
+                "hits": 34,
                 "newNodes": 374,
                 "newPixels": 492,
                 "newGeometryNodes": 0,
                 "pinnedEntries": 0,
                 "entries": 81,
-                "bytes": 45862832,
+                "bytes": 46243808,
                 "atlasBytes": 41821164,
-                "sampleBytes": 338092,
-                "poseBytes": 20596,
+                "sampleBytes": 338088,
+                "poseBytes": 401576,
                 "maxEntries": 4096,
                 "maxBytes": 134217728,
                 "maxNewProofs": 4096,
@@ -645,7 +665,7 @@
                 "indexed10kAccuracy": "OPEN",
                 "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
                 "allFontsCertificate": false,
-                "sourcePreparationMs": 18.200000047683716,
+                "sourcePreparationMs": 17.5,
                 "packedBytes": 0,
                 "rasterErrorEnvelopeAreaTexels": 0.0068359375,
                 "residentRasterEnvelope": 0.021484375,
@@ -668,9 +688,9 @@
               "submittedVertices": 0,
               "gpuBytes": 20592,
               "coverageBytes": 14745600,
-              "uploads": 73,
+              "uploads": 45,
               "verifiedInstanceSamples": 0,
-              "draws": 73,
+              "draws": 45,
               "camera": [
                 1,
                 0,
@@ -730,7 +750,7 @@
       0
     ],
     "nativeComputeMs": 0.6000000238418579,
-    "cpuThroughSubmitMs": 47.89999997615814,
+    "cpuThroughSubmitMs": 52.39999997615814,
     "computeBackend": "canonical VKF WASM; CPU",
     "gasRenderingBackend": "webgl2",
     "nativeRenderer": {
@@ -744,6 +764,9 @@
           "y": 0,
           "width": 640,
           "height": 360,
+          "resizeMs": 1,
+          "sourceDrawMs": 50.10000002384186,
+          "tileCopyMs": 0.09999990463256836,
           "renderer": {
             "styleColor": null,
             "nativeAccuracy": {
@@ -761,16 +784,17 @@
               "meshBuilds": 7,
               "queryNodes": 349840,
               "poseSkips": 0,
+              "poseReuses": 0,
               "hits": 0,
               "newNodes": 2089,
               "newPixels": 941,
               "newGeometryNodes": 1355,
               "pinnedEntries": 0,
               "entries": 28,
-              "bytes": 12581606,
+              "bytes": 12688966,
               "atlasBytes": 11178916,
               "sampleBytes": 92850,
-              "poseBytes": 6328,
+              "poseBytes": 113688,
               "maxEntries": 4096,
               "maxBytes": 134217728,
               "maxNewProofs": 4096,
@@ -785,7 +809,7 @@
               "indexed10kAccuracy": "OPEN",
               "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
               "allFontsCertificate": false,
-              "sourcePreparationMs": 42.89999997615814,
+              "sourcePreparationMs": 44.699999928474426,
               "packedBytes": 0,
               "rasterErrorEnvelopeAreaTexels": 0.0068359375,
               "residentRasterEnvelope": 0.021484375,
@@ -846,313 +870,313 @@
     {
       "q": 0,
       "glyphs": 153,
-      "ms": 24.5,
+      "ms": 23.700000047683716,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 1e-12,
       "glyphs": 153,
-      "ms": 58.10000002384186,
+      "ms": 57.300000071525574,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.020833333333333332,
       "glyphs": 153,
-      "ms": 53.699999928474426,
+      "ms": 32.300000071525574,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.041666666666666664,
       "glyphs": 153,
-      "ms": 65.29999995231628,
+      "ms": 38.699999928474426,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.0625,
       "glyphs": 153,
-      "ms": 54,
+      "ms": 42.799999952316284,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.08333333333333333,
       "glyphs": 153,
-      "ms": 63.39999997615814,
+      "ms": 50.89999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.10416666666666667,
       "glyphs": 153,
-      "ms": 45.39999997615814,
+      "ms": 51.699999928474426,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.125,
       "glyphs": 153,
-      "ms": 74.80000007152557,
+      "ms": 78.10000002384186,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.14583333333333334,
       "glyphs": 153,
-      "ms": 75.70000004768372,
+      "ms": 76,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.16666666666666666,
       "glyphs": 153,
-      "ms": 90,
+      "ms": 88.5,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.1875,
       "glyphs": 153,
-      "ms": 103.69999992847443,
+      "ms": 93.79999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.20833333333333334,
       "glyphs": 153,
-      "ms": 87.19999992847443,
+      "ms": 86.20000004768372,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.22916666666666666,
       "glyphs": 153,
-      "ms": 105.29999995231628,
+      "ms": 110.90000009536743,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.25,
       "glyphs": 153,
-      "ms": 106.59999990463257,
+      "ms": 104.69999992847443,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.2708333333333333,
       "glyphs": 153,
-      "ms": 114.69999992847443,
+      "ms": 109.19999992847443,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.2916666666666667,
       "glyphs": 153,
-      "ms": 116.09999990463257,
+      "ms": 107,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.3125,
       "glyphs": 153,
-      "ms": 149.30000007152557,
+      "ms": 118.59999990463257,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.3333333333333333,
       "glyphs": 153,
-      "ms": 155.19999992847443,
+      "ms": 117.10000002384186,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.3541666666666667,
       "glyphs": 153,
-      "ms": 125.60000002384186,
+      "ms": 93.80000007152557,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.375,
       "glyphs": 153,
-      "ms": 153.79999995231628,
+      "ms": 100,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.3958333333333333,
       "glyphs": 153,
-      "ms": 183.79999995231628,
+      "ms": 117.89999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.4166666666666667,
       "glyphs": 153,
-      "ms": 203.80000007152557,
+      "ms": 87.30000007152557,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.4375,
       "glyphs": 153,
-      "ms": 166.39999997615814,
+      "ms": 87.5,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.4583333333333333,
       "glyphs": 153,
-      "ms": 240.10000002384186,
+      "ms": 97.89999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.4791666666656667,
       "glyphs": 153,
-      "ms": 171.39999997615814,
+      "ms": 84.39999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.4791666666666667,
       "glyphs": 153,
-      "ms": 70.5,
+      "ms": 54.5,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.47916666666766666,
       "glyphs": 153,
-      "ms": 198.59999990463257,
+      "ms": 54,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.5,
       "glyphs": 153,
-      "ms": 89.29999995231628,
+      "ms": 67.60000002384186,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.5208333333333334,
       "glyphs": 153,
-      "ms": 324.39999997615814,
+      "ms": 77.80000007152557,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.5416666666666666,
       "glyphs": 153,
-      "ms": 338.5,
+      "ms": 82.29999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.5625,
       "glyphs": 153,
-      "ms": 625.4000000953674,
+      "ms": 124.90000009536743,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.5833333333333334,
       "glyphs": 153,
-      "ms": 1241.8999999761581,
+      "ms": 194.80000007152557,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.6041666666666666,
       "glyphs": 153,
-      "ms": 1404.3999999761581,
+      "ms": 224.5,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.625,
       "glyphs": 153,
-      "ms": 1597.3000000715256,
+      "ms": 232.39999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.6458333333333334,
       "glyphs": 153,
-      "ms": 1643.6999999284744,
+      "ms": 194.89999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.6666666666666666,
       "glyphs": 153,
-      "ms": 1617.1000000238419,
+      "ms": 132,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.6875,
       "glyphs": 153,
-      "ms": 1602.5,
+      "ms": 83.70000004768372,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.7083333333333334,
       "glyphs": 153,
-      "ms": 1668.8999999761581,
+      "ms": 114.29999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.7291666666666666,
       "glyphs": 153,
-      "ms": 1791,
+      "ms": 138.5,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.75,
       "glyphs": 153,
-      "ms": 1900,
+      "ms": 163.60000002384186,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.7708333333333334,
       "glyphs": 153,
-      "ms": 1929.3999999761581,
+      "ms": 166.29999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.7916666666666666,
       "glyphs": 153,
-      "ms": 1995.3000000715256,
+      "ms": 177.70000004768372,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.8125,
       "glyphs": 153,
-      "ms": 2061.3000000715256,
+      "ms": 171.19999992847443,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.8333333333333334,
       "glyphs": 153,
-      "ms": 2110.100000023842,
+      "ms": 158,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.8541666666666666,
       "glyphs": 153,
-      "ms": 2110.6999999284744,
+      "ms": 149,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.875,
       "glyphs": 153,
-      "ms": 2133.899999976158,
+      "ms": 134,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.8958333333333334,
       "glyphs": 153,
-      "ms": 2101.5,
+      "ms": 123.19999992847443,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.9166666666666666,
       "glyphs": 153,
-      "ms": 2080.899999976158,
+      "ms": 114.39999997615814,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.9375,
       "glyphs": 153,
-      "ms": 2089.3000000715256,
+      "ms": 105.29999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.9583333333333334,
       "glyphs": 153,
-      "ms": 2082.7000000476837,
+      "ms": 100.10000002384186,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 0.9791666666666666,
       "glyphs": 153,
-      "ms": 2085.399999976158,
+      "ms": 92.29999995231628,
       "zeroAreaGlyphs": 0
     },
     {
       "q": 1,
       "glyphs": 153,
-      "ms": 2081.5,
+      "ms": 88.89999997615814,
       "zeroAreaGlyphs": 0
     }
   ],

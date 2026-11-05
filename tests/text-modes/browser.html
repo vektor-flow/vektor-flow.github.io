@@ -17,12 +17,13 @@ window.start=async()=>{
   prepared.close();
   const p=await prepareNativeTextModes({toSpecs:[make('one','First row',160,[1,1,1,1]),make('two','Second row',220,[1,1,1,1])],width:640,height:360,pixelRatio:1,typography,interp:{mode:'spectral'},maxCarriers:32});document.querySelector('#host').append(p.element);window.player=p;return p.sample(0.4);
  };
- window.oscillator=async()=>{
+ window.oscillator=async(legends=false)=>{
   window.player.close();const width=1280,height=720;
   document.querySelector('#host').style.cssText='position:relative;width:1280px;height:720px;background:#000';
   const row=(id,source,x,y,scale,itemIndex)=>({id,kind:'math',source,anchor:[x*width,y*height],scale,color:[.95,.97,1,1],sizeSpace:'css',...(itemIndex===undefined?{}:{itemIndex})});
   const fixture=await (await fetch('./oscillator.json')).json(),view=fixture.views[0];
   const specs=[row('title','\\text{'+view.title+'}',.06,.12,3.6),...view.equations.map((v,i)=>row('eq'+i,v,.06,.24+i*40*2.7/2/height,2.7,i)),...view.notes.map((v,i)=>row('note'+i,'\\bullet\\quad\\text{'+v+'}',.06,.5+i*40*2.2/2/height,2.2,i))];
+  if(legends)specs.push({...row('displacement','\\text{Displacement}',.06,.7,2.2),color:[120/255,211/255,198/255,1]},{...row('phase','\\text{Phase}',.79,.64,2.2),color:[120/255,211/255,198/255,1]});
   const p=await prepareNativeTextModes({toSpecs:specs,width,height,pixelRatio:1,typography,interp:{mode:'spectral'},maxCarriers:32});document.querySelector('#host').append(p.element);window.player=p;return {glyphs:p.targetCount};
  };
  window.invalid=async()=>{try{await prepareNativeTextModes({typography,width:640,height:360,interp:{mode:'spectral',seed:1}});return false;}catch(e){return e.code==='NATIVE_TEXT_MODE_PARAMETER';}};

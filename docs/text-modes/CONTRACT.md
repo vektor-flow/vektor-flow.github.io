@@ -115,3 +115,34 @@ nonpositive/zero-linear-area packets before strict outline admission, with
 zeroAreaGlyphs diagnostics; no arbitrary small-size threshold is used. Genuine
 153-glyph driven-oscillator regression covers all49 normal playback coordinates,
 tiny positive q and the formerly failing23/48 neighbourhood.
+
+## Identified rendering work removed
+
+The native tiled path prepares each tile size with `resize(...,{redraw:false})`,
+then certifies/presents only the intended next scene/camera. The shared renderer's
+default `resize` still redraws and retains its existing late-refusal behavior.
+Tile receipts expose resize/sourceDraw/tileCopy timings. No target, AA policy,
+font outline, bounds, mesh precision or sampling resolution is reduced.
+
+Exact pose certificates now use complete semantic source/pose keys independent
+of mutable proof-accelerator allocation IDs. Every request still snapshots and
+validates actual physical content, material, matrix/phase and exact translation.
+The same owner cap applies to all entries. Unpinned mutable decision DAGs are
+preferred eviction victims before the small immutable certificates they produced;
+LRU applies within that tier, with original LRU among other entries. Pose hits
+renew the underlying sample's ownership/recency and require its presence.
+
+Repeated identical accepted q/front samples reuse the owned completed canvas
+without resampling or drawing. Captured source colors are copied on preparation,
+so the accepted immutable scene is independent of later input-array mutation.
+The caller treats the returned canvas as capture output, not a writable input.
+
+`PERFORMANCE-QUALIFICATION.json` records before/after actual170-glyph frame hashes
+and timings. All8 complete RGBA hashes match. With mint Displacement/Phase
+legends, completed-frame sample cost changed from2189–2248ms to100–117ms;
+warm q.5 changed1199ms to97ms. First-use q.25 remains about265ms; this is not a
+universal latency/60fps claim. Same134,217,728-byte cap; observed peak133,531,238.
+Tests include142 independent original exact-sampling comparisons,2 matching
+refusals, mutation/limits/ownership,4100 bounded submissions, accelerator eviction
+reuse and changed-phase reproof, default resize/late-refusal browser control, and
+full153-glyph reveal regression. No numerical artifact or font changes.

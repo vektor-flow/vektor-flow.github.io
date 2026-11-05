@@ -1,0 +1,13 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {execFileSync}=require('node:child_process');
+const {chromium}=require('/home/viktor/Projects/Cuvami/staging/node_modules/playwright');
+const root=path.resolve(__dirname,'../..');const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.wasm':'application/wasm','.html':'text/html'};
+const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+'/')){res.writeHead(403).end();return;}fs.readFile(f,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.end(b);});});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;
+ const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome',headless:true,args:['--no-sandbox','--use-angle=vulkan','--use-vulkan=swiftshader','--enable-features=Vulkan','--enable-unsafe-swiftshader','--enable-unsafe-webgpu']});
+ const page=await browser.newPage({viewport:{width:1280,height:720}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ page.on('console',m=>{if(m.text().startsWith('NATIVE_DENSE_FRAME'))console.log(m.text());});
+ if(process.env.VKF_FORCE_WEBGL==='1')await page.addInitScript(()=>Object.defineProperty(navigator,'gpu',{value:undefined,configurable:true}));
+ try{await page.goto(`http://127.0.0.1:${port}/tests/text-modes-dense/actual.html`);await page.waitForFunction(()=>!!window.run);const result=await page.evaluate(()=>run());
+ fs.writeFileSync(path.join(root,'docs/text-modes-dense/ACTUAL-PP-PREFLIGHT.json'),JSON.stringify({input:'/tmp/pp-row-graph-preflight.vkf',projection:'actual unmodified PP authoredLabelSpecs at1280x720, projected read-only',...result,errors},null,2)+'\n');assert.deepEqual(errors,[]);assert(result.reports.every(r=>r.accepted));for(const report of result.reports)for(const row of report.end.transport.rows)assert(row.targetAlpha.every(a=>a>.999));console.log(JSON.stringify({reports:result.reports.map(r=>({from:r.from,to:r.to,accepted:r.accepted,carriers:r.receipt?.carriers,rows:r.receipt?.transport.rows.length,nativeComputeMs:r.receipt?.nativeComputeMs,error:r.error,requiredCarriers:r.requiredCarriers})),rejection:result.rejection}));
+ }finally{await browser.close();server.close();}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});

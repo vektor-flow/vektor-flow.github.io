@@ -426,3 +426,18 @@ heading1995/body1933/phase2860pixels retained, cropsdiffNone.
 Native quoted accent braced/unbraced also refused explicitly as unsupportedtext
 command/CURRENT_NATIVE_INCOMPLETE; exact source bytes verified. Added diagnostic
 coverage only; no native parser/catalog/layout implementation authorized here.
+
+## Dense native material — qualified 2026-11-05
+
+Owned isolated renderer branchcodex/native-dense-material-20261105 from144c3e9;
+foreign dirty Swedish producer work untouched. Library source31decf4, same native
+carrier evaluator used by CPU and currenttypedIR GPU. No hosteffect/mathfork.
+49decodedframes25014sourcepixels/81920carriers; visiblecoherentfinecurls, exact
+fixedheading/endpoints/reseek.24native/GPU transfer+emit+exit paritycases PASS.
+ActualPP4viewprojection read-only8192→45056→0carriers, largest273ms native;
+exactpreflightbudgetfailure beforematerialallocation. API ceiling131072total,
+65536perrow, .75CSSmaximumfootprintprofile; neverthin actualnativepixels.
+Scoped0b2/cb8preservation/f5dbcapture/fontclosure unchanged except separate
+dfb8cb7 genuine3nested-digit mappings. Sources froze after31nativepinqualification.
+See docs/text-modes-dense/CONTRACT.md, QUALIFICATION.json, PARITY.json and
+ACTUAL-PP-PREFLIGHT.json. Parent owns integration/fullvideo.

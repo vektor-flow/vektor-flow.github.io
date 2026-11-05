@@ -1,0 +1,46 @@
+{
+  "kind": "vkf-native-dense-material-gpu/1",
+  "libraryCommit": "31decf43176a2739d8e5efb309b9e8d83780f611",
+  "sources": {
+    "morphing/ink_transport.vkf": {
+      "sha256": "c6fbf040cb451c79878a501a5b30da9ffeed33c499982741639325a0c45e635e",
+      "bytes": 4106
+    },
+    "morphing/segment.vkf": {
+      "sha256": "4c33a71557a69a086b68e1cab4d7337f493678016aed886817d36d5a55666558",
+      "bytes": 499
+    }
+  },
+  "entries": {
+    "dense": {
+      "source": "a580dce40acde6436032ce5f48ca19bb7b07c65328b80da26767e85d9e4273dd",
+      "typedIR": "2926317ae4c34ba2342400a6b1c423c784b400cecbfc4843d23e638fc5184da4"
+    },
+    "capture": {
+      "source": "77eca298be7f7300766e48d643b59665f5f68ee9a207efda9f10a88e201b74ed",
+      "typedIR": "3027fc244a4415318de9d1e44f5d5a5db608c4bc744327e2011226dece24e37e"
+    }
+  },
+  "artifacts": {
+    "dense.wgsl": {
+      "sha256": "e77cb699f02bf492f588fb6c755c13f384418ce762c410ed2ab9b1a43934e6ab",
+      "bytes": 13330
+    },
+    "dense.wgsl.json": {
+      "sha256": "3758cbe83c8013698774e3f07a1e68e57fe94dd46f01d5c8fa8d11ae385def26",
+      "bytes": 893
+    },
+    "capture.wgsl": {
+      "sha256": "04f082c8cfe35c9883948efb0492672abca6a979c1872500192d17b5d18531fe",
+      "bytes": 4725
+    },
+    "capture.wgsl.json": {
+      "sha256": "ceea237d209c7031808c039210b1be6f071c4079737b06f21e4f16708bfe0b2c",
+      "bytes": 893
+    }
+  },
+  "compilerVersion": "0.7.5",
+  "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "gpuEmitter": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+  "qualification": "Generated only; actual GPU/native parity and pixel qualification required separately."
+}

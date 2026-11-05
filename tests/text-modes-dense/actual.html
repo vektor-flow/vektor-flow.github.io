@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0;background:#000}#host{position:relative;width:1280px;height:720px}</style><div id="host"></div>
+<script type="module">
+import {prepareNativeTextModes} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-native-text-modes.mjs';
+import {createScreenSpacePointCloudRenderer} from '../../public/preview/0.7.5/vf-ui/geom/vf-screen-point-cloud-renderer.mjs';
+import {loadCurrentWasmLabelProducer} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-wasm-producer.mjs';
+import {createCurrentNativeTypography} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-native-provider.mjs';
+import {createLayeredCanvasCaptureSource} from '../../public/preview/0.7.5/vf-ui/vf-media-capture.mjs';
+import {createFrameMovieCapture} from '../../public/preview/0.7.5/vf-ui/vf-frame-movie-capture.mjs';
+window.run=async()=>{
+ const root=new URL('../../public/preview/0.7.5/vf-ui/artifacts/current-labels/',import.meta.url),get=async n=>(await fetch(new URL(n,root))).json(),descriptor=await get('producer.json'),vectors=await get('native-mapping/vectors.json'),binding=await get('native-mapping/binding.json'),files=Object.fromEntries(Object.entries(descriptor.files).map(([n,f])=>[n,{...f,url:new URL(f.url,new URL('producer.json',root)).href}])),producer=await loadCurrentWasmLabelProducer({...descriptor,files}),typography=createCurrentNativeTypography({boxes:{},vectors,binding,identity:producer.identity,typeset:(run,pins)=>producer.typeset(run,pins)});
+ const views=await(await fetch('./fixtures/actual-pp-rows.json')).json(),reports=[];
+ const profile={mode:'vapor',temperature:1,footprint:.75,captureWidth:.25,captureStart:.35,captureEnd:.85,seed:17};
+ const routed=(from,to)=>{const a=new Map(from.map(s=>[s.id,s])),b=new Map(to.map(s=>[s.id,s]));return [...new Set([...a.keys(),...b.keys()])].map(id=>({fromId:a.has(id)?id:null,toId:b.has(id)?id:null,interp:a.has(id)&&b.has(id)&&b.get(id).interp?.mode==='state'?{mode:'state'}:profile}));};
+ try{for(let i=0;i<views.length-1;i++){const options={fromSpecs:views[i].specs,toSpecs:views[i+1].specs,rowTransitions:routed(views[i].specs,views[i+1].specs),width:1280,height:720,pixelRatio:1,typography,maxCarriers:131072,interp:{mode:'state'}},start=performance.now();let player;try{player=await prepareNativeTextModes(options);const receipt=await player.sample(.5),end=await player.sample(1);reports.push({from:views[i].label,to:views[i+1].label,accepted:true,prepareAndTwoSamplesMs:performance.now()-start,receipt,end});}catch(e){reports.push({from:views[i].label,to:views[i+1].label,accepted:false,code:e.code,error:e.message,requiredCarriers:e.requiredCarriers,maxCarriers:e.maxCarriers,rows:e.rows});}finally{player?.close();}}
+ let rejection;try{const player=await prepareNativeTextModes({fromSpecs:[],toSpecs:views[0].specs,rowTransitions:routed([],views[0].specs),width:1280,height:720,pixelRatio:1,typography,maxCarriers:1,interp:{mode:'state'}});player.close();throw Error('expected pixel budget rejection');}catch(e){rejection={code:e.code,requiredCarriers:e.requiredCarriers,maxCarriers:e.maxCarriers,rows:e.rows};if(e.code!=='NATIVE_INK_PIXEL_BUDGET'||!(e.requiredCarriers>1))throw e;}
+ return {reports,rejection};}finally{typography.close();producer.close();}
+};
+</script>

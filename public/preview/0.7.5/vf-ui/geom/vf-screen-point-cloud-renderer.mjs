@@ -124,7 +124,7 @@ export function createScreenSpacePointCloudRenderer(canvas, {premultipliedAlpha 
   function setInkCarriers(nextPoints) {
     assertAlive();
     if (!premultipliedAlpha) throw new TypeError('ink coverage requires premultiplied point renderer');
-    if (!(nextPoints instanceof Float32Array) || nextPoints.length % 7 || nextPoints.length > 7 * 65536
+    if (!(nextPoints instanceof Float32Array) || nextPoints.length % 7 || nextPoints.length > 7 * 131072
       || !nextPoints.every(Number.isFinite)) throw new RangeError('invalid bounded ink carrier buffer');
     for(let i=0;i<nextPoints.length;i+=7) {
       if (!(nextPoints[i+2]>0 && nextPoints[i+2]<=64)

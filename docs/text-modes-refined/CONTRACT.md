@@ -1,3 +1,5 @@
+> Current dense material delivery supersedes the earlier sparse-carrier presentation profile: [Dense native contract](../text-modes-dense/CONTRACT.md).
+
 # Refined native state and material rows
 
 Frozen implementation: renderer4034401, canonical libraryc9e70dd879517e2cb0ca893339e092d426a1be83. Artifact source hashes and exact compiler binding are in public/preview/0.7.5/vf-ui/artifacts/text-modes/PROVENANCE.json. The canonical Interp record has named zero-or-one typed setting groups; public JavaScript factories/schema reject irrelevant mode parameters. This is one Morphing-backed implementation.

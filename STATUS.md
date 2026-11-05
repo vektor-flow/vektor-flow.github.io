@@ -275,3 +275,25 @@ passes; ordinary prose already passed. Evidence
 Changed public files only native-mapping/{vectors,binding,bundle,EXTENSION}.json.
 Performance87cf, capture3810 and numerical36124/text artifact bytes untouched.
 Root owns resource inventory refresh/PP Save/capture; running browser untouched.
+
+## Explicit final capture readback barrier — 2026-11-05
+
+Added opt-in drawFrame({readback:true}) to the manual capture source. After
+layer copies, full final-composite getImageData materializes pending accelerated
+Canvas2D/GPU pixels before caller VideoFrame creation. Defaults/stream behavior
+unchanged; no global monkeypatch, pixel alteration, renderer redesign or native
+font/interpolation artifact changes.
+
+Actual decoded VP8 A/B: canvas and VideoFrame paths both preserve white/color
+pixels at64x32 and odd1280x671. At large size both decode54080nonblack pixels
+and matching white253RGB. Genuine native text-mode2D canvas, final-only helper
+barrier, reused caller VideoFrame3times: source1131→decoded1170nonblack, times
+0,.042,.083. Unit readback ordering/fullresizeextent/close checks pass. Current
+isolated actualPP one-view short clip also decodes18027nonblack at final frame;
+not a controlled paired reproduction of original long-frame failure because
+root independently updated its capture boundary. Encoder helper itself does
+not reproduce all-black output; native capture boundary flush is now explicit.
+
+Evidence docs/media-capture/*PIXEL-QUALIFICATION.json; durable actual browser
+pixel tests. Root owns final capture/lost-drawing-buffer repaint and app4kcarrier
+cap. No PP edits, pin changes, publication or deployment here.

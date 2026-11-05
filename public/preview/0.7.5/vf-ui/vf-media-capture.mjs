@@ -161,7 +161,7 @@ export function createLayeredCanvasCaptureSource(options = {}) {
   return Object.freeze({
     canvas: output,
     get closed() { return closed; },
-    drawFrame() {
+    drawFrame({ readback = false } = {}) {
       live();
       options.beforeDraw?.();
       live();
@@ -173,6 +173,9 @@ export function createLayeredCanvasCaptureSource(options = {}) {
       }
       context.clearRect(0, 0, output.width, output.height);
       for (const layer of activeLayers) context.drawImage(layer, 0, 0, output.width, output.height);
+      // Explicit final-composite snapshot barrier for deferred GPU/Canvas2D
+      // interop before the caller constructs a VideoFrame. No pixel changes.
+      if (readback) context.getImageData(0, 0, output.width, output.height);
       return output;
     },
     close() {

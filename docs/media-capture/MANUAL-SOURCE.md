@@ -43,3 +43,21 @@ composition and encodes four manual canvas frames through the existing VP9 CFR
 encoder. ffprobe decodes four frames at 0, .042, .083, .125 seconds (24fps within
 WebM millisecond timestamp precision). Software browser evidence is in
 MANUAL-QUALIFICATION.json; this is neither a native-scene nor performance claim.
+
+For offline accelerated Canvas2D/GPU-to-VideoFrame capture, call
+`source.drawFrame({readback:true})` before constructing the VideoFrame. This
+performs a synchronous full final-composite `getImageData` readback after all
+layer copies, materializing the completed pixels at the capture boundary. It
+does not alter the image, redraw fonts/geometry or replace the renderer. Default
+`drawFrame()` and the existing stream path keep their previous behavior. The
+caller owns subsequent VideoFrames and closes them normally. Full readback has
+an explicit CPU/memory transfer cost; use it per sampled frame, then reuse a
+snapshot for repeated hold frames as before.
+
+Decoded VP8 tests verify direct canvas and caller-owned VideoFrame paths at
+64x32 and1280x671, including odd height; both preserve source pixels identically.
+The genuine native text-mode2D canvas + final-only readback + reused caller-owned
+VideoFrame also decodes visible glyph ink and correct CFR timestamps. No global
+Canvas2D monkeypatch or intermediate readback is needed by this API. The reported
+all-black long capture was not reproduced in the isolated encoder helper; the
+materialization barrier addresses the observed accelerated interop boundary.

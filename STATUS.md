@@ -445,3 +445,11 @@ Parent intaken2766dd4+dfb8cb7, assetguard268PASS; actual4viewcapture running
 with no source edits. Preserved final mixed fixedheading/oldrow/equationprefix
 proof in docs/text-modes-dense/MIXED-QUALIFICATION.json (source31decf4).
 Observed parent odd-power graph gap recorded in contract; no nativeplot changes.
+
+## Presentation baseline investigation — 2026-11-05
+
+Same-spec native geometry/raster parity GREEN at q0/.5/1, title/caption/equation
+bounds identical across normal retained and presentation paths. Requestednative
+baselines81/486/567 exact; no nativecoordinatepatch. Root found stale671height
+labelprojection before720frame measurement and owns hostfix. Proof in
+docs/text-modes-baseline/QUALIFICATION.json; existing publicpins remain2766/31.

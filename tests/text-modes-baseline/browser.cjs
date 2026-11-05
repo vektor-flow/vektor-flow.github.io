@@ -1,0 +1,13 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {execFileSync}=require('node:child_process');
+const {chromium}=require('/home/viktor/Projects/Cuvami/staging/node_modules/playwright');
+const root=path.resolve(__dirname,'../..');const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.wasm':'application/wasm','.html':'text/html'};
+const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+'/')){res.writeHead(403).end();return;}fs.readFile(f,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.end(b);});});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;
+ const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome',headless:true,args:['--no-sandbox','--use-angle=vulkan','--use-vulkan=swiftshader','--enable-features=Vulkan','--enable-unsafe-swiftshader','--enable-unsafe-webgpu']});
+ const page=await browser.newPage({viewport:{width:1280,height:720}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ page.on('console',m=>{if(m.text().startsWith('NATIVE_DENSE_FRAME'))console.log(m.text());});
+ if(process.env.VKF_FORCE_WEBGL==='1')await page.addInitScript(()=>Object.defineProperty(navigator,'gpu',{value:undefined,configurable:true}));
+ try{await page.goto(`http://127.0.0.1:${port}/tests/text-modes-baseline/browser.html`);await page.waitForFunction(()=>!!window.run);const result=await page.evaluate(()=>run());
+ fs.writeFileSync('/tmp/vkf-native-baseline-parity.json',JSON.stringify({result,errors},null,2));assert.deepEqual(errors,[]);for(const frame of result.reports)for(const row of frame.regions){assert(Math.abs(row.normal.bottom-row.presentation.bottom)<=1);assert(Math.abs(row.normal.top-row.presentation.top)<=1);}console.log(JSON.stringify({passed:true,regions:result.reports.map(r=>({q:r.q,regions:r.regions})),geometry:result.geometry}));
+ }finally{await browser.close();server.close();}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});

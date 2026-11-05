@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "inputSha256": "f419e1248ee2547f342e5ae9d437956a00a8254f3851772d86fca7107491a126",
+  "inputSha256": "dba770e82b30506b762679112136e1375edb35bdba891df20b53e085c00097d1",
   "components": {
     "browser-node-compiler": {
       "id": "browser-node-compiler",
@@ -49,25 +49,27 @@
     "retained-ui-runtime": {
       "id": "retained-ui-runtime",
       "identity": {
-        "displaySHA256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5",
-        "runtimeSHA256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765",
-        "provenance": "Exact accepted e2495 private runtime reused; e2500 only extends selected mapping and refreshes normal package/query graph"
+        "displaySHA256": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026",
+        "runtimeSHA256": "1b3fd49c45b020dab4cad23ac4e34daddf1fb22f404499b7fe8504da81e9b568",
+        "provenance": "e2508 exact e2505 READY-v6 independently accepted e2507, normal composed geometry/native-label completion and source-session clock correction; unchanged compiler/solver",
+        "sourceOwner": "e2505",
+        "packageOwner": "e2508"
       },
       "files": [
         {
           "path": "inline-retained-scene-view.mjs",
-          "bytes": 17116,
-          "sha256": "48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f"
+          "bytes": 18941,
+          "sha256": "d5a83419f7176df30604bd3c1c5911dc1ecea3bcf4468b8214bf4a07e7389727"
         },
         {
           "path": "inline-renderer-loader.mjs",
           "bytes": 6856,
-          "sha256": "b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0"
+          "sha256": "74ff15e8210e3433af40b3bf7aa4ae7211ff91000d8e1f9c5d07be96e3eb116a"
         },
         {
           "path": "vf-ui/vf-display.js",
-          "bytes": 707578,
-          "sha256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5"
+          "bytes": 715887,
+          "sha256": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026"
         },
         {
           "path": "vf-ui/geom/vf-geom-wgpu.js",
@@ -81,18 +83,18 @@
         },
         {
           "path": "playground/vkf-retained-window-execution.mjs",
-          "bytes": 17213,
-          "sha256": "0f4c89af7f82376a36b0ee96dc9b0dfe3ae5c2138f20c56154178eec25486c7f"
+          "bytes": 17472,
+          "sha256": "bb4dd5920b0018be1d8a74284476c825cfd6db44d1d6534846894c0e7e71240c"
         },
         {
           "path": "inline-runner.mjs",
-          "bytes": 11590,
-          "sha256": "06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546"
+          "bytes": 11747,
+          "sha256": "7bda5745bd389b6868b501a202d29bf5f9aa08f3ae5fba8b3ea5cde11970eaf6"
         },
         {
           "path": "current-documentation-examples.mjs",
-          "bytes": 11667,
-          "sha256": "89be09b2cdee6171f1bddbebfa070a8903c4a95da8185fcc14049e53700eb11b"
+          "bytes": 12096,
+          "sha256": "757ee3b0c9bf8c2e3ef825caa6dfc17c722860238097dcb2102fe4268de2c4aa"
         },
         {
           "path": "vf-ui/vf-media-capture.mjs",
@@ -137,12 +139,12 @@
         {
           "path": "embedding-client.mjs",
           "bytes": 5396,
-          "sha256": "36d14e4292f2acf968f1010cbfdf5c55e6d49b5dec967cf615ec6d89ed01063d"
+          "sha256": "5a09d2bf4d466098cb349bee906309433e101678f96b068594a361dd8f41267e"
         },
         {
           "path": "vf-ui/vf-runtime-scene.js",
-          "bytes": 36667,
-          "sha256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765"
+          "bytes": 38877,
+          "sha256": "1b3fd49c45b020dab4cad23ac4e34daddf1fb22f404499b7fe8504da81e9b568"
         },
         {
           "path": "playground/normal-physics-owner.mjs",
@@ -173,6 +175,41 @@
           "path": "playground/physics-replay-base.wasm",
           "bytes": 1820078,
           "sha256": "d5e061d024f13e02a6a846dc043824ea510f92545302c33db8537dde3b43151a"
+        },
+        {
+          "path": "embed-example.mjs",
+          "bytes": 1289,
+          "sha256": "ccb651b5bc5e98c3b7f57d9c83cd1900760c2b62ac3b39a9663d9b48ea1d0bf7"
+        },
+        {
+          "path": "example-presentation.mjs",
+          "bytes": 5890,
+          "sha256": "bdfd7b7a6768e7e41fa765d2d0a56827b7017a20733ec3c812283f91122ff22e"
+        },
+        {
+          "path": "few-math-labels.mjs",
+          "bytes": 179,
+          "sha256": "e74290d16d60fe4591264d0c4ac84789e969d98d78c6308d42ac42df0dc8c9d0"
+        },
+        {
+          "path": "stdlib.html",
+          "bytes": 356923,
+          "sha256": "0047cccf2606214549d2fb8d43e320a6d879215b71f44e265fe2e4e857ad021e"
+        },
+        {
+          "path": "syntax.html",
+          "bytes": 150376,
+          "sha256": "bd60c757b26261ac0431d5de2b6ef02c19f5179c6c981e5e6dad4aeec102bcca"
+        },
+        {
+          "path": "vf-ui/vf-runtime-shell.js",
+          "bytes": 53320,
+          "sha256": "64c0af30913b6471774ca9a9502a539d594fea1229dd48726ffd82996fd09319"
+        },
+        {
+          "path": "vf-ui/vkf-scene.html",
+          "bytes": 285,
+          "sha256": "f921a2828b0644ec1bf435f438d5c196a47d80b5de8df8e2a36270708b3e229f"
         }
       ]
     },
@@ -207,7 +244,8 @@
           "text/c",
           "text/f"
         ],
-        "all125OriginalBindingsPreserved": true
+        "all125OriginalBindingsPreserved": true,
+        "completionAdapterSource": "e2505 READY-v6; producer/catalog/mapping bytes unchanged"
       },
       "files": [
         {
@@ -227,8 +265,23 @@
         },
         {
           "path": "vf-ui/native-labels/vf-native-plot-text.mjs",
-          "bytes": 10438,
-          "sha256": "d72e1fe1adcff297f2378f6aa615346727c5aab912527bf012371039a3b22fb6"
+          "bytes": 10792,
+          "sha256": "a9666daf9e36367c8a07a3e7de6ec84dd5cbf9a0fdbf69cfaa7fa2a5a14e58d8"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-current-wasm-math-labels.mjs",
+          "bytes": 3317,
+          "sha256": "c1b74ea6dcaa6ac0e24e980e6e988ff68531e895fb2fdacc695e8ebef88df839"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-label-layer.mjs",
+          "bytes": 9910,
+          "sha256": "85d4472b6230be3271e9b026f5d69732e8c66d225c2135016c6733c7483c30b3"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+          "bytes": 29015,
+          "sha256": "856710e49438b2a0e58fced10e107348d2596296469e4576358a657cab8f4c32"
         }
       ]
     }
@@ -267,18 +320,18 @@
     },
     {
       "path": "inline-retained-scene-view.mjs",
-      "bytes": 17116,
-      "sha256": "48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f"
+      "bytes": 18941,
+      "sha256": "d5a83419f7176df30604bd3c1c5911dc1ecea3bcf4468b8214bf4a07e7389727"
     },
     {
       "path": "inline-renderer-loader.mjs",
       "bytes": 6856,
-      "sha256": "b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0"
+      "sha256": "74ff15e8210e3433af40b3bf7aa4ae7211ff91000d8e1f9c5d07be96e3eb116a"
     },
     {
       "path": "vf-ui/vf-display.js",
-      "bytes": 707578,
-      "sha256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5"
+      "bytes": 715887,
+      "sha256": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026"
     },
     {
       "path": "vf-ui/geom/vf-geom-wgpu.js",
@@ -292,18 +345,18 @@
     },
     {
       "path": "playground/vkf-retained-window-execution.mjs",
-      "bytes": 17213,
-      "sha256": "0f4c89af7f82376a36b0ee96dc9b0dfe3ae5c2138f20c56154178eec25486c7f"
+      "bytes": 17472,
+      "sha256": "bb4dd5920b0018be1d8a74284476c825cfd6db44d1d6534846894c0e7e71240c"
     },
     {
       "path": "inline-runner.mjs",
-      "bytes": 11590,
-      "sha256": "06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546"
+      "bytes": 11747,
+      "sha256": "7bda5745bd389b6868b501a202d29bf5f9aa08f3ae5fba8b3ea5cde11970eaf6"
     },
     {
       "path": "current-documentation-examples.mjs",
-      "bytes": 11667,
-      "sha256": "89be09b2cdee6171f1bddbebfa070a8903c4a95da8185fcc14049e53700eb11b"
+      "bytes": 12096,
+      "sha256": "757ee3b0c9bf8c2e3ef825caa6dfc17c722860238097dcb2102fe4268de2c4aa"
     },
     {
       "path": "vf-ui/vf-media-capture.mjs",
@@ -348,12 +401,12 @@
     {
       "path": "embedding-client.mjs",
       "bytes": 5396,
-      "sha256": "36d14e4292f2acf968f1010cbfdf5c55e6d49b5dec967cf615ec6d89ed01063d"
+      "sha256": "5a09d2bf4d466098cb349bee906309433e101678f96b068594a361dd8f41267e"
     },
     {
       "path": "vf-ui/vf-runtime-scene.js",
-      "bytes": 36667,
-      "sha256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765"
+      "bytes": 38877,
+      "sha256": "1b3fd49c45b020dab4cad23ac4e34daddf1fb22f404499b7fe8504da81e9b568"
     },
     {
       "path": "playground/normal-physics-owner.mjs",
@@ -386,6 +439,41 @@
       "sha256": "d5e061d024f13e02a6a846dc043824ea510f92545302c33db8537dde3b43151a"
     },
     {
+      "path": "embed-example.mjs",
+      "bytes": 1289,
+      "sha256": "ccb651b5bc5e98c3b7f57d9c83cd1900760c2b62ac3b39a9663d9b48ea1d0bf7"
+    },
+    {
+      "path": "example-presentation.mjs",
+      "bytes": 5890,
+      "sha256": "bdfd7b7a6768e7e41fa765d2d0a56827b7017a20733ec3c812283f91122ff22e"
+    },
+    {
+      "path": "few-math-labels.mjs",
+      "bytes": 179,
+      "sha256": "e74290d16d60fe4591264d0c4ac84789e969d98d78c6308d42ac42df0dc8c9d0"
+    },
+    {
+      "path": "stdlib.html",
+      "bytes": 356923,
+      "sha256": "0047cccf2606214549d2fb8d43e320a6d879215b71f44e265fe2e4e857ad021e"
+    },
+    {
+      "path": "syntax.html",
+      "bytes": 150376,
+      "sha256": "bd60c757b26261ac0431d5de2b6ef02c19f5179c6c981e5e6dad4aeec102bcca"
+    },
+    {
+      "path": "vf-ui/vf-runtime-shell.js",
+      "bytes": 53320,
+      "sha256": "64c0af30913b6471774ca9a9502a539d594fea1229dd48726ffd82996fd09319"
+    },
+    {
+      "path": "vf-ui/vkf-scene.html",
+      "bytes": 285,
+      "sha256": "f921a2828b0644ec1bf435f438d5c196a47d80b5de8df8e2a36270708b3e229f"
+    },
+    {
       "path": "downloads/vkf-native-linux-x86_64-0.7.5-df9feb23-current-cli-notices.tar.gz",
       "bytes": 10174977,
       "sha256": "3d7388674cb4f20f39fd5c7d119c9292be02cfd58dfa0c32671ebcc4681eee90",
@@ -408,8 +496,23 @@
     },
     {
       "path": "vf-ui/native-labels/vf-native-plot-text.mjs",
-      "bytes": 10438,
-      "sha256": "d72e1fe1adcff297f2378f6aa615346727c5aab912527bf012371039a3b22fb6"
+      "bytes": 10792,
+      "sha256": "a9666daf9e36367c8a07a3e7de6ec84dd5cbf9a0fdbf69cfaa7fa2a5a14e58d8"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-current-wasm-math-labels.mjs",
+      "bytes": 3317,
+      "sha256": "c1b74ea6dcaa6ac0e24e980e6e988ff68531e895fb2fdacc695e8ebef88df839"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-label-layer.mjs",
+      "bytes": 9910,
+      "sha256": "85d4472b6230be3271e9b026f5d69732e8c66d225c2135016c6733c7483c30b3"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-shared-area-renderer.mjs",
+      "bytes": 29015,
+      "sha256": "856710e49438b2a0e58fced10e107348d2596296469e4576358a657cab8f4c32"
     }
   ],
   "archives": [

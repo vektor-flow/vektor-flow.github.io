@@ -509,7 +509,7 @@
           });
         }, Promise.resolve());
       }).then(function() {
-        return import(resolveAssetUrl("../inline-renderer-loader.mjs?sha256=b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0")).then(function(module) {
+        return import(resolveAssetUrl("../inline-renderer-loader.mjs?sha256=74ff15e8210e3433af40b3bf7aa4ae7211ff91000d8e1f9c5d07be96e3eb116a")).then(function(module) {
           return module.ensureInlineNativeLabels();
         });
       }).catch(function(err) {
@@ -647,7 +647,7 @@
     function loadCurrentToolbar() {
       return currentToolbarModule || (currentToolbarModule = Promise.all([
         ensureStylesheetLoaded({href: "vf-plot-toolbar.css"}),
-        import(resolveAssetUrl("vf-current-plot-toolbar.mjs?sha256=3dd1d261d28757978f170be821cf088e42e580fe3346dda898c368b807b92971"))
+        import(resolveAssetUrl("vf-current-plot-toolbar.mjs?sha256=58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"))
       ]).then(function(parts) { return parts[1]; }));
     }
 

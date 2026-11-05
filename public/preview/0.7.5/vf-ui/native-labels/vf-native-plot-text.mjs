@@ -145,9 +145,12 @@ export function createNativePlotTextLayer({container, createLayer, measure, onEr
         if (closed || failure) break;
         accepted = input.generation;
         if (next) continue; // Never report a superseded coordinate/view as current.
-        state = {status:'SUBMITTED_COMPLETION_UNMEASURED',route:'current-vkf-latex-scene',
-          generation:accepted, rows:input.rows.length, pixelRatio:input.pixelRatio,
-          groups:[...groups.values()].map(g => g.layer.statistics())};
+        const completedGroups = [...groups.values()].map(g => g.layer.statistics());
+        state = {status:completedGroups.length === 0 ? 'NOT_REQUIRED' :
+            completedGroups.every(group => group.status === 'GPU_COMPLETED') ? 'GPU_COMPLETED' : 'UNSUPPORTED_COMPLETION_UNMEASURED',
+          route:'current-vkf-latex-scene',generation:accepted,rows:input.rows.length,pixelRatio:input.pixelRatio,
+          completion:{endpoint:completedGroups.length && completedGroups.every(group => group.status === 'GPU_COMPLETED') ? 'webgl-commands-completed' : null},
+          groups:completedGroups};
         settle(accepted,state);
       }
     } catch (error) {

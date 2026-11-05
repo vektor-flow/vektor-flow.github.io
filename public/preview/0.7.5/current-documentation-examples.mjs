@@ -1,10 +1,10 @@
-import {prepareExamplePresentation} from './example-presentation.mjs?sha256=221e61d7213b4fb319e0293ca40768f167f57097b682a6ffacded38f6088e4c7';
+import {prepareExamplePresentation} from './example-presentation.mjs?sha256=bdfd7b7a6768e7e41fa765d2d0a56827b7017a20733ec3c812283f91122ff22e';
 import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=34dd1bdbaced7b4c68ca1922801fa36196b0eb13b392e81a2b08955aceac076f';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {createInlineRunner} from './inline-runner.mjs?sha256=06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0';
+import {createInlineRunner} from './inline-runner.mjs?sha256=7bda5745bd389b6868b501a202d29bf5f9aa08f3ae5fba8b3ea5cde11970eaf6';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=d5a83419f7176df30604bd3c1c5911dc1ecea3bcf4468b8214bf4a07e7389727';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=74ff15e8210e3433af40b3bf7aa4ae7211ff91000d8e1f9c5d07be96e3eb116a';
 
 // Normal per-example project inputs: source only, loaded when Run is requested.
 async function exampleSourceInputs(example){
@@ -154,10 +154,16 @@ for (const example of document.querySelectorAll('.readme-example')) {
           if (revision === runRevision) {
             dispose = mountRetainedSceneResult(resultContainer, result.packets, {
               sampleTemporal: result.temporal ? elapsed => runner.sample(elapsed,result.temporal.generation) : undefined,
+              temporalGeneration:result.temporal?.generation,
               disposeTemporal: result.temporal ? () => runner.disposeTemporal(result.temporal.generation) : undefined,
             });
-            example.dispatchEvent(new CustomEvent('vf-example-compiled', {detail:{source:source.value, result}}));
-            await dispose.presented;
+            const presentation = dispose;
+            // Run returns frozen source provenance. The existing compiled-event
+            // result owns a frozen presentation view; never mutate the Run result.
+            const presentedResult = Object.freeze({...result,
+              get frameCompletion(){return presentation.frameCompletion;}});
+            example.dispatchEvent(new CustomEvent('vf-example-compiled', {detail:{source:source.value, result:presentedResult}}));
+            await presentation.presented;
             if (resultHint) resultHint.hidden = true;
           }
         }

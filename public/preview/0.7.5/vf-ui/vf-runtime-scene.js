@@ -458,7 +458,7 @@
         throw new Error("actual connected scene renderer and retained capability bridge are required");
       var implicitDisplay = null; // enrolled only when the compiled implicit producer executes
       var panels = [], byRoot = new WeakMap(), disposed = false, quiesced = false;
-      var physicsWorlds = new Map();
+      var physicsWorlds = new Map(), physicsFrameTail = Promise.resolve(), physicsFrameFailure = null;
       function live() {
         if (disposed || quiesced || getLayer() !== displayRoot)
           throw new TypeError("retained producer session is disposed or its Display changed");
@@ -579,15 +579,46 @@
         var world=original ? original.world : Object.freeze({});
         var view=physics.bindWorld(resourcePointer,world,args.geometry,args);
         var main=!original;
-        if (!original) {original={world:world,frame:owner,readers:new Set()};physicsWorlds.set(args.world_id,original);}
+        if (!original) {original={world:world,frame:owner,readers:new Set(),frames:new Set()};physicsWorlds.set(args.world_id,original);}
+        original.frames.add(owner);
         var ownReader;
         ownReader=owner.renderer.bindPhysics(args.geometry,{
           main:main,step:args.world_time_step,
+          frameUpdate:function(update){
+            live();
+            // Other original main Frames in this SAME source session cannot
+            // advance a World while its all-Frame output is being completed.
+            var next=physicsFrameTail.then(function(){
+              live();if(physicsFrameFailure)throw physicsFrameFailure;
+              return update();
+            });
+            physicsFrameTail=next.catch(function(error){physicsFrameFailure=physicsFrameFailure || error;});
+            return next;
+          },
           request:function(cause,tick){
             var accepted=physics.requestWorld(view,cause,tick);
             if (cause === "main" || cause === "reset")
               original.readers.forEach(function(reader){if(reader!==ownReader)reader(accepted);});
             return accepted;
+          },
+          present:function(generation,signal){
+            live();
+            // Every graphics Frame belongs to this SAME emitted source session.
+            // Readers were updated by the one authoritative request above.
+            // Drawing all of them performs no additional World request/step.
+            return Promise.all(panels.filter(function(panel){return !!panel.renderer;}).map(function(panel){
+              var snapshot=panel.renderer.snapshot(), scene=snapshot.scene;
+              if(original.frames.has(panel) && scene.physics_accepted_generation!==generation)
+                throw new TypeError("Owned physical Frame has a stale accepted generation");
+              return new Promise(function(resolve,reject){
+                var frameId=panel.api.root.getAttribute("data-vf-frame-id");
+                var requested=global.VfDisplay.requestGeomFramePresentation(frameId,{
+                  signal:signal,physicsGeneration:scene.physics_accepted_generation,
+                  afterPresented:function(record){resolve(Object.assign({frameId:frameId},record));},
+                  onPresentationError:reject});
+                if(!requested)reject(new Error("Owned source Frame presentation unavailable"));
+              });
+            }));
           },
           fail:function(error){if(typeof sessionOptions.onPhysicsError === "function") sessionOptions.onPhysicsError(error);}
         });
@@ -732,7 +763,13 @@
         try { syncNativeLayout(); } catch (error) { failures.push(error); }
         if (failures.length) throw new AggregateError(failures, "actual retained renderer disposal failed");
       }
-      return Object.freeze({abi: "vkf-retained-renderer-producer-v1", produce: produce, bindPhysics: bindPhysics, startPhysics: startPhysics, parentOf: parentOf, beforeLookup: beforeLookup, property: property, observe: observe, quiesce: quiesce, dispose: dispose});
+      return Object.freeze({abi: "vkf-retained-renderer-producer-v1", produce: produce, bindPhysics: bindPhysics, startPhysics: startPhysics, parentOf: parentOf, beforeLookup: beforeLookup, property: property, observe: observe, quiesce: quiesce, dispose: dispose,
+        get frameCompletion(){
+          if(disposed||quiesced)return null;
+          return panels.filter(function(panel){return !!panel.renderer;}).map(function(panel){
+            return panel.renderer.snapshot().scene.frameCompletion;
+          }).filter(Boolean);
+        }});
     }
 
     return {

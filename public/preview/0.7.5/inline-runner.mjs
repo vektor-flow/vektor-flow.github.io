@@ -1,4 +1,4 @@
-import {dispatchRetainedExecution,cancelRetainedExecutions,registerRetainedCompilerRun,retainedPresentationFor,closeRetainedPresentations,retainedExecutionsSettled} from './playground/vkf-retained-window-execution.mjs?sha256=0f4c89af7f82376a36b0ee96dc9b0dfe3ae5c2138f20c56154178eec25486c7f';
+import {dispatchRetainedExecution,cancelRetainedExecutions,registerRetainedCompilerRun,retainedPresentationFor,closeRetainedPresentations,retainedExecutionsSettled} from './playground/vkf-retained-window-execution.mjs?sha256=bb4dd5920b0018be1d8a74284476c825cfd6db44d1d6534846894c0e7e71240c';
 import {ensureBrowserIsolation} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 const DEFAULT_WASM_URL=new URL('./playground/canonical/compiler.wasm',import.meta.url);
 const WORKER_URL=new URL('./canonical-inline-worker.mjs?sha256=1526034687dec406b9399fb329acd68fbb2cb40116c71c36604c658852434bec',import.meta.url);
@@ -140,10 +140,12 @@ export function createInlineRunner({wasmUrl=DEFAULT_WASM_URL,moduleURL,dataURL,e
               signal?.removeEventListener('abort',abortPresentation);
             }).catch(error=>{completion=undefined;throw error;});
             signal?.addEventListener('abort',abortPresentation,{once:true});
-            liveRetained=Object.freeze({close});
+            liveRetained=Object.freeze({close,
+              get frameCompletion(){return presentation.frameCompletion;}});
           }
           success=true;
-          return Object.freeze({output:response.output,packets,liveRetained,timing:response.timing,temporal:response.temporal,sourceBinding:response.sourceBinding});
+          return Object.freeze({output:response.output,packets,liveRetained,timing:response.timing,temporal:response.temporal,sourceBinding:response.sourceBinding,
+            get frameCompletion(){return liveRetained?.frameCompletion ?? null;}});
         }finally{
           clearTimeout(timer);signal?.removeEventListener('abort',abort);activeReject=undefined;
           if(owned){owned.onmessage=null;owned.onerror=null;}

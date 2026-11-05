@@ -243,9 +243,22 @@ export function createSharedAreaRenderer(canvas,options={}) {
    if(!Array.isArray(color)||color.length!==4||!color.every(v=>Number.isFinite(v)&&v>=0&&v<=1)||color[3]!==1)throw failure('PLOT_NATIVE_OPAQUE_STYLE');
    const previous=nativeStyleColor;nativeStyleColor=[...color];try{draw();}catch(error){nativeStyleColor=previous;throw error;}
   }
+  // Complete the commands already submitted by this renderer, including its
+  // final area resolve. WebGL2 finish is a driver completion boundary, not a
+  // readback, animation-frame delay or compositor/physical-display fence.
+  // It runs inside the layer's serialized production update before reuse or
+  // teardown; no poll, timer, sync object or detached GPU lease is introduced.
+  function completeNativeDraw(){
+    live();
+    if(!gl||typeof gl.finish!=='function')return {status:'UNSUPPORTED_COMPLETION_UNMEASURED',endpoint:null};
+    if(gl.isContextLost())throw failure('PLOT_AREA_CONTEXT_LOST');
+    gl.finish();
+    if(gl.isContextLost())throw failure('PLOT_AREA_CONTEXT_LOST');
+    return {status:'GPU_COMPLETED',endpoint:'webgl-commands-completed'};
+  }
   function nativeSourceSnapshot(){live();if(!accuracyScene||!accuracyReceipt)throw blocked('NATIVE_ACCURACY_NO_ACCEPTED_SOURCE');return {sources:structuredClone(accuracySources).map(s=>nativeStyleColor?{...s,color:[...nativeStyleColor]}:s),receipt:structuredClone(accuracyReceipt)};}
   function nativeStatistics(){return {styleColor:nativeStyleColor&&[...nativeStyleColor],nativeAccuracy:accuracyReceipt??{status:nativeAccuracy==='required'?'NO_NATIVE_SCENE':'DIAGNOSTIC_UNCERTIFIED',indexed10kAccuracy:'OPEN'},indexedMeshes,indexedSourceVertices,indexedUniqueVertices,batches:adaptiveScene?adaptiveGPU.size:(nativeBatches?.length??0),labels:adaptiveLast?.resident??nativeBatches?.reduce((n,b)=>n+b.count,0)??0,submittedVertices:adaptiveLast?adaptiveLast.triangles*3:(nativeBatches?.reduce((n,b)=>n+b.vertexCount*b.count,0)??0),gpuBytes:nativeBytes+(accuracyScene?capacity:0),coverageBytes:target?.bytes??0,uploads:nativeUploads,verifiedInstanceSamples:nativeVerifiedSamples,draws:nativeDraws,camera:[...camera],adaptive:adaptiveLast,adaptiveDrawWallMs};}
   function destroy(){if(closed)return;closed=true;vertices=new Float32Array();if(gl){releaseNative();if(nativePaint)gl.deleteProgram(nativePaint);if(buffer)gl.deleteBuffer(buffer);if(texture)gl.deleteTexture(texture);if(framebuffer)gl.deleteFramebuffer(framebuffer);if(vao)gl.deleteVertexArray(vao);if(paint)gl.deleteProgram(paint);if(resolve)gl.deleteProgram(resolve)}outlineCache.close();if(gl)gl.getExtension('WEBGL_lose_context')?.loseContext();gl=null;target=null}
-  return Object.freeze({initialize,resize,setPackedVertices,setCertifiedNativeOutline,setNativeLabelBatches,setNativeScene,setNativeCamera,setNativeColor,nativeStatistics,nativeSourceSnapshot,setScene:scene=>setPackedVertices(buildScreenSpaceSimplexVertices(scene)),destroy,
+  return Object.freeze({initialize,resize,setPackedVertices,setCertifiedNativeOutline,setNativeLabelBatches,setNativeScene,setNativeCamera,setNativeColor,completeNativeDraw,nativeStatistics,nativeSourceSnapshot,setScene:scene=>setPackedVertices(buildScreenSpaceSimplexVertices(scene)),destroy,
     get backend(){return gl?'webgl2-area':null},coveragePolicy:()=>Object.freeze({...COVERAGE_POLICY,samplesPerAxis:sampleCount,target})});
 }

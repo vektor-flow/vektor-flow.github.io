@@ -1,6 +1,6 @@
 import {loadCurrentWasmLabelProducer} from './vf-current-wasm-producer.mjs?sha256=4b653b98b42a2c2ff175f30bfb0719765e37eadaaf4c9c3b505a4a09073a0e58';
 import {createCurrentNativeTypography} from './vf-current-native-provider.mjs?sha256=1bd1b35a58878452355c5c3152419eb08d9c0a4a7eca7aa0107407baeea426ad';
-import {installCurrentNativeLabels} from './vf-native-label-layer.mjs?sha256=f4214b936ba0df65e789cf790beb87768a2abb32bf2ec0af294016b37dd3b83b';
+import {installCurrentNativeLabels} from './vf-native-label-layer.mjs?sha256=85d4472b6230be3271e9b026f5d69732e8c66d225c2135016c6733c7483c30b3';
 const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');
 /** Normal UI installation. Immutable installed code is reusable; each new math
  * source still enters the genuine current VKF parser/layout engine. No seed boxes.

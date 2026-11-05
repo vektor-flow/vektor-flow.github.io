@@ -5764,6 +5764,7 @@
   function captureFrameViewSnapshot(geom) {
     var snapshot = { camera: null, axis3d: {}, axes: [] };
     if (geom && Number.isSafeInteger(geom.physics_accepted_generation)) { snapshot.physicsGeneration = geom.physics_accepted_generation; }
+    if (geom && typeof geom.sample_accepted_generation === "string") { snapshot.sampleGeneration = geom.sample_accepted_generation; }
     if (geom && geom.camera) {
       snapshot.camera = JSON.parse(JSON.stringify(geom.camera));
       delete snapshot.camera.__vf_live_mutated;
@@ -5834,12 +5835,81 @@
   }
 
   function publishFrameView(fid, rec, view, endpoint, cameras) {
-    if (frameRecs[fid] !== rec || !view ||
-        (rec.presentedView && view.serial < rec.presentedView.serial)) { return; }
-    rec.presentedView = { serial: view.serial, snapshot: cloneFrameView(view.snapshot),
-      endpoint: endpoint, renderCameras: cloneFrameView(cameras || []) };
-    var listeners = (rec.viewListeners || []).slice();
-    for (var i = 0; i < listeners.length; i += 1) { listeners[i](rec.presentedView); }
+    var owner = findFrameEl(geomTargetFrameId(fid));
+    var signature = JSON.stringify(view && view.snapshot);
+    function current() {
+      var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+      return frameRecs[fid] === rec && view && rec.viewSerial === view.serial &&
+        owner && owner.isConnected !== false && findFrameEl(geomTargetFrameId(fid)) === owner &&
+        !retainedFrameScenesV1.get(owner)?.quiesced && geom &&
+        JSON.stringify(captureFrameViewSnapshot(geom)) === signature;
+    }
+    if (!current()) { return; }
+    // The geometry fence can settle before the scheduled label rAF. Drain that
+    // SAME normal overlay job here; an older label-ready must never satisfy a
+    // newer geometry view. This changes no source state or Physics generation.
+    // The live camera/axes may mutate before their next scheduled tag. The
+    // same snapshot guard runs before draining and after EVERY ready await;
+    // leave that normal redraw queued when the old submitted view is stale.
+    async function complete() {
+      var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
+      if (rec.axis3DOverlayRaf) {
+        global.cancelAnimationFrame(rec.axis3DOverlayRaf); rec.axis3DOverlayRaf = 0;
+        if (rec.textOverlayRaf) { global.cancelAnimationFrame(rec.textOverlayRaf); rec.textOverlayRaf = 0; }
+        var axisGeom = geom;
+        var fit = fittedFrameContentRect(owner, geomFrameHost(owner, fid));
+        renderGeomLineOverlay(fid, owner, axisGeom,
+          Math.max(1, Math.round(fit.width || 1)), Math.max(1, Math.round(fit.height || 1)));
+        renderGeomTextOverlay(fid, owner, axisGeom);
+      } else if (rec.textOverlayRaf) {
+        global.cancelAnimationFrame(rec.textOverlayRaf); rec.textOverlayRaf = 0;
+        renderGeomTextOverlay(fid, owner, geom);
+      } else if (geom && (geom.native_labels || geom.native_plot_text === true) && rec.nativeLabelViewSerial !== view.serial) {
+        renderGeomTextOverlay(fid, owner, geom);
+      }
+      var ready, labels;
+      do {
+        ready = rec.nativeLabelReady;
+        labels = await ready;
+        if (!current()) { return; }
+      } while (ready !== rec.nativeLabelReady);
+      if (rec.nativeLabelError) { throw new Error(rec.nativeLabelError); }
+      var nativeRequired = !!(geom && (geom.native_labels || geom.native_plot_text === true) || rec.compiledMathRequest);
+      var nativeMatches = !nativeRequired || labels?.frameView?.serial === view.serial &&
+        labels.frameView.signature === signature && !labels.superseded;
+      if (!nativeMatches) {
+        // A newer normal label/view job keeps its own redraw opportunity.
+        if (_plotCameraRaf[fid] || rec.textOverlayRaf || rec.axis3DOverlayRaf) return;
+        throw new Error("Frame label presentation was superseded");
+      }
+      var nativeCompleted = !nativeRequired || labels &&
+        (labels.status === "GPU_COMPLETED" || labels.status === "NOT_REQUIRED");
+      var body = geomFrameHost(owner, fid);
+      // Existing Canvas2D line decorations have no GPU completion primitive.
+      // Keep them in the owned output; do not silently qualify only the WebGPU
+      // meshes and WebGL ink or rewrite the renderer to obtain a timing claim.
+      var canvasOverlay = !!body?.querySelector(":scope > canvas.vf-geom-line-overlay");
+      var domText = (rec.textOverlayPool || []).some(function(el) { return el && el.style.display !== "none"; });
+      var geometryCompleted = endpoint === "gpu-queue-completed" || endpoint === "no-geometry-required";
+      var completeGPU = geometryCompleted && nativeCompleted && !canvasOverlay && !domText;
+      rec.presentedView = { serial:view.serial, snapshot:cloneFrameView(view.snapshot),
+        endpoint:endpoint, renderCameras:cloneFrameView(cameras || []),
+        composedCompletion:{status:completeGPU ? "GPU_COMPLETED" : "COMPLETION_UNMEASURED",
+          geometryEndpoint:endpoint,
+          nativeLabels:{status:nativeRequired ? labels?.status || "COMPLETION_UNMEASURED" : "NOT_REQUIRED",
+            generation:nativeRequired ? labels?.generation ?? null : null,viewSerial:view.serial,
+            endpoint:nativeRequired ? labels?.completion?.endpoint ?? null : null},
+          canvasOverlay:canvasOverlay ? "COMPLETION_UNMEASURED" : "NOT_REQUIRED",
+          domText:domText ? "COMPLETION_UNMEASURED" : "NOT_REQUIRED",display:"UNMEASURED"}};
+      var listeners = (rec.viewListeners || []).slice();
+      for (var i = 0; i < listeners.length; i += 1) { listeners[i](rec.presentedView); }
+    }
+    complete().catch(function(error) {
+      if (!current()) { return; }
+      vlog("error", "Frame completion [" + fid + "]: " + String(error.stack || error));
+      try { failFrameView(rec, error); }
+      catch (callbackError) { vlog("error", String(callbackError.stack || callbackError)); }
+    });
   }
 
   function listenFrameView(rec, callback, onError) {
@@ -12272,6 +12342,19 @@
     } : null;
   }
 
+  function nativeLabelViewBinding(fid, geom) {
+    var rec = frameViewRecord(String(fid));
+    geom = geom || _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[String(fid)];
+    return Object.freeze({serial:Number(rec.viewSerial || 0),signature:JSON.stringify(captureFrameViewSnapshot(geom))});
+  }
+
+  function bindNativeLabelReady(rec, ready, view) {
+    rec.nativeLabelReady = Promise.resolve(ready).then(function(result) {
+      return Object.assign({}, result, {frameView:view});
+    });
+    return rec.nativeLabelReady;
+  }
+
   function updateNativeLabelFrameView(fid, camera) {
     fid = String(fid);
     var rec = frameRecs[fid];
@@ -12283,7 +12366,7 @@
     if (!request) throw new Error("current native label scene is unavailable");
     // The view changes, while the layer retains its own validated content snapshot.
     request.camera = camera.slice();
-    rec.nativeLabelReady = rec.nativeLabelLayer.updateView({camera:camera});
+    bindNativeLabelReady(rec, rec.nativeLabelLayer.updateView({camera:camera}), nativeLabelViewBinding(fid,geom));
     rec.nativeLabelReady.catch(function(error) {vlog("error", "native label view ["+fid+"]: "+String(error.stack || error));});
     return rec.nativeLabelReady;
   }
@@ -12291,7 +12374,7 @@
   function updateNativeLabelFrameAnimation(fid, transform) {
     fid = String(fid); var rec = frameRecs[fid];
     if (!rec || !rec.nativeLabelLayer) throw new Error("current native label frame is not mounted");
-    rec.nativeLabelReady = rec.nativeLabelLayer.updateAnimation(transform);
+    bindNativeLabelReady(rec, rec.nativeLabelLayer.updateAnimation(transform), nativeLabelViewBinding(fid));
     rec.nativeLabelReady.catch(function(error) {vlog("error","native label animation ["+fid+"]: "+String(error.stack || error));});
     return rec.nativeLabelReady;
   }
@@ -12299,12 +12382,12 @@
   function updateNativeLabelFrameColor(fid, color) {
     fid = String(fid); var rec = frameRecs[fid];
     if (!rec || !rec.nativeLabelLayer) throw new Error("current native label frame is not mounted");
-    rec.nativeLabelReady = rec.nativeLabelLayer.updateColor(color);
+    bindNativeLabelReady(rec, rec.nativeLabelLayer.updateColor(color), nativeLabelViewBinding(fid));
     rec.nativeLabelReady.catch(function(error) {vlog("error","native label color ["+fid+"]: "+String(error.stack || error));});
     return rec.nativeLabelReady;
   }
 
-  function renderNativeLabelOverlay(fid, content, geomSpec, w, h) {
+  function renderNativeLabelOverlay(fid, content, geomSpec, w, h, labelBinding) {
     var request = geomSpec.native_labels;
     if (!_nativeLabelRendererFactory) throw new Error("current native label provider is unavailable");
     if ((geomSpec.texts || []).length || (geomSpec.meshes || []).some(function(m) {return !!m.axis_ticks;}))
@@ -12325,7 +12408,8 @@
       camera = [x[0]-o[0],x[1]-o[1],y[0]-o[0],y[1]-o[1],o[0],o[1]];
     }
     rec.nativeLabelError = null;
-    rec.nativeLabelReady = rec.nativeLabelLayer.update({specs:request.specs,camera:camera,width:w,height:h});
+    bindNativeLabelReady(rec, rec.nativeLabelLayer.update({specs:request.specs,camera:camera,width:w,height:h}),
+      labelBinding || nativeLabelViewBinding(fid,geomSpec));
     rec.nativeLabelReady.catch(function(error) {
       vlog("error", "native labels [" + fid + "]: " + String(error.stack || error));
     });
@@ -12369,7 +12453,7 @@
     }
   }
 
-  function renderNativePlotText(fid, frameEl, geomSpec, content, w, h) {
+  function renderNativePlotText(fid, frameEl, geomSpec, content, w, h, labelBinding) {
     if (!_nativeMathLabelInstaller || !_nativePlotTextRendererFactory) throw new Error("current VKF plot text installer is unavailable");
     var rec = frameRecs[String(fid)] || (frameRecs[String(fid)] = {entries:[]});
     var generation = rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
@@ -12411,7 +12495,7 @@
         rotation:0,fontSize:11,anchor:[1,0],keepInViewport:true,color:ink.slice()});
     }
     rec.nativeLabelError = null;
-    rec.nativeLabelReady = Promise.resolve().then(_nativeMathLabelInstaller).then(function(installation) {
+    bindNativeLabelReady(rec, Promise.resolve().then(_nativeMathLabelInstaller).then(function(installation) {
       if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation || !findFrameEl(String(fid))) return {status:"SUPERSEDED"};
       if (!rec.nativePlotTextLayer) {
         // Remove any previous DOM label pool. All visible plot text now belongs
@@ -12439,7 +12523,7 @@
       }
       return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,titleAvoidRect:titleAvoidRect,
         pixelRatio:Math.max(1,Number(global.devicePixelRatio) || 1),foreground:ink});
-    });
+    }), labelBinding || nativeLabelViewBinding(fid,geomSpec));
     rec.nativeLabelReady.catch(function(error) {
       if (frameRecs[String(fid)] !== rec || rec.nativePlotTextGeneration !== generation) return;
       rec.nativeLabelError = String(error.stack || error);
@@ -12448,7 +12532,10 @@
   }
 
   function renderGeomTextOverlay(fid, frameEl, geomSpec) {
+    var labelView = frameViewRecord(String(fid));
     try {
+      var labelBinding = nativeLabelViewBinding(fid,geomSpec);
+      labelView.nativeLabelViewSerial = labelBinding.serial;
       var incomingTexts = geomSpec && Array.isArray(geomSpec.texts) ? geomSpec.texts.length : 0;
       var layer = ensureGeomTextOverlay(frameEl, fid);
       if (!layer) {
@@ -12466,7 +12553,7 @@
       contentLayer.style.transform = "";
       rememberGeomTextOverlay(fid, layer, frameEl, geomSpec, w, h);
       if (geomSpec && geomSpec.native_plot_text === true) {
-        renderNativePlotText(fid, frameEl, geomSpec, contentLayer, w, h);
+        renderNativePlotText(fid, frameEl, geomSpec, contentLayer, w, h, labelBinding);
         layer.style.visibility = "visible";
         return;
       }
@@ -12501,7 +12588,7 @@
           // text keep their existing DOM lifecycle and are never discarded.
           var nativeGeom = {meshes:[],texts:[],native_labels:{specs:snapshot,camera:[1,0,0,-1,0,0]}};
           mathRec.compiledMathRequest = nativeGeom.native_labels;
-          renderNativeLabelOverlay(fid,mathRec.compiledMathHost,nativeGeom,w,h);
+          renderNativeLabelOverlay(fid,mathRec.compiledMathHost,nativeGeom,w,h,labelBinding);
           return frameRecs[String(fid)].nativeLabelReady;
         });
         mathRec.nativeLabelReady.catch(function(error) {mathRec.nativeLabelError=String(error.stack || error);});
@@ -12509,7 +12596,7 @@
       }
       if (geomSpec && geomSpec.native_labels) {
         layer.style.visibility = "visible";
-        renderNativeLabelOverlay(fid, contentLayer, geomSpec, w, h);
+        renderNativeLabelOverlay(fid, contentLayer, geomSpec, w, h, labelBinding);
         return;
       }
       var priorNative = frameRecs[String(fid)];
@@ -12942,6 +13029,7 @@
     frameRecs[fid].latestGeomSpec = geomSpec;
     if (!renderableSpecs.length) {
       renderGeomTextOverlay(fid, frameEl, geomSpec);
+      publishFrameView(String(fid), frameRecs[fid], frameView, "no-geometry-required");
       return;
     }
     if ((!(global.navigator && global.navigator.gpu) ||
@@ -12953,6 +13041,8 @@
     var Ctor = global.VfGeomWgpu;
     if (!Ctor) {
       vlog("warn", "updateGeomFrame [" + fid + "]: VfGeomWgpu not loaded — geom skipped");
+      renderGeomTextOverlay(fid, frameEl, geomSpec);
+      publishFrameView(String(fid), frameRecs[fid], frameView, "geometry-completion-unavailable");
       return;
     }
     var frameFit = fittedFrameContentRect(frameEl, geomFrameHost(frameEl, fid));
@@ -14695,7 +14785,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     var views = [], active = null, worldScopes = new Map();
     var physicsBindings=[], physicsLayers=new WeakMap(), physicsClock=null, physicsStarted=false;
     var physicsPlaying=true, physicsRate=1, physicsDue=0;
-    var physicsPresentation=null;
+    var physicsPresentation=null, physicsTickPending=false;
     var scene = {frame: fid, views: views, active_view: 0, meshes: [], texts: [], camera: null};
     var identityTransform = new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);
     var pendingCamera = null;
@@ -15052,15 +15142,21 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       if (physicsPresentation) return physicsPresentation;
       physicsPresentation=new AbortController();
       var controller=physicsPresentation;
-      var completion=new Promise(function(resolve,reject){
-        // Existing complete-frame publication/fence path. Every render pass
-        // reads the SAME accepted transforms; rendering never steps Physics.
-        var requested=requestGeomFramePresentation(fid,{signal:controller.signal,
-          physicsGeneration:scene.physics_accepted_generation,
-          afterPresented:resolve,onPresentationError:reject});
-        if (!requested) reject(new Error("Retained physical Frame presentation unavailable"));
+      var main = physicsBindings.find(function(binding) {return binding.owner.main;});
+      var generation = scene.physics_accepted_generation;
+      var completion = Promise.resolve().then(function(){
+        if (controller.signal.aborted) throw controller.signal.reason || new Error("Frame presentation cancelled");
+        if (main && typeof main.owner.present === "function") return main.owner.present(generation, controller.signal);
+        return new Promise(function(resolve,reject){
+          var requested=requestGeomFramePresentation(fid,{signal:controller.signal,
+            physicsGeneration:generation,
+            afterPresented:function(record){resolve([Object.assign({frameId:fid},record)]);},onPresentationError:reject});
+          if (!requested) reject(new Error("Retained physical Frame presentation unavailable"));
+        });
       });
-      controller.completion=completion.finally(function(){if(physicsPresentation===controller)physicsPresentation=null;});
+      controller.completion=Promise.resolve(completion).catch(function(error){
+        controller.abort(error); throw error;
+      }).finally(function(){if(physicsPresentation===controller)physicsPresentation=null;});
       return controller;
     }
     function bindPhysics(ids, owner) {
@@ -15112,7 +15208,20 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       if (Number.isFinite(rate) && rate>=0 && rate<=4) physicsRate=rate;
     }
     async function physicsTick(stepIndex,timestamp) {
+      if (!alive || quiesced || !frameRoot.isConnected || physicsTickPending) return;
+      physicsTickPending=true;
+      var inputAt=global.performance.now();
+      var main=physicsBindings.find(function(binding){return binding.owner.main;});
+      try {
+        var update=function(){return physicsUpdate(stepIndex,timestamp,inputAt);};
+        if(main && typeof main.owner.frameUpdate === "function") await main.owner.frameUpdate(update);
+        else await update();
+      } catch(error) {physicsFailure(error);}
+      finally {physicsTickPending=false;}
+    }
+    async function physicsUpdate(stepIndex,timestamp,inputAt) {
       if (!alive || quiesced || !frameRoot.isConnected) return;
+      var updateKind = "repaint";
       try {
         for (var binding of physicsBindings) {
           if (!binding.owner.main) continue;
@@ -15121,14 +15230,27 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           // Existing non-compensating presentation clock: one ordered authored
           // step per render opportunity; a late draw never enlarges solver dt.
           var accepted=binding.owner.request(cause,++binding.tick);
+          updateKind = cause;
           binding.accepted=accepted;binding.reset=false;
           physicsDue=cause==="reset" ? 0 : timestamp+binding.owner.step*1000/physicsRate;
           scene.physics_accepted_generation=accepted.generation;scene.physics_accepted_time=accepted.time;
         }
         publish();physicsNotice();
-        await physicsPresent().completion;
+        var output = await physicsPresent().completion;
+        if (!alive || quiesced) return;
+        var wallMs = global.performance.now()-inputAt;
+        var completeGPU = output.length > 0 && output.every(function(record) {
+          return record.composedCompletion?.status === "GPU_COMPLETED";
+        });
+        // ONE span starts before the original authoritative request. Component
+        // and overlapping queue costs are never added together as frame time.
+        scene.frameCompletion = Object.freeze({phase: "physics-"+updateKind,
+          generation:scene.physics_accepted_generation,inputAt:inputAt,
+          status:completeGPU ? "GPU_COMPLETED" : "COMPLETION_UNMEASURED",
+          completeFrameMs:completeGPU ? wallMs : null,wallThroughAvailableEndpointsMs:wallMs,
+          frames:output,display:"UNMEASURED"});
 
-      } catch(error) {physicsFailure(error);}
+      } catch(error) {throw error;}
     }
     function startPhysics() {
       live();if(quiesced||physicsStarted||!physicsBindings.length)return;
@@ -15143,12 +15265,15 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           throw new Error("Existing main presentation clock unavailable");
         physicsClock=global.VfRenderClock.createClock({
           fps:Math.max(60,Math.ceil(4/Math.min(...physicsBindings.map(function(binding){return binding.owner.step;})))),
-          canStep:function(){return alive && !quiesced && !physicsPresentation &&
+          canStep:function(){return alive && !quiesced && !physicsTickPending && !physicsPresentation &&
             (physicsBindings.some(function(binding){return binding.owner.main && binding.reset;}) ||
              physicsPlaying && physicsRate>0 && global.performance.now()>=physicsDue);},
           onStep:physicsTick
         });
-        physicsPresent().completion.then(function(){if(alive && !quiesced)physicsClock.start();},physicsFailure);
+        var main=physicsBindings.find(function(binding){return binding.owner.main;});
+        var initial=function(){return physicsPresent().completion;};
+        var ready=main && typeof main.owner.frameUpdate === "function" ? main.owner.frameUpdate(initial) : initial();
+        ready.then(function(){if(alive && !quiesced)physicsClock.start();},physicsFailure);
       }
     }
     function snapshot() {
@@ -15221,7 +15346,11 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     Object.assign(frames, display.geom);
     renderFromJson(Object.assign({}, _lastDisplayPayload || {}, display, { geom: frames }));
     if (options && (typeof options.afterPresented === "function" || typeof options.onPresentationError === "function")) {
-      requestGeomFramePresentation(Object.keys(display.geom)[0], options);
+      if (!requestGeomFramePresentation(Object.keys(display.geom)[0], options)) {
+        var error = new Error("Retained scene Frame presentation unavailable");
+        if (typeof options.onPresentationError === "function") options.onPresentationError(error);
+        else throw error;
+      }
     }
     return display;
   }

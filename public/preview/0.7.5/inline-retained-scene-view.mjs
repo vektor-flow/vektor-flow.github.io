@@ -48,6 +48,7 @@ function ownRetainedScenePackets(packets, plotLayers) {
 // inverse projection, native navigation and the selected data clip policy.
 export function mountRetainedSceneResult(container, packets, {
   sampleTemporal,
+  temporalGeneration,
   historicalPlayback = false,
   disposeTemporal,
   axis_visible,
@@ -133,7 +134,8 @@ export function mountRetainedSceneResult(container, packets, {
   }
   const viewport = layer;
   container.append(viewport);
-  let disposed = false;
+  let disposed = false, lastFrameCompletion = null, sampleSequence = 0, sampleSourceGeneration = temporalGeneration;
+  const presentationInputAt = performance.now();
   const presentationAbort = new AbortController();
   let resolvePresented, rejectPresented;
   const presented = new Promise((resolve,reject) => { resolvePresented = resolve; rejectPresented = reject; });
@@ -149,26 +151,24 @@ export function mountRetainedSceneResult(container, packets, {
   };
   layer.addEventListener('vf-inline-render-error',renderError);
   const firstPresentations = new Map();
-  const firstPresented = async (frameId, record) => {
+  const firstPresented = (frameId, record) => {
     if (disposed || firstPresentations.has(frameId)) return;
-    try {
-      let ready;
-      do {
-        ready = VfDisplay.nativeLabelFrameStatus?.(frameId)?.ready;
-        await ready;
-      } while (!disposed && ready !== VfDisplay.nativeLabelFrameStatus?.(frameId)?.ready);
-      if (disposed) return;
-      const status = VfDisplay.nativeLabelFrameStatus?.(frameId)?.statistics;
-      if (status?.status === 'FAILED') throw new Error(status.error);
-    } catch (error) {renderError({detail:{error}});return;}
+    // VfDisplay now joins this view's production labels and geometry itself.
+    // Waiting on an unrelated later label-ready here would detach the record
+    // from the geometry serial whose completion invoked this callback.
     firstPresentations.set(frameId, record);
     if (firstPresentations.size !== ownedPackets.length) return;
     layer.dataset.vfRenderState = "visible";
     layer.dispatchEvent?.(new Event("vf-inline-result-visible"));
-    resolvePresented(ownedPackets.map(packet => ({
-      frameId: packet.metadata.scene.frame,
-      ...firstPresentations.get(packet.metadata.scene.frame),
-    })));
+    const output = ownedPackets.map(packet => ({
+      frameId:packet.metadata.scene.frame,...firstPresentations.get(packet.metadata.scene.frame),
+    }));
+    lastFrameCompletion = Object.freeze({phase:'initial-presentation',
+      status:output.every(record=>record.composedCompletion?.status === 'GPU_COMPLETED') ? 'GPU_COMPLETED' : 'COMPLETION_UNMEASURED',
+      // Source execution/compile happened before mount; this is setup/output,
+      // never a steady authoritative-update frame measurement.
+      completeFrameMs:null,presentationMs:performance.now()-presentationInputAt,frames:output,display:'UNMEASURED'});
+    resolvePresented(output);
     if (animated) presentFrame = requestAnimationFrame(animate);
   };
   let presentFrame = 0;
@@ -226,24 +226,41 @@ export function mountRetainedSceneResult(container, packets, {
       publishAnimationState();
       return;
     }
+    const inputAt = performance.now();
     const result = await sampleTemporal(elapsed);
     if (disposed || revision !== animationRevision) return;
+    if (typeof result?.generation !== 'string' || !result.generation)
+      throw new TypeError("compiled temporal output has no source generation");
+    sampleSourceGeneration ??= result.generation;
+    if (result.generation !== sampleSourceGeneration)
+      throw new TypeError("compiled temporal output belongs to a different source generation");
+    const sampleGeneration = `${result.generation}:${++sampleSequence}`;
     if (!Array.isArray(result?.packets) || result.packets.length !== ownedPackets.length || !result.packets.every(retainedPacket))
       throw new TypeError("compiled temporal output changed its owned Frame inventory");
     const next = result.packets.map(packet => {
       if (!frameIds.has(packet.metadata.scene.frame)) throw new TypeError("compiled temporal output references a foreign Frame");
       return {...packet,metadata:{...scopeFrameReferences(packet.metadata,frameIds),
-        scene:{...scopeFrameReferences(packet.metadata.scene,frameIds),...plotLayers,native_plot_text:true}}};
+        scene:{...scopeFrameReferences(packet.metadata.scene,frameIds),...plotLayers,native_plot_text:true,
+          sample_accepted_generation:sampleGeneration}}};
     });
     if (new Set(next.map(packet=>packet.metadata.scene.frame)).size !== ownedPackets.length)
       throw new TypeError("compiled temporal output duplicated a Frame");
     ownedPackets = next;
-    await Promise.all(next.map(packet => new Promise((resolve,reject) => {
+    const output = await Promise.all(next.map(packet => new Promise((resolve,reject) => {
       VfDisplay.renderRetainedSceneArena(packet, {
-        signal:presentationAbort.signal,afterPresented:resolve,onPresentationError:reject,
+        signal:presentationAbort.signal,
+        afterPresented:record=>resolve({frameId:packet.metadata.scene.frame,...record}),onPresentationError:reject,
       });
     })));
-    if (!disposed) publishAnimationState();
+    if (disposed || revision !== animationRevision) return;
+    if (output.some(record=>record.snapshot?.sampleGeneration !== sampleGeneration))
+      throw new TypeError("compiled temporal presentation completed a different sample generation");
+    const wallMs = performance.now()-inputAt;
+    const completeGPU = output.every(record=>record.composedCompletion?.status === 'GPU_COMPLETED');
+    lastFrameCompletion = Object.freeze({phase:'compiled-source-sample',generation:result.generation,
+      sampleGeneration,elapsed,inputAt,status:completeGPU ? 'GPU_COMPLETED' : 'COMPLETION_UNMEASURED',
+      completeFrameMs:completeGPU ? wallMs : null,wallThroughAvailableEndpointsMs:wallMs,frames:output,display:'UNMEASURED'});
+    publishAnimationState();
   };
   const animate = async (timestamp) => {
     if (disposed) return;
@@ -299,6 +316,7 @@ export function mountRetainedSceneResult(container, packets, {
   // Scoped actual Frame identities and a real renderer completion endpoint.
   // Null means disposed before first presentation; never a successful draw.
   dispose.presented = presented;
+  Object.defineProperty(dispose,'frameCompletion',{get:()=>disposed ? null : lastFrameCompletion});
   dispose.closed = Promise.resolve();
   dispose.frameIds = Object.freeze(ownedPackets.map(packet => packet.metadata.scene.frame));
   dispose.element = frames.length === 1 ? frames[0]?.root ?? viewport : viewport;

@@ -1,6 +1,6 @@
 import {mountCurrentPlotToolbar} from '../vf-ui/vf-current-plot-toolbar.mjs?sha256=58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c';
 import {prepareNormalPhysicsLifetime,classifyNormalImports} from './vkf-normal-physics-lifetime.mjs?sha256=7db652e4e100f1bba04f50fa35ee570762d8cb9dd1950d811e4b1f3afc0f4340';
-import {ensureInlineRenderer} from '../inline-renderer-loader.mjs?sha256=b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0';
+import {ensureInlineRenderer} from '../inline-renderer-loader.mjs?sha256=74ff15e8210e3433af40b3bf7aa4ae7211ff91000d8e1f9c5d07be96e3eb116a';
 import {createRetainedExecutionControl} from './vkf-retained-execution-control.mjs';
 // Retained programs require genuine DOM/render owners. The compiler worker
 // delegates only emitted WASM+manifest, then receives owned VM output bytes.
@@ -8,7 +8,7 @@ const loads=new Map();
 // Tickets exist only inside the actual compiler-worker dispatch closure. A
 // manifest, bytes, worker id or guest-supplied field cannot create one.
 const physicsTickets=new WeakMap();
-const scriptVersions={"vf-display.js": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5", "vf-runtime-scene.js": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765", "vf-retained-vm-bridge.js": "6573003b4094abd3eccc915df32c4209aa40db9fe50e99ed51c7433a7ab2eb72"};
+const scriptVersions={"vf-display.js": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026", "vf-runtime-scene.js": "1b3fd49c45b020dab4cad23ac4e34daddf1fb22f404499b7fe8504da81e9b568", "vf-retained-vm-bridge.js": "6573003b4094abd3eccc915df32c4209aa40db9fe50e99ed51c7433a7ab2eb72"};
 function script(name,globalName){
  if(globalThis[globalName])return Promise.resolve();
  const url=new URL('../vf-ui/'+name+(scriptVersions[name]?'?sha256='+scriptVersions[name]:''),import.meta.url).href;
@@ -40,7 +40,8 @@ export async function executeRetainedInWindow(wasm,manifest,{signal,resourceBase
    if(failures.length)throw new AggregateError(failures,'Retained physical cleanup failed');
   }).catch(error=>{if(!closed)closing=undefined;throw error;});
  };
- const lifetime=Object.freeze({get root(){return root;},close,get closed(){return closed;}});
+ const lifetime=Object.freeze({get root(){return root;},close,get closed(){return closed;},
+   get frameCompletion(){return closed ? null : producer?.frameCompletion ?? null;}});
  try{
  onLifetime?.(lifetime);
  scheduling.check();
@@ -154,7 +155,7 @@ export function retainedPresentationFor(worker){
  const scope=scopes.get(worker);
  if(!scope||scope.closed||!scope.retained.size)return null;
  const current=[...scope.retained];
- return Object.freeze({close:async()=>{
+ return Object.freeze({get frameCompletion(){return current.filter(entry=>!entry.closed).flatMap(entry=>entry.frameCompletion??[]);},close:async()=>{
    const results=await Promise.allSettled(current.map(entry=>entry.close()));
    const errors=results.filter(result=>result.status==='rejected').map(result=>result.reason);
    if(errors.length)throw new AggregateError(errors,'Retained World close failed');
@@ -221,7 +222,8 @@ export async function dispatchRetainedExecution(worker,data,options={}){
    const retainLifetime=lifetime=>{
      let completion;
      const workerError=event=>failFromPhysics(event.error??new Error(event.message||'VKF compiler worker failed'));
-     retainedEntry={request:data.request,controller:execution.controller,get closed(){return lifetime.closed;},close:()=>{
+     retainedEntry={request:data.request,controller:execution.controller,get closed(){return lifetime.closed;},
+       get frameCompletion(){return lifetime.frameCompletion;},close:()=>{
        const release=()=>{
          scope.retained.delete(retainedEntry);worker.removeEventListener('error',workerError);
          if(scope.runFinished&&!scope.active.size&&!scope.retained.size)scope.registration?.close();

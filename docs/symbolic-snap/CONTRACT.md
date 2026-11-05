@@ -77,3 +77,38 @@ that basic-level test for72 full nested math layouts hit its test-only prohibiti
 on scriptscript keys; the overbroad extension was discarded, with no font/runtime
 change or claim of a new72-layout rerun. Prior72-label source/physical font pins
 and parent qualification remain unchanged.
+
+## Repeated scoped updates
+
+Runtime/controller0b2a4af additionally prevent persistent arena growth during
+parameter updates. New createWorkspaceValue/workspaceCompileValue invoke the
+SAME native functions with existing transient allocation rewind and return
+detached decoded immutable data. createSymbolicCompiler uses these for scoped
+definitions and compileScopedProgram where available; old supplied-kernel
+implementations retain compatibility. Ordinary compileProgram, opaque native
+workspace/program handle APIs and owner checks remain unchanged. Detached
+scoped `.program`/`.workspace` are data values accepted by the tagged kernel ABI;
+no borrowed native payload escapes its transient checkpoint.
+
+REPEATED-QUALIFICATION.json:128 unique parameter states from current native
+Interp, old retained-scopes exhaust arena at update74, new heap294016→294016
+through all128, exact old/new AST hashes until old failure, ordinary retained
+program survives all updates, default bounded snap succeeds at endpoints.
+REPEATED-BROWSER-QUALIFICATION.json:193 actual changed-parameter WebGPU frames
+at1280x720/17x17, shared native Interp parameter packet, same curve source/scope,
+more than180 distinct accepted RGBA frames, native GPU picks at0/96/192, five
+decoded VP8 checkpoints show evolving real curves, zero browser/page errors;
+default ready/nonempty snap restored afterward. No frames dropped.
+
+Reproduce:
+
+```sh
+git show 84ec0c0:public/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs > /tmp/vkf-retained-scope-runtime.mjs
+node tests/symbolic-snap/repeated.mjs
+node tests/symbolic-snap/repeated-browser.cjs
+```
+
+All fixes use existing native kernel129d2a bytes. This is bounded client
+workspace/capture orchestration, not a new evaluator/compiler or a general
+claim about every retained API's lifetime/memory behavior. Parent owns actual
+193q app capture gate and the final movie.

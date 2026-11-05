@@ -376,3 +376,19 @@ fontcoveragecases/263glyphs PASS, no font changes. Discarded auxiliary72-layout
 reuse of basic-font test: its first-level-only guard was inappropriate for nested
 math scripts; do not claim that auxiliary rerun qualified all72. Existing parent
 72-layout qualification/font source pins unchanged. Source remains84ec0c0.
+
+## Repeated-scope allocator exhaustion — 2026-11-05
+
+Root detected second RED after~33actual parameter updates; allocator stack
+createWorkspace→setDefinitions. Fixed in0b2a4af by additive detached workspace/
+compile value methods using existing invokeTransient. Scoped definitions and
+compileScopedProgram return owned data, releasing native parse intermediates
+after each call. Ordinary retained APIs/owner guards preserved.
+128changed native Interp states: old fails update74 at67381696; new heap
+294016→294016, old/new ASTs exact until failure, ordinary retained program
+survives, native default snaps work.193actual changed-parameter WebGPU frames/
+decodedVP8 PASS, >180distinct accepted frames, picks at0/96/192, zeroerrors.
+Source runtime/controller frozen at0b2a4af and rootintaken; remaining follow-up
+is docs/test-only one native parameter packet per generated fixture frame.
+Root owns actual8s2view193q preflight and final12view recording. No artifact/
+font/library math/PP source changes.

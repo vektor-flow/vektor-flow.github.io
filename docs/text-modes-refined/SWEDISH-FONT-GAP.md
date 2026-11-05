@@ -1,0 +1,7 @@
+# Observed native Unicode accent gap
+
+Actual current075 producer emits one `text/@text:ö` glyph for `\text{Utforska energi och rörelse}`. Native layout completes with no diagnostics, but physical mapping admission correctly rejects it. The pinned catalog contains no `physical/text/@text:ö` record; the unchanged Type1 closure contains no odieresis glyph. cmr10/7/5 provide separate dieresis glyphs. Existing authentic physical mapping join therefore refuses `NATIVE_PHYSICAL_QUERY_MISSING`. No runtime, mapping, producer, font or numerical artifact was changed.
+
+Reproduce: `COVERAGE_SWEDISH=1 node tests/text-modes-refined/fonts.cjs`; add `EXPECT_COMPLETE=1` to assert the currently unmet capability. Default focused coverage cases remain unchanged. See SWEDISH-FONT-GAP.json for exact producer identity and native keys.
+
+Smallest required upstream capability: native Unicode text accent decomposition/layout emitting the genuine base and accent with certified native positions, including required physical catalog records. Alternatively a deliberately extended genuine font/catalog closure is a separate authorized change. The renderer mapping extension cannot supply either capability by aliasing o or composing a host outline. This is a specific observed gap, not a general claim about Unicode support.

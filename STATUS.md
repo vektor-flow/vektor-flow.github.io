@@ -414,3 +414,12 @@ actualsamples). See docs/text-modes-refined/CONTRACT.md and QUALIFICATION files.
 Parent short actualPP preflight owns final visual acceptance. No more functional
 changes planned; static retained preservationcb8da21 is separate and needs parent
 navigation+pointer regression after fresh canvas/reload.
+
+## Swedish title mapping request — observed capability gap 2026-11-05
+
+Actualproducer text/@text:ö missing; authenticjoin refuses absent physicalcatalog
+record. No odieresis in pinnedType1closure; separatecmr dieresis exists. Documented
+smallest nativeaccentlayout/catalog requirement in SWEDISH-FONT-GAP.md/json.
+No mapping/runtime bytes changed; focused defaultfontqueries unchanged.
+Parent actualPP cb8 navigation/pointer acceptance GREEN after freshreload:
+heading1995/body1933/phase2860pixels retained, cropsdiffNone.

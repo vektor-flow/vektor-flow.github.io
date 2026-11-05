@@ -311,6 +311,47 @@ export function createSymbolicKernel({ instance, manifest, diagnostics = false }
     }
   }
 
+  // The native implicit sampler recursively retains temporary AST evaluations
+  // until all cells finish. Dispatch the SAME native primitives across transient
+  // calls instead, retaining only the native builder arena for this one plot.
+  function plotBoundedImplicit(program, workspace, view, style, revision) {
+    const nx = Number(view?.fieldXSteps), ny = Number(view?.fieldYSteps);
+    if (!Number.isSafeInteger(nx) || nx < 2 || !Number.isSafeInteger(ny) || ny < 2
+      || nx * ny > 1048576) throw new RangeError('implicit snap grid exceeds bounded native dispatch');
+    const checkpoint = heapPointer();
+    try {
+      const capacity = invokeTransient('symbolic_plot_capacity', [program, workspace, view], value => value);
+      // This allocation alone persists across cell calls; the outer finally
+      // releases it after copying the completed native Float32 arena.
+      let builder = invoke('symbolic_plot_builder', [capacity, revision]).value;
+      if (builder == null) throw new Error('native implicit snap builder unavailable');
+      const coordinate = (minimum, maximum, count, index) => invokeTransient(
+        'symbolic_sample_coordinate', [minimum, maximum, count, index], value => value);
+      const xs = Array.from({length:nx}, (_, i) => coordinate(view.xMin, view.xMax, nx, i));
+      const ys = Array.from({length:ny}, (_, i) => coordinate(view.yMin, view.yMax, ny, i));
+      // Native residuals are pure at fixed workspace/time. Cache shared grid
+      // vertices, preserving every native coordinate and native contour call.
+      const residuals = new Array(nx * ny);
+      const residual = (i, j) => {
+        const index = i * ny + j;
+        if (!(index in residuals)) residuals[index] = invokeTransient(
+          'symbolic_relation_residual', [program, workspace, xs[i], ys[j], view.t], value => value);
+        return residuals[index];
+      };
+      for (let i = 0; i < nx - 1; i += 1) {
+        for (let j = 0; j < ny - 1; j += 1) {
+          builder = invokeTransient('symbolic_push_implicit_cell', [builder,
+            xs[i], ys[j], xs[i + 1], ys[j + 1],
+            residual(i, j), residual(i + 1, j), residual(i + 1, j + 1), residual(i, j + 1), style], value => value);
+        }
+      }
+      const packed = invokeTransient('symbolic_plot_builder_metadata', [builder], value => value);
+      return invokeTransient('symbolic_plot_result', [packed, program.classification], snapshotPlotArena);
+    } finally {
+      if (rewind(checkpoint) !== checkpoint) throw new Error('native implicit snap allocation checkpoint could not be restored');
+    }
+  }
+
   function snapshotPlotArena(value) {
     if (!value || typeof value !== "object" || Array.isArray(value)) {
       throw new TypeError("VKF symbolic plot must return an arena record");
@@ -399,6 +440,14 @@ export function createSymbolicKernel({ instance, manifest, diagnostics = false }
       ).value;
     },
     plot(program, workspace, view, style, revision) {
+      const decodedProgram = program instanceof SymbolicKernelHandle ? kernel.decode(program) : program;
+      if (decodedProgram?.classification === 'implicit-curve' && (decodedProgram.variants?.length ?? 0) <= 1
+        && ['symbolic_plot_capacity', 'symbolic_plot_builder', 'symbolic_sample_coordinate',
+          'symbolic_relation_residual', 'symbolic_push_implicit_cell', 'symbolic_plot_builder_metadata',
+          'symbolic_plot_result'].every(name => metadata.functions[name])) {
+        const decodedWorkspace = workspace instanceof SymbolicKernelHandle ? kernel.decode(workspace) : workspace;
+        return plotBoundedImplicit(decodedProgram, decodedWorkspace, view, style, revision);
+      }
       return invokeTransient(
         "symbolic_plot",
         [program, workspace, view, style, revision],

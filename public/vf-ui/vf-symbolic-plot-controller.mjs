@@ -92,9 +92,11 @@ export async function createSymbolicPlotController({
     revision = 0,
     frameRevision = null,
     frameEpoch = 0,
-    compilation = null
+    compilation = null,
+    includeSnapGeometry = true
   }) {
     assertAlive();
+    if (typeof includeSnapGeometry !== 'boolean') throw new TypeError('includeSnapGeometry must be boolean');
     if (typeof source !== 'string') throw new TypeError('symbolic source must be a string');
     requireRecord(context, 'symbolic context');
     const requestedFrameRevision = normalizeFrameRevision(frameRevision);
@@ -117,7 +119,7 @@ export async function createSymbolicPlotController({
       return lastResult;
     }
     const compatibilityKey = symbolicPlotCompatibilityKey({
-      source, revision, context, view, style, transform, clip: localClip, seriesColorRange
+      source, revision, context, view, style, transform, clip: localClip, seriesColorRange, includeSnapGeometry
     });
     const requestOrder = ++plotRequestOrder;
     latestPlotRequest = { order: requestOrder, compatibilityKey };
@@ -213,7 +215,7 @@ export async function createSymbolicPlotController({
         && typeof kernel.plotVariant === 'function'
         ? allPrograms[0].variants
         : null;
-      const snapArena = compiled.program != null
+      const snapArena = includeSnapGeometry && compiled.program != null
         && snapCurvePrograms.length > 0
         && snapCurvePrograms.length === allPrograms.length
         ? snapVariants
@@ -282,7 +284,7 @@ export async function createSymbolicPlotController({
         style.colormapPoints,
         seriesColorRange
       );
-      nextSnapGeometry = symbolicPlotSnapGeometry(nextArena);
+      nextSnapGeometry = symbolicPlotSnapGeometry(includeSnapGeometry ? nextArena : null);
     } else {
       nextSnapGeometry = symbolicPlotSnapGeometry(null);
       nextArena = emptyArena(requestOrder);
@@ -322,6 +324,7 @@ export async function createSymbolicPlotController({
       clip,
       view,
       style,
+      snapGeometryStatus: includeSnapGeometry ? 'ready' : 'disabled',
       colorScale: publicColorScale(style),
       revision,
       frameRevision: requestedFrameRevision,
@@ -516,11 +519,12 @@ function symbolicViewSpatialKey(transform, clip) {
 }
 
 function symbolicPlotCompatibilityKey({
-  source, revision, context, view, style, transform, clip, seriesColorRange
+  source, revision, context, view, style, transform, clip, seriesColorRange, includeSnapGeometry
 }) {
   return compatibilityKey([
     source,
     revision,
+    includeSnapGeometry,
     context,
     clip,
     transform,
@@ -1053,12 +1057,18 @@ function expandSymbolicReferences(source, definitionSources) {
 }
 
 function expandBoundSymbolicConstants(source, definitionSources) {
-  if (parseSymbolicDefinition(source)) return source;
+  // Preserve a declaration target while expanding its scoped constant body.
+  const declaration = parseSymbolicDefinition(source);
   const definitions = new Map();
   for (const sourceText of definitionSources) {
     const definition = parseSymbolicDefinition(sourceText);
     if (definition?.parameters.length === 0) definitions.set(definition.name, definition.body);
   }
+  if (declaration) return formatSymbolicDefinition({
+    ...declaration,
+    body: expandBoundSymbolicConstantText(declaration.body, definitions,
+      new Set([declaration.name, ...declaration.parameters]))
+  });
   return expandBoundSymbolicConstantText(source, definitions, new Set());
 }
 

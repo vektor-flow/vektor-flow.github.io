@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "nativeKernelSHA256": "129d2a183a4f73c4c56c9df50872bae21b5f2337e24a028a83609e620f2474dd",
+  "exactNativeBufferParity": [
+    {
+      "source": "y=cos(x)",
+      "count": 48,
+      "sha": "be5834a859b1024708e365e4a463678b7d70b98bd89fb458fb246a1f28c07549"
+    },
+    {
+      "source": "y=exp(-0.2*(x+4))*cos(2*(x+4)+0.3)-2.8",
+      "count": 32,
+      "sha": "1050d3f4ec556c0dada1ae6d3bf79430d916dd39bc262c0ba173214534b26635"
+    },
+    {
+      "source": "y=0.35/sqrt((1-((x+4)/4)^2)^2+4*0.3^2*((x+4)/4)^2)",
+      "count": 34,
+      "sha": "7c6caa0f1fa4fb43891ea95083c3494e9863bd4730431562514171d356c22a62"
+    },
+    {
+      "source": "y=x^2",
+      "count": 12,
+      "sha": "676621b960aeba61a88702598afaef559b97d70d8b2568157e0a824aaeddf068"
+    }
+  ],
+  "oldCommonExpressionTrap": true,
+  "bounded": [
+    {
+      "values": {
+        "amp": 0,
+        "gam": 0,
+        "freq": 1.4,
+        "steady": 0.6,
+        "drive": 1.4,
+        "phase": 0,
+        "blend": 0,
+        "zet": 0.3
+      },
+      "count": 48,
+      "times": [
+        1645.8245539999998,
+        1626.163641,
+        1614.3992630000002
+      ],
+      "sha": "e743f75fbf7bd7c0efc93200bca165cf9777c7ff843a11f0d4870df3eac9126a"
+    },
+    {
+      "values": {
+        "amp": 0,
+        "gam": 0,
+        "freq": 1.8,
+        "steady": 0,
+        "drive": 2,
+        "phase": 1.5,
+        "blend": 1,
+        "zet": 0.4
+      },
+      "count": 34,
+      "times": [
+        1611.7469970000002,
+        1622.4758010000005,
+        1700.2174460000006
+      ],
+      "sha": "3a87952d5ad1fa57e758cdf07a283cbdcde61880d9adef8d05bd8417caa0834e"
+    }
+  ],
+  "scope": "same native coordinate/residual/contour routines and vertex order; temporary tagged arena rewound between native cells, builder persists only for one plot; no host math evaluation"
+}

@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><script type="module">
+import {loadCurrentWasmLabelProducer} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-wasm-producer.mjs';
+import {createCurrentNativeTypography} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-native-provider.mjs';
+window.queryCoverage=async()=>{
+ const root=new URL('../../public/preview/0.7.5/vf-ui/artifacts/current-labels/',import.meta.url),get=async n=>(await fetch(new URL(n,root))).json();
+ const descriptor=await get('producer.json'),vectors=await get('native-mapping/vectors.json'),binding=await get('native-mapping/binding.json'),files=Object.fromEntries(Object.entries(descriptor.files).map(([n,f])=>[n,{...f,url:new URL(f.url,new URL('producer.json',root)).href}]));
+ const producer=await loadCurrentWasmLabelProducer({...descriptor,files}),typography=createCurrentNativeTypography({boxes:{},vectors,binding,identity:producer.identity,typeset:(run,pins)=>producer.typeset(run,pins)}),alphabet='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+ const cases=[{name:'phase theta',source:'x_h(t)=Ae^{-\\gamma t}\\cos(wt+\\theta)'},{name:'prose punctuation',source:'\\text{a: b; c}'},{name:'frequency ratio',source:'r=\\omega/\\omega_0'}];
+ const rows=[],report=[];
+ try{for(const test of cases){const run={kind:'math',source:test.source},row=await producer.typeset(run,producer.identity),keys=row.box.items.filter(i=>i.kind==='glyph').map(i=>i.key),missing=[...new Set(keys.filter(k=>!vectors.keys[k]||!binding.entries[k]))];let accepted=true,error=null;try{const lease=await typography.prepare(run);lease.release();}catch(e){accepted=false;error=e.message;}
+ if(!row.box.complete||row.box.diagnostics.length)throw Error('native layout incomplete');if(test.glyphs!==undefined&&keys.length!==test.glyphs)throw Error('unexpected glyph count '+test.name+': '+keys.length);if(keys.some(k=>k.startsWith('scriptscript/')))throw Error('first-level query unexpectedly reached scriptscript');rows.push(row);report.push({...test,keys:[...new Set(keys)],missing,accepted,error});}
+ return {rows,report,identity:producer.identity};}finally{typography.close();producer.close();}
+};
+</script>

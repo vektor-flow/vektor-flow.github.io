@@ -441,3 +441,7 @@ Scoped0b2/cb8preservation/f5dbcapture/fontclosure unchanged except separate
 dfb8cb7 genuine3nested-digit mappings. Sources froze after31nativepinqualification.
 See docs/text-modes-dense/CONTRACT.md, QUALIFICATION.json, PARITY.json and
 ACTUAL-PP-PREFLIGHT.json. Parent owns integration/fullvideo.
+Parent intaken2766dd4+dfb8cb7, assetguard268PASS; actual4viewcapture running
+with no source edits. Preserved final mixed fixedheading/oldrow/equationprefix
+proof in docs/text-modes-dense/MIXED-QUALIFICATION.json (source31decf4).
+Observed parent odd-power graph gap recorded in contract; no nativeplot changes.

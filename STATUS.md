@@ -172,3 +172,21 @@ ink gas, final light/colored native text, persistent geometry underlay and abort
 cleanup; zero page/console errors. Updated BROWSER-QUALIFICATION.json pins the
 new library. Source and Product interfaces unchanged; no PP UI/video edits here.
 No GPU compute, physical device,60fps, push, release or publication claim.
+
+## Zero-area native reveal admission fix — 2026-11-05
+
+Actual153-glyph driven-oscillator initial reveal reproduced
+OUTLINE_CACHE_DEGENERATE at a tiny positive q with authentic3b35630 physical
+font mapping. Original native back-ease evaluation cancels tiny positive alpha
+to numerical zero growth. Alpha-only culling submitted an exactly zero affine
+map to the strict native outline cache. Fixed adapter admission to omit actual
+nonpositive/zero-linear-footprint draws, with zeroAreaGlyphs in receipts; no
+arbitrary epsilon, font fallback, resampling or weakening of cache validation.
+
+Genuine native browser regression passes all49 normal24fps/2s coordinates,
+q=1e-12 and23/48±1e-12, exact153-glyph first view including bullet notes. Native
+physical mapping intake is separate commit1e9bd58 from canonical3b35630, already
+present in Product. Source ink/font/geometry and final endpoints preserved.
+Root PP live authoring/browser state untouched. Stable same-polynomial native
+growth evaluation is being qualified separately; this guard fixes strict
+renderer admission independently and can be intaken immediately.

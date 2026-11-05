@@ -1,0 +1,149 @@
+{
+  "title": "From motion to resonance",
+  "views": [
+    {
+      "title": "Driven motion",
+      "equations": [
+        "m\\ddot{x}+c\\dot{x}+kx=F_0\\cos(\\omega t)",
+        "\\omega_0^2=\\frac{k}{m},\\qquad 2\\gamma=\\frac{c}{m}",
+        "\\ddot{x}+2\\gamma\\dot{x}+\\omega_0^2x=f_0\\cos(\\omega t)"
+      ],
+      "notes": [
+        "A restoring force, damping and periodic drive",
+        "Separate transient motion from the forced response"
+      ]
+    },
+    {
+      "title": "The homogeneous equation",
+      "equations": [
+        "\\ddot{x}_h+2\\gamma\\dot{x}_h+\\omega_0^2x_h=0",
+        "x_h=e^{rt},\\qquad r^2+2\\gamma r+\\omega_0^2=0",
+        "r_{\\pm}=-\\gamma\\pm\\sqrt{\\gamma^2-\\omega_0^2}"
+      ],
+      "notes": [
+        "Try an exponential and solve its characteristic equation",
+        "The discriminant separates three damping regimes"
+      ]
+    },
+    {
+      "title": "Underdamped motion",
+      "equations": [
+        "w=\\sqrt{\\omega_0^2-\\gamma^2},\\qquad 0<\\gamma<\\omega_0",
+        "r_{\\pm}=-\\gamma\\pm iw",
+        "x_h(t)=e^{-\\gamma t}\\left(C_1\\cos w t+C_2\\sin w t\\right)"
+      ],
+      "notes": [
+        "The envelope decays while the phase rotates",
+        "A circle in phase space becomes an inward spiral"
+      ]
+    },
+    {
+      "title": "Complex forcing",
+      "equations": [
+        "F_0\\cos\\omega t=\\operatorname{Re}\\!\\left(F_0e^{i\\omega t}\\right)",
+        "x_p(t)=\\operatorname{Re}\\!\\left(Xe^{i\\omega t}\\right)",
+        "\\dot{x}_p\\leftrightarrow i\\omega X,\\qquad\\ddot{x}_p\\leftrightarrow-\\omega^2X"
+      ],
+      "notes": [
+        "Differentiate by multiplication in the complex plane",
+        "The physical displacement is the real projection"
+      ]
+    },
+    {
+      "title": "The transfer function",
+      "equations": [
+        "\\left(k-m\\omega^2+ic\\omega\\right)X=F_0",
+        "H(\\omega)=\\frac{X}{F_0}=\\frac{1}{k-m\\omega^2+ic\\omega}",
+        "H(\\omega)=\\frac{k-m\\omega^2-ic\\omega}{(k-m\\omega^2)^2+c^2\\omega^2}"
+      ],
+      "notes": [
+        "Multiply by the complex conjugate",
+        "The denominator controls both amplitude and phase"
+      ]
+    },
+    {
+      "title": "Amplitude and phase",
+      "equations": [
+        "|X|=\\frac{F_0}{\\sqrt{(k-m\\omega^2)^2+c^2\\omega^2}}",
+        "\\tan\\phi=\\frac{c\\omega}{k-m\\omega^2}",
+        "x_p(t)=|X|\\cos(\\omega t-\\phi)"
+      ],
+      "notes": [
+        "Choose the phase quadrant from the complex denominator",
+        "At the natural frequency the response lags by a quarter turn"
+      ]
+    },
+    {
+      "title": "Dimensionless resonance",
+      "equations": [
+        "r=\\frac{\\omega}{\\omega_0},\\qquad\\zeta=\\frac{c}{2\\sqrt{km}}",
+        "A(r)=\\frac{|X|}{F_0/k}=\\frac{1}{\\sqrt{(1-r^2)^2+4\\zeta^2r^2}}",
+        "D(r)=(1-r^2)^2+4\\zeta^2r^2"
+      ],
+      "notes": [
+        "Frequency ratio and damping ratio collapse the parameters",
+        "Maximizing amplitude means minimizing the denominator"
+      ]
+    },
+    {
+      "title": "Locate the peak",
+      "equations": [
+        "D(r)=1+(4\\zeta^2-2)r^2+r^4",
+        "D'(r)=4r\\left(r^2+2\\zeta^2-1\\right)",
+        "r_{p} = \\sqrt{1-2\\zeta^2},\\qquad 0<\\zeta<\\frac{1}{\\sqrt{2}}"
+      ],
+      "notes": [
+        "The nonzero stationary point gives the resonance peak",
+        "Damping shifts the peak below the natural frequency"
+      ]
+    },
+    {
+      "title": "Peak height",
+      "equations": [
+        "1-r_{p}^2=2\\zeta^2",
+        "D(r_{p})=4\\zeta^4+4\\zeta^2(1-2\\zeta^2)=4\\zeta^2(1-\\zeta^2)",
+        "A_{\\max}=\\frac{1}{2\\zeta\\sqrt{1-\\zeta^2}}"
+      ],
+      "notes": [
+        "Substitute the peak frequency into the denominator",
+        "A narrow high peak accompanies weak damping"
+      ]
+    },
+    {
+      "title": "Restore initial conditions",
+      "equations": [
+        "x(t)=x_h(t)+|X|\\cos(\\omega t-\\phi)",
+        "C_1=x(0)-|X|\\cos\\phi",
+        "C_2=\\frac{\\dot{x}(0)+\\gamma C_1-|X|\\omega\\sin\\phi}{w}"
+      ],
+      "notes": [
+        "The transient makes the initial position and velocity fit",
+        "Long after the start, only the periodic response remains"
+      ]
+    },
+    {
+      "title": "Energy balance",
+      "equations": [
+        "E=\\frac{m\\dot{x}^{\\,2}}{2}+\\frac{kx^2}{2}",
+        "\\dot{E}=\\dot{x}\\left(m\\ddot{x}+kx\\right)=F_0\\dot{x}\\cos\\omega t-c\\dot{x}^{\\,2}",
+        "\\langle P_{\\mathrm{in}}\\rangle=\\langle P_{\\mathrm{loss}}\\rangle=\\frac{c\\omega^2|X|^2}{2}"
+      ],
+      "notes": [
+        "The drive replenishes the energy removed by damping",
+        "Steady periodic motion has zero average stored-energy change"
+      ]
+    },
+    {
+      "title": "One equation, connected views",
+      "equations": [
+        "x(t)=e^{-\\gamma t}(C_1\\cos w t+C_2\\sin w t)+|X|\\cos(\\omega t-\\phi)",
+        "A(r)=\\left[(1-r^2)^2+4\\zeta^2r^2\\right]^{-1/2}"
+      ],
+      "notes": [
+        "Exponential decay describes the transient",
+        "Complex vectors explain amplitude and phase",
+        "The resonance curve predicts the strongest response"
+      ]
+    }
+  ]
+}

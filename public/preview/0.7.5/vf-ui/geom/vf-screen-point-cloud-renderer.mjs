@@ -33,8 +33,11 @@ export function projectPointCloud3DToScreen(positions, count, projection, output
   return target;
 }
 
-export function createScreenSpacePointCloudRenderer(canvas) {
+export function createScreenSpacePointCloudRenderer(canvas, {premultipliedAlpha = false} = {}) {
   if (!canvas?.getContext) throw new TypeError('canvas must provide getContext');
+  let inkMode = false;
+  let inkModeLocation = null;
+  let premultipliedLocation = null;
   let gl = null;
   let program = null;
   let buffer = null;
@@ -72,13 +75,15 @@ export function createScreenSpacePointCloudRenderer(canvas) {
       alpha: true,
       antialias: false,
       depth: false,
-      premultipliedAlpha: false,
+      premultipliedAlpha,
       preserveDrawingBuffer: false
     });
     if (!gl) throw new Error('WebGL2 is required for point-cloud rendering');
     program = createProgram(gl, VERTEX_SHADER, FRAGMENT_SHADER);
     buffer = gl.createBuffer();
     viewportLocation = gl.getUniformLocation(program, 'u_viewport');
+    inkModeLocation = gl.getUniformLocation(program, 'u_ink_mode');
+    premultipliedLocation = gl.getUniformLocation(program, 'u_premultiplied');
     pointSizeLocation = gl.getUniformLocation(program, 'u_point_size');
     colorLocation = gl.getUniformLocation(program, 'u_color');
     worldModeLocation = gl.getUniformLocation(program, 'u_world_mode');
@@ -88,7 +93,8 @@ export function createScreenSpacePointCloudRenderer(canvas) {
     yAxisLocation = gl.getUniformLocation(program, 'u_y_axis');
     zAxisLocation = gl.getUniformLocation(program, 'u_z_axis');
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    if (premultipliedAlpha) gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    else gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     render();
     return 'webgl2-points';
   }
@@ -103,12 +109,29 @@ export function createScreenSpacePointCloudRenderer(canvas) {
     pointDataDirty = true;
     points = nextPoints;
     components = 2;
+    inkMode = false;
     worldMode = false;
     projection = null;
     count = nextCount;
     pointSize = Math.max(1, Number(options.pointSize ?? pointSize) || 1);
     color = normalizeColor(options.color ?? color);
     render();
+  }
+
+  // Native interpolation supplies position, footprint and authored RGBA. This
+  // GPU path integrates square coverage against device pixels, including sizes
+  // below one pixel; no minimum physical footprint or trajectory is invented.
+  function setInkCarriers(nextPoints) {
+    assertAlive();
+    if (!premultipliedAlpha) throw new TypeError('ink coverage requires premultiplied point renderer');
+    if (!(nextPoints instanceof Float32Array) || nextPoints.length % 7 || nextPoints.length > 7 * 65536
+      || !nextPoints.every(Number.isFinite)) throw new RangeError('invalid bounded ink carrier buffer');
+    for(let i=0;i<nextPoints.length;i+=7) {
+      if (!(nextPoints[i+2]>0 && nextPoints[i+2]<=64)
+        || !nextPoints.subarray(i+3,i+7).every(v=>v>=0&&v<=1)) throw new RangeError('invalid ink footprint/RGBA');
+    }
+    pointDataDirty = true; points = nextPoints; components = 7; count = nextPoints.length / 7;
+    worldMode = false; inkMode = true; projection = null; render();
   }
 
   function setWorldPoints(nextPoints, nextProjection, options = {}) {
@@ -139,6 +162,7 @@ export function createScreenSpacePointCloudRenderer(canvas) {
     points = nextPoints;
     components = nextComponents;
     worldMode = true;
+    inkMode = false;
     count = nextCount;
     projection = normalizedProjection;
     pointSize = nextPointSize;
@@ -174,7 +198,11 @@ export function createScreenSpacePointCloudRenderer(canvas) {
       pointDataDirty = false;
     }
     gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, components, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(0, inkMode ? 3 : components, gl.FLOAT, false, inkMode ? 28 : 0, 0);
+    if (inkMode) {gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,4,gl.FLOAT,false,28,12);}
+    else {gl.disableVertexAttribArray(1);gl.vertexAttrib4f(1,1,1,1,1);}
+    gl.uniform1i(inkModeLocation, inkMode ? 1 : 0);
+    gl.uniform1i(premultipliedLocation, premultipliedAlpha ? 1 : 0);
     gl.uniform2f(viewportLocation, canvas.width, canvas.height);
     gl.uniform1f(pointSizeLocation, pointSize);
     gl.uniform4fv(colorLocation, color);
@@ -211,6 +239,7 @@ export function createScreenSpacePointCloudRenderer(canvas) {
     initialize,
     setPoints,
     setWorldPoints,
+    setInkCarriers,
     resize,
     destroy,
     [RETAINED_POINT_REDRAW]: render,
@@ -307,6 +336,11 @@ function createShader(gl, type, source) {
 
 const VERTEX_SHADER = `#version 300 es
 layout(location = 0) in vec3 a_position;
+layout(location = 1) in vec4 a_ink_color;
+uniform bool u_ink_mode;
+flat out highp vec2 v_ink_center;
+flat out highp float v_ink_size;
+flat out highp vec4 v_ink_color;
 uniform vec2 u_viewport;
 uniform float u_point_size;
 uniform bool u_world_mode;
@@ -330,16 +364,32 @@ void main() {
     0.0,
     1.0
   );
-  gl_PointSize = u_point_size;
+  gl_PointSize = u_ink_mode ? max(3.0, ceil(a_position.z) + 2.0) : u_point_size;
+  v_ink_center = vec2(screen_position.x,u_viewport.y-screen_position.y);
+  v_ink_size = a_position.z;
+  v_ink_color = a_ink_color;
 }`;
 
 const FRAGMENT_SHADER = `#version 300 es
 precision mediump float;
 uniform vec4 u_color;
+uniform bool u_ink_mode;
+uniform bool u_premultiplied;
+flat in highp vec2 v_ink_center;
+flat in highp float v_ink_size;
+flat in highp vec4 v_ink_color;
 out vec4 out_color;
 void main() {
+  if (u_ink_mode) {
+    highp vec2 half_size=vec2(v_ink_size*0.5);
+    highp vec2 overlap=max(vec2(0.0),min(v_ink_center+half_size,gl_FragCoord.xy+vec2(0.5))-max(v_ink_center-half_size,gl_FragCoord.xy-vec2(0.5)));
+    float alpha=v_ink_color.a*overlap.x*overlap.y;
+    out_color=vec4(v_ink_color.rgb*alpha,alpha);
+    return;
+  }
   float distance_from_center = length(gl_PointCoord - vec2(0.5));
   float coverage = 1.0 - smoothstep(0.42, 0.5, distance_from_center);
   if (coverage <= 0.0) discard;
-  out_color = vec4(u_color.rgb, u_color.a * coverage);
+  float alpha=u_color.a*coverage;
+  out_color = vec4(u_premultiplied ? u_color.rgb*alpha : u_color.rgb,alpha);
 }`;

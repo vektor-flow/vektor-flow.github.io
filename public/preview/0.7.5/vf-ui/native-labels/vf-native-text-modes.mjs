@@ -2,10 +2,11 @@ import {createSymbolicKernel} from '../vf-symbolic-kernel-runtime.mjs';
 import {createAdaptiveNativeLabelBatches} from './vf-adaptive-native-labels.mjs';
 import {createTiledNativeLabelRenderer} from './vf-native-tiled-label-renderer.mjs';
 import {createScreenSpaceSimplexRenderer} from '../geom/vf-screen-simplex-renderer.mjs';
+import {createScreenSpacePointCloudRenderer} from '../geom/vf-screen-point-cloud-renderer.mjs';
 const need=(ok,code)=>{if(!ok)throw Object.assign(Error(code),{code});};
 const sha=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
-export const TEXT_INTERP_COMMIT='0e7ff86041170ef7bcdf7bd56ddbf965d6f2c2e0';
-const expected={"text.wasm": "c35d53c65e48c9044a4c6805985febc439e9520c054ede7336c2851e53f26c22", "text.json": "9b27b0e9752cde929f8affc66fd33c6e44e39c2930440bd5dec0dcc8139f6289"};
+export const TEXT_INTERP_COMMIT='c9e70dd879517e2cb0ca893339e092d426a1be83';
+const expected={"text.wasm": "41641440d56209688f3e945dc5aa9bc458856f2cf059d1eefb54b50e11d3b19a", "text.json": "212f3b540aeca99b624fbaeac326bc1b3415bcbff26a7ad875e5d433e574f76f"};
 export async function loadNativeTextModeKernel({baseURL=new URL('../artifacts/text-modes/',import.meta.url),fetch:fetcher=globalThis.fetch,signal}={}){
  const get=async n=>{const r=await fetcher(new URL(n,baseURL),{signal});need(r.ok,'NATIVE_TEXT_RESOURCE');return r.arrayBuffer();};
  const [bytes,json,p]=await Promise.all(['text.wasm','text.json','PROVENANCE.json'].map(get)),provenance=JSON.parse(new TextDecoder().decode(p));
@@ -19,16 +20,20 @@ const rgba=c=>Array.isArray(c)&&c.length===4&&c.every(x=>Number.isFinite(x)&&x>=
 const compose=(a,b)=>[a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
 const sourceScene=sources=>({groups:new Map(),frame(){return [];},nativeSourceOutlines(camera){return sources.map(s=>({...s,matrix:compose(camera,s.matrix)}));}});
 function nativeSettings(kernel,spec){
- need(spec&&['spectral','vapor'].includes(spec.mode),'NATIVE_TEXT_MODE');
- const common=['mode','k','velocity','overshoot','grow'],vapor=['temperature','spread','lift','seed'];
- need(Object.keys(spec).every(k=>common.includes(k)||(spec.mode==='vapor'&&vapor.includes(k))),'NATIVE_TEXT_MODE_PARAMETER');
- const args=[spec.k??4,spec.velocity??.54,spec.overshoot??.32,spec.grow??true];
- need(args.slice(0,3).every(Number.isFinite)&&typeof args[3]==='boolean','NATIVE_TEXT_PARAMETER_TYPE');
- if(spec.mode==='spectral')return kernel.invokeValue('spectral',args);
- const v=[spec.temperature??1,spec.spread??.35,spec.lift??.65,spec.seed??0];
- need(v.every(Number.isFinite)&&Number.isInteger(v[3]),'NATIVE_TEXT_PARAMETER_TYPE');
- return kernel.invokeValue('evaporate',[...v,...args]);
+ need(spec&&['state','spectral','vapor'].includes(spec.mode),'NATIVE_TEXT_MODE');
+ if(spec.mode==='state'){
+  need(Object.keys(spec).every(k=>['mode','path'].includes(k)),'NATIVE_TEXT_MODE_PARAMETER');
+  const path=spec.path==='natural-cubic'?1:spec.path==='linear'?0:(spec.path??0);need([0,1].includes(path),'NATIVE_TEXT_PARAMETER_TYPE');return kernel.invokeValue('state',[path]);
+ }
+ if(spec.mode==='spectral'){
+  need(Object.keys(spec).every(k=>['mode','k','velocity','overshoot','grow'].includes(k)),'NATIVE_TEXT_MODE_PARAMETER');
+  const args=[spec.k??4,spec.velocity??.54,spec.overshoot??.32,spec.grow??true];need(args.slice(0,3).every(Number.isFinite)&&typeof args[3]==='boolean','NATIVE_TEXT_PARAMETER_TYPE');return kernel.invokeValue('spectral',args);
+ }
+ need(Object.keys(spec).every(k=>['mode','temperature','spread','lift','seed','footprint','captureWidth','velocity','boundary','captureStart','captureEnd'].includes(k)),'NATIVE_TEXT_MODE_PARAMETER');
+ const boundary={closed:0,emit:1,exit:2,exchange:3}[spec.boundary??'exchange'];
+ const args=[spec.temperature??1,spec.spread??.35,spec.lift??.65,spec.seed??0,spec.footprint??.45,spec.captureWidth??.45,spec.velocity??.54,boundary,spec.captureStart??.35,spec.captureEnd??.85];need(args.every(Number.isFinite)&&Number.isInteger(args[3])&&boundary!==undefined,'NATIVE_TEXT_PARAMETER_TYPE');return kernel.invokeValue('evaporate',args);
 }
+
 function checkSpecs(specs){
  need(Array.isArray(specs)&&specs.length<=128,'NATIVE_TEXT_SPEC_LIMIT');
  const ids=new Set();for(const s of specs){need(s&&typeof s.id==='string'&&!ids.has(s.id)&&s.kind==='math'&&typeof s.source==='string'&&s.anchor?.length===2&&s.anchor.every(Number.isFinite)&&Number.isFinite(s.scale)&&s.scale>0&&(s.sizeSpace??'css')==='css'&&(s.color===undefined||rgba(s.color))&&(s.itemIndex===undefined||(Number.isInteger(s.itemIndex)&&s.itemIndex>=0)),'NATIVE_TEXT_SPEC');ids.add(s.id);}
@@ -71,7 +76,7 @@ const stableSpec=s=>JSON.stringify([s.id,s.kind,s.source,s.anchor,s.scale,s.colo
 /** Same-document native material transport/reveal. Geometry and capture belong
  * to their existing owners. Existing physical font paths remain authoritative.
  */
-export async function prepareNativeTextModes({fromSpecs=[],toSpecs=[],width,height,typography,interp={mode:'spectral'},signal,pixelRatio=globalThis.devicePixelRatio||1,maxCarriers=4096,document=globalThis.document,kernelOptions={}}={}){
+async function prepareSpectralTextModes({fromSpecs=[],toSpecs=[],width,height,typography,interp={mode:'spectral'},signal,pixelRatio=globalThis.devicePixelRatio||1,maxCarriers=4096,document=globalThis.document,kernelOptions={}}={}){
  need(document?.createElement&&typography?.prepare&&typography?.vectors,'NATIVE_TEXT_TYPOGRAPHY');
  need(Number.isInteger(width)&&width>0&&width<=4096&&Number.isInteger(height)&&height>0&&height<=4096&&width*height<=4194304&&[1,2,3].includes(pixelRatio),'NATIVE_TEXT_VIEWPORT');
  need(Number.isInteger(maxCarriers)&&maxCarriers>=1&&maxCarriers<=4096,'NATIVE_TEXT_CARRIER_LIMIT');
@@ -136,4 +141,55 @@ export async function prepareNumericStateTransition({from,to,path=0,signal,kerne
  const loaded=await loadNativeTextModeKernel({...kernelOptions,signal});let kernel=loaded.kernel,plan=kernel.invokeValue('prepare',[kernel.invokeValue('state',[path]),[0,1],[...from,...to],from.length]),closed=false;
  function close(){if(closed)return;closed=true;kernel=null;plan=null;signal?.removeEventListener('abort',close);}signal?.addEventListener('abort',close,{once:true});if(signal?.aborted){close();throw abort();}
  return Object.freeze({sample(q){if(closed||signal?.aborted)throw abort();need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_NUMERIC_STATE_COORDINATE');const nativeCoordinate=kernel.invokeValue('time_coordinate',[q]),sample=kernel.invokeValue('sample_state',[plan,nativeCoordinate]);return {values:sample.value,coordinate:q,nativeCoordinate,libraryCommit:loaded.provenance.libraryCommit};},close});
+}
+
+/** Native row policy is authored data. The adapter never classifies equations
+ * semantically or computes correspondence, trajectories, easing or color waves. */
+export async function prepareNativeTextModes(options={}){
+ if(options.interp?.mode==='spectral')return prepareSpectralTextModes(options);
+ const {fromSpecs=[],toSpecs=[],width,height,typography,interp={mode:'state'},rowTransitions=[],signal,pixelRatio=globalThis.devicePixelRatio||1,maxCarriers=4096,document=globalThis.document,kernelOptions={}}=options;
+ need(document?.createElement&&typography?.prepare&&typography?.vectors,'NATIVE_TEXT_TYPOGRAPHY');
+ need(Number.isInteger(width)&&width>0&&width<=4096&&Number.isInteger(height)&&height>0&&height<=4096&&width*height<=4194304&&[1,2,3].includes(pixelRatio),'NATIVE_TEXT_VIEWPORT');
+ need(Number.isInteger(maxCarriers)&&maxCarriers>=1&&maxCarriers<=4096,'NATIVE_TEXT_CARRIER_LIMIT');checkSpecs(fromSpecs);checkSpecs(toSpecs);need(Array.isArray(rowTransitions)&&rowTransitions.length<=128,'NATIVE_TEXT_ROW_LIMIT');
+ let closed=false,generation=0,tail=Promise.resolve(),last=null,nativeRenderer,sourceRenderer,gasRenderer;let preparedRows=[];
+ const element=document.createElement('div');element.className='vf-native-text-modes';element.style.cssText=`position:absolute;inset:0;width:${width}px;height:${height}px;pointer-events:none;background:transparent`;
+ const canvas=document.createElement('canvas'),nativeCanvas=document.createElement('canvas'),sourceCanvas=document.createElement('canvas'),firstCanvas=document.createElement('canvas'),gasCanvas=document.createElement('canvas');canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';element.append(canvas);
+ const check=()=>{if(closed||signal?.aborted)throw abort();};function close(){if(closed)return;closed=true;generation++;preparedRows=[];signal?.removeEventListener('abort',close);nativeRenderer?.destroy();sourceRenderer?.destroy();gasRenderer?.destroy();element.remove();for(const c of [canvas,nativeCanvas,sourceCanvas,firstCanvas,gasCanvas])c.width=c.height=1;}
+ signal?.addEventListener('abort',close,{once:true});
+ try{
+  check();const {kernel,provenance}=await loadNativeTextModeKernel({...kernelOptions,signal});nativeSettings(kernel,interp);check();const from=await outlines(typography,fromSpecs,check,pixelRatio),to=await outlines(typography,toSpecs,check,pixelRatio),fromMap=new Map(fromSpecs.map(s=>[s.id,s])),toMap=new Map(toSpecs.map(s=>[s.id,s]));
+  const stable=new Set(toSpecs.filter(s=>fromMap.has(s.id)&&stableSpec(fromMap.get(s.id))===stableSpec(s)).map(s=>s.id)),fixed=to.filter(s=>stable.has(s.provenance.elementId)),usedFrom=new Set(stable),usedTo=new Set(stable),descriptors=[];
+  function row(fromId,toId,settings){need((fromId===null||fromMap.has(fromId))&&(toId===null||toMap.has(toId))&&(fromId!==null||toId!==null),'NATIVE_TEXT_ROW_ADDRESS');if(fromId===toId&&stable.has(toId))return;need((fromId===null||!usedFrom.has(fromId))&&(toId===null||!usedTo.has(toId)),'NATIVE_TEXT_ROW_DUPLICATE');if(fromId!==null)usedFrom.add(fromId);if(toId!==null)usedTo.add(toId);need(settings&&['state','vapor'].includes(settings.mode),'NATIVE_TEXT_ROW_MODE');descriptors.push({fromId,toId,interp:{...settings},source:from.filter(s=>s.provenance.elementId===fromId),target:to.filter(s=>s.provenance.elementId===toId)});}
+  for(const r of rowTransitions){need(r&&Object.keys(r).every(k=>['fromId','toId','interp'].includes(k))&&('fromId'in r)&&('toId'in r),'NATIVE_TEXT_ROW_DESCRIPTOR');row(r.fromId,r.toId,r.interp??(r.fromId===null||r.toId===null?{mode:'vapor'}:interp));}
+  for(const spec of toSpecs){if(usedTo.has(spec.id))continue;const fromId=fromMap.has(spec.id)&&!usedFrom.has(spec.id)?spec.id:null;row(fromId,spec.id,fromId===null?{mode:'vapor',...(spec.interp?.mode==='vapor'?spec.interp:{})}:(spec.interp??interp));}
+  for(const spec of fromSpecs)if(!usedFrom.has(spec.id))row(spec.id,null,{mode:'vapor',...(spec.interp?.mode==='vapor'?spec.interp:{})});need(descriptors.length<=128,'NATIVE_TEXT_ROW_LIMIT');
+  nativeRenderer=createTiledNativeLabelRenderer(nativeCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});sourceRenderer=createTiledNativeLabelRenderer(sourceCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});await nativeRenderer.initialize();check();await sourceRenderer.initialize();check();nativeRenderer.resize(width,height);sourceRenderer.resize(width,height);
+  sourceRenderer.setNativeScene(sourceScene(from),[1,0,0,1,0,0]);firstCanvas.width=sourceCanvas.width;firstCanvas.height=sourceCanvas.height;firstCanvas.getContext('2d').putImageData(sourceCanvas.getContext('2d').getImageData(0,0,firstCanvas.width,firstCanvas.height),0,0);
+  const identities=new Map();function physicalIdentity(s){const key=JSON.stringify(s.physicalIdentity??[s.provenance.engineIdentity,s.provenance.resourceIdentity,s.provenance.glyphKey,s.commands],(k,v)=>typeof v==='number'&&Object.is(v,-0)?{nativeNegativeZero:true}:v);if(!identities.has(key))identities.set(key,identities.size+1);return identities.get(key);}
+  const endpoint=sources=>({identity:sources.map(physicalIdentity),matrix:sources.flatMap(s=>s.matrix),color:sources.flatMap(s=>s.color??[0,0,0,1])});
+  const activeVapor=descriptors.filter(r=>r.interp.mode==='vapor'),minimum=r=>{let n=1;while(n<Math.max(1,r.target.length))n*=2;return n;},required=activeVapor.reduce((n,r)=>n+minimum(r),0);need(required<=maxCarriers,'NATIVE_TEXT_CARRIER_GLYPH_COVERAGE');const extra=activeVapor.length?Math.floor((maxCarriers-required)/activeVapor.length):0;
+  const materialSpecs=activeVapor.filter(r=>r.toId!==null).map(r=>({...toMap.get(r.toId),itemIndex:0})),materialSources=activeVapor.flatMap(r=>r.target),materialReading=readingCoordinates(materialSources,materialSpecs,4,kernel),readingBySource=new Map(materialSources.map((s,i)=>[s,materialReading[i]])),materialTravel=(materialReading.length?Math.max(...materialReading):0)+Math.max(.05,...activeVapor.map(r=>r.interp.captureWidth??.45));
+  const startPreparation=performance.now();for(const descriptor of descriptors){check();const settings=nativeSettings(kernel,descriptor.interp);if(descriptor.interp.mode==='state'){
+    const state=kernel.invokeValue('prepare_glyph_state',[settings,endpoint(descriptor.source),endpoint(descriptor.target)]);preparedRows.push({...descriptor,state,native:{mode:0,state:[state],vapor:[],travel:0}});
+   }else{
+    const limit=minimum(descriptor)+extra;sourceRenderer.setNativeScene(sourceScene(descriptor.source),[1,0,0,1,0,0]);const source=sampleInk(sourceCanvas.getContext('2d').getImageData(0,0,sourceCanvas.width,sourceCanvas.height),height,limit);
+    sourceRenderer.setNativeScene(sourceScene(descriptor.target),[1,0,0,1,0,0]);const target=sampleInk(sourceCanvas.getContext('2d').getImageData(0,0,sourceCanvas.width,sourceCanvas.height),height,limit);
+    const reading=descriptor.target.map(s=>readingBySource.get(s)),travel=materialTravel,glyphs=descriptor.target.flatMap((s,i)=>[s.matrix[4]/height,1-s.matrix[5]/height,reading[i],...(s.color??[0,0,0,1])]);
+    if(!source.count&&!target.count){const state=kernel.invokeValue('prepare_glyph_state',[nativeSettings(kernel,{mode:'state'}),endpoint(descriptor.source),endpoint(descriptor.target)]);preparedRows.push({...descriptor,state,native:{mode:0,state:[state],vapor:[],travel:0}});continue;}
+    const vapor=kernel.invokeValue('prepare_vapor_transport',[settings,source.values,target.values,glyphs]);preparedRows.push({...descriptor,vapor,sourceSamples:source.count,targetSamples:target.count,native:{mode:2,state:[],vapor:[vapor],travel}});
+   }}const preparationMs=performance.now()-startPreparation;need(fixed.length+preparedRows.reduce((n,r)=>n+(r.state?r.state.count:r.source.length+r.target.length),0)<=4096,'NATIVE_TEXT_INTERMEDIATE_GLYPH_LIMIT');
+  gasRenderer=createScreenSpacePointCloudRenderer(gasCanvas,{premultipliedAlpha:true});await gasRenderer.initialize();gasRenderer.resize(width*pixelRatio,height*pixelRatio);canvas.width=width*pixelRatio;canvas.height=height*pixelRatio;const ctx=canvas.getContext('2d',{alpha:true});need(ctx,'NATIVE_TEXT_COMPOSITOR');const nativeRows=preparedRows.map(r=>r.native);
+  const posed=(s,matrix,color)=>{const {programTransformRecipe,programRoundoffMagnitude,...base}=s;return {...base,matrix,color};};
+  async function render(q,opts,serial){check();need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_TEXT_COORDINATE');if(serial!==generation)return {status:'SUPERSEDED'};const start=performance.now(),fronts=opts.front===undefined?[]:preparedRows.map(()=>opts.front);need(fronts.every(Number.isFinite),'NATIVE_TEXT_FRONT');if(last?.coordinate===q&&last.requestedFront===opts.front)return {...last,status:'REUSED_ACCEPTED_FRAME',reusedAcceptedFrame:true,nativeComputeMs:0};
+   const began=performance.now(),packet=kernel.invokeValue('sample_text_rows',[nativeRows,q,fronts]),nativeComputeMs=performance.now()-began;check();const sources=[...fixed],gas=[],rowReceipts=[];let matchedGlyphs=0,carriers=0;
+   for(let r=0;r<preparedRows.length;r++){const prepared=preparedRows[r],frame=packet.rows[r];if(prepared.state){for(let i=0;i<prepared.state.count;i++){const ti=prepared.state.target_indices[i],fi=prepared.state.source_indices[i],s=ti>=0?prepared.target[ti]:prepared.source[fi],pose=frame.poses.slice(10*i,10*i+10);if(fi>=0&&ti>=0)matchedGlyphs++;if(pose[9]>0&&!pose.slice(0,4).every(v=>v===0))sources.push(posed(s,pose.slice(0,6),pose.slice(6,10)));}}else{
+    if(frame.source_alpha>0)for(const s of prepared.source){const c=s.color??[0,0,0,1];sources.push({...s,color:[c[0],c[1],c[2],c[3]*frame.source_alpha]});}
+    for(let i=0;i<prepared.target.length;i++){const s=prepared.target[i],[a,size,red,green,blue]=frame.target.slice(5*i,5*i+5);if(a>0)sources.push({...s,color:[red,green,blue,a]});}
+    carriers+=prepared.vapor.material.carriers;for(let i=0;i<frame.gas.length;i+=9){const [x,y,a,size,red,green,blue]=frame.gas.slice(i,i+7);if(a>0)gas.push(x*height*pixelRatio,(1-y)*height*pixelRatio,size*pixelRatio,red,green,blue,a);}
+   }rowReceipts.push({fromId:prepared.fromId,toId:prepared.toId,mode:prepared.interp.mode,targetAlpha:frame.target.filter((_,i)=>i%5===0),ledger:frame.ledger,sourceSamples:prepared.sourceSamples??0,targetSamples:prepared.targetSamples??0});}
+   gasRenderer.setInkCarriers(Float32Array.from(gas));nativeRenderer.setNativeScene(sourceScene(q===1?to:q===0?[]:sources),[1,0,0,1,0,0]);check();if(serial!==generation)return {status:'SUPERSEDED'};ctx.clearRect(0,0,canvas.width,canvas.height);if(q===0)ctx.drawImage(firstCanvas,0,0);else{ctx.drawImage(gasCanvas,0,0);ctx.drawImage(nativeCanvas,0,0);}await new Promise(resolve=>requestAnimationFrame(resolve));check();
+   last={status:'PRESENTED_COMPOSITOR_TURN',coordinate:q,nativeCoordinate:packet.coordinate,requestedFront:opts.front,libraryCommit:provenance.libraryCommit,sourceAlpha:q===0?1:q===1?0:undefined,glyphs:to.length,stableGlyphs:fixed.length,matchedGlyphs,carriers,gasAlphaMax:Math.max(0,...gas.filter((_,i)=>i%7===6)),nativeComputeMs,cpuThroughSubmitMs:performance.now()-start,preparationMs,computeBackend:'canonical VKF WASM; CPU',gasRenderingBackend:gasRenderer.backend,nativeRenderer:nativeRenderer.nativeStatistics(),transport:{rows:rowReceipts,flow:'native coherent convection + mild shared cubic variation',coverage:'GPU exact square/pixel overlap; native subpixel footprint',spectralColor:false},geometryReadback:false};return last;
+  }
+  return Object.freeze({element,canvas,libraryCommit:provenance.libraryCommit,sourceCount:from.length,targetCount:to.length,durationSeconds:Math.max(0,...preparedRows.filter(r=>r.vapor).map(r=>r.interp.velocity===0?Infinity:r.native.travel/(r.interp.velocity??.54))),readingTravel:Math.max(0,...preparedRows.map(r=>r.native.travel)),sample(q,opts={}){const serial=++generation,job=tail.then(()=>render(q,opts,serial));tail=job.catch(()=>{});return job;},receipt:()=>last,close});
+ }catch(error){close();throw error;}
 }

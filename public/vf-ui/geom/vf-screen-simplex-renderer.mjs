@@ -610,7 +610,9 @@ function createWebGl2Backend(canvas, options = {}) {
   let bufferCapacity = 0;
 
   gl.enable(gl.BLEND);
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+  // Shader colors are straight RGBA; the canvas stores premultiplied pixels.
+  // Accumulate alpha once, so browser display and Canvas2D/VideoFrame agree.
+  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
   return {
     kind: 'webgl2',

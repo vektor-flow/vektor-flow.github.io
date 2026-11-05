@@ -453,3 +453,13 @@ bounds identical across normal retained and presentation paths. Requestednative
 baselines81/486/567 exact; no nativecoordinatepatch. Root found stale671height
 labelprojection before720frame measurement and owns hostfix. Proof in
 docs/text-modes-baseline/QUALIFICATION.json; existing publicpins remain2766/31.
+
+## Faint grid capture — native PMA fix + existing VP9 profile 2026-11-05
+
+Rootactual grid screenshot15/16/16 vs2Dcopy255/255/255/2 confirmedinvalidPMA.
+NativeWebGL simplex alpha multipliedtwice; minimalblendFuncSeparate fixesalpha
+whilekeepingRGB/shaders/geometry unchanged. Actualnative regression: raw15/16/16/16,
+composite/screenshot15/16/16, nativeVP9decode14/16/16. RetainedpreservationstillPASS.
+SeparateVP8range-signalinggap measured: fullrangeY16 butdecodedframetvmetadata
+clipsnearblack; existingdefaultVP9qualified, no codec/helper changes. Proof and
+REDcontrol in docs/retained-alpha. Numerical/densefont/capturepins unchanged.

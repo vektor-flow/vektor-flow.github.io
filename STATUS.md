@@ -463,3 +463,7 @@ composite/screenshot15/16/16, nativeVP9decode14/16/16. Retainedpreservationstill
 SeparateVP8range-signalinggap measured: fullrangeY16 butdecodedframetvmetadata
 clipsnearblack; existingdefaultVP9qualified, no codec/helper changes. Proof and
 REDcontrol in docs/retained-alpha. Numerical/densefont/capturepins unchanged.
+
+## 2026-11-06: explicit removed scene-ink pool
+
+Owned branch codex/list-pool-capture-renderer-20261105. Native source7347b1b: typed ABI5 state/wave/material pool, independent entropy increments, source-only held stock and first-born capture. Browser proof and same-source WASM/GPU parity PASS; exact replay/seek pixels, paused blank/matched-only retention, historical-ID creation, actual mass/RGB/momentum interpolation, zero gas by first captureEnd. Four generated GPU kernels, 131072 explicit budget, unchanged fonts/plot/capture/PMA. All public intake hashes in docs/material-pool/INTAKE.json; qualification/decoded frames beside it. Parent owns Product grouping and actual UI movies. Partial released/claimed stock handoff remains explicit unsupported; complete unclaimed blank views supported. Current binder captures text only, generic numerical scene-ink kernel reusable. No deployment.

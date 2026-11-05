@@ -1,10 +1,10 @@
 {
   "kind": "vkf-native-dense-material-gpu/1",
-  "libraryCommit": "31decf43176a2739d8e5efb309b9e8d83780f611",
+  "libraryCommit": "7347b1b7de885c1e3c6f9bf7bf8f1432589bbeda",
   "sources": {
     "morphing/ink_transport.vkf": {
-      "sha256": "c6fbf040cb451c79878a501a5b30da9ffeed33c499982741639325a0c45e635e",
-      "bytes": 4106
+      "sha256": "403e1070c64a826f2978e16592cec31b7f33c3b805680fed673de2ca601965b8",
+      "bytes": 7374
     },
     "morphing/segment.vkf": {
       "sha256": "4c33a71557a69a086b68e1cab4d7337f493678016aed886817d36d5a55666558",
@@ -12,30 +12,54 @@
     }
   },
   "entries": {
+    "restore": {
+      "source": "e3a4d723fb569d86133adf97615b301f3f855d29745303330d4caa76a35304c5",
+      "typedIR": "27f3ca1799fc992ed31650d0aef1f5fd894f8422a50e8257e66d61b45d98dfb7"
+    },
+    "diffusion": {
+      "source": "d3f3ea793ef9202280d6bb7fa40e530e6d52410e3e25d2716a7d04a03fdd305a",
+      "typedIR": "bce7b9d310c51473d1f17f7f36cb451292056d2603b0e8f2cb20f464831f6297"
+    },
     "dense": {
       "source": "a580dce40acde6436032ce5f48ca19bb7b07c65328b80da26767e85d9e4273dd",
-      "typedIR": "2926317ae4c34ba2342400a6b1c423c784b400cecbfc4843d23e638fc5184da4"
+      "typedIR": "9c3a1c1b3d1043b3953ca827385866b688643afa97a186bc66cef47ae49b03bc"
     },
     "capture": {
       "source": "77eca298be7f7300766e48d643b59665f5f68ee9a207efda9f10a88e201b74ed",
-      "typedIR": "3027fc244a4415318de9d1e44f5d5a5db608c4bc744327e2011226dece24e37e"
+      "typedIR": "24787ff3ef038bc872f5847f1a8055f0f3bac18de159681b835f5c8484f0cbaa"
     }
   },
   "artifacts": {
+    "restore.wgsl": {
+      "sha256": "8c14089e41cb5dcf96b9003299f2df66a82d8d0fae74fef0402e18026fe60379",
+      "bytes": 9900
+    },
+    "restore.wgsl.json": {
+      "sha256": "f76dd0cb3f674c8c918baa25977eadc042a027a8b36eb40cf71278e8b9636860",
+      "bytes": 893
+    },
+    "diffusion.wgsl": {
+      "sha256": "32732febb6fe82891df291a605854b8afe9229ce2b98b0fa85315453961b3f99",
+      "bytes": 7215
+    },
+    "diffusion.wgsl.json": {
+      "sha256": "2bc6e3ece7385eba163caf97d6649d22b77d52b0bf5918da1904b67511c3e799",
+      "bytes": 893
+    },
     "dense.wgsl": {
-      "sha256": "e77cb699f02bf492f588fb6c755c13f384418ce762c410ed2ab9b1a43934e6ab",
-      "bytes": 13330
+      "sha256": "fe667cd51e7cd3e0b1bc56767d378d2c6ab4b0a510469d266061ce0c00c15ff7",
+      "bytes": 13960
     },
     "dense.wgsl.json": {
-      "sha256": "3758cbe83c8013698774e3f07a1e68e57fe94dd46f01d5c8fa8d11ae385def26",
+      "sha256": "84755dd84cf9360c720e942b7e99d8590fa9ad71d96235193d2f229ced09142b",
       "bytes": 893
     },
     "capture.wgsl": {
-      "sha256": "04f082c8cfe35c9883948efb0492672abca6a979c1872500192d17b5d18531fe",
-      "bytes": 4725
+      "sha256": "35b9df3194321b53514b6142b3c64eb61205fefef977ae2f849d8c614d1a35c6",
+      "bytes": 6151
     },
     "capture.wgsl.json": {
-      "sha256": "ceea237d209c7031808c039210b1be6f071c4079737b06f21e4f16708bfe0b2c",
+      "sha256": "63795fcb80f73288132dc1f63065756f379b8adb8f11f56b6b8c2c8e55fee5ce",
       "bytes": 893
     }
   },

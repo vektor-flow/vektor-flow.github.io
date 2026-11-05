@@ -85,7 +85,7 @@ No worker/GPU-compute or 60fps performance qualification is claimed.
 Build:
 
 ```sh
-node scripts/text-modes/build.mjs LIBRARY_GIT 90bc5b4 CANONICAL_COMPILER_DIR OUTPUT
+node scripts/text-modes/build.mjs LIBRARY_GIT 36124ab CANONICAL_COMPILER_DIR OUTPUT
 ```
 
 Exact committed `Interp.vkf` bytes plus a two-function forwarding-only VKF
@@ -108,3 +108,10 @@ The current artifact uses public native Interp record ABI2: applicable optional
 groups contain zero/one named typed record (native boolean grow, integer seed).
 Opaque numeric settings payloads reject. Public named factory arguments remain
 unchanged; both factory-settings and native-record JSON schemas ship with pins.
+
+Native growth now evaluates the identical back-ease polynomial in positive-factor
+form to avoid cancellation of tiny positive alpha. The adapter also omits actual
+nonpositive/zero-linear-area packets before strict outline admission, with
+zeroAreaGlyphs diagnostics; no arbitrary small-size threshold is used. Genuine
+153-glyph driven-oscillator regression covers all49 normal playback coordinates,
+tiny positive q and the formerly failing23/48 neighbourhood.

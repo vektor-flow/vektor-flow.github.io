@@ -4,8 +4,8 @@ import {createTiledNativeLabelRenderer} from './vf-native-tiled-label-renderer.m
 import {createScreenSpaceSimplexRenderer} from '../geom/vf-screen-simplex-renderer.mjs';
 const need=(ok,code)=>{if(!ok)throw Object.assign(Error(code),{code});};
 const sha=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
-export const TEXT_INTERP_COMMIT='90bc5b404630b190e4d45d6a2ecb90863347775f';
-const expected={'text.wasm':'45514da13cb4d50af9236c2312e82acc2d86d8780297cc4fdf96c0395cf62109','text.json':'58932d1e70cbab80b966da69587d34ed80a0137f8d587fa13d227a2c5c4c8641'};
+export const TEXT_INTERP_COMMIT='36124ab5aa75725a7316b847212acd17bd431bf3';
+const expected={'text.wasm':'a6b8bc4d87b4600d06b2ee1a328f95f1eb8c30cdae1610732568ce3cc94af54f','text.json':'073d184d5e3b07163d5b7d748edf69e25345ed7987d0dc4e77a77c8d81c5f7a5'};
 export async function loadNativeTextModeKernel({baseURL=new URL('../artifacts/text-modes/',import.meta.url),fetch:fetcher=globalThis.fetch,signal}={}){
  const get=async n=>{const r=await fetcher(new URL(n,baseURL),{signal});need(r.ok,'NATIVE_TEXT_RESOURCE');return r.arrayBuffer();};
  const [bytes,json,p]=await Promise.all(['text.wasm','text.json','PROVENANCE.json'].map(get)),provenance=JSON.parse(new TextDecoder().decode(p));

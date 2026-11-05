@@ -190,3 +190,19 @@ present in Product. Source ink/font/geometry and final endpoints preserved.
 Root PP live authoring/browser state untouched. Stable same-polynomial native
 growth evaluation is being qualified separately; this guard fixes strict
 renderer admission independently and can be intaken immediately.
+
+## Final native growth kernel refresh — 2026-11-05
+
+Pinned library36124ab5aa75725a7316b847212acd17bd431bf3, with identical native
+back-ease polynomial in stable factor form. All140 native WASM tiny/subnormal,
+endpoint/clamp/relative/peak checks pass. Renderer kernel test additionally
+requires positive growth for tiny positive reveal distance. No compiler change,
+math fallback or font closure change in this final refresh.
+
+Actual153-glyph oscillator browser rerun passes all49 ordinary transition
+coordinates, q=1e-12 and23/48±1e-12. Prior exact-zero-area guard remains useful
+for actual zero footprints, without an epsilon cutoff or weaker native cache.
+Updated BROWSER-QUALIFICATION.json records final pinned kernel and actual native
+typography. Original light text, wave/vapor, endpoint, underlay and abort tests
+also pass. Root live authoring/browser state untouched; final PP intakes only
+owned renderer artifacts/module changes before capture. No deployment or push.

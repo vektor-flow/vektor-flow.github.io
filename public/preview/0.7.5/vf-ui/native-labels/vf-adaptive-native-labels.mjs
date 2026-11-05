@@ -22,9 +22,9 @@ export async function createAdaptiveNativeLabelBatches({typography,specs,coordin
  try{
   for(const input of specs){need(input.kind==='math'&&typeof input.id==='string'&&input.id.length>0&&!byId.has(input.id)&&input.anchor?.length===2&&input.anchor.every(Number.isFinite)&&input.scale>0&&Number.isFinite(input.scale)&&(input.sizeSpace??'world')==='world','ADAPTIVE_NATIVE_SPEC');
    need(input.font_size===undefined,'ADAPTIVE_NATIVE_FONT_SIZE_PROFILE_UNQUALIFIED');
-   need(!input.color||JSON.stringify(input.color)==='[0,0,0,1]','ADAPTIVE_NATIVE_COLOR_PROFILE');
-   const spec=Object.freeze({...input,anchor:Object.freeze([...input.anchor])}),run={kind:spec.kind,source:spec.source,display:spec.display??false,...(spec.font_size===undefined?{}:{font_size:spec.font_size})},key=JSON.stringify([typography.engineIdentity,typography.resourceIdentity,run]);
-   let g=groups.get(key);if(!g){const lease=await typography.prepare(run);g={id:groups.size,key,lease,labels:[],meshes:new Map(),maxScale:0,bounds:nativeControlBounds(lease,typography.vectors)};groups.set(key,g);}
+   need(input.color===undefined||(Array.isArray(input.color)&&input.color.length===4&&input.color.every(x=>Number.isFinite(x)&&x>=0&&x<=1)),'ADAPTIVE_NATIVE_COLOR_PROFILE');
+   const spec=Object.freeze({...input,anchor:Object.freeze([...input.anchor])}),run={kind:spec.kind,source:spec.source,display:spec.display??false,...(spec.font_size===undefined?{}:{font_size:spec.font_size})},key=JSON.stringify([typography.engineIdentity,typography.resourceIdentity,run,spec.color??null]);
+   let g=groups.get(key);if(!g){const lease=await typography.prepare(run);g={id:groups.size,key,lease,color:spec.color,labels:[],meshes:new Map(),maxScale:0,bounds:nativeControlBounds(lease,typography.vectors)};groups.set(key,g);}
    let placed=spec;
    if(input.anchorFraction!==undefined){
     need(input.anchorFraction.length===2&&input.anchorFraction.every(x=>Number.isFinite(x)&&x>=0&&x<=1),'ADAPTIVE_NATIVE_ANCHOR');
@@ -53,7 +53,7 @@ export async function createAdaptiveNativeLabelBatches({typography,specs,coordin
      for(let r=0;r<q.rangeCount*2;r+=2)for(let i=q.ranges[r];i<q.ranges[r+1];i++){
       const [x,y,z]=g.instances.subarray(i*4,i*4+3);matrices.push([c[0]*z,c[1]*z,-c[2]*z,-c[3]*z,c[0]*x+c[2]*y+c[4],c[1]*x+c[3]*y+c[5]]);
      }
-     const refineCurve=nativeCurveSampleRefinement(matrices,{width,height,pixelRatio:framePixelRatio,samplesPerAxis}),geometry=prepareNativeLabelGeometry(g.lease,typography.vectors,[1,0,0,1,0,0],{elementId:'adaptive-template:'+g.id,pixelRatio:1,tolerance:toleranceDevice/bound,refineCurve});
+     const refineCurve=nativeCurveSampleRefinement(matrices,{width,height,pixelRatio:framePixelRatio,samplesPerAxis}),geometry=prepareNativeLabelGeometry(g.lease,typography.vectors,[1,0,0,1,0,0],{elementId:'adaptive-template:'+g.id,color:g.color,pixelRatio:1,tolerance:toleranceDevice/bound,refineCurve});
      const vertices=new Float32Array(geometry.triangles.length*18);let at=0;for(const triangle of geometry.triangles)for(const p of triangle.points){vertices.set([p[0],p[1],...triangle.color],at);at+=6;}
      mesh={key,vertices,projectedBoundDevice:bound,toleranceLocal:toleranceDevice/bound,triangles:geometry.triangles.length};
      if(g.meshes.size>=maxMeshLevels){const oldKey=g.meshes.keys().next().value;meshCPUBytes-=g.meshes.get(oldKey).vertices.byteLength;g.meshes.delete(oldKey);}
@@ -65,8 +65,8 @@ export async function createAdaptiveNativeLabelBatches({typography,specs,coordin
    last={resident:labels.length,submitted,triangles,visited,activeGroups:active.length,meshMisses:misses,cullAndMeshMs:performance.now()-begin};return active;
   }
   function camera(){const o=coordinates.worldToScreen([0,0]),x=coordinates.worldToScreen([1,0]),y=coordinates.worldToScreen([0,1]);return [x[0]-o[0],x[1]-o[1],y[0]-o[0],y[1]-o[1],...o];}
-  function geometryFor(id){const l=byId.get(id);need(l,'ADAPTIVE_NATIVE_ELEMENT');const c=camera(),a=l.spec.anchor,z=l.spec.scale;return prepareNativeLabelGeometry(l.group.lease,typography.vectors,[c[0]*z,c[1]*z,-c[2]*z,-c[3]*z,c[0]*a[0]+c[2]*a[1]+c[4],c[1]*a[0]+c[3]*a[1]+c[5]],{elementId:id,pixelRatio,tolerance:toleranceDevice});}
-  function receipt(){return {labels:labels.length,distinctSources:groups.size,glyphInstances:labels.reduce((n,l)=>n+l.group.lease.box.items.filter(i=>i.kind==='glyph').length,0),ruleInstances:labels.reduce((n,l)=>n+l.group.lease.box.items.filter(i=>i.kind==='rule').length,0),meshBuilds,meshBuildMs,maxMeshLevels,maxMeshBytes,meshCPUBytes,toleranceDevice,profile:'default-native9a86-inline10/7/5',font_size:'explicit unsupported until independent profile qualification',downsampling:false,last};}
+  function geometryFor(id){const l=byId.get(id);need(l,'ADAPTIVE_NATIVE_ELEMENT');const c=camera(),a=l.spec.anchor,z=l.spec.scale;return prepareNativeLabelGeometry(l.group.lease,typography.vectors,[c[0]*z,c[1]*z,-c[2]*z,-c[3]*z,c[0]*a[0]+c[2]*a[1]+c[4],c[1]*a[0]+c[3]*a[1]+c[5]],{elementId:id,color:l.spec.color,pixelRatio,tolerance:toleranceDevice});}
+  function receipt(){return {labels:labels.length,distinctSources:groups.size,glyphInstances:labels.reduce((n,l)=>n+l.group.lease.box.items.filter(i=>i.kind==='glyph').length,0),ruleInstances:labels.reduce((n,l)=>n+l.group.lease.box.items.filter(i=>i.kind==='rule').length,0),meshBuilds,meshBuildMs,maxMeshLevels,maxMeshBytes,meshCPUBytes,toleranceDevice,profile:'default-native9a86-inline10/7/5; bounded authored RGBA' ,font_size:'explicit unsupported until independent profile qualification',downsampling:false,last};}
   return {groups,labels,frame,camera,receipt,nativeSourceOutlines:(c,limits)=>{need(!closed,'ADAPTIVE_NATIVE_CLOSED');return nativeAccuracySourceOutlines(groups,typography.vectors,c,limits);},drawPlan:()=>active.map(b=>({groupId:b.group.id,ranges:Array.from(b.ranges.subarray(0,b.rangeCount*2)),vertexCount:b.mesh.vertices.length/6})),statistics:()=>({...last,meshBuilds,meshBuildMs,meshCPUBytes,maxMeshBytes}),geometryFor,
    selectionObjects:ids=>ids.flatMap(id=>geometryFor(id).objects),
    close(){if(closed)return;closed=true;for(const g of groups.values()){g.lease.release();g.meshes.clear();}groups.clear();labels.length=0;byId.clear();active.length=0;}};

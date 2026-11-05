@@ -1,0 +1,23 @@
+import {mkdtemp,mkdir,writeFile,readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+import path from 'node:path';
+import os from 'node:os';
+const [library,revision,compilerDir,output]=process.argv.slice(2);
+if(!library||!/^[a-f0-9]{7,40}$/.test(revision??'')||!compilerDir||!output)throw Error('Expected library git root, immutable revision, canonical compiler folder, output folder');
+const git=(...args)=>execFileSync('git',['-C',library,...args],{maxBuffer:4*1024*1024});
+const commit=git('rev-parse',revision).toString().trim();
+const names=git('ls-tree','-r','--name-only',commit,'Interp.vkf','Morphing.vkf','morphing').toString().trim().split('\n').filter(x=>x.endsWith('.vkf'));
+const directory=await mkdtemp(path.join(os.tmpdir(),'vkf-state-renderer-')),hash=bytes=>createHash('sha256').update(bytes).digest('hex'),sources={};
+for(const name of names){const data=git('show',commit+':'+name);sources[name]={sha256:hash(data),bytes:data.length};await mkdir(path.dirname(path.join(directory,name)),{recursive:true});await writeFile(path.join(directory,name),data);}
+const adapter=await readFile(new URL('./renderer-adapter.vkf',import.meta.url));
+await writeFile(path.join(directory,'main.vkf'),Buffer.concat([await readFile(path.join(directory,'Interp.vkf')),Buffer.from('\n'),adapter,Buffer.from('\n::1\n')]));
+const {createProjectCompiler}=await import(pathToFileURL(path.join(compilerDir,'package-tools/project.mjs')));
+const compiler=await createProjectCompiler({compilerModule:path.join(compilerDir,'compiler.mjs')});
+const result=await compiler.compileProject(directory),manifest=Buffer.from(JSON.stringify(result.result.manifest)+'\n');
+if(WebAssembly.Module.imports(await WebAssembly.compile(result.wasm)).length)throw Error('Native state kernel must not have host imports');
+await mkdir(output,{recursive:true});await writeFile(path.join(output,'text.wasm'),result.wasm);await writeFile(path.join(output,'text.json'),manifest);
+const contracts={};for(const name of ['interp-modes.json','interp-settings.schema.json']){const data=git('show',commit+':interpolation/'+name);await writeFile(path.join(output,name),data);contracts[name]={sha256:hash(data),bytes:data.length};}
+const receipt={contracts,kind:'vkf-native-interp-text/1',libraryCommit:commit,sources,adapter:{sha256:hash(adapter),bytes:adapter.length},compilerVersion:compiler.compilerVersion,compilerSourceBinding:compiler.sourceBinding,artifacts:{'text.wasm':{sha256:hash(result.wasm),bytes:result.wasm.length},'text.json':{sha256:hash(manifest),bytes:manifest.length}},qualification:'Compiled from unchanged library source using current canonical compiler. Numerical, browser and GPU qualification recorded separately; no inherited claim.'};
+await writeFile(path.join(output,'PROVENANCE.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({directory,output,receipt}));

@@ -116,3 +116,39 @@ spectral unfolding source remains VKF-owned; no replacement is implemented here.
 
 Public/compiler promotion is separate. This branch is a bounded integration fix,
 not a replacement compiler, release descriptor update, or production publication.
+
+## Interp text modes same-document native renderer — 2026-11-05
+
+Owned branch codex/pp-text-modes-renderer-20261105, base2c704f7. Reusable
+prepareNativeTextModes in vf-ui/native-labels/vf-native-text-modes.mjs consumes
+actual current075 typography and CSS-baseline math specs. Transparent overlay
+contains only text/gas; no default content, authoring/editor chrome, geometry
+interpolation, DOM font fallback or rigid/authorable pixel bodies.
+
+Canonical client artifact compiles exact library d2952a9 Interp+Morphing sources
+plus two native forwarding helpers. No JS easing/trajectory implementation;
+one native text_frame batch per requested frame. Source pixels derive only
+from exact physical native outgoing text raster, with original RGB/coverage.
+Native tiled fonts and existing GPU simplex renderer own drawing. Bounded
+source/target sets, serialized/coalesced requests, abort/dispose cleanup and
+source-code-pinned artifact hashes. Named mode schema/descriptor shipped intact.
+
+Shared native adapter accepts bounded authored RGBA and preserves it through
+physical source, adaptive mesh and native certificate colors. Glyph geometry,
+font bindings and native sampling policy remain unchanged. Authored final color
+is exact; transient spectral channels modulate authored ink.
+
+Real WASM kernel tests pass endpoints and artifact tamper rejection. Genuine
+native WASM typography browser tests pass five vapor frames, spectral-only row
+reveal, invalid-mode-field rejection, source/target alpha endpoints, source-colored
+gas, unchanged underlay and abort cleanup, with no console/page errors. Visually
+inspected q0/q0.5/q1 native text on black. Consistent headless Vulkan/SwiftShader,
+not hardware GPU/phone. Qualification docs/text-modes/BROWSER-QUALIFICATION.json;
+API/build/limits/failed attempts docs/text-modes/CONTRACT.md.
+
+Measured prototype428carriers/17glyphs: native compute and complete CPU submission
+costs recorded per frame; no60fps claim. Compute remains canonical WASM CPU,
+rendering GPU. Guest call synchronous, no cooperative in-flight cancellation.
+Caller owns typography, UI/navigation, original participating-text visibility,
+geometry and capture. PP/main-editor integration remains root-owned and untested
+here. No compiler promotion, Product release, push or deployment.

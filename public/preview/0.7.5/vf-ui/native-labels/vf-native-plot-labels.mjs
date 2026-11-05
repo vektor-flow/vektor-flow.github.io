@@ -150,7 +150,7 @@ export function triangulateNativeRings(rings) {
   need(winding===0,'PLOT_LABEL_UNCLOSED_WINDING');need(triangles.length<=50000,'PLOT_LABEL_TRIANGLE_LIMIT');
  }return triangles;
 }
-export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourceId=elementId,color=[0,0,0,1],pixelRatio=1,tolerance=.125,refineCurve=null}={}) {
+export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourceId=elementId,color=null,pixelRatio=1,tolerance=.125,refineCurve=null}={}) {
  need(typeof elementId==='string'&&elementId&&typeof sourceId==='string'&&sourceId&&pixelRatio>0,'PLOT_LABEL_ID');
  const source=lease.run.kind==='text'?lease.run.text:lease.run.source,parts=[],triangles=[];
  const items=lease.box.items;
@@ -166,7 +166,7 @@ export function prepareNativeLabelGeometry(lease,vectors,matrix,{elementId,sourc
   const start=text?item.start:0,end=text?item.stop:source.length;
   if(rings.length)parts.push({id:elementId+':cluster:'+start+':'+end,groupId:text?null:elementId+':math',rings,nativeKey:item.key??null,nativeItemIndex:index,
    source:{id:sourceId,text:source,offsetUnit:'utf16',start,end}});
-  for(const points of triangulateNativeRings(rings))triangles.push({kind:'face',points,color:item.color??color});
+  for(const points of triangulateNativeRings(rings))triangles.push({kind:'face',points,color:color??item.color??[0,0,0,1]});
  }
  const groups=lease.run.kind==='math'?[{id:elementId+':math',kind:'math'}]:[];
  const objects=textSelectionObjects({elementId,clusters:parts,groups,coordinates:{worldToScreen:p=>p}});

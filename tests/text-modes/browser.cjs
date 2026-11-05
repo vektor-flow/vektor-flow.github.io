@@ -1,0 +1,15 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {chromium}=require('/home/viktor/Projects/Cuvami/staging/node_modules/playwright');
+const root=path.resolve(__dirname,'../..');const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.wasm':'application/wasm','.html':'text/html'};
+const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+'/')){res.writeHead(403).end();return;}fs.readFile(f,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.end(b);});});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;
+ const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome',headless:true,args:['--no-sandbox','--use-angle=vulkan','--use-vulkan=swiftshader','--enable-features=Vulkan','--enable-unsafe-swiftshader','--enable-unsafe-webgpu']});
+ const page=await browser.newPage({viewport:{width:640,height:360}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ try{await page.goto(`http://127.0.0.1:${port}/tests/text-modes/browser.html`);await page.waitForFunction(()=>!!window.start);const prepared=await page.evaluate(()=>start());console.log('prepared',prepared);
+ const receipts=[];for(const q of [0,.25,.5,.75,1]){const result=await page.evaluate(q=>player.sample(q),q);receipts.push(result);await page.screenshot({path:`/tmp/vkf-text-modes-${q}.png`});console.log('frame',q,result.nativeComputeMs,result.cpuThroughSubmitMs,result.carriers,result.gasAlphaMax);}
+ assert.equal(receipts[0].sourceAlpha,1);assert.equal(receipts[0].gasAlphaMax,0);assert(receipts[0].targetAlpha.every(x=>x===0));assert.equal(receipts.at(-1).sourceAlpha,0);assert.equal(receipts.at(-1).gasAlphaMax,0);assert(receipts.at(-1).targetAlpha.every(x=>x===1));
+ assert(receipts.some(r=>r.gasAlphaMax>0));assert(receipts.every(r=>r.carriers<=512));assert.equal(await page.locator('#host svg').count(),1);
+ const spectral=await page.evaluate(()=>window.spectral());assert.equal(spectral.carriers,0);assert(spectral.targetAlpha.some(x=>x>0));assert(spectral.targetAlpha.some(x=>x===0));assert(await page.evaluate(()=>window.invalid()));
+ await page.evaluate(()=>cleanup());assert.equal(await page.locator('.vf-native-text-modes').count(),0);assert.deepEqual(errors,[]);
+ fs.writeFileSync('/tmp/vkf-text-modes-browser.json',JSON.stringify({passed:true,prepared,receipts,spectral,errors,graphics:'Chrome headless consistent Vulkan SwiftShader; no physical GPU'},null,2)+'\n');console.log('PASS endpoints, native carrier presence, underlay retention and abort cleanup');
+ }finally{await browser.close();server.close();}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});

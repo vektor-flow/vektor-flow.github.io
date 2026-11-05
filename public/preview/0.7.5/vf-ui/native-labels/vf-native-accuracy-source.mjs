@@ -29,7 +29,7 @@ export function nativeAccuracySourceOutlines(groups,vectors,camera,{maxInstances
    // orders by gamma32 times these UNcancelled physical term magnitudes.
    const programRoundoffMagnitude=[Math.abs(z*sx)*controlMagnitude[0]+Math.abs(z*item.x)+Math.abs(a[0]),Math.abs(z*sy)*controlMagnitude[1]+Math.abs(z*item.y)+Math.abs(a[1])].map(v=>v*(1+64*Number.EPSILON));
    out.push({commands,programRoundoffMagnitude,programTransformRecipe:[z,a[0],a[1],item.x,item.y,sx,sy],matrix:[base[0]*sx,base[1]*sx,base[2]*sy,base[3]*sy,base[0]*item.x+base[2]*item.y+base[4],base[1]*item.x+base[3]*item.y+base[5]],
-    physicalIdentity:physicalIdentity??{kind:'native-rule',width:item.width,height:item.height},color:item.color??s.color??[0,0,0,1],fillRule:'nonzero',provenance:{...lease.prepared.provenance,
+    physicalIdentity:physicalIdentity??{kind:'native-rule',width:item.width,height:item.height},color:s.color??item.color??[0,0,0,1],fillRule:'nonzero',provenance:{...lease.prepared.provenance,
      engineIdentity:lease.prepared.provenance.engineIdentity,resourceIdentity:lease.prepared.provenance.resourceIdentity,
      source:lease.run.source??lease.run.text,elementId:s.id,itemIndex,glyphKey,nativeItemKey:item.key??null,
      sourceGeneration:lease.prepared.provenance.sourceGeneration??null,size:[sx,sy],placement:[item.x,item.y],sourceBounds:[lease.box.width,lease.box.height,lease.box.depth]}});

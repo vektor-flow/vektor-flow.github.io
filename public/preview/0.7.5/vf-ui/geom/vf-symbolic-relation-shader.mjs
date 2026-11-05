@@ -4,6 +4,7 @@ const CALLS = Object.freeze({
   abs: ['abs', 'abs'],
   atan2: ['atan2', 'atan'],
   cos: ['cos', 'cos'],
+  exp: ['exp', 'exp'],
   sin: ['sin', 'sin'],
   sqrt: ['sqrt', 'sqrt'],
   tan: ['tan', 'tan']
@@ -253,6 +254,7 @@ function emit(node, language) {
     const args = node.args.map((argument) => emit(argument, language));
     if (args.some((argument) => !argument)) return null;
     if (node.name === 'atan2' && args.length !== 2) return null;
+    if (node.name === 'exp' && args.length !== 1) return null;
     return `${names[language === 'wgsl' ? 0 : 1]}(${args.join(', ')})`;
   }
   return null;
@@ -313,6 +315,10 @@ function emitJet(node, language, parameter) {
     const argument = emitJet(node.args[0], language, parameter);
     if (!argument) return null;
     const [a, a1, a2] = argument;
+    if (node.name === 'exp') return [
+      `exp(${a})`, `(exp(${a}) * ${a1})`,
+      `(exp(${a}) * ((${a1} * ${a1}) + ${a2}))`
+    ];
     if (node.name === 'sin') return [
       `sin(${a})`, `(cos(${a}) * ${a1})`,
       `((-sin(${a}) * ${a1} * ${a1}) + (cos(${a}) * ${a2}))`

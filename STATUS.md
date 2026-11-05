@@ -323,3 +323,14 @@ docs/text-modes/MATERIAL-CLIP-QUALIFICATION.json; decoded clip at
 /tmp/vkf-material-transport.webm. Exact native final screenshots visually checked.
 Font closure, outline performance fixes, capture readbackf5db and numerical
 growth36124 remain preserved. No PP edits, push, deployment or production change.
+
+## Bounded native GPU exp support — 2026-11-05
+
+Existing real relation CALLS lacked exp although complex exp already existed.
+Added GPU builtin exp and exact first/second chain-rule jets in canonical public
+shader and pinned075 copy. No controller/kernel/renderer math or interpolation
+artifact changes. Pure derivative/arity checks PASS; original renderer tests PASS.
+Actual native parser/controller damped oscillator plot PASS on software WebGPU
+and WebGL2; decoded VP8 cyan curve visible, zero diagnostics/errors. Evidence
+docs/symbolic-exp; root imports existing pinned075 controller relative closure
+for durable intake, no node_modules mutation/package release.

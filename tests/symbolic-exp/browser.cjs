@@ -1,0 +1,15 @@
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {execFileSync}=require('node:child_process');
+const {chromium}=require('/home/viktor/Projects/Cuvami/staging/node_modules/playwright');
+const root=path.resolve(__dirname,'../..');const mime={'.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.wasm':'application/wasm','.html':'text/html'};
+const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://local').pathname));if(!f.startsWith(root+'/')){res.writeHead(403).end();return;}fs.readFile(f,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',mime[path.extname(f)]||'application/octet-stream');res.end(b);});});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;
+ const browser=await chromium.launch({executablePath:'/opt/google/chrome/chrome',headless:true,args:['--no-sandbox','--use-angle=vulkan','--use-vulkan=swiftshader','--enable-features=Vulkan','--enable-unsafe-swiftshader','--enable-unsafe-webgpu']});
+ const page=await browser.newPage({viewport:{width:640,height:360}}),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ if(process.env.VKF_FORCE_WEBGL==='1')await page.addInitScript(()=>Object.defineProperty(navigator,'gpu',{value:undefined,configurable:true}));
+ try{await page.goto(`http://127.0.0.1:${port}/tests/symbolic-exp/browser.html`);await page.waitForFunction(()=>!!window.run);const result=await page.evaluate(()=>run());
+ const file='/tmp/vkf-native-exp.webm';fs.writeFileSync(file,Buffer.from(result.bytes));
+ const raw=execFileSync('ffmpeg',['-v','error','-i',file,'-frames:v','1','-f','rawvideo','-pix_fmt','rgb24','pipe:1'],{maxBuffer:2*1024*1024});let cyan=0;for(let at=0;at<raw.length;at+=3)if(raw[at]<150&&raw[at+1]>100&&raw[at+2]>150)cyan++;assert(cyan>500,'decoded native damped curve must be visible');assert.deepEqual(errors,[]);
+ execFileSync('ffmpeg',['-v','error','-i',file,'-frames:v','1','-y','/tmp/vkf-native-exp.png']);
+ delete result.bytes;const report={passed:true,...result,decodedCyanPixels:cyan,errors,scope:'existing canonical native parser/controller and GPU analytic curve; decoded VP8 capture; software Vulkan/SwiftShader, no host function sampling'};fs.mkdirSync(path.join(root,'docs/symbolic-exp'),{recursive:true});fs.writeFileSync(path.join(root,'docs/symbolic-exp/'+(process.env.VKF_FORCE_WEBGL==='1'?'WEBGL-':'')+'QUALIFICATION.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+ }finally{await browser.close();server.close();}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});

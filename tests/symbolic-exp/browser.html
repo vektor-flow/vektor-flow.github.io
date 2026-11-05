@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0;background:#000}canvas{width:640px;height:360px}</style><canvas id="plot"></canvas>
+<script type="module">
+import {createSymbolicPlotController} from '../../public/preview/0.7.5/vf-ui/vf-symbolic-plot-controller.mjs';
+import {createSymbolicPlotRenderer} from '../../public/preview/0.7.5/vf-ui/geom/vf-symbolic-plot-renderer.mjs';
+import {createLayeredCanvasCaptureSource} from '../../public/preview/0.7.5/vf-ui/vf-media-capture.mjs';
+import {createFrameMovieCapture} from '../../public/preview/0.7.5/vf-ui/vf-frame-movie-capture.mjs';
+window.run=async()=>{
+ let renderer;const canvas=document.querySelector('#plot'),controller=await createSymbolicPlotController({canvas,createRenderer:c=>(renderer=createSymbolicPlotRenderer(c))});
+ const source='y=1.5*exp(-0.2*(x+4))*cos(2*(x+4)+0.3)-2.8';
+ const result=await controller.plot({source,viewport:{xMin:-5,xMax:5,yMin:-7.2,yMax:.8,width:640,height:360,transform:[64,0,0,-45,320,36]},colors:{edge:[.2,.9,1,1],face:[0,0,0,0]}});
+ const bg=document.createElement('canvas');bg.width=640;bg.height=360;const ctx=bg.getContext('2d');ctx.fillStyle='#000';ctx.fillRect(0,0,640,360);
+ const compositor=createLayeredCanvasCaptureSource({layers:[bg,canvas]}),encoder=await createFrameMovieCapture({width:640,height:360,frameRate:12,codec:'vp8'});
+ try{for(let i=0;i<3;i++){renderer.render();compositor.drawFrame({readback:true});await encoder.addFrame(compositor.canvas,i);}const blob=await encoder.finish();return {source,backend:renderer.backend,result,bytes:[...new Uint8Array(await blob.arrayBuffer())]};}finally{compositor.close();controller.destroy();}
+};
+</script>

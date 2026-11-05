@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "source": "y=1.5*exp(-0.2*(x+4))*cos(2*(x+4)+0.3)-2.8",
+  "backend": "webgl2",
+  "result": {
+    "diagnostics": [],
+    "latex": "y = 1.5 \\cdot \\operatorname{exp}\\!\\left(-0.2 \\cdot \\left(x + 4\\right)\\right) \\cdot \\operatorname{cos}\\!\\left(2 \\cdot \\left(x + 4\\right) + 0.3\\right) - 2.8",
+    "variables": [
+      "y",
+      "x"
+    ],
+    "classification": "implicit-curve",
+    "plottable": true,
+    "valueKind": "scalar",
+    "source": "y=1.5*exp(-0.2*(x+4))*cos(2*(x+4)+0.3)-2.8",
+    "context": {
+      "kind": "global",
+      "dimension": 2,
+      "originX": 0,
+      "originY": 0,
+      "basisXX": 1,
+      "basisXY": 0,
+      "basisYX": 0,
+      "basisYY": 1,
+      "n": 0,
+      "N": 1
+    },
+    "clip": null,
+    "view": {
+      "xMin": -5,
+      "xMax": 5,
+      "yMin": -7.2,
+      "yMax": 0.8,
+      "xSteps": 1281,
+      "ySteps": 721,
+      "fieldXMin": -5,
+      "fieldYMin": -7.2,
+      "fieldXInterval": 0.625,
+      "fieldYInterval": 0.5,
+      "fieldXSteps": 17,
+      "fieldYSteps": 17,
+      "tMin": 0,
+      "tMax": 1,
+      "tSteps": 1281,
+      "t": 0,
+      "vectorScale": 0.175,
+      "vectorArrowLength": 0.06,
+      "vectorArrowWidth": 0.035
+    },
+    "style": {
+      "edgeR": 0.2,
+      "edgeG": 0.9,
+      "edgeB": 1,
+      "edgeA": 1,
+      "faceR": 0,
+      "faceG": 0,
+      "faceB": 0,
+      "faceA": 0,
+      "valueMin": 0,
+      "valueMax": 1,
+      "magnitudeMin": 0,
+      "magnitudeMax": 1,
+      "colorScaleMode": "clamp",
+      "faceColormap": false,
+      "colormapPoints": null
+    },
+    "colorScale": {
+      "domain": [
+        0,
+        1
+      ],
+      "magnitudeDomain": [
+        0,
+        1
+      ],
+      "mode": "clamp"
+    },
+    "revision": 0,
+    "frameRevision": null,
+    "frameEpoch": 0
+  },
+  "decodedCyanPixels": 1410,
+  "errors": [],
+  "scope": "existing canonical native parser/controller and GPU analytic curve; decoded VP8 capture; software Vulkan/SwiftShader, no host function sampling"
+}

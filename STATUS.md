@@ -254,3 +254,24 @@ needed. That failed partial approach is retained in performance evidence.
 Root running video/browser/PP authoring untouched. Changed public native paths:
 vf-native-outline-cache, vf-shared-area-renderer, vf-native-tiled-label-renderer,
 vf-native-text-modes. Ready for final owner intake; no push/deployment.
+
+## General basic native font mapping coverage — 2026-11-05
+
+Actual current075 worker query isolates UI First / x^2+y^2=z^2 failure to exact
+missing key text/z; First itself already passes. Broader complete native queries
+exercise ordinary math a-z/A-Z/0-9 plus first-level super/subscripts and ordinary
+text Latin/numerals:65 genuine missing math-italic keys (30text,35script).
+
+Existing extend-native-physical-mapping.py joins actual pinned catalog queries
+to authentic cmmi10/cmmi7 Type1 outlines inside the SAME closed program/metrics
+inventory. Existing binding entries/paths preserved; catalog, producer/compiler,
+font closure and resource identity unchanged. No cmmi5/scriptscript expansion,
+synthetic glyphs, alias/fallback, guard weakening or renderer math changes.
+
+All6 actual worker/layout/provider coverage cases now PASS263 native glyph
+instances, zero missing bindings/diagnostics/page errors. Exact reported formula
+passes; ordinary prose already passed. Evidence
+ docs/text-modes/BASIC-NATIVE-FONT-COVERAGE.json and durable browser coverage test.
+Changed public files only native-mapping/{vectors,binding,bundle,EXTENSION}.json.
+Performance87cf, capture3810 and numerical36124/text artifact bytes untouched.
+Root owns resource inventory refresh/PP Save/capture; running browser untouched.

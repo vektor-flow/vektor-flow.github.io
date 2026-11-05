@@ -1336,7 +1336,11 @@ var wasmImports = {
   /** @export */
   invoke_viiiii,
   /** @export */
+  invoke_viiiiid,
+  /** @export */
   invoke_viiiiii,
+  /** @export */
+  invoke_viiiiiid,
   /** @export */
   invoke_viiiiiii,
   /** @export */
@@ -1346,7 +1350,7 @@ var wasmImports = {
   /** @export */
   invoke_viiiijii,
   /** @export */
-  invoke_viiiji,
+  invoke_viiijid,
   /** @export */
   invoke_viij,
   /** @export */
@@ -1365,6 +1369,9 @@ var _vkf_browser_format_stdout = Module['_vkf_browser_format_stdout'] = (a0, a1,
 var _vkf_browser_stdout = Module['_vkf_browser_stdout'] = () => (_vkf_browser_stdout = Module['_vkf_browser_stdout'] = wasmExports['vkf_browser_stdout'])();
 var _vkf_browser_format_retained_ui_packets = Module['_vkf_browser_format_retained_ui_packets'] = (a0, a1, a2) => (_vkf_browser_format_retained_ui_packets = Module['_vkf_browser_format_retained_ui_packets'] = wasmExports['vkf_browser_format_retained_ui_packets'])(a0, a1, a2);
 var _vkf_browser_format_retained_ui_packets_binary = Module['_vkf_browser_format_retained_ui_packets_binary'] = (a0, a1, a2) => (_vkf_browser_format_retained_ui_packets_binary = Module['_vkf_browser_format_retained_ui_packets_binary'] = wasmExports['vkf_browser_format_retained_ui_packets_binary'])(a0, a1, a2);
+var _vkf_browser_retained_temporal_generation = Module['_vkf_browser_retained_temporal_generation'] = () => (_vkf_browser_retained_temporal_generation = Module['_vkf_browser_retained_temporal_generation'] = wasmExports['vkf_browser_retained_temporal_generation'])();
+var _vkf_browser_sample_retained_ui_packets_binary = Module['_vkf_browser_sample_retained_ui_packets_binary'] = (a0, a1) => (_vkf_browser_sample_retained_ui_packets_binary = Module['_vkf_browser_sample_retained_ui_packets_binary'] = wasmExports['vkf_browser_sample_retained_ui_packets_binary'])(a0, a1);
+var _vkf_browser_dispose_retained_temporal = Module['_vkf_browser_dispose_retained_temporal'] = (a0) => (_vkf_browser_dispose_retained_temporal = Module['_vkf_browser_dispose_retained_temporal'] = wasmExports['vkf_browser_dispose_retained_temporal'])(a0);
 var _vkf_browser_retained_ui_arena_count = Module['_vkf_browser_retained_ui_arena_count'] = () => (_vkf_browser_retained_ui_arena_count = Module['_vkf_browser_retained_ui_arena_count'] = wasmExports['vkf_browser_retained_ui_arena_count'])();
 var _vkf_browser_retained_ui_arena = Module['_vkf_browser_retained_ui_arena'] = (a0) => (_vkf_browser_retained_ui_arena = Module['_vkf_browser_retained_ui_arena'] = wasmExports['vkf_browser_retained_ui_arena'])(a0);
 var _vkf_browser_retained_ui_arena_size = Module['_vkf_browser_retained_ui_arena_size'] = (a0) => (_vkf_browser_retained_ui_arena_size = Module['_vkf_browser_retained_ui_arena_size'] = wasmExports['vkf_browser_retained_ui_arena_size'])(a0);
@@ -1382,12 +1389,12 @@ var ___cxa_decrement_exception_refcount = (a0) => (___cxa_decrement_exception_re
 var ___cxa_increment_exception_refcount = (a0) => (___cxa_increment_exception_refcount = wasmExports['__cxa_increment_exception_refcount'])(a0);
 var ___cxa_can_catch = (a0, a1, a2) => (___cxa_can_catch = wasmExports['__cxa_can_catch'])(a0, a1, a2);
 var ___cxa_get_exception_ptr = (a0) => (___cxa_get_exception_ptr = wasmExports['__cxa_get_exception_ptr'])(a0);
+var dynCall_viiji = Module['dynCall_viiji'] = (a0, a1, a2, a3, a4, a5) => (dynCall_viiji = Module['dynCall_viiji'] = wasmExports['dynCall_viiji'])(a0, a1, a2, a3, a4, a5);
 var dynCall_jii = Module['dynCall_jii'] = (a0, a1, a2) => (dynCall_jii = Module['dynCall_jii'] = wasmExports['dynCall_jii'])(a0, a1, a2);
 var dynCall_vij = Module['dynCall_vij'] = (a0, a1, a2, a3) => (dynCall_vij = Module['dynCall_vij'] = wasmExports['dynCall_vij'])(a0, a1, a2, a3);
-var dynCall_viiiji = Module['dynCall_viiiji'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viiiji = Module['dynCall_viiiji'] = wasmExports['dynCall_viiiji'])(a0, a1, a2, a3, a4, a5, a6);
-var dynCall_viij = Module['dynCall_viij'] = (a0, a1, a2, a3, a4) => (dynCall_viij = Module['dynCall_viij'] = wasmExports['dynCall_viij'])(a0, a1, a2, a3, a4);
-var dynCall_viiji = Module['dynCall_viiji'] = (a0, a1, a2, a3, a4, a5) => (dynCall_viiji = Module['dynCall_viiji'] = wasmExports['dynCall_viiji'])(a0, a1, a2, a3, a4, a5);
+var dynCall_viiijid = Module['dynCall_viiijid'] = (a0, a1, a2, a3, a4, a5, a6, a7) => (dynCall_viiijid = Module['dynCall_viiijid'] = wasmExports['dynCall_viiijid'])(a0, a1, a2, a3, a4, a5, a6, a7);
 var dynCall_viiiijii = Module['dynCall_viiiijii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8) => (dynCall_viiiijii = Module['dynCall_viiiijii'] = wasmExports['dynCall_viiiijii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8);
+var dynCall_viij = Module['dynCall_viij'] = (a0, a1, a2, a3, a4) => (dynCall_viij = Module['dynCall_viij'] = wasmExports['dynCall_viij'])(a0, a1, a2, a3, a4);
 var dynCall_viijii = Module['dynCall_viijii'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viijii = Module['dynCall_viijii'] = wasmExports['dynCall_viijii'])(a0, a1, a2, a3, a4, a5, a6);
 var dynCall_jiiii = Module['dynCall_jiiii'] = (a0, a1, a2, a3, a4) => (dynCall_jiiii = Module['dynCall_jiiii'] = wasmExports['dynCall_jiiii'])(a0, a1, a2, a3, a4);
 var dynCall_iiiiij = Module['dynCall_iiiiij'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_iiiiij = Module['dynCall_iiiiij'] = wasmExports['dynCall_iiiiij'])(a0, a1, a2, a3, a4, a5, a6);
@@ -1493,10 +1500,43 @@ function invoke_viiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
   }
 }
 
-function invoke_viiiiii(index,a1,a2,a3,a4,a5,a6) {
+function invoke_viiiiiid(index,a1,a2,a3,a4,a5,a6,a7) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_i(index) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)();
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiid(index,a1,a2,a3,a4,a5,a6) {
   var sp = stackSave();
   try {
     getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiiiii(index,a1,a2,a3,a4,a5) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3,a4,a5);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -1559,10 +1599,21 @@ function invoke_iid(index,a1,a2) {
   }
 }
 
-function invoke_iiiiii(index,a1,a2,a3,a4,a5) {
+function invoke_viid(index,a1,a2,a3) {
   var sp = stackSave();
   try {
-    return getWasmTableEntry(index)(a1,a2,a3,a4,a5);
+    getWasmTableEntry(index)(a1,a2,a3);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiii(index,a1,a2,a3,a4,a5,a6) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -1596,17 +1647,6 @@ function invoke_diiid(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2,a3,a4);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viid(index,a1,a2,a3) {
-  var sp = stackSave();
-  try {
-    getWasmTableEntry(index)(a1,a2,a3);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -1669,17 +1709,6 @@ function invoke_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a1
   }
 }
 
-function invoke_i(index) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)();
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 function invoke_iiiiid(index,a1,a2,a3,a4,a5) {
   var sp = stackSave();
   try {
@@ -1735,43 +1764,10 @@ function invoke_iiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
   }
 }
 
-function invoke_jii(index,a1,a2) {
-  var sp = stackSave();
-  try {
-    return dynCall_jii(index,a1,a2);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 function invoke_vij(index,a1,a2,a3) {
   var sp = stackSave();
   try {
     dynCall_vij(index,a1,a2,a3);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viiiji(index,a1,a2,a3,a4,a5,a6) {
-  var sp = stackSave();
-  try {
-    dynCall_viiiji(index,a1,a2,a3,a4,a5,a6);
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
-function invoke_viij(index,a1,a2,a3,a4) {
-  var sp = stackSave();
-  try {
-    dynCall_viij(index,a1,a2,a3,a4);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -1790,10 +1786,43 @@ function invoke_viiji(index,a1,a2,a3,a4,a5) {
   }
 }
 
+function invoke_jii(index,a1,a2) {
+  var sp = stackSave();
+  try {
+    return dynCall_jii(index,a1,a2);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiijid(index,a1,a2,a3,a4,a5,a6,a7) {
+  var sp = stackSave();
+  try {
+    dynCall_viiijid(index,a1,a2,a3,a4,a5,a6,a7);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
 function invoke_viiiijii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
   var sp = stackSave();
   try {
     dynCall_viiiijii(index,a1,a2,a3,a4,a5,a6,a7,a8);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viij(index,a1,a2,a3,a4) {
+  var sp = stackSave();
+  try {
+    dynCall_viij(index,a1,a2,a3,a4);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

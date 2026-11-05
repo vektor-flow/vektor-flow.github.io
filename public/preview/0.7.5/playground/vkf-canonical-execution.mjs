@@ -1,7 +1,9 @@
+import {takeNormalPhysicsProgram} from './vkf-normal-physics-program.mjs?sha256=96a6931d3215793bbbc1c5c23724e4145e25c11ca27b0c73b20020f701d43260';
+import {prepareNormalPhysicsLifetime,classifyNormalImports} from './vkf-normal-physics-lifetime.mjs?sha256=7db652e4e100f1bba04f50fa35ee570762d8cb9dd1950d811e4b1f3afc0f4340';
 import {prepareFormatterIr} from './prepare-formatter-ir.mjs';
 import {copyCanonicalRetainedPackets} from './browser-copy-retained-packets.mjs';
-import {executeRetainedViaWindow} from './vkf-retained-worker-execution.mjs';
-import {createCanonicalBrowserCompiler} from './vkf-canonical-browser-compiler.mjs';
+import {executeRetainedViaWindow} from './vkf-retained-worker-execution.mjs?sha256=005e0af2270e715e32601bb13baeb03de47eb66024538ac44d069f003c84f30a';
+import {createCanonicalBrowserCompiler} from './vkf-canonical-browser-compiler.mjs?sha256=8e6aefa73f34906e854999572c12eb75fb6931f0382858cc95b07b1bbf223e6f';
 import {createBrowserConcurrentImport} from './vkf-concurrent-host.mjs';
 import {prepareConcurrentWorkerType} from './vkf-prepared-workers.mjs';
 const now=()=>performance.now();
@@ -38,22 +40,37 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
       const trace=(phase)=>console.warn("[e2212-current-host-phase] "+phase+" ms="+now().toFixed(3));const began=now();trace("compileSource.entry");const program=compiler.compileSource(source,filename,options);trace("compileSource.return");
       trace("prepareFormatterIr.entry");if(owner.formatterOwner){const prepared=prepareFormatterIr(formatter,program.typedIRText);if(prepared!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));}
       trace("prepareFormatterIr.return");const compiled=now();trace("WebAssembly.compile.entry");const module=await WebAssembly.compile(program.wasm);trace("WebAssembly.compile.return");
-      const imports=WebAssembly.Module.imports(module);let prepared,host,api,retained;
+      const imports=WebAssembly.Module.imports(module),route=classifyNormalImports(imports);
+      let prepared,host,api,retained,physics;
       try{
-        if(imports.length===1&&imports[0].module==='vkf.retained'&&imports[0].name==='invoke_v1'&&imports[0].kind==='function'){
-          trace("executeRetainedViaWindow.entry");retained=await executeRetainedViaWindow(program.wasm,program.manifest);trace("executeRetainedViaWindow.return");
-        }else if(imports.length){
-          if(imports.length!==1||imports[0].module!=='vkf.concurrent'||imports[0].name!=='invoke'||imports[0].kind!=='function'){
-            throw new TypeError('Compiled program requires an unavailable host capability');
+        options.signal?.throwIfAborted();
+        if(route.physics!==Boolean(program.manifest.physicsReplay))
+          throw new TypeError('Normal physics compiler/import association differs');
+        if(route.retained){
+          trace("executeRetainedViaWindow.entry");
+          retained=await executeRetainedViaWindow(program.wasm,program.manifest,
+            {program,sourceBinding,signal:options.signal});
+          trace("executeRetainedViaWindow.return");
+        }else{
+          let issued;
+          if(route.physics){
+            issued=takeNormalPhysicsProgram(program,sourceBinding);
+            physics=await prepareNormalPhysicsLifetime(issued.sourceOwner,issued.manifest,issued.binding,options.signal);
           }
-          prepared=await prepareConcurrentWorkerType();
-          host=createBrowserConcurrentImport(module,()=>api,prepared.WorkerType);
+          if(route.concurrent){
+            prepared=await prepareConcurrentWorkerType();
+            options.signal?.throwIfAborted();
+            host=createBrowserConcurrentImport(module,()=>api,prepared.WorkerType);
+          }
+          options.signal?.throwIfAborted();
+          api=new WebAssembly.Instance(module,{...(host??{}),...(physics?.imports??{})}).exports;
+          physics?.bind(api);
         }
-        if(!retained) api=new WebAssembly.Instance(module,host??{}).exports;
         const entry=program.manifest.functions.$vkf_main;
         if(!entry||entry.parameters!==0)throw new TypeError('Current program entry is unavailable');
         trace("vkf_vm_invoke.entry");const status=retained?0:api.vkf_vm_invoke(entry.index,0);trace("vkf_vm_invoke.return");
         if(status!==0)throw new Error('VKF program failed with status '+status);
+        options.signal?.throwIfAborted();
         host?.materializeOutput();
         const executed=now();
         const used=retained?retained.memory.byteLength:Math.max(api.vkf_vm_heap_ptr(),api.vkf_vm_results_ptr()+api.vkf_vm_value_slot_size());
@@ -67,6 +84,12 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
           formatter.HEAPU8.set(memory,pointer);const copiedAt=now();
           trace("formatter.stdout.entry");checked('vkf_browser_format_stdout',pointer,used,outputPointer);trace("formatter.stdout.return");
           const stdout=formatter.ccall('vkf_browser_stdout','string',[],[]);const stdoutAt=now();
+          if(retained?.receipt?.liveWorld===true){
+            // The real Frame owns this World. Formatting detached scene packets
+            // would construct a second static presentation after guest return.
+            return {output:{kind:'visual',stdout,stderr:''},retainedHost:retained.receipt,
+              timing:{compileMs:compiled-began,executeMs:executed-compiled,formatMs:now()-executed}};
+          }
           const binaryRetained=typeof formatter._vkf_browser_format_retained_ui_packets_binary==='function';
           trace("formatter.retained.entry");checked(binaryRetained?'vkf_browser_format_retained_ui_packets_binary':'vkf_browser_format_retained_ui_packets',pointer,used,outputPointer);
           trace("formatter.retained.return");const retainedFormatAt=now();const packetJSON=formatter.ccall('vkf_browser_retained_ui_packets','string',[],[]);const packetReadAt=now();
@@ -75,12 +98,37 @@ export async function createCanonicalExecution(packageDescriptor,packageAssets,r
           const output={kind:packets.length?'visual':'console',stdout,stderr:''};
           const ownedPackets=binaryRetained?copyCanonicalRetainedPackets(formatter,packets):packets.map(packet=>({...packet,arena:Uint8Array.from(packet.arena)}));
           if(ownedPackets.length)output.retained_scene_arenas=ownedPackets;
-          return {output,retainedHost:retained?.receipt,timing:{formatProfile:{binaryRetained,usedBytes:used,packetJSONChars:packetJSON.length,allocateMs:allocatedAt-formatStart,heapCopyMs:copiedAt-allocatedAt,stdoutMs:stdoutAt-copiedAt,retainedFormatMs:retainedFormatAt-stdoutAt,packetReadMs:packetReadAt-retainedFormatAt,jsonParseMs:parsedAt-packetReadAt,arenaReconstructionMs:now()-parsedAt},compileProfile:program.compileProfile,compileMs:compiled-began,executeMs:executed-compiled,formatMs:now()-executed}};
+          const generation=typeof formatter._vkf_browser_retained_temporal_generation==='function'?formatter.ccall('vkf_browser_retained_temporal_generation','string',[],[]):'';
+          return {output,temporal:generation?{generation}:undefined,retainedHost:retained?.receipt,timing:{formatProfile:{binaryRetained,usedBytes:used,packetJSONChars:packetJSON.length,allocateMs:allocatedAt-formatStart,heapCopyMs:copiedAt-allocatedAt,stdoutMs:stdoutAt-copiedAt,retainedFormatMs:retainedFormatAt-stdoutAt,packetReadMs:packetReadAt-retainedFormatAt,jsonParseMs:parsedAt-packetReadAt,arenaReconstructionMs:now()-parsedAt},compileProfile:program.compileProfile,compileMs:compiled-began,executeMs:executed-compiled,formatMs:now()-executed}};
         }finally{formatter._free(pointer);}
-      }finally{host?.close();prepared?.close();}
+      }finally{
+        try{physics?.close();}finally{try{host?.close();}finally{prepared?.close();}}
+      }
   };
   return Object.freeze({
     sourceBinding,
+    disposeTemporal(generation){
+      const result=pending.then(()=>{
+        if(typeof generation!=='string'||!generation)throw new TypeError('Invalid temporal source generation');
+        if(typeof formatter._vkf_browser_dispose_retained_temporal==='function')
+          formatter.ccall('vkf_browser_dispose_retained_temporal',null,['string'],[generation]);
+        return {disposed:true,generation};
+      });
+      pending=result.catch(()=>{});return result;
+    },
+    sample(elapsed,generation){
+      const result=pending.then(()=>{
+        if(typeof generation!=='string'||!generation||typeof elapsed!=='number'||!Number.isFinite(elapsed)||elapsed<0)
+          throw new TypeError('Invalid source-owned temporal sample request');
+        if(typeof formatter._vkf_browser_sample_retained_ui_packets_binary!=='function')
+          throw new TypeError('Compiled temporal sampler is unavailable');
+        const status=formatter.ccall('vkf_browser_sample_retained_ui_packets_binary','number',['number','string'],[elapsed,generation]);
+        if(status!==0)throw new Error(formatter.ccall('vkf_browser_error','string',[],[]));
+        const packets=JSON.parse(formatter.ccall('vkf_browser_retained_ui_packets','string',[],[]));
+        return {packets:copyCanonicalRetainedPackets(formatter,packets),generation};
+      });
+      pending=result.catch(()=>{});return result;
+    },
     run(source,filename=packageEntry??'<browser>',options={}){
       // One compiler owner holds the typed IR used by both native formatters.
       // Keep that entire transaction exclusive, including asynchronous setup.

@@ -1,4 +1,4 @@
-import {createCanonicalExecution} from './playground/vkf-canonical-execution.mjs';
+import {createCanonicalExecution} from './playground/vkf-canonical-execution.mjs?sha256=ab586f2649122a8e47500c3ccf354414eb8327ab45804ad3369b00c0390b84e8';
 let compilerPromise;
 self.onmessage=async({data})=>{
   try{

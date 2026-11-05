@@ -457,9 +457,10 @@
           !deps.frame || typeof deps.frame.mount !== "function" || !internal)
         throw new Error("actual connected scene renderer and retained capability bridge are required");
       var implicitDisplay = null; // enrolled only when the compiled implicit producer executes
-      var panels = [], byRoot = new WeakMap(), disposed = false;
+      var panels = [], byRoot = new WeakMap(), disposed = false, quiesced = false;
+      var physicsWorlds = new Map();
       function live() {
-        if (disposed || getLayer() !== displayRoot)
+        if (disposed || quiesced || getLayer() !== displayRoot)
           throw new TypeError("retained producer session is disposed or its Display changed");
       }
       function vector(value, name) {
@@ -484,7 +485,7 @@
             member = owner.renderer.createView(args, descriptor.world_sequence);
           else if (descriptor.concrete_type === "Layer" &&
                    (descriptor.effect_kind === "add" || descriptor.effect_kind === "world_add"))
-            member = owner.renderer.createLayer(args, descriptor.world_sequence);
+            member = owner.renderer.createLayer(args, descriptor.world_sequence, descriptor.world_source);
           else throw new TypeError("retained producer concrete kind/effect mismatch");
           if (!owner.renderer.owns(member) || member.parent !== actualParent || member.viewport !== owner.api.body)
             throw new TypeError("actual renderer did not acknowledge its original member and viewport");
@@ -544,12 +545,63 @@
           var record = {api: api, parent: parent, container: container, concreteKind: descriptor.concrete_type,
             parentCapability: parentCapability === null ? implicitDisplay : parentCapability};
           panels.push(record); byRoot.set(api.root, record);
+          // Frame.close and its actual close button call this same mutable API.
+          // onBeforeDestroy cannot defer removal: the Frame swallows that hook's
+          // result/errors and removes its root synchronously. Keep the original
+          // destructor private until the source owner authorizes destruction.
+          var destroyFrame = api.destroy.bind(api), frameDestroyed = false;
+          api.destroy = function() {
+            if (disposed) {
+              if (!frameDestroyed) {frameDestroyed = true;return destroyFrame();}
+              return;
+            }
+            // Let the source owner's close aggregate any quiescence failure;
+            // a stop error must not bypass its target teardown/refusal path.
+            try { quiesce(); } finally {
+              if (typeof sessionOptions.onFrameClose === "function") sessionOptions.onFrameClose();
+              else throw new TypeError("Retained Frame requires its source owner to close");
+            }
+          };
           syncNativeLayout();
           return bridge.bindOwner(api.root, descriptor.concrete_type);
         } catch (error) {
           if (api && typeof api.destroy === "function") api.destroy();
           throw error;
         }
+      }
+      function bindPhysics(capability, resourcePointer, args, physics) {
+        live();
+        var value=bridge.resolve(capability), owner=byRoot.get(value);
+        if (!owner || !owner.renderer || !["Frame<2>","Frame<3>"].includes(bridge.kind(capability)) ||
+            !Number.isSafeInteger(args.world_id) || args.world_id<0)
+          throw new TypeError("World binding requires its original populated Frame");
+        var original=physicsWorlds.get(args.world_id);
+        var world=original ? original.world : Object.freeze({});
+        var view=physics.bindWorld(resourcePointer,world,args.geometry,args);
+        var main=!original;
+        if (!original) {original={world:world,frame:owner,readers:new Set()};physicsWorlds.set(args.world_id,original);}
+        var ownReader;
+        ownReader=owner.renderer.bindPhysics(args.geometry,{
+          main:main,step:args.world_time_step,
+          request:function(cause,tick){
+            var accepted=physics.requestWorld(view,cause,tick);
+            if (cause === "main" || cause === "reset")
+              original.readers.forEach(function(reader){if(reader!==ownReader)reader(accepted);});
+            return accepted;
+          },
+          fail:function(error){if(typeof sessionOptions.onPhysicsError === "function") sessionOptions.onPhysicsError(error);}
+        });
+        original.readers.add(ownReader);
+      }
+      function startPhysics(mountToolbar) {
+        live();
+        panels.forEach(function(panel){
+          if(!panel.renderer?.hasPhysics)return;
+          if(typeof mountToolbar!=="function")throw new TypeError("Existing physical Frame toolbar is required");
+          panel.toolbarCleanup=mountToolbar(panel.api,panel.renderer.snapshot().scene,
+            {document:global.document,VfDisplay:global.VfDisplay,animation:panel.renderer.physicsControls});
+          panel.renderer.startPhysics();
+        });
       }
       function memberNodes(owner) {
         if (!owner.renderer) return [];
@@ -652,19 +704,35 @@
         }
         throw new TypeError("unimplemented concrete retained property " + kind + "." + name);
       }
+      function quiesce() {
+        if (quiesced || disposed) return;
+        quiesced = true;
+        var failures = [];
+        panels.forEach(function(panel) {
+          // Stop controls and future producer activity without removing the
+          // original Frame, accepted readers, geometry or disposal authority.
+          panel.api.root.inert = true;
+          var cleanup = panel.toolbarCleanup; panel.toolbarCleanup = null;
+          try { cleanup?.(); } catch (error) { failures.push(error); }
+          try { panel.renderer?.quiesce(); } catch (error) { failures.push(error); }
+        });
+        if (failures.length) throw new AggregateError(failures, "actual retained renderer quiescence failed");
+      }
       function dispose() {
         if (disposed) return;
-        disposed = true;
         var failures = [];
+        try { quiesce(); } catch (error) { failures.push(error); }
+        disposed = true;
         for (var i = panels.length - 1; i >= 0; i--) {
+          try { panels[i].toolbarCleanup?.(); } catch (error) { failures.push(error); }
           try { if (panels[i].renderer) panels[i].renderer.dispose(); } catch (error) { failures.push(error); }
           try { panels[i].api.destroy(); } catch (error) { failures.push(error); }
         }
-        panels.length = 0; byRoot = new WeakMap(); implicitDisplay = null;
+        panels.length = 0; byRoot = new WeakMap(); implicitDisplay = null; physicsWorlds.clear();
         try { syncNativeLayout(); } catch (error) { failures.push(error); }
         if (failures.length) throw new AggregateError(failures, "actual retained renderer disposal failed");
       }
-      return Object.freeze({abi: "vkf-retained-renderer-producer-v1", produce: produce, parentOf: parentOf, beforeLookup: beforeLookup, property: property, observe: observe, dispose: dispose});
+      return Object.freeze({abi: "vkf-retained-renderer-producer-v1", produce: produce, bindPhysics: bindPhysics, startPhysics: startPhysics, parentOf: parentOf, beforeLookup: beforeLookup, property: property, observe: observe, quiesce: quiesce, dispose: dispose});
     }
 
     return {

@@ -46,7 +46,7 @@ export function createNativePlotTextLayer({container, createLayer, measure, onEr
     onError?.(error);
   };
   async function draw(input) {
-    const batches = new Map();
+    const batches = new Map(), titlePlacements = [], labelBounds = [];
     for (const row of input.rows) {
       need(row.point?.length === 2 && row.point.every(Number.isFinite), 'NATIVE_PLOT_TEXT_POSITION');
       const rotation = Number(row.rotation) || 0;
@@ -65,6 +65,7 @@ export function createNativePlotTextLayer({container, createLayer, measure, onEr
       const source = nativePlotTextSource(row.text), scale=(row.fontSize ?? 12)/(10*7200/7227);
       const [a,b,c,d] = batch.camera;
       let [x,y] = row.point;
+      let bounds = null;
       if (row.keepInViewport) {
         need(typeof measure === 'function','NATIVE_PLOT_TEXT_NATIVE_METRICS_REQUIRED');
         state={...state,phase:'native-metrics',pendingSource:source};
@@ -73,14 +74,40 @@ export function createNativePlotTextLayer({container, createLayer, measure, onEr
         const [ax,ay]=row.anchor ?? [0.5,0.5],theta=rotation*Math.PI/180,cos=Math.cos(theta),sin=Math.sin(theta);
         const offsets=[[-ax*width,-ay*height],[(1-ax)*width,-ay*height],[-ax*width,(1-ay)*height],[(1-ax)*width,(1-ay)*height]]
           .map(([u,v])=>[cos*u-sin*v,sin*u+cos*v]);
-        const inset=4,minX=Math.min(...offsets.map(p=>p[0])),maxX=Math.max(...offsets.map(p=>p[0]));
+        const inset=row.axisTitle ? Math.max(4,row.titleInset || 0) : 4,minX=Math.min(...offsets.map(p=>p[0])),maxX=Math.max(...offsets.map(p=>p[0]));
         const minY=Math.min(...offsets.map(p=>p[1])),maxY=Math.max(...offsets.map(p=>p[1]));
         x=Math.max(inset-minX,Math.min(input.width-inset-maxX,x));
         y=Math.max(inset-minY,Math.min(input.height-28-inset-maxY,y));
+        bounds={minX,maxX,minY,maxY,inset};
       }
-      batch.specs.push({id:row.id, kind:'math', source,
+      const spec={id:row.id, kind:'math', source,
         anchor:[a*x+b*y,c*x+d*y], scale,
-        sizeSpace:'world', anchorFraction:row.anchor ?? [0.5,0.5]});
+        sizeSpace:'world', anchorFraction:row.anchor ?? [0.5,0.5]};
+      batch.specs.push(spec);
+      if (bounds) {
+        if (row.axisTitle && !rotation) titlePlacements.push({spec,camera:batch.camera,x,y,...bounds});
+        else labelBounds.push({left:x+bounds.minX,right:x+bounds.maxX,top:y+bounds.minY,bottom:y+bounds.maxY});
+      }
+    }
+    // Only the generated, horizontal crosshair titles move. Their native ink
+    // boxes must clear the already placed ticks, coordinates and inset toolbar.
+    // Keep each title at its axis-end x position and choose the nearest clear
+    // y interval; do not change glyphs, font size, ticks or the data viewport.
+    if (input.titleAvoidRect) labelBounds.push(input.titleAvoidRect);
+    for (const title of titlePlacements) {
+      const {x,y,minX,maxX,minY,maxY,inset,spec,camera}=title;
+      const gap=4, low=inset-minY, high=input.height-28-inset-maxY;
+      const obstacles=labelBounds.filter(box=>x+maxX+gap>box.left && x+minX-gap<box.right);
+      const candidates=[y,low,high];
+      for (const box of obstacles) candidates.push(box.top-gap-maxY,box.bottom+gap-minY);
+      let placedY=y, distance=Infinity;
+      for (const candidate of candidates) {
+        if (candidate<low || candidate>high || obstacles.some(box=>candidate+maxY+gap>box.top+1e-6 && candidate+minY-gap<box.bottom-1e-6)) continue;
+        if (Math.abs(candidate-y)<distance) {placedY=candidate;distance=Math.abs(candidate-y);}
+      }
+      const [a,b,c,d]=camera;
+      spec.anchor=[a*x+b*placedY,c*x+d*placedY];
+      labelBounds.push({left:x+minX,right:x+maxX,top:placedY+minY,bottom:placedY+maxY});
     }
     for (const [key, group] of groups) if (!batches.has(key)) {
       group.layer.canvas.removeEventListener('webglcontextlost',group.contextLost);

@@ -47,6 +47,9 @@ function ownRetainedScenePackets(packets, plotLayers) {
 // coordinates_visible:false omit optional decorations, preserving domains,
 // inverse projection, native navigation and the selected data clip policy.
 export function mountRetainedSceneResult(container, packets, {
+  sampleTemporal,
+  historicalPlayback = false,
+  disposeTemporal,
   axis_visible,
   coordinates_visible,
   document = globalThis.document,
@@ -67,7 +70,8 @@ export function mountRetainedSceneResult(container, packets, {
   }
   const plotLayers=Object.fromEntries(Object.entries({axis_visible,coordinates_visible}).filter(([,value])=>value !== undefined));
   for (const key of Object.keys(plotLayers)) if (typeof plotLayers[key] !== 'boolean') throw new TypeError(key+' requires boolean');
-  const ownedPackets = ownRetainedScenePackets(packets,plotLayers);
+  let ownedPackets = ownRetainedScenePackets(packets,plotLayers);
+  const frameIds = new Map(packets.map((packet,index) => [packet.metadata.scene.frame,ownedPackets[index].metadata.scene.frame]));
   container.hidden = false;
   const separateViewports = ownedPackets.length > 1 && ownedPackets.every(packet => {
     const scene=packet.metadata.scene;
@@ -85,6 +89,8 @@ export function mountRetainedSceneResult(container, packets, {
   }
   const frames = [];
   const animated = ownedPackets.some(packet=>packet.metadata.scene.meshes?.some(mesh=>mesh._layer_time));
+  if (animated && typeof sampleTemporal !== "function" && historicalPlayback !== true)
+    throw new Error("temporal Layers require their current compiled source sampler");
   let animationLast=null, animationElapsed=0, animationPlaying=true, playbackRate=1;
   const showFrame = (frame, visible) => {
     if (!frame?.root) return;
@@ -186,8 +192,10 @@ export function mountRetainedSceneResult(container, packets, {
     else if (command === "animation-reset") {
       animationElapsed = 0;
       animationLast = null;
-      for (const packet of ownedPackets) updateRetainedSceneTime(packet, 0);
-      for (const packet of ownedPackets) VfDisplay.renderRetainedSceneArena(packet);
+      // serialize after any in-flight sample; an older completion cannot
+      // overwrite the reset or resurrect a disposed source.
+      const reset = ++animationRevision;
+      animationPending = animationPending.then(() => sampleAndPresent(0,reset)).catch(error => renderError({detail:{error}}));
     } else return;
     publishAnimationState();
   };
@@ -210,18 +218,48 @@ export function mountRetainedSceneResult(container, packets, {
     }));
   });
   publishAnimationState();
-  const animate = (timestamp) => {
+  let animationRevision=0, animationPending=Promise.resolve();
+  const sampleAndPresent = async (elapsed,revision) => {
+    if (historicalPlayback === true && typeof sampleTemporal !== 'function') {
+      for (const packet of ownedPackets) updateRetainedSceneTime(packet,elapsed);
+      for (const packet of ownedPackets) VfDisplay.renderRetainedSceneArena(packet);
+      publishAnimationState();
+      return;
+    }
+    const result = await sampleTemporal(elapsed);
+    if (disposed || revision !== animationRevision) return;
+    if (!Array.isArray(result?.packets) || result.packets.length !== ownedPackets.length || !result.packets.every(retainedPacket))
+      throw new TypeError("compiled temporal output changed its owned Frame inventory");
+    const next = result.packets.map(packet => {
+      if (!frameIds.has(packet.metadata.scene.frame)) throw new TypeError("compiled temporal output references a foreign Frame");
+      return {...packet,metadata:{...scopeFrameReferences(packet.metadata,frameIds),
+        scene:{...scopeFrameReferences(packet.metadata.scene,frameIds),...plotLayers,native_plot_text:true}}};
+    });
+    if (new Set(next.map(packet=>packet.metadata.scene.frame)).size !== ownedPackets.length)
+      throw new TypeError("compiled temporal output duplicated a Frame");
+    ownedPackets = next;
+    await Promise.all(next.map(packet => new Promise((resolve,reject) => {
+      VfDisplay.renderRetainedSceneArena(packet, {
+        signal:presentationAbort.signal,afterPresented:resolve,onPresentationError:reject,
+      });
+    })));
+    if (!disposed) publishAnimationState();
+  };
+  const animate = async (timestamp) => {
     if (disposed) return;
     if (animationLast == null) animationLast = timestamp;
     if (animationPlaying) {
-      animationElapsed += Math.max(0, timestamp - animationLast) / 1000 * playbackRate;
+      animationElapsed = Math.max(0,animationElapsed + Math.max(0, timestamp - animationLast) / 1000 * playbackRate);
     }
     animationLast = timestamp;
-    for (const packet of ownedPackets) {
-      updateRetainedSceneTime(packet, animationElapsed);
-      VfDisplay.renderRetainedSceneArena(packet);
-    }
-    presentFrame = requestAnimationFrame(animate);
+    try {
+      if (animationPlaying) {
+        const elapsed=animationElapsed, revision=animationRevision;
+        animationPending=animationPending.then(() => sampleAndPresent(elapsed,revision));
+        await animationPending;
+      }
+      if (!disposed) presentFrame = requestAnimationFrame(animate);
+    } catch(error) {renderError({detail:{error}});}
   };
   presentFrame = requestAnimationFrame(() => {
     presentFrame = 0;
@@ -251,15 +289,24 @@ export function mountRetainedSceneResult(container, packets, {
       frame?.root?.remove?.();
     }
     viewport.remove?.();
+    if (typeof disposeTemporal === 'function') {
+      dispose.closed=Promise.resolve().then(disposeTemporal);
+      // The runner also owns this queued release and serializes the next Run.
+      // Preserve an observable failed cleanup without an unhandled rejection.
+      dispose.closed.catch(error=>container.dispatchEvent?.(new CustomEvent('vf-example-render-error',{bubbles:true,detail:{message:error.message,error}})));
+    }
   }
   // Scoped actual Frame identities and a real renderer completion endpoint.
   // Null means disposed before first presentation; never a successful draw.
   dispose.presented = presented;
+  dispose.closed = Promise.resolve();
   dispose.frameIds = Object.freeze(ownedPackets.map(packet => packet.metadata.scene.frame));
   dispose.element = frames.length === 1 ? frames[0]?.root ?? viewport : viewport;
   return dispose;
 }
 
+// Historical saved engine packets retain their pre-existing playback adapter.
+// Current Run output always supplies the compiled source sampler above.
 function temporalSample(descriptor, elapsed) {
   const coordinates = descriptor?.coordinates;
   if (!Array.isArray(coordinates) || coordinates.length < 2) return null;

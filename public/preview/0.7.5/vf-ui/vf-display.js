@@ -2875,6 +2875,23 @@
     out.light_flares = spec.light_flares || mesh.light_flares || null;
     out.texture = spec.texture || mesh.texture || null;
     out.surface_system = spec.surface_system || mesh.surface_system || null;
+    if (out.surface_system && typeof out.surface_system === "object") {
+      // Runtime readiness/texture flags belong to this built mesh, not to
+      // the authored Layer operands or detached formatter packet.
+      out.surface_system = Object.assign({}, out.surface_system);
+      var surfaceCamera = out.surface_system.camera;
+      if (surfaceCamera && typeof surfaceCamera === "object") {
+        out.surface_system.camera = Object.assign({}, surfaceCamera);
+        // Reuse the existing screen reflection/aperture camera path. Mirror
+        // sugar with an explicit authored reflected-camera link reaches the
+        // same geometry; no synthetic surface world or replacement camera.
+        if (String(out.surface_system.kind || "").toLowerCase().trim() === "mirror" &&
+            String(surfaceCamera.reflect_mirror_mesh_id || "").trim()) {
+          out.surface_system.kind = "screen";
+          out.surface_system._mirror_surface = true;
+        }
+      }
+    }
     // Physics is a first-class field-mesh property. Preserve it for ordinary
     // triangle meshes as well as instanced and expanded marker meshes.
     out.physics = spec.physics && typeof spec.physics === "object" ? spec.physics : (mesh.physics || null);
@@ -5927,6 +5944,7 @@
     options = options || {};
     var geom = _lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid];
     if (!geom || !findFrameEl(geomTargetFrameId(fid))) { return false; }
+    if (retainedFrameScenesV1.get(findFrameEl(geomTargetFrameId(fid)))?.quiesced) { return false; }
     var rec = frameViewRecord(fid);
     if (options.signal && options.signal.aborted) { return false; }
     var serial = Number(rec.viewSerial || 0) + 1;
@@ -8788,11 +8806,18 @@
     for (var j = 0; j < rec.entries.length; j += 1) {
       try {
         var ownedRenderer = rec.entries[j].renderer;
-        if (opts.destroy === true && ownedRenderer && typeof ownedRenderer.destroy === "function") {
-          ownedRenderer.destroy();
-          if (global.__vfFrameRenderers[String(fid)] === ownedRenderer) delete global.__vfFrameRenderers[String(fid)];
+        // Pending init can still allocate after stop; its settled stale
+        // continuation destroys once. Settled entries destroy here as usual.
+        if (opts.destroy === true && !rec.entries[j].rendererInitPending && ownedRenderer && typeof ownedRenderer.destroy === "function") {
+          if (!rec.entries[j].rendererDestroyed) {
+            rec.entries[j].rendererDestroyed = true;
+            ownedRenderer.destroy();
+          }
         } else if (ownedRenderer && typeof ownedRenderer.stop === "function") {
           ownedRenderer.stop();
+        }
+        if (opts.destroy === true && global.__vfFrameRenderers[String(fid)] === ownedRenderer) {
+          delete global.__vfFrameRenderers[String(fid)];
         }
       } catch (_) {}
       try {
@@ -12015,6 +12040,7 @@
     if (cfg.x_label) {
       out.push({
         pixel: true,
+        axis_title: !axis2DRotationDeg(cfg) ? "x" : null,
         boundary_anchor: true,
         boundary_inset_px: labelFramePad,
         solve_boundary_and_axis: true,
@@ -12050,6 +12076,7 @@
     if (cfg.y_label) {
       out.push({
         pixel: true,
+        axis_title: !axis2DRotationDeg(cfg) ? "y" : null,
         boundary_anchor: true,
         boundary_inset_px: labelFramePad,
         solve_boundary_and_axis: true,
@@ -12304,11 +12331,20 @@
     });
   }
 
-  function nativePlotInk() { return activeColorTheme() === "dark" ? [1,1,1,1] : [0,0,0,1]; }
+  function nativePlotInk(scene) {
+    var background = scene && scene.background;
+    if (Array.isArray(background) && background.length >= 3) {
+      return 0.2126 * background[0] + 0.7152 * background[1] + 0.0722 * background[2] < 0.5 ? [1,1,1,1] : [0,0,0,1];
+    }
+    return activeColorTheme() === "dark" ? [1,1,1,1] : [0,0,0,1];
+  }
 
   function applyExamplePlotTheme(scene) {
-    var ink = nativePlotInk();
-    scene.background = activeColorTheme() === "dark" ? [0,0,0,1] : [1,1,1,1];
+    if (!Array.isArray(scene.background) || scene.background === scene.__vf_example_theme_background) {
+      scene.background = activeColorTheme() === "dark" ? [0,0,0,1] : [1,1,1,1];
+      scene.__vf_example_theme_background = scene.background;
+    }
+    var ink = nativePlotInk(scene);
     var meshes = Array.isArray(scene.meshes) ? scene.meshes : [];
     var curves = meshes.filter(function(mesh) {return mesh.topology === "line-list" && !!mesh.curve_path;});
     meshes.forEach(function(mesh) {
@@ -12339,11 +12375,11 @@
     var generation = rec.nativePlotTextGeneration = (rec.nativePlotTextGeneration || 0) + 1;
     var items = (geomSpec.texts || []).slice();
     (geomSpec.meshes || []).forEach(function(mesh) {
-      if (mesh && mesh.axis_ticks && defaultPlotAxesVisible(geomSpec,mesh)) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h).map(function(item) {
+      if (mesh && mesh.mode3d !== true && mesh.axis_ticks && defaultPlotAxesVisible(geomSpec,mesh)) items = items.concat(collectAxisTickLabelSpecs(mesh,w,h).map(function(item) {
         return Object.assign({},item,{native_plot_bounded:true});
       }));
     });
-    var rows = [], seen = Object.create(null), ink = nativePlotInk();
+    var rows = [], seen = Object.create(null), ink = nativePlotInk(geomSpec);
     items.forEach(function(item, index) {
       var p = geomTextToPx(item,w,h,geomSpec.camera || null,geomSpec);
       if (!p || !textPointIsNearViewport(p,w,h,112) || !String(item.text || "")) return;
@@ -12354,6 +12390,8 @@
       rows.push({id:"plot-text-"+index,text:String(item.text),point:p,
         rotation:Number(item.rotate) || 0, fontSize:Math.max(1,Number(item.font_size) || 12),
         keepInViewport:item.native_plot_bounded === true,
+        axisTitle:!Number(item.rotate) ? item.axis_title : null,
+        titleInset:Number(item.boundary_inset_px) || 0,
         anchor:[-anchor[0]/100,-anchor[1]/100],color:ink.slice()});
     });
     // Always recompute from the current shared inverse transform. A stationary
@@ -12388,7 +12426,18 @@
             frameEl.dispatchEvent(new global.CustomEvent("vf-inline-render-error",{bubbles:true,detail:{message:String(error.message || error)}}));
           }});
       }
-      return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,
+      // Use the actual inset chrome in the same fitted CSS-pixel space as text.
+      var toolbar = frameEl.querySelector(".vf-plot-toolbar") || frameEl.querySelector(".vf-frame__toolbar");
+      var titleAvoidRect = null;
+      if (toolbar && toolbar.hidden !== true) {
+        var toolbarRect = toolbar.getBoundingClientRect();
+        var textRect = fittedFrameContentRect(frameEl, geomFrameHost(frameEl, fid));
+        if (toolbarRect.width > 0 && toolbarRect.height > 0) {
+          titleAvoidRect = {left:toolbarRect.left-textRect.left, top:toolbarRect.top-textRect.top,
+            right:toolbarRect.right-textRect.left, bottom:toolbarRect.bottom-textRect.top};
+        }
+      }
+      return rec.nativePlotTextLayer.update({rows:rows,width:w,height:h,titleAvoidRect:titleAvoidRect,
         pixelRatio:Math.max(1,Number(global.devicePixelRatio) || 1),foreground:ink});
     });
     rec.nativeLabelReady.catch(function(error) {
@@ -12798,12 +12847,39 @@
     }
   }
 
+  // Pending init may settle while the SAME retained Frame is quiesced but
+  // still owns its entries (including after a refused target close). That is
+  // not staleness: stop in place and leave destruction to owned invalidation.
+  function geomRendererInitCanContinue(fid, frameEl, rec, entry, frameId) {
+    // Raw geometry resolves widget targets; dynamic/ledger use their exact
+    // Frame ID, matching each mount's original lookup (including ':' in IDs).
+    var renderer = entry.renderer;
+    if (frameRecs[fid] !== rec || rec.entries.indexOf(entry) < 0 ||
+        frameEl.isConnected === false || findFrameEl(frameId == null ? geomTargetFrameId(fid) : frameId) !== frameEl) {
+      try {
+        if (!entry.rendererInitPending && !entry.rendererDestroyed && renderer && typeof renderer.destroy === "function") {
+          entry.rendererDestroyed = true;
+          renderer.destroy();
+        } else if (!entry.rendererDestroyed && renderer && typeof renderer.stop === "function") {
+          renderer.stop();
+        }
+      } catch (_) {}
+      return false;
+    }
+    if (retainedFrameScenesV1.get(frameEl)?.quiesced) {
+      try { renderer?.stop?.(); } catch (_) {}
+      return false;
+    }
+    return true;
+  }
+
   function updateGeomFrame(fid, geomSpec) {
     if (!_vfHostInputReadyPosted) {
       scheduleHostInputReady();
     }
     normalizeGeomSpecCameras(geomSpec);
     var frameEl = findFrameEl(geomTargetFrameId(fid));
+    if (frameEl && retainedFrameScenesV1.get(frameEl)?.quiesced) { return; }
     if (!frameEl) {
       vlog("warn", "updateGeomFrame [" + fid + "]: no DOM element .vf-frame[data-vf-frame-id=" + fid + "] found — frame not placed yet?");
       return;
@@ -12990,22 +13066,17 @@
           cv.style.pointerEvents = "none";
           // Assign stable object_id (1-based: 0 means "no object")
           r._objectId = meshIdx + 1;
-          function entryIsCurrent() {
-            return frameRecs[fidInner] === rec && rec.entries.indexOf(entry) >= 0 &&
-              frameEl.isConnected !== false && findFrameEl(geomTargetFrameId(fidInner)) === frameEl;
-          }
-          function stopStaleEntry() {
-            try { if (r && typeof r.destroy === "function") { r.destroy(); } else if (r && typeof r.stop === "function") { r.stop(); } } catch (_) {}
-          }
           function mountInitFailureFallback() {
-            if (!entryIsCurrent()) { stopStaleEntry(); return false; }
+            if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return false; }
             var latest = rec.latestGeomSpec || geomSpec;
             return mountSoftware3DRenderer(fidInner, frameEl, latest,
               renderableGeomSpecs(latest.meshes || []));
           }
           var initAccepted = false;
+          entry.rendererInitPending = true;
           r.init().then(function(ok) {
-            if (!entryIsCurrent()) { stopStaleEntry(); return; }
+            entry.rendererInitPending = false;
+            if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
             if (!ok) {
               entry.initError = global.__vfGeomWgpuLastError || "renderer init returned false";
               vlog("error", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init FAILED (WebGPU unavailable?)");
@@ -13015,10 +13086,13 @@
               entry.initError = "";
               vlog("info", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init OK, starting render loop");
               prewarmGeomRenderer(r);
+              if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
               r.start();
+              if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
               if (typeof ResizeObserver === "function") {
                 var host = cv.parentElement || cv;
                 entry.resizeObserver = new ResizeObserver(function () {
+                  if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
                   layoutGeomCanvas(frameEl, cv, fid);
                   var resizeSize = syncCanvasSize(cv, { deferStyle: true });
                   if (r && typeof r.onResize === "function") {
@@ -13028,10 +13102,12 @@
                 });
                 entry.resizeObserver.observe(host);
               }
+              if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
               ensureGeomFrameEvents(fidInner);
             }
           }).catch(function(err) {
-            if (!entryIsCurrent()) { stopStaleEntry(); return; }
+            entry.rendererInitPending = false;
+            if (!geomRendererInitCanContinue(fidInner, frameEl, rec, entry)) { return; }
             entry.initError = (err && err.message ? err.message : String(err));
             vlog("error", "updateGeomFrame [" + fidInner + "]: renderer " + meshIdx + " init threw: " + (err && err.message ? err.message : String(err)));
             if (!initAccepted) { mountInitFailureFallback(); }
@@ -13357,7 +13433,7 @@
     canvas.style.pointerEvents = "none";
     var initSettled = false;
     var initTimeout = global.setTimeout ? global.setTimeout(function () {
-      if (initSettled) { return; }
+      if (initSettled || !geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       entry.initError = "renderer init timed out";
       if (typeof global.__vfGeomRuntimeErrorHandler === "function") {
         global.__vfGeomRuntimeErrorHandler(
@@ -13366,9 +13442,12 @@
         );
       }
     }, 5000) : 0;
+    entry.rendererInitPending = true;
     r.init().then(function(ok) {
+      entry.rendererInitPending = false;
       initSettled = true;
       if (initTimeout && global.clearTimeout) { global.clearTimeout(initTimeout); }
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       if (!ok) {
         entry.initError = global.__vfGeomWgpuLastError || "renderer init returned false";
         vlog("error", "mountDynamicGeomFrame [" + fid + "]: renderer init FAILED");
@@ -13380,10 +13459,13 @@
       entry.initError = "";
       vlog("info", "mountDynamicGeomFrame [" + fid + "]: renderer init OK, starting render loop");
       prewarmGeomRenderer(r);
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       r.start();
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       if (typeof ResizeObserver === "function") {
         var host = canvas.parentElement || canvas;
         entry.resizeObserver = new ResizeObserver(function () {
+          if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
           var resizeSize = syncCanvasSize(canvas, { deferStyle: true });
           if (rec.dynamicAdapter) {
             rec.dynamicAdapter.onHostResize(host.clientWidth || 0, host.clientHeight || 0);
@@ -13398,9 +13480,11 @@
           rec.dynamicAdapter.onHostResize(host.clientWidth || 0, host.clientHeight || 0);
         }
       }
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       if (!entry.liveResizeAttached && global.addEventListener) {
         entry.liveResizeAttached = true;
         global.addEventListener("vf-frame-live-resize", function (ev) {
+          if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
           var detail = ev && ev.detail ? ev.detail : {};
           var liveFrameId = String(detail.frameId || detail.id || "");
           if (liveFrameId !== String(geomTargetFrameId(fid)) && liveFrameId !== String(fid)) { return; }
@@ -13415,11 +13499,14 @@
           syncCanvasStyle(canvas, liveSize);
         }, true);
       }
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       ensureGeomFrameEvents(fid);
       schedulePostGeomLayout();
     }).catch(function(err) {
+      entry.rendererInitPending = false;
       initSettled = true;
       if (initTimeout && global.clearTimeout) { global.clearTimeout(initTimeout); }
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       entry.initError = (err && err.message ? err.message : String(err));
       vlog("error", "mountDynamicGeomFrame [" + fid + "]: renderer init threw: " + (err && err.message ? err.message : String(err)));
       if (typeof global.__vfGeomRuntimeErrorHandler === "function") {
@@ -14079,7 +14166,10 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     r._frameId = String(fid);
     global.__vfFrameRenderers[String(fid)] = r;
     canvas.style.pointerEvents = "none";
+    entry.rendererInitPending = true;
     r.init().then(function(ok) {
+      entry.rendererInitPending = false;
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       if (!ok) {
         entry.initError = global.__vfGeomWgpuLastError || "renderer init returned false";
         vlog("error", "mountLedgerGeomFrame [" + fid + "]: renderer init FAILED");
@@ -14088,10 +14178,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       entry.initError = "";
       vlog("info", "mountLedgerGeomFrame [" + fid + "]: renderer init OK, starting render loop");
       prewarmGeomRenderer(r);
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       r.start();
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       if (typeof ResizeObserver === "function") {
         var host = canvas.parentElement || canvas;
         entry.resizeObserver = new ResizeObserver(function () {
+          if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
           var resizeSize = syncCanvasSize(canvas, { deferStyle: true });
           if (rec.dynamicAdapter) {
             rec.dynamicAdapter.onHostResize(host.clientWidth || 0, host.clientHeight || 0);
@@ -14106,9 +14199,12 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           rec.dynamicAdapter.onHostResize(host.clientWidth || 0, host.clientHeight || 0);
         }
       }
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       ensureGeomFrameEvents(fid);
       schedulePostGeomLayout();
     }).catch(function(err) {
+      entry.rendererInitPending = false;
+      if (!geomRendererInitCanContinue(fid, frameEl, rec, entry, fid)) { return; }
       entry.initError = (err && err.message ? err.message : String(err));
       vlog("error", "mountLedgerGeomFrame [" + fid + "]: renderer init threw: " + (err && err.message ? err.message : String(err)));
     });
@@ -14595,8 +14691,11 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     var fid = frameRoot.getAttribute("data-vf-frame-id");
     if (!fid || findFrameEl(fid) !== frameRoot)
       throw new TypeError("actual mounted Frame renderer identity is unavailable");
-    var alive = true, members = new WeakSet(), children = [], pending = [];
+    var alive = true, quiesced = false, members = new WeakSet(), children = [], pending = [];
     var views = [], active = null, worldScopes = new Map();
+    var physicsBindings=[], physicsLayers=new WeakMap(), physicsClock=null, physicsStarted=false;
+    var physicsPlaying=true, physicsRate=1, physicsDue=0;
+    var physicsPresentation=null;
     var scene = {frame: fid, views: views, active_view: 0, meshes: [], texts: [], camera: null};
     var identityTransform = new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);
     var pendingCamera = null;
@@ -14651,6 +14750,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
     }
     function publish() {
       live();
+      if (quiesced) return;
       // Retain the decoration separately when republishing member arrays.
       // The legacy axis controller owns this helper, never a source Layer.
       var axisHelper = scene.meshes.find(function(mesh){return mesh.axis3d_helper_lines === true && !members.has(mesh);});
@@ -14713,19 +14813,37 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       }
     }
     class RetainedLayerV1 {
-      constructor(args, world) {
+      constructor(args, world, worldSource) {
         // The actual compiler packs a versioned graphics packet in emitted
         // bytecode from original evaluated operands. The renderer validates and
         // consumes that packet; it does not evaluate channels, infer topology,
         // broadcast values, or construct geometry from source/metadata.
+        // World ownership is independent of the marker's size space. General
+        // embeddings use the same Add packet and material renderer as direct
+        // Layers; only the established particle layout has world-sized markers.
+        var worldMarker = !!world && (worldSource === undefined || Object.hasOwn(args, "p_u"));
+        var temporal = args.__renderer_temporal_coordinates_v1 === true;
         var surface = Object.hasOwn(args, "__renderer_surface_packet_v2");
+        // Indexed triangles reuse the compiler-owned surface packet ABI.
+        // Operand names select validation only; all geometry comes from packet.
+        var indexedMesh = surface && (Object.hasOwn(args, "p_up") || Object.hasOwn(args, "faces_uvw"));
+        var parametricGrid = surface && !indexedMesh && (Object.hasOwn(args, "x_uv") || Object.hasOwn(args, "y_uv"));
         var v2 = surface || Object.hasOwn(args, "__renderer_line_packet_v2") || Object.hasOwn(args, "__renderer_point_packet_v2");
         var line = Object.hasOwn(args, "__renderer_line_packet_v2") || Object.hasOwn(args, "__renderer_line_packet_v1");
         var allowed = line ? ["x_u", "y_u", "c", "c_ic", "c_uc", "w", "pickable", "id", "__renderer_line_packet_v1"] :
           ["p_ic", "p_u", "x_i", "y_i", "x", "y", "c", "c_ic", "c_uc", "s", "s_u", "s_mode", "pickable", "id", "__renderer_point_packet_v1"];
         if (v2) allowed = allowed.concat(["p_ic", "p_uc", "edge_bm", "color", "__renderer_line_packet_v2", "__renderer_point_packet_v2"]);
-        if (surface) allowed = ["x_u", "y_v", "z", "z_uv", "c", "c_uv", "color", "pickable", "id", "__renderer_surface_packet_v2"];
-        allowed = allowed.concat(["receives_lighting", "no_lighting", "mode3d", "roughness", "reflectivity", "emissivity", "transparency", "optical_index", "emission", "casts_shadow", "receives_shadow", "depth_write", "visible"]);
+        if (surface) allowed = indexedMesh
+          ? ["p_up", "faces_uvw", "c", "c_ic", "c_uc", "color", "pickable", "id", "__renderer_surface_packet_v2"]
+          : parametricGrid ? ["x_uv", "y_uv", "z", "z_u", "z_v", "z_uv", "c", "c_uv", "color", "pickable", "id", "__renderer_surface_packet_v2"]
+          : ["x_u", "y_v", "z", "z_uv", "c", "c_uv", "color", "pickable", "id", "__renderer_surface_packet_v2"];
+        if (temporal) allowed = allowed.concat(["x_tu", "y_tu", "z_tu", "x_ti", "y_ti", "z_ti", "t", "t_min", "t_max", "t_mode", "__renderer_temporal_coordinates_v1"]);
+        if (indexedMesh && ((!Object.hasOwn(args, "p_up") && !temporal) || !Object.hasOwn(args, "faces_uvw")))
+          throw new TypeError("retained indexed mesh requires positions and faces");
+        if (parametricGrid && (!Object.hasOwn(args, "x_uv") || !Object.hasOwn(args, "y_uv") ||
+            ["z", "z_u", "z_v", "z_uv"].filter(function(name) {return Object.hasOwn(args, name);}).length !== 1))
+          throw new TypeError("retained parametric grid requires aligned x_uv/y_uv and one z layout");
+        allowed = allowed.concat(["receives_lighting", "no_lighting", "mode3d", "roughness", "reflectivity", "emissivity", "transparency", "optical_index", "emission", "texture", "surface_system", "casts_shadow", "receives_shadow", "depth_write", "visible"]);
         allowed = allowed.concat(["text", "label_color", "anchor", "interp", "interpolation"]);
         for (var flag of ["interp", "interpolation"]) if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean")
           throw new TypeError("retained Layer " + flag + " requires bit");
@@ -14733,7 +14851,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           throw new TypeError("unsupported retained Layer channel " + key);
         var packet = surface ? args.__renderer_surface_packet_v2 : v2 ? (line ? args.__renderer_line_packet_v2 : args.__renderer_point_packet_v2) : (line ? args.__renderer_line_packet_v1 : args.__renderer_point_packet_v1);
         if (!Array.isArray(packet) || packet.length !== (v2 ? 9 : 8) || packet[0] !== (v2 ? 2 : 1) ||
-            packet[1] !== (world ? "world" : "pixel") ||
+            packet[1] !== (worldMarker ? "world" : "pixel") ||
             !Array.isArray(packet[2]) || !Array.isArray(packet[3]) || !Array.isArray(packet[4]) ||
             typeof packet[6] !== "boolean" || typeof packet[7] !== "boolean")
           throw new TypeError("actual compiler retained graphics packet is required");
@@ -14742,13 +14860,14 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         var dimension = v2 ? packet[8] : 2;
         if (![2,3].includes(dimension) || !Number.isSafeInteger(vertexCount) || vertexCount < 1 || vertices.length > 0x0fffffff) throw new RangeError("invalid retained geometry dimension/extent");
         var authoredEdges = v2 && Object.hasOwn(args, "edge_bm");
-        if (line && (world || !Number.isInteger(vertexCount) || vertexCount < 1 || (!v2 && vertexCount > Math.floor(1024 / 10)) ||
+        if (line && (worldMarker || !Number.isInteger(vertexCount) || vertexCount < 1 || (!v2 && vertexCount > Math.floor(1024 / 10)) ||
             (authoredEdges ? indices.length % 2 !== 0 : indices.length !== (vertexCount - 1) * 2) || sizes.length))
           throw new RangeError("retained compiler line packet has inconsistent extents");
         if (!line && !surface && (indices.length < 1 || (!v2 && indices.length > Math.floor(1024 / 10)) || vertices.length !== indices.length * 10 ||
-            (sizes.length && (!world || sizes.length !== indices.length))))
+            (sizes.length && (!worldMarker || sizes.length !== indices.length))))
           throw new RangeError("retained compiler point packet has inconsistent extents");
-        if (surface && (world || dimension !== 3 || vertexCount < 4 || indices.length < 6 || indices.length % 6 !== 0 || sizes.length || packet[7]))
+        if (surface && (worldMarker || dimension !== 3 || vertexCount < (indexedMesh ? 3 : 4) ||
+            indices.length < (indexedMesh ? 3 : 6) || indices.length % (indexedMesh ? 3 : 6) !== 0 || sizes.length || (!indexedMesh && packet[7])))
           throw new RangeError("retained compiler surface packet has inconsistent extents or missing authored color");
         vertices.forEach(function(v, index) {
           finite(v, "compiler vertex value");
@@ -14765,7 +14884,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         });
         finite(size, "compiler marker size");
         if (!(size > 0)) throw new RangeError("retained compiler marker size must be positive");
-        if (world && (args.s_mode !== 0 || sizes.length !== indices.length))
+        if (worldMarker && (args.s_mode !== 0 || sizes.length !== indices.length))
           throw new TypeError("compiled World point packet requires s_mode:data and matching sizes");
         this.type = "field_mesh"; this.topology = surface ? "triangle-list" : line ? "line-list" : "point-list";
         if (!surface) this.render_mode = line ? "line" : "marker_impostor";
@@ -14775,6 +14894,13 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         this.no_lighting = !surface; this.casts_shadow = false;
         // Material properties are already evaluated source values, just as on
         // the normal formatter mesh route. Geometry is exclusively compiler-owned.
+        // The retained bridge has copied this evaluated material object out of
+        // its owned VM operand graph. Keep the complete authored specification
+        // for the existing renderer's procedural texture/detail material path,
+        // matching apply_surface_material in the paired FrameOutput formatter.
+        if (Object.hasOwn(args, "texture")) this.texture = args.texture;
+        // Preserve the complete existing evaluated surface and camera operand.
+        if (Object.hasOwn(args, "surface_system")) this.surface_system = args.surface_system;
         for (var flag of ["receives_lighting", "no_lighting", "mode3d", "casts_shadow", "receives_shadow", "depth_write", "visible"]) {
           if (Object.hasOwn(args, flag) && typeof args[flag] !== "boolean") throw new TypeError("retained Layer " + flag + " requires bit");
           if (Object.hasOwn(args, flag) && flag !== "receives_lighting") this[flag] = args[flag];
@@ -14800,6 +14926,10 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           this.alpha = 1 - args.transparency; this.transparent = args.transparency > 0 || vertices.some(function(v,i){return i%10 === 9 && v < 0.999;});
           if (!Object.hasOwn(args, "depth_write")) this.depth_write = !this.transparent;
         }
+        if (indexedMesh && !Object.hasOwn(args, "transparency")) {
+          this.transparent = vertices.some(function(v,i){return i%10 === 9 && v < 0.999;});
+          if (!Object.hasOwn(args, "depth_write")) this.depth_write = !this.transparent;
+        }
         this.interpolation = args.interpolation === true;
         this.vertex_size = size; this.vertex_scale = sizes.length ? sizes : 1;
         this.pickable = packet[6]; this.use_vertex_color = true;
@@ -14813,16 +14943,19 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         if (args.text !== undefined && typeof args.text !== "string") throw new TypeError("retained text requires str");
         if (args.anchor !== undefined && (!Array.isArray(args.anchor) || args.anchor.length !== 2 || args.anchor.some(function(x){return !Number.isFinite(x) || x<0 || x>1;})))
           throw new TypeError("retained text anchor requires two values in 0..1");
-        var addText = (text,index) => this.texts.push({text:text,world:surface || line || !!world,pixel:!surface && !line && !world,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
+        var addText = (text,index) => this.texts.push({text:text,world:surface || line || worldMarker,pixel:!surface && !line && !worldMarker,x:vertices[index*10],y:vertices[index*10+1],z:vertices[index*10+2],
           ...(args.anchor===undefined?{}:{anchor:args.anchor.slice()}),...(args.label_color===undefined?{}:{color:args.label_color})});
         if (args.text !== undefined) addText(args.text,0);
         own(this, "parent", frameRoot); own(this, "viewport", viewport); own(this, "world", world);
+        if (worldSource !== undefined) own(this, "worldSource", Object.freeze({...worldSource}));
         if (args.id !== undefined) own(this, "id", sourceId(args.id));
         own(this, "sourceOperands", Object.freeze({...args}));
         var owningView = null;
         Object.defineProperty(this, "view", {get: function() {live(this);return owningView;}});
         Object.defineProperty(this, "_modelMatrix", {get: function() {
-          live(this); return owningView ? owningView.worldTransform : identityTransform;
+          live(this);
+          var binding=physicsLayers.get(this);
+          return binding ? binding.accepted.transform : owningView ? owningView.worldTransform : identityTransform;
         }});
         own(this, "attachView", function(view) {
           live(this); live(view);
@@ -14833,19 +14966,21 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         members.add(this);
       }
     }
-    function createLayer(args, sequence) {
+    function createLayer(args, sequence, worldSource) {
       live();
-      var world = worldScope(sequence), layer = new RetainedLayerV1(args, world);
+      if (quiesced) throw new TypeError("Retained Frame production is quiesced");
+      var world = worldScope(sequence), layer = new RetainedLayerV1(args, world, worldSource);
       // A world-sized marker needs the real GPU adapter; missing platform
       // support is a prerequisite error, never a successful blank renderer.
-      if (world && !global.VfGeomWgpu) throw new Error("actual World marker renderer prerequisite is unavailable");
+      if (world && (worldSource === undefined || Object.hasOwn(args, "p_u")) && !global.VfGeomWgpu) throw new Error("actual World marker renderer prerequisite is unavailable");
       children.push(layer); pending.push(layer);
       try { publish(); } catch (error) {pending.pop();children.pop();members.delete(layer);throw error;}
       return layer;
     }
     function createView(properties, sequence) {
       live();
-      var allowed = ["id", "title", "x_min", "x_max", "y_min", "y_max", "x_lim", "y_lim", "x_label", "y_label", "axis_type", "grid_mode", "axis_visible", "coordinates_visible"];
+      if (quiesced) throw new TypeError("Retained Frame production is quiesced");
+      var allowed = ["id", "title", "x_min", "x_max", "y_min", "y_max", "x_lim", "y_lim", "x_label", "y_label", "z_label", "axis_type", "grid_mode", "axis_visible", "coordinates_visible"];
       for (var key of Object.keys(properties)) if (!allowed.includes(key))
         throw new TypeError("unsupported retained View property " + key);
       for (var axis of ["x", "y"]) {
@@ -14853,6 +14988,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
         for (var suffix of ["_min", "_max"]) if (properties[axis + suffix] !== undefined) finite(properties[axis + suffix], "View " + axis + suffix);
         if (properties[axis + "_label"] !== undefined && typeof properties[axis + "_label"] !== "string") throw new TypeError("View label requires str");
       }
+      if (properties.z_label !== undefined && typeof properties.z_label !== "string") throw new TypeError("View label requires str");
       var axisConfig = null;
       for (var axis of ["x", "y"]) {
         var limits = properties[axis + "_lim"];
@@ -14874,7 +15010,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
           axisConfig[axis + "_max"] = evaluatedRanges[axis + "_max"];
         }
       }
-      if (!axisConfig && (properties.x_label !== undefined || properties.y_label !== undefined || properties.axis_type !== undefined || properties.grid_mode !== undefined))
+      if (!axisConfig && (properties.x_label !== undefined || properties.y_label !== undefined || properties.z_label !== undefined || properties.axis_type !== undefined || properties.grid_mode !== undefined))
         axisConfig=evaluatedAxisRanges(pending);
       for (var flag of ["axis_visible","coordinates_visible"]) if (properties[flag] !== undefined && typeof properties[flag] !== "boolean")
         throw new TypeError("View "+flag+" requires boolean");
@@ -14885,6 +15021,7 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       if (axisConfig) {
         axisConfig.x_label = properties.x_label === undefined ? "x" : properties.x_label;
         axisConfig.y_label = properties.y_label === undefined ? "y" : properties.y_label;
+        if (properties.z_label !== undefined) axisConfig.z_label = properties.z_label;
         for (var layer of view.meshes) {
           layer.axis_ticks = {...axisConfig};
           if (properties.axis_visible !== undefined) {layer.axis_visible=properties.axis_visible;layer.axis_ticks.axis_visible=properties.axis_visible;}
@@ -14900,15 +15037,160 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       views.push(view); children.push(view); pending = []; active = view;
       publish(); return view;
     }
+    function physicsNotice() {
+      frameRoot.dispatchEvent(new global.CustomEvent("vf-view-animation-state",{
+        bubbles:true,detail:{animated:true,playing:physicsPlaying}}));
+    }
+    function physicsFailure(error) {
+      if (!alive || quiesced) return;
+      physicsPlaying=false;
+      physicsClock?.stop();
+      physicsBindings.forEach(function(binding){binding.owner.fail(error);});
+    }
+    function physicsPresent() {
+      if (quiesced) throw new TypeError("Retained physical Frame is quiesced");
+      if (physicsPresentation) return physicsPresentation;
+      physicsPresentation=new AbortController();
+      var controller=physicsPresentation;
+      var completion=new Promise(function(resolve,reject){
+        // Existing complete-frame publication/fence path. Every render pass
+        // reads the SAME accepted transforms; rendering never steps Physics.
+        var requested=requestGeomFramePresentation(fid,{signal:controller.signal,
+          physicsGeneration:scene.physics_accepted_generation,
+          afterPresented:resolve,onPresentationError:reject});
+        if (!requested) reject(new Error("Retained physical Frame presentation unavailable"));
+      });
+      controller.completion=completion.finally(function(){if(physicsPresentation===controller)physicsPresentation=null;});
+      return controller;
+    }
+    function bindPhysics(ids, owner) {
+      live();
+      if (quiesced) throw new TypeError("Retained Frame production is quiesced");
+      if (physicsStarted || !Array.isArray(ids) || !ids.length || new Set(ids).size!==ids.length ||
+          !owner || typeof owner.request!=="function" || !Number.isFinite(owner.step) || owner.step<=0)
+        throw new TypeError("World binding requires complete geometry and its actual source clock");
+      var layers=ids.map(function(id){
+        var matches=pending.filter(function(layer){return layer instanceof RetainedLayerV1 && layer.id===id;});
+        if (matches.length!==1 || physicsLayers.has(matches[0]))
+          throw new TypeError("World geometry must identify each original Layer exactly once");
+        return matches[0];
+      });
+      if(owner.main && physicsBindings.some(function(binding){return binding.owner.main;}))
+        throw new TypeError("One authoritative persistent World clock per Frame is required");
+      var binding={owner:owner,layers:layers,accepted:owner.request("repaint",0),tick:0};
+      function accept(accepted) {
+        live();if(quiesced)return;binding.accepted=accepted;
+        // No geometry/material/population replacement. Model matrices are read
+        // by the maintained renderer for all authored vertices/normals/children.
+        scene.physics_accepted_generation=accepted.generation;
+        scene.physics_accepted_time=accepted.time;
+        publish();
+      }
+      layers.forEach(function(layer){physicsLayers.set(layer,binding);});
+      physicsBindings.push(binding);accept(binding.accepted);
+      return accept;
+    }
+    function physicsCommand(event) {
+      if (quiesced) return;
+      if (event.target!==frameRoot && !frameRoot.contains(event.target)) return;
+      if(!physicsBindings.some(function(binding){return binding.owner.main;}))return;
+      var command=event.detail?.command;
+      if (command==="play-pause") physicsPlaying=!physicsPlaying;
+      else if (command==="animation-reset") {
+        // No asynchronous engine call is in flight. Serialize the next reset
+        // after any already submitted presentation before another main tick.
+        physicsBindings.forEach(function(binding){if(binding.owner.main)binding.reset=true;});
+        physicsDue=0;
+      } else return;
+      physicsNotice();
+    }
+    function physicsRateChanged(event) {
+      if (quiesced) return;
+      var rate=Number(event.detail?.rate);
+      // Persistent dynamics do not rewind a replay history. Zero pauses;
+      // positive playback changes wall scheduling, never the authored dt.
+      if (Number.isFinite(rate) && rate>=0 && rate<=4) physicsRate=rate;
+    }
+    async function physicsTick(stepIndex,timestamp) {
+      if (!alive || quiesced || !frameRoot.isConnected) return;
+      try {
+        for (var binding of physicsBindings) {
+          if (!binding.owner.main) continue;
+          var cause=binding.reset ? "reset" : physicsPlaying && physicsRate>0 ? "main" : null;
+          if (!cause) continue;
+          // Existing non-compensating presentation clock: one ordered authored
+          // step per render opportunity; a late draw never enlarges solver dt.
+          var accepted=binding.owner.request(cause,++binding.tick);
+          binding.accepted=accepted;binding.reset=false;
+          physicsDue=cause==="reset" ? 0 : timestamp+binding.owner.step*1000/physicsRate;
+          scene.physics_accepted_generation=accepted.generation;scene.physics_accepted_time=accepted.time;
+        }
+        publish();physicsNotice();
+        await physicsPresent().completion;
+
+      } catch(error) {physicsFailure(error);}
+    }
+    function startPhysics() {
+      live();if(quiesced||physicsStarted||!physicsBindings.length)return;
+      physicsStarted=true;
+      frameRoot.addEventListener("vf-view-command",physicsCommand);
+      frameRoot.addEventListener("vf-view-playback-rate",physicsRateChanged);
+      physicsNotice();
+      // Initial presentation reads the bound accepted generation without a step.
+      // Only the original main Frame schedules subsequent physical ticks.
+      if (physicsBindings.some(function(binding){return binding.owner.main;})) {
+        if(!global.VfRenderClock || typeof global.VfRenderClock.createClock!=="function")
+          throw new Error("Existing main presentation clock unavailable");
+        physicsClock=global.VfRenderClock.createClock({
+          fps:Math.max(60,Math.ceil(4/Math.min(...physicsBindings.map(function(binding){return binding.owner.step;})))),
+          canStep:function(){return alive && !quiesced && !physicsPresentation &&
+            (physicsBindings.some(function(binding){return binding.owner.main && binding.reset;}) ||
+             physicsPlaying && physicsRate>0 && global.performance.now()>=physicsDue);},
+          onStep:physicsTick
+        });
+        physicsPresent().completion.then(function(){if(alive && !quiesced)physicsClock.start();},physicsFailure);
+      }
+    }
     function snapshot() {
       live();
       return Object.freeze({frame: frameRoot, viewport: viewport, scene: scene,
         views: Object.freeze(views.slice()), layers: Object.freeze(children.filter(function(v) {return v instanceof RetainedLayerV1;})),
         activeView: active});
     }
+    function quiesce() {
+      if (!alive || quiesced) return;
+      quiesced = true; physicsPlaying = false;
+      var failures = [];
+      function stop(action) {try {action();} catch(error) {failures.push(error);}}
+      stop(function(){physicsClock?.stop();});physicsClock=null;
+      stop(function(){physicsPresentation?.abort();});physicsPresentation=null;
+      frameRoot.removeEventListener("vf-view-command",physicsCommand);
+      frameRoot.removeEventListener("vf-view-playback-rate",physicsRateChanged);
+      // Do not use stopGeomFrameRenderers here: it removes canvases and owner
+      // records even without destroy:true. Stop the held renderers in place.
+      if (_plotCameraRaf[fid]) {global.cancelAnimationFrame(_plotCameraRaf[fid]);delete _plotCameraRaf[fid];}
+      var rec = frameRecs[fid];
+      if (rec) {
+        stop(function(){rec.viewTransition?.cancel();});
+        rec.textOverlayGeneration = (rec.textOverlayGeneration || 0) + 1;
+        ["axis3DOverlayRaf", "textOverlayRaf", "simple2DResizeRaf"].forEach(function(key) {
+          if (rec[key]) {global.cancelAnimationFrame(rec[key]);rec[key]=0;}
+        });
+        rec.entries?.forEach(function(entry) {
+          stop(function(){entry.renderer?.stop?.();});
+          stop(function(){entry.resizeObserver?.disconnect();});
+          if (entry.resizeRaf) {global.cancelAnimationFrame(entry.resizeRaf);entry.resizeRaf=0;}
+        });
+        stop(function(){rec.simple2DResizeObserver?.disconnect();});
+        if(rec.simple2DLiveResizeHandler)global.removeEventListener("vf-frame-live-resize",rec.simple2DLiveResizeHandler);
+        if(rec.physicsProfilerTimer){global.clearInterval(rec.physicsProfilerTimer);rec.physicsProfilerTimer=0;}
+      }
+      if(failures.length)throw new AggregateError(failures,"Retained Frame quiescence failed");
+    }
     function dispose() {
       if (!alive) return;
-      alive = false;
+      quiesce();alive = false;
+      physicsBindings.length=0;physicsLayers=new WeakMap();
       stopGeomFrameRenderers(fid, {removeSimple2DCanvas: true, destroy: true});
       if (_lastDisplayPayload && _lastDisplayPayload.geom && _lastDisplayPayload.geom[fid] === scene) delete _lastDisplayPayload.geom[fid];
       var control = frameRoot.querySelector("select[data-vf-view-stack='1']");
@@ -14921,6 +15203,12 @@ fn fsMain(in : VOut) -> @location(0) vec4<f32> {
       members = new WeakSet(); retainedFrameScenesV1.delete(frameRoot);
     }
     var api = Object.freeze({abi: "vkf-retained-frame-scene-v1", createView: createView, createLayer: createLayer,
+      bindPhysics:bindPhysics,startPhysics:startPhysics,quiesce:quiesce,
+      get quiesced(){return quiesced;},
+      get hasPhysics(){return physicsBindings.length>0;},
+      physicsControls:Object.freeze({get timed(){return physicsBindings.some(function(binding){return binding.owner.main;});},get playing(){return physicsPlaying;},get rate(){return physicsRate;},
+        toggle:function(){viewport.dispatchEvent(new global.CustomEvent("vf-view-command",{bubbles:true,detail:{command:"play-pause"}}));},
+        setRate:function(rate){frameRoot.dispatchEvent(new global.CustomEvent("vf-view-playback-rate",{detail:{rate:rate}}));}}),
       snapshot: snapshot, owns: function(value) {live();return members.has(value);}, dispose: dispose});
     retainedFrameScenesV1.set(frameRoot, api);
     return api;

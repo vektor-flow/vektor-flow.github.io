@@ -1,0 +1,400 @@
+{
+  "schema": 1,
+  "release_version": "0.7.5",
+  "preview": true,
+  "status": "verified-examples",
+  "complete": false,
+  "published": false,
+  "stable": false,
+  "stable_release": false,
+  "release_qualified": false,
+  "qualification": "Exact named EX01 compiler/output/local navigation, shared renderer lighting component and current Node/package checks only; native and deployed fullscene remain unqualified until actual target checks. All full release flags remain false.",
+  "compiler_source_commit": "0cd03bd37d5ddaecf23d95029fb2e14f5de13b97",
+  "compiler_source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "release_source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "source": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "browser_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "frontend_binding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
+  "formatter_binding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "files": {
+    "compiler-base.mjs": {
+      "bytes": 188226,
+      "sha256": "e21ea1482e7623a238903006a9a559b8f74456b7822fbb2002a5e39359c94789"
+    },
+    "compiler.data": {
+      "bytes": 644660,
+      "sha256": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+    },
+    "compiler.mjs": {
+      "bytes": 1464,
+      "sha256": "680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b"
+    },
+    "compiler.wasm": {
+      "bytes": 20493019,
+      "sha256": "5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9"
+    },
+    "formatter.mjs": {
+      "bytes": 61671,
+      "sha256": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3"
+    },
+    "formatter.wasm": {
+      "bytes": 2101385,
+      "sha256": "1b0a89d3c12c64844634884beb8347c1d8f1f9b18b3ffce6daa1878a18046b09"
+    },
+    "package-tools/addresses.mjs": {
+      "bytes": 22794,
+      "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
+    },
+    "package-tools/cli.mjs": {
+      "bytes": 4907,
+      "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
+    },
+    "package-tools/git-source.mjs": {
+      "bytes": 9262,
+      "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
+    },
+    "package-tools/github.mjs": {
+      "bytes": 1579,
+      "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
+    },
+    "package-tools/host.mjs": {
+      "bytes": 11443,
+      "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
+    },
+    "package-tools/inputs.mjs": {
+      "bytes": 7238,
+      "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
+    },
+    "package-tools/metadata.mjs": {
+      "bytes": 10834,
+      "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
+    },
+    "package-tools/ownership.mjs": {
+      "bytes": 2891,
+      "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
+    },
+    "package-tools/package.json": {
+      "bytes": 602,
+      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
+    },
+    "package-tools/project.mjs": {
+      "bytes": 7664,
+      "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
+    },
+    "package-tools/publish.mjs": {
+      "bytes": 5939,
+      "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
+    },
+    "package-tools/resolve.mjs": {
+      "bytes": 1773,
+      "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
+    },
+    "prepare-formatter-ir.mjs": {
+      "bytes": 693,
+      "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
+    },
+    "package-tools/owner-protection.mjs": {
+      "bytes": 2234,
+      "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
+    },
+    "package.json": {
+      "bytes": 8401,
+      "sha256": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22"
+    },
+    "README.txt": {
+      "bytes": 791,
+      "sha256": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182"
+    },
+    "third-party/emscripten-toolchain-copyright.txt": {
+      "bytes": 131248,
+      "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
+    },
+    "third-party/trigonometric-source-notices.txt": {
+      "bytes": 2927,
+      "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
+    },
+    "third-party/emscripten-musl-copyright.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "third-party/vkf-runtime-musl-license.txt": {
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "VERIFICATION.json": {
+      "bytes": 1274,
+      "sha256": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378"
+    },
+    "PAIRED-STDLIB-MANIFEST.json": {
+      "bytes": 5428,
+      "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+    }
+  },
+  "sha256": {
+    "compiler-base.mjs": "e21ea1482e7623a238903006a9a559b8f74456b7822fbb2002a5e39359c94789",
+    "compiler.data": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c",
+    "compiler.mjs": "680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b",
+    "compiler.wasm": "5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9",
+    "formatter.mjs": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3",
+    "formatter.wasm": "1b0a89d3c12c64844634884beb8347c1d8f1f9b18b3ffce6daa1878a18046b09",
+    "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
+    "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
+    "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
+    "package-tools/github.mjs": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0",
+    "package-tools/host.mjs": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c",
+    "package-tools/inputs.mjs": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20",
+    "package-tools/metadata.mjs": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61",
+    "package-tools/ownership.mjs": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce",
+    "package-tools/package.json": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8",
+    "package-tools/project.mjs": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf",
+    "package-tools/publish.mjs": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75",
+    "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
+    "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
+    "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
+    "package.json": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22",
+    "README.txt": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182",
+    "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
+    "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
+    "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+    "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+    "VERIFICATION.json": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378",
+    "PAIRED-STDLIB-MANIFEST.json": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+  },
+  "package": {
+    "module": "./playground/canonical/compiler.mjs?sha256=680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b",
+    "wasm": "./playground/canonical/compiler.wasm?sha256=5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9",
+    "data": "./playground/canonical/compiler.data?sha256=1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+  },
+  "current_package_composition": {
+    "path": "CURRENT-COMPOSITION.json",
+    "bytes": 13452,
+    "sha256": "86c55a430f6e56a45469274630228ab1dc02e085ece30af7a62686e9815dae93"
+  },
+  "publication_status": "PUBLISHED_CURRENT_NAMED_UI_PLOTTING_AND_COMPILER_DOWNLOADS",
+  "download_packages_offered": true,
+  "physical_gpu_tested": false,
+  "current_distribution": {
+    "enabled": true,
+    "runEnabled": true,
+    "downloadsOffered": true,
+    "fullReleaseQualified": false,
+    "sharedUploadAvailable": false
+  },
+  "full_requested_075_requirements_complete": false,
+  "historical_prior_binding_evidence": {
+    "current_candidate_verification": {
+      "path": "verification/e1868-current075-browser-native.json",
+      "bytes": 10734,
+      "sha256": "9fd23985507788f0f64c28919493bd987e1ce86a9ec13bfa3ccefcc23108a6f1",
+      "browserBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+      "hostCommit": "63553cc03124469cb29c73c04b99d7ce65b7a335",
+      "nativeBinding": "f3768ef2e11c33d180431e6732ddcd4272552594d4a653a56ddc771ba3faa97a",
+      "namedBrowserNativeChecksPASS": true,
+      "publicRuntimePromoted": true,
+      "releaseQualified": false
+    },
+    "current_distribution_checksums": {
+      "path": "downloads/current075-checksums.json",
+      "bytes": 1581,
+      "sha256": "240d99c8b8d5650e804b5f1882cf5a38c9c30655b1aa99a59c4102474972ea57"
+    },
+    "current_runtime_repair": {
+      "path": "verification/e1870-axis-routing-repair.json",
+      "bytes": 1178,
+      "sha256": "8a590c6e406bc86095af75a8456840d9056b3132eb5d62593b792b47daed6471"
+    },
+    "current_distribution_evidence": {
+      "path": "verification/e1880-renderer-distribution.json",
+      "bytes": 58061,
+      "sha256": "4acec08b8f275c72c5e85d6976a4ab4a1d6be76f048a6126755295008dec03c2"
+    },
+    "current_source_progress": {
+      "path": "verification/e1872-source-progress.json",
+      "bytes": 11885,
+      "sha256": "12d6cb25d67a53c1f38029cf830e6c653076daace7def0e13e7b565848c70070"
+    },
+    "current_owner_host": {
+      "path": "verification/e1878-owner-host.json",
+      "bytes": 45824,
+      "sha256": "b1dc0931930d9ececd2df25fade4d031a9fd883d0075a75e6eab24d62e73a487"
+    },
+    "current_renderer_correctness": {
+      "path": "verification/e1880-current-renderer.json",
+      "bytes": 617505,
+      "sha256": "0698497208150af4437b2c93a9a8060718ad293ec40a073b9550341b5d35da1e"
+    },
+    "current_benchmark_readiness": {
+      "path": "verification/e1893-local48-readiness.json",
+      "bytes": 107291,
+      "sha256": "7b08ce7d2a9db76acee456355968da185ce45bf290ba88fa2d4985403d82853d"
+    }
+  },
+  "historical_benchmark_readiness": {
+    "path": "verification/e2058-local48-readiness.json",
+    "bytes": 18569,
+    "sha256": "76b87aa146454f97507969866bfeda87aff7f445243451db9d243ba7d7bca4a6",
+    "selectionIdentity": "e191c575e2fab909a38b1f11338b4871cc6631c22627a21a7a7eaa9ffc94b7bf",
+    "matchedPassed": 4,
+    "parityPassed": 2,
+    "failed": 0,
+    "unrun": 66,
+    "comparativeSamples": 0
+  },
+  "native_binary_source_commit": "e17f02b8ce76486a73b47a73c0620a28864ccf34",
+  "native_binding": "df9feb23d8c23cb9f7ac94953dcf5dd4cb1756dfd074017e7e8d51ba00a6c465",
+  "library_source": "7ee1f08986f43c36762bd3eb95005953d8ac7c67",
+  "node_package_host_source_commit": "cb6196566bb5a7fb9fefee0661813230d00e5985",
+  "lastPublishedReference": {
+    "reference": "fd43/native824/browser9fc/library0b63",
+    "newDeployment": false,
+    "evidence": "/mnt/development/VektorFlow-e2226-current-normal-release-integration-actual-20261104/PUBLICATION-PREPARATION.json"
+  },
+  "integration_binding": "bb14a1cb45dc6dd281e977839efd6c1aa38a124160410b087f12ddc6e2b00323",
+  "runtime_files": [
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-retained-scene-view.mjs",
+      "bytes": 14187,
+      "sha256": "e06b2ecd23a3bdd7a70ca2e76a2af6fc9a5bb2f41b97d49f63cd36f221c2cf38"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-renderer-loader.mjs",
+      "bytes": 6856,
+      "sha256": "80dfe2780cfbcc3dd615f5271cf60f61aff070ec503ad86f1b7ed87119eeabe9"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-display.js",
+      "bytes": 689266,
+      "sha256": "dab12661c61f682345c74adbae8ae907c574a2e9999a68f9e8ad62670a682240"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/geom/vf-geom-wgpu.js",
+      "bytes": 432961,
+      "sha256": "f5cec9afc924ac3f3fd7220d4cdc4d9d3648d1eab66e2eabc3bbbfa93e786a5c"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-retained-vm-bridge.js",
+      "bytes": 32832,
+      "sha256": "8be387c7ca8d28cc4d4d0ad11d1b155cd81557d883d886f119fecb3b00c345e6"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/playground/vkf-retained-window-execution.mjs",
+      "bytes": 6849,
+      "sha256": "5d796b10616e53744c0908bf2ec5815f58b8bd4d989ed942f2f41f71e9bc7402"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/inline-runner.mjs",
+      "bytes": 7434,
+      "sha256": "be2f339fbee332685f3dafab2e875d4bff1fe3be698646fa2ce08146f8ec905d"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/current-documentation-examples.mjs",
+      "bytes": 9014,
+      "sha256": "e5c893616f096e6a8d656d3bcce3bd34545dd3a311bcd9224c10f7265208c05e"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-media-capture.mjs",
+      "bytes": 12572,
+      "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/vf-current-plot-toolbar.mjs",
+      "bytes": 6442,
+      "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+      "bytes": 258359,
+      "sha256": "6eea1505003a53cc81c0525f90318f25f34e937e055b9275cf8b492a3081c528"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/binding.json",
+      "bytes": 154243,
+      "sha256": "b099ab9d043d49f15f5c8217087c883a0cb711ff1c439afaa37e368fa987235e"
+    },
+    {
+      "path": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/site/public/preview/0.7.5/vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+      "bytes": 9157,
+      "sha256": "ee6d411cdd9fb446bcf7d946da75d7211072d9b5ec2dc63b6ee81106fd40761a"
+    }
+  ],
+  "historical_last_published_evidence": {
+    "pinnedDownloads": {
+      "checksums": "downloads/current075-checksums.json",
+      "archives": [
+        "downloads/vkf-canonical-0.7.5-103091b2-hostcb619656-notices.tar.gz",
+        "downloads/vkf-native-linux-x86_64-0.7.5-8c59af92-lib0b63a99a-clean-notices.tar.gz"
+      ],
+      "qualification": "Browser9fc binding103091b2 with selected0b63 and cb619 host; native824 binding8c59 separately qualified full normal contact9+inverse9 by reference. Current focused Node/browser and extracted package/security/integrity checks only. Full release/PhysicsWorld/SDK/GPU/benchmarks/model adoption remain unqualified."
+    },
+    "packageQualification": {
+      "path": "verification/e2237-private-completion-candidate.json",
+      "bytes": 1565,
+      "sha256": "2717dab4bdf29e17e517f9176e61d246098f2c4b47735c0923b943aa0d06956f"
+    },
+    "reviewSiteEvidence": {
+      "status": "LOCAL_ONLY_NO_NEW_DEPLOYMENT",
+      "pending": true
+    },
+    "composition": {
+      "path": "CURRENT-COMPOSITION.json",
+      "bytes": 5746,
+      "sha256": "9dc6c982b90e858ad3ef97a71e246ead27f95374b061590290dd7488d0a0c501"
+    }
+  },
+  "publication_recorded_separately": true,
+  "inherited_candidate_evidence": {
+    "current_focused_distribution": {
+      "path": "verification/e2243-current-focused-distribution.json",
+      "bytes": 20035,
+      "sha256": "cc465c54ddef433646aefd1efee6d5282633bed0219f4a49914babe3efe7d2bb"
+    },
+    "current_distribution_evidence": {
+      "path": "verification/e2243-current-focused-distribution.json",
+      "bytes": 20035,
+      "sha256": "cc465c54ddef433646aefd1efee6d5282633bed0219f4a49914babe3efe7d2bb"
+    },
+    "current_distribution_checksums": {
+      "path": "downloads/current075-checksums.json",
+      "bytes": 1015,
+      "sha256": "6b09987eddb314b410488696b4550f6c0c8e3c084cf90f1f6976e4d2c3fe1d24"
+    },
+    "scoped_release": {
+      "version": "0.7.5",
+      "status": "named-focused-correctness-only",
+      "stable": false,
+      "fullReleaseQualified": false,
+      "components": [
+        "integer modulecarrier and strict wholeoutput",
+        "retained overlay lifecycle/current colored3x2 realedit/navigation",
+        "extracted Node ESM package and native Linux CLI named controls"
+      ],
+      "evidence": "verification/e2243-current-focused-distribution.json"
+    }
+  },
+  "priorPrivateRelease": {
+    "path": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/site/public/preview/0.7.5/current-compiler-release.json",
+    "bytes": 16809,
+    "sha256": "85ec473415d1e922869eb55793dfc38c81070f4621c916f01ad8480ce112d310"
+  },
+  "historical_named_evidence": {
+    "current_review_site_evidence": {
+      "status": "LOCAL_ONLY_NO_NEW_DEPLOYMENT",
+      "pending": true
+    },
+    "current_package_qualification": {
+      "path": "verification/e2265-exact-axis-mapping-candidate.json",
+      "bytes": 671,
+      "sha256": "c937b05bbf295324e43ceea9bfadff891ed1409e31631b6977e2d43c6a6f4a3b"
+    }
+  },
+  "current_normal_ex01": {
+    "path": "verification/e2273-current-normal-ex01.json",
+    "bytes": 9327,
+    "sha256": "cc59c06796bcc9d2b15461e9d8d6d2f748bea5a30151bca059ac7851e4df630e"
+  },
+  "current_distribution_checksums": {
+    "path": "downloads/current075-checksums.json",
+    "bytes": 1001,
+    "sha256": "f6084bbb6cf5817a04bbf2e4ba35d1a268c4a2beb2c6d8bb0f862ccbb26f8a81"
+  }
+}

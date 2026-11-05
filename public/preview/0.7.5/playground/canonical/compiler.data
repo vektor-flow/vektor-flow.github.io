@@ -2823,20 +2823,38 @@ fresnel(n1:num,n2:num,cos_i:num) -> (rs:num,rp:num,ts:num,tp:num,cos_t:num,tir:n
     rp: (n2*cos_i-n1*ct)/(n2*cos_i+n1*ct)
     (rs:rs^2,rp:rp^2,ts:1-rs^2,tp:1-rp^2,cos_t:ct,tir:0,cross_re:rs*rp,cross_im:0)
 
+# Channel powers of an already validated Stokes state. Rationalize the small
+# channel using P^2=Q^2+U^2+V^2, so I-|Q| does not discard U/V near an axis.
+# Normalize before the norm; form U*(U/I), not U^2 or I*(U/I)^2.
+_stokes_channel_powers(s:[num:4]) -> [num:2]:
+    s.0 = 0? @: [0,0]
+    q: s.1/s.0
+    u: s.2/s.0
+    v: s.3/s.0
+    p: _optics_math.sqrt(q*q+u*u+v*v)
+    aq: _optics_math.abs(q)
+    denominator: 2*(1+aq)
+    major: s.0*((1+aq)/2)
+    minor: s.0*(((1-p)*(1+p))/denominator)+(s.2*u+s.3*v)/denominator
+    q >= 0? @: [major,minor]
+    [minor,major]
+
 reflected_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
     s: validate_stokes(state)
     f: fresnel(n1,n2,cos_i)
-    a: (f.rs+f.rp)/2
-    b: (f.rs-f.rp)/2
-    [a*s.0+b*s.1,b*s.0+a*s.1,f.cross_re*s.2-f.cross_im*s.3,f.cross_im*s.2+f.cross_re*s.3]
+    channels: _stokes_channel_powers(s)
+    s_power: f.rs*channels.0
+    p_power: f.rp*channels.1
+    [s_power+p_power,s_power-p_power,f.cross_re*s.2-f.cross_im*s.3,f.cross_im*s.2+f.cross_re*s.3]
 
 transmitted_stokes(state:[num:4],n1:num,n2:num,cos_i:num) -> [num:4]:
     s: validate_stokes(state)
     f: fresnel(n1,n2,cos_i)
-    a: (f.ts+f.tp)/2
-    b: (f.ts-f.tp)/2
+    channels: _stokes_channel_powers(s)
+    s_power: f.ts*channels.0
+    p_power: f.tp*channels.1
     c: _optics_math.sqrt(f.ts*f.tp)
-    [a*s.0+b*s.1,b*s.0+a*s.1,c*s.2,c*s.3]
+    [s_power+p_power,s_power-p_power,c*s.2,c*s.3]
 
 # Detector sums ray powers incoherently; value is watts if source I is watts.
 detector(state:[num:4]) -> num:
@@ -3026,6 +3044,174 @@ reflected_light2(source:[num:2],target:[num:2],a:[num:2],b:[num:2],reflectivity:
     visibility_in: soft_visibility(source,hit,walls,base,growth)
     visibility_out: soft_visibility(hit,target,walls,base,growth)
     reflectivity*gate*visibility_in*visibility_out/(1+(dx*dx+dy*dy)/(falloff*falloff))
+
+# Shared normalized material response. Linear display-light RGB, not calibrated
+# radiance. Ambient is receiver fill only; it never becomes an emitter/bounce.
+material_light(color:[num:3],incident:[num:3],emission:[num:3],ambient_level:num,reflectivity:num,transparency:num) -> [num:3]:
+    (finite(ambient_level) /\ ambient_level>=0 /\ finite(reflectivity) /\ reflectivity>=0 /\ reflectivity<=1 /\ finite(transparency) /\ transparency>=0 /\ transparency<=1)?! "optics: invalid ambient/material response"
+    (finite(color.0) /\ finite(color.1) /\ finite(color.2) /\ color.0>=0 /\ color.1>=0 /\ color.2>=0 /\ finite(incident.0) /\ finite(incident.1) /\ finite(incident.2) /\ incident.0>=0 /\ incident.1>=0 /\ incident.2>=0 /\ finite(emission.0) /\ finite(emission.1) /\ finite(emission.2) /\ emission.0>=0 /\ emission.1>=0 /\ emission.2>=0)?! "optics: finite nonnegative linear RGB required"
+    diffuse: (1-reflectivity)*(1-transparency)
+    [color.0*(ambient_level+diffuse*incident.0)+emission.0,color.1*(ambient_level+diffuse*incident.1)+emission.1,color.2*(ambient_level+diffuse*incident.2)+emission.2]
+
+# SAME point/normal/intensity/range convention for 2D cross-sections and 3D.
+# Visibility comes from the scene's dimensional geometry, not draw ordering.
+surface_irradiance(source:[num:3],target:[num:3],normal:[num:3],intensity:num,falloff:num,visibility:num) -> num:
+    (finite(intensity) /\ intensity>=0 /\ finite(falloff) /\ falloff>0 /\ finite(visibility) /\ visibility>=0 /\ visibility<=1)?! "optics: invalid surface light"
+    dx: source.0-target.0
+    dy: source.1-target.1
+    dz: source.2-target.2
+    d2: dx*dx+dy*dy+dz*dz
+    n2: normal.0^2+normal.1^2+normal.2^2
+    (finite(d2) /\ finite(n2) /\ n2>0)?! "optics: finite geometry and nonzero surface normal required"
+    intensity*visibility*surface_cosine(source,target,normal)/(1+d2/(falloff*falloff))
+
+surface_cosine(source:[num:3],target:[num:3],normal:[num:3]) -> num:
+    dx: source.0-target.0
+    dy: source.1-target.1
+    dz: source.2-target.2
+    d2: dx*dx+dy*dy+dz*dz
+    n2: normal.0^2+normal.1^2+normal.2^2
+    (finite(d2) /\ finite(n2) /\ n2>0)?! "optics: finite geometry and nonzero surface normal required"
+    d2=0? @: 0
+    max2(0,(dx*normal.0+dy*normal.1+dz*normal.2)/_optics_math.sqrt(d2*n2))
+
+# Finite 2D wall prism: [ax,ay,bx,by,half_thickness,z_min,z_max].
+# XY and z are the SAME authored world coordinates as ADD geometry/light pos.
+# z_min/z_max delimit physical layers; layer_id/painter order has no role.
+validate_wall2(wall:[num:7]) -> [num:7]:
+    (finite(wall.0) /\ finite(wall.1) /\ finite(wall.2) /\ finite(wall.3) /\ finite(wall.4) /\ finite(wall.5) /\ finite(wall.6) /\ wall.4>0 /\ wall.6>wall.5 /\ ((wall.2-wall.0)^2+(wall.3-wall.1)^2)>0)?! "optics: finite nonzero wall prism required"
+    wall
+
+# Slab interval for a finite ray source+t*(target-source), t in [0,1].
+wall_slab_interval(origin:num,direction:num,low:num,high:num) -> [num:2]:
+    _optics_math.abs(direction)<0.000000000001?
+        (origin<low \/ origin>high)? @: [2,-1]
+        @: [0,1]
+    a: (low-origin)/direction
+    b: (high-origin)/direction
+    [min2(a,b),max2(a,b)]
+
+layered_segment_visibility2(source:[num:3],target:[num:3],wall:[num:7],base:num,growth:num) -> num:
+    w: validate_wall2(wall)
+    ex: w.2-w.0
+    ey: w.3-w.1
+    length: _optics_math.sqrt(ex*ex+ey*ey)
+    ux: ex/length
+    uy: ey/length
+    sx: source.0-w.0
+    sy: source.1-w.1
+    dx: target.0-source.0
+    dy: target.1-source.1
+    dz: target.2-source.2
+    along: sx*ux+sy*uy
+    across: 0-sx*uy+sy*ux
+    du: dx*ux+dy*uy
+    dv: 0-dx*uy+dy*ux
+    u: wall_slab_interval(along,du,0,length)
+    v: wall_slab_interval(across,dv,0-w.4,w.4)
+    z: wall_slab_interval(source.2,dz,w.5,w.6)
+    enter: max2(0,max2(u.0,max2(v.0,z.0)))
+    leave: min2(1,min2(u.1,min2(v.1,z.1)))
+    # Contact exactly at receiver boundary illuminates it; interior beyond it
+    # is blocked. Tangencies have zero volume and do not cast a solid shadow.
+    (enter>=leave \/ enter>=1-0.000000001 \/ leave<=0.000000001)? @: 1
+    gap: (1-enter)*_optics_math.sqrt(dx*dx+dy*dy+dz*dz)
+    # Mid-chord distance also blocks rays entering a finite thick end cap;
+    # entry alone would incorrectly make every cap hit an unoccluded edge.
+    middle: (enter+leave)/2
+    edge: min2(along+middle*du,length-along-middle*du)
+    # Source-above-wall rays respect the top/bottom slab too. Preserve existing
+    # endpoint penumbra/eased shadows OUT from the finite authored wall ends.
+    (base=0 /\ growth=0)? @: 0
+    1-smooth_edge(0,base+growth*gap,max2(0,edge))
+
+layered_visibility2(source:[num:3],target:[num:3],walls:[[num:7]:n],base:num,growth:num) -> num:
+    (finite(base) /\ base>=0 /\ finite(growth) /\ growth>=0)?! "optics: nonnegative shadow easing required"
+    visible: 1
+    i: 0
+    i<walls.length()?>
+        .visible: min2(visible,layered_segment_visibility2(source,target,walls.(i),base,growth))
+        .i: i+1
+    visible
+
+layered_light2(source:[num:3],target:[num:3],intensity:num,falloff:num,walls:[[num:7]:n],base:num,growth:num) -> num:
+    (finite(intensity) /\ intensity>=0 /\ finite(falloff) /\ falloff>0)?! "optics: invalid layered light"
+    d2: (target.0-source.0)^2+(target.1-source.1)^2+(target.2-source.2)^2
+    (finite(d2))?! "optics: finite layered light positions required"
+    intensity*layered_visibility2(source,target,walls,base,growth)/(1+d2/(falloff*falloff))
+
+layered_surface_light2(source:[num:3],target:[num:3],normal:[num:3],intensity:num,falloff:num,walls:[[num:7]:n],base:num,growth:num) -> num:
+    surface_irradiance(source,target,normal,intensity,falloff,layered_visibility2(source,target,walls,base,growth))
+
+# Closest actual wall boundary and outward normal at an INSIDE point. The
+# compact inward weight vanishes at penetration and outside the prism. This is
+# an artistic shallow scattering band, not transmission/BSSRDF/volume transport.
+wall_surface2(target:[num:3],wall:[num:7],penetration:num) -> (inside:num,point:[num:3],normal:[num:3],depth:num,weight:num):
+    w: validate_wall2(wall)
+    (finite(penetration) /\ penetration>0)?! "optics: positive shallow band depth required"
+    ex: w.2-w.0
+    ey: w.3-w.1
+    length: _optics_math.sqrt(ex*ex+ey*ey)
+    ux: ex/length
+    uy: ey/length
+    u: (target.0-w.0)*ux+(target.1-w.1)*uy
+    v: (w.0-target.0)*uy+(target.1-w.1)*ux
+    (u<0 \/ u>length \/ _optics_math.abs(v)>w.4 \/ target.2<w.5 \/ target.2>w.6)? @: (inside:0,point:target,normal:[0,0,1],depth:0,weight:0)
+    depth: w.4-v
+    normal: [0-uy,ux,0]
+    (w.4+v<depth)?
+        .depth: w.4+v
+        .normal: [uy,0-ux,0]
+    u<depth?
+        .depth: u
+        .normal: [0-ux,0-uy,0]
+    (length-u<depth)?
+        .depth: length-u
+        .normal: [ux,uy,0]
+    (target.2-w.5<depth)?
+        .depth: target.2-w.5
+        .normal: [0,0,-1]
+    (w.6-target.2<depth)?
+        .depth: w.6-target.2
+        .normal: [0,0,1]
+    point: [target.0+depth*normal.0,target.1+depth*normal.1,target.2+depth*normal.2]
+    q: max2(0,1-depth/penetration)
+    (inside:1,point:point,normal:normal,depth:depth,weight:q*q)
+
+# One finite front-sided LINE mirror; reflect only the authored direct/emissive
+# source, not ambient, shaded colour, another reflection or a camera image.
+# Mirror uses wall prism endpoints/z interval, half_thickness only for geometry.
+layered_reflected_light2(source:[num:3],target:[num:3],mirror:[num:7],reflectivity:num,spread:num,falloff:num,walls:[[num:7]:n],base:num,growth:num) -> num:
+    (finite(reflectivity) /\ reflectivity>=0 /\ reflectivity<=1 /\ finite(spread) /\ spread>=0 /\ finite(falloff) /\ falloff>0)?! "optics: invalid mirror material"
+    m: validate_wall2(mirror)
+    a: [m.0,m.1]
+    b: [m.2,m.3]
+    # Existing law supplies sidedness, finite aperture and ONE reflectivity/path
+    # attenuation. Far-away dummy-free visibility is supplied on actual legs.
+    normal: unit2([a.1-b.1,b.0-a.0])
+    side_source: (source.0-a.0)*normal.0+(source.1-a.1)*normal.1
+    side_target: (target.0-a.0)*normal.0+(target.1-a.1)*normal.1
+    (side_source<=0 \/ side_target<=0)? @: 0
+    virtual: virtual_source2([source.0,source.1],a,b)
+    dx: target.0-virtual.0
+    dy: target.1-virtual.1
+    determinant: dx*(b.1-a.1)-dy*(b.0-a.0)
+    _optics_math.abs(determinant)<0.000000000001? @: 0
+    t: ((a.0-virtual.0)*(b.1-a.1)-(a.1-virtual.1)*(b.0-a.0))/determinant
+    (t<=0 \/ t>=1)? @: 0
+    z: source.2+t*(target.2-source.2)
+    (z<m.5 \/ z>m.6)? @: 0
+    hit: [virtual.0+t*dx,virtual.1+t*dy,z]
+    ex: b.0-a.0
+    ey: b.1-a.1
+    u: ((hit.0-a.0)*ex+(hit.1-a.1)*ey)/(ex*ex+ey*ey)
+    gate: 1-smooth_edge(0,spread,max2(0,max2(0-u,u-1)))
+    spread=0?
+        .gate: 0
+        (u>=0 /\ u<=1)?
+            .gate: 1
+    visibility: layered_visibility2(source,hit,walls,base,growth)*layered_visibility2(hit,target,walls,base,growth)
+    reflectivity*gate*visibility/(1+(dx*dx+dy*dy+(target.2-source.2)^2)/(falloff*falloff))
 # Ordinary unit-aware tetrahedron mass-property preparation candidate.
 # Uses existing physics.tetra_mass_properties3 unchanged. This record is not a
 # backend world/state, and carries no backend lease or numeric resource handle.
@@ -3178,12 +3364,85 @@ prepare(points:[[quantity<1,0,0,0,0,0,0>:3]:nv],faces:[[Q:3]:nf],massvalue:quant
  numericomega:[_omega_si(omega.0),_omega_si(omega.1),_omega_si(omega.2)]
  numericgravity:[_gravity_si(gravity.0),_gravity_si(gravity.1),_gravity_si(gravity.2)]
  prepare_si(numericpoints,faces,numericmass,friction,restitution,numericposition,orientation,numericvelocity,numericomega,numericgravity)
+
+# Persistent body/environment overloads. Existing prepare/step replay signatures
+# above retain their immutable-history semantics. A persistent state's generation
+# belongs to ONE existing contact world; copying it cannot fork Physics.
+body_si(points:[[P:3]:nv],faces:[[Q:3]:nf],massvalue:M,mu_s:S,mu_d:D,restitution:R,position:[X:3],orientation:[O:4],velocity:[V:3],omega:[W:3],rolling_friction:K=0,spinning_friction:J=0):
+ numericpoints:points >> [num($.0),num($.1),num($.2)]
+ numericfaces:faces >> [int($.0),int($.1),int($.2)]
+ geometry:convex.prepare_convex_si(numericpoints,numericfaces,num(massvalue),num(mu_s),num(mu_d),num(restitution))
+ # Retain original domains until sealed native admission, including face indices.
+ (geometry:(mass:massvalue,volume:geometry.volume,center_of_mass:geometry.center_of_mass,inertia_tensor:geometry.inertia_tensor,geometry:(vertices:points,faces:faces),material:(mu_s:mu_s,mu_d:mu_d,restitution:restitution)),initial:(position:position,orientation:orientation,velocity:velocity,omega:omega),rolling_friction:rolling_friction,spinning_friction:spinning_friction)
+
+body(points:[[quantity<1,0,0,0,0,0,0>:3]:nv],faces:[[Q:3]:nf],massvalue:quantity<0,1,0,0,0,0,0>,mu_s:S,mu_d:D,restitution:R,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[O:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],rolling_friction:K=0,spinning_friction:J=0):
+ numericpoints:points >> [_length_si($.0),_length_si($.1),_length_si($.2)]
+ body_si(numericpoints,faces,_mass_si(massvalue),mu_s,mu_d,restitution,[_length_si(position.0),_length_si(position.1),_length_si(position.2)],orientation,[_velocity_si(velocity.0),_velocity_si(velocity.1),_velocity_si(velocity.2)],[_omega_si(omega.0),_omega_si(omega.1),_omega_si(omega.2)],rolling_friction,spinning_friction)
+
+# Static convex geometry is prepared with a 1kg reference mass for independent
+# COM/full-tensor validation. Native setup explicitly sets static mass/inertia0.
+environment_si(points:[[P:3]:nv],faces:[[Q:3]:nf],mu_s:S,mu_d:D,restitution:R,position:[X:3],orientation:[O:4],rolling_friction:K=0,spinning_friction:J=0):
+ body_si(points,faces,1,mu_s,mu_d,restitution,position,orientation,[0,0,0],[0,0,0],rolling_friction,spinning_friction)
+
+environment(points:[[quantity<1,0,0,0,0,0,0>:3]:nv],faces:[[Q:3]:nf],mu_s:S,mu_d:D,restitution:R,position:[quantity<1,0,0,0,0,0,0>:3],orientation:[O:4],rolling_friction:K=0,spinning_friction:J=0):
+ numericpoints:points >> [_length_si($.0),_length_si($.1),_length_si($.2)]
+ environment_si(numericpoints,faces,mu_s,mu_d,restitution,[_length_si(position.0),_length_si(position.1),_length_si(position.2)],orientation,rolling_friction,spinning_friction)
+
+_publish_persistent(resource:PhysicsSession,result:[num:32]):
+ result.0=1? errors.ValueError("invalid or stale persistent physics state/request")!
+ result.0!=0? errors.RuntimeError("persistent physics backend closed or failed")!
+ (resource:resource,generation:result.1,snapshot:result,time:result.2*s,position:[result.3,result.4,result.5]*m,principal_orientation:[result.6,result.7,result.8,result.9],velocity:[result.10,result.11,result.12]*m/s,omega:[result.13,result.14,result.15]/s,transform:[result.16,result.17,result.18,result.19,result.20,result.21,result.22,result.23,result.24,result.25,result.26,result.27,result.28,result.29,result.30,result.31])
+
+prepare_si(body:B,environment:E,gravity:[G:3]):
+ opened:runtime._open_si((body:body,environment:environment,gravity:gravity))
+ opened.status=1? errors.ValueError("invalid or unsupported persistent body/environment/material")!
+ opened.status!=0? errors.RuntimeError("persistent physics backend failed during preparation")!
+ _publish_persistent(opened.resource,runtime._snapshot_si(opened.resource))
+
+prepare(body:B,environment:E,gravity:[quantity<1,0,-2,0,0,0,0>:3]):
+ prepare_si(body,environment,[_gravity_si(gravity.0),_gravity_si(gravity.1),_gravity_si(gravity.2)])
+
+_persistent_coherent(state:(resource:PhysicsSession,generation:num,snapshot:[num:32],time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],principal_orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],transform:[num:16]),current:[num:32]):
+ coherent:current.0==0 /\ state.generation==current.1 /\ _time_si(state.time)==current.2
+ [..31] >>
+  .coherent:coherent /\ (state.snapshot.(int($))==current.(int($)))
+ views:[_length_si(state.position.0),_length_si(state.position.1),_length_si(state.position.2),state.principal_orientation.0,state.principal_orientation.1,state.principal_orientation.2,state.principal_orientation.3,_velocity_si(state.velocity.0),_velocity_si(state.velocity.1),_velocity_si(state.velocity.2),_omega_si(state.omega.0),_omega_si(state.omega.1),_omega_si(state.omega.2)]
+ [..12] >>
+  .coherent:coherent /\ (views.(int($))==current.(int($)+3))
+ [..15] >>
+  .coherent:coherent /\ (state.transform.(int($))==current.(int($)+16))
+ coherent
+
+step(state:(resource:PhysicsSession,generation:num,snapshot:[num:32],time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],principal_orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],transform:[num:16]),duration:quantity<0,0,1,0,0,0,0>):
+ seconds:_time_si(duration)
+ (~validation.finite(seconds) \/ seconds<0)? errors.ValueError("finite nonnegative physics duration required")!
+ current:runtime._snapshot_si(state.resource)
+ current.0!=0? errors.RuntimeError("persistent physics backend closed or failed")!
+ ~_persistent_coherent(state,current)? errors.ValueError("persistent physics views differ from accepted state")!
+ _publish_persistent(state.resource,runtime._advance_si(state.resource,state.generation,seconds))
+
+close(state:(resource:PhysicsSession,generation:num,snapshot:[num:32],time:quantity<0,0,1,0,0,0,0>,position:[quantity<1,0,0,0,0,0,0>:3],principal_orientation:[num:4],velocity:[quantity<1,0,-1,0,0,0,0>:3],omega:[quantity<0,0,-1,0,0,0,0>:3],transform:[num:16])):
+ runtime._close_si(state.resource)
 # Internal ordinary source owner for the checked immutable spatial replay binding.
 # Source copies remain ordinary source and fail closed; spelling grants no authority.
 errors:.errors
 _replay_si(desc:any,history:[num:n]) -> [num:15]:
  errors.RuntimeError("native physics source owner context unavailable")!
  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+# Local opaque persistent ownership. Only exact admitted declarations lower to
+# native operations. Copied/modified source throws, including via aliases.
+_open_si(desc:any) -> (status:num,resource:PhysicsSession):
+ errors.RuntimeError("native persistent physics source owner context unavailable")!
+
+_advance_si(resource:PhysicsSession,generation:num,duration:num) -> [num:32]:
+ errors.RuntimeError("native persistent physics source owner context unavailable")!
+
+_snapshot_si(resource:PhysicsSession) -> [num:32]:
+ errors.RuntimeError("native persistent physics source owner context unavailable")!
+
+_close_si(resource:PhysicsSession) -> num:
+ errors.RuntimeError("native persistent physics source owner context unavailable")!
 # Supported scalar-inertia contact, constant support load and tangential drive.
 # Origin: svenviktorjonsson/rigid-body-collisions, research/adaptive-benchmark-validation.
 # Source commit: 1098616162342d894d9c0a098f8f5ad8af427d23; supported_backend/kernel.h.

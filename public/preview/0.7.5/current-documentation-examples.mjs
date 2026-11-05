@@ -1,10 +1,33 @@
-import {prepareExamplePresentation} from './example-presentation.mjs?sha256=752ecdcc851ae9eccb27cb6804210605b3d2482b880d63e79a3b67adb0e5c8e6';
+import {prepareExamplePresentation} from './example-presentation.mjs?sha256=221e61d7213b4fb319e0293ca40768f167f57097b682a6ffacded38f6088e4c7';
 import {bindInlineSource, promoteVkfPrograms} from './editor/inline-source.mjs?sha256=34dd1bdbaced7b4c68ca1922801fa36196b0eb13b392e81a2b08955aceac076f';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs?sha256=07f4803c17a1a66b917223d146d868c415fcc3b864002557c1bfab65dec5d029';
 // Keep editable sources and output together; only a reviewed package enables Run.
-import {createInlineRunner} from './inline-runner.mjs?sha256=be2f339fbee332685f3dafab2e875d4bff1fe3be698646fa2ce08146f8ec905d';
-import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=e06b2ecd23a3bdd7a70ca2e76a2af6fc9a5bb2f41b97d49f63cd36f221c2cf38';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=80dfe2780cfbcc3dd615f5271cf60f61aff070ec503ad86f1b7ed87119eeabe9';
+import {createInlineRunner} from './inline-runner.mjs?sha256=06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546';
+import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs?sha256=48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0';
+
+// Normal per-example project inputs: source only, loaded when Run is requested.
+async function exampleSourceInputs(example){
+  if(!example.dataset.vkfInputs)return {};
+  const descriptorURL=new URL(example.dataset.vkfInputs,location.href);
+  if(descriptorURL.origin!==location.origin)throw new TypeError('Example input descriptor must be same-origin');
+  const response=await fetch(descriptorURL,{cache:'no-store'});
+  if(!response.ok)throw new Error('Example source inputs are unavailable');
+  const descriptor=await response.json();
+  if(typeof descriptor.filename!=='string'||!Array.isArray(descriptor.files))throw new TypeError('Invalid example input descriptor');
+  const sourceFiles=await Promise.all(descriptor.files.map(async file=>{
+    if(!file||typeof file.url!=='string')throw new TypeError('Invalid example source input URL');
+    const url=new URL(file.url,descriptorURL);
+    if(url.origin!==location.origin||typeof file.filename!=='string'||typeof file.sha256!=='string'||!/^[a-f0-9]{64}$/.test(file.sha256))throw new TypeError('Invalid example source input');
+    const response=await fetch(url,{cache:'no-store'});
+    if(!response.ok)throw new Error('Example source input is unavailable');
+    const bytes=await response.arrayBuffer();
+    const sha256=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(value=>value.toString(16).padStart(2,'0')).join('');
+    if(sha256!==file.sha256)throw new Error('Example source input identity changed');
+    return {filename:file.filename,source:new TextDecoder('utf-8',{fatal:true}).decode(bytes)};
+  }));
+  return {filename:descriptor.filename,sourceFiles};
+}
 
 const release = await fetch(new URL('./current-compiler-release.json', import.meta.url),
   {cache:'no-store'}).then(response => response.ok ? response.json() : null).catch(() => null);
@@ -71,6 +94,10 @@ for (const example of document.querySelectorAll('.readme-example')) {
     if (clearSaved) savedVisual?.remove();
     if (resultHint) resultHint.hidden = false;
   };
+  resultContainer.addEventListener('vf-example-render-error', event => {
+    output.dataset.outputKind = 'error';
+    output.textContent = event.detail.message;
+  });
 
   const editor = bindInlineSource(source, highlight, code);
   const refresh = editor.refresh;
@@ -111,13 +138,24 @@ for (const example of document.querySelectorAll('.readme-example')) {
       output.dataset.outputKind = 'stdout';
       try {
         const runSource = source.value;
-        const result = await runner.run(runSource);
+        const sourceInputs = await exampleSourceInputs(example);
         if (revision !== runRevision) return;
+        resultContainer.hidden=false;
+        const result = await runner.run(runSource,{...sourceInputs,retained:{mountTarget:resultContainer}});
+        if (revision !== runRevision) {await result.liveRetained?.close();return;}
         output.textContent = result.output.stdout + (result.output.stderr ?? '');
+        if(result.liveRetained){
+          dispose=()=>{void result.liveRetained.close().catch(error=>{output.dataset.outputKind='error';output.textContent=error.message;});};
+          if(resultHint)resultHint.hidden=true;
+          example.dispatchEvent(new CustomEvent('vf-example-compiled',{detail:{source:source.value,result}}));
+        }
         if (result.packets?.length) {
           await ensureInlineRenderer();
           if (revision === runRevision) {
-            dispose = mountRetainedSceneResult(resultContainer, result.packets);
+            dispose = mountRetainedSceneResult(resultContainer, result.packets, {
+              sampleTemporal: result.temporal ? elapsed => runner.sample(elapsed,result.temporal.generation) : undefined,
+              disposeTemporal: result.temporal ? () => runner.disposeTemporal(result.temporal.generation) : undefined,
+            });
             example.dispatchEvent(new CustomEvent('vf-example-compiled', {detail:{source:source.value, result}}));
             await dispose.presented;
             if (resultHint) resultHint.hidden = true;

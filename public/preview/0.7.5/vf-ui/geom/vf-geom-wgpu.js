@@ -3902,7 +3902,10 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
     sharedWgpuPromise = (async function () {
       try {
         wlog("info", "getSharedWgpu: requestAdapter…");
-        var adapter = await navigator.gpu.requestAdapter({ powerPreference: "high-performance" });
+        // Keep the platform instance and adapter with their device/pipelines.
+        // Their owner must outlive every renderer and queued GPU operation.
+        var gpu = navigator.gpu;
+        var adapter = await gpu.requestAdapter({ powerPreference: "high-performance" });
         if (!adapter) { wlog("error", "requestAdapter() null"); sharedWgpuPromise = null; return null; }
         wlog("info", "getSharedWgpu: requestDevice…");
         var device = await adapter.requestDevice();
@@ -4259,7 +4262,7 @@ fn fs_flare(i: FlareVOut) -> @location(0) vec4<f32> {
           primitive: { topology: "triangle-strip" }
         });
         sharedWgpu = {
-          device, format, bindLayout,
+          gpu, adapter, device, format, bindLayout,
           pipeTri, pipeTriCull, pipeLine, pipeTriAlpha, pipeTriAlphaCull, pipeTriAlphaDepth, pipeTriMultiply, pipeTriAdditive,
           pipeSphereInst, pipeCylinderInst, pipePointImpostor, pipePointImpostorDepth, pipeLineImpostor, pipeLineImpostorDepth, pipeFlare, flareQuadBuf,
           surfaceSampler, defaultSurfaceView, fontSampler, chessFontAtlas, shadowSampler, defaultShadowView,

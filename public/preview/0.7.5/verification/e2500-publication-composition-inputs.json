@@ -1,0 +1,245 @@
+{
+  "components": {
+    "browser-node-compiler": {
+      "id": "browser-node-compiler",
+      "identity": {
+        "sourceBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+        "sourceCommit": "f2b985583d585f8362b9c176629d1cea99a54677",
+        "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+        "compilerOwner": "e2493",
+        "packageOwner": "e2500",
+        "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+        "targetQualification": "Current browser ordinary UI observations only; Node and full release not newly qualified"
+      },
+      "files": [
+        {
+          "path": "playground/canonical/compiler-base.mjs",
+          "bytes": 189782,
+          "sha256": "3f9570fd471df8971fdaa5f6d66b7b1339719fa2e213ca7ad9305196088d6534"
+        },
+        {
+          "path": "playground/canonical/compiler.data",
+          "bytes": 660994,
+          "sha256": "03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa"
+        },
+        {
+          "path": "playground/canonical/compiler.mjs",
+          "bytes": 1464,
+          "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+        },
+        {
+          "path": "playground/canonical/compiler.wasm",
+          "bytes": 20827756,
+          "sha256": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893"
+        },
+        {
+          "path": "playground/canonical/formatter.mjs",
+          "bytes": 63048,
+          "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+        },
+        {
+          "path": "playground/canonical/formatter.wasm",
+          "bytes": 2199252,
+          "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+        }
+      ]
+    },
+    "retained-ui-runtime": {
+      "id": "retained-ui-runtime",
+      "identity": {
+        "displaySHA256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5",
+        "runtimeSHA256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765",
+        "provenance": "Exact accepted e2495 private runtime reused; e2500 only extends selected mapping and refreshes normal package/query graph"
+      },
+      "files": [
+        {
+          "path": "inline-retained-scene-view.mjs",
+          "bytes": 17116,
+          "sha256": "48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f"
+        },
+        {
+          "path": "inline-renderer-loader.mjs",
+          "bytes": 6856,
+          "sha256": "b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0"
+        },
+        {
+          "path": "vf-ui/vf-display.js",
+          "bytes": 707578,
+          "sha256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5"
+        },
+        {
+          "path": "vf-ui/geom/vf-geom-wgpu.js",
+          "bytes": 433154,
+          "sha256": "c8689b08cc91f85ed91de7f30c07904393209672da5e9647d152dc7d91bb1d1b"
+        },
+        {
+          "path": "vf-ui/vf-retained-vm-bridge.js",
+          "bytes": 36065,
+          "sha256": "6573003b4094abd3eccc915df32c4209aa40db9fe50e99ed51c7433a7ab2eb72"
+        },
+        {
+          "path": "playground/vkf-retained-window-execution.mjs",
+          "bytes": 17213,
+          "sha256": "0f4c89af7f82376a36b0ee96dc9b0dfe3ae5c2138f20c56154178eec25486c7f"
+        },
+        {
+          "path": "inline-runner.mjs",
+          "bytes": 11590,
+          "sha256": "06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546"
+        },
+        {
+          "path": "current-documentation-examples.mjs",
+          "bytes": 11667,
+          "sha256": "89be09b2cdee6171f1bddbebfa070a8903c4a95da8185fcc14049e53700eb11b"
+        },
+        {
+          "path": "vf-ui/vf-media-capture.mjs",
+          "bytes": 12572,
+          "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
+        },
+        {
+          "path": "vf-ui/vf-current-plot-toolbar.mjs",
+          "bytes": 6442,
+          "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
+        },
+        {
+          "path": "playground/vkf-canonical-browser-compiler.mjs",
+          "bytes": 7413,
+          "sha256": "8e6aefa73f34906e854999572c12eb75fb6931f0382858cc95b07b1bbf223e6f"
+        },
+        {
+          "path": "playground/vkf-canonical-execution.mjs",
+          "bytes": 10822,
+          "sha256": "ab586f2649122a8e47500c3ccf354414eb8327ab45804ad3369b00c0390b84e8"
+        },
+        {
+          "path": "playground/vkf-normal-physics-program.mjs",
+          "bytes": 1831,
+          "sha256": "96a6931d3215793bbbc1c5c23724e4145e25c11ca27b0c73b20020f701d43260"
+        },
+        {
+          "path": "playground/vkf-normal-physics-lifetime.mjs",
+          "bytes": 3118,
+          "sha256": "7db652e4e100f1bba04f50fa35ee570762d8cb9dd1950d811e4b1f3afc0f4340"
+        },
+        {
+          "path": "playground/vkf-retained-worker-execution.mjs",
+          "bytes": 1751,
+          "sha256": "005e0af2270e715e32601bb13baeb03de47eb66024538ac44d069f003c84f30a"
+        },
+        {
+          "path": "playground/normal-physics-resource.mjs",
+          "bytes": 1124,
+          "sha256": "fc197e82d60d1c8c166f891dabcf6970f2b4385c6ac31e5f6ca7f49ff94d23ed"
+        },
+        {
+          "path": "embedding-client.mjs",
+          "bytes": 5396,
+          "sha256": "36d14e4292f2acf968f1010cbfdf5c55e6d49b5dec967cf615ec6d89ed01063d"
+        },
+        {
+          "path": "vf-ui/vf-runtime-scene.js",
+          "bytes": 36667,
+          "sha256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765"
+        },
+        {
+          "path": "playground/normal-physics-owner.mjs",
+          "bytes": 9167,
+          "sha256": "1f71919c1a2fd57aa69bdd8f703f789bb539885fdd3357ff75955f926322194f"
+        },
+        {
+          "path": "playground/normal-physics-vm-import.mjs",
+          "bytes": 11545,
+          "sha256": "ddf147f79e6f7d111f27ec9ae167149088d749e477b94032badd521331816ac6"
+        },
+        {
+          "path": "playground/normal-physics-input.mjs",
+          "bytes": 4808,
+          "sha256": "8a956386e769b7b2e00e0c068a311db6d8bbaaa3b56d00a6c3071b2a2ebce78c"
+        },
+        {
+          "path": "playground/normal-world-owner.mjs",
+          "bytes": 8383,
+          "sha256": "030e0412b4ccc68dc2735dca2ad0cf15d2d7c2d9f8a91194b1199e2820de5e31"
+        },
+        {
+          "path": "playground/physics-replay-base.mjs",
+          "bytes": 38604,
+          "sha256": "b1ad2ececf397549e846cb5afce9183b2c0b9a722140543bf170472316696767"
+        },
+        {
+          "path": "playground/physics-replay-base.wasm",
+          "bytes": 1820078,
+          "sha256": "d5e061d024f13e02a6a846dc043824ea510f92545302c33db8537dde3b43151a"
+        }
+      ]
+    },
+    "native-linux-cli": {
+      "id": "native-linux-cli",
+      "identity": {
+        "sourceBinding": "df9feb23d8c23cb9f7ac94953dcf5dd4cb1756dfd074017e7e8d51ba00a6c465",
+        "sourceCommit": "e17f02b8ce76486a73b47a73c0620a28864ccf34",
+        "binarySHA256": "2f47740183616fbf70057d01b59822c20791b84271f586d0d2f621f7c44be931",
+        "librarySources": 35,
+        "registryEntries": 28,
+        "newABI2": false
+      },
+      "files": [
+        {
+          "path": "downloads/vkf-native-linux-x86_64-0.7.5-df9feb23-current-cli-notices.tar.gz",
+          "bytes": 10174977,
+          "sha256": "3d7388674cb4f20f39fd5c7d119c9292be02cfd58dfa0c32671ebcc4681eee90",
+          "target": "native"
+        }
+      ]
+    },
+    "current-label-producer-and-mapping": {
+      "id": "current-label-producer-and-mapping",
+      "identity": {
+        "producerBinding": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+        "catalogSHA256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
+        "physicalFontClosureSHA256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+        "selectedKeys": 128,
+        "addedExactly": [
+          "text/F",
+          "text/c",
+          "text/f"
+        ],
+        "all125OriginalBindingsPreserved": true
+      },
+      "files": [
+        {
+          "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+          "bytes": 267670,
+          "sha256": "a54c006829bf91257158dcbd053400e6174478c372cf4cc880b2383065cd84ea"
+        },
+        {
+          "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
+          "bytes": 157919,
+          "sha256": "56ee6183b065365b52a632f146de57110596f36edd2a1f72a1a1a363d42941cb"
+        },
+        {
+          "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+          "bytes": 9772,
+          "sha256": "37fd90bff373bcc32455febbfbc772caa369a93b247e97637c65c0dfe3e3865e"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-plot-text.mjs",
+          "bytes": 10438,
+          "sha256": "d72e1fe1adcff297f2378f6aa615346727c5aab912527bf012371039a3b22fb6"
+        }
+      ]
+    }
+  },
+  "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+  "sceneSourceComposition": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+  "compilerBuild": {
+    "path": "/mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/ACTUAL-NORMAL31-COMPOSED-BUILD.json",
+    "bytes": 70089,
+    "sha256": "4b9110cc84edb19357dcfbd1e358518a4e358102824c895665f009371828b504"
+  },
+  "sourceSelectedPhysicalQueries": {
+    "bytes": 5346,
+    "sha256": "91a9fd46ee10ee479ed2b45a3244cb2f5679a7e18166c269f8a1998fda33b385"
+  }
+}

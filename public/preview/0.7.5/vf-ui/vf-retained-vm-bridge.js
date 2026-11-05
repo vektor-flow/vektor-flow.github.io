@@ -292,12 +292,23 @@
           !Number.isSafeInteger(descriptor.origin_index) || descriptor.origin_index < 0 ||
           Object.hasOwn(descriptor, "declaration_json"))
         throw new TypeError("malformed retained producer call descriptor");
-      if ((descriptor.concrete_type === "Layer" && !["direct-points-v1", "direct-lines-v1", "direct-points-v2", "direct-lines-v2", "grid-surface-v2"].includes(descriptor.render_packet_v1)) ||
+      if ((descriptor.concrete_type === "Layer" && !["direct-points-v1", "direct-lines-v1", "direct-points-v2", "direct-lines-v2", "grid-surface-v2", "indexed-mesh-v2"].includes(descriptor.render_packet_v1)) ||
           (descriptor.concrete_type !== "Layer" && descriptor.render_packet_v1 !== undefined))
         throw new TypeError("retained producer requires its concrete compiler graphics packet contract");
+      const worldSource = descriptor.world_source;
+      if (worldSource !== undefined &&
+          (!worldSource || worldSource.kind !== "world_embedding" || !["add", "world_add"].includes(descriptor.effect_kind) ||
+           descriptor.concrete_type !== "Layer" || descriptor.world_sequence === undefined ||
+           !Number.isSafeInteger(worldSource.world_id) || worldSource.world_id < 0 ||
+           !Number.isSafeInteger(worldSource.object_id) || worldSource.object_id < 0 ||
+           typeof worldSource.object_type !== "string" || !worldSource.object_type ||
+           typeof worldSource.embedding !== "string" || !worldSource.embedding))
+        throw new TypeError("invalid compiled World embedding source descriptor");
+      if (worldSource !== undefined) descriptor.world_source = Object.freeze({...worldSource});
       if (descriptor.world_sequence !== undefined &&
           (!Number.isSafeInteger(descriptor.world_sequence) || descriptor.world_sequence < 0 ||
-           (descriptor.effect_kind !== "world_add" && descriptor.effect_kind !== "push")))
+           (descriptor.effect_kind !== "world_add" && descriptor.effect_kind !== "push" &&
+            !(descriptor.effect_kind === "add" && worldSource !== undefined))))
         throw new TypeError("invalid compiled World embedding sequence descriptor");
       const operands = readValue(operandsPointer);
       if (!Array.isArray(operands) || operands.length < 3 || operands.length % 2 !== 1 ||
@@ -313,10 +324,15 @@
         argumentsValue[name] = operands[index + 1];
       }
       if (descriptor.concrete_type === "Layer") {
+        if (descriptor.temporal_coordinates !== undefined && descriptor.temporal_coordinates !== "coordinate-time-v1")
+          throw new TypeError("unsupported compiled temporal Layer contract");
+        if ((descriptor.temporal_coordinates !== undefined) !== (argumentsValue.__renderer_temporal_coordinates_v1 === true))
+          throw new TypeError("compiled temporal Layer descriptor/packet mismatch");
         const v2 = descriptor.render_packet_v1.endsWith("-v2");
         const line = descriptor.render_packet_v1.startsWith("direct-lines-");
         const suffix = v2 ? "v2" : "v1";
-        const packetName = descriptor.render_packet_v1 === "grid-surface-v2" ? "__renderer_surface_packet_v2" :
+        const surface = descriptor.render_packet_v1 === "grid-surface-v2" || descriptor.render_packet_v1 === "indexed-mesh-v2";
+        const packetName = surface ? "__renderer_surface_packet_v2" :
           line ? "__renderer_line_packet_"+suffix : "__renderer_point_packet_"+suffix;
         if (!Object.hasOwn(argumentsValue, packetName) ||
             Object.keys(argumentsValue).some(name => /^__renderer_(?:point|line|surface)_packet_v[12]$/.test(name) && name !== packetName))
@@ -350,6 +366,28 @@
     function invoke(operation, a, b, c) {
       live();
       if (closing) throw new TypeError("retained execution is closing");
+      if (operation === 9) {
+        if (wireManifest?.physicsBinding !== "opaque-session-frame-v1" ||
+            !options.physics || typeof options.physics.bindWorld !== "function" ||
+            typeof options.physics.requestWorld !== "function" || typeof options.producer?.bindPhysics !== "function")
+          throw new RetainedPrerequisiteError("actual normal World/Frame binding is unavailable");
+        const frame = requireHandle(a); ready(frame);
+        if (!["Frame<2>", "Frame<3>"].includes(frame.kind))
+          throw new TypeError("World requires its actual retained Frame");
+        const packet = readValue(c), args = Object.create(null);
+        if (!Array.isArray(packet) || packet.length % 2)
+          throw new TypeError("invalid evaluated World binding packet");
+        for (let index=0;index<packet.length;index+=2) {
+          const key=packet[index];
+          if (typeof key!=="string" || Object.hasOwn(args,key))
+            throw new TypeError("duplicate or invalid World binding field");
+          args[key]=packet[index+1];
+        }
+        // b remains an opaque issued VM occurrence. readValue MUST NOT erase
+        // it into a number/record; only the SAME normal host may validate it.
+        options.producer.bindPhysics(frame.capability,b,Object.freeze(args),options.physics);
+        return handle(frame);
+      }
       if (operation === 8) return ownerEvent(a, b, c);
       if (operation === 3) return producerCall(a, b, c);
       if (operation === 4) {
@@ -427,7 +465,7 @@
       if (disposed || exports) throw new TypeError("retained bridge can bind exactly one live VM");
       const wire = manifest && manifest.retainedOwner;
       if (!wire || wire.schema !== "vektor-flow.retained-owner-wire" || wire.version !== 1 ||
-          wire.bytecodeVersion !== 6 || wire.handleTag !== 18 || wire.slotBytes !== 16 ||
+          (wire.bytecodeVersion !== (wire.physicsBinding === "opaque-session-frame-v1" ? 9 : 6)) || wire.handleTag !== 18 || wire.slotBytes !== 16 ||
           wire.slotAlignment !== 8 || wire.abiOffset !== 4 || wire.indexOffset !== 8 ||
           wire.generationOffset !== 12 || wire.importModule !== "vkf.retained" ||
           wire.importName !== "invoke_v1" || wire.parameters !== 4 || wire.result !== "i32-slot-pointer")
@@ -447,6 +485,8 @@
           values[2] !== vmExports.vkf_vm_heap_base() || values[3] !== vmExports.vkf_vm_heap_limit())
         throw new RangeError("retained compiler/VM owned bounds mismatch");
       bounds = Object.freeze({staticBegin: values[0], staticEnd: values[1], heapBegin: values[2], heapLimit: values[3]});
+      if (wire.physicsBinding !== undefined && wire.physicsBinding !== "opaque-session-frame-v1")
+        throw new TypeError("unsupported retained physical Frame ABI");
       if (wire.producerVersion !== undefined && wire.producerVersion !== 1)
         throw new TypeError("unsupported retained producer ABI version");
       if (wire.suspension !== undefined && wire.suspension !== "jspi-v1")
@@ -493,10 +533,15 @@
       options.signal?.removeEventListener("abort", abortEvents);
       disposed = true; records.clear(); byCapability.clear(); issuedSlots.clear(); exports = null; wireManifest = null;
     }
-    async function close() {
+    function quiesce() {
       closing = true;
       closeEvents(new TypeError("retained execution closing"));
-      const joined = await Promise.allSettled([...pendingLoads]);
+      // Preserve exports, issued slots and original owners until the physical
+      // owner has actually invalidated. Joining loads is not VM destruction.
+      return Promise.allSettled([...pendingLoads]);
+    }
+    async function close() {
+      const joined = await quiesce();
       dispose();
       if (options.producer && typeof options.producer.dispose === "function") options.producer.dispose();
       return joined;
@@ -523,7 +568,7 @@
     }
     return Object.freeze({ abi: "vkf-retained-owner-wire-v1", imports: Object.freeze({invoke_v1: invoke}),
       // Trusted real producer hooks. The generated VM cannot call these.
-      bind, enrollOwner, completeFrameLoad, observe, resetVm, rewindVm, dispose, close });
+      bind, enrollOwner, completeFrameLoad, observe, resetVm, rewindVm, dispose, quiesce, close });
   }
   global.VfRetainedVmBridge = Object.freeze({createRetainedVmBridgeV1, RetainedPrerequisiteError});
 })(typeof window !== "undefined" ? window : this);

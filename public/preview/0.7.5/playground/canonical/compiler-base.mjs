@@ -57,7 +57,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /tmp/tmp4q9jf79x.js
+// include: /mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/debug/tmpybooajk1.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -78,7 +78,7 @@ if (ENVIRONMENT_IS_NODE) {
         // web worker
         PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
       }
-      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2262-ex01-face-normal-fix-actual-20261104/normal-build/linked/compiler.data';
+      var PACKAGE_NAME = '/mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/final-build/linked/compiler.data';
       var REMOTE_PACKAGE_BASE = 'compiler.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
@@ -224,10 +224,10 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
           var files = metadata['files'];
           for (var i = 0; i < files.length; ++i) {
             DataRequest.prototype.requests[files[i].filename].onload();
-          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2262-ex01-face-normal-fix-actual-20261104/normal-build/linked/compiler.data');
+          }          Module['removeRunDependency']('datafile_/mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/final-build/linked/compiler.data');
 
       };
-      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2262-ex01-face-normal-fix-actual-20261104/normal-build/linked/compiler.data');
+      Module['addRunDependency']('datafile_/mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/final-build/linked/compiler.data');
 
       if (!Module['preloadResults']) Module['preloadResults'] = {};
 
@@ -248,11 +248,11 @@ Module['FS_createPath']("/compiler/self_hosted/stdlib", "units", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/interpolation.vkf", "start": 2682, "end": 5432}, {"filename": "/compiler/self_hosted/stdlib/interpolation/polynomial.vkf", "start": 5432, "end": 9336}, {"filename": "/compiler/self_hosted/stdlib/interpolation/tensor.vkf", "start": 9336, "end": 12149}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 12149, "end": 12692}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 12692, "end": 12978}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 12978, "end": 57134}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 57134, "end": 61089}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 61089, "end": 98193}, {"filename": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf", "start": 98193, "end": 104986}, {"filename": "/compiler/self_hosted/stdlib/physics/flow.vkf", "start": 104986, "end": 108156}, {"filename": "/compiler/self_hosted/stdlib/physics/optics.vkf", "start": 108156, "end": 120347}, {"filename": "/compiler/self_hosted/stdlib/physics/preparation.vkf", "start": 120347, "end": 123177}, {"filename": "/compiler/self_hosted/stdlib/physics/rigid.vkf", "start": 123177, "end": 133223}, {"filename": "/compiler/self_hosted/stdlib/physics/runtime.vkf", "start": 133223, "end": 133563}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 133563, "end": 140787}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 140787, "end": 141001}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 141001, "end": 141291}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 141291, "end": 141615}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 141615, "end": 142263}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 142263, "end": 142842}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 142842, "end": 145137}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 145137, "end": 145597}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 145597, "end": 155318}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 155318, "end": 638717}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 638717, "end": 639092}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 639092, "end": 643078}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 643078, "end": 643104}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 643104, "end": 644500}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 644500, "end": 644576}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 644576, "end": 644660}], "remote_package_size": 644660});
+    loadPackage({"files": [{"filename": "/compiler/self_hosted/stdlib/collections.vkf", "start": 0, "end": 605}, {"filename": "/compiler/self_hosted/stdlib/command.vkf", "start": 605, "end": 994}, {"filename": "/compiler/self_hosted/stdlib/concurrent.vkf", "start": 994, "end": 2090}, {"filename": "/compiler/self_hosted/stdlib/errors.vkf", "start": 2090, "end": 2682}, {"filename": "/compiler/self_hosted/stdlib/interpolation.vkf", "start": 2682, "end": 5432}, {"filename": "/compiler/self_hosted/stdlib/interpolation/polynomial.vkf", "start": 5432, "end": 9336}, {"filename": "/compiler/self_hosted/stdlib/interpolation/tensor.vkf", "start": 9336, "end": 12149}, {"filename": "/compiler/self_hosted/stdlib/io.vkf", "start": 12149, "end": 12692}, {"filename": "/compiler/self_hosted/stdlib/io_direct_smoke.vkf", "start": 12692, "end": 12978}, {"filename": "/compiler/self_hosted/stdlib/linalg.vkf", "start": 12978, "end": 57134}, {"filename": "/compiler/self_hosted/stdlib/math.vkf", "start": 57134, "end": 61089}, {"filename": "/compiler/self_hosted/stdlib/physics.vkf", "start": 61089, "end": 98193}, {"filename": "/compiler/self_hosted/stdlib/physics/convex_preparation.vkf", "start": 98193, "end": 104986}, {"filename": "/compiler/self_hosted/stdlib/physics/flow.vkf", "start": 104986, "end": 108156}, {"filename": "/compiler/self_hosted/stdlib/physics/optics.vkf", "start": 108156, "end": 129955}, {"filename": "/compiler/self_hosted/stdlib/physics/preparation.vkf", "start": 129955, "end": 132785}, {"filename": "/compiler/self_hosted/stdlib/physics/rigid.vkf", "start": 132785, "end": 148831}, {"filename": "/compiler/self_hosted/stdlib/physics/runtime.vkf", "start": 148831, "end": 149897}, {"filename": "/compiler/self_hosted/stdlib/physics/supported_contact.vkf", "start": 149897, "end": 157121}, {"filename": "/compiler/self_hosted/stdlib/physics/units.vkf", "start": 157121, "end": 157335}, {"filename": "/compiler/self_hosted/stdlib/physics/units/si.vkf", "start": 157335, "end": 157625}, {"filename": "/compiler/self_hosted/stdlib/physics_collision_matrix_smoke.vkf", "start": 157625, "end": 157949}, {"filename": "/compiler/self_hosted/stdlib/physics_contact_model_smoke.vkf", "start": 157949, "end": 158597}, {"filename": "/compiler/self_hosted/stdlib/physics_rigid_body_smoke.vkf", "start": 158597, "end": 159176}, {"filename": "/compiler/self_hosted/stdlib/random.vkf", "start": 159176, "end": 161471}, {"filename": "/compiler/self_hosted/stdlib/regex.vkf", "start": 161471, "end": 161931}, {"filename": "/compiler/self_hosted/stdlib/stat.vkf", "start": 161931, "end": 171652}, {"filename": "/compiler/self_hosted/stdlib/symbolic.vkf", "start": 171652, "end": 655051}, {"filename": "/compiler/self_hosted/stdlib/system.vkf", "start": 655051, "end": 655426}, {"filename": "/compiler/self_hosted/stdlib/time.vkf", "start": 655426, "end": 659412}, {"filename": "/compiler/self_hosted/stdlib/ui.vkf", "start": 659412, "end": 659438}, {"filename": "/compiler/self_hosted/stdlib/ui/colormaps.vkf", "start": 659438, "end": 660834}, {"filename": "/compiler/self_hosted/stdlib/units.vkf", "start": 660834, "end": 660910}, {"filename": "/compiler/self_hosted/stdlib/units/si.vkf", "start": 660910, "end": 660994}], "remote_package_size": 660994});
 
   })();
 
-// end include: /tmp/tmp4q9jf79x.js
+// end include: /mnt/development/VektorFlow-e2493-normal-parametric-Layer31-and-full-EX05-actual-20261105/debug/tmpybooajk1.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -830,7 +830,7 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  930784: () => { return Module['vkf075StructuralFlowDiagnostic'] === true; }
+  958096: () => { return Module['vkf075StructuralFlowDiagnostic'] === true; }
 };
 
 // end include: preamble.js
@@ -4512,6 +4512,8 @@ var wasmImports = {
   /** @export */
   invoke_iiiiiiiiiiiii,
   /** @export */
+  invoke_iiiiiiiiiiiiii,
+  /** @export */
   invoke_iiij,
   /** @export */
   invoke_j,
@@ -4546,7 +4548,11 @@ var wasmImports = {
   /** @export */
   invoke_viiiii,
   /** @export */
+  invoke_viiiiid,
+  /** @export */
   invoke_viiiiii,
+  /** @export */
+  invoke_viiiiiid,
   /** @export */
   invoke_viiiiiii,
   /** @export */
@@ -4577,6 +4583,8 @@ var wasmImports = {
   invoke_viiij,
   /** @export */
   invoke_viiiji,
+  /** @export */
+  invoke_viiijid,
   /** @export */
   invoke_viij,
   /** @export */
@@ -4643,6 +4651,7 @@ var dynCall_viiiji = Module['dynCall_viiiji'] = (a0, a1, a2, a3, a4, a5, a6) => 
 var dynCall_vijiiiiii = Module['dynCall_vijiiiiii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) => (dynCall_vijiiiiii = Module['dynCall_vijiiiiii'] = wasmExports['dynCall_vijiiiiii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 var dynCall_viiiijijii = Module['dynCall_viiiijijii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) => (dynCall_viiiijijii = Module['dynCall_viiiijijii'] = wasmExports['dynCall_viiiijijii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 var dynCall_viiiijii = Module['dynCall_viiiijii'] = (a0, a1, a2, a3, a4, a5, a6, a7, a8) => (dynCall_viiiijii = Module['dynCall_viiiijii'] = wasmExports['dynCall_viiiijii'])(a0, a1, a2, a3, a4, a5, a6, a7, a8);
+var dynCall_viiijid = Module['dynCall_viiijid'] = (a0, a1, a2, a3, a4, a5, a6, a7) => (dynCall_viiijid = Module['dynCall_viiijid'] = wasmExports['dynCall_viiijid'])(a0, a1, a2, a3, a4, a5, a6, a7);
 var dynCall_jiji = Module['dynCall_jiji'] = (a0, a1, a2, a3, a4) => (dynCall_jiji = Module['dynCall_jiji'] = wasmExports['dynCall_jiji'])(a0, a1, a2, a3, a4);
 var dynCall_j = Module['dynCall_j'] = (a0) => (dynCall_j = Module['dynCall_j'] = wasmExports['dynCall_j'])(a0);
 var dynCall_viijii = Module['dynCall_viijii'] = (a0, a1, a2, a3, a4, a5, a6) => (dynCall_viijii = Module['dynCall_viijii'] = wasmExports['dynCall_viijii'])(a0, a1, a2, a3, a4, a5, a6);
@@ -4842,6 +4851,17 @@ function invoke_viid(index,a1,a2,a3) {
   var sp = stackSave();
   try {
     getWasmTableEntry(index)(a1,a2,a3);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_i(index) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)();
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -5058,17 +5078,6 @@ function invoke_viiiiiiiiiiiiiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10
   }
 }
 
-function invoke_i(index) {
-  var sp = stackSave();
-  try {
-    return getWasmTableEntry(index)();
-  } catch(e) {
-    stackRestore(sp);
-    if (e !== e+0) throw e;
-    _setThrew(1, 0);
-  }
-}
-
 function invoke_viidi(index,a1,a2,a3,a4) {
   var sp = stackSave();
   try {
@@ -5080,10 +5089,10 @@ function invoke_viidi(index,a1,a2,a3,a4) {
   }
 }
 
-function invoke_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
+function invoke_iiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13) {
   var sp = stackSave();
   try {
-    return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
+    return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -5106,6 +5115,28 @@ function invoke_vidi(index,a1,a2,a3) {
   var sp = stackSave();
   try {
     getWasmTableEntry(index)(a1,a2,a3);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiiid(index,a1,a2,a3,a4,a5,a6,a7) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiiiid(index,a1,a2,a3,a4,a5,a6) {
+  var sp = stackSave();
+  try {
+    getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -5139,6 +5170,17 @@ function invoke_iiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) {
   var sp = stackSave();
   try {
     return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
+  var sp = stackSave();
+  try {
+    return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;
@@ -5282,6 +5324,17 @@ function invoke_viiiijijii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
   var sp = stackSave();
   try {
     dynCall_viiiijijii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11);
+  } catch(e) {
+    stackRestore(sp);
+    if (e !== e+0) throw e;
+    _setThrew(1, 0);
+  }
+}
+
+function invoke_viiijid(index,a1,a2,a3,a4,a5,a6,a7) {
+  var sp = stackSave();
+  try {
+    dynCall_viiijid(index,a1,a2,a3,a4,a5,a6,a7);
   } catch(e) {
     stackRestore(sp);
     if (e !== e+0) throw e;

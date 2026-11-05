@@ -1,5 +1,5 @@
-import {createInlineRunner} from './inline-runner.mjs';
-import {ensureInlineRenderer} from './inline-renderer-loader.mjs';
+import {createInlineRunner} from './inline-runner.mjs?sha256=06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546';
+import {ensureInlineRenderer} from './inline-renderer-loader.mjs?sha256=b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0';
 import {mountRetainedSceneResult} from './inline-retained-scene-view.mjs';
 import {restoreBrowserDrafts} from './vkf-browser-isolation.mjs';
 
@@ -53,13 +53,15 @@ run.addEventListener('click', async () => {
   consoleOutput.textContent = '';
   status.textContent = 'Compiling and running…';
   try {
-    const result = await runner.run(runSource, {signal: controller.signal});
-    if (closed || revision !== runRevision) return;
+    viewport.hidden=false;
+    const result = await runner.run(runSource, {signal: controller.signal,retained:{mountTarget:viewport}});
+    if (closed || revision !== runRevision) {await result.liveRetained?.close();return;}
     consoleOutput.textContent = result.output.stdout + (result.output.stderr ?? '');
+    if(result.liveRetained)scene=()=>{void result.liveRetained.close().catch(report);};
     if (result.packets?.length) {
       await ensureInlineRenderer();
       if (closed || revision !== runRevision) return;
-      const mounted = mountRetainedSceneResult(viewport, result.packets);
+      const mounted = mountRetainedSceneResult(viewport, result.packets, {sampleTemporal:result.temporal?elapsed=>runner.sample(elapsed,result.temporal.generation):undefined,disposeTemporal:result.temporal?()=>runner.disposeTemporal(result.temporal.generation):undefined});
       scene = mounted;
       // This resolves after real rendering and native scene labels are ready.
       // null means this mount was disposed before it presented.

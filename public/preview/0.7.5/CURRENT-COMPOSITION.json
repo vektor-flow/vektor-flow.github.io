@@ -1,215 +1,100 @@
 {
   "schema": "vektor-flow.current-composition/1",
   "qualification": "IDENTITY_ONLY_NOT_A_TEST_RECEIPT",
-  "owner": "e2273",
-  "inputSha256": "b305da51f0c947f300eb0898b566e3040f9660c5b9d0a47a932ff35f6b2f56ca",
+  "owner": "e2500",
+  "inputSha256": "f419e1248ee2547f342e5ae9d437956a00a8254f3851772d86fca7107491a126",
   "components": [
     {
       "id": "browser-node-compiler",
       "identity": {
-        "sourceBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
-        "sourceCommit": "0cd03bd37d5ddaecf23d95029fb2e14f5de13b97",
-        "formatterBinding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
-        "libraryManifestSHA256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5",
-        "librarySources": 34,
-        "registryEntries": 27,
-        "nodeHostContentIdentity": "fd343c07edb84f088b0863bff126f53ee6719f0c9d8b896dbd0a817926502d45"
+        "sourceBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+        "sourceCommit": "f2b985583d585f8362b9c176629d1cea99a54677",
+        "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+        "compilerOwner": "e2493",
+        "packageOwner": "e2500",
+        "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+        "targetQualification": "Current browser ordinary UI observations only; Node and full release not newly qualified"
       },
       "files": [
         {
-          "path": "playground/canonical/PAIRED-STDLIB-MANIFEST.json",
-          "bytes": 5428,
-          "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
-        },
-        {
-          "path": "playground/canonical/README.txt",
-          "bytes": 791,
-          "sha256": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182"
-        },
-        {
-          "path": "playground/canonical/VERIFICATION.json",
-          "bytes": 1274,
-          "sha256": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378"
-        },
-        {
           "path": "playground/canonical/compiler-base.mjs",
-          "bytes": 188226,
-          "sha256": "e21ea1482e7623a238903006a9a559b8f74456b7822fbb2002a5e39359c94789"
+          "bytes": 189782,
+          "sha256": "3f9570fd471df8971fdaa5f6d66b7b1339719fa2e213ca7ad9305196088d6534"
         },
         {
           "path": "playground/canonical/compiler.data",
-          "bytes": 644660,
-          "sha256": "1e5d94a22f423655e5af3be77d9a6671ee34acbeb8364c5896d266077d70b80c"
+          "bytes": 660994,
+          "sha256": "03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa"
         },
         {
           "path": "playground/canonical/compiler.mjs",
           "bytes": 1464,
-          "sha256": "680c2788bb78ac25f15ee4afc9ec64659848083ba564cffc7eaaf57b582ac92b"
+          "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
         },
         {
           "path": "playground/canonical/compiler.wasm",
-          "bytes": 20493019,
-          "sha256": "5391af2fe4dfd3b5c66e7fab32fa52adeffc39d7f1aab505a423e9dca8faf8e9"
+          "bytes": 20827756,
+          "sha256": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893"
         },
         {
           "path": "playground/canonical/formatter.mjs",
-          "bytes": 61671,
-          "sha256": "0677e87bc584ef5b736e989103d87e524d96a5a945c0e60db340cd82894ceae3"
+          "bytes": 63048,
+          "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
         },
         {
           "path": "playground/canonical/formatter.wasm",
-          "bytes": 2101385,
-          "sha256": "1b0a89d3c12c64844634884beb8347c1d8f1f9b18b3ffce6daa1878a18046b09"
-        },
-        {
-          "path": "playground/canonical/package-tools/addresses.mjs",
-          "bytes": 22794,
-          "sha256": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb"
-        },
-        {
-          "path": "playground/canonical/package-tools/cli.mjs",
-          "bytes": 4907,
-          "sha256": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f"
-        },
-        {
-          "path": "playground/canonical/package-tools/git-source.mjs",
-          "bytes": 9262,
-          "sha256": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a"
-        },
-        {
-          "path": "playground/canonical/package-tools/github.mjs",
-          "bytes": 1579,
-          "sha256": "d42708c325f4bfc66682c30b70b4ed00494d11c3c8629f295b4da0d2adc1b6e0"
-        },
-        {
-          "path": "playground/canonical/package-tools/host.mjs",
-          "bytes": 11443,
-          "sha256": "2ee4705d66a9a633a60e09b43ef6404f05cfdfa0c39f8fb77690dce60d8c124c"
-        },
-        {
-          "path": "playground/canonical/package-tools/inputs.mjs",
-          "bytes": 7238,
-          "sha256": "ee0bed98052474fc11cc5b430044a61f2cb8efa0497c8a14fea1605d4703bc20"
-        },
-        {
-          "path": "playground/canonical/package-tools/metadata.mjs",
-          "bytes": 10834,
-          "sha256": "7fa5e5369650adc18b331acfbd1ee7fd0526e6989dc2f87be009fc3caea14a61"
-        },
-        {
-          "path": "playground/canonical/package-tools/owner-protection.mjs",
-          "bytes": 2234,
-          "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
-        },
-        {
-          "path": "playground/canonical/package-tools/ownership.mjs",
-          "bytes": 2891,
-          "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
-        },
-        {
-          "path": "playground/canonical/package-tools/package.json",
-          "bytes": 602,
-          "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
-        },
-        {
-          "path": "playground/canonical/package-tools/project.mjs",
-          "bytes": 7664,
-          "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
-        },
-        {
-          "path": "playground/canonical/package-tools/publish.mjs",
-          "bytes": 5939,
-          "sha256": "c33412a30afe2bd81b9fa1fb7013e0ae1ef17e51ae1a40d3d81f7a827c7dff75"
-        },
-        {
-          "path": "playground/canonical/package-tools/resolve.mjs",
-          "bytes": 1773,
-          "sha256": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d"
-        },
-        {
-          "path": "playground/canonical/package.json",
-          "bytes": 8401,
-          "sha256": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22"
-        },
-        {
-          "path": "playground/canonical/prepare-formatter-ir.mjs",
-          "bytes": 693,
-          "sha256": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09"
-        },
-        {
-          "path": "playground/canonical/third-party/emscripten-musl-copyright.txt",
-          "bytes": 6204,
-          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
-        },
-        {
-          "path": "playground/canonical/third-party/emscripten-toolchain-copyright.txt",
-          "bytes": 131248,
-          "sha256": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c"
-        },
-        {
-          "path": "playground/canonical/third-party/trigonometric-source-notices.txt",
-          "bytes": 2927,
-          "sha256": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b"
-        },
-        {
-          "path": "playground/canonical/third-party/vkf-runtime-musl-license.txt",
-          "bytes": 6204,
-          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+          "bytes": 2199252,
+          "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
         }
       ]
     },
     {
       "id": "retained-ui-runtime",
       "identity": {
-        "displaySHA256": "dab12661c61f682345c74adbae8ae907c574a2e9999a68f9e8ad62670a682240",
-        "sourceCommit": "9b0d1ba4fbb282ce0dc61592286546f7c7f9f420",
-        "runtimeSHA256": "4f5413a524b0b3ee943ef331a80d8537a81eee752eee3b6f35848b7dced5b63c"
+        "displaySHA256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5",
+        "runtimeSHA256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765",
+        "provenance": "Exact accepted e2495 private runtime reused; e2500 only extends selected mapping and refreshes normal package/query graph"
       },
       "files": [
         {
           "path": "inline-retained-scene-view.mjs",
-          "bytes": 14187,
-          "sha256": "e06b2ecd23a3bdd7a70ca2e76a2af6fc9a5bb2f41b97d49f63cd36f221c2cf38"
+          "bytes": 17116,
+          "sha256": "48bb5ff7bd934965132f943f418ff2796c707985393610d2b63a6e2601f0564f"
         },
         {
           "path": "inline-renderer-loader.mjs",
           "bytes": 6856,
-          "sha256": "80dfe2780cfbcc3dd615f5271cf60f61aff070ec503ad86f1b7ed87119eeabe9"
+          "sha256": "b6ad1f3939d5a8559d413e04b5b96adaf035de8ade92486fd71ed87cbd9d16e0"
         },
         {
           "path": "vf-ui/vf-display.js",
-          "bytes": 689266,
-          "sha256": "dab12661c61f682345c74adbae8ae907c574a2e9999a68f9e8ad62670a682240"
+          "bytes": 707578,
+          "sha256": "4e8afa0e9a3df597d3148bf7e65d268e9959879b1c3c4085be37994020f2cca5"
         },
         {
           "path": "vf-ui/geom/vf-geom-wgpu.js",
-          "bytes": 432961,
-          "sha256": "f5cec9afc924ac3f3fd7220d4cdc4d9d3648d1eab66e2eabc3bbbfa93e786a5c"
+          "bytes": 433154,
+          "sha256": "c8689b08cc91f85ed91de7f30c07904393209672da5e9647d152dc7d91bb1d1b"
         },
         {
           "path": "vf-ui/vf-retained-vm-bridge.js",
-          "bytes": 32832,
-          "sha256": "8be387c7ca8d28cc4d4d0ad11d1b155cd81557d883d886f119fecb3b00c345e6"
+          "bytes": 36065,
+          "sha256": "6573003b4094abd3eccc915df32c4209aa40db9fe50e99ed51c7433a7ab2eb72"
         },
         {
           "path": "playground/vkf-retained-window-execution.mjs",
-          "bytes": 6849,
-          "sha256": "5d796b10616e53744c0908bf2ec5815f58b8bd4d989ed942f2f41f71e9bc7402"
+          "bytes": 17213,
+          "sha256": "0f4c89af7f82376a36b0ee96dc9b0dfe3ae5c2138f20c56154178eec25486c7f"
         },
         {
           "path": "inline-runner.mjs",
-          "bytes": 7434,
-          "sha256": "be2f339fbee332685f3dafab2e875d4bff1fe3be698646fa2ce08146f8ec905d"
+          "bytes": 11590,
+          "sha256": "06bed72fad96cce356c12601548ef18a17f3e2e5675a677cea7abf9eca08b546"
         },
         {
           "path": "current-documentation-examples.mjs",
-          "bytes": 9014,
-          "sha256": "a7650a13b9aa868e11800dbd48557ebde0cdb2046993842dbce61b0f26c76b6a"
-        },
-        {
-          "path": "vf-ui/vf-current-plot-toolbar.mjs",
-          "bytes": 6442,
-          "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
+          "bytes": 11667,
+          "sha256": "89be09b2cdee6171f1bddbebfa070a8903c4a95da8185fcc14049e53700eb11b"
         },
         {
           "path": "vf-ui/vf-media-capture.mjs",
@@ -217,24 +102,79 @@
           "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
         },
         {
-          "path": "vf-ui/vf-native-scene.js",
-          "bytes": 429259,
-          "sha256": "b0167ff9bc0ea09d0d8c4f47b454bc83e0ec59916ca03a706b0b7e7520ce7e72"
+          "path": "vf-ui/vf-current-plot-toolbar.mjs",
+          "bytes": 6442,
+          "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
         },
         {
-          "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
-          "bytes": 258359,
-          "sha256": "6eea1505003a53cc81c0525f90318f25f34e937e055b9275cf8b492a3081c528"
+          "path": "playground/vkf-canonical-browser-compiler.mjs",
+          "bytes": 7413,
+          "sha256": "8e6aefa73f34906e854999572c12eb75fb6931f0382858cc95b07b1bbf223e6f"
         },
         {
-          "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
-          "bytes": 154243,
-          "sha256": "b099ab9d043d49f15f5c8217087c883a0cb711ff1c439afaa37e368fa987235e"
+          "path": "playground/vkf-canonical-execution.mjs",
+          "bytes": 10822,
+          "sha256": "ab586f2649122a8e47500c3ccf354414eb8327ab45804ad3369b00c0390b84e8"
         },
         {
-          "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
-          "bytes": 9157,
-          "sha256": "ee6d411cdd9fb446bcf7d946da75d7211072d9b5ec2dc63b6ee81106fd40761a"
+          "path": "playground/vkf-normal-physics-program.mjs",
+          "bytes": 1831,
+          "sha256": "96a6931d3215793bbbc1c5c23724e4145e25c11ca27b0c73b20020f701d43260"
+        },
+        {
+          "path": "playground/vkf-normal-physics-lifetime.mjs",
+          "bytes": 3118,
+          "sha256": "7db652e4e100f1bba04f50fa35ee570762d8cb9dd1950d811e4b1f3afc0f4340"
+        },
+        {
+          "path": "playground/vkf-retained-worker-execution.mjs",
+          "bytes": 1751,
+          "sha256": "005e0af2270e715e32601bb13baeb03de47eb66024538ac44d069f003c84f30a"
+        },
+        {
+          "path": "playground/normal-physics-resource.mjs",
+          "bytes": 1124,
+          "sha256": "fc197e82d60d1c8c166f891dabcf6970f2b4385c6ac31e5f6ca7f49ff94d23ed"
+        },
+        {
+          "path": "embedding-client.mjs",
+          "bytes": 5396,
+          "sha256": "36d14e4292f2acf968f1010cbfdf5c55e6d49b5dec967cf615ec6d89ed01063d"
+        },
+        {
+          "path": "vf-ui/vf-runtime-scene.js",
+          "bytes": 36667,
+          "sha256": "61247f1a27204e55ab7d07709b667b2ac95bd44fc2e2765687baeab199a2d765"
+        },
+        {
+          "path": "playground/normal-physics-owner.mjs",
+          "bytes": 9167,
+          "sha256": "1f71919c1a2fd57aa69bdd8f703f789bb539885fdd3357ff75955f926322194f"
+        },
+        {
+          "path": "playground/normal-physics-vm-import.mjs",
+          "bytes": 11545,
+          "sha256": "ddf147f79e6f7d111f27ec9ae167149088d749e477b94032badd521331816ac6"
+        },
+        {
+          "path": "playground/normal-physics-input.mjs",
+          "bytes": 4808,
+          "sha256": "8a956386e769b7b2e00e0c068a311db6d8bbaaa3b56d00a6c3071b2a2ebce78c"
+        },
+        {
+          "path": "playground/normal-world-owner.mjs",
+          "bytes": 8383,
+          "sha256": "030e0412b4ccc68dc2735dca2ad0cf15d2d7c2d9f8a91194b1199e2820de5e31"
+        },
+        {
+          "path": "playground/physics-replay-base.mjs",
+          "bytes": 38604,
+          "sha256": "b1ad2ececf397549e846cb5afce9183b2c0b9a722140543bf170472316696767"
+        },
+        {
+          "path": "playground/physics-replay-base.wasm",
+          "bytes": 1820078,
+          "sha256": "d5e061d024f13e02a6a846dc043824ea510f92545302c33db8537dde3b43151a"
         }
       ]
     },
@@ -258,62 +198,49 @@
       ]
     },
     {
-      "id": "authored-scene-recorder-and-physical-mapping",
+      "id": "current-label-producer-and-mapping",
       "identity": {
-        "source2267": "82f194651e37d41715fbc3a3595a8923fef88f1b",
-        "physicalFontClosureUnchanged": true
+        "producerBinding": "096a0260496a573e05588361a99b99741bca16b0e6b5240d87bd2bd4eb97309f",
+        "catalogSHA256": "8227d04b5305e77e3bb793797a8829a8051e6024ffbc70991ffe6e3cf2eeefd4",
+        "physicalFontClosureSHA256": "ed5ed1597a8c8ab1aac94cbf4067273529e7e40658cb4a3759919d96df89c242",
+        "selectedKeys": 128,
+        "addedExactly": [
+          "text/F",
+          "text/c",
+          "text/f"
+        ],
+        "all125OriginalBindingsPreserved": true
       },
       "files": [
         {
-          "path": "vf-ui/vf-media-capture.mjs",
-          "bytes": 12572,
-          "sha256": "afe3fc57e75e162b3c6802b70d9dfa46847dd662767d5e22ac93aa9da179d2fe"
-        },
-        {
-          "path": "vf-ui/vf-current-plot-toolbar.mjs",
-          "bytes": 6442,
-          "sha256": "58ece8a17754b30c97b0d8764dd99681244518ccb5c0af885ead9f3f7f511f5c"
-        },
-        {
           "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
-          "bytes": 258359,
-          "sha256": "6eea1505003a53cc81c0525f90318f25f34e937e055b9275cf8b492a3081c528"
+          "bytes": 267670,
+          "sha256": "a54c006829bf91257158dcbd053400e6174478c372cf4cc880b2383065cd84ea"
         },
         {
           "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
-          "bytes": 154243,
-          "sha256": "b099ab9d043d49f15f5c8217087c883a0cb711ff1c439afaa37e368fa987235e"
+          "bytes": 157919,
+          "sha256": "56ee6183b065365b52a632f146de57110596f36edd2a1f72a1a1a363d42941cb"
         },
         {
           "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
-          "bytes": 9157,
-          "sha256": "ee6d411cdd9fb446bcf7d946da75d7211072d9b5ec2dc63b6ee81106fd40761a"
+          "bytes": 9772,
+          "sha256": "37fd90bff373bcc32455febbfbc772caa369a93b247e97637c65c0dfe3e3865e"
+        },
+        {
+          "path": "vf-ui/native-labels/vf-native-plot-text.mjs",
+          "bytes": 10438,
+          "sha256": "d72e1fe1adcff297f2378f6aa615346727c5aab912527bf012371039a3b22fb6"
         }
       ]
     }
   ],
-  "integrationBinding": "bb14a1cb45dc6dd281e977839efd6c1aa38a124160410b087f12ddc6e2b00323",
-  "actualCompilerOrderedInputs": {
-    "path": "/mnt/development/VektorFlow-e2262-ex01-face-normal-fix-actual-20261104/normal-build/objects.rsp",
-    "bytes": 13718,
-    "sha256": "cf74b19ab8c5abc64bbc50e6092b88f91f8c8b9a723e88840ce18801f134c9ac"
+  "input": {
+    "path": "verification/e2500-publication-composition-inputs.json",
+    "bytes": 9613,
+    "sha256": "b45ada1666d00e23f5e8120f0139e50192b9c7da8d565a881cab58c910a67e44"
   },
-  "sourceComposition": "Cached e2262 normal TU31 private normal scratch/index fix plus identity130; normal ordered140 link/138 object reuse; existing 2f0 formatter and current maintained UI runtime. Native component remains independently identified, no cross-target qualification.",
-  "fullReleaseQualified": false,
-  "compilerBuild": "/mnt/development/VektorFlow-e2262-ex01-face-normal-fix-actual-20261104/normal-build/BUILD-SUCCESS.json",
-  "priorComposition": {
-    "path": "/mnt/development/VektorFlow-e2258-full-ex01-working-actual-20261104/site/public/preview/0.7.5/CURRENT-COMPOSITION.json",
-    "bytes": 9600,
-    "sha256": "68d159333873753f5a07963062ae141bec785dc335e733816c371e9cc6f5d1fa"
-  },
-  "formatterBuild": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/color-formatter/BUILD-SUCCESS.json",
-  "priorRelease": {
-    "path": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/site/public/preview/0.7.5/current-compiler-release.json",
-    "bytes": 16809,
-    "sha256": "85ec473415d1e922869eb55793dfc38c81070f4621c916f01ad8480ce112d310"
-  },
-  "captureSource": "/mnt/development/VektorFlow-e2267-vkf-recorder-webgpu-source-20261104/frozen-v1/SOURCE-READY.json",
-  "captionMappingRepair": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/AUTHORED-CAPTION-MAPPING-REPAIR.json",
-  "additionalObservedAxisRepair": "/mnt/development/VektorFlow-e2265-ex01-cached-build-recovery-actual-20261104/AUTHORED-AXIS-MAPPING-REPAIR.json",
-  "navigationFixSource": "/mnt/development/VektorFlow-e2273-ex01-native-deployed-075-actual-20261104/NAVIGATION-SOURCE-INTEGRATION.json"
+  "compilerOwner": "e2493",
+  "sceneSourceComposition": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+  "nativeAndDeployedCompleteframeUnder10ms": "UNMEASURED"
 }

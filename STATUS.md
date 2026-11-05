@@ -351,3 +351,28 @@ code retains supported immutable tagged-value copies. Generic WASM throughput
 remains explicit. Evidence/engine handoff docs/text-modes/MATERIAL-PERFORMANCE.md.
 Parent will choose existing1024 carrier budget and qualify actual final density
 and full24fps movie; no PP edits, fonts/capture/numeric formulas/push/deployment.
+
+## Bounded native snap / presentation capability policy — 2026-11-05
+
+Source84ec0c0. Frozencommoncurve diagnosed as unchanged native allocator trap
+at64Mi temporary arena, after correct new AST/GPU shader installation but before
+commit. Same-kernel coordinate/residual/contour-cell orchestration with transient
+rewind gives exact four old/new native buffers and stable heap, commonexpression
+no longer traps. Default editor snap remains ready, ~1.7s/commoncurve. Explicit
+controller plot includeSnapGeometry:false reportsdisabled and skips only optional
+CPU snap; exact native GPU drawing/picking retained. Same root1280x720 viewport,
+17x17 native grid, scoped first/second/seventh/first WebGPU+decodedVP8 PASS.
+Repeated first RGBA exact; GPU analytic picks allpass; submission.7–3.3ms, compile
+10.8–32.4ms, no GPUcompletion/hardware60fps claim. Defaulttrue restoration passes.
+Canonicalized existing PP declaration-body constant expansion behavior.
+Four public runtime/controller paths only; numerical0e7, text618, font producer/
+closure and capturef5db bytes untouched. Text kernel/scalar and renderer tests
+pass; six fontcoveragecases pass. Parent owns policy key/editor refresh and final
+movie/errorUI; no rootChrome mutation/PP source edits/deployment here.
+
+Follow-up evidence: WebGL2 real GPU scoped updates, analytic picks, decoded
+frames and default snap restoration PASS (submission3.6–9.8ms). Six native
+fontcoveragecases/263glyphs PASS, no font changes. Discarded auxiliary72-layout
+reuse of basic-font test: its first-level-only guard was inappropriate for nested
+math scripts; do not claim that auxiliary rerun qualified all72. Existing parent
+72-layout qualification/font source pins unchanged. Source remains84ec0c0.

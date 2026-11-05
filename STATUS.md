@@ -297,3 +297,29 @@ not reproduce all-black output; native capture boundary flush is now explicit.
 Evidence docs/media-capture/*PIXEL-QUALIFICATION.json; durable actual browser
 pixel tests. Root owns final capture/lost-drawing-buffer repaint and app4kcarrier
 cap. No PP edits, pin changes, publication or deployment here.
+
+## Native material-carrying vapor and same-artifact scalar bridge — 2026-11-05
+
+Pinned canonical library b29b588c049b8eb7264d09c989adb8905389bc59. Supersedes
+outward-only vapor: actual changed native source/destination ink supplies bounded
+dyadic samples; native prepare_material constructs persistent positive carriers.
+Native lifted finite cubic turbulence converges onto native destination ink,
+interpolates source/target RGB, and captures with delayed spectral front. Shared
+native clock once. Strict identical spec matching retains fixed native text.
+Empty changed endpoint explicitly rejects conserved transport; spectral birth/
+removal remains distinct. No physical mass/Brownian/thermodynamic claims.
+
+Public prepareNumericStateTransition forwards numeric channels to the SAME
+canonical kernel/state backend; no host easing/interpolation. Root owns PP
+collection/application, plots/geometry/camera and presentation timings.
+
+PASS final pinned kernel endpoints/ledger/tamper and scalar bridge; actual browser
+49frame VP8 native-font clip decoded gold source/cyan target, unchanged caption
+full pixel hashes, bounded256carriers, positive conserved ledger; both empty
+changed endpoint refusals and all-unchanged exact pixel checks. Actual native
+compute max27.4ms on this small256carrier scene, not a4k/60fps claim. Full existing
+153glyph/52frame oscillator reveal regression passes. Evidence
+docs/text-modes/MATERIAL-CLIP-QUALIFICATION.json; decoded clip at
+/tmp/vkf-material-transport.webm. Exact native final screenshots visually checked.
+Font closure, outline performance fixes, capture readbackf5db and numerical
+growth36124 remain preserved. No PP edits, push, deployment or production change.

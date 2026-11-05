@@ -26,6 +26,20 @@ window.start=async()=>{
   if(legends)specs.push({...row('displacement','\\text{Displacement}',.06,.7,2.2),color:[120/255,211/255,198/255,1]},{...row('phase','\\text{Phase}',.79,.64,2.2),color:[120/255,211/255,198/255,1]});
   const p=await prepareNativeTextModes({toSpecs:specs,width,height,pixelRatio:1,typography,interp:{mode:'spectral'},maxCarriers:32});document.querySelector('#host').append(p.element);window.player=p;return {glyphs:p.targetCount};
  };
+ window.transportClip=async()=>{
+  window.player.close();document.querySelector('#host').style.cssText='position:relative;width:640px;height:360px;background:#000';
+  const fixed={...make('fixed','Fixed',55,[1,1,1,1]),anchor:[35,55]};
+  const from=[fixed,{...make('flow','Warm ink',170,[1,.7,.2,1]),anchor:[100,170]}],to=[{...fixed,anchor:[35,55],color:[1,1,1,1]},{...make('flow','Cool stroke',260,[.15,.85,1,1]),anchor:[300,260]}];
+  const p=await prepareNativeTextModes({fromSpecs:from,toSpecs:to,width:640,height:360,pixelRatio:1,typography,interp:{mode:'vapor',seed:17},maxCarriers:256});document.querySelector('#host').append(p.element);window.player=p;return {source:p.sourceCount,target:p.targetCount};
+ };
+ window.materialEdges=async()=>{
+  const fixed=make('fixed','Fixed',55,[1,1,1,1]);
+  const same=await prepareNativeTextModes({fromSpecs:[fixed],toSpecs:[{...fixed}],width:640,height:360,pixelRatio:1,typography,interp:{mode:'vapor'},maxCarriers:32});
+  const hashes=[];for(const q of [0,.5,1]){const receipt=await same.sample(q);if(receipt.carriers!==0)throw Error('unchanged material transported');hashes.push([...same.canvas.getContext('2d').getImageData(0,0,640,360).data].join(','));}same.close();
+  if(new Set(hashes).size!==1)throw Error('unchanged native endpoint pixels changed');
+  for(const [fromSpecs,toSpecs] of [[[],[fixed]],[[fixed],[]]]){let rejected=false;try{const p=await prepareNativeTextModes({fromSpecs,toSpecs,width:640,height:360,pixelRatio:1,typography,interp:{mode:'vapor'},maxCarriers:32});p.close();}catch(e){rejected=String(e).includes('MATERIAL_VAPOR_EMPTY_ENDPOINT');}if(!rejected)throw Error('empty material endpoint accepted');}
+  return {unchangedExact:true,emptySourceRejected:true,emptyTargetRejected:true};
+ };
  window.invalid=async()=>{try{await prepareNativeTextModes({typography,width:640,height:360,interp:{mode:'spectral',seed:1}});return false;}catch(e){return e.code==='NATIVE_TEXT_MODE_PARAMETER';}};
  window.cleanup=()=>{window.player.close();controller.abort();typography.close();producer.close();};
  return {sources:prepared.sourceCount,targets:prepared.targetCount};

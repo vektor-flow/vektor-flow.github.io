@@ -35,19 +35,19 @@ Only text passed to this adapter participates; caller filters its authored eleme
 `interp.mode` is `spectral` or `vapor`. Optional named settings are the exact
 native Interp factories' settings: k, velocity, overshoot, grow, and in vapor mode
 only, temperature, spread, lift and seed. Inappropriate mode fields reject.
-Maximum temperature is the only supported vapor temperature, exactly 1. The
+Temperature is a bounded activation parameter in [0,1], not physical energy. The
 pinned library's schema/descriptor remain authoritative, with no mode policy in PP.
 
 Native defaults are k=4, velocity=.54, overshoot=.32, grow=true; vapor defaults are
 temperature=1, spread=.35, lift=.65, seed=0. The browser invokes the native factory
 with these version-matched defaults because the kernel call ABI has fixed arity.
-Source pixels use normalized viewport coordinates x/width, 1-y/height; gas size is
+Source pixels use the common height-normalized chart x/height, 1-y/height; gas size is
 in source pixel-footprint units. Spread and lift therefore refer to viewport
 fractions. Native displacement and fade are never recomputed in JavaScript.
 
 `sample(q,{front?,elapsed?})` takes an uneased fraction q in `[0,1]` and returns an
 actual completion receipt after a compositor turn. The native shared quadratic
-clock runs exactly once before the one-call native `text_frame` batch. By default
+clock runs exactly once before the one-call native prepared material sampler (spectral uses `text_frame`). By default
 the reading front crosses the complete native travel over the normalized interval.
 `durationSeconds` reports travel/velocity for the controller's duration; zero
 velocity reports Infinity and holds the default front. `readingTravel` and
@@ -57,14 +57,13 @@ advance. Explicit `front` overrides elapsed, while explicit elapsed uses native
 caller advancing q to 1 before its custom reading front completes can cause a
 final reveal jump. Keep the duration/front policy consistent.
 
-The outgoing source is rendered once using the actual exact native tile renderer
-onto an otherwise transparent text-only surface. A deterministic bounded subset
-of its nonzero coverage pixels supplies ink positions, coverage and original RGB.
+Both changed endpoints are rendered once using the actual exact native tile renderer
+onto otherwise transparent text-only surfaces. Deterministic dyadic bounded
+subsets of their nonzero coverage pixels supply actual positions, coverage and RGB.
 The native batch computes all gas displacement, alpha and size plus target glyph
 alpha/growth/spectral channels. The existing GPU screen-space simplex renderer
 draws only those presentation carriers. The exact native tiled renderer draws
-native target outlines with channel-driven affine scale and authored-color
-modulation; source matrices/physical glyph paths are retained. Authored final
+native target outlines with channel-driven affine scale and color; source matrices/physical glyph paths are retained. Authored final
 RGBA is exact at q=1. Gas/input sampling is not material-conserving thermodynamics.
 
 The returned `canvas` is the accepted composite, suitable for existing capture.
@@ -74,7 +73,7 @@ carrier count, library commit and native renderer receipt. A compositor turn is
 not a physical-display or hardware GPU completion certificate.
 
 Limits: 128 specs/endpoint, 4096 physical source instances/endpoint, carrier cap
-1–65536 (default4096), integer CSS dimensions 1–4096, total CSS area <=4,194,304,
+1–4096 (default4096), integer CSS dimensions 1–4096, total CSS area <=4,194,304,
 and integer DPR1/2/3. Existing native tile and source certificate budgets still
 apply and may reject expensive text. Input glyphs are prepared once; gas buffers
 are bounded. Requests serialize and coalesce superseded queued generations.
@@ -85,10 +84,10 @@ No worker/GPU-compute or 60fps performance qualification is claimed.
 Build:
 
 ```sh
-node scripts/text-modes/build.mjs LIBRARY_GIT 36124ab CANONICAL_COMPILER_DIR OUTPUT
+node scripts/text-modes/build.mjs LIBRARY_GIT b29b588 CANONICAL_COMPILER_DIR OUTPUT
 ```
 
-Exact committed `Interp.vkf` bytes plus a two-function forwarding-only VKF
+Exact committed `Interp.vkf` bytes plus a small forwarding-only VKF
 adapter compile to a host-import-free WASM artifact. Runtime validates the exact
 library identity and source-code-pinned WASM/manifest hashes. Regenerating a
 changed artifact requires reviewing and updating those pins. No compiler release,
@@ -146,3 +145,43 @@ Tests include142 independent original exact-sampling comparisons,2 matching
 refusals, mutation/limits/ownership,4100 bounded submissions, accelerator eviction
 reuse and changed-phase reproof, default resize/late-refusal browser control, and
 full153-glyph reveal regression. No numerical artifact or font changes.
+
+## Material vapor contract (supersedes historical outward-only receipts)
+
+The source and destination use genuine native font raster ink, never background
+or geometry samples. The canonical native `prepare_vapor_transport` calls the
+existing `Morphing.prepare_material`: normalized positive dyadic material weights
+produce ordered split/merge correspondence bounded by maxCarriers. This conserves
+a normalized material ledger, not raster coverage/optical area or physical mass.
+Nearest actual native glyph anchor assigns each destination sample a capture
+front; this explicit timing control is not semantic glyph matching.
+
+Native `vapor_front` delays the spectral front until dissolution. Native
+`sample_vapor_transport` supplies lifted seeded finite cubic turbulent offsets
+around source-to-target transport, source-to-target RGB interpolation, target
+growth/ink color, and synchronized capture. Offsets vanish before capture; each
+carrier converges onto its actual destination ink (including current glyph growth).
+This is seekable finite colored noise, not a Wiener process or thermodynamic
+solver. The temperature activation shapes dissolution and offset amplitude.
+
+The renderer compares exact id/source/anchor/scale/color/style specs. Identical
+specs remain fixed; changed specs participate. Empty changed source or target
+rejects `MATERIAL_VAPOR_EMPTY_ENDPOINT`; conserved material has no invented
+reservoir. Use separate spectral appearance/removal for those operations. Both
+unchanged/empty scenes need no transport. Receipts expose positive ledger
+[source,gas,captured], sample counts and preparation/compute timings. Exact q0
+uses accepted original native source; exact q1 uses original native destination.
+
+`prepareNumericStateTransition({from:[...],to:[...],path:0,signal,kernelOptions?})`
+returns a Promise of `{sample(q),close()}` from this SAME artifact. sample is
+synchronous and returns `{values,coordinate:q,nativeCoordinate,libraryCommit}`.
+It invokes one native shared `time_coordinate` and existing state `sample`; the
+host only collects and applies authored numeric channels. Path 0/1 is the native
+linear/natural-cubic selector (two endpoints naturally give a line). Finite equal
+nonempty vectors, up to65536 channels; invalid inputs/closed handles reject.
+
+Checks additionally include `node tests/text-modes/material-clip.cjs`: 49 actual
+native-font frames encoded through existing VP8 capture, decoded pixel inspection
+of gold source and cyan target, fixed caption hashes, conserved ledger and256cap.
+Current evidence is MATERIAL-CLIP-QUALIFICATION.json; earlier browser/performance
+receipts remain explicitly tied to their earlier source pins.

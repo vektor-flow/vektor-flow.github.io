@@ -4,8 +4,8 @@ import {createTiledNativeLabelRenderer} from './vf-native-tiled-label-renderer.m
 import {createScreenSpaceSimplexRenderer} from '../geom/vf-screen-simplex-renderer.mjs';
 const need=(ok,code)=>{if(!ok)throw Object.assign(Error(code),{code});};
 const sha=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
-export const TEXT_INTERP_COMMIT='36124ab5aa75725a7316b847212acd17bd431bf3';
-const expected={'text.wasm':'a6b8bc4d87b4600d06b2ee1a328f95f1eb8c30cdae1610732568ce3cc94af54f','text.json':'073d184d5e3b07163d5b7d748edf69e25345ed7987d0dc4e77a77c8d81c5f7a5'};
+export const TEXT_INTERP_COMMIT='b29b588c049b8eb7264d09c989adb8905389bc59';
+const expected={"text.wasm": "f131d0e883a1a2305ef7a6bbf9c4ce13f2e8f34b91029c7042b211d00ec81551", "text.json": "0839426b097291354f5969abb5a251211812d7a6989bc39411a57eefe043868c"};
 export async function loadNativeTextModeKernel({baseURL=new URL('../artifacts/text-modes/',import.meta.url),fetch:fetcher=globalThis.fetch,signal}={}){
  const get=async n=>{const r=await fetcher(new URL(n,baseURL),{signal});need(r.ok,'NATIVE_TEXT_RESOURCE');return r.arrayBuffer();};
  const [bytes,json,p]=await Promise.all(['text.wasm','text.json','PROVENANCE.json'].map(get)),provenance=JSON.parse(new TextDecoder().decode(p));
@@ -52,57 +52,88 @@ function readingCoordinates(sources,specs,k,kernel){
  const values=sources.map(s=>{const row=offsets.get(s.provenance.elementId),local=(s.matrix[4]-row.left)/row.width;return kernel.invokeValue('reading_coordinate',[row.offset,row.row,local,k]);});
  return values;
 }
-/** Transparent same-document text overlay. The caller owns editor/UI/geometry.
- * All reveal/trajectory channels come from the pinned native Interp batch.
+// Bounded raster intake only: no trajectory, correspondence, easing or glyph
+// rendering is implemented here. Equal dyadic sample counts make native
+// persistent material cuts exactly representable; coverage remains observable.
+function sampleInk(pixels,height,limit){
+ let population=0;for(let at=3;at<pixels.data.length;at+=4)if(pixels.data[at])population++;
+ if(!population)return {values:[],count:0,population:0};
+ let count=1;while(count*2<=Math.min(population,limit))count*=2;
+ const values=[],ratio=pixels.height/height,footprint=Math.sqrt(population/count)/ratio;
+ let ordinal=0,taken=0;
+ for(let at=0;at<pixels.data.length&&taken<count;at+=4){const a=pixels.data[at+3];if(!a)continue;
+  if(ordinal++<Math.floor(taken*population/count))continue;
+  const index=at/4,x=(index%pixels.width+.5)/ratio,y=(Math.floor(index/pixels.width)+.5)/ratio;
+  values.push(x/height,1-y/height,pixels.data[at]/255,pixels.data[at+1]/255,pixels.data[at+2]/255,a/255,footprint);taken++;
+ }need(taken===count,'NATIVE_INK_SAMPLE_COUNT');return {values,count,population};
+}
+const stableSpec=s=>JSON.stringify([s.id,s.kind,s.source,s.anchor,s.scale,s.color??[0,0,0,1],s.sizeSpace??'css',s.display??false]);
+/** Same-document native material transport/reveal. Geometry and capture belong
+ * to their existing owners. Existing physical font paths remain authoritative.
  */
 export async function prepareNativeTextModes({fromSpecs=[],toSpecs=[],width,height,typography,interp={mode:'spectral'},signal,pixelRatio=globalThis.devicePixelRatio||1,maxCarriers=4096,document=globalThis.document,kernelOptions={}}={}){
  need(document?.createElement&&typography?.prepare&&typography?.vectors,'NATIVE_TEXT_TYPOGRAPHY');
  need(Number.isInteger(width)&&width>0&&width<=4096&&Number.isInteger(height)&&height>0&&height<=4096&&width*height<=4194304&&[1,2,3].includes(pixelRatio),'NATIVE_TEXT_VIEWPORT');
- need(Number.isInteger(maxCarriers)&&maxCarriers>=1&&maxCarriers<=65536,'NATIVE_TEXT_CARRIER_LIMIT');
- let closed=false,generation=0,tail=Promise.resolve(),last=null,nativeRenderer,gasRenderer,sourceRenderer;
+ need(Number.isInteger(maxCarriers)&&maxCarriers>=1&&maxCarriers<=4096,'NATIVE_TEXT_CARRIER_LIMIT');
+ checkSpecs(fromSpecs);checkSpecs(toSpecs);
+ let closed=false,generation=0,tail=Promise.resolve(),last=null,nativeRenderer,gasRenderer,sourceRenderer,transport=null;
  const element=document.createElement('div');element.className='vf-native-text-modes';element.style.cssText=`position:absolute;inset:0;width:${width}px;height:${height}px;pointer-events:none;background:transparent`;
- const canvas=document.createElement('canvas'),gasCanvas=document.createElement('canvas'),nativeCanvas=document.createElement('canvas'),sourceCanvas=document.createElement('canvas');
- for(const c of [canvas,gasCanvas,nativeCanvas]){c.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';element.append(c);}
- // Only the final accepted composite is displayed. Intermediate native/gas
- // surfaces stay detached, preserving previous accepted pixels on failure.
- gasCanvas.remove();nativeCanvas.remove();
+ const canvas=document.createElement('canvas'),gasCanvas=document.createElement('canvas'),nativeCanvas=document.createElement('canvas'),sourceCanvas=document.createElement('canvas'),firstCanvas=document.createElement('canvas');
+ canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';element.append(canvas);
  const check=()=>{if(closed||signal?.aborted)throw abort();};
- function close(){if(closed)return;closed=true;generation++;signal?.removeEventListener('abort',close);nativeRenderer?.destroy();sourceRenderer?.destroy();gasRenderer?.destroy();element.remove();for(const c of [canvas,gasCanvas,nativeCanvas,sourceCanvas])c.width=c.height=1;}
+ function close(){if(closed)return;closed=true;generation++;transport=null;signal?.removeEventListener('abort',close);nativeRenderer?.destroy();sourceRenderer?.destroy();gasRenderer?.destroy();element.remove();for(const c of [canvas,gasCanvas,nativeCanvas,sourceCanvas,firstCanvas])c.width=c.height=1;}
  signal?.addEventListener('abort',close,{once:true});
  try{
-  check();const {kernel,provenance}=await loadNativeTextModeKernel({...kernelOptions,signal});check();
-  const settings=nativeSettings(kernel,interp),from=await outlines(typography,fromSpecs,check,pixelRatio),to=await outlines(typography,toSpecs,check,pixelRatio);check();
-  need(to.length<=4096,'NATIVE_TEXT_GLYPH_LIMIT');
-  nativeRenderer=createTiledNativeLabelRenderer(nativeCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});
-  sourceRenderer=createTiledNativeLabelRenderer(sourceCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});
-  await nativeRenderer.initialize();check();await sourceRenderer.initialize();check();
-  nativeRenderer.resize(width,height);sourceRenderer.resize(width,height);sourceRenderer.setNativeScene(sourceScene(from),[1,0,0,1,0,0]);
-  const sourcePixels=sourceCanvas.getContext('2d').getImageData(0,0,sourceCanvas.width,sourceCanvas.height),ink=[],colors=[];
-  // A deterministic bounded subset of actual native ink pixels, never graphs
-  // or background. Preserve the unpremultiplied source RGB and AA coverage.
-  let population=0;for(let at=3;at<sourcePixels.data.length;at+=4)if(sourcePixels.data[at])population++;
-  const stride=Math.max(1,Math.ceil(population/maxCarriers));let seen=0;
-  if(interp.mode==='vapor')for(let at=0;at<sourcePixels.data.length;at+=4){const a=sourcePixels.data[at+3];if(!a)continue;if(seen++%stride)continue;const p=at/4,x=(p%sourcePixels.width+.5)/pixelRatio,y=(Math.floor(p/sourcePixels.width)+.5)/pixelRatio;ink.push(x/width,1-y/height,a/255);colors.push(sourcePixels.data[at]/255,sourcePixels.data[at+1]/255,sourcePixels.data[at+2]/255);}
+  check();const {kernel,provenance}=await loadNativeTextModeKernel({...kernelOptions,signal});check();const settings=nativeSettings(kernel,interp);
+  const from=await outlines(typography,fromSpecs,check,pixelRatio),to=await outlines(typography,toSpecs,check,pixelRatio);check();
+  const before=new Map(fromSpecs.map(s=>[s.id,stableSpec(s)])),stable=new Set(toSpecs.filter(s=>before.get(s.id)===stableSpec(s)).map(s=>s.id)),changedFrom=from.filter(s=>!stable.has(s.provenance.elementId)),changedTo=to.filter(s=>!stable.has(s.provenance.elementId));
+  nativeRenderer=createTiledNativeLabelRenderer(nativeCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});sourceRenderer=createTiledNativeLabelRenderer(sourceCanvas,{pixelRatio:()=>pixelRatio,nativeAccuracy:'required',samplesPerAxis:4});
+  await nativeRenderer.initialize();check();await sourceRenderer.initialize();check();nativeRenderer.resize(width,height);sourceRenderer.resize(width,height);
+  sourceRenderer.setNativeScene(sourceScene(from),[1,0,0,1,0,0]);
+  firstCanvas.width=sourceCanvas.width;firstCanvas.height=sourceCanvas.height;firstCanvas.getContext('2d').putImageData(sourceCanvas.getContext('2d').getImageData(0,0,firstCanvas.width,firstCanvas.height),0,0);
+  sourceRenderer.setNativeScene(sourceScene(changedFrom),[1,0,0,1,0,0]);
+  const sourcePixels=sourceCanvas.getContext('2d').getImageData(0,0,sourceCanvas.width,sourceCanvas.height),sourceInk=sampleInk(sourcePixels,height,maxCarriers);
+  const reading=readingCoordinates(changedTo,toSpecs.filter(s=>!stable.has(s.id)),interp.k??4,kernel),ramp=kernel.invokeValue('ramp_width',[interp.k??4]),travel=(reading.length?Math.max(...reading):0)+ramp;
+  let targetInk={values:[],count:0,population:0},transportPrepareMs=0;
+  if(interp.mode==='vapor'&&(changedFrom.length||changedTo.length)){
+   nativeRenderer.setNativeScene(sourceScene(changedTo),[1,0,0,1,0,0]);const targetPixels=nativeCanvas.getContext('2d').getImageData(0,0,nativeCanvas.width,nativeCanvas.height);targetInk=sampleInk(targetPixels,height,maxCarriers);
+   need(sourceInk.count>0&&targetInk.count>0,'MATERIAL_VAPOR_EMPTY_ENDPOINT: conserved transport needs changed ink at both endpoints; use spectral for appearance/removal');
+   const glyphs=changedTo.flatMap((s,i)=>[s.matrix[4]/height,1-s.matrix[5]/height,reading[i],...(s.color??[0,0,0,1])]);
+   const started=performance.now();transport=kernel.invokeValue('prepare_vapor_transport',[settings,sourceInk.values,targetInk.values,glyphs]);transportPrepareMs=performance.now()-started;
+  }
   gasRenderer=createScreenSpaceSimplexRenderer(gasCanvas,{pixelRatio:()=>pixelRatio,backend:'webgl2'});await gasRenderer.initialize();gasRenderer.resize(width,height);check();
-  const k=interp.k??4,reading=readingCoordinates(to,toSpecs,k,kernel),ramp=kernel.invokeValue('ramp_width',[k]),travel=(reading.length?Math.max(...reading):0)+ramp;
-  const velocity=interp.velocity??.54,durationSeconds=velocity===0?Infinity:travel/velocity;
   canvas.width=width*pixelRatio;canvas.height=height*pixelRatio;const ctx=canvas.getContext('2d',{alpha:true});need(ctx,'NATIVE_TEXT_COMPOSITOR');
+  const velocity=interp.velocity??.54,durationSeconds=velocity===0?Infinity:travel/velocity;
   async function render(q,options,serial){
-   check();if(serial!==generation)return {status:'SUPERSEDED'};need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_TEXT_COORDINATE');
-   const start=performance.now(),coordinate=kernel.invokeValue('time_coordinate',[q]),front=options.front??(options.elapsed===undefined?(velocity===0?0:coordinate*travel):kernel.invokeValue('reveal_advance',[settings,0,options.elapsed]));need(Number.isFinite(front),'NATIVE_TEXT_FRONT');
+   check();if(serial!==generation)return {status:'SUPERSEDED'};need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_TEXT_COORDINATE');const start=performance.now(),coordinate=kernel.invokeValue('time_coordinate',[q]);
+   const defaultFront=transport?kernel.invokeValue('vapor_front',[settings,coordinate,travel]):(velocity===0?0:coordinate*travel),front=options.front??(options.elapsed===undefined?defaultFront:kernel.invokeValue('reveal_advance',[settings,0,options.elapsed]));need(Number.isFinite(front),'NATIVE_TEXT_FRONT');
    if(last&&last.coordinate===q&&last.front===front){last={...last,status:'REUSED_ACCEPTED_FRAME',reusedAcceptedFrame:true,nativeComputeMs:0,cpuThroughSubmitMs:performance.now()-start};return last;}
-   const before=performance.now(),packet=kernel.invokeValue('text_frame',[settings,coordinate,ink,reading,front]),computeMs=performance.now()-before;check();
-   let zeroAreaGlyphs=0;
-   const sources=q===1?to:q===0?[]:to.flatMap((s,i)=>{const [a,g,r,b,c]=packet.target.slice(i*5,i*5+5);if(a<=0)return [];need(Number.isFinite(g),'NATIVE_TEXT_GROWTH');const m=s.matrix,color=s.color??[0,0,0,1],linear=[m[0]*g,m[1]*g,m[2]*g,m[3]*g];if(g<=0||linear.every(v=>v===0)){zeroAreaGlyphs++;return [];}return [{...s,matrix:[...linear,m[4],m[5]],color:[r*color[0],b*color[1],c*color[2],a*color[3]]}];});
-   const points=new Float32Array(packet.gas.length/4*36);let at=0;
-   for(let i=0;i<packet.gas.length/4;i++){const [x,y,a,size]=packet.gas.slice(i*4,i*4+4),cx=x*width,cy=(1-y)*height,radius=Math.sqrt(stride)/pixelRatio*size*.5,col=[...colors.slice(i*3,i*3+3),a];for(const [dx,dy] of [[-1,-1],[1,-1],[1,1],[-1,-1],[1,1],[-1,1]]){points.set([cx+dx*radius,cy+dy*radius,...col],at);at+=6;}}
-   gasRenderer.setPackedVertices(points);
-   nativeRenderer.setNativeScene(sourceScene(sources),[1,0,0,1,0,0]);check();if(serial!==generation)return {status:'SUPERSEDED'};
-   ctx.clearRect(0,0,canvas.width,canvas.height);ctx.globalAlpha=packet.source_alpha;ctx.drawImage(sourceCanvas,0,0);ctx.globalAlpha=1;ctx.drawImage(gasCanvas,0,0);ctx.drawImage(nativeCanvas,0,0);
+   const began=performance.now();let packet;
+   if(transport)packet=kernel.invokeValue('sample_vapor_transport',[transport,coordinate,front]);
+   else if(interp.mode==='spectral')packet=kernel.invokeValue('text_frame',[settings,coordinate,[],reading,front]);
+   else packet={source_alpha:0,gas:[],target:[],ledger:[0,0,0]};
+   const computeMs=performance.now()-began;check();let zeroAreaGlyphs=0,index=0;
+   const sources=q===1?to:q===0?[]:to.flatMap(s=>{
+    if(stable.has(s.provenance.elementId))return [s];const i=index++,[a,g,r,b,c]=packet.target.slice(i*5,i*5+5);if(!(a>0))return [];need(Number.isFinite(g),'NATIVE_TEXT_GROWTH');const m=s.matrix,color=s.color??[0,0,0,1],linear=[m[0]*g,m[1]*g,m[2]*g,m[3]*g];if(g<=0||linear.every(v=>v===0)){zeroAreaGlyphs++;return [];}
+    return [{...s,matrix:[...linear,m[4],m[5]],color:transport?[r,b,c,a]:[r*color[0],b*color[1],c*color[2],a*color[3]]}];
+   });
+   const gas=transport?packet.gas:[];let visible=0;for(let i=2;i<gas.length;i+=9)if(gas[i]>0)visible++;const points=new Float32Array(visible*36);let at=0;
+   for(let i=0;i<gas.length/9;i++){const [x,y,a,size,r,g,b]=gas.slice(i*9,i*9+7);if(a<=0)continue;const cx=x*height,cy=(1-y)*height,radius=size*.5;for(const [dx,dy] of [[-1,-1],[1,-1],[1,1],[-1,-1],[1,1],[-1,1]]){points.set([cx+dx*radius,cy+dy*radius,r,g,b,a],at);at+=6;}}
+   gasRenderer.setPackedVertices(points);nativeRenderer.setNativeScene(sourceScene(sources),[1,0,0,1,0,0]);check();if(serial!==generation)return {status:'SUPERSEDED'};
+   ctx.clearRect(0,0,canvas.width,canvas.height);ctx.globalAlpha=q===0?1:packet.source_alpha;ctx.drawImage(q===0?firstCanvas:sourceCanvas,0,0);ctx.globalAlpha=1;ctx.drawImage(gasCanvas,0,0);ctx.drawImage(nativeCanvas,0,0);
    await new Promise(resolve=>requestAnimationFrame(resolve));check();
-   last={status:'PRESENTED_COMPOSITOR_TURN',coordinate:q,nativeCoordinate:coordinate,front,sourceAlpha:packet.source_alpha,carriers:ink.length/3,glyphs:to.length,gasAlphaMax:Math.max(0,...packet.gas.filter((_,i)=>i%4===2)),zeroAreaGlyphs,targetAlpha:packet.target.filter((_,i)=>i%5===0),nativeComputeMs:computeMs,cpuThroughSubmitMs:performance.now()-start,computeBackend:'canonical VKF WASM; CPU',gasRenderingBackend:gasRenderer.backend,nativeRenderer:nativeRenderer.nativeStatistics(),libraryCommit:provenance.libraryCommit,geometryReadback:false,inkReadback:'once during preparation, genuine source-text native raster only'};
+   last={status:'PRESENTED_COMPOSITOR_TURN',coordinate:q,nativeCoordinate:coordinate,front,sourceAlpha:q===0?1:packet.source_alpha,carriers:transport?.material.carriers??0,glyphs:to.length,stableGlyphs:to.length-changedTo.length,gasAlphaMax:Math.max(0,...gas.filter((_,i)=>i%9===2)),zeroAreaGlyphs,targetAlpha:packet.target.filter((_,i)=>i%5===0),nativeComputeMs:computeMs,cpuThroughSubmitMs:performance.now()-start,computeBackend:'canonical VKF WASM; CPU',gasRenderingBackend:gasRenderer.backend,nativeRenderer:nativeRenderer.nativeStatistics(),libraryCommit:provenance.libraryCommit,geometryReadback:false,inkReadback:'actual native source and target ink once during preparation',transport:transport?{backend:'Morphing.prepare_material + shared state segment',ledger:packet.ledger,sourceSamples:sourceInk.count,targetSamples:targetInk.count,prepareMs:transportPrepareMs,correspondence:'ordered equal dyadic material; nearest native anchor capture control',noise:'seeded finite cubic field; not a physical Brownian solver'}:{status:changedTo.length?'spectral':'unchanged'}};
    return last;
   }
   return Object.freeze({element,canvas,libraryCommit:provenance.libraryCommit,sourceCount:from.length,targetCount:to.length,durationSeconds,readingTravel:travel,revealFront(elapsed){check();return kernel.invokeValue('reveal_advance',[settings,0,elapsed]);},sample(q,options={}){const serial=++generation;const job=tail.then(()=>render(q,options,serial));tail=job.catch(()=>{});return job;},receipt:()=>last,close});
  }catch(error){close();throw error;}
+}
+
+/** Collect/apply channels in the host; all interpolation and clock math is
+ * the existing native state backend in this SAME pinned kernel artifact. */
+export async function prepareNumericStateTransition({from,to,path=0,signal,kernelOptions={}}={}){
+ need([0,1].includes(path)&&Array.isArray(from)&&Array.isArray(to)&&from.length>0&&from.length===to.length&&from.length<=65536&&from.every(Number.isFinite)&&to.every(Number.isFinite),'NATIVE_NUMERIC_STATE_CHANNELS');
+ const loaded=await loadNativeTextModeKernel({...kernelOptions,signal});let kernel=loaded.kernel,plan=kernel.invokeValue('prepare',[kernel.invokeValue('state',[path]),[0,1],[...from,...to],from.length]),closed=false;
+ function close(){if(closed)return;closed=true;kernel=null;plan=null;signal?.removeEventListener('abort',close);}signal?.addEventListener('abort',close,{once:true});if(signal?.aborted){close();throw abort();}
+ return Object.freeze({sample(q){if(closed||signal?.aborted)throw abort();need(Number.isFinite(q)&&q>=0&&q<=1,'NATIVE_NUMERIC_STATE_COORDINATE');const nativeCoordinate=kernel.invokeValue('time_coordinate',[q]),sample=kernel.invokeValue('sample_state',[plan,nativeCoordinate]);return {values:sample.value,coordinate:q,nativeCoordinate,libraryCommit:loaded.provenance.libraryCommit};},close});
 }

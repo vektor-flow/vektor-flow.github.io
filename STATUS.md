@@ -401,3 +401,16 @@ partial updates/no-op commits/resize. Default preserveDrawingBuffer true; explic
 false available for continuous callers. Existing incompatible context rejects
 explicitly; reload/fresh canvas required. Parent owns actual PP navigation check.
 No native numerical/font/text artifact bytes changed.
+
+## Refined material/calculate delivery checkpoint — 2026-11-05
+
+Canonical libraryc9e70dd; renderer4034401 and authentic mapping67d0da9 intaken
+by parent. Mode-specific typed groups/schema, native physical-ID state matching,
+explicit emission/exit ledger, coherent subpixel convection and capture-only
+authored target ink qualified. Profile .75/.25/.35/.85/temp1 at1024carriers.
+49decoded actualGPU frames: fixed heading/oldrow/prefix exact, material front
+left-to-right, arbitrary seek exact.1024/2048 fullframe hashes equal (same1024
+actualsamples). See docs/text-modes-refined/CONTRACT.md and QUALIFICATION files.
+Parent short actualPP preflight owns final visual acceptance. No more functional
+changes planned; static retained preservationcb8da21 is separate and needs parent
+navigation+pointer regression after fresh canvas/reload.

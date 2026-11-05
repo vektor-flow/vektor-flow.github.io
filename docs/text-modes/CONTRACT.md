@@ -1,3 +1,5 @@
+> The current mixed calculation/material presentation contract is [Refined native rows](../text-modes-refined/CONTRACT.md). The earlier spectral/material description below is historical.
+
 # Native Interp text mode browser adapter
 
 Import `prepareNativeTextModes` from

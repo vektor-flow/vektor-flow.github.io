@@ -410,6 +410,13 @@ export function createSymbolicKernel({ instance, manifest }) {
     createWorkspace() {
       return invoke("symbolic_workspace", []);
     },
+    createWorkspaceValue() {
+      return invokeTransient('symbolic_workspace', [], value => value);
+    },
+    workspaceCompileValue(workspace, source, context, clip = null) {
+      const value = invokeTransient('symbolic_workspace_compile', [workspace, source, context, clip], value => value);
+      return Object.freeze({value, handle:value.handle, workspace:value.workspace, program:value.program});
+    },
     workspaceCompile(workspace, source, context, clip = null) {
       const result = invoke(
         "symbolic_workspace_compile",

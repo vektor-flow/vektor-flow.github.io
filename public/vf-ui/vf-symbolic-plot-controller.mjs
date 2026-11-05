@@ -727,14 +727,19 @@ export async function createSymbolicCompiler({
     throw new TypeError('symbolic compiler kernel must provide compileDraft');
   }
   let workspace = kernel.createWorkspace().handle;
-  let definitionWorkspace = kernel.createWorkspace().handle;
+  const emptyDefinitionWorkspace = () => typeof kernel.createWorkspaceValue === 'function'
+    ? kernel.createWorkspaceValue() : kernel.createWorkspace().handle;
+  const compileDefinition = (base, source, context, clip) => typeof kernel.workspaceCompileValue === 'function'
+    ? kernel.workspaceCompileValue(base, source, context, clip)
+    : kernel.workspaceCompile(base, source, context, clip);
+  let definitionWorkspace = emptyDefinitionWorkspace();
   let globalDefinitionSources = Object.freeze([]);
   let localDefinitions = new Map();
 
   function appendDefinitions(base, sources, context = globalSymbolicContext()) {
     let next = base;
     for (const source of sources || []) {
-      next = kernel.workspaceCompile(next, String(source ?? ''), context, null).workspace;
+      next = compileDefinition(next, String(source ?? ''), context, null).workspace;
     }
     return next;
   }
@@ -743,7 +748,7 @@ export async function createSymbolicCompiler({
     setDefinitions({ global = [], local = {} } = {}) {
       globalDefinitionSources = Object.freeze([...(global || [])].map(String));
       definitionWorkspace = appendDefinitions(
-        kernel.createWorkspace().handle,
+        emptyDefinitionWorkspace(),
         globalDefinitionSources
       );
       localDefinitions = new Map(Object.entries(local).map(([scopeId, sources]) => [
@@ -848,7 +853,7 @@ export async function createSymbolicCompiler({
         normalizedConstraints.map(({ source: constraintSource }) => constraintSource),
         context
       );
-      const compiled = kernel.workspaceCompile(
+      const compiled = compileDefinition(
         scopedWorkspace,
         expandBoundSymbolicConstants(
           expandSymbolicReferences(

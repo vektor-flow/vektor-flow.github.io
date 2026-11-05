@@ -423,3 +423,6 @@ smallest nativeaccentlayout/catalog requirement in SWEDISH-FONT-GAP.md/json.
 No mapping/runtime bytes changed; focused defaultfontqueries unchanged.
 Parent actualPP cb8 navigation/pointer acceptance GREEN after freshreload:
 heading1995/body1933/phase2860pixels retained, cropsdiffNone.
+Native quoted accent braced/unbraced also refused explicitly as unsupportedtext
+command/CURRENT_NATIVE_INCOMPLETE; exact source bytes verified. Added diagnostic
+coverage only; no native parser/catalog/layout implementation authorized here.

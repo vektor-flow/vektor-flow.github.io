@@ -136,52 +136,82 @@ export function downloadCapturedMedia({ url, filename }, documentRef = globalThi
   anchor.click();
 }
 
-export function createLayeredCanvasCaptureStream(options = {}) {
-  const layers = Array.isArray(options.layers) ? options.layers : [];
+/** Manual source for deterministic/offline capture of existing canvas layers.
+ * No clock, stream, recorder, scene rendering or animation math is owned here.
+ * The producer awaits its renderer, calls drawFrame, then passes canvas to the
+ * existing frame movie encoder. Input layers remain caller-owned.
+ */
+export function createLayeredCanvasCaptureSource(options = {}) {
   const documentRef = options.document || options.documentRef || globalThis.document;
-  const frameRate = Math.max(1, Number(options.frameRate) || 60);
-  const requestFrame = options.requestFrame
-    || globalThis.requestAnimationFrame?.bind(globalThis)
-    || ((callback) => setTimeout(callback, 1000 / frameRate));
   const output = documentRef?.createElement?.('canvas');
   const context = output?.getContext?.('2d');
-  if (!output || !context || typeof output.captureStream !== 'function') {
-    throw new Error('Layered canvas capture is unavailable');
-  }
-
-  const resolveLayers = () => layers
-    .map((layer) => typeof layer === 'function' ? layer() : layer)
-    .filter((layer) => layer?.width > 0 && layer?.height > 0);
+  if (!output || !context) throw new Error('Layered canvas capture is unavailable');
+  let closed = false;
+  const resolveLayers = () => {
+    const entries = typeof options.layers === 'function' ? options.layers() : options.layers;
+    return (Array.isArray(entries) ? entries : [])
+      .map((layer) => typeof layer === 'function' ? layer() : layer)
+      .filter((layer) => layer?.width > 0 && layer?.height > 0);
+  };
   const initialLayers = resolveLayers();
   if (!initialLayers.length) throw new Error('Layered canvas capture requires a canvas layer');
   output.width = initialLayers[0].width;
   output.height = initialLayers[0].height;
+  const live = () => { if (closed) throw new Error('Layered canvas capture source is closed'); };
+  return Object.freeze({
+    canvas: output,
+    get closed() { return closed; },
+    drawFrame() {
+      live();
+      options.beforeDraw?.();
+      live();
+      const activeLayers = resolveLayers();
+      const primary = activeLayers[0];
+      if (primary && (output.width !== primary.width || output.height !== primary.height)) {
+        output.width = primary.width;
+        output.height = primary.height;
+      }
+      context.clearRect(0, 0, output.width, output.height);
+      for (const layer of activeLayers) context.drawImage(layer, 0, 0, output.width, output.height);
+      return output;
+    },
+    close() {
+      if (closed) return;
+      closed = true;
+      // Release only this owner's raster storage; source layers are borrowed.
+      output.width = output.height = 1;
+    }
+  });
+}
 
-  const stream = output.captureStream(frameRate);
+export function createLayeredCanvasCaptureStream(options = {}) {
+  const frameRate = Math.max(1, Number(options.frameRate) || 60);
+  const requestFrame = options.requestFrame
+    || globalThis.requestAnimationFrame?.bind(globalThis)
+    || ((callback) => setTimeout(callback, 1000 / frameRate));
+  const source = createLayeredCanvasCaptureSource(options);
+  if (typeof source.canvas.captureStream !== 'function') {
+    source.close();
+    throw new Error('Layered canvas capture is unavailable');
+  }
+  let stream;
+  try { stream = source.canvas.captureStream(frameRate); }
+  catch (error) { source.close(); throw error; }
   const videoTracks = () => stream?.getVideoTracks?.() || [];
-
   const compositeFrame = () => {
     const tracks = videoTracks();
-    if (tracks.length && tracks.every((track) => track.readyState === 'ended')) return;
-
-    options.beforeDraw?.();
-    const activeLayers = resolveLayers();
-    const primary = activeLayers[0];
-    if (primary && (output.width !== primary.width || output.height !== primary.height)) {
-      output.width = primary.width;
-      output.height = primary.height;
+    if (tracks.length && tracks.every((track) => track.readyState === 'ended')) {
+      source.close();
+      return;
     }
-    context.clearRect(0, 0, output.width, output.height);
-    for (const layer of activeLayers) {
-      context.drawImage(layer, 0, 0, output.width, output.height);
-    }
+    source.drawFrame();
     for (const track of tracks) {
       if (track.readyState !== 'ended') track.requestFrame?.();
     }
     requestFrame(compositeFrame);
   };
-
-  compositeFrame();
+  try { compositeFrame(); }
+  catch (error) { source.close(); stopStream(stream); throw error; }
   return stream;
 }
 

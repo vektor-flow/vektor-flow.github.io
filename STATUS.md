@@ -206,3 +206,20 @@ Updated BROWSER-QUALIFICATION.json records final pinned kernel and actual native
 typography. Original light text, wave/vapor, endpoint, underlay and abort tests
 also pass. Root live authoring/browser state untouched; final PP intakes only
 owned renderer artifacts/module changes before capture. No deployment or push.
+
+## Manual deterministic layered capture source — 2026-11-05
+
+Added createLayeredCanvasCaptureSource around the existing compositor in
+vf-ui/vf-media-capture.mjs. Manual drawFrame follows current layers/order and
+primary pixel dimensions without streams/RAF/timers or scene recreation. Existing
+stream adapter reuses it and releases owned source after ended tracks. Input
+canvases remain borrowed. No numerical/runtime artifacts, fonts or renderer math
+changed. Product can await native sample, draw once, feed canvas to existing CFR
+encoder, avoiding redundant whole-underlay redraw while offline work waits.
+
+Unit checks PASS ordering/dynamic layers/resize/beforeDraw/no scheduling/close
+and existing stream compatibility. Actual browser pixel checks and existing VP9
+encoder export PASS4frames, ffprobe times0,.042,.083,.125, zero page errors.
+Evidence docs/media-capture/MANUAL-QUALIFICATION.json; API MANUAL-SOURCE.md.
+No claims of full Product export/performance, physical GPU or deployment. Root
+owns final PP producer/control/intake and capture; PP files untouched here.

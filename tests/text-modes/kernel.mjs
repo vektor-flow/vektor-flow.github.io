@@ -5,6 +5,7 @@ const fetch=async url=>new Response(await readFile(url));
 const {kernel,provenance}=await loadNativeTextModeKernel({fetch});
 assert.equal(provenance.libraryCommit,TEXT_INTERP_COMMIT);
 const value=kernel.invokeValue('evaporate',[1,.35,.65,17,4,.54,.32,true]);
+assert.deepEqual(value.state,[]);assert.deepEqual(value.reveal.map(v=>({...v})),[{k:4,velocity:.54,overshoot:.32,grow:true}]);assert.deepEqual(value.vapor.map(v=>({...v})),[{temperature:1,spread:.35,lift:.65,seed:17}]);
 for(const q of [0,.25,.5,.75,1]){
  const p=kernel.invokeValue('text_frame',[value,q,[.2,.3,1,.4,.5,.5],[0,1],q*3]);assert.equal(p.gas.length,8);assert.equal(p.target.length,10);
  if(q===0||q===1){assert.equal(p.gas[2],0);assert.equal(p.source_alpha,q===0?1:0);assert.equal(p.target[0],q);}

@@ -85,7 +85,7 @@ No worker/GPU-compute or 60fps performance qualification is claimed.
 Build:
 
 ```sh
-node scripts/text-modes/build.mjs LIBRARY_GIT d2952a9 CANONICAL_COMPILER_DIR OUTPUT
+node scripts/text-modes/build.mjs LIBRARY_GIT 90bc5b4 CANONICAL_COMPILER_DIR OUTPUT
 ```
 
 Exact committed `Interp.vkf` bytes plus a two-function forwarding-only VKF
@@ -103,3 +103,8 @@ cleanup. Screenshots /tmp/vkf-text-modes-{0,.25,.5,.75,1}.png were visually insp
 The initial browser attempt failed solely on a favicon404; adding an empty favicon
 removed it. Final checks record no console/page errors. Initial wrapper omission
 for native reading helpers was fixed before browser execution.
+
+The current artifact uses public native Interp record ABI2: applicable optional
+groups contain zero/one named typed record (native boolean grow, integer seed).
+Opaque numeric settings payloads reject. Public named factory arguments remain
+unchanged; both factory-settings and native-record JSON schemas ship with pins.

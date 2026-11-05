@@ -152,3 +152,23 @@ rendering GPU. Guest call synchronous, no cooperative in-flight cancellation.
 Caller owns typography, UI/navigation, original participating-text visibility,
 geometry and capture. PP/main-editor integration remains root-owned and untested
 here. No compiler promotion, Product release, push or deployment.
+
+## Typed Interp public struct ABI2 refresh — 2026-11-05
+
+Rebuilt exact native library90bc5b404630b190e4d45d6a2ecb90863347775f.
+Public factory signatures unchanged; native Interp now has optional zero/one
+named typed StateSettings/RevealSettings/VaporSettings groups, not opaque numeric
+settings payloads. Canonical075 source binding remains ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f.
+
+Loader source-code pins and provenance updated together; native-record ABI2
+schema added beside unchanged strict named factory schema and updated mode
+metadata. Actual value bridge returns named records with null prototypes;
+field/value tests preserve that intentional bridge representation.
+
+Real kernel tests PASS named typed records/defaults, exact batch endpoints and
+artifact tamper rejection. Actual native typography browser rerun PASS five
+vapor samples, row-only spectral reveal, invalid field rejection, source-colored
+ink gas, final light/colored native text, persistent geometry underlay and abort
+cleanup; zero page/console errors. Updated BROWSER-QUALIFICATION.json pins the
+new library. Source and Product interfaces unchanged; no PP UI/video edits here.
+No GPU compute, physical device,60fps, push, release or publication claim.

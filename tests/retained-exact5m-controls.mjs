@@ -6,9 +6,14 @@ export async function focusedControls({source,base='/preview/0.7.5/'}) {
  let dispose,target,observedDevice,gpuErrorListener;const started=performance.now(),need=(v,s)=>{if(!v)throw Error(s);};
  try {
   const visual=await runner.run(source,{guestArenaBytes:1073741824}),packetAt=performance.now();need(visual.sourceBinding===m.browser_binding,'CURRENT_BINDING');
-  let count=0,maxError=0;
-  for(const p of visual.packets)for(const mesh of p.metadata.scene.meshes){const ref=mesh.vertices;need(ref?.storage==='float32','NATIVE_VERTEX_REFERENCE');const v=new Float32Array(p.arena.buffer,p.arena.byteOffset+ref.byte_offset,ref.length);need(v.length%10===0,'NATIVE_POINT_STRIDE');for(let i=0;i<v.length;i+=10){const x=(count%2500)/2499*2-1,y=Math.floor(count/2500)/1999*2-1;maxError=Math.max(maxError,Math.abs(v[i]-x),Math.abs(v[i+1]-y),Math.abs(v[i+2]));const fixed=[0,0,1,.1,.3,.7,.5];for(let c=3;c<10;c++){need(Number.isFinite(v[i+c]),'FINITE_POINT_CHANNEL:'+count+':'+c);maxError=Math.max(maxError,Math.abs(v[i+c]-fixed[c-3]));}count++;}}
-  need(count===5000000&&maxError<1e-6,'EXACT_5M_NUMERICAL_OUTPUT:'+count+':'+maxError);
+  let count=0,maxError=0,indexCount=0;
+  for(const p of visual.packets)for(const mesh of p.metadata.scene.meshes){
+   const ref=mesh.vertices;need(ref?.storage==='float32','NATIVE_VERTEX_REFERENCE');
+   const v=new Float32Array(p.arena.buffer,p.arena.byteOffset+ref.byte_offset,ref.length);need(v.length%10===0,'NATIVE_POINT_STRIDE');
+   for(let i=0;i<v.length;i+=10){const values=[(count%2500)/2499*2-1,Math.floor(count/2500)/1999*2-1,0,0,0,1,.1,.3,.7,.5];for(let c=0;c<10;c++){need(Number.isFinite(v[i+c]),'FINITE_POINT_CHANNEL:'+count+':'+c);maxError=Math.max(maxError,Math.abs(v[i+c]-values[c]));}count++;}
+   const ir=mesh.indices;need(ir?.storage==='uint32','NORMAL_INDEX_REFERENCE');const indices=new Uint32Array(p.arena.buffer,p.arena.byteOffset+ir.byte_offset,ir.length);for(let i=0;i<indices.length;i++){need(indices[i]===i,'ACTUAL_INDEX_ORDER:'+i);indexCount++;}
+  }
+  need(count===5000000&&indexCount===5000000&&maxError<1e-6,'EXACT_5M_NUMERICAL_OUTPUT:'+count+':'+indexCount+':'+maxError);
   await window.__saveScalePhase({phase:'GENUINE_EXACT_5M_PACKET',count,maxError,timing:visual.timing,requestToPacketMs:packetAt-started});
   const {ensureInlineRenderer}=await import(base+'inline-renderer-loader.mjs');await ensureInlineRenderer();const {mountRetainedSceneResult}=await import(base+'inline-retained-scene-view.mjs');target=document.createElement('div');target.style.cssText='width:1000px;height:800px;position:relative;background:white';document.body.prepend(target);
   dispose=mountRetainedSceneResult(target,visual.packets);
@@ -51,6 +56,6 @@ export async function focusedControls({source,base='/preview/0.7.5/'}) {
   const afterColor=await capture();need(afterColor.pixelHash!==beforeColor.pixelHash,'COLOR_VISIBLE_PIXELS_UNCHANGED');need(afterColor.rSum>afterColor.bSum,'ACTUAL_COLOR_VISIBLE_RED_OUTPUT');
   const colorUpdate={completedUpdateMs:colorComplete-colorAt,before:beforeColor,after:afterColor,actualRuntimePacket:true,packetOwnRedraw:true,actualQueueCompleted:true};
   await window.__saveScalePhase({phase:'ACTUAL_MOUNTED_5M_COLOR',count,mountedId,colorUpdate});
-  return {actualBinding:visual.sourceBinding,population:count,maxCoordinateError:maxError,guestArenaBytes:1073741824,requestToPacketMs:packetAt-started,setupThroughInitialReadbackMs:initializedAt-started,originalFrameId:visual.packets[0].metadata.scene.frame,actualMountedFrameId:mountedId,mountedElementId:dispose.element.id,initial,updates,changedOutput:true,gpuErrors,deviceLost,viewUpdateTimesMs:updates.map(v=>v.completedUpdateMs),colorUpdate,colorCorrectness:true,animationAndColorQualified:false,releaseQualified:false,timing:visual.timing};
+  return {status:'COMPLETE_REAL_STATIC_RETAINED_RENDER_VIEW_COLOR',actualBinding:visual.sourceBinding,population:count,indexCount,allChannels:count*10,maxError,maxCoordinateError:maxError,guestArenaBytes:1073741824,requestToPacketMs:packetAt-started,setupThroughInitialReadbackMs:initializedAt-started,originalFrameId:visual.packets[0].metadata.scene.frame,actualMountedFrameId:mountedId,mountedElementId:dispose.element.id,initial,updates,changedOutput:true,gpuErrors,deviceLost,viewUpdateTimesMs:updates.map(v=>v.completedUpdateMs),colorUpdate,colorCorrectness:true,animationAndColorQualified:false,releaseQualified:false,timing:visual.timing};
  } finally {if(observedDevice&&gpuErrorListener)observedDevice.removeEventListener('uncapturederror',gpuErrorListener);dispose?.();target?.remove();await runner.dispose();}
 }

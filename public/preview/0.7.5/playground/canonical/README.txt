@@ -1,4 +1,12 @@
-Vektor Flow 0.7.5 current normal EX01 browser/WASM/Node candidate.
-Compiler ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09; independent formatter 3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98.
-Full authored3035 numerical/world geometry and local navigation are accepted from exact current ee417/3580; current normal2D+3D lighting component pixels pass. Full native scene unsupported by tested installed embedded WebGPU configuration; newf35 authored lighting semantics, fullstableSDK/ABI2/allfeatures/physicalGPU/fullframe10ms remain unqualified. Last e2270 optional postdownload still cap remains FAILED.
-Extracted Node install/run/compile and 30 package security checks passed. Exact publication evidence is recorded separately; no full release claim.
+Vektor Flow0.7.5 private current canonical Node/WebAssembly candidate.
+Compiler compatibility binding 45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94; independent formatter 22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c.
+Source association f2b985583d585f8362b9c176629d1cea99a54677; mixed source composition 74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b; not a uniform whole build.
+Current compiler.data 03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa and34 reported preload members are identified in PAIRED-STDLIB-MANIFEST.json. Current registry count is unverified.
+Existing e2609 local Node install/run/compile passed the full271B oracle on unchanged runtime bytes. This newly prepared package has not yet passed archive extraction or import/security checks; see VERIFICATION.json.
+Node>=22 console use: node package-tools/cli.mjs install PROJECT --compiler ./compiler.mjs --cache CACHE
+Then use run PROJECT or compile PROJECT with the same --compiler/--cache; --locked preserves the installed lock, and compile also needs --out ARTIFACT. Retained/concurrent UI programs use the browser.
+Keep third-party notices. Earlier ee417/3580 archive results remain historical and do not qualify this package.
+Current compatibility binding45da and f2b985 source association retain mixed source composition74f717; no uniform whole-build claim.
+Only existing e2609 local Node install/run/compile3/3 on unchanged runtime bytes is accepted here; new archive extraction and changed-package import/security are UNRUN.
+Existing exact5M and original10000-label correctness, phone390 EX06 compression and full presentation boundaries remain open where not bound to current components.
+No full0.7.5/stable/nativeSDK/all-font/fullLaTeX/physicalGPU or comparative benchmark qualification. STOP PDF.

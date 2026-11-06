@@ -139,11 +139,72 @@ def verify_current_package(preview, release):
     return {PurePosixPath(row['install']).name: row['sha256'] for row in compiler['files']}
 
 
+def verify_current_node_archive(preview, release, expected, compiler, binding, source, checksums, current):
+    """Exact extracted Node preview scope; historical native proof stays separate."""
+    import tarfile
+    candidate = current['candidate']
+    need(candidate['compilerBinding'] == checksums['compilerBinding'] == binding
+         and candidate['formatterBinding'] == checksums['formatterBinding'] == release['formatter_binding']
+         and candidate['sourceAssociation'] == source
+         and candidate['sourceCompositionBinding'] == release['current_scene_source_composition']['sourceCompositionBinding'],
+         'extracted preview candidate differs')
+    need(current['safeExtraction'] and current['all29MembersUnchanged']
+         and current['archiveMembers'] == 29 and current['unchangedSixExecutables']
+         and current['pendingArchiveMetadataIntentionallyUnchanged'], 'extracted preview integrity incomplete')
+    need(current['install'] == dict(status='SOURCES_READY', exit=0)
+         and current['run']['exit'] == 0 and current['run']['all271BytesExact']
+         and current['run']['stdout'] == current['oracle'] == dict(bytes=271, sha256='a585f5b0df27d2bb459ec2fc033b5ea38de50bce304a154160d46fc398804c28')
+         and current['source'] == dict(bytes=660, sha256='f808342aac7636e13c65a70b4737d49d1badd2c2e953e9ce706eebdb204bf1e0')
+         and current['compile'] == dict(status='COMPILED', exit=0, sourceBinding=binding)
+         and current['lock'] == dict(stable=True, bytes=172, sha256='615c8e8d2f2943850bb9da30c2fbed1a7c9d17bfcf17978f3c16eda7cd78a39b'),
+         'extracted preview install/run/compile/oracle/lock failed')
+    security = current['security']
+    need([security[k] for k in ('tests', 'passed', 'failed', 'skipped', 'cancelled')] == [30, 30, 0, 0, 0]
+         and security['compilerImportMandatory'] is True
+         and security['realCompilerGitImportExpected'] == [7, 9, 5, 7], 'extracted preview security incomplete')
+    final = read(pinned(preview, checksums['finalArchiveIntegrity']))
+    need(final['archiveAndAll29ExtractedMembersUnchanged'] and final['sixExecutablesUnchanged']
+         and final['securityTestsAndExtractedHostHelperUnchanged']
+         and final['entries'] == current['entries'], 'final extracted preview changed')
+    archives = checksums['archives']
+    need(len(archives) == 2 and [r['target'] for r in archives] == ['canonical', 'native'], 'preview target selection')
+    canonical, native = archives
+    for actual in (current['archive'], final['archive']):
+        need(PurePosixPath(canonical['path']).name == PurePosixPath(actual['path']).name
+             and all(canonical[k] == actual[k] for k in ('bytes', 'sha256')), 'archive differs from tested bytes')
+    previous = read(pinned(preview, checksums['historicalChecksums']))
+    historical = read(pinned(preview, checksums['historicalQualification']))
+    need(native == historical['nativeArchive'] == next(r for r in expected['archives'] if r['target'] == 'native')
+         and native == next(r for r in previous['archives'] if r['target'] == 'native')
+         and checksums['nativeBinding'] == previous['nativeBinding'], 'historical native target changed')
+    for row in previous['archives']:
+        pinned(preview, row)
+    entries = {r['path']: {k: r[k] for k in ('bytes', 'sha256')} for r in current['entries']}
+    need(len(entries) == len(current['entries']) == 29, 'duplicate or missing preview member')
+    archive = pinned(preview, canonical)
+    with tarfile.open(archive, 'r:gz') as tar:
+        members = tar.getmembers()
+        # One common directory, 29 regular files, no links/traversal/duplicates.
+        names = [PurePosixPath(m.name) for m in members]
+        need(len(members) == len(set(str(n) for n in names)) == 29
+             and all(m.isfile() and not n.is_absolute() and '..' not in n.parts and len(n.parts) >= 2 for m, n in zip(members, names))
+             and len({n.parts[0] for n in names}) == 1, 'unsafe preview archive roster')
+        need({'/'.join(n.parts[1:]) for n in names} == set(entries), 'preview archive members differ')
+        for member, name in zip(members, names):
+            name = '/'.join(name.parts[1:]); data = tar.extractfile(member).read()
+            need(entries[name] == dict(bytes=len(data), sha256=hashlib.sha256(data).hexdigest()), 'preview archive member changed: ' + name)
+            if name != 'LICENSE.txt':
+                need(identity(preview / 'playground/canonical' / name) == entries[name], 'installed preview package differs: ' + name)
+    for row in compiler['files']:
+        need(entries[row['path'].removeprefix('playground/canonical/')] == {k: row[k] for k in ('bytes', 'sha256')}, 'current runtime/archive differs')
+
+
 def verify_current_review_site(preview, release):
     expected, composition, components, compiler, binding, source = verify_current_runtime(preview, release)
     mode = release['site_review_iteration']
     offers_pinned = mode.get('downloadsOffered') is True
     qualified_replacement = False
+    download_delta = {}
     need(mode['enabled'] is True and type(mode.get('downloadsOffered')) is bool, 'explicit review download policy required')
     need(release['download_packages_offered'] is offers_pinned and release['release_qualified'] is False, 'download availability cannot imply full release qualification')
     if offers_pinned:
@@ -157,55 +218,63 @@ def verify_current_review_site(preview, release):
             pinned(preview, row)
         if checksums.get('currentQualification'):
             current = read(pinned(preview, checksums['currentQualification']))
-            need(current['status'] == 'PASS_SCOPED_CURRENT_ARCHIVES_EXTRACTED_NATIVE_NODE_INSTALL_RUN_COMPILE_SECURITY_INTEGRITY', 'current archive checks incomplete')
-            record = current['record']
-            native = components['native-linux-cli']['identity']
-            host = compiler['identity']
-            need(expected['schema'] == 2 and record['schema'] == 'vektor-flow.current075-qualified-scopes-package/1', 'current archive identity schema')
-            need(checksums['compilerBinding'] == record['browserBinding'] == binding
-                 and record['sourceCommit'] == source, 'current archive/compiler identities differ')
-            need(record['pairedLibrarySourceCommit'] == checksums['pairedLibrarySourceCommit']
-                 == native['pairedLibrarySourceCommit'] == host.get('pairedLibrarySourceCommit', source),
-                 'current archive/library identities differ')
-            need(checksums['nativeBinding'] == record['nativeBinding'] == native['sourceBinding']
-                 and record['nativeBinarySourceCommit'] == native['sourceCommit'], 'native binary identity differs')
-            need(record['pairedManifest']['sha256'] == native['pairedManifestSHA256'], 'native paired manifest differs')
-            need(record['hostSourceCommit'] == checksums['nodePackageHostSourceCommit'] == host['nodePackageHostSourceCommit']
-                 and current['durableHostSourceCommit'] == host['nodePackageHostDurableSourceCommit']
-                 and ((host['nodePackageHostSourceCommit'] == '96d0ff9831a09740b30d05f3d3a64f4ab61a8c87' and current['all13ExtractedHostMembersEqualMaintained96d'] is True) or (current.get('maintainedHostSourceCommit') == host['nodePackageHostSourceCommit'] and current.get('all13ExtractedHostMembersEqualMaintainedSource') is True and current.get('all13ExtractedHostMembersEqualMaintained96d') is False)), 'qualified Node host differs')
-            need(record['formatterBinding'] == expected['formatterBinding'], 'qualified independent formatter differs')
-            need(all(record[key] is False for key in ('fullReleaseClaim', 'nativeSDKClaim', 'physicalGPUClaim', 'benchmarkClaim')),
-                 'scoped archives cannot qualify a full release')
-            need(checksums['archives'] == expected['archives']
-                 and sorted(row['target'] for row in checksums['archives']) == ['canonical', 'native'],
-                 'current archive target/selection mismatch')
-            for archive in checksums['archives']:
-                target = current[archive['target']]
-                actual = target['archive']
-                need(target['target'] == archive['target'] and target['safeExtraction'] is True
-                     and target['allArchiveMembersMatchCheckedInputs'] is True, 'current archive member checks incomplete')
-                need(PurePosixPath(archive['path']).name == PurePosixPath(actual['path']).name
-                     and all(archive[k] == actual[k] for k in ('bytes', 'sha256')), 'current archive differs from qualification')
-                entries = {row['path']: {k: row[k] for k in ('bytes', 'sha256')} for row in target['entries']}
-                need(len(entries) == len(target['entries']), 'duplicate qualified archive member')
-                if archive['target'] == 'native':
-                    need(entries['bin/vkf']['sha256'] == native['binarySHA256']
-                         and entries['PAIRED-STDLIB-MANIFEST.json'] == {k: record['pairedManifest'][k] for k in ('bytes', 'sha256')},
-                         'qualified native binary/library members differ')
-                else:
-                    # The site adds only these three hash-addressed URLs to the
-                    # ordinary Node wrapper; README/package.json are site metadata.
-                    wrapper = (preview / 'playground/canonical/compiler.mjs').read_text()
-                    for name in ('compiler-base.mjs', 'formatter.mjs', 'formatter.wasm'):
-                        wrapper = wrapper.replace('./' + name + '?sha256=' + release['sha256'][name], './' + name)
-                    wrapper = wrapper.encode()
-                    need(entries['compiler.mjs'] == dict(bytes=len(wrapper), sha256=hashlib.sha256(wrapper).hexdigest()),
-                         'qualified canonical wrapper differs beyond cache URLs')
-                    for row in compiler['files']:
-                        name = row['path'].removeprefix('playground/canonical/')
-                        if name not in ('README.txt', 'package.json', 'compiler.mjs'):
-                            need(entries[name] == {k: row[k] for k in ('bytes', 'sha256')}, 'qualified canonical member differs: ' + name)
-            qualified_replacement = True
+            if current['status'] == 'CURRENT_LOCAL_ARCHIVE_EXTRACTED_NODE_IMPORT_SECURITY_PASS':
+                need(offer['checksums'] == release['current_distribution_checksums']['path'], 'download checksum path differs')
+                pinned(preview, release['current_distribution_checksums'])
+                verify_current_node_archive(preview, release, expected, compiler, binding, source, checksums, current)
+                qualified_replacement = True
+                download_delta = {'preview/0.7.5/' + row['path']: {k: row[k] for k in ('bytes', 'sha256')}
+                                  for row in [release['current_distribution_checksums'], checksums['archives'][0]]}
+            else:
+                need(current['status'] == 'PASS_SCOPED_CURRENT_ARCHIVES_EXTRACTED_NATIVE_NODE_INSTALL_RUN_COMPILE_SECURITY_INTEGRITY', 'current archive checks incomplete')
+                record = current['record']
+                native = components['native-linux-cli']['identity']
+                host = compiler['identity']
+                need(expected['schema'] == 2 and record['schema'] == 'vektor-flow.current075-qualified-scopes-package/1', 'current archive identity schema')
+                need(checksums['compilerBinding'] == record['browserBinding'] == binding
+                     and record['sourceCommit'] == source, 'current archive/compiler identities differ')
+                need(record['pairedLibrarySourceCommit'] == checksums['pairedLibrarySourceCommit']
+                     == native['pairedLibrarySourceCommit'] == host.get('pairedLibrarySourceCommit', source),
+                     'current archive/library identities differ')
+                need(checksums['nativeBinding'] == record['nativeBinding'] == native['sourceBinding']
+                     and record['nativeBinarySourceCommit'] == native['sourceCommit'], 'native binary identity differs')
+                need(record['pairedManifest']['sha256'] == native['pairedManifestSHA256'], 'native paired manifest differs')
+                need(record['hostSourceCommit'] == checksums['nodePackageHostSourceCommit'] == host['nodePackageHostSourceCommit']
+                     and current['durableHostSourceCommit'] == host['nodePackageHostDurableSourceCommit']
+                     and ((host['nodePackageHostSourceCommit'] == '96d0ff9831a09740b30d05f3d3a64f4ab61a8c87' and current['all13ExtractedHostMembersEqualMaintained96d'] is True) or (current.get('maintainedHostSourceCommit') == host['nodePackageHostSourceCommit'] and current.get('all13ExtractedHostMembersEqualMaintainedSource') is True and current.get('all13ExtractedHostMembersEqualMaintained96d') is False)), 'qualified Node host differs')
+                need(record['formatterBinding'] == expected['formatterBinding'], 'qualified independent formatter differs')
+                need(all(record[key] is False for key in ('fullReleaseClaim', 'nativeSDKClaim', 'physicalGPUClaim', 'benchmarkClaim')),
+                     'scoped archives cannot qualify a full release')
+                need(checksums['archives'] == expected['archives']
+                     and sorted(row['target'] for row in checksums['archives']) == ['canonical', 'native'],
+                     'current archive target/selection mismatch')
+                for archive in checksums['archives']:
+                    target = current[archive['target']]
+                    actual = target['archive']
+                    need(target['target'] == archive['target'] and target['safeExtraction'] is True
+                         and target['allArchiveMembersMatchCheckedInputs'] is True, 'current archive member checks incomplete')
+                    need(PurePosixPath(archive['path']).name == PurePosixPath(actual['path']).name
+                         and all(archive[k] == actual[k] for k in ('bytes', 'sha256')), 'current archive differs from qualification')
+                    entries = {row['path']: {k: row[k] for k in ('bytes', 'sha256')} for row in target['entries']}
+                    need(len(entries) == len(target['entries']), 'duplicate qualified archive member')
+                    if archive['target'] == 'native':
+                        need(entries['bin/vkf']['sha256'] == native['binarySHA256']
+                             and entries['PAIRED-STDLIB-MANIFEST.json'] == {k: record['pairedManifest'][k] for k in ('bytes', 'sha256')},
+                             'qualified native binary/library members differ')
+                    else:
+                        # The site adds only these three hash-addressed URLs to the
+                        # ordinary Node wrapper; README/package.json are site metadata.
+                        wrapper = (preview / 'playground/canonical/compiler.mjs').read_text()
+                        for name in ('compiler-base.mjs', 'formatter.mjs', 'formatter.wasm'):
+                            wrapper = wrapper.replace('./' + name + '?sha256=' + release['sha256'][name], './' + name)
+                        wrapper = wrapper.encode()
+                        need(entries['compiler.mjs'] == dict(bytes=len(wrapper), sha256=hashlib.sha256(wrapper).hexdigest()),
+                             'qualified canonical wrapper differs beyond cache URLs')
+                        for row in compiler['files']:
+                            name = row['path'].removeprefix('playground/canonical/')
+                            if name not in ('README.txt', 'package.json', 'compiler.mjs'):
+                                need(entries[name] == {k: row[k] for k in ('bytes', 'sha256')}, 'qualified canonical member differs: ' + name)
+                qualified_replacement = True
         else:
             need(checksums['compilerBinding'] != binding, 'earlier archive must not be relabeled as current website compiler')
     report = read(pinned(preview, release['current_review_site_evidence']))
@@ -232,5 +301,7 @@ def verify_current_review_site(preview, release):
     baseline = read(Path(__file__).with_name('review-site-download-baseline.json'))
     root = preview.parents[1]
     actual = {p.relative_to(root).as_posix(): identity(p) for p in root.rglob('*') if p.is_file() and 'downloads' in p.relative_to(root).parts}
-    need(actual == baseline['files'], 'review iteration must preserve existing downloads without adding artifacts')
+    allowed = dict(baseline['files'])
+    allowed.update(download_delta)
+    need(actual == allowed, 'review iteration changed unqualified downloads')
     return {(row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else Path(row['install']).name): row['sha256'] for row in compiler['files']}

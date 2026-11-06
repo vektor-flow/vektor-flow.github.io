@@ -9,7 +9,7 @@ if preview.exists():
  if compiler.get('site_review_iteration', {}).get('enabled'):
   m['source']='Website review without downloads; current compiler binding '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Source-bound affected web/output checks are in current_review_site_evidence. Full compiler/platform release remains unqualified.'
  if compiler.get('site_review_iteration', {}).get('downloadsOffered') is True:
-  m['source']='Website review with pinned Linux console and Node package downloads, whose separately checked identities remain explicit. Current browser compiler binding '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Availability does not extend archive or full compiler/platform qualification.'
+  m['source']='Website review with separately qualified preview Node/WASM console and historical Linux console downloads. Exact external qualification and scope are in downloads/current075-checksums.json. Current browser compiler binding '+str(compiler.get('browser_binding') or compiler.get('compiler_source'))+'. Availability does not extend archive or full compiler/platform qualification.'
  if compiler.get('site_review_iteration', {}).get('runEnabled') is False:
   m['source']='Pre-release website review with Run disabled. Stored compiler assets are inactive historical bytes. Latest compiler execution and enabled release qualification remain UNRUN; current disabled-mode evidence is in current_review_site_evidence.'
   if compiler.get('current_candidate_verification'):

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "publication": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
+  "publication": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
   "preview": true,
   "stable": false,
-  "source": "Website review without downloads; current compiler binding 45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94. Source-bound affected web/output checks are in current_review_site_evidence. Full compiler/platform release remains unqualified.",
+  "source": "Website review with separately qualified preview Node/WASM console and historical Linux console downloads. Exact external qualification and scope are in downloads/current075-checksums.json. Current browser compiler binding 45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94. Availability does not extend archive or full compiler/platform qualification.",
   "files": [
     {
       "path": ".nojekyll",
@@ -30,13 +30,13 @@
       "path": "CURRENT-COMPOSITION.json",
       "bytes": 11523,
       "sha256": "9a723d9bf01d148768b69dc8247d748a129311e83484ed36a5225019e694c83d",
-      "previous_sha256": "4c6f3ca533c189cda9295cfcd95c32f8e7c5807b11c3b3146d47ad82972e40fb"
+      "previous_sha256": "9a723d9bf01d148768b69dc8247d748a129311e83484ed36a5225019e694c83d"
     },
     {
       "path": "NORMAL-QUERY-CLOSURE-ASDATA.json",
       "bytes": 84552,
       "sha256": "9c7d9b41b5b03fe652bf1ebc5361ade97b01ae30c328e6e568ec0a92bd5eb995",
-      "previous_sha256": "0ddc1bbdd950b0ac52f1a134448ac7304ab40078d2d2316b850dd14e3545b78d"
+      "previous_sha256": "9c7d9b41b5b03fe652bf1ebc5361ade97b01ae30c328e6e568ec0a92bd5eb995"
     },
     {
       "path": "about.html",
@@ -444,10 +444,10 @@
     },
     {
       "path": "current-compiler-release.json",
-      "bytes": 36929,
-      "sha256": "a60da8e3d168947a90d4f1afe8a16cdfbb8ed3b41f07bbe783a7e461e2be530e",
+      "bytes": 37390,
+      "sha256": "f02b48b4422d287a9daca73974c9da80b491879c0db8a49c595bcd2e4c9577da",
       "source_sha256": "cd4b5405f7d91d0d8ff1fd67c1a76ff70789b6abfcde68ad0cd6f158b889ace5",
-      "previous_sha256": "23cc9522474b05b2ecabc73ba0788ef1cf0cbf55ce2aa07dec8809ad27442f67"
+      "previous_sha256": "a60da8e3d168947a90d4f1afe8a16cdfbb8ed3b41f07bbe783a7e461e2be530e"
     },
     {
       "path": "current-documentation-examples.mjs",
@@ -458,8 +458,8 @@
     },
     {
       "path": "downloads/current075-checksums.json",
-      "bytes": 1001,
-      "sha256": "f6084bbb6cf5817a04bbf2e4ba35d1a268c4a2beb2c6d8bb0f862ccbb26f8a81",
+      "bytes": 1819,
+      "sha256": "1aa98f5602fe81efeda1213b4143eba98735bb17f59469fb46b4ea91b5c05df5",
       "previous_sha256": "f6084bbb6cf5817a04bbf2e4ba35d1a268c4a2beb2c6d8bb0f862ccbb26f8a81"
     },
     {
@@ -485,6 +485,11 @@
       "bytes": 4360137,
       "sha256": "4c18a7f14abb51ca3421913be6a70b4e71c7a341d45724aca63c23254704fa43",
       "previous_sha256": "4c18a7f14abb51ca3421913be6a70b4e71c7a341d45724aca63c23254704fa43"
+    },
+    {
+      "path": "downloads/vkf-canonical-0.7.5-45da9f64-current-notices.tar.gz",
+      "bytes": 5108325,
+      "sha256": "db807a46c08e4801bb8d938f906549f7e457ab02bfb9e433e9456e9c3e5b083e"
     },
     {
       "path": "downloads/vkf-canonical-0.7.5-83ffc669-host96d0ff98-notices.tar.gz",
@@ -913,8 +918,8 @@
     },
     {
       "path": "install.html",
-      "bytes": 5213,
-      "sha256": "7560401db164544b0ad41dd521a28cfc2355df75a565421f2e94a9ec6d42fdeb",
+      "bytes": 6163,
+      "sha256": "8fdd89d8927b6925561cc8f56493c5ff2d93954aafc581f1b29259e09367dec6",
       "source_sha256": "1aecf4ef5e4b45e67f74e940a69cbca38c7de99cea7da59e982df810fba7a2e5",
       "previous_sha256": "7560401db164544b0ad41dd521a28cfc2355df75a565421f2e94a9ec6d42fdeb"
     },
@@ -1039,21 +1044,21 @@
     },
     {
       "path": "playground/canonical/PAIRED-STDLIB-MANIFEST.json",
-      "bytes": 5428,
-      "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5",
+      "bytes": 6367,
+      "sha256": "5fa52d5622dedbdf0d6c201e697a31dcee8ae041406d7ff5f3a9626f94d7e371",
       "previous_sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
     },
     {
       "path": "playground/canonical/README.txt",
-      "bytes": 791,
-      "sha256": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182",
+      "bytes": 1850,
+      "sha256": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d",
       "source_sha256": "a5711d2e83f4864849c51b38272d02e1e4d226838030b2e7cfcfc9488453054a",
       "previous_sha256": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182"
     },
     {
       "path": "playground/canonical/VERIFICATION.json",
-      "bytes": 1274,
-      "sha256": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378",
+      "bytes": 3237,
+      "sha256": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09",
       "previous_sha256": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378"
     },
     {
@@ -1175,8 +1180,8 @@
     },
     {
       "path": "playground/canonical/package.json",
-      "bytes": 8401,
-      "sha256": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22",
+      "bytes": 8918,
+      "sha256": "2b344dca635c8af7b1419423dc61ef9ae04e1385d1b2c449eab5f78713d563a9",
       "source_sha256": "f4cf8ef93415840892d6997a0cf353445fc40ca8ff395353ac4e2a4ae521b735",
       "previous_sha256": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22"
     },
@@ -26505,8 +26510,8 @@
     },
     {
       "path": "release-status.html",
-      "bytes": 5615,
-      "sha256": "f2222dbac6ae0da4de6122a8a1b18f1433df0b32f2c0d494d06916dd54f812cc",
+      "bytes": 6255,
+      "sha256": "a39148f9d4e77e05a2160a9368f2be8941b669f87eced9e4ea3dadb64ea0387f",
       "source_sha256": "acc98f0fea8566dd64975b82e002934e24bf61326c358797ba31ba6eb9f4a0b0",
       "previous_sha256": "f2222dbac6ae0da4de6122a8a1b18f1433df0b32f2c0d494d06916dd54f812cc"
     },
@@ -27009,7 +27014,7 @@
       "bytes": 150376,
       "sha256": "bd60c757b26261ac0431d5de2b6ef02c19f5179c6c981e5e6dad4aeec102bcca",
       "source_sha256": "f53a3d87d7393841256a0af776ccd50333a840e74e7c3755e7d7ce82478e88bf",
-      "previous_sha256": "a8706f1481d2c452ff9a85d80be0864ccffc78f6859f381bd5df569508652b2a"
+      "previous_sha256": "bd60c757b26261ac0431d5de2b6ef02c19f5179c6c981e5e6dad4aeec102bcca"
     },
     {
       "path": "testing.html",
@@ -28481,13 +28486,38 @@
       "path": "verification/e2508-current-review-site.json",
       "bytes": 31112,
       "sha256": "9c4ab353af6b4d491f1077ab712738e1b4bde0d7b39fb8a5c467023f459ae77d",
-      "previous_sha256": "06604588c219e0cc2bf89ba32196787ed425256d6745b215d8589d96f1773706"
+      "previous_sha256": "9c4ab353af6b4d491f1077ab712738e1b4bde0d7b39fb8a5c467023f459ae77d"
     },
     {
       "path": "verification/e2508-publication-composition-inputs.json",
       "bytes": 11835,
       "sha256": "bd9909491f485fc3c4a07d68342aedd95e77d65e24574c365853fb4d8f35ac64",
-      "previous_sha256": "ccd8b574a627dcd8e6cb7f8885fc10e0ad339e42b1fe1a0b403207f42d01038a"
+      "previous_sha256": "bd9909491f485fc3c4a07d68342aedd95e77d65e24574c365853fb4d8f35ac64"
+    },
+    {
+      "path": "verification/e2612-current-local-package.json",
+      "bytes": 57041,
+      "sha256": "f0f4898024b397df33a50841b875485e407c8ebddad0095f5eb7bcd4e6ebc395"
+    },
+    {
+      "path": "verification/e2612-final-archive-integrity.json",
+      "bytes": 5173,
+      "sha256": "7973f16a86dd7bc29321fe529175a69bd1dd2366b194fb93fdb61be52f3abc4d"
+    },
+    {
+      "path": "verification/e2614-previous-download-checksums.json",
+      "bytes": 1001,
+      "sha256": "f6084bbb6cf5817a04bbf2e4ba35d1a268c4a2beb2c6d8bb0f862ccbb26f8a81"
+    },
+    {
+      "path": "verification/e2616-current-preview-web.json",
+      "bytes": 75642,
+      "sha256": "487ba71f6d85b7df4432d2f9da5f20cb5b28b69dd12dd9640b6d37e3bfb3b3ee"
+    },
+    {
+      "path": "verification/e2616-current-review-site.json",
+      "bytes": 32303,
+      "sha256": "cc58a445a5fb56e7b3f0149bd02739959dddb3876da6380a650ac742b9edd8c8"
     },
     {
       "path": "verification/exact-package-arithmetic-e1087.json",
@@ -29572,7 +29602,7 @@
       "bytes": 53320,
       "sha256": "64c0af30913b6471774ca9a9502a539d594fea1229dd48726ffd82996fd09319",
       "source_sha256": "c02f5e46835484f2a9f5aa7c01bfbb9cf2509f457beb4b622739e61b08930411",
-      "previous_sha256": "a789907bb0706a82fb3c989d17240e96a632677419a03f5960965b1f9f68d05d"
+      "previous_sha256": "64c0af30913b6471774ca9a9502a539d594fea1229dd48726ffd82996fd09319"
     },
     {
       "path": "vf-ui/vf-runtime-source.js",
@@ -29796,7 +29826,7 @@
       "bytes": 285,
       "sha256": "f921a2828b0644ec1bf435f438d5c196a47d80b5de8df8e2a36270708b3e229f",
       "source_sha256": "eeee4ba9bde04d2c926b0efd6ff672a39f61750c345fca9fab8753834b6b633e",
-      "previous_sha256": "414e9226770c1ac4631015e8934ff0fd0719ba0757742866537702df9a4e6c6b"
+      "previous_sha256": "f921a2828b0644ec1bf435f438d5c196a47d80b5de8df8e2a36270708b3e229f"
     },
     {
       "path": "vkf-browser-isolation.mjs",
@@ -29932,7 +29962,7 @@
       "previous_sha256": "a47525e06a57f7d31698e64ea6216dd8fb16ab63c2e65a24364e2643a77cfc42"
     }
   ],
-  "totalBytes": 450711425,
+  "totalBytes": 455998257,
   "copy_edition": "e1148-expanded-why-2-experiment-tone",
   "publication_id": "e2005-corrective-current-native-toolbar-indexed-docs-20261102",
   "qualified_runtime": "Exact current browser binding 78bdbdf9; existing accepted source/output evidence plus current native plot/editor/guide/coordinate controls. Full release and all-font coverage remain unqualified.",

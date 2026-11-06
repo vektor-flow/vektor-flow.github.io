@@ -98,12 +98,12 @@
       "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
     },
     "package.json": {
-      "bytes": 8401,
-      "sha256": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22"
+      "bytes": 8918,
+      "sha256": "2b344dca635c8af7b1419423dc61ef9ae04e1385d1b2c449eab5f78713d563a9"
     },
     "README.txt": {
-      "bytes": 791,
-      "sha256": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182"
+      "bytes": 1850,
+      "sha256": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d"
     },
     "third-party/emscripten-toolchain-copyright.txt": {
       "bytes": 131248,
@@ -122,12 +122,12 @@
       "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
     },
     "VERIFICATION.json": {
-      "bytes": 1274,
-      "sha256": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378"
+      "bytes": 3237,
+      "sha256": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09"
     },
     "PAIRED-STDLIB-MANIFEST.json": {
-      "bytes": 5428,
-      "sha256": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+      "bytes": 6367,
+      "sha256": "5fa52d5622dedbdf0d6c201e697a31dcee8ae041406d7ff5f3a9626f94d7e371"
     }
   },
   "sha256": {
@@ -151,14 +151,14 @@
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
     "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
-    "package.json": "68cbd4f6205bd4833512f6c557ebff063829b6e00f2b08a04d9a224ac5268f22",
-    "README.txt": "dccc85f228aa4bc1e49a8450253d9739fb46a276e205ca1745ad1c48fb810182",
+    "package.json": "2b344dca635c8af7b1419423dc61ef9ae04e1385d1b2c449eab5f78713d563a9",
+    "README.txt": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d",
     "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
     "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
     "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
-    "VERIFICATION.json": "d62c8a1ed9a5fac143970dafa70f2c506563d42879dfff578d93c091f062a378",
-    "PAIRED-STDLIB-MANIFEST.json": "aabc283a9b03c2dd48dd0b356a222df212008c75f57737eb6d0488433e23bea5"
+    "VERIFICATION.json": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09",
+    "PAIRED-STDLIB-MANIFEST.json": "5fa52d5622dedbdf0d6c201e697a31dcee8ae041406d7ff5f3a9626f94d7e371"
   },
   "package": {
     "module": "./playground/canonical/compiler.mjs?sha256=e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c",
@@ -170,7 +170,7 @@
     "bytes": 11523,
     "sha256": "9a723d9bf01d148768b69dc8247d748a129311e83484ed36a5225019e694c83d"
   },
-  "download_packages_offered": false,
+  "download_packages_offered": true,
   "physical_gpu_tested": false,
   "full_requested_075_requirements_complete": false,
   "historical_prior_binding_evidence": {
@@ -693,12 +693,12 @@
   "site_review_iteration": {
     "enabled": true,
     "runEnabled": true,
-    "downloadsOffered": false,
+    "downloadsOffered": true,
     "fullReleaseQualified": false,
     "sharedUploadAvailable": false,
     "status": "PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS"
   },
-  "publication_status": "PUBLISHED_REVIEW_SITE_NO_DOWNLOADS",
+  "publication_status": "PUBLISHED_REVIEW_SITE_PINNED_DOWNLOADS",
   "current_candidate_provenance": {
     "owner": "e2500",
     "compilerOwner": "e2493",
@@ -780,8 +780,20 @@
     "sha256": "9c31f2930c0e9e2d03f51ab2f40960b9a4580c7f0870ff23e7795dbfba7f7fe5"
   },
   "current_review_site_evidence": {
-    "path": "verification/e2508-current-review-site.json",
-    "bytes": 31112,
-    "sha256": "9c4ab353af6b4d491f1077ab712738e1b4bde0d7b39fb8a5c467023f459ae77d"
+    "path": "verification/e2616-current-review-site.json",
+    "bytes": 32303,
+    "sha256": "cc58a445a5fb56e7b3f0149bd02739959dddb3876da6380a650ac742b9edd8c8"
+  },
+  "current_distribution_checksums": {
+    "path": "downloads/current075-checksums.json",
+    "bytes": 1819,
+    "sha256": "1aa98f5602fe81efeda1213b4143eba98735bb17f59469fb46b4ea91b5c05df5"
+  },
+  "pinned_downloads": {
+    "checksums": "downloads/current075-checksums.json",
+    "archives": [
+      "downloads/vkf-canonical-0.7.5-45da9f64-current-notices.tar.gz",
+      "downloads/vkf-native-linux-x86_64-0.7.5-df9feb23-current-cli-notices.tar.gz"
+    ]
   }
 }

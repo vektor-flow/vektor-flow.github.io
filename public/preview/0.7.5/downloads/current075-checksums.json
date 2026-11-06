@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "compilerBinding": "ee417b0f319ee946333d904b7328e1e3192eca806e8ee4d59dde94db4e198d09",
-  "formatterBinding": "3580c0fe0578c799082125929a47d8be849ebb5ebc61bd2d1ac64770ece2aa98",
+  "compilerBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+  "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
   "nativeBinding": "df9feb23d8c23cb9f7ac94953dcf5dd4cb1756dfd074017e7e8d51ba00a6c465",
   "fullReleaseQualified": false,
   "archives": [
     {
-      "path": "downloads/vkf-canonical-0.7.5-ee417b0f-normal-ex01-notices.tar.gz",
-      "bytes": 4998458,
-      "sha256": "86546d9273122f8b2b28742857f5c376fe2394aee9aa7c2dd5074e888c5808ef",
+      "path": "downloads/vkf-canonical-0.7.5-45da9f64-current-notices.tar.gz",
+      "bytes": 5108325,
+      "sha256": "db807a46c08e4801bb8d938f906549f7e457ab02bfb9e433e9456e9c3e5b083e",
       "target": "canonical"
     },
     {
@@ -19,8 +19,24 @@
     }
   ],
   "currentQualification": {
+    "path": "verification/e2612-current-local-package.json",
+    "bytes": 57041,
+    "sha256": "f0f4898024b397df33a50841b875485e407c8ebddad0095f5eb7bcd4e6ebc395"
+  },
+  "finalArchiveIntegrity": {
+    "path": "verification/e2612-final-archive-integrity.json",
+    "bytes": 5173,
+    "sha256": "7973f16a86dd7bc29321fe529175a69bd1dd2366b194fb93fdb61be52f3abc4d"
+  },
+  "historicalQualification": {
     "path": "verification/e2273-current-normal-ex01.json",
     "bytes": 9327,
     "sha256": "cc59c06796bcc9d2b15461e9d8d6d2f748bea5a30151bca059ac7851e4df630e"
-  }
+  },
+  "historicalChecksums": {
+    "path": "verification/e2614-previous-download-checksums.json",
+    "bytes": 1001,
+    "sha256": "f6084bbb6cf5817a04bbf2e4ba35d1a268c4a2beb2c6d8bb0f862ccbb26f8a81"
+  },
+  "scope": "Current exact Node/WASM console package: safe extraction, install/run/compile and local import/security only. Native archive retains its separate historical qualification. Full stable UI/0.7.5 remains unqualified."
 }

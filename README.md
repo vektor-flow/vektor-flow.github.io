@@ -5,15 +5,17 @@ The public compiler remains the reviewed 0.7.2 package, pinned byte for byte in
 website changes. Browser checks use explicit software rendering; preserve the
 physical GPU stop.
 
-The 0.7.5 descriptor in `public/preview/0.7.5/current-compiler-release.json`
-designates only its named UI, ordinary retained plotting and browser/Node ESM
-embedding scope as stable. `scoped_release` carries that designation; broad
-preview and full compiler/platform qualification flags remain unchanged. Current
-e1677/e1678 evidence and explicitly accepted unchanged components support this
-scope. The existing archive and all runtime bytes remain unchanged; its bundled
-calculation form is outside the stable scope. The main descriptor uses the
-existing `verified-examples` consumer status. No native SDK, complete language,
-full LaTeX/all-font support, full GPU world or comparative timing is qualified.
+The active 0.7.5 descriptor in
+`public/preview/0.7.5/current-compiler-release.json` is a public preview candidate.
+Its broad complete, stable, published and release qualification flags are false;
+`scoped_release` is absent. Accepted current ordinary UI/plotting observations
+and the existing Pages publication retain their exact candidate identities.
+The exact current Node/WASM console archive has separately reviewed safe extraction,
+Node install/run/compile and 30 local import/security checks. Its tested bytes and
+original pending internal metadata remain unchanged; external qualification is
+pinned to archive SHA-256 db807a46c08e4801bb8d938f906549f7e457ab02bfb9e433e9456e9c3e5b083e. Earlier ee417/3580 archive qualification and the dated sections below
+remain historical. No full compiler, native SDK, all-font, full LaTeX, physical
+GPU or comparative timing qualification follows from website publication.
 
 ## Current text example
 
@@ -293,3 +295,13 @@ The current browser binding is 78bdbdf9, with the exact coalesced compiler and p
 The maintained primary areas are Overview, Syntax, Std Lib, Compiler, Get Started and Performance. Overview tells the language story without keywords, with technical detail about scopes, expressions and named dimensions. Compiler (`compiler.html`) now holds the existing Python-to-C++ history, selected C++ module map, optimizations and staged bootstrapping plan formerly at `index.html#compiler`; compiler information stays out of the opening story. Authored code remains in Syntax and separate Std Lib, with unit imports updated to the existing `:.physics.units` path in both displayed and editable source. The library overview has one link per library; quantities and SI catalog references are grouped under Physics, color palettes under UI, and interpolation parts under Interpolation. Detailed APIs and examples remain available. Changed source hashes need fresh actual compiler runs and source-bound output seeds; earlier output hashes remain historical. Performance content, result tables and raw data are unchanged; only its primary navigation gains the Compiler link. Existing review receipts are historical evidence, not qualification of this source change. The actual owner must refresh derived manifests and perform scoped current navigation, canonical-route and desktop/phone presentation checks before publication.
 
 The latest direct user download request supersedes earlier no-download presentation. Get Started offers only the two existing checksum-pinned Linux console and Node/WebAssembly archives, with their earlier bindings explicit. It does not promote their compiler to the newer website binding or extend full release/native SDK qualification. The existing review verifier now distinguishes availability from qualification and requires fresh actual `presentation.pinnedDownloads` evidence in the normal review report; no archive bytes changed. Prior no-download reports remain historical. Actual must refresh current composition/seed identities and derived manifests, run applicable current editor/Prism/both-theme/modern-toolbar/navigation/download checks and publish only after exact-source review and normal checks. This source worker ran no product commands.
+
+## Current preview downloads (2026-11-06, e2614 source)
+
+The existing review/pinned-download route selects the exact e2612 canonical archive,
+SHA-256 db807a46c08e4801bb8d938f906549f7e457ab02bfb9e433e9456e9c3e5b083e.
+External e2612 results qualify safe extraction, Node install/run/compile and local
+import/security only. Preserve its pending metadata and tested archive bytes. The
+df9 Linux archive retains its historical scope; ee417 archive and records stay intact.
+This source patch still requires affected page/download checks and manifest refresh
+before the existing Pages workflow; it supplies no current scale/stable UI PASS.

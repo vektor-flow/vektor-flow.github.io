@@ -1,0 +1,49 @@
+{
+  "schema": "native-fine-receiver/1",
+  "scope": "Native fine-mask reaction only, along already-accepted marker segments",
+  "libraryCommit": "23e78ac4b68ddb385cd337234a819f1171b91c92",
+  "sourceSha256": "37858e435f6aa1ea7709667c214c15b8bb24909b865bf975a5d5d825e163fd1a",
+  "compilerVersion": "0.7.5",
+  "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "gpuEmitter": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+  "files": {
+    "capture.wgsl": {
+      "url": "capture.wgsl",
+      "bytes": 17942,
+      "sha256": "9f38f8509df525ebd52f6e8766893382b081e8dd0100f8dbb508254e924b4849"
+    },
+    "capture.wgsl.json": {
+      "url": "capture.wgsl.json",
+      "bytes": 893,
+      "sha256": "3d39a3a53008b0655bf811921e2d0982f9da4ca35d0d7732a34d300a8eca5ef6"
+    },
+    "capture.wasm": {
+      "url": "capture.wasm",
+      "bytes": 129621,
+      "sha256": "01b13814c7613705edee6140e6c973143aa93111f0729bab991f556254428dd4"
+    },
+    "capture.json": {
+      "url": "capture.json",
+      "bytes": 2005,
+      "sha256": "45b16d5df3d7ac992cf6b0e3d9a6f034a44b1d38c6051074757eaef5fdcf369a"
+    }
+  },
+  "inputStride": 20,
+  "outputStride": 25,
+  "capturedVelocityQualified": false,
+  "airDynamicsQualified": false,
+  "textFormationQualified": false,
+  "sourceBaseCommit": "aff7e5fc3ae00ec8cb3e7af5ee2246c353cdee2d",
+  "numericalQualification": {
+    "wasmProbes": 86,
+    "wasmMaxError": 0,
+    "gpuCases": 15,
+    "gpuProbes": 330,
+    "gpuRejectionCases": 4,
+    "positionFractionFixtureBudget": 2e-06,
+    "opticalDepthFixtureBudget": 0.0001,
+    "opticalDepthMeasuredMaxError": 3.551453843025909e-05,
+    "discreteMaterialReplay": "Exact in qualified fixtures",
+    "scope": "Finite fixture profile, not a universal numerical bound"
+  }
+}

@@ -412,6 +412,12 @@ export function createSymbolicKernel({ instance, manifest, diagnostics = false }
     compileWithContext(source, context, clip = null) {
       return invoke("symbolic_compile_with_context", [source, context, clip]);
     },
+    // Public label compilation consumes copied metadata, not a retained VM
+    // program. Preserve the existing handle-returning method above separately.
+    compileWithContextValue(source, context, clip = null) {
+      const value = invokeTransient('symbolic_compile_with_context', [source, context, clip], value => value);
+      return Object.freeze({value});
+    },
     createWorkspace() {
       return invoke("symbolic_workspace", []);
     },

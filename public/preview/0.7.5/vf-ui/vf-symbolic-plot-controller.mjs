@@ -732,6 +732,9 @@ export async function createSymbolicCompiler({
   const compileDefinition = (base, source, context, clip) => typeof kernel.workspaceCompileValue === 'function'
     ? kernel.workspaceCompileValue(base, source, context, clip)
     : kernel.workspaceCompile(base, source, context, clip);
+  const compilePublicValue = (source, context, clip) => typeof kernel.compileWithContextValue === 'function'
+    ? kernel.compileWithContextValue(source, context, clip)
+    : kernel.compileWithContext(source, context, clip);
   let definitionWorkspace = emptyDefinitionWorkspace();
   let globalDefinitionSources = Object.freeze([]);
   let localDefinitions = new Map();
@@ -767,7 +770,7 @@ export async function createSymbolicCompiler({
       return publicDraftResult(kernel.compileDraft(expanded).value);
     },
     compile(source, context = globalSymbolicContext(), clip = null) {
-      const result = kernel.compileWithContext(String(source ?? ''), context, clip);
+      const result = compilePublicValue(String(source ?? ''), context, clip);
       return publicProgramResult(result.value?.program ?? result.value);
     },
     compileScoped(source, {
@@ -784,11 +787,11 @@ export async function createSymbolicCompiler({
         definitions
       );
       const semanticSource = expandBoundSymbolicConstants(displaySource, definitions);
-      const result = kernel.compileWithContext(semanticSource, context, clip);
+      const result = compilePublicValue(semanticSource, context, clip);
       const program = result.value?.program ?? result.value;
       const displayResult = semanticSource === displaySource
         ? null
-        : kernel.compileWithContext(displaySource, context, clip);
+        : compilePublicValue(displaySource, context, clip);
       const displayLatex = (displayResult?.value?.program ?? displayResult?.value)?.latex ?? null;
       return scopedPublicProgramResult(
         program,

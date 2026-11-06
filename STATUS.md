@@ -552,3 +552,13 @@ under-resolves large cohorts. Need SAMEbackend clipped-cell geometric measure
 aligned with the actual render lattice plus bounded tiled/highresolution sampling
 for large screen extents. Preserve exactfonts/endpoint states, nofade/hostalgorithm.
 READINESS.json explicitlyfalse. No PP edits/publication; no native NS port yet.
+
+## 2026-11-06: finite native balanced ports
+
+Source94bba2a / FluidPortsSHA2422df3c5eab2dab6a49739447d974b6704afedfe2a24715df2891f716fb8b66
+seven native operators qualify at8x6x4/24x16x8 using exact075 unchanged emitter.
+Authenticated artifacts/runtime plus CPU/WASM/GPU evidence under fluid-ports;
+AoS2/AoS6 ABI agreed with physical-session owner. WASM<=1.39e-17; actualGPU unit
+lift<=5.47e-8, Dlift residual<=2.93e-6, boundary<=8.36e-8, drag<=1.43e-8.
+See docs/fluid-ports/STATUS.md for constraints, pinning and next ownership.
+No full NS stage coupling, suction, glyph formation,60Hz or Product claim.

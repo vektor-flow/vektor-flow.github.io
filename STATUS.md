@@ -503,3 +503,23 @@ limits/model evidence in README/QUALIFICATION. b0d value-only APIs, fonts/PMA/
 capture unchanged. NoPPedits/deploy. Separate shaderfloor fixafd3 has actualparent
 GPUtimeuniform proof. Numeric-table native cell capability is delegated independent
 follow-up; whole-array~1s, retainedcatalog shortcut unqualified andnotactive.
+
+## 2026-11-06: native retained numeric table bindings
+
+Separate branch codex/native-bound-tables-renderer-20261106, preserving frozen
+ordinary glyph922fab8/libraryad9 and all producer/font/plot/capture pins. Added
+prepareNativeBoundTables + owned worker and separate bound-tables artifact from
+native source4036ef364794b8f89650fa33c3eef8af827b9ff3 in clean source branch
+codex/native-number-table-20261106 (exact original producer source repo f9578e1).
+Actual native parser/retained array command tree supplies cell IDs/anchors;
+native bounds reserve widths and cached genuine glyph boxes supply advances.
+Per-frame native fixed-decimal typed columns replace numeric cells without
+retypesetting, host formatting/layout or whole-array prewarming. Pure formatting,
+three original-native full-array geometry comparisons (worst1.43e-14 nativeunits),
+2000 exact-heap native updates PASS. Actual fonts201browserupdates PASS exact
+pixel replay/static labels, fixed callcounts/heap and guards;12frameVP9 decoded
+proof inspected. Latest SwiftShader640x360 p50/p95 native.5/.7ms, fullphysical
+render+transport23.1/32.2ms, prepare5.69s14glyph/reservequeries+1layout. No100Hz
+end-to-end rendering claim. docs/native-bound-tables contains qualification,
+source/build contract and five-file public intake hashes. Product integration
+and actual live UI/capture remain parent-owned. No PP edits or deployment.

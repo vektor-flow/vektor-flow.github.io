@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "values": [
+        1,
+        -2,
+        -5,
+        6
+      ],
+      "formatted": [
+        "1.00",
+        "-2.00",
+        "-5.00",
+        "6.00"
+      ],
+      "items": 22
+    },
+    {
+      "values": [
+        -1.1,
+        -2.01,
+        -5.01,
+        6.01
+      ],
+      "formatted": [
+        "-1.10",
+        "-2.01",
+        "-5.01",
+        "6.01"
+      ],
+      "items": 23
+    },
+    {
+      "values": [
+        0.01,
+        -1.9,
+        -4.9,
+        7
+      ],
+      "formatted": [
+        "0.01",
+        "-1.90",
+        "-4.90",
+        "7.00"
+      ],
+      "items": 22
+    }
+  ],
+  "worstNativeCoordinateResidual": 1.4210854715202004e-14,
+  "anchors": [
+    {
+      "id": "a",
+      "owner": 24,
+      "right": 45.670276463262766,
+      "baseline": -18.032378580323787,
+      "reserveWidth": 25.460174346201747
+    },
+    {
+      "id": "b",
+      "owner": 60,
+      "right": 45.670276463262766,
+      "baseline": -6.077210460772104,
+      "reserveWidth": 25.460174346201747
+    },
+    {
+      "id": "c",
+      "owner": 96,
+      "right": 45.670276463262766,
+      "baseline": 5.877957658779579,
+      "reserveWidth": 25.460174346201747
+    },
+    {
+      "id": "d",
+      "owner": 132,
+      "right": 45.670276463262766,
+      "baseline": 17.83312577833126,
+      "reserveWidth": 17.71143212951432
+    }
+  ],
+  "repeatSamples": 2000,
+  "heap": 13356960,
+  "performanceMs": {
+    "p50": 0.22271299999920302,
+    "p95": 0.2947440000007191,
+    "max": 2.0636279999998806
+  },
+  "invalid": [
+    "numeric table value exceeds declared bounds",
+    "numeric table value arity",
+    "unknown VKF value tag 24"
+  ],
+  "scope": "Existing current075 native full-array typesetting vs new native retained cell output: physical keys, affine item coordinates and complete box metrics. Static source ownership metadata differs by prepared template as intended."
+}

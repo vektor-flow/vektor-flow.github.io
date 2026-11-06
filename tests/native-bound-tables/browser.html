@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0;background:#000}</style><script type="module">
+import {prepareNativeBoundTables} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-native-bound-tables.mjs';
+import {loadCurrentWasmLabelProducer} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-wasm-producer.mjs';
+import {createCurrentNativeTypography} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-native-provider.mjs';
+import {createFrameMovieCapture} from '../../public/preview/0.7.5/vf-ui/vf-frame-movie-capture.mjs';
+window.run=async()=>{
+ const base=new URL('../../public/preview/0.7.5/vf-ui/artifacts/current-labels/',import.meta.url),get=async path=>(await fetch(new URL(path,base))).json(),descriptor=await get('producer.json'),vectors=await get('native-mapping/vectors.json'),binding=await get('native-mapping/binding.json'),files=Object.fromEntries(Object.entries(descriptor.files).map(([name,pin])=>[name,{...pin,url:new URL(pin.url,base).href}])),producer=await loadCurrentWasmLabelProducer({...descriptor,files}),typography=createCurrentNativeTypography({boxes:{},vectors,binding,identity:producer.identity,typeset:(run,pins)=>producer.typeset(run,pins)}),rows=['a','b','c','d'].map((name,i)=>({id:'row-'+name,label:name,variable:name,precision:2,min:[.9,-2.1,-5.1,6][i],max:[1.1,-1.9,-4.9,7][i]})),table=await prepareNativeBoundTables({tables:[{id:'coefficients',rows,anchor:[81,180],scale:3,color:[.5,.95,.85,1]}],typography,width:640,height:360,pixelRatio:1});document.body.append(table.element);
+ const hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join(''),capture=async()=>{const ctx=table.canvas.getContext('2d');return{full:await hash(ctx.getImageData(0,0,640,360).data.slice()),labels:await hash(ctx.getImageData(81,60,44,200).data.slice())};},values=d=>({a:1,b:-2,c:-5,d}),frames=[],times=[];let seek;
+ try{
+ const initial=table.receipt();for(let i=0;i<=200;i++){const d=6+(i<=100?i:200-i)*.01,receipt=await table.sample(values(d));times.push({native:receipt.nativeComputeMs,render:receipt.renderMs,total:receipt.totalMs,heap:receipt.heap,typesetCalls:receipt.typesetCalls,layoutCalls:receipt.layoutCalls});if([0,37,100,163,200].includes(i)){const pixel=await capture();frames.push({index:i,receipt,pixel});if(i===37)seek=pixel.full;}if(i%25===0)console.log('TABLE_FRAME',i,receipt.totalMs);}
+ const replay=await table.sample(values(6.37)),replayPixels=await capture();const middle=table.canvas.toDataURL();const movie=await createFrameMovieCapture({width:640,height:360,frameRate:24,bitrate:3000000});for(let i=0;i<12;i++){await table.sample(values(6+i*.01));await movie.addFrame(table.canvas);}const movieBytes=Array.from(new Uint8Array(await(await movie.finish()).arrayBuffer()));
+ const invalid=[];for(const bad of [{a:1,b:-2,c:-5},{a:1,b:-2,c:-5,d:8},{a:1,b:-2,c:-5,d:NaN}]){try{await table.sample(bad);invalid.push('ACCEPTED');}catch(e){invalid.push(e.code??e.message);}}
+ const final=table.receipt();table.close();let closed=false;try{table.receipt();}catch(e){closed=e.name==='AbortError';}
+ return{initial,final,frames,times,seek,replay:replayPixels.full,middle,movieBytes,invalid,closed};
+ }finally{table.close();typography.close();producer.close();}
+};
+</script>

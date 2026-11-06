@@ -1,0 +1,67 @@
+{
+  "schema": "native-physical-fluid-probe-build/1",
+  "status": "EMITTED_NOT_EXECUTED",
+  "output": "/tmp/vkf-physical-fluid-probe-c2W6W8",
+  "sourceSha256": "eabd81008728ffbe33d7abac65135edda2466a73fd62d335e4170ecc6542d44d",
+  "libraryBase": "cf004cdd2bab40a10f446ad6114b3533d0a8a122",
+  "compilerVersion": "0.7.5",
+  "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+  "gpuEmitter": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+  "entries": {
+    "operators": {
+      "width": 8,
+      "wasmSha256": "0f81db957096e3a368beda996b7054f5f7911b2c900c5373daa23e8fc683ea65",
+      "irSha256": "126c4031340167a5aa7ac03bc837fe93816dfa10e475eac341fc3e5535a33aa0",
+      "shaderSha256": "9959e082a02b7cc77a1ffb86200eb60ae41c2bffabede578cddd97916664a381",
+      "sourceSha256": "3f91b16fecfdb8770607fa38d119c97f727f27bf6027783f070690944c6c6736"
+    },
+    "pressure-rhs": {
+      "width": 2,
+      "wasmSha256": "5f0a46d41dce500eb8a24b51adcda3c6ca2a9285489403051efb94db5b1e2a9a",
+      "irSha256": "f1939cc717c6f2b157cf1503c53c4c17c8c672a5d213796dee24f3ff74bfd4fc",
+      "shaderSha256": "62afb0c3bebf1669d26f1ce6dfe2fa9dcf3f333ba9581f481822fb9b4f661df4",
+      "sourceSha256": "a7f0b22ef499c46682c95f778db35cf6990862468a062f33a195d9caa7973c04"
+    },
+    "dft": {
+      "width": 2,
+      "wasmSha256": "27706d0a0ad9c2cf631522b2c37c4d9913377b34a130d9b905d418e7f0d52b11",
+      "irSha256": "7fa444e8fd4109a4430d4b46c2c09ec4d8020cd8c3d01f8aaf905d38c20cbd1e",
+      "shaderSha256": "eed399e52df7530a391b81638f7cba50aa274410591dfc14f354cf3392fc2702",
+      "sourceSha256": "acbd00ba0f3922b2f2c4d5ce9b40b7d0e5e5d2ec8de2522e426b3aae941676cb"
+    },
+    "pressure-spectrum": {
+      "width": 2,
+      "wasmSha256": "e42ff890490b05182774fc10d22645626ff185dfb8300dcd2300970d7cf4ea4f",
+      "irSha256": "52e7babfd8580cafbe26498b229aaf676b8b132ed2bd5be3dd508cbae8a17671",
+      "shaderSha256": "c71422a96ca9d6bf701ec412de324d32b2d187b6212b818a8dec6627f5b991f3",
+      "sourceSha256": "a6d08bee56aa8c81bdfbc60a406ac51673a913db66d2460095a4cb545dea5482"
+    },
+    "project": {
+      "width": 1,
+      "wasmSha256": "5a005deb0e87b10834515202560dffa6331f20e10078ee87c440612bfc434104",
+      "irSha256": "a212e83a7ec494166f0baebc3a7c0fb87be242a0abcbb48874f07ceaa3b372e6",
+      "shaderSha256": "1633d86989d44ff0054bec11679fc3dcadd15d1233907bcbfe52737ca133e03b",
+      "sourceSha256": "20bab7e2248179c504d528c2d70427f1ce53f3807169a002ca6f70333b2e2f0d"
+    },
+    "rhs": {
+      "width": 1,
+      "wasmSha256": "d85bf1953f0c74ef0ee944f121d32b51faae5ad67fc65a249560228e9e004051",
+      "irSha256": "2d39c729f9953f69a347685140af82a84951ef231786136f8040f668ff38f557",
+      "shaderSha256": "909efe62735e49ecb7f1b3c16938bd3d7d94fc6f2a46192ef9287ddf417b19da",
+      "sourceSha256": "3d0853ddd1ce68741ea32ba66a11d4dd40ee671878d08f500608869845a59124"
+    },
+    "ssprk-update": {
+      "width": 1,
+      "wasmSha256": "0c4493f39af207833c13ad2bead1e2f0d51e02e31d4508f8d8a5dacf823e680a",
+      "irSha256": "0bf56424b06bf2aef85abd679688ab4af40b4f62b0f7f328d6db8b89359752da",
+      "shaderSha256": "48cb64eb4b75d51f20438cd6f63054df969eea188ca4bac277566df6b1239c62",
+      "sourceSha256": "cd09b976a3e6cb24918b8e95f2d0a656c27660ea24671f309c34ba68b74b3389"
+    }
+  },
+  "libraryCommit": "455e67866bd21c1645d6c1f85af4420efdbde353",
+  "compilerFiles": {
+    "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
+    "compiler.wasm": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
+    "compiler.data": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
+  }
+}

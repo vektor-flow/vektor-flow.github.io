@@ -1,0 +1,288 @@
+{
+  "passed": true,
+  "scope": "Unforced constant-viscosity periodic MAC, MINMOD scalars, SSPRK3 and fixed observation ticks only; no collector or glyph coupling",
+  "build": {
+    "schema": "native-physical-fluid-probe-build/1",
+    "status": "EMITTED_NOT_EXECUTED",
+    "output": "/tmp/vkf-physical-fluid-probe-c2W6W8",
+    "sourceSha256": "eabd81008728ffbe33d7abac65135edda2466a73fd62d335e4170ecc6542d44d",
+    "libraryBase": "cf004cdd2bab40a10f446ad6114b3533d0a8a122",
+    "compilerVersion": "0.7.5",
+    "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+    "gpuEmitter": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+    "entries": {
+      "operators": {
+        "width": 8,
+        "wasmSha256": "0f81db957096e3a368beda996b7054f5f7911b2c900c5373daa23e8fc683ea65",
+        "irSha256": "126c4031340167a5aa7ac03bc837fe93816dfa10e475eac341fc3e5535a33aa0",
+        "shaderSha256": "9959e082a02b7cc77a1ffb86200eb60ae41c2bffabede578cddd97916664a381",
+        "sourceSha256": "3f91b16fecfdb8770607fa38d119c97f727f27bf6027783f070690944c6c6736"
+      },
+      "pressure-rhs": {
+        "width": 2,
+        "wasmSha256": "5f0a46d41dce500eb8a24b51adcda3c6ca2a9285489403051efb94db5b1e2a9a",
+        "irSha256": "f1939cc717c6f2b157cf1503c53c4c17c8c672a5d213796dee24f3ff74bfd4fc",
+        "shaderSha256": "62afb0c3bebf1669d26f1ce6dfe2fa9dcf3f333ba9581f481822fb9b4f661df4",
+        "sourceSha256": "a7f0b22ef499c46682c95f778db35cf6990862468a062f33a195d9caa7973c04"
+      },
+      "dft": {
+        "width": 2,
+        "wasmSha256": "27706d0a0ad9c2cf631522b2c37c4d9913377b34a130d9b905d418e7f0d52b11",
+        "irSha256": "7fa444e8fd4109a4430d4b46c2c09ec4d8020cd8c3d01f8aaf905d38c20cbd1e",
+        "shaderSha256": "eed399e52df7530a391b81638f7cba50aa274410591dfc14f354cf3392fc2702",
+        "sourceSha256": "acbd00ba0f3922b2f2c4d5ce9b40b7d0e5e5d2ec8de2522e426b3aae941676cb"
+      },
+      "pressure-spectrum": {
+        "width": 2,
+        "wasmSha256": "e42ff890490b05182774fc10d22645626ff185dfb8300dcd2300970d7cf4ea4f",
+        "irSha256": "52e7babfd8580cafbe26498b229aaf676b8b132ed2bd5be3dd508cbae8a17671",
+        "shaderSha256": "c71422a96ca9d6bf701ec412de324d32b2d187b6212b818a8dec6627f5b991f3",
+        "sourceSha256": "a6d08bee56aa8c81bdfbc60a406ac51673a913db66d2460095a4cb545dea5482"
+      },
+      "project": {
+        "width": 1,
+        "wasmSha256": "5a005deb0e87b10834515202560dffa6331f20e10078ee87c440612bfc434104",
+        "irSha256": "a212e83a7ec494166f0baebc3a7c0fb87be242a0abcbb48874f07ceaa3b372e6",
+        "shaderSha256": "1633d86989d44ff0054bec11679fc3dcadd15d1233907bcbfe52737ca133e03b",
+        "sourceSha256": "20bab7e2248179c504d528c2d70427f1ce53f3807169a002ca6f70333b2e2f0d"
+      },
+      "rhs": {
+        "width": 1,
+        "wasmSha256": "d85bf1953f0c74ef0ee944f121d32b51faae5ad67fc65a249560228e9e004051",
+        "irSha256": "2d39c729f9953f69a347685140af82a84951ef231786136f8040f668ff38f557",
+        "shaderSha256": "909efe62735e49ecb7f1b3c16938bd3d7d94fc6f2a46192ef9287ddf417b19da",
+        "sourceSha256": "3d0853ddd1ce68741ea32ba66a11d4dd40ee671878d08f500608869845a59124"
+      },
+      "ssprk-update": {
+        "width": 1,
+        "wasmSha256": "0c4493f39af207833c13ad2bead1e2f0d51e02e31d4508f8d8a5dacf823e680a",
+        "irSha256": "0bf56424b06bf2aef85abd679688ab4af40b4f62b0f7f328d6db8b89359752da",
+        "shaderSha256": "48cb64eb4b75d51f20438cd6f63054df969eea188ca4bac277566df6b1239c62",
+        "sourceSha256": "cd09b976a3e6cb24918b8e95f2d0a656c27660ea24671f309c34ba68b74b3389"
+      }
+    },
+    "libraryCommit": "455e67866bd21c1645d6c1f85af4420efdbde353",
+    "compilerFiles": {
+      "compiler.mjs": "3d4994b07c53e3cf3fe4a22a7640b29e7e6ffc97cae97583f802f5c2facfa34a",
+      "compiler.wasm": "2e19bc97d8695135165490d8bffccabeb4e1a8af53ee0897a98e0ce380415a7b",
+      "compiler.data": "6148458e8404864ef99a10a33ad460c1296a92c0bbdfdf3d2753e74a1e5888d2"
+    }
+  },
+  "referenceProvenance": {
+    "ns_reference.py": "e086923ab53c81da9a30aa0fcbaebe36c18f6fd5bc49d76280d273d67c699d3e",
+    "parcels.py": "1c23124b27cad3d42645bb9f2b206cbfc59fdeda2a6027bc605566d61dcc270f",
+    "make_visual_proof.py": "593b2e3bade45ea88d1b30a8da36b5ae1877ef51310dd5962b06b08bc2be2146",
+    "PHYSICS.txt": "a50a2246da3530ddafe1447ad285b6039c4bba5231d0388939ad84890d79b41f",
+    "receiver_reference.py": "6f1ea228f64b7f3e412b9e85f63b1771b372529164725ea934f30155a855c427"
+  },
+  "reports": [
+    {
+      "shape": [
+        8,
+        6,
+        4
+      ],
+      "checkpoints": [
+        {
+          "tick": 1,
+          "velocityMaxError": 8.670306042568576e-9,
+          "scalarMaxError": 2.406565047241571e-8,
+          "speciesMassMaxErrors": [
+            3.9996801426411825e-11,
+            4.9825756113601e-11,
+            8.706089330938009e-11
+          ]
+        },
+        {
+          "tick": 6,
+          "velocityMaxError": 3.269615682366389e-8,
+          "scalarMaxError": 4.2758984047930326e-8,
+          "speciesMassMaxErrors": [
+            2.2592930877992265e-10,
+            2.201801770536823e-10,
+            1.8909173227221744e-10
+          ]
+        },
+        {
+          "tick": 18,
+          "velocityMaxError": 8.129491853303694e-8,
+          "scalarMaxError": 8.25027339779183e-8,
+          "speciesMassMaxErrors": [
+            5.92829294913481e-10,
+            6.276338034479541e-10,
+            3.5479616374474906e-10
+          ]
+        }
+      ],
+      "clockCases": [
+        {
+          "seconds": 0,
+          "observation_ns": 0,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.01,
+          "observation_ns": 10000000,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.013,
+          "observation_ns": 13000000,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.017,
+          "observation_ns": 17000000,
+          "ticks": 1,
+          "time": 0.016666666666666666,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.1,
+          "observation_ns": 100000000,
+          "ticks": 6,
+          "time": 0.1,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.3,
+          "observation_ns": 300000000,
+          "ticks": 18,
+          "time": 0.3,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 60,
+          "observation_ns": 60000000000,
+          "ticks": 3600,
+          "time": 60,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 1000,
+          "observation_ns": 1000000000000,
+          "ticks": 60000,
+          "time": 1000,
+          "max_dt": 0.016666666666666666
+        }
+      ],
+      "partitionReplayBitExact": true,
+      "medianTickMs": 19.200000047683716,
+      "maxTickMs": 26.100000023841858,
+      "timingScope": "Resident GPU three-stage SSPRK and pressure passes, per-tick GPU diagnostic readback; no marker/render/session claim",
+      "stateBytes": 5376,
+      "ownedBufferBytes": 445388
+    },
+    {
+      "shape": [
+        24,
+        16,
+        8
+      ],
+      "checkpoints": [
+        {
+          "tick": 1,
+          "velocityMaxError": 1.6047666168139685e-8,
+          "scalarMaxError": 3.9858470302078786e-8,
+          "speciesMassMaxErrors": [
+            5.38456425743424e-11,
+            6.232108903011143e-11,
+            4.490270951359084e-11
+          ]
+        },
+        {
+          "tick": 6,
+          "velocityMaxError": 6.518362360985464e-8,
+          "scalarMaxError": 1.4371170192761795e-7,
+          "speciesMassMaxErrors": [
+            2.8407244279105017e-10,
+            2.4289217766722734e-10,
+            2.1992514550224958e-10
+          ]
+        },
+        {
+          "tick": 18,
+          "velocityMaxError": 1.1037051868278969e-7,
+          "scalarMaxError": 3.3262527571187306e-7,
+          "speciesMassMaxErrors": [
+            6.733320547421448e-10,
+            7.102168331218906e-10,
+            6.085753626964656e-10
+          ]
+        }
+      ],
+      "clockCases": [
+        {
+          "seconds": 0,
+          "observation_ns": 0,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.01,
+          "observation_ns": 10000000,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.013,
+          "observation_ns": 13000000,
+          "ticks": 0,
+          "time": 0,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.017,
+          "observation_ns": 17000000,
+          "ticks": 1,
+          "time": 0.016666666666666666,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.1,
+          "observation_ns": 100000000,
+          "ticks": 6,
+          "time": 0.1,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 0.3,
+          "observation_ns": 300000000,
+          "ticks": 18,
+          "time": 0.3,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 60,
+          "observation_ns": 60000000000,
+          "ticks": 3600,
+          "time": 60,
+          "max_dt": 0.016666666666666666
+        },
+        {
+          "seconds": 1000,
+          "observation_ns": 1000000000000,
+          "ticks": 60000,
+          "time": 1000,
+          "max_dt": 0.016666666666666666
+        }
+      ],
+      "partitionReplayBitExact": true,
+      "medianTickMs": 161,
+      "maxTickMs": 178.69999992847443,
+      "timingScope": "Resident GPU three-stage SSPRK and pressure passes, per-tick GPU diagnostic readback; no marker/render/session claim",
+      "stateBytes": 86016,
+      "ownedBufferBytes": 7098788
+    }
+  ],
+  "errors": [],
+  "browserErrors": []
+}

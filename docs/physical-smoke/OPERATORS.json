@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "sourceSha256": "a10c70bf213074d459908f39b2553db1ed2cf2625fe97afd29cad8c16dc40d78",
+  "build": {
+    "schema": "native-physical-fluid-probe-build/1",
+    "status": "EMITTED_NOT_EXECUTED",
+    "output": "/tmp/vkf-physical-fluid-probe-bZYYCh",
+    "sourceSha256": "a10c70bf213074d459908f39b2553db1ed2cf2625fe97afd29cad8c16dc40d78",
+    "libraryBase": "86d584115c8d3e68e7aa0ceacfd29321f4e47268",
+    "compilerVersion": "0.7.5",
+    "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+    "gpuEmitter": "a5305eb01c6d36d5234402471750f0c4ed2f1c892fcec628649325bee315676f",
+    "entries": {
+      "operators": {
+        "width": 8,
+        "wasmSha256": "87e4eb0ec95abc58632bb148d25e40d4c291bd42cd19190e6926c9e3dda20681",
+        "irSha256": "995cdc6e189926179c11e9f2c51a9b29f3eb16c88629ea014b03c16271c20259",
+        "shaderSha256": "9959e082a02b7cc77a1ffb86200eb60ae41c2bffabede578cddd97916664a381",
+        "sourceSha256": "f1a8a08fd789e0f24cfc867ee35473d2edd6d13c0f585a4fd7e00ef93d3ac45e"
+      },
+      "pressure-rhs": {
+        "width": 2,
+        "wasmSha256": "04c9dc677a51f6f5ee7e9a68627703204e2654b6ed658786b5637ce17c43ce7a",
+        "irSha256": "3aa5f6fcb9c33624ba07a76197b68f5689c268f649c1ff95961af1467ac26743",
+        "shaderSha256": "62afb0c3bebf1669d26f1ce6dfe2fa9dcf3f333ba9581f481822fb9b4f661df4",
+        "sourceSha256": "106a6d2ac8157098c38ee921e59585b350e0c2023cafefbda30c4d4eefcf8fea"
+      },
+      "dft": {
+        "width": 2,
+        "wasmSha256": "635d08e7fa2d998d8057e0ae0957185e7d5813e161aba3416035cad93b496f02",
+        "irSha256": "eaaed34c27c386c12378911bf6c83676fab9eba56d79be06cb0891379f03fcc3",
+        "shaderSha256": "eed399e52df7530a391b81638f7cba50aa274410591dfc14f354cf3392fc2702",
+        "sourceSha256": "748c1c0eb20f148c907ef60a3f9c61d67b6df75af0c3ebded49e02cf01a6af79"
+      },
+      "pressure-spectrum": {
+        "width": 2,
+        "wasmSha256": "c7f3c298fabffcbf83aa571d3f157caad0ddc66fcd08c69ae5b46078b10813dc",
+        "irSha256": "8c151e3ccf5df01fd02828610c620a29b0b90e4df1b4ee2a6e4c27866cad7016",
+        "shaderSha256": "c71422a96ca9d6bf701ec412de324d32b2d187b6212b818a8dec6627f5b991f3",
+        "sourceSha256": "18aee5d0b29d182b099e9a48e21910bde33941fa6e35aab1f2ceeb135d1ea28e"
+      },
+      "project": {
+        "width": 1,
+        "wasmSha256": "3331be05d182decf50f66194e9f795716a60d34e5b491ba61543d201a14d5cf8",
+        "irSha256": "fe2d4148a0d236f4d7f88ff07b5d9a9a2268e75b7692e20db8fc1eb21d9d3b0f",
+        "shaderSha256": "1633d86989d44ff0054bec11679fc3dcadd15d1233907bcbfe52737ca133e03b",
+        "sourceSha256": "33e71ef43543fbfaf3b98976e34c8d0aee8c8dc0ee42f0af09c7fc6ba719408b"
+      }
+    }
+  },
+  "referenceProvenance": {
+    "ns_reference.py": "e086923ab53c81da9a30aa0fcbaebe36c18f6fd5bc49d76280d273d67c699d3e",
+    "parcels.py": "1c23124b27cad3d42645bb9f2b206cbfc59fdeda2a6027bc605566d61dcc270f",
+    "make_visual_proof.py": "593b2e3bade45ea88d1b30a8da36b5ae1877ef51310dd5962b06b08bc2be2146",
+    "PHYSICS.txt": "a50a2246da3530ddafe1447ad285b6039c4bba5231d0388939ad84890d79b41f",
+    "receiver_reference.py": "6f1ea228f64b7f3e412b9e85f63b1771b372529164725ea934f30155a855c427"
+  },
+  "reports": [
+    {
+      "shape": [
+        8,
+        6,
+        4
+      ],
+      "profile": "exact accepted fluid-only initial u withRMS.055; smallgridscalarfallbackdeclared",
+      "operatorChannelMaxErrors": [
+        4.470348355378739e-8,
+        6.1765597775265135e-9,
+        1.8401954317986968e-9,
+        2.5794239192494794e-9,
+        1.3560427936792907e-9,
+        8.879984352005987e-10,
+        7.073569364794696e-10,
+        6.811621502955667e-9
+      ],
+      "wasmParityMaxError": 4.45569065393725e-8,
+      "operatorMs": 6.699999928474426,
+      "projectionMs": 23.100000023841858,
+      "pressureMaxError": 3.292690895981276e-9,
+      "velocityMaxError": 2.0559339161674295e-8,
+      "postProjectionDivergenceMax": 4.246830940246582e-7,
+      "imaginaryPressureMax": 1.1641532182693481e-9,
+      "pressureSolver": "Native separable direct DFT of exact periodic DG eigenproblem; no FFT performance claim",
+      "timingScope": "GPU dispatch plus per-stage diagnostic/data readback in test; not real-time session throughput",
+      "scope": "Operators/projection only; no SSPRK session, glyph coupling, reservoir, collector or fluid playback readiness yet"
+    },
+    {
+      "shape": [
+        24,
+        16,
+        8
+      ],
+      "profile": "exact accepted24x16x8 fluid-only initialcondition/profile",
+      "operatorChannelMaxErrors": [
+        1.862645145900288e-7,
+        3.98830434511499e-8,
+        1.0097872654366014e-8,
+        1.6355249604291244e-8,
+        6.4112296721541284e-9,
+        2.914844999049593e-9,
+        2.886483730420858e-9,
+        1.7695128928102433e-8
+      ],
+      "wasmParityMaxError": 1.496530246947181e-8,
+      "operatorMs": 23.5,
+      "projectionMs": 29.700000047683716,
+      "pressureMaxError": 7.55368015359359e-9,
+      "velocityMaxError": 9.237676978912646e-8,
+      "postProjectionDivergenceMax": 0.000004500150680541992,
+      "imaginaryPressureMax": 1.7074247571358114e-9,
+      "pressureSolver": "Native separable direct DFT of exact periodic DG eigenproblem; no FFT performance claim",
+      "timingScope": "GPU dispatch plus per-stage diagnostic/data readback in test; not real-time session throughput",
+      "scope": "Operators/projection only; no SSPRK session, glyph coupling, reservoir, collector or fluid playback readiness yet"
+    }
+  ],
+  "errors": [],
+  "backend": "WebGPU current075 compiler-owned real-f32 typed-IR kernels",
+  "browserErrors": []
+}

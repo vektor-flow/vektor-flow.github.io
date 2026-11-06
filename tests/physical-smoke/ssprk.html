@@ -1,0 +1,42 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><script type="module">
+import {createCompiledFieldKernel,createFieldBuffer} from '../../public/preview/0.7.5/vf-ui/vf-compiled-field-runtime.mjs';
+import {createSymbolicKernel} from '../../public/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs';
+const check=(ok,message)=>{if(!ok)throw Error(message);};
+const error=(a,b)=>{check(a.length===b.length,'Array length mismatch');let e=0;for(let i=0;i<a.length;i++){check(Number.isFinite(a[i]),'Nonfinite state');e=Math.max(e,Math.abs(a[i]-b[i]));}return e;};
+window.run=async()=>{
+ const adapter=await navigator.gpu.requestAdapter();check(adapter,'GPU unavailable');const device=await adapter.requestDevice(),errors=[];device.addEventListener('uncapturederror',e=>errors.push(e.error.message));
+ const fixture=await(await fetch('./reference.json')).json(),build=await(await fetch('/build/PROVENANCE.json')).json(),kernels={};
+ for(const name of Object.keys(build.entries)){const code=await(await fetch('/build/'+name+'.wgsl')).text(),manifest=await(await fetch('/build/'+name+'.wgsl.json')).json();kernels[name]=await createCompiledFieldKernel(device,code,manifest);}
+ const wasm=await WebAssembly.compile(await(await fetch('/build/operators.wasm')).arrayBuffer()),manifest=await(await fetch('/build/operators.json')).json();
+ const native=(method,args)=>createSymbolicKernel({instance:new WebAssembly.Instance(wasm,{}),manifest,diagnostics:true}).invokeValue(method,args);
+ async function read(buffer){const stage=device.createBuffer({size:buffer.size,usage:GPUBufferUsage.MAP_READ|GPUBufferUsage.COPY_DST}),enc=device.createCommandEncoder();enc.copyBufferToBuffer(buffer,0,stage,0,buffer.size);device.queue.submit([enc.finish()]);await stage.mapAsync(GPUMapMode.READ);const data=stage.getMappedRange().slice(0);stage.unmap();stage.destroy();return data;}
+ const reports=[];
+ for(const c of fixture.cases){
+  const [nx,ny,nz]=c.shape,n=nx*ny*nz,p=native('parameters',c.shape),coefficients=new Float32Array(native('coefficients',[p])),owned=[];
+  const buf=(input)=>{const b=createFieldBuffer(device,input);owned.push(b);return b;};
+  const state=buf(new Float32Array(c.initialState)),initial=buf(7*n),next=buf(7*n),rhs=buf(7*n),projected=buf(3*n),complex=[buf(2*n),buf(2*n)],spectralInput=buf(2*n+coefficients.length),projectionInput=buf(5*n),updateInput=buf(24*n),diagnostic=buf(7*n+1),allDiagnostics=buf((7*n+1)*72),stageParams=[0,1,2].map(s=>buf(new Float32Array(native('stage_parameters',[p,s])))),axisParams={};
+  for(const inverse of[0,1])for(const axis of[0,1,2]){const pp=Array.from(p);pp[8]=axis;pp[9]=inverse;axisParams[inverse+':'+axis]=buf(new Float32Array(pp));}
+  const baseParams=buf(new Float32Array(p));device.queue.writeBuffer(spectralInput,8*n,coefficients);
+  let diagnosticSlot=0;
+  function dispatch(encoder,name,params,values,result,count){encoder.clearBuffer(diagnostic);kernels[name].bind({params,values,result,errors:diagnostic,count}).encode(encoder);encoder.copyBufferToBuffer(diagnostic,0,allDiagnostics,diagnosticSlot*(7*n+1)*4,(7*n+1)*4);diagnosticSlot++;check(diagnosticSlot<=72,'Diagnostic capacity');}
+  function projection(encoder){dispatch(encoder,'pressure-rhs',baseParams,rhs,complex[0],n);let front=0;
+   for(const inverse of[0,1]){if(inverse){encoder.copyBufferToBuffer(complex[front],0,spectralInput,0,8*n);dispatch(encoder,'pressure-spectrum',baseParams,spectralInput,complex[1-front],n);front=1-front;}
+    for(const axis of(inverse?[2,1,0]:[0,1,2])){encoder.copyBufferToBuffer(complex[front],0,spectralInput,0,8*n);dispatch(encoder,'dft',axisParams[inverse+':'+axis],spectralInput,complex[1-front],n);front=1-front;}}
+   encoder.copyBufferToBuffer(rhs,0,projectionInput,0,12*n);encoder.copyBufferToBuffer(complex[front],0,projectionInput,12*n,8*n);dispatch(encoder,'project',baseParams,projectionInput,projected,3*n);
+  }
+  async function tick(){diagnosticSlot=0;const encoder=device.createCommandEncoder();encoder.clearBuffer(allDiagnostics);encoder.copyBufferToBuffer(state,0,initial,0,28*n);
+   for(let stage=0;stage<3;stage++){dispatch(encoder,'rhs',stageParams[stage],state,rhs,7*n);projection(encoder);encoder.copyBufferToBuffer(state,0,updateInput,0,28*n);encoder.copyBufferToBuffer(rhs,0,updateInput,28*n,28*n);encoder.copyBufferToBuffer(projected,0,updateInput,56*n,12*n);encoder.copyBufferToBuffer(initial,0,updateInput,68*n,28*n);dispatch(encoder,'ssprk-update',stageParams[stage],updateInput,next,7*n);encoder.copyBufferToBuffer(next,0,state,0,28*n);}
+   device.queue.submit([encoder.finish()]);await device.queue.onSubmittedWorkDone();check(new Uint32Array(await read(allDiagnostics)).every(x=>x===0),'Native SSPRK GPU diagnostic error');
+  }
+  const checkpoints=[],timings=[];console.log('FLUID_SSPRK_BEGIN',c.shape.join('x'));
+  for(let tickIndex=1;tickIndex<=18;tickIndex++){const started=performance.now();await tick();timings.push(performance.now()-started);const oracle=c.checkpoints.find(v=>v.tick===tickIndex);if(oracle){const actual=new Float32Array(await read(state)),velocityError=error(actual.slice(0,3*n),oracle.state.slice(0,3*n)),scalarError=error(actual.slice(3*n),oracle.state.slice(3*n));check(velocityError<0.00001&&scalarError<0.00001,'SSPRK differs from accepted reference '+JSON.stringify({velocityError,scalarError,tickIndex}));check(Math.min(...actual.slice(3*n))>=-1e-7,'SSPRK positivity');const dv=p[3]*p[4]*p[5],massErrors=[0,1,2].map(k=>{let before=0,after=0;for(let i=0;i<n;i++){before+=c.initialState[(4+k)*n+i];after+=actual[(4+k)*n+i];}return Math.abs(after-before)*dv;});check(massErrors.every(e=>e<1e-9),'Conservative species mass drift');checkpoints.push({tick:tickIndex,velocityMaxError:velocityError,scalarMaxError:scalarError,speciesMassMaxErrors:massErrors});console.log('FLUID_SSPRK_PASS',c.shape.join('x'),tickIndex,velocityError,scalarError);}}
+  const final=new Uint8Array(await read(state)),clockCases=[0,.01,.013,.017,.1,.3,60,1000],clocks=clockCases.map(seconds=>({seconds,...native('clock',[seconds])}));
+  check(clocks.find(c=>c.seconds===.3).ticks===18,'Native whole tick clock');
+  // Replay exact GPU operations from the identical accepted initial state. Observer
+  // partitions call only native clock; they never split the fixed-step schedule.
+  for(const observations of[Array.from({length:30},(_,i)=>(i+1)*.01),Array.from({length:20},(_,i)=>Math.floor(i/2)*.03+(i%2?.03:.013))]){device.queue.writeBuffer(state,0,new Float32Array(c.initialState));let accepted=0;for(const seconds of observations){const clock=native('clock',[seconds]);while(accepted<clock.ticks){await tick();accepted++;}}const replay=new Uint8Array(await read(state));check(replay.length===final.length&&replay.every((x,i)=>x===final[i]),'Observation partition changes accepted GPU state');}
+  const report={shape:c.shape,checkpoints,clockCases:clocks,partitionReplayBitExact:true,medianTickMs:[...timings].sort((a,b)=>a-b)[9],maxTickMs:Math.max(...timings),timingScope:'Resident GPU three-stage SSPRK and pressure passes, per-tick GPU diagnostic readback; no marker/render/session claim',stateBytes:final.length,ownedBufferBytes:owned.reduce((s,b)=>s+b.size,0)};reports.push(report);console.log('FLUID_SSPRK_CASE_PASS',JSON.stringify(report));for(const b of owned)b.destroy();
+ }
+ check(errors.length===0,'GPU validation '+errors.join(';'));await device.queue.onSubmittedWorkDone();device.destroy();return {passed:true,scope:'Unforced constant-viscosity periodic MAC, MINMOD scalars, SSPRK3 and fixed observation ticks only; no collector or glyph coupling',build,referenceProvenance:fixture.provenance,reports,errors};
+};
+</script>

@@ -282,6 +282,14 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
     setPackedVertices,
     setResidentVertices,
     drawResidentVertices,
+    captureBitmap() {
+      assertAlive();
+      if (!backend || typeof globalThis.createImageBitmap !== 'function') throw new Error('Native canvas bitmap snapshots are unavailable');
+      // Capture this presentation task's bitmap before yielding. The browser
+      // preserves canvas premultiplication semantics; raw RGBA VideoFrame input
+      // would interpret a premultiplied texture as straight-alpha pixels.
+      return globalThis.createImageBitmap(canvas);
+    },
     captureFrame(options) {
       assertAlive();
       if (!backend?.captureFrame) throw new Error('GPU frame readback is unavailable');

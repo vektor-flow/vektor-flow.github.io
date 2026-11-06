@@ -1,6 +1,9 @@
 // Generic VKF presentation of resident xyz/RGBA triangle buffers.
 // Geometry and interpolation belong to compiled VKF kernels, not this renderer.
-export async function createResidentMeshRenderer(canvas,{device}={}) {
+export async function createResidentMeshRenderer(canvas,{device,profile='mesh',coverageOnly=false}={}) {
+ const materialField=profile==='implicit-material-2d';
+ if(!['mesh','implicit-material-2d'].includes(profile)||typeof coverageOnly!=='boolean'||(coverageOnly&&!materialField))throw Error('Unsupported resident mesh profile');
+ const depthFormat=materialField?'depth32float':'depth24plus';
  if(!device)throw Error('A shared WebGPU device is required');
  const context=canvas.getContext('webgpu'),format=navigator.gpu.getPreferredCanvasFormat();
  const uniform=device.createBuffer({size:16,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});
@@ -14,19 +17,19 @@ export async function createResidentMeshRenderer(canvas,{device}={}) {
    let cp=cos(camera.pitch);let sp=sin(camera.pitch);
    let q=vec3f(p.x,cp*p.y-sp*p.z,sp*p.y+cp*p.z);
    var output:Output;
-   output.position=vec4f(q.x*camera.scale/camera.aspect,q.y*camera.scale,0.5-q.z*0.12,1.0);
+   output.position=vec4f(q.x*camera.scale/camera.aspect,q.y*camera.scale,${materialField?(coverageOnly?'0.5':'q.z*0.125'):'0.5-q.z*0.12'},1.0);
    output.color=color;return output;
  }
- @fragment fn fragmentMain(input:Output)->@location(0) vec4f { return input.color; }
+ @fragment fn fragmentMain(input:Output)->@location(0) vec4f { return ${coverageOnly?'vec4f(0.0,0.0,0.0,1.0)':materialField?'vec4f(input.color.rgb*input.color.a,input.color.a)':'input.color'}; }
  `});
- const pipeline=await device.createRenderPipelineAsync({layout:'auto',vertex:{module,entryPoint:'vertexMain',buffers:[{arrayStride:28,attributes:[{shaderLocation:0,offset:0,format:'float32x3'},{shaderLocation:1,offset:12,format:'float32x4'}]}]},fragment:{module,entryPoint:'fragmentMain',targets:[{format}]},primitive:{topology:'triangle-list',cullMode:'none'},multisample:{count:4},depthStencil:{format:'depth24plus',depthWriteEnabled:true,depthCompare:'less'}});
+ const pipeline=await device.createRenderPipelineAsync({layout:'auto',vertex:{module,entryPoint:'vertexMain',buffers:[{arrayStride:28,attributes:[{shaderLocation:0,offset:0,format:'float32x3'},{shaderLocation:1,offset:12,format:'float32x4'}]}]},fragment:{module,entryPoint:'fragmentMain',targets:[{format}]},primitive:{topology:'triangle-list',cullMode:'none'},multisample:{count:4},depthStencil:{format:depthFormat,depthWriteEnabled:true,depthCompare:materialField&&!coverageOnly?'greater-equal':'less'}});
  const group=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:uniform}}]});
  let color,depth,buffer=null,count=0,width=0,height=0,dead=false;
- let camera={yaw:.5,pitch:-.55,scale:.7};
+ let camera=materialField?{yaw:0,pitch:0,scale:1}:{yaw:.5,pitch:-.55,scale:.7};
  function updateCamera(){device.queue.writeBuffer(uniform,0,new Float32Array([camera.yaw,camera.pitch,camera.scale,width/height]));}
  function draw(){
   if(dead)throw Error('Renderer disposed');
-  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:color.createView(),resolveTarget:context.getCurrentTexture().createView(),clearValue:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'discard'}],depthStencilAttachment:{view:depth.createView(),depthClearValue:1,depthLoadOp:'clear',depthStoreOp:'discard'}});
+  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:color.createView(),resolveTarget:context.getCurrentTexture().createView(),clearValue:materialField?{r:0,g:0,b:0,a:0}:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'discard'}],depthStencilAttachment:{view:depth.createView(),depthClearValue:materialField&&!coverageOnly?0:1,depthLoadOp:'clear',depthStoreOp:'discard'}});
   if(buffer&&count){pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.setVertexBuffer(0,buffer);pass.draw(count);}
   pass.end();device.queue.submit([encoder.finish()]);
  }
@@ -34,17 +37,19 @@ export async function createResidentMeshRenderer(canvas,{device}={}) {
   if(dead)throw Error('Renderer disposed');
   if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1)throw Error('Invalid viewport');
   width=w;height=h;canvas.width=w;canvas.height=h;
-  context.configure({device,format,alphaMode:'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
+  context.configure({device,format,alphaMode:materialField?'premultiplied':'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
   color?.destroy();depth?.destroy();
   color=device.createTexture({size:[w,h],format,sampleCount:4,usage:GPUTextureUsage.RENDER_ATTACHMENT});
-  depth=device.createTexture({size:[w,h],format:'depth24plus',sampleCount:4,usage:GPUTextureUsage.RENDER_ATTACHMENT});
+  depth=device.createTexture({size:[w,h],format:depthFormat,sampleCount:4,usage:GPUTextureUsage.RENDER_ATTACHMENT});
   updateCamera();
  }
  return {
   resize,
   clear(){buffer=null;count=0;},
-  setCamera(next,redraw=true){if(Object.values(next).some(x=>!Number.isFinite(x)))throw Error('Invalid camera');camera={...camera,...next};updateCamera();if(redraw)draw();},
+  setCamera(next,redraw=true){if(materialField&&((next.yaw??0)!==0||(next.pitch??0)!==0))throw Error('Implicit material field uses an orthographic plane');if(Object.values(next).some(x=>!Number.isFinite(x)))throw Error('Invalid camera');camera={...camera,...next};updateCamera();if(redraw)draw();},
   setResidentVertices(next,n){if(!next||!Number.isInteger(n)||n<0||n%3||next.size<n*28)throw Error('Invalid resident mesh');buffer=next;count=n;draw();},
+  captureBitmap(){if(dead)throw Error('Renderer disposed');if(typeof createImageBitmap!=='function')throw Error('Native bitmap snapshots unavailable');return createImageBitmap(canvas);},
+  statistics(){return{profile,coverageOnly,width,height,explicitTextureBytes:width*height*32,vertexFormat:'xyzRGBA',depthFormat,backend:'webgpu'};},
   async captureFrame({timestamp,duration}){
    if(!Number.isSafeInteger(timestamp)||timestamp<0||!Number.isSafeInteger(duration)||duration<=0)throw Error('Invalid capture timing');
    const frameWidth=width,frameHeight=height;

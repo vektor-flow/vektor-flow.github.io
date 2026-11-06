@@ -552,3 +552,26 @@ under-resolves large cohorts. Need SAMEbackend clipped-cell geometric measure
 aligned with the actual render lattice plus bounded tiled/highresolution sampling
 for large screen extents. Preserve exactfonts/endpoint states, nofade/hostalgorithm.
 READINESS.json explicitlyfalse. No PP edits/publication; no native NS port yet.
+
+## 2026-11-06: local-contour area spike GREEN, native topology RED
+
+Branch codex/native-glyph-geometric-measure-20261106 preserves native-source
+8c017be5 local carrier clipping and a bounded realGPU prototype. Same canonical
+join=0 max-field union, same ownership/state/RGBA and native scale controller;
+no Product matcher/interpolation or glyph substitution. Local65 contours remove
+severe global257 undersampling. Actual27→1 visible area targets pass within1px
+at q.25/.5/.75 in3/2/5native calibration passes; pixel sum remains TEST oracle,
+not a production GPU area implementation. Stronger count gate RED: visible
+components29→37→43→13→1. GPU evaluated field readback proves extra islands before
+rendering: per-carrier positive-lattice component sums29→53→67→32→27. Thus the
+continuous field blend lacks the requested topology/count event guarantee;
+current research explicitly leaves this unproved. No readiness claim/intake.
+Full evidence docs/geometric-material/{LOCAL-QUANTITY,READINESS}.json and PNGs.
+
+Independent snapshot correction uses native createImageBitmap for transparent
+PMA field composition. ExactRGBA test shows raw-buffer VideoFrame interpretation
+darkened AA RGB while ImageBitmap preserved it; full retained/streaming seek
+byte equality passes. Default generic mesh rendering is unchanged. Source and
+qualified snapshot tests saved alongside the explicitly experimental local mesh
+profile. No PP files/deploy/native fluid claim. Root owns FineReceiver native
+port, child owns Fluid baseline/markers/finalizer; GPU slot currently released.

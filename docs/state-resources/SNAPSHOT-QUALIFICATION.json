@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "retained": {
+    "frames": [
+      {
+        "q": 0.25,
+        "hash": "5acaba62635f6b4cdfe65f2837a8cb9fa85f305f8f7201042d75a1bef78d47d2",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.5,
+        "hash": "a36031189d64344f18a9d8fa6b5c332a7944930492fa1773f07e16042439008a",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.75,
+        "hash": "51e1e862900e885201cc285d6ccbc30021b8f55bc8fad80b7f8a77a91dcefada",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.5,
+        "hash": "a36031189d64344f18a9d8fa6b5c332a7944930492fa1773f07e16042439008a",
+        "nonzero": 1571
+      }
+    ],
+    "stats": {
+      "bytes": 116830572,
+      "maxBytes": 268435456,
+      "bufferPolicy": "retained packets",
+      "sharedProfiles": 0,
+      "plans": 3,
+      "libraryCommit": "86d584115c8d3e68e7aa0ceacfd29321f4e47268",
+      "backend": "current-vkf-compiled-gpu-real-f32"
+    }
+  },
+  "snapshotComparisons": [
+    {
+      "q": 0.25,
+      "bitmapOnlyWithoutPriorReadback": false,
+      "videoDiff": 780,
+      "bitmapDiff": 0,
+      "maxVideo": 147,
+      "maxBitmap": 0
+    },
+    {
+      "q": 0.5,
+      "bitmapOnlyWithoutPriorReadback": false,
+      "videoDiff": 780,
+      "bitmapDiff": 0,
+      "maxVideo": 103,
+      "maxBitmap": 0
+    },
+    {
+      "q": 0.75,
+      "bitmapOnlyWithoutPriorReadback": false,
+      "videoDiff": 780,
+      "bitmapDiff": 0,
+      "maxVideo": 147,
+      "maxBitmap": 0
+    },
+    {
+      "q": 0.5,
+      "bitmapOnlyWithoutPriorReadback": true,
+      "videoDiff": 0,
+      "bitmapDiff": 0,
+      "maxVideo": 0,
+      "maxBitmap": 0
+    }
+  ],
+  "packetBounds": {
+    "live": 19998,
+    "minx": 128.6999969482422,
+    "maxx": 152.6999969482422,
+    "miny": 120.5999984741211,
+    "maxy": 140.60000610351562
+  },
+  "checkedActiveVertices": 27,
+  "streaming": {
+    "frames": [
+      {
+        "q": 0.25,
+        "hash": "5acaba62635f6b4cdfe65f2837a8cb9fa85f305f8f7201042d75a1bef78d47d2",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.5,
+        "hash": "a36031189d64344f18a9d8fa6b5c332a7944930492fa1773f07e16042439008a",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.75,
+        "hash": "51e1e862900e885201cc285d6ccbc30021b8f55bc8fad80b7f8a77a91dcefada",
+        "nonzero": 1571
+      },
+      {
+        "q": 0.5,
+        "hash": "7f32f397fe0015662304d632d4edb03491a4209886e69065300fb99d7c0b5a91",
+        "nonzero": 1571
+      }
+    ],
+    "stats": {
+      "bytes": 20272348,
+      "maxBytes": 268435456,
+      "bufferPolicy": "serialized shared contour/field scratch; immediate native draw",
+      "sharedProfiles": 1,
+      "plans": 3,
+      "libraryCommit": "86d584115c8d3e68e7aa0ceacfd29321f4e47268",
+      "backend": "current-vkf-compiled-gpu-real-f32"
+    }
+  },
+  "maxPacketError": 0.000006109103566132035,
+  "errors": [],
+  "note": "TestonlyGPUbufferreadbacks forsame-sourceWASM72floatreference; playergeometryreadback0. ExactMSAApixelswithsametypedkernels/sharedscratchvsretainedpackets; noresolution/quantity/backendchange."
+}

@@ -530,3 +530,12 @@ tile camera. Callback now resolves authentic outlines with tilecamera+CSSchart;
 no font/certificate weakening. Direct1280rawpixel/bbox/replay GREEN DPR1/2/3;
 DPR2boundary940 additionally has ink onbothsides960CSS. Source/tableWASM4036,
 worker and allglyphassets unchanged. See docs/native-bound-tables/TILES.json.
+
+Bound-table ROI optimization: same certified physical renderer now draws only
+native prepared logical/control-hull bounds plus2CSSpx pad into private native
+crop; fullsizeAPIcanvas preserved via1:1copy. CPU-backed2Dcompositorhint avoids
+redundant fullviewport GPUreadback, fullsnapshotbarrier remains. ExactfullRGBA
+vsb3c8baseline GREEN1280DPR1/2/3, rightanchor1062+boundary940, endpoints/seek.
+Direct12frameVP9 decoded/inspected. Actualsingletablecrop80x77 warm16.6–22.2ms
+vsbaseline71.1–81.4ms (not100Hzclaim). Onlytwo publicmjschange, tableWASM4036,
+fonts/schema/glyphGPU assets untouched. docs/native-bound-tables/ROI*.json.

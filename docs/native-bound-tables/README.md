@@ -73,3 +73,21 @@ viewport sources had ignored off-origin tiles and made right-side tables blank.
 changed numeric endpoints and exact replay. `TILE-BOUNDARY.json` additionally
 qualifies a table crossing the960CSS-pixel boundary atDPR2; both sides retain
 native ink. No WASM, font, layout or numerical interpolation asset changed.
+
+Native ROI optimization renders the same physical sources into a private crop,
+then copies it1:1 into the original full-size API canvas. Crop bounds combine
+native retained logical metrics/cell reservations with original physical glyph
+control hulls (including all cached numeric glyph overhangs), add2CSS pixels,
+and round outward to integer CSS coordinates. This preserves device AA phase at
+DPR1/2/3. The existing2D compositor uses `willReadFrequently:true`; the physical
+font renderer remains GPU/AA16, and the full-canvas snapshot barrier is retained.
+
+`ROI.json` compares every full-canvas RGBA byte to frozen b3c8c3c for1280×720,
+right-side and tile-boundary tables together atDPR1/2/3: all endpoints/intermediate
+frames/seek have zero byte differences. A direct12-frame VP9 capture from the
+accepted API canvas was decoded and inspected (`roi-decoded.png`).
+`ROI-SINGLE.json` covers the actual right table: native crop80×77, warm render
+16.6–22.2ms versus71.1–81.4ms for the full-viewport baseline on the same software
+GPU; cold frames remain slower. This is a measured optimization, not a100Hz
+end-to-end rendering guarantee. Numeric values, sourceWASM/fonts, schema and
+public lifecycle/capture API are unchanged.

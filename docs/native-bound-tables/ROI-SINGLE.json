@@ -1,0 +1,2205 @@
+{
+  "passed": true,
+  "baselineCommit": "b3c8c3ca50c9998a7a1e581dd9cffb2caaed995b",
+  "cases": [
+    {
+      "dpr": 1,
+      "frames": [
+        {
+          "d": 6,
+          "before": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 1,
+            "nativeComputeMs": 2.5,
+            "renderMs": 305,
+            "totalMs": 307.90000009536743,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.00"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 1280,
+              "height": 720,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 960,
+                  "height": 720,
+                  "resizeMs": 3,
+                  "sourceDrawMs": 114.10000002384186,
+                  "tileCopyMs": 0.5999999046325684,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2328,
+                      "width": 960,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 11,
+                      "sampleBuilds": 11,
+                      "meshBuilds": 22,
+                      "queryNodes": 437622,
+                      "poseSkips": 0,
+                      "poseReuses": 0,
+                      "hits": 22,
+                      "newNodes": 4293,
+                      "newPixels": 1280,
+                      "newGeometryNodes": 2774,
+                      "pinnedEntries": 0,
+                      "entries": 66,
+                      "bytes": 25432586,
+                      "atlasBytes": 22257494,
+                      "sampleBytes": 236088,
+                      "poseBytes": 340788,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 4293,
+                      "pixels": 1280,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 109.30000007152557,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.00927734375,
+                      "residentRasterEnvelope": 0.036163330078125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 44236800,
+                    "uploads": 22,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 22,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                },
+                {
+                  "x": 960,
+                  "y": 0,
+                  "width": 320,
+                  "height": 720,
+                  "resizeMs": 23,
+                  "sourceDrawMs": 27.300000071525574,
+                  "tileCopyMs": 0.09999990463256836,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2328,
+                      "width": 320,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 315590,
+                      "poseSkips": 0,
+                      "poseReuses": 4,
+                      "hits": 62,
+                      "newNodes": 0,
+                      "newPixels": 980,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 84,
+                      "bytes": 25688882,
+                      "atlasBytes": 22257494,
+                      "sampleBytes": 236088,
+                      "poseBytes": 597084,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 980,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 24.799999952316284,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0074462890625,
+                      "residentRasterEnvelope": 0.02392578125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -960,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 14745600,
+                    "uploads": 44,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 44,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -960,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "after": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 1,
+            "roi": {
+              "left": 1060,
+              "top": 30,
+              "width": 80,
+              "height": 77,
+              "padCss": 2,
+              "source": "native retained logical cells and original physical control hulls",
+              "device": [
+                1060,
+                30,
+                80,
+                77
+              ]
+            },
+            "nativeComputeMs": 0.8000000715255737,
+            "renderMs": 76.09999990463257,
+            "totalMs": 77.09999990463257,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.00"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 80,
+              "height": 77,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 77,
+                  "resizeMs": 1.3000000715255737,
+                  "sourceDrawMs": 45.60000002384186,
+                  "tileCopyMs": 0.09999990463256836,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2328,
+                      "width": 80,
+                      "height": 77,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 11,
+                      "sampleBuilds": 11,
+                      "meshBuilds": 22,
+                      "queryNodes": 437622,
+                      "poseSkips": 0,
+                      "poseReuses": 0,
+                      "hits": 22,
+                      "newNodes": 4293,
+                      "newPixels": 1280,
+                      "newGeometryNodes": 2774,
+                      "pinnedEntries": 0,
+                      "entries": 66,
+                      "bytes": 25432586,
+                      "atlasBytes": 22257494,
+                      "sampleBytes": 236088,
+                      "poseBytes": 340788,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 4293,
+                      "pixels": 1280,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 43.300000071525574,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0025634765625,
+                      "residentRasterEnvelope": 0.00439453125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -1060,
+                        -30
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 394240,
+                    "uploads": 22,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 22,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -1060,
+                      -30
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                -1060,
+                -30
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "differences": 0,
+          "max": 0,
+          "ink": 717,
+          "hash": "a3b56315a2e3a40d21fd5d17883868a6e35c53fca7d24aae09728db9f2b818c6",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "d": 6.37,
+          "before": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 2,
+            "nativeComputeMs": 0.7000000476837158,
+            "renderMs": 81.40000009536743,
+            "totalMs": 89.5,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.37"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 1280,
+              "height": 720,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 960,
+                  "height": 720,
+                  "resizeMs": 0.7000000476837158,
+                  "sourceDrawMs": 15.5,
+                  "tileCopyMs": 0,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 960,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 2,
+                      "sampleBuilds": 2,
+                      "meshBuilds": 2,
+                      "queryNodes": 58152,
+                      "poseSkips": 0,
+                      "poseReuses": 20,
+                      "hits": 40,
+                      "newNodes": 699,
+                      "newPixels": 165,
+                      "newGeometryNodes": 618,
+                      "pinnedEntries": 0,
+                      "entries": 92,
+                      "bytes": 29966720,
+                      "atlasBytes": 25906662,
+                      "sampleBytes": 259304,
+                      "poseBytes": 633768,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 699,
+                      "pixels": 165,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 11.200000047683716,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.00927734375,
+                      "residentRasterEnvelope": 0.036163330078125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 44236800,
+                    "uploads": 66,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 66,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                },
+                {
+                  "x": 960,
+                  "y": 0,
+                  "width": 320,
+                  "height": 720,
+                  "resizeMs": 19.399999976158142,
+                  "sourceDrawMs": 9.100000023841858,
+                  "tileCopyMs": 0.10000002384185791,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 320,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 58152,
+                      "poseSkips": 0,
+                      "poseReuses": 20,
+                      "hits": 46,
+                      "newNodes": 0,
+                      "newPixels": 165,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 94,
+                      "bytes": 30003406,
+                      "atlasBytes": 25906662,
+                      "sampleBytes": 259304,
+                      "poseBytes": 670454,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 165,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 7.5,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0074462890625,
+                      "residentRasterEnvelope": 0.02392578125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -960,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 14745600,
+                    "uploads": 88,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 88,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -960,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "after": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 2,
+            "roi": {
+              "left": 1060,
+              "top": 30,
+              "width": 80,
+              "height": 77,
+              "padCss": 2,
+              "source": "native retained logical cells and original physical control hulls",
+              "device": [
+                1060,
+                30,
+                80,
+                77
+              ]
+            },
+            "nativeComputeMs": 0.5,
+            "renderMs": 22.200000047683716,
+            "totalMs": 23,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.37"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 80,
+              "height": 77,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 77,
+                  "resizeMs": 0.10000002384185791,
+                  "sourceDrawMs": 10.199999928474426,
+                  "tileCopyMs": 0,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 80,
+                      "height": 77,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 2,
+                      "sampleBuilds": 2,
+                      "meshBuilds": 2,
+                      "queryNodes": 58152,
+                      "poseSkips": 0,
+                      "poseReuses": 20,
+                      "hits": 40,
+                      "newNodes": 699,
+                      "newPixels": 165,
+                      "newGeometryNodes": 618,
+                      "pinnedEntries": 0,
+                      "entries": 74,
+                      "bytes": 29710426,
+                      "atlasBytes": 25906662,
+                      "sampleBytes": 259304,
+                      "poseBytes": 377474,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 699,
+                      "pixels": 165,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 9.799999952316284,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0025634765625,
+                      "residentRasterEnvelope": 0.00439453125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -1060,
+                        -30
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 394240,
+                    "uploads": 44,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 44,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -1060,
+                      -30
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                -1060,
+                -30
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "differences": 0,
+          "max": 0,
+          "ink": 701,
+          "hash": "c199ecf408d7d6fc0a4396c5263cc84aaa3ace9b90e8876ead9aa90af142ad13",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "d": 7,
+          "before": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 3,
+            "nativeComputeMs": 0.5,
+            "renderMs": 78.79999995231628,
+            "totalMs": 79.69999992847443,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "7.00"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 1280,
+              "height": 720,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 960,
+                  "height": 720,
+                  "resizeMs": 4.199999928474426,
+                  "sourceDrawMs": 8.200000047683716,
+                  "tileCopyMs": 0.10000002384185791,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2268,
+                      "width": 960,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 1,
+                      "queryNodes": 22220,
+                      "poseSkips": 0,
+                      "poseReuses": 21,
+                      "hits": 44,
+                      "newNodes": 88,
+                      "newPixels": 77,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 96,
+                      "bytes": 30467904,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 684636,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 88,
+                      "pixels": 77,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 5.600000023841858,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.00927734375,
+                      "residentRasterEnvelope": 0.036163330078125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 44236800,
+                    "uploads": 110,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 110,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                },
+                {
+                  "x": 960,
+                  "y": 0,
+                  "width": 320,
+                  "height": 720,
+                  "resizeMs": 18.59999990463257,
+                  "sourceDrawMs": 8.300000071525574,
+                  "tileCopyMs": 0.19999992847442627,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2268,
+                      "width": 320,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 22220,
+                      "poseSkips": 0,
+                      "poseReuses": 21,
+                      "hits": 45,
+                      "newNodes": 0,
+                      "newPixels": 77,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 97,
+                      "bytes": 30482086,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 698818,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 77,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 6.5,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0074462890625,
+                      "residentRasterEnvelope": 0.02392578125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -960,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 14745600,
+                    "uploads": 132,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 132,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -960,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "after": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 3,
+            "roi": {
+              "left": 1060,
+              "top": 30,
+              "width": 80,
+              "height": 77,
+              "padCss": 2,
+              "source": "native retained logical cells and original physical control hulls",
+              "device": [
+                1060,
+                30,
+                80,
+                77
+              ]
+            },
+            "nativeComputeMs": 0.3999999761581421,
+            "renderMs": 21.299999952316284,
+            "totalMs": 21.899999976158142,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "7.00"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 80,
+              "height": 77,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 77,
+                  "resizeMs": 0,
+                  "sourceDrawMs": 8.199999928474426,
+                  "tileCopyMs": 0,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2268,
+                      "width": 80,
+                      "height": 77,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 1,
+                      "queryNodes": 22220,
+                      "poseSkips": 0,
+                      "poseReuses": 21,
+                      "hits": 44,
+                      "newNodes": 88,
+                      "newPixels": 77,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 76,
+                      "bytes": 30174924,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 391656,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 88,
+                      "pixels": 77,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 7.5,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0025634765625,
+                      "residentRasterEnvelope": 0.00439453125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -1060,
+                        -30
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 394240,
+                    "uploads": 66,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 66,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -1060,
+                      -30
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                -1060,
+                -30
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "differences": 0,
+          "max": 0,
+          "ink": 699,
+          "hash": "ddec2fb4dc256c52835a5c7fb82f3475387ee139e38bce6ad1a1d10ed5163d7d",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "d": 6.37,
+          "before": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 4,
+            "nativeComputeMs": 0.6000000238418579,
+            "renderMs": 71.10000002384186,
+            "totalMs": 79.89999997615814,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.37"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 1280,
+              "height": 720,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 960,
+                  "height": 720,
+                  "resizeMs": 0.6000000238418579,
+                  "sourceDrawMs": 8.699999928474426,
+                  "tileCopyMs": 0,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 960,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 0,
+                      "poseSkips": 0,
+                      "poseReuses": 22,
+                      "hits": 44,
+                      "newNodes": 0,
+                      "newPixels": 0,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 97,
+                      "bytes": 30482086,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 698818,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 0,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 5.600000023841858,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.00927734375,
+                      "residentRasterEnvelope": 0.036163330078125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 44236800,
+                    "uploads": 154,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 154,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                },
+                {
+                  "x": 960,
+                  "y": 0,
+                  "width": 320,
+                  "height": 720,
+                  "resizeMs": 18.700000047683716,
+                  "sourceDrawMs": 4.700000047683716,
+                  "tileCopyMs": 0.09999990463256836,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 320,
+                      "height": 720,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 0,
+                      "poseSkips": 0,
+                      "poseReuses": 22,
+                      "hits": 44,
+                      "newNodes": 0,
+                      "newPixels": 0,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 97,
+                      "bytes": 30482086,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 698818,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 0,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 3.4000000953674316,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0074462890625,
+                      "residentRasterEnvelope": 0.02392578125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -960,
+                        0
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 14745600,
+                    "uploads": 176,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 176,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -960,
+                      0
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "after": {
+            "status": "PRESENTED_NATIVE_BOUND_TABLES",
+            "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+            "acceptedFrames": 4,
+            "roi": {
+              "left": 1060,
+              "top": 30,
+              "width": 80,
+              "height": 77,
+              "padCss": 2,
+              "source": "native retained logical cells and original physical control hulls",
+              "device": [
+                1060,
+                30,
+                80,
+                77
+              ]
+            },
+            "nativeComputeMs": 0.3999999761581421,
+            "renderMs": 16.600000023841858,
+            "totalMs": 17.399999976158142,
+            "heap": 13356960,
+            "typesetCalls": 14,
+            "layoutCalls": 1,
+            "formatted": [
+              {
+                "id": "right",
+                "rows": [
+                  {
+                    "id": "row-a",
+                    "variable": "a",
+                    "text": "1.00"
+                  },
+                  {
+                    "id": "row-b",
+                    "variable": "b",
+                    "text": "-2.00"
+                  },
+                  {
+                    "id": "row-c",
+                    "variable": "c",
+                    "text": "-5.00"
+                  },
+                  {
+                    "id": "row-d",
+                    "variable": "d",
+                    "text": "6.37"
+                  }
+                ]
+              }
+            ],
+            "renderer": {
+              "backend": "native-area-tiles",
+              "width": 80,
+              "height": 77,
+              "pixelRatio": 1,
+              "tiles": [
+                {
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 77,
+                  "resizeMs": 0,
+                  "sourceDrawMs": 3.600000023841858,
+                  "tileCopyMs": 0.10000002384185791,
+                  "renderer": {
+                    "styleColor": null,
+                    "nativeAccuracy": {
+                      "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                      "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                      "outlines": 22,
+                      "instances": 22,
+                      "triangles": 2230,
+                      "width": 80,
+                      "height": 77,
+                      "pixelRatio": 1,
+                      "instanceBytes": 172628,
+                      "geometryBuilds": 0,
+                      "sampleBuilds": 0,
+                      "meshBuilds": 0,
+                      "queryNodes": 0,
+                      "poseSkips": 0,
+                      "poseReuses": 22,
+                      "hits": 44,
+                      "newNodes": 0,
+                      "newPixels": 0,
+                      "newGeometryNodes": 0,
+                      "pinnedEntries": 0,
+                      "entries": 76,
+                      "bytes": 30174924,
+                      "atlasBytes": 26345958,
+                      "sampleBytes": 270324,
+                      "poseBytes": 391656,
+                      "maxEntries": 4096,
+                      "maxBytes": 134217728,
+                      "maxNewProofs": 4096,
+                      "maxNewNodes": 2000000,
+                      "maxNewPixels": 1048576,
+                      "nodes": 0,
+                      "pixels": 0,
+                      "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                      "submission": "ordered synchronous consume/release",
+                      "displayOnly": true,
+                      "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                      "indexed10kAccuracy": "OPEN",
+                      "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                      "allFontsCertificate": false,
+                      "sourcePreparationMs": 3.200000047683716,
+                      "packedBytes": 0,
+                      "rasterErrorEnvelopeAreaTexels": 0.0025634765625,
+                      "residentRasterEnvelope": 0.00439453125,
+                      "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                      "camera": [
+                        1,
+                        0,
+                        0,
+                        1,
+                        -1060,
+                        -30
+                      ],
+                      "residentGPUBytes": 11520
+                    },
+                    "indexedMeshes": 0,
+                    "indexedSourceVertices": 0,
+                    "indexedUniqueVertices": 0,
+                    "batches": 0,
+                    "labels": 0,
+                    "submittedVertices": 0,
+                    "gpuBytes": 11520,
+                    "coverageBytes": 394240,
+                    "uploads": 88,
+                    "verifiedInstanceSamples": 0,
+                    "draws": 88,
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -1060,
+                      -30
+                    ],
+                    "adaptive": null,
+                    "adaptiveDrawWallMs": 0
+                  }
+                }
+              ],
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                -1060,
+                -30
+              ],
+              "resampling": false,
+              "source": "current native VKF physical outlines"
+            }
+          },
+          "differences": 0,
+          "max": 0,
+          "ink": 701,
+          "hash": "c199ecf408d7d6fc0a4396c5263cc84aaa3ace9b90e8876ead9aa90af142ad13",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "before": {
+        "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+        "compilerVersion": "0.7.5",
+        "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "preparationMs": 6085.5,
+        "typesetCalls": 14,
+        "layoutCalls": 1,
+        "preparedHeap": 13356960,
+        "tables": [
+          {
+            "id": "right",
+            "source": "\\begin{array}{lr}a&0.00\\\\b&-0.00\\\\c&-0.00\\\\d&0.00\\end{array}",
+            "width": 50.65159651307597,
+            "height": 26.400996264009965,
+            "depth": 21.419676214196766,
+            "cells": [
+              {
+                "id": "row-a",
+                "owner": 24,
+                "right": 45.670276463262766,
+                "baseline": -18.032378580323787,
+                "reserveWidth": 17.71143212951432,
+                "precision": 2,
+                "min": 0.9,
+                "max": 1.1,
+                "reserve": "0.00"
+              },
+              {
+                "id": "row-b",
+                "owner": 56,
+                "right": 45.670276463262766,
+                "baseline": -6.077210460772104,
+                "reserveWidth": 25.460174346201747,
+                "precision": 2,
+                "min": -2.1,
+                "max": -1.9,
+                "reserve": "-0.00"
+              },
+              {
+                "id": "row-c",
+                "owner": 92,
+                "right": 45.670276463262766,
+                "baseline": 5.877957658779579,
+                "reserveWidth": 25.460174346201747,
+                "precision": 2,
+                "min": -5.1,
+                "max": -4.9,
+                "reserve": "-0.00"
+              },
+              {
+                "id": "row-d",
+                "owner": 128,
+                "right": 45.670276463262766,
+                "baseline": 17.83312577833126,
+                "reserveWidth": 17.71143212951432,
+                "precision": 2,
+                "min": 6,
+                "max": 7,
+                "reserve": "0.00"
+              }
+            ],
+            "anchor": [
+              1062,
+              72
+            ],
+            "scale": 1.5,
+            "color": [
+              0.5,
+              0.95,
+              0.85,
+              1
+            ],
+            "rows": [
+              {
+                "id": "row-a",
+                "variable": "a"
+              },
+              {
+                "id": "row-b",
+                "variable": "b"
+              },
+              {
+                "id": "row-c",
+                "variable": "c"
+              },
+              {
+                "id": "row-d",
+                "variable": "d"
+              }
+            ]
+          }
+        ],
+        "last": {
+          "status": "PRESENTED_NATIVE_BOUND_TABLES",
+          "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+          "acceptedFrames": 4,
+          "nativeComputeMs": 0.6000000238418579,
+          "renderMs": 71.10000002384186,
+          "totalMs": 79.89999997615814,
+          "heap": 13356960,
+          "typesetCalls": 14,
+          "layoutCalls": 1,
+          "formatted": [
+            {
+              "id": "right",
+              "rows": [
+                {
+                  "id": "row-a",
+                  "variable": "a",
+                  "text": "1.00"
+                },
+                {
+                  "id": "row-b",
+                  "variable": "b",
+                  "text": "-2.00"
+                },
+                {
+                  "id": "row-c",
+                  "variable": "c",
+                  "text": "-5.00"
+                },
+                {
+                  "id": "row-d",
+                  "variable": "d",
+                  "text": "6.37"
+                }
+              ]
+            }
+          ],
+          "renderer": {
+            "backend": "native-area-tiles",
+            "width": 1280,
+            "height": 720,
+            "pixelRatio": 1,
+            "tiles": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 960,
+                "height": 720,
+                "resizeMs": 0.6000000238418579,
+                "sourceDrawMs": 8.699999928474426,
+                "tileCopyMs": 0,
+                "renderer": {
+                  "styleColor": null,
+                  "nativeAccuracy": {
+                    "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                    "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                    "outlines": 22,
+                    "instances": 22,
+                    "triangles": 2230,
+                    "width": 960,
+                    "height": 720,
+                    "pixelRatio": 1,
+                    "instanceBytes": 172628,
+                    "geometryBuilds": 0,
+                    "sampleBuilds": 0,
+                    "meshBuilds": 0,
+                    "queryNodes": 0,
+                    "poseSkips": 0,
+                    "poseReuses": 22,
+                    "hits": 44,
+                    "newNodes": 0,
+                    "newPixels": 0,
+                    "newGeometryNodes": 0,
+                    "pinnedEntries": 0,
+                    "entries": 97,
+                    "bytes": 30482086,
+                    "atlasBytes": 26345958,
+                    "sampleBytes": 270324,
+                    "poseBytes": 698818,
+                    "maxEntries": 4096,
+                    "maxBytes": 134217728,
+                    "maxNewProofs": 4096,
+                    "maxNewNodes": 2000000,
+                    "maxNewPixels": 1048576,
+                    "nodes": 0,
+                    "pixels": 0,
+                    "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                    "submission": "ordered synchronous consume/release",
+                    "displayOnly": true,
+                    "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                    "indexed10kAccuracy": "OPEN",
+                    "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                    "allFontsCertificate": false,
+                    "sourcePreparationMs": 5.600000023841858,
+                    "packedBytes": 0,
+                    "rasterErrorEnvelopeAreaTexels": 0.00927734375,
+                    "residentRasterEnvelope": 0.036163330078125,
+                    "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      0,
+                      0
+                    ],
+                    "residentGPUBytes": 11520
+                  },
+                  "indexedMeshes": 0,
+                  "indexedSourceVertices": 0,
+                  "indexedUniqueVertices": 0,
+                  "batches": 0,
+                  "labels": 0,
+                  "submittedVertices": 0,
+                  "gpuBytes": 11520,
+                  "coverageBytes": 44236800,
+                  "uploads": 154,
+                  "verifiedInstanceSamples": 0,
+                  "draws": 154,
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "adaptive": null,
+                  "adaptiveDrawWallMs": 0
+                }
+              },
+              {
+                "x": 960,
+                "y": 0,
+                "width": 320,
+                "height": 720,
+                "resizeMs": 18.700000047683716,
+                "sourceDrawMs": 4.700000047683716,
+                "tileCopyMs": 0.09999990463256836,
+                "renderer": {
+                  "styleColor": null,
+                  "nativeAccuracy": {
+                    "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                    "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                    "outlines": 22,
+                    "instances": 22,
+                    "triangles": 2230,
+                    "width": 320,
+                    "height": 720,
+                    "pixelRatio": 1,
+                    "instanceBytes": 172628,
+                    "geometryBuilds": 0,
+                    "sampleBuilds": 0,
+                    "meshBuilds": 0,
+                    "queryNodes": 0,
+                    "poseSkips": 0,
+                    "poseReuses": 22,
+                    "hits": 44,
+                    "newNodes": 0,
+                    "newPixels": 0,
+                    "newGeometryNodes": 0,
+                    "pinnedEntries": 0,
+                    "entries": 97,
+                    "bytes": 30482086,
+                    "atlasBytes": 26345958,
+                    "sampleBytes": 270324,
+                    "poseBytes": 698818,
+                    "maxEntries": 4096,
+                    "maxBytes": 134217728,
+                    "maxNewProofs": 4096,
+                    "maxNewNodes": 2000000,
+                    "maxNewPixels": 1048576,
+                    "nodes": 0,
+                    "pixels": 0,
+                    "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                    "submission": "ordered synchronous consume/release",
+                    "displayOnly": true,
+                    "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                    "indexed10kAccuracy": "OPEN",
+                    "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                    "allFontsCertificate": false,
+                    "sourcePreparationMs": 3.4000000953674316,
+                    "packedBytes": 0,
+                    "rasterErrorEnvelopeAreaTexels": 0.0074462890625,
+                    "residentRasterEnvelope": 0.02392578125,
+                    "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -960,
+                      0
+                    ],
+                    "residentGPUBytes": 11520
+                  },
+                  "indexedMeshes": 0,
+                  "indexedSourceVertices": 0,
+                  "indexedUniqueVertices": 0,
+                  "batches": 0,
+                  "labels": 0,
+                  "submittedVertices": 0,
+                  "gpuBytes": 11520,
+                  "coverageBytes": 14745600,
+                  "uploads": 176,
+                  "verifiedInstanceSamples": 0,
+                  "draws": 176,
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    -960,
+                    0
+                  ],
+                  "adaptive": null,
+                  "adaptiveDrawWallMs": 0
+                }
+              }
+            ],
+            "camera": [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "resampling": false,
+            "source": "current native VKF physical outlines"
+          }
+        },
+        "formatPolicy": "Scaled binary64 rounds half away from zero; 0..6 decimals, normalized negative zero; 1e-9 bounds validation allowance.",
+        "layoutPolicy": "Native retained two-column array cell anchors; declared bounds reserve fixed native widths; no frame retypesetting.",
+        "backend": "current075 native WASM layout/format + existing certified physical-font GPU renderer"
+      },
+      "after": {
+        "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+        "compilerVersion": "0.7.5",
+        "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
+        "preparationMs": 5991,
+        "typesetCalls": 14,
+        "layoutCalls": 1,
+        "preparedHeap": 13356960,
+        "roi": {
+          "left": 1060,
+          "top": 30,
+          "width": 80,
+          "height": 77,
+          "padCss": 2,
+          "source": "native retained logical cells and original physical control hulls",
+          "device": [
+            1060,
+            30,
+            80,
+            77
+          ]
+        },
+        "tables": [
+          {
+            "id": "right",
+            "source": "\\begin{array}{lr}a&0.00\\\\b&-0.00\\\\c&-0.00\\\\d&0.00\\end{array}",
+            "width": 50.65159651307597,
+            "height": 26.400996264009965,
+            "depth": 21.419676214196766,
+            "cells": [
+              {
+                "id": "row-a",
+                "owner": 24,
+                "right": 45.670276463262766,
+                "baseline": -18.032378580323787,
+                "reserveWidth": 17.71143212951432,
+                "precision": 2,
+                "min": 0.9,
+                "max": 1.1,
+                "reserve": "0.00"
+              },
+              {
+                "id": "row-b",
+                "owner": 56,
+                "right": 45.670276463262766,
+                "baseline": -6.077210460772104,
+                "reserveWidth": 25.460174346201747,
+                "precision": 2,
+                "min": -2.1,
+                "max": -1.9,
+                "reserve": "-0.00"
+              },
+              {
+                "id": "row-c",
+                "owner": 92,
+                "right": 45.670276463262766,
+                "baseline": 5.877957658779579,
+                "reserveWidth": 25.460174346201747,
+                "precision": 2,
+                "min": -5.1,
+                "max": -4.9,
+                "reserve": "-0.00"
+              },
+              {
+                "id": "row-d",
+                "owner": 128,
+                "right": 45.670276463262766,
+                "baseline": 17.83312577833126,
+                "reserveWidth": 17.71143212951432,
+                "precision": 2,
+                "min": 6,
+                "max": 7,
+                "reserve": "0.00"
+              }
+            ],
+            "anchor": [
+              1062,
+              72
+            ],
+            "scale": 1.5,
+            "color": [
+              0.5,
+              0.95,
+              0.85,
+              1
+            ],
+            "rows": [
+              {
+                "id": "row-a",
+                "variable": "a"
+              },
+              {
+                "id": "row-b",
+                "variable": "b"
+              },
+              {
+                "id": "row-c",
+                "variable": "c"
+              },
+              {
+                "id": "row-d",
+                "variable": "d"
+              }
+            ]
+          }
+        ],
+        "last": {
+          "status": "PRESENTED_NATIVE_BOUND_TABLES",
+          "sourceCommit": "4036ef364794b8f89650fa33c3eef8af827b9ff3",
+          "acceptedFrames": 4,
+          "roi": {
+            "left": 1060,
+            "top": 30,
+            "width": 80,
+            "height": 77,
+            "padCss": 2,
+            "source": "native retained logical cells and original physical control hulls",
+            "device": [
+              1060,
+              30,
+              80,
+              77
+            ]
+          },
+          "nativeComputeMs": 0.3999999761581421,
+          "renderMs": 16.600000023841858,
+          "totalMs": 17.399999976158142,
+          "heap": 13356960,
+          "typesetCalls": 14,
+          "layoutCalls": 1,
+          "formatted": [
+            {
+              "id": "right",
+              "rows": [
+                {
+                  "id": "row-a",
+                  "variable": "a",
+                  "text": "1.00"
+                },
+                {
+                  "id": "row-b",
+                  "variable": "b",
+                  "text": "-2.00"
+                },
+                {
+                  "id": "row-c",
+                  "variable": "c",
+                  "text": "-5.00"
+                },
+                {
+                  "id": "row-d",
+                  "variable": "d",
+                  "text": "6.37"
+                }
+              ]
+            }
+          ],
+          "renderer": {
+            "backend": "native-area-tiles",
+            "width": 80,
+            "height": 77,
+            "pixelRatio": 1,
+            "tiles": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 80,
+                "height": 77,
+                "resizeMs": 0,
+                "sourceDrawMs": 3.600000023841858,
+                "tileCopyMs": 0.10000002384185791,
+                "renderer": {
+                  "styleColor": null,
+                  "nativeAccuracy": {
+                    "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                    "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                    "outlines": 22,
+                    "instances": 22,
+                    "triangles": 2230,
+                    "width": 80,
+                    "height": 77,
+                    "pixelRatio": 1,
+                    "instanceBytes": 172628,
+                    "geometryBuilds": 0,
+                    "sampleBuilds": 0,
+                    "meshBuilds": 0,
+                    "queryNodes": 0,
+                    "poseSkips": 0,
+                    "poseReuses": 22,
+                    "hits": 44,
+                    "newNodes": 0,
+                    "newPixels": 0,
+                    "newGeometryNodes": 0,
+                    "pinnedEntries": 0,
+                    "entries": 76,
+                    "bytes": 30174924,
+                    "atlasBytes": 26345958,
+                    "sampleBytes": 270324,
+                    "poseBytes": 391656,
+                    "maxEntries": 4096,
+                    "maxBytes": 134217728,
+                    "maxNewProofs": 4096,
+                    "maxNewNodes": 2000000,
+                    "maxNewPixels": 1048576,
+                    "nodes": 0,
+                    "pixels": 0,
+                    "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                    "submission": "ordered synchronous consume/release",
+                    "displayOnly": true,
+                    "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                    "indexed10kAccuracy": "OPEN",
+                    "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                    "allFontsCertificate": false,
+                    "sourcePreparationMs": 3.200000047683716,
+                    "packedBytes": 0,
+                    "rasterErrorEnvelopeAreaTexels": 0.0025634765625,
+                    "residentRasterEnvelope": 0.00439453125,
+                    "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                    "camera": [
+                      1,
+                      0,
+                      0,
+                      1,
+                      -1060,
+                      -30
+                    ],
+                    "residentGPUBytes": 11520
+                  },
+                  "indexedMeshes": 0,
+                  "indexedSourceVertices": 0,
+                  "indexedUniqueVertices": 0,
+                  "batches": 0,
+                  "labels": 0,
+                  "submittedVertices": 0,
+                  "gpuBytes": 11520,
+                  "coverageBytes": 394240,
+                  "uploads": 88,
+                  "verifiedInstanceSamples": 0,
+                  "draws": 88,
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    -1060,
+                    -30
+                  ],
+                  "adaptive": null,
+                  "adaptiveDrawWallMs": 0
+                }
+              }
+            ],
+            "camera": [
+              1,
+              0,
+              0,
+              1,
+              -1060,
+              -30
+            ],
+            "resampling": false,
+            "source": "current native VKF physical outlines"
+          }
+        },
+        "formatPolicy": "Scaled binary64 rounds half away from zero; 0..6 decimals, normalized negative zero; 1e-9 bounds validation allowance.",
+        "layoutPolicy": "Native retained two-column array cell anchors; declared bounds reserve fixed native widths; no frame retypesetting.",
+        "backend": "current075 native WASM layout/format + existing certified physical-font GPU renderer"
+      }
+    }
+  ],
+  "errors": [],
+  "contract": "Exact full-canvas RGBA vs prior native full-viewport renderer; original physical sources and AA16 preserved, integer-CSS crop+2px pad, 1:1 composition at native device offset."
+}

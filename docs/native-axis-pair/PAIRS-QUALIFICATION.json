@@ -1,0 +1,3767 @@
+{
+  "passed": true,
+  "legacy": {
+    "libraryCommit": "7347b1b7de885c1e3c6f9bf7bf8f1432589bbeda",
+    "sourceIndices": [
+      0,
+      -1
+    ],
+    "targetIndices": [
+      0,
+      1
+    ],
+    "midpointPoses": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      2,
+      0,
+      1,
+      1,
+      1,
+      0.5
+    ],
+    "failedInvariant": "new physical material opacity must not be interpolated from zero",
+    "incomingAlpha": 0.5,
+    "crossfadeConfirmed": true
+  },
+  "ordinaryRejectsDifferentGlyphs": true,
+  "winding": {
+    "nonzero": 0.5,
+    "evenodd": -0.5
+  },
+  "first": {
+    "q": 0,
+    "receipt": {
+      "status": "PRESENTED_COMPOSITOR_TURN",
+      "coordinate": 0,
+      "nativeCoordinate": 0,
+      "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+      "runSeed": 1016853174,
+      "glyphs": 26,
+      "stableGlyphs": 26,
+      "matchedGlyphs": 0,
+      "carriers": 0,
+      "gasCarriers": 0,
+      "gasAlphaMax": 0,
+      "nativeComputeMs": 1,
+      "gpuThroughReadbackMs": 0,
+      "readbackBytes": 0,
+      "cpuThroughSubmitMs": 27.100000023841858,
+      "preparationMs": 0,
+      "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+      "easing": "quadratic",
+      "stateKernel": {
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "wasmSha256": null,
+        "backend": "canonical Morphing state/biological/field",
+        "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+      },
+      "stateFields": [],
+      "stateGpu": null,
+      "gasRenderingBackend": "webgl2-points",
+      "nativeRenderer": {
+        "backend": "native-area-tiles",
+        "width": 640,
+        "height": 240,
+        "pixelRatio": 1,
+        "tiles": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 640,
+            "height": 240,
+            "resizeMs": 1.100000023841858,
+            "sourceDrawMs": 2.5,
+            "tileCopyMs": 0.09999990463256836,
+            "renderer": {
+              "styleColor": null,
+              "nativeAccuracy": {
+                "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                "outlines": 0,
+                "instances": 0,
+                "triangles": 0,
+                "width": 640,
+                "height": 240,
+                "pixelRatio": 1,
+                "instanceBytes": 0,
+                "geometryBuilds": 0,
+                "sampleBuilds": 0,
+                "meshBuilds": 0,
+                "queryNodes": 0,
+                "poseSkips": 0,
+                "poseReuses": 0,
+                "hits": 0,
+                "newNodes": 0,
+                "newPixels": 0,
+                "newGeometryNodes": 0,
+                "pinnedEntries": 0,
+                "entries": 0,
+                "bytes": 0,
+                "atlasBytes": 0,
+                "sampleBytes": 0,
+                "poseBytes": 0,
+                "maxEntries": 4096,
+                "maxBytes": 134217728,
+                "maxNewProofs": 4096,
+                "maxNewNodes": 2000000,
+                "maxNewPixels": 1048576,
+                "nodes": 0,
+                "pixels": 0,
+                "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                "submission": "ordered synchronous consume/release",
+                "displayOnly": true,
+                "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                "indexed10kAccuracy": "OPEN",
+                "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                "allFontsCertificate": false,
+                "sourcePreparationMs": 0.10000002384185791,
+                "packedBytes": 0,
+                "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "residentGPUBytes": 0
+              },
+              "indexedMeshes": 0,
+              "indexedSourceVertices": 0,
+              "indexedUniqueVertices": 0,
+              "batches": 0,
+              "labels": 0,
+              "submittedVertices": 0,
+              "gpuBytes": 0,
+              "coverageBytes": 9830400,
+              "uploads": 0,
+              "verifiedInstanceSamples": 0,
+              "draws": 0,
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "adaptive": null,
+              "adaptiveDrawWallMs": 0
+            }
+          }
+        ],
+        "camera": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "resampling": false,
+        "source": "current native VKF physical outlines"
+      },
+      "transport": {
+        "rows": [],
+        "groups": [],
+        "inkBudget": {
+          "requiredCarriers": 0,
+          "maxCarriers": 131072,
+          "perRowLimit": 131072,
+          "rows": []
+        },
+        "sourcePolicy": "explicit removed-ink stock only; never emission",
+        "diffusion": "prepared independent entropy-increment random bridge",
+        "spectralColor": false
+      },
+      "geometryReadback": false
+    },
+    "prefix": "dd44e76752599a2383e3c167031d23bca7f45eddcb77d0eb3a073d88546d0ddf",
+    "hash": "5f02da55daf2dab69c6486c3e49e2e8989c38959b3170fe0135e9a33d8f0f52c",
+    "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+    "interior": 174,
+    "ink": 680,
+    "coverage": 392.7725490196077
+  },
+  "endpoint": {
+    "q": 1,
+    "receipt": {
+      "status": "PRESENTED_COMPOSITOR_TURN",
+      "coordinate": 1,
+      "nativeCoordinate": 1,
+      "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+      "runSeed": 2075662445,
+      "glyphs": 32,
+      "stableGlyphs": 32,
+      "matchedGlyphs": 0,
+      "carriers": 0,
+      "gasCarriers": 0,
+      "gasAlphaMax": 0,
+      "nativeComputeMs": 0,
+      "gpuThroughReadbackMs": 0,
+      "readbackBytes": 0,
+      "cpuThroughSubmitMs": 156.70000004768372,
+      "preparationMs": 0,
+      "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+      "easing": "quadratic",
+      "stateKernel": {
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "wasmSha256": null,
+        "backend": "canonical Morphing state/biological/field",
+        "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+      },
+      "stateFields": [],
+      "stateGpu": null,
+      "gasRenderingBackend": "webgl2-points",
+      "nativeRenderer": {
+        "backend": "native-area-tiles",
+        "width": 640,
+        "height": 240,
+        "pixelRatio": 1,
+        "tiles": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 640,
+            "height": 240,
+            "resizeMs": 1,
+            "sourceDrawMs": 141.60000002384186,
+            "tileCopyMs": 0.09999990463256836,
+            "renderer": {
+              "styleColor": null,
+              "nativeAccuracy": {
+                "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                "outlines": 32,
+                "instances": 32,
+                "triangles": 5874,
+                "width": 640,
+                "height": 240,
+                "pixelRatio": 1,
+                "instanceBytes": 305640,
+                "geometryBuilds": 21,
+                "sampleBuilds": 21,
+                "meshBuilds": 32,
+                "queryNodes": 2158606,
+                "poseSkips": 0,
+                "poseReuses": 0,
+                "hits": 22,
+                "newNodes": 10342,
+                "newPixels": 6092,
+                "newGeometryNodes": 5420,
+                "pinnedEntries": 0,
+                "entries": 106,
+                "bytes": 59111768,
+                "atlasBytes": 53131284,
+                "sampleBytes": 511466,
+                "poseBytes": 494454,
+                "maxEntries": 4096,
+                "maxBytes": 134217728,
+                "maxNewProofs": 4096,
+                "maxNewNodes": 2000000,
+                "maxNewPixels": 1048576,
+                "nodes": 10342,
+                "pixels": 6092,
+                "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                "submission": "ordered synchronous consume/release",
+                "displayOnly": true,
+                "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                "indexed10kAccuracy": "OPEN",
+                "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                "allFontsCertificate": false,
+                "sourcePreparationMs": 138.69999992847443,
+                "packedBytes": 0,
+                "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                "residentRasterEnvelope": 0.021484375,
+                "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "residentGPUBytes": 31680
+              },
+              "indexedMeshes": 0,
+              "indexedSourceVertices": 0,
+              "indexedUniqueVertices": 0,
+              "batches": 0,
+              "labels": 0,
+              "submittedVertices": 0,
+              "gpuBytes": 31680,
+              "coverageBytes": 9830400,
+              "uploads": 32,
+              "verifiedInstanceSamples": 0,
+              "draws": 32,
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "adaptive": null,
+              "adaptiveDrawWallMs": 0
+            }
+          }
+        ],
+        "camera": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "resampling": false,
+        "source": "current native VKF physical outlines"
+      },
+      "transport": {
+        "rows": [],
+        "groups": [],
+        "inkBudget": {
+          "requiredCarriers": 0,
+          "maxCarriers": 131072,
+          "perRowLimit": 131072,
+          "rows": []
+        },
+        "sourcePolicy": "explicit removed-ink stock only; never emission",
+        "diffusion": "prepared independent entropy-increment random bridge",
+        "spectralColor": false
+      },
+      "geometryReadback": false
+    },
+    "prefix": "3a7b69779f85ad459e8675fe8b8e0f0978071dca7b34433ec85126ee38b37a29",
+    "hash": "9f78c23ddb57e2b530c5abc885defd42a2050fc5ff4cf12ad497a8e098e19f65",
+    "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+    "interior": 175,
+    "ink": 654,
+    "coverage": 382.17647058823513
+  },
+  "frames": [
+    {
+      "q": 0,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0,
+        "nativeCoordinate": 0,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 7,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 7.699999928474426,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 29.799999952316284,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 1.5,
+              "sourceDrawMs": 2.799999952316284,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 0,
+                  "instances": 0,
+                  "triangles": 0,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 0,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 0,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 0,
+                  "bytes": 0,
+                  "atlasBytes": 0,
+                  "sampleBytes": 0,
+                  "poseBytes": 0,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 0.10000002384185791,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 0
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 0,
+                "coverageBytes": 9830400,
+                "uploads": 0,
+                "verifiedInstanceSamples": 0,
+                "draws": 0,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "dd44e76752599a2383e3c167031d23bca7f45eddcb77d0eb3a073d88546d0ddf",
+      "hash": "5f02da55daf2dab69c6486c3e49e2e8989c38959b3170fe0135e9a33d8f0f52c",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 174,
+      "ink": 680,
+      "coverage": 392.7725490196077
+    },
+    {
+      "q": 0.2,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.2,
+        "nativeCoordinate": 0.08000000000000002,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 4,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 2358.3000000715256,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 2489.5,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-4",
+            "interiorFieldPeak": 0.16525692685445667,
+            "measuredArea": 0.022898701950907707,
+            "desiredArea": 0.022880660369992256,
+            "residual": 0.00001804158091545105,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-5",
+            "interiorFieldPeak": 0.1810255143364803,
+            "measuredArea": 0.008587140589952469,
+            "desiredArea": 0.008563440293073654,
+            "residual": 0.000023700296878814697,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-6",
+            "interiorFieldPeak": 0.10848291976132401,
+            "measuredArea": 0.03033073991537094,
+            "desiredArea": 0.03032112307846546,
+            "residual": 0.000009616836905479431,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 119.30000007152557,
+              "tileCopyMs": 0,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 23,
+                  "instances": 23,
+                  "triangles": 4488,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 220496,
+                  "geometryBuilds": 14,
+                  "sampleBuilds": 14,
+                  "meshBuilds": 23,
+                  "queryNodes": 1719454,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 18,
+                  "newNodes": 7352,
+                  "newPixels": 4553,
+                  "newGeometryNodes": 4243,
+                  "pinnedEntries": 0,
+                  "entries": 74,
+                  "bytes": 42437418,
+                  "atlasBytes": 37809248,
+                  "sampleBytes": 374534,
+                  "poseBytes": 381150,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 7352,
+                  "pixels": 4553,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 119.10000002384186,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 23,
+                "verifiedInstanceSamples": 0,
+                "draws": 23,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "d0e684e48a476724ef33f778fad6f0415a59abf2a6ad9e16b7b7418888bdbc8b",
+      "hash": "581162ed99d998d6a63862dec45f946ec2a19a0ed580c6119b373a46ca28a3db",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 221,
+      "ink": 622,
+      "coverage": 404.36862745098
+    },
+    {
+      "q": 0.35,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.35,
+        "nativeCoordinate": 0.24499999999999997,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 4,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 2222,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 2247.8000000715256,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-4",
+            "interiorFieldPeak": 0.2850749780164273,
+            "measuredArea": 0.026507418602705002,
+            "desiredArea": 0.026510048657655716,
+            "residual": 0.0000026300549507141113,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-5",
+            "interiorFieldPeak": 0.18592311230874198,
+            "measuredArea": 0.010511301457881927,
+            "desiredArea": 0.01049043983221054,
+            "residual": 0.00002086162567138672,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-6",
+            "interiorFieldPeak": 0.09898237572027982,
+            "measuredArea": 0.029357578605413437,
+            "desiredArea": 0.029419131577014923,
+            "residual": 0.0000615529716014862,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 14.100000023841858,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 23,
+                  "instances": 23,
+                  "triangles": 4488,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 220496,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 4,
+                  "queryNodes": 208590,
+                  "poseSkips": 0,
+                  "poseReuses": 19,
+                  "hits": 46,
+                  "newNodes": 352,
+                  "newPixels": 615,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 82,
+                  "bytes": 44303482,
+                  "atlasBytes": 39566432,
+                  "sampleBytes": 420522,
+                  "poseBytes": 444042,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 352,
+                  "pixels": 615,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 13.899999976158142,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 46,
+                "verifiedInstanceSamples": 0,
+                "draws": 46,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "cc39050aeb60715f836f02397b69733750582d84105ed88f749d46d3292178d3",
+      "hash": "acae948610467ddb42a526e68b18b3b26f23a333e689078cac46bd7b953c5f84",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 232,
+      "ink": 664,
+      "coverage": 421.1294117647055
+    },
+    {
+      "q": 0.5,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.5,
+        "nativeCoordinate": 0.5,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 4,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 2147,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 2171.7999999523163,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-4",
+            "interiorFieldPeak": 0.47024832981220016,
+            "measuredArea": 0.03213071823120117,
+            "desiredArea": 0.03211910277605057,
+            "residual": 0.000011615455150604248,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-5",
+            "interiorFieldPeak": 0.33439945547087674,
+            "measuredArea": 0.013463562354445457,
+            "desiredArea": 0.013468529097735882,
+            "residual": 0.000004966743290424347,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-6",
+            "interiorFieldPeak": 0.09625387877670424,
+            "measuredArea": 0.027993619441986084,
+            "desiredArea": 0.02802514284849167,
+            "residual": 0.00003152340650558472,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 13.699999928474426,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 23,
+                  "instances": 23,
+                  "triangles": 4492,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 220112,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 3,
+                  "queryNodes": 208842,
+                  "poseSkips": 0,
+                  "poseReuses": 19,
+                  "hits": 47,
+                  "newNodes": 238,
+                  "newPixels": 615,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 89,
+                  "bytes": 45593282,
+                  "atlasBytes": 40754528,
+                  "sampleBytes": 459334,
+                  "poseBytes": 506934,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 238,
+                  "pixels": 615,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 13.399999976158142,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 69,
+                "verifiedInstanceSamples": 0,
+                "draws": 69,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "288ce0866923c7ee20e50f21a62b606891b8a237323f923b0e1996005140ab60",
+      "hash": "ee49cbf0098d55ab5e8bbfde3c112ffce89d96354cf69a76e5ad70870438cd23",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 208,
+      "ink": 586,
+      "coverage": 375.4235294117644
+    },
+    {
+      "q": 0.75,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.75,
+        "nativeCoordinate": 0.875,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 4,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 2218.7000000476837,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 2243.399999976158,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-4",
+            "interiorFieldPeak": 0.7425620824530426,
+            "measuredArea": 0.040398839861154556,
+            "desiredArea": 0.04036771506071091,
+            "residual": 0.00003112480044364929,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-5",
+            "interiorFieldPeak": 0.7044972787539339,
+            "measuredArea": 0.017909862101078033,
+            "desiredArea": 0.017848072573542595,
+            "residual": 0.00006178952753543854,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-6",
+            "interiorFieldPeak": 0.17486536933477986,
+            "measuredArea": 0.025991756469011307,
+            "desiredArea": 0.025975162163376808,
+            "residual": 0.000016594305634498596,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 14,
+              "tileCopyMs": 0.20000004768371582,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 23,
+                  "instances": 23,
+                  "triangles": 4492,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 220160,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 4,
+                  "queryNodes": 202192,
+                  "poseSkips": 0,
+                  "poseReuses": 19,
+                  "hits": 46,
+                  "newNodes": 698,
+                  "newPixels": 600,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 97,
+                  "bytes": 49186722,
+                  "atlasBytes": 44238944,
+                  "sampleBytes": 505470,
+                  "poseBytes": 569822,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 698,
+                  "pixels": 600,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 13.799999952316284,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 92,
+                "verifiedInstanceSamples": 0,
+                "draws": 92,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "99a9e7edab727ea4387378f2560337085374b51a26b09b68c90bc7903edb5afa",
+      "hash": "d1f6d51d379c0304df0bf1ef3513da906c74c3c268cd7df656d9011971852619",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 179,
+      "ink": 578,
+      "coverage": 352.66666666666634
+    },
+    {
+      "q": 1,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 1,
+        "nativeCoordinate": 1,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 2989333472,
+        "glyphs": 32,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 13,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 3,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 57.40000009536743,
+        "preparationMs": 12299.799999952316,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 116595876,
+          "maxBytes": 268435456,
+          "plans": 3,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 41.800000071525574,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 32,
+                  "instances": 32,
+                  "triangles": 5874,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 305640,
+                  "geometryBuilds": 7,
+                  "sampleBuilds": 7,
+                  "meshBuilds": 12,
+                  "queryNodes": 638556,
+                  "poseSkips": 0,
+                  "poseReuses": 19,
+                  "hits": 51,
+                  "newNodes": 3096,
+                  "newPixels": 2119,
+                  "newGeometryNodes": 1177,
+                  "pinnedEntries": 0,
+                  "entries": 136,
+                  "bytes": 66493146,
+                  "atlasBytes": 60090132,
+                  "sampleBytes": 682330,
+                  "poseBytes": 746120,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 3096,
+                  "pixels": 2119,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 41.5,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 124,
+                "verifiedInstanceSamples": 0,
+                "draws": 124,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a",
+                "b"
+              ],
+              "fromIds": [
+                "a",
+                "b"
+              ],
+              "fromId": null,
+              "toId": "a",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "3a7b69779f85ad459e8675fe8b8e0f0978071dca7b34433ec85126ee38b37a29",
+      "hash": "9f78c23ddb57e2b530c5abc885defd42a2050fc5ff4cf12ad497a8e098e19f65",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 175,
+      "ink": 654,
+      "coverage": 382.17647058823513
+    }
+  ],
+  "seek": [
+    "acae948610467ddb42a526e68b18b3b26f23a333e689078cac46bd7b953c5f84",
+    "acae948610467ddb42a526e68b18b3b26f23a333e689078cac46bd7b953c5f84"
+  ],
+  "linear": {
+    "q": 0.25,
+    "receipt": {
+      "status": "PRESENTED_COMPOSITOR_TURN",
+      "coordinate": 0.25,
+      "nativeCoordinate": 0.25,
+      "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+      "runSeed": 732039477,
+      "glyphs": 32,
+      "stableGlyphs": 19,
+      "matchedGlyphs": 4,
+      "carriers": 0,
+      "gasCarriers": 0,
+      "gasAlphaMax": 0,
+      "nativeComputeMs": 2328.0999999046326,
+      "gpuThroughReadbackMs": 0,
+      "readbackBytes": 0,
+      "cpuThroughSubmitMs": 2453,
+      "preparationMs": 12390.5,
+      "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+      "easing": "linear",
+      "stateKernel": {
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+        "backend": "canonical Morphing state/biological/field",
+        "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+      },
+      "stateFields": [
+        {
+          "id": "state-cohort-text-row-0-4",
+          "interiorFieldPeak": 0.2887058280516386,
+          "measuredArea": 0.026628853753209114,
+          "desiredArea": 0.026620030403137207,
+          "residual": 0.000008823350071907043,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        },
+        {
+          "id": "state-cohort-text-row-0-5",
+          "interiorFieldPeak": 0.18607152436850752,
+          "measuredArea": 0.010568909347057343,
+          "desiredArea": 0.010548833757638931,
+          "residual": 0.000020075589418411255,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        },
+        {
+          "id": "state-cohort-text-row-0-6",
+          "interiorFieldPeak": 0.09883649159354181,
+          "measuredArea": 0.029316967353224754,
+          "desiredArea": 0.02939179725944996,
+          "residual": 0.00007482990622520447,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        }
+      ],
+      "stateGpu": {
+        "bytes": 116595876,
+        "maxBytes": 268435456,
+        "plans": 3,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "backend": "current-vkf-compiled-gpu-real-f32"
+      },
+      "gasRenderingBackend": "webgl2-points",
+      "nativeRenderer": {
+        "backend": "native-area-tiles",
+        "width": 640,
+        "height": 240,
+        "pixelRatio": 1,
+        "tiles": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 640,
+            "height": 240,
+            "resizeMs": 1.100000023841858,
+            "sourceDrawMs": 109.70000004768372,
+            "tileCopyMs": 0.09999990463256836,
+            "renderer": {
+              "styleColor": null,
+              "nativeAccuracy": {
+                "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                "outlines": 23,
+                "instances": 23,
+                "triangles": 4490,
+                "width": 640,
+                "height": 240,
+                "pixelRatio": 1,
+                "instanceBytes": 220136,
+                "geometryBuilds": 14,
+                "sampleBuilds": 14,
+                "meshBuilds": 23,
+                "queryNodes": 1721818,
+                "poseSkips": 0,
+                "poseReuses": 0,
+                "hits": 18,
+                "newNodes": 7360,
+                "newPixels": 4573,
+                "newGeometryNodes": 4243,
+                "pinnedEntries": 0,
+                "entries": 74,
+                "bytes": 42477896,
+                "atlasBytes": 37849184,
+                "sampleBytes": 375178,
+                "poseBytes": 381048,
+                "maxEntries": 4096,
+                "maxBytes": 134217728,
+                "maxNewProofs": 4096,
+                "maxNewNodes": 2000000,
+                "maxNewPixels": 1048576,
+                "nodes": 7360,
+                "pixels": 4573,
+                "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                "submission": "ordered synchronous consume/release",
+                "displayOnly": true,
+                "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                "indexed10kAccuracy": "OPEN",
+                "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                "allFontsCertificate": false,
+                "sourcePreparationMs": 106.89999997615814,
+                "packedBytes": 0,
+                "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                "residentRasterEnvelope": 0.021484375,
+                "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "residentGPUBytes": 31680
+              },
+              "indexedMeshes": 0,
+              "indexedSourceVertices": 0,
+              "indexedUniqueVertices": 0,
+              "batches": 0,
+              "labels": 0,
+              "submittedVertices": 0,
+              "gpuBytes": 31680,
+              "coverageBytes": 9830400,
+              "uploads": 23,
+              "verifiedInstanceSamples": 0,
+              "draws": 23,
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "adaptive": null,
+              "adaptiveDrawWallMs": 0
+            }
+          }
+        ],
+        "camera": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "resampling": false,
+        "source": "current native VKF physical outlines"
+      },
+      "transport": {
+        "rows": [
+          {
+            "sourceIds": [
+              "a",
+              "b"
+            ],
+            "fromIds": [
+              "a",
+              "b"
+            ],
+            "fromId": null,
+            "toId": "a",
+            "mode": "state",
+            "targetAlpha": [],
+            "ledger": {
+              "source": 0,
+              "gas": 0,
+              "target": 0,
+              "reservoir": 0,
+              "emitted": 0,
+              "exited": 0
+            },
+            "sourcePixels": 0,
+            "targetPixels": 0,
+            "dispatchedCarriers": 0,
+            "sourceCoverage": 0,
+            "targetCoverage": 0,
+            "interpolatedMass": 0,
+            "sourceMass": 0,
+            "gasMass": 0,
+            "capturedMass": 0,
+            "momentum": [
+              0,
+              0
+            ],
+            "massResidual": 0,
+            "retainedParticles": 0
+          }
+        ],
+        "groups": [],
+        "inkBudget": {
+          "requiredCarriers": 0,
+          "maxCarriers": 131072,
+          "perRowLimit": 131072,
+          "rows": []
+        },
+        "sourcePolicy": "explicit removed-ink stock only; never emission",
+        "diffusion": "prepared independent entropy-increment random bridge",
+        "spectralColor": false
+      },
+      "geometryReadback": false
+    },
+    "prefix": "9e8ac1275bf4ef542789a17c46c0e3e0a7c967020f3052b1895564a517e4a64a",
+    "hash": "fd7ac537abe0c65ba27fc82b446ee9cb368b674a56df684be7060634d0ebd992",
+    "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+    "interior": 240,
+    "ink": 662,
+    "coverage": 423.9450980392152
+  },
+  "quadratic": {
+    "q": 0.25,
+    "receipt": {
+      "status": "PRESENTED_COMPOSITOR_TURN",
+      "coordinate": 0.25,
+      "nativeCoordinate": 0.125,
+      "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+      "runSeed": 3931912001,
+      "glyphs": 32,
+      "stableGlyphs": 19,
+      "matchedGlyphs": 4,
+      "carriers": 0,
+      "gasCarriers": 0,
+      "gasAlphaMax": 0,
+      "nativeComputeMs": 2402.2000000476837,
+      "gpuThroughReadbackMs": 0,
+      "readbackBytes": 0,
+      "cpuThroughSubmitMs": 2526.399999976158,
+      "preparationMs": 12189.599999904633,
+      "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+      "easing": "quadratic",
+      "stateKernel": {
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+        "backend": "canonical Morphing state/biological/field",
+        "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+      },
+      "stateFields": [
+        {
+          "id": "state-cohort-text-row-0-4",
+          "interiorFieldPeak": 0.19793457717135776,
+          "measuredArea": 0.023840345442295074,
+          "desiredArea": 0.023870492354035378,
+          "residual": 0.00003014691174030304,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        },
+        {
+          "id": "state-cohort-text-row-0-5",
+          "interiorFieldPeak": 0.18236122287436984,
+          "measuredArea": 0.009069508872926235,
+          "desiredArea": 0.009088985621929169,
+          "residual": 0.000019476749002933502,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        },
+        {
+          "id": "state-cohort-text-row-0-6",
+          "interiorFieldPeak": 0.10433067839529432,
+          "measuredArea": 0.030024535953998566,
+          "desiredArea": 0.03007512539625168,
+          "residual": 0.00005058944225311279,
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "backend": "current-vkf-compiled-gpu-real-f32",
+          "geometryReadbackBytes": 0
+        }
+      ],
+      "stateGpu": {
+        "bytes": 116595876,
+        "maxBytes": 268435456,
+        "plans": 3,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "backend": "current-vkf-compiled-gpu-real-f32"
+      },
+      "gasRenderingBackend": "webgl2-points",
+      "nativeRenderer": {
+        "backend": "native-area-tiles",
+        "width": 640,
+        "height": 240,
+        "pixelRatio": 1,
+        "tiles": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 640,
+            "height": 240,
+            "resizeMs": 1,
+            "sourceDrawMs": 105.5,
+            "tileCopyMs": 0.19999992847442627,
+            "renderer": {
+              "styleColor": null,
+              "nativeAccuracy": {
+                "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                "outlines": 23,
+                "instances": 23,
+                "triangles": 4486,
+                "width": 640,
+                "height": 240,
+                "pixelRatio": 1,
+                "instanceBytes": 220160,
+                "geometryBuilds": 14,
+                "sampleBuilds": 14,
+                "meshBuilds": 23,
+                "queryNodes": 1721510,
+                "poseSkips": 0,
+                "poseReuses": 0,
+                "hits": 18,
+                "newNodes": 7366,
+                "newPixels": 4573,
+                "newGeometryNodes": 4243,
+                "pinnedEntries": 0,
+                "entries": 74,
+                "bytes": 42507700,
+                "atlasBytes": 37879136,
+                "sampleBytes": 375034,
+                "poseBytes": 381044,
+                "maxEntries": 4096,
+                "maxBytes": 134217728,
+                "maxNewProofs": 4096,
+                "maxNewNodes": 2000000,
+                "maxNewPixels": 1048576,
+                "nodes": 7366,
+                "pixels": 4573,
+                "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                "submission": "ordered synchronous consume/release",
+                "displayOnly": true,
+                "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                "indexed10kAccuracy": "OPEN",
+                "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                "allFontsCertificate": false,
+                "sourcePreparationMs": 102.90000009536743,
+                "packedBytes": 0,
+                "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                "residentRasterEnvelope": 0.021484375,
+                "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "residentGPUBytes": 31680
+              },
+              "indexedMeshes": 0,
+              "indexedSourceVertices": 0,
+              "indexedUniqueVertices": 0,
+              "batches": 0,
+              "labels": 0,
+              "submittedVertices": 0,
+              "gpuBytes": 31680,
+              "coverageBytes": 9830400,
+              "uploads": 23,
+              "verifiedInstanceSamples": 0,
+              "draws": 23,
+              "camera": [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+              ],
+              "adaptive": null,
+              "adaptiveDrawWallMs": 0
+            }
+          }
+        ],
+        "camera": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "resampling": false,
+        "source": "current native VKF physical outlines"
+      },
+      "transport": {
+        "rows": [
+          {
+            "sourceIds": [
+              "a",
+              "b"
+            ],
+            "fromIds": [
+              "a",
+              "b"
+            ],
+            "fromId": null,
+            "toId": "a",
+            "mode": "state",
+            "targetAlpha": [],
+            "ledger": {
+              "source": 0,
+              "gas": 0,
+              "target": 0,
+              "reservoir": 0,
+              "emitted": 0,
+              "exited": 0
+            },
+            "sourcePixels": 0,
+            "targetPixels": 0,
+            "dispatchedCarriers": 0,
+            "sourceCoverage": 0,
+            "targetCoverage": 0,
+            "interpolatedMass": 0,
+            "sourceMass": 0,
+            "gasMass": 0,
+            "capturedMass": 0,
+            "momentum": [
+              0,
+              0
+            ],
+            "massResidual": 0,
+            "retainedParticles": 0
+          }
+        ],
+        "groups": [],
+        "inkBudget": {
+          "requiredCarriers": 0,
+          "maxCarriers": 131072,
+          "perRowLimit": 131072,
+          "rows": []
+        },
+        "sourcePolicy": "explicit removed-ink stock only; never emission",
+        "diffusion": "prepared independent entropy-increment random bridge",
+        "spectralColor": false
+      },
+      "geometryReadback": false
+    },
+    "prefix": "9452542825a698ee41c1c399ff9c3d39dd330543bbcffba1448ee5df46df4a47",
+    "hash": "86b3bc698905df44ec96065ba2d3ebc6375adda8e8394871845ff4e36e5aa7af",
+    "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+    "interior": 227,
+    "ink": 632,
+    "coverage": 400.2549019607839
+  },
+  "digits": [
+    {
+      "q": 0,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0,
+        "nativeCoordinate": 0,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 3712572282,
+        "glyphs": 22,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 3,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 3.600000023841858,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 24,
+        "preparationMs": 3851.8000000715256,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 38662300,
+          "maxBytes": 268435456,
+          "plans": 1,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 1,
+              "sourceDrawMs": 2.0999999046325684,
+              "tileCopyMs": 0.20000004768371582,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 0,
+                  "instances": 0,
+                  "triangles": 0,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 0,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 0,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 0,
+                  "bytes": 0,
+                  "atlasBytes": 0,
+                  "sampleBytes": 0,
+                  "poseBytes": 0,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 0,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 0
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 0,
+                "coverageBytes": 9830400,
+                "uploads": 0,
+                "verifiedInstanceSamples": 0,
+                "draws": 0,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "d"
+              ],
+              "fromId": "d",
+              "toId": "d",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "fead4ab19f6fe3620fd933263d2921a08af0750d6dd44e1e1002dc640b910fdf",
+      "hash": "bb6b5dea5b2e51db538ff574422ecf63083a053a394a2be9057f87abe1f615df",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 91,
+      "ink": 283,
+      "coverage": 184.23137254901957,
+      "suffix": "309a618de3809d65fd836c11d9bee144dc154ef3728f2ed3811c908aa3dbe7dd",
+      "changedDigitCoverage": 89.19999999999999
+    },
+    {
+      "q": 0.25,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.25,
+        "nativeCoordinate": 0.125,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 3712572282,
+        "glyphs": 22,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 2,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 251.70000004768372,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 376.7000000476837,
+        "preparationMs": 3851.8000000715256,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-2",
+            "interiorFieldPeak": 0.1179952947106884,
+            "measuredArea": 0.09946954995393753,
+            "desiredArea": 0.09949544072151184,
+            "residual": 0.000025890767574310303,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 38662300,
+          "maxBytes": 268435456,
+          "plans": 1,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0.09999990463256836,
+              "sourceDrawMs": 111,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 21,
+                  "instances": 21,
+                  "triangles": 4386,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 198660,
+                  "geometryBuilds": 12,
+                  "sampleBuilds": 12,
+                  "meshBuilds": 21,
+                  "queryNodes": 1610526,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 18,
+                  "newNodes": 6550,
+                  "newPixels": 4262,
+                  "newGeometryNodes": 3548,
+                  "pinnedEntries": 0,
+                  "entries": 66,
+                  "bytes": 37582340,
+                  "atlasBytes": 33642116,
+                  "sampleBytes": 358094,
+                  "poseBytes": 343044,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 6550,
+                  "pixels": 4262,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 110.79999995231628,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 21,
+                "verifiedInstanceSamples": 0,
+                "draws": 21,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "d"
+              ],
+              "fromId": "d",
+              "toId": "d",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "04a13c28c1e403113132f8ef2cde1bf3af567c3a5142adb898447056fdc73349",
+      "hash": "53f087f7d075062d7b507856e9480e102892a758fc43a5e07dc6bd071404560a",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 93,
+      "ink": 269,
+      "coverage": 176.92941176470578,
+      "suffix": "309a618de3809d65fd836c11d9bee144dc154ef3728f2ed3811c908aa3dbe7dd",
+      "changedDigitCoverage": 81.8980392156862
+    },
+    {
+      "q": 0.5,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.5,
+        "nativeCoordinate": 0.5,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 3712572282,
+        "glyphs": 22,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 2,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 209.59999990463257,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 228,
+        "preparationMs": 3851.8000000715256,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-2",
+            "interiorFieldPeak": 0.07550499810717383,
+            "measuredArea": 0.0878414735198021,
+            "desiredArea": 0.0878131315112114,
+            "residual": 0.000028342008590698242,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 38662300,
+          "maxBytes": 268435456,
+          "plans": 1,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0.10000002384185791,
+              "sourceDrawMs": 5.299999952316284,
+              "tileCopyMs": 0,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 21,
+                  "instances": 21,
+                  "triangles": 4386,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 198660,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 21,
+                  "hits": 42,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 66,
+                  "bytes": 37582340,
+                  "atlasBytes": 33642116,
+                  "sampleBytes": 358094,
+                  "poseBytes": 343044,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 5,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 42,
+                "verifiedInstanceSamples": 0,
+                "draws": 42,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "d"
+              ],
+              "fromId": "d",
+              "toId": "d",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "bb7aa078905561cbfe58d0c1a0088db9f75d61af0fe5a17fd28dd018bd3803d5",
+      "hash": "21e10d1ffaee5d7c12e08195800779d361c7b7ee62983532cd7ad09bfb9f4ac8",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 96,
+      "ink": 240,
+      "coverage": 165.37254901960776,
+      "suffix": "309a618de3809d65fd836c11d9bee144dc154ef3728f2ed3811c908aa3dbe7dd",
+      "changedDigitCoverage": 60.5803921568627
+    },
+    {
+      "q": 1,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 1,
+        "nativeCoordinate": 1,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 3712572282,
+        "glyphs": 22,
+        "stableGlyphs": 19,
+        "matchedGlyphs": 3,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 5.199999928474426,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 42.89999997615814,
+        "preparationMs": 3851.8000000715256,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 38662300,
+          "maxBytes": 268435456,
+          "plans": 1,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0.10000002384185791,
+              "sourceDrawMs": 22.100000023841858,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 22,
+                  "instances": 22,
+                  "triangles": 4578,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 207846,
+                  "geometryBuilds": 1,
+                  "sampleBuilds": 1,
+                  "meshBuilds": 1,
+                  "queryNodes": 88932,
+                  "poseSkips": 0,
+                  "poseReuses": 21,
+                  "hits": 42,
+                  "newNodes": 413,
+                  "newPixels": 308,
+                  "newGeometryNodes": 242,
+                  "pinnedEntries": 0,
+                  "entries": 70,
+                  "bytes": 39965210,
+                  "atlasBytes": 35771116,
+                  "sampleBytes": 376112,
+                  "poseBytes": 357250,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 413,
+                  "pixels": 308,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 21.899999976158142,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "residentRasterEnvelope": 0.021484375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 31680
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 31680,
+                "coverageBytes": 9830400,
+                "uploads": 64,
+                "verifiedInstanceSamples": 0,
+                "draws": 64,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "d"
+              ],
+              "fromId": "d",
+              "toId": "d",
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "6525a458876498d4ac21755731e67309e945e0ef1052b2e6f18d3c28fa2d97ca",
+      "hash": "a76f52b5915f8ae9faca39c6230ca9437750a6baedc6364e0f0f995e5696f971",
+      "heading": "c289696fbccba23786a382c88cadf245aaf1ce8eabf50462419dc9b239694ad4",
+      "interior": 85,
+      "ink": 240,
+      "coverage": 156.29803921568623,
+      "suffix": "309a618de3809d65fd836c11d9bee144dc154ef3728f2ed3811c908aa3dbe7dd",
+      "changedDigitCoverage": 61.266666666666666
+    }
+  ],
+  "removal": [
+    {
+      "q": 0,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0,
+        "nativeCoordinate": 0,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 1467120634,
+        "glyphs": 0,
+        "stableGlyphs": 0,
+        "matchedGlyphs": 6,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 3.9000000953674316,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 25.300000071525574,
+        "preparationMs": 14328.699999928474,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 231973800,
+          "maxBytes": 268435456,
+          "plans": 6,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 1.0999999046325684,
+              "sourceDrawMs": 2.5,
+              "tileCopyMs": 0,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 0,
+                  "instances": 0,
+                  "triangles": 0,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 0,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 0,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 0,
+                  "bytes": 0,
+                  "atlasBytes": 0,
+                  "sampleBytes": 0,
+                  "poseBytes": 0,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 0,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 0
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 0,
+                "coverageBytes": 9830400,
+                "uploads": 0,
+                "verifiedInstanceSamples": 0,
+                "draws": 0,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a"
+              ],
+              "fromId": "a",
+              "toId": null,
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "dd44e76752599a2383e3c167031d23bca7f45eddcb77d0eb3a073d88546d0ddf",
+      "hash": "50cb27a3ed12a45fe229233c1fea1b3e16ccc10132b609e76c98121f2f0ceec1",
+      "heading": "bf7cf12fa3e746c6b3df247e0b9491361b18c8c3a1e62e9e90f06b980d4aaa60",
+      "interior": 142,
+      "ink": 546,
+      "coverage": 314.5686274509803
+    },
+    {
+      "q": 0.5,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 0.5,
+        "nativeCoordinate": 0.5,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 1467120634,
+        "glyphs": 0,
+        "stableGlyphs": 0,
+        "matchedGlyphs": 0,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 1402.2000000476837,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 1412.9000000953674,
+        "preparationMs": 14328.699999928474,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [
+          {
+            "id": "state-cohort-text-row-0-0",
+            "interiorFieldPeak": 0.13321484712188572,
+            "measuredArea": 0.06283983588218689,
+            "desiredArea": 0.06279394030570984,
+            "residual": 0.00004589557647705078,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-1",
+            "interiorFieldPeak": 0.17543140465586476,
+            "measuredArea": 0.059593964368104935,
+            "desiredArea": 0.05967754125595093,
+            "residual": 0.00008357688784599304,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-2",
+            "interiorFieldPeak": 0.833306672594455,
+            "measuredArea": 0.01651870459318161,
+            "desiredArea": 0.01651734672486782,
+            "residual": 0.0000013578683137893677,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-3",
+            "interiorFieldPeak": 0.13321484712188664,
+            "measuredArea": 0.06283983588218689,
+            "desiredArea": 0.06279394030570984,
+            "residual": 0.00004589557647705078,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-4",
+            "interiorFieldPeak": 0.13906695156695414,
+            "measuredArea": 0.030378637835383415,
+            "desiredArea": 0.030373465269804,
+            "residual": 0.000005172565579414368,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          },
+          {
+            "id": "state-cohort-text-row-0-5",
+            "interiorFieldPeak": 0.17865092138023222,
+            "measuredArea": 0.053094714879989624,
+            "desiredArea": 0.05304186791181564,
+            "residual": 0.00005284696817398071,
+            "color": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "backend": "current-vkf-compiled-gpu-real-f32",
+            "geometryReadbackBytes": 0
+          }
+        ],
+        "stateGpu": {
+          "bytes": 231973800,
+          "maxBytes": 268435456,
+          "plans": 6,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0.10000002384185791,
+              "sourceDrawMs": 0.19999992847442627,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 0,
+                  "instances": 0,
+                  "triangles": 0,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 0,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 0,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 0,
+                  "bytes": 0,
+                  "atlasBytes": 0,
+                  "sampleBytes": 0,
+                  "poseBytes": 0,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 0,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 0
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 0,
+                "coverageBytes": 9830400,
+                "uploads": 0,
+                "verifiedInstanceSamples": 0,
+                "draws": 0,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a"
+              ],
+              "fromId": "a",
+              "toId": null,
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "2c7584904ad6328d23f8a079be280266887b0ac7e2e5bd3105cc7b2cc0479bb0",
+      "hash": "6f6cee99f4fa6970c72b1c825b680acf4e05c9f1e72adcde6e80aa243121dad7",
+      "heading": "bf7cf12fa3e746c6b3df247e0b9491361b18c8c3a1e62e9e90f06b980d4aaa60",
+      "interior": 85,
+      "ink": 257,
+      "coverage": 159.54117647058803
+    },
+    {
+      "q": 1,
+      "receipt": {
+        "status": "PRESENTED_COMPOSITOR_TURN",
+        "coordinate": 1,
+        "nativeCoordinate": 1,
+        "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+        "runSeed": 1467120634,
+        "glyphs": 0,
+        "stableGlyphs": 0,
+        "matchedGlyphs": 0,
+        "carriers": 0,
+        "gasCarriers": 0,
+        "gasAlphaMax": 0,
+        "nativeComputeMs": 3,
+        "gpuThroughReadbackMs": 0,
+        "readbackBytes": 0,
+        "cpuThroughSubmitMs": 13.199999928474426,
+        "preparationMs": 14328.699999928474,
+        "computeBackend": "canonical VKF implicit signed-field state / native wave / material",
+        "easing": "quadratic",
+        "stateKernel": {
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "wasmSha256": "52d606dbf2501d8cb66d9e6416bec944f7756b60b591d94b3695964a60819632",
+          "backend": "canonical Morphing state/biological/field",
+          "shapePolicy": "native signed-field split/merge; identity/affine shortcut within same state path; no lifecycle opacity"
+        },
+        "stateFields": [],
+        "stateGpu": {
+          "bytes": 231973800,
+          "maxBytes": 268435456,
+          "plans": 6,
+          "libraryCommit": "ad9f85b8ddf28f3ec86aff79f33c3ad8e0d8f266",
+          "backend": "current-vkf-compiled-gpu-real-f32"
+        },
+        "gasRenderingBackend": "webgl2-points",
+        "nativeRenderer": {
+          "backend": "native-area-tiles",
+          "width": 640,
+          "height": 240,
+          "pixelRatio": 1,
+          "tiles": [
+            {
+              "x": 0,
+              "y": 0,
+              "width": 640,
+              "height": 240,
+              "resizeMs": 0,
+              "sourceDrawMs": 0.19999992847442627,
+              "tileCopyMs": 0.10000002384185791,
+              "renderer": {
+                "styleColor": null,
+                "nativeAccuracy": {
+                  "status": "SOURCE_CERTIFIED_DISPLAY_PLAN",
+                  "profile": "exact physical M/L/C/Z; nonzero; AA16; viewport clip; DPR1/2/3",
+                  "outlines": 0,
+                  "instances": 0,
+                  "triangles": 0,
+                  "width": 640,
+                  "height": 240,
+                  "pixelRatio": 1,
+                  "instanceBytes": 0,
+                  "geometryBuilds": 0,
+                  "sampleBuilds": 0,
+                  "meshBuilds": 0,
+                  "queryNodes": 0,
+                  "poseSkips": 0,
+                  "poseReuses": 0,
+                  "hits": 0,
+                  "newNodes": 0,
+                  "newPixels": 0,
+                  "newGeometryNodes": 0,
+                  "pinnedEntries": 0,
+                  "entries": 0,
+                  "bytes": 0,
+                  "atlasBytes": 0,
+                  "sampleBytes": 0,
+                  "poseBytes": 0,
+                  "maxEntries": 4096,
+                  "maxBytes": 134217728,
+                  "maxNewProofs": 4096,
+                  "maxNewNodes": 2000000,
+                  "maxNewPixels": 1048576,
+                  "nodes": 0,
+                  "pixels": 0,
+                  "cache": "full physical bytes/revision/config/scale-tier and exact affine/AA-phase; bounded LRU",
+                  "submission": "ordered synchronous consume/release",
+                  "displayOnly": true,
+                  "hardwareQualification": "UNRUN_CHANGED_COMPONENT",
+                  "indexed10kAccuracy": "OPEN",
+                  "indexed10kPerformance": "UNRUN_CHANGED_COMPONENT",
+                  "allFontsCertificate": false,
+                  "sourcePreparationMs": 0,
+                  "packedBytes": 0,
+                  "rasterErrorEnvelopeAreaTexels": 0.0068359375,
+                  "sourceCaptureAuthority": "physical source commands; display sample cells excluded from selection/PDF",
+                  "camera": [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ],
+                  "residentGPUBytes": 0
+                },
+                "indexedMeshes": 0,
+                "indexedSourceVertices": 0,
+                "indexedUniqueVertices": 0,
+                "batches": 0,
+                "labels": 0,
+                "submittedVertices": 0,
+                "gpuBytes": 0,
+                "coverageBytes": 9830400,
+                "uploads": 0,
+                "verifiedInstanceSamples": 0,
+                "draws": 0,
+                "camera": [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                "adaptive": null,
+                "adaptiveDrawWallMs": 0
+              }
+            }
+          ],
+          "camera": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "resampling": false,
+          "source": "current native VKF physical outlines"
+        },
+        "transport": {
+          "rows": [
+            {
+              "sourceIds": [
+                "a"
+              ],
+              "fromId": "a",
+              "toId": null,
+              "mode": "state",
+              "targetAlpha": [],
+              "ledger": {
+                "source": 0,
+                "gas": 0,
+                "target": 0,
+                "reservoir": 0,
+                "emitted": 0,
+                "exited": 0
+              },
+              "sourcePixels": 0,
+              "targetPixels": 0,
+              "dispatchedCarriers": 0,
+              "sourceCoverage": 0,
+              "targetCoverage": 0,
+              "interpolatedMass": 0,
+              "sourceMass": 0,
+              "gasMass": 0,
+              "capturedMass": 0,
+              "momentum": [
+                0,
+                0
+              ],
+              "massResidual": 0,
+              "retainedParticles": 0
+            }
+          ],
+          "groups": [],
+          "inkBudget": {
+            "requiredCarriers": 0,
+            "maxCarriers": 131072,
+            "perRowLimit": 131072,
+            "rows": []
+          },
+          "sourcePolicy": "explicit removed-ink stock only; never emission",
+          "diffusion": "prepared independent entropy-increment random bridge",
+          "spectralColor": false
+        },
+        "geometryReadback": false
+      },
+      "prefix": "f4ce85408b2dab5393970481191d34b816e4b70021a8e62ed9e1f90b635b2891",
+      "hash": "34c69899504b36f13e8b22120cf0fd894e61fcd6b046fb8535b79cc491fa3b3f",
+      "heading": "bf7cf12fa3e746c6b3df247e0b9491361b18c8c3a1e62e9e90f06b980d4aaa60",
+      "interior": 0,
+      "ink": 0,
+      "coverage": 0
+    }
+  ],
+  "errors": []
+}

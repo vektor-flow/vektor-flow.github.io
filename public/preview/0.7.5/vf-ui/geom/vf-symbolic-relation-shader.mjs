@@ -50,6 +50,18 @@ export function compileSymbolicRelationShader(ast, variants = null, style = {}) 
       style
     );
   }
+  // A product zero-set is a union. Projecting the multiplied residual loses
+  // its normal at crossings (both value and gradient vanish). Reuse the existing
+  // independent explicit-curve union where every factor is total-real and can
+  // be represented exactly; domain-sensitive/unknown forms retain the original
+  // residual path, never acquire spurious axes outside their domain.
+  if (!(Array.isArray(variants) && variants.length > 1)) {
+    const factors = explicitZeroProduct(Array.isArray(variants)&&variants.length===1?variants[0]:ast);
+    if (factors) {
+      const union = compileSymbolicExplicitCurveShaderGroup(factors, style);
+      if (union) return Object.freeze({ ...union, zeroSetFactorCount: factors.length });
+    }
+  }
   const relations = Array.isArray(variants) && variants.length ? variants : [ast];
   if (!relations.every((relation) => relation?.kind === 'binary' && RELATION_OPERATORS.has(relation.op))) return null;
   if (!relations.every((relation) => relation.op === ast.op)) return null;
@@ -82,6 +94,76 @@ export function compileSymbolicRelationShader(ast, variants = null, style = {}) 
     colorScaleMode: style.colorScaleMode === 'cyclic' ? 'cyclic' : 'clamp',
     colormapPoints: normalizedShaderColormap(style)
   });
+}
+
+function bare(node) {
+  while (node?.kind === 'group') node = node.expression;
+  return node;
+}
+function containsVariable(node, name) {
+  node = bare(node);
+  if (!node) return false;
+  if (node.kind === 'variable') return node.name === name;
+  if (node.kind === 'unary') return containsVariable(node.operand, name);
+  if (node.kind === 'binary') return containsVariable(node.left, name) || containsVariable(node.right, name);
+  return node.kind === 'call' && node.args.some(value => containsVariable(value, name));
+}
+function constantSign(node) {
+  node = bare(node);
+  if (node?.kind === 'number') return Number.isFinite(Number(node.value)) ? Math.sign(Number(node.value)) : null;
+  if (node?.kind === 'unary' && ['+', '-'].includes(node.op)) {
+    const sign = constantSign(node.operand);
+    return sign === null ? null : (node.op === '-' ? -sign : sign);
+  }
+  if (node?.kind === 'binary' && ['*', '/'].includes(node.op)) {
+    const a = constantSign(node.left), b = constantSign(node.right);
+    return a === null || b === null || (node.op === '/' && b === 0) ? null : a * b;
+  }
+  if (node?.kind === 'call' && node.name === 'sqrt' && node.args.length === 1) {
+    const sign = constantSign(node.args[0]);
+    return sign === 1 || sign === 0 ? sign : null;
+  }
+  return null;
+}
+function totalReal(node) {
+  node = bare(node);
+  if (!node) return false;
+  if (node.kind === 'number') return Number.isFinite(Number(node.value));
+  if (node.kind === 'variable') return ['x', 'y', 't', 'pi'].includes(node.name);
+  if (node.kind === 'unary') return ['+', '-'].includes(node.op) && totalReal(node.operand);
+  if (node.kind === 'binary') {
+    if (['+', '-', '*'].includes(node.op)) return totalReal(node.left) && totalReal(node.right);
+    if (node.op === '/') return totalReal(node.left) && [1, -1].includes(constantSign(node.right));
+    return false;
+  }
+  if (node.kind === 'call' && node.args.length === 1) {
+    if (['sin', 'cos', 'exp'].includes(node.name)) return totalReal(node.args[0]);
+    if (node.name === 'sqrt') return constantSign(node.args[0]) === 1;
+    if (node.name === 'floor') return totalReal(node.args[0]) && !containsVariable(node.args[0], 'x') && !containsVariable(node.args[0], 'y');
+  }
+  return false;
+}
+function explicitZeroProduct(ast) {
+  if (ast?.kind !== 'binary' || ast.op !== '=') return null;
+  const zero = node => bare(node)?.kind === 'number' && Number(bare(node).value) === 0;
+  const product = zero(ast.right) ? bare(ast.left) : zero(ast.left) ? bare(ast.right) : null;
+  if (product?.kind !== 'binary' || product.op !== '*') return null;
+  const flatten = node => { node = bare(node); return node?.kind === 'binary' && node.op === '*' ? [...flatten(node.left), ...flatten(node.right)] : [node]; };
+  const factors = flatten(product).filter(node => ![1, -1].includes(constantSign(node)));
+  if (factors.length < 2 || factors.length > 8) return null;
+  const programs = factors.map(factor => {
+    factor = bare(factor);
+    if (factor?.kind === 'unary' && ['+', '-'].includes(factor.op)) factor = bare(factor.operand);
+    let variable, expression;
+    if (factor?.kind === 'variable' && ['x', 'y'].includes(factor.name)) { variable = factor; expression = {kind:'number',value:0}; }
+    else if (factor?.kind === 'binary' && factor.op === '-') {
+      if (bare(factor.left)?.kind === 'variable' && ['x','y'].includes(bare(factor.left).name)) { variable=bare(factor.left); expression=factor.right; }
+      else if (bare(factor.right)?.kind === 'variable' && ['x','y'].includes(bare(factor.right).name)) { variable=bare(factor.right); expression=factor.left; }
+    }
+    if (!variable || containsVariable(expression, variable.name) || !totalReal(expression)) return null;
+    return {ast:{kind:'binary',op:'=',left:variable,right:expression}, explicitCurve:{dependent:variable.name,parameter:variable.name==='y'?'x':'y',expression}};
+  });
+  return programs.every(Boolean) ? programs : null;
 }
 
 function chainedRelationMembers(ast) {

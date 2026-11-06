@@ -1,0 +1,2476 @@
+{
+  "passed": true,
+  "control": false,
+  "result": {
+    "curve": {
+      "source": "y=0.5+((8*x-4)*((8*x-4)*((8*x-4)-2)-5)+6)/40",
+      "backend": "webgpu",
+      "classification": [
+        "implicit-curve"
+      ],
+      "latex": "y = 0.5 + \\frac{\\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) - 2\\right) - 5\\right) + 6\\right)}{40}",
+      "ast": [
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "variable",
+            "name": "y",
+            "location": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            }
+          },
+          "right": {
+            "kind": "binary",
+            "op": "+",
+            "left": {
+              "kind": "number",
+              "value": 0.5,
+              "text": "0.5",
+              "location": {
+                "offset": 2,
+                "line": 1,
+                "column": 3
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "/",
+              "left": {
+                "kind": "binary",
+                "op": "+",
+                "left": {
+                  "kind": "binary",
+                  "op": "*",
+                  "left": {
+                    "kind": "binary",
+                    "op": "-",
+                    "left": {
+                      "kind": "binary",
+                      "op": "*",
+                      "left": {
+                        "kind": "number",
+                        "value": 8,
+                        "text": "8",
+                        "location": {
+                          "offset": 8,
+                          "line": 1,
+                          "column": 9
+                        }
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x",
+                        "location": {
+                          "offset": 10,
+                          "line": 1,
+                          "column": 11
+                        }
+                      },
+                      "location": {
+                        "offset": 9,
+                        "line": 1,
+                        "column": 10
+                      }
+                    },
+                    "right": {
+                      "kind": "number",
+                      "value": 4,
+                      "text": "4",
+                      "location": {
+                        "offset": 12,
+                        "line": 1,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "offset": 11,
+                      "line": 1,
+                      "column": 12
+                    }
+                  },
+                  "right": {
+                    "kind": "binary",
+                    "op": "-",
+                    "left": {
+                      "kind": "binary",
+                      "op": "*",
+                      "left": {
+                        "kind": "binary",
+                        "op": "-",
+                        "left": {
+                          "kind": "binary",
+                          "op": "*",
+                          "left": {
+                            "kind": "number",
+                            "value": 8,
+                            "text": "8",
+                            "location": {
+                              "offset": 17,
+                              "line": 1,
+                              "column": 18
+                            }
+                          },
+                          "right": {
+                            "kind": "variable",
+                            "name": "x",
+                            "location": {
+                              "offset": 19,
+                              "line": 1,
+                              "column": 20
+                            }
+                          },
+                          "location": {
+                            "offset": 18,
+                            "line": 1,
+                            "column": 19
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 4,
+                          "text": "4",
+                          "location": {
+                            "offset": 21,
+                            "line": 1,
+                            "column": 22
+                          }
+                        },
+                        "location": {
+                          "offset": 20,
+                          "line": 1,
+                          "column": 21
+                        }
+                      },
+                      "right": {
+                        "kind": "binary",
+                        "op": "-",
+                        "left": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "number",
+                              "value": 8,
+                              "text": "8",
+                              "location": {
+                                "offset": 26,
+                                "line": 1,
+                                "column": 27
+                              }
+                            },
+                            "right": {
+                              "kind": "variable",
+                              "name": "x",
+                              "location": {
+                                "offset": 28,
+                                "line": 1,
+                                "column": 29
+                              }
+                            },
+                            "location": {
+                              "offset": 27,
+                              "line": 1,
+                              "column": 28
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 4,
+                            "text": "4",
+                            "location": {
+                              "offset": 30,
+                              "line": 1,
+                              "column": 31
+                            }
+                          },
+                          "location": {
+                            "offset": 29,
+                            "line": 1,
+                            "column": 30
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 2,
+                          "text": "2",
+                          "location": {
+                            "offset": 33,
+                            "line": 1,
+                            "column": 34
+                          }
+                        },
+                        "location": {
+                          "offset": 32,
+                          "line": 1,
+                          "column": 33
+                        }
+                      },
+                      "location": {
+                        "offset": 23,
+                        "line": 1,
+                        "column": 24
+                      }
+                    },
+                    "right": {
+                      "kind": "number",
+                      "value": 5,
+                      "text": "5",
+                      "location": {
+                        "offset": 36,
+                        "line": 1,
+                        "column": 37
+                      }
+                    },
+                    "location": {
+                      "offset": 35,
+                      "line": 1,
+                      "column": 36
+                    }
+                  },
+                  "location": {
+                    "offset": 14,
+                    "line": 1,
+                    "column": 15
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 6,
+                  "text": "6",
+                  "location": {
+                    "offset": 39,
+                    "line": 1,
+                    "column": 40
+                  }
+                },
+                "location": {
+                  "offset": 38,
+                  "line": 1,
+                  "column": 39
+                }
+              },
+              "right": {
+                "kind": "number",
+                "value": 40,
+                "text": "40",
+                "location": {
+                  "offset": 42,
+                  "line": 1,
+                  "column": 43
+                }
+              },
+              "location": {
+                "offset": 41,
+                "line": 1,
+                "column": 42
+              }
+            },
+            "location": {
+              "offset": 5,
+              "line": 1,
+              "column": 6
+            }
+          },
+          "location": {
+            "offset": 1,
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "variants": [
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "variable",
+              "name": "y",
+              "location": {
+                "offset": 0,
+                "line": 1,
+                "column": 1
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "+",
+              "left": {
+                "kind": "number",
+                "value": 0.5,
+                "text": "0.5",
+                "location": {
+                  "offset": 2,
+                  "line": 1,
+                  "column": 3
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "/",
+                "left": {
+                  "kind": "binary",
+                  "op": "+",
+                  "left": {
+                    "kind": "binary",
+                    "op": "*",
+                    "left": {
+                      "kind": "binary",
+                      "op": "-",
+                      "left": {
+                        "kind": "binary",
+                        "op": "*",
+                        "left": {
+                          "kind": "number",
+                          "value": 8,
+                          "text": "8",
+                          "location": {
+                            "offset": 8,
+                            "line": 1,
+                            "column": 9
+                          }
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x",
+                          "location": {
+                            "offset": 10,
+                            "line": 1,
+                            "column": 11
+                          }
+                        },
+                        "location": {
+                          "offset": 9,
+                          "line": 1,
+                          "column": 10
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 4,
+                        "text": "4",
+                        "location": {
+                          "offset": 12,
+                          "line": 1,
+                          "column": 13
+                        }
+                      },
+                      "location": {
+                        "offset": 11,
+                        "line": 1,
+                        "column": 12
+                      }
+                    },
+                    "right": {
+                      "kind": "binary",
+                      "op": "-",
+                      "left": {
+                        "kind": "binary",
+                        "op": "*",
+                        "left": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "number",
+                              "value": 8,
+                              "text": "8",
+                              "location": {
+                                "offset": 17,
+                                "line": 1,
+                                "column": 18
+                              }
+                            },
+                            "right": {
+                              "kind": "variable",
+                              "name": "x",
+                              "location": {
+                                "offset": 19,
+                                "line": 1,
+                                "column": 20
+                              }
+                            },
+                            "location": {
+                              "offset": 18,
+                              "line": 1,
+                              "column": 19
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 4,
+                            "text": "4",
+                            "location": {
+                              "offset": 21,
+                              "line": 1,
+                              "column": 22
+                            }
+                          },
+                          "location": {
+                            "offset": 20,
+                            "line": 1,
+                            "column": 21
+                          }
+                        },
+                        "right": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "-",
+                            "left": {
+                              "kind": "binary",
+                              "op": "*",
+                              "left": {
+                                "kind": "number",
+                                "value": 8,
+                                "text": "8",
+                                "location": {
+                                  "offset": 26,
+                                  "line": 1,
+                                  "column": 27
+                                }
+                              },
+                              "right": {
+                                "kind": "variable",
+                                "name": "x",
+                                "location": {
+                                  "offset": 28,
+                                  "line": 1,
+                                  "column": 29
+                                }
+                              },
+                              "location": {
+                                "offset": 27,
+                                "line": 1,
+                                "column": 28
+                              }
+                            },
+                            "right": {
+                              "kind": "number",
+                              "value": 4,
+                              "text": "4",
+                              "location": {
+                                "offset": 30,
+                                "line": 1,
+                                "column": 31
+                              }
+                            },
+                            "location": {
+                              "offset": 29,
+                              "line": 1,
+                              "column": 30
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 2,
+                            "text": "2",
+                            "location": {
+                              "offset": 33,
+                              "line": 1,
+                              "column": 34
+                            }
+                          },
+                          "location": {
+                            "offset": 32,
+                            "line": 1,
+                            "column": 33
+                          }
+                        },
+                        "location": {
+                          "offset": 23,
+                          "line": 1,
+                          "column": 24
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 5,
+                        "text": "5",
+                        "location": {
+                          "offset": 36,
+                          "line": 1,
+                          "column": 37
+                        }
+                      },
+                      "location": {
+                        "offset": 35,
+                        "line": 1,
+                        "column": 36
+                      }
+                    },
+                    "location": {
+                      "offset": 14,
+                      "line": 1,
+                      "column": 15
+                    }
+                  },
+                  "right": {
+                    "kind": "number",
+                    "value": 6,
+                    "text": "6",
+                    "location": {
+                      "offset": 39,
+                      "line": 1,
+                      "column": 40
+                    }
+                  },
+                  "location": {
+                    "offset": 38,
+                    "line": 1,
+                    "column": 39
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 40,
+                  "text": "40",
+                  "location": {
+                    "offset": 42,
+                    "line": 1,
+                    "column": 43
+                  }
+                },
+                "location": {
+                  "offset": 41,
+                  "line": 1,
+                  "column": 42
+                }
+              },
+              "location": {
+                "offset": 5,
+                "line": 1,
+                "column": 6
+              }
+            },
+            "location": {
+              "offset": 1,
+              "line": 1,
+              "column": 2
+            }
+          }
+        ]
+      ],
+      "factorCount": 0,
+      "distanceMode": "implicit",
+      "crossings": [
+        {
+          "x": 240,
+          "y": 240,
+          "rgba": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "neighbor": 0
+        },
+        {
+          "x": 290,
+          "y": 240,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 2732
+        },
+        {
+          "x": 240,
+          "y": 180,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 2741
+        }
+      ],
+      "domainProbe": [
+        175,
+        175,
+        175,
+        255
+      ],
+      "pixelHash": "156323a2a1276a7634ccf5520f3fe3ff6e365d641efdbe115860a3985159fc98"
+    },
+    "product": {
+      "source": "(y-(0.5+((8*x-4)*((8*x-4)*((8*x-4)-2)-5)+6)/40))*(y-0.5)*(x-0.5)=0",
+      "backend": "webgpu",
+      "classification": [
+        "implicit-curve"
+      ],
+      "latex": "\\left(y - \\left(0.5 + \\frac{\\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) - 2\\right) - 5\\right) + 6\\right)}{40}\\right)\\right) \\cdot \\left(y - 0.5\\right) \\cdot \\left(x - 0.5\\right) = 0",
+      "ast": [
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "binary",
+            "op": "*",
+            "left": {
+              "kind": "binary",
+              "op": "*",
+              "left": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "y",
+                  "location": {
+                    "offset": 1,
+                    "line": 1,
+                    "column": 2
+                  }
+                },
+                "right": {
+                  "kind": "binary",
+                  "op": "+",
+                  "left": {
+                    "kind": "number",
+                    "value": 0.5,
+                    "text": "0.5",
+                    "location": {
+                      "offset": 4,
+                      "line": 1,
+                      "column": 5
+                    }
+                  },
+                  "right": {
+                    "kind": "binary",
+                    "op": "/",
+                    "left": {
+                      "kind": "binary",
+                      "op": "+",
+                      "left": {
+                        "kind": "binary",
+                        "op": "*",
+                        "left": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "number",
+                              "value": 8,
+                              "text": "8",
+                              "location": {
+                                "offset": 10,
+                                "line": 1,
+                                "column": 11
+                              }
+                            },
+                            "right": {
+                              "kind": "variable",
+                              "name": "x",
+                              "location": {
+                                "offset": 12,
+                                "line": 1,
+                                "column": 13
+                              }
+                            },
+                            "location": {
+                              "offset": 11,
+                              "line": 1,
+                              "column": 12
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 4,
+                            "text": "4",
+                            "location": {
+                              "offset": 14,
+                              "line": 1,
+                              "column": 15
+                            }
+                          },
+                          "location": {
+                            "offset": 13,
+                            "line": 1,
+                            "column": 14
+                          }
+                        },
+                        "right": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "binary",
+                              "op": "-",
+                              "left": {
+                                "kind": "binary",
+                                "op": "*",
+                                "left": {
+                                  "kind": "number",
+                                  "value": 8,
+                                  "text": "8",
+                                  "location": {
+                                    "offset": 19,
+                                    "line": 1,
+                                    "column": 20
+                                  }
+                                },
+                                "right": {
+                                  "kind": "variable",
+                                  "name": "x",
+                                  "location": {
+                                    "offset": 21,
+                                    "line": 1,
+                                    "column": 22
+                                  }
+                                },
+                                "location": {
+                                  "offset": 20,
+                                  "line": 1,
+                                  "column": 21
+                                }
+                              },
+                              "right": {
+                                "kind": "number",
+                                "value": 4,
+                                "text": "4",
+                                "location": {
+                                  "offset": 23,
+                                  "line": 1,
+                                  "column": 24
+                                }
+                              },
+                              "location": {
+                                "offset": 22,
+                                "line": 1,
+                                "column": 23
+                              }
+                            },
+                            "right": {
+                              "kind": "binary",
+                              "op": "-",
+                              "left": {
+                                "kind": "binary",
+                                "op": "-",
+                                "left": {
+                                  "kind": "binary",
+                                  "op": "*",
+                                  "left": {
+                                    "kind": "number",
+                                    "value": 8,
+                                    "text": "8",
+                                    "location": {
+                                      "offset": 28,
+                                      "line": 1,
+                                      "column": 29
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "variable",
+                                    "name": "x",
+                                    "location": {
+                                      "offset": 30,
+                                      "line": 1,
+                                      "column": 31
+                                    }
+                                  },
+                                  "location": {
+                                    "offset": 29,
+                                    "line": 1,
+                                    "column": 30
+                                  }
+                                },
+                                "right": {
+                                  "kind": "number",
+                                  "value": 4,
+                                  "text": "4",
+                                  "location": {
+                                    "offset": 32,
+                                    "line": 1,
+                                    "column": 33
+                                  }
+                                },
+                                "location": {
+                                  "offset": 31,
+                                  "line": 1,
+                                  "column": 32
+                                }
+                              },
+                              "right": {
+                                "kind": "number",
+                                "value": 2,
+                                "text": "2",
+                                "location": {
+                                  "offset": 35,
+                                  "line": 1,
+                                  "column": 36
+                                }
+                              },
+                              "location": {
+                                "offset": 34,
+                                "line": 1,
+                                "column": 35
+                              }
+                            },
+                            "location": {
+                              "offset": 25,
+                              "line": 1,
+                              "column": 26
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 5,
+                            "text": "5",
+                            "location": {
+                              "offset": 38,
+                              "line": 1,
+                              "column": 39
+                            }
+                          },
+                          "location": {
+                            "offset": 37,
+                            "line": 1,
+                            "column": 38
+                          }
+                        },
+                        "location": {
+                          "offset": 16,
+                          "line": 1,
+                          "column": 17
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 6,
+                        "text": "6",
+                        "location": {
+                          "offset": 41,
+                          "line": 1,
+                          "column": 42
+                        }
+                      },
+                      "location": {
+                        "offset": 40,
+                        "line": 1,
+                        "column": 41
+                      }
+                    },
+                    "right": {
+                      "kind": "number",
+                      "value": 40,
+                      "text": "40",
+                      "location": {
+                        "offset": 44,
+                        "line": 1,
+                        "column": 45
+                      }
+                    },
+                    "location": {
+                      "offset": 43,
+                      "line": 1,
+                      "column": 44
+                    }
+                  },
+                  "location": {
+                    "offset": 7,
+                    "line": 1,
+                    "column": 8
+                  }
+                },
+                "location": {
+                  "offset": 2,
+                  "line": 1,
+                  "column": 3
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "y",
+                  "location": {
+                    "offset": 50,
+                    "line": 1,
+                    "column": 51
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 0.5,
+                  "text": "0.5",
+                  "location": {
+                    "offset": 52,
+                    "line": 1,
+                    "column": 53
+                  }
+                },
+                "location": {
+                  "offset": 51,
+                  "line": 1,
+                  "column": 52
+                }
+              },
+              "location": {
+                "offset": 48,
+                "line": 1,
+                "column": 49
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "-",
+              "left": {
+                "kind": "variable",
+                "name": "x",
+                "location": {
+                  "offset": 58,
+                  "line": 1,
+                  "column": 59
+                }
+              },
+              "right": {
+                "kind": "number",
+                "value": 0.5,
+                "text": "0.5",
+                "location": {
+                  "offset": 60,
+                  "line": 1,
+                  "column": 61
+                }
+              },
+              "location": {
+                "offset": 59,
+                "line": 1,
+                "column": 60
+              }
+            },
+            "location": {
+              "offset": 56,
+              "line": 1,
+              "column": 57
+            }
+          },
+          "right": {
+            "kind": "number",
+            "value": 0,
+            "text": "0",
+            "location": {
+              "offset": 65,
+              "line": 1,
+              "column": 66
+            }
+          },
+          "location": {
+            "offset": 64,
+            "line": 1,
+            "column": 65
+          }
+        }
+      ],
+      "variants": [
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "binary",
+              "op": "*",
+              "left": {
+                "kind": "binary",
+                "op": "*",
+                "left": {
+                  "kind": "binary",
+                  "op": "-",
+                  "left": {
+                    "kind": "variable",
+                    "name": "y",
+                    "location": {
+                      "offset": 1,
+                      "line": 1,
+                      "column": 2
+                    }
+                  },
+                  "right": {
+                    "kind": "binary",
+                    "op": "+",
+                    "left": {
+                      "kind": "number",
+                      "value": 0.5,
+                      "text": "0.5",
+                      "location": {
+                        "offset": 4,
+                        "line": 1,
+                        "column": 5
+                      }
+                    },
+                    "right": {
+                      "kind": "binary",
+                      "op": "/",
+                      "left": {
+                        "kind": "binary",
+                        "op": "+",
+                        "left": {
+                          "kind": "binary",
+                          "op": "*",
+                          "left": {
+                            "kind": "binary",
+                            "op": "-",
+                            "left": {
+                              "kind": "binary",
+                              "op": "*",
+                              "left": {
+                                "kind": "number",
+                                "value": 8,
+                                "text": "8",
+                                "location": {
+                                  "offset": 10,
+                                  "line": 1,
+                                  "column": 11
+                                }
+                              },
+                              "right": {
+                                "kind": "variable",
+                                "name": "x",
+                                "location": {
+                                  "offset": 12,
+                                  "line": 1,
+                                  "column": 13
+                                }
+                              },
+                              "location": {
+                                "offset": 11,
+                                "line": 1,
+                                "column": 12
+                              }
+                            },
+                            "right": {
+                              "kind": "number",
+                              "value": 4,
+                              "text": "4",
+                              "location": {
+                                "offset": 14,
+                                "line": 1,
+                                "column": 15
+                              }
+                            },
+                            "location": {
+                              "offset": 13,
+                              "line": 1,
+                              "column": 14
+                            }
+                          },
+                          "right": {
+                            "kind": "binary",
+                            "op": "-",
+                            "left": {
+                              "kind": "binary",
+                              "op": "*",
+                              "left": {
+                                "kind": "binary",
+                                "op": "-",
+                                "left": {
+                                  "kind": "binary",
+                                  "op": "*",
+                                  "left": {
+                                    "kind": "number",
+                                    "value": 8,
+                                    "text": "8",
+                                    "location": {
+                                      "offset": 19,
+                                      "line": 1,
+                                      "column": 20
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "variable",
+                                    "name": "x",
+                                    "location": {
+                                      "offset": 21,
+                                      "line": 1,
+                                      "column": 22
+                                    }
+                                  },
+                                  "location": {
+                                    "offset": 20,
+                                    "line": 1,
+                                    "column": 21
+                                  }
+                                },
+                                "right": {
+                                  "kind": "number",
+                                  "value": 4,
+                                  "text": "4",
+                                  "location": {
+                                    "offset": 23,
+                                    "line": 1,
+                                    "column": 24
+                                  }
+                                },
+                                "location": {
+                                  "offset": 22,
+                                  "line": 1,
+                                  "column": 23
+                                }
+                              },
+                              "right": {
+                                "kind": "binary",
+                                "op": "-",
+                                "left": {
+                                  "kind": "binary",
+                                  "op": "-",
+                                  "left": {
+                                    "kind": "binary",
+                                    "op": "*",
+                                    "left": {
+                                      "kind": "number",
+                                      "value": 8,
+                                      "text": "8",
+                                      "location": {
+                                        "offset": 28,
+                                        "line": 1,
+                                        "column": 29
+                                      }
+                                    },
+                                    "right": {
+                                      "kind": "variable",
+                                      "name": "x",
+                                      "location": {
+                                        "offset": 30,
+                                        "line": 1,
+                                        "column": 31
+                                      }
+                                    },
+                                    "location": {
+                                      "offset": 29,
+                                      "line": 1,
+                                      "column": 30
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "number",
+                                    "value": 4,
+                                    "text": "4",
+                                    "location": {
+                                      "offset": 32,
+                                      "line": 1,
+                                      "column": 33
+                                    }
+                                  },
+                                  "location": {
+                                    "offset": 31,
+                                    "line": 1,
+                                    "column": 32
+                                  }
+                                },
+                                "right": {
+                                  "kind": "number",
+                                  "value": 2,
+                                  "text": "2",
+                                  "location": {
+                                    "offset": 35,
+                                    "line": 1,
+                                    "column": 36
+                                  }
+                                },
+                                "location": {
+                                  "offset": 34,
+                                  "line": 1,
+                                  "column": 35
+                                }
+                              },
+                              "location": {
+                                "offset": 25,
+                                "line": 1,
+                                "column": 26
+                              }
+                            },
+                            "right": {
+                              "kind": "number",
+                              "value": 5,
+                              "text": "5",
+                              "location": {
+                                "offset": 38,
+                                "line": 1,
+                                "column": 39
+                              }
+                            },
+                            "location": {
+                              "offset": 37,
+                              "line": 1,
+                              "column": 38
+                            }
+                          },
+                          "location": {
+                            "offset": 16,
+                            "line": 1,
+                            "column": 17
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 6,
+                          "text": "6",
+                          "location": {
+                            "offset": 41,
+                            "line": 1,
+                            "column": 42
+                          }
+                        },
+                        "location": {
+                          "offset": 40,
+                          "line": 1,
+                          "column": 41
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 40,
+                        "text": "40",
+                        "location": {
+                          "offset": 44,
+                          "line": 1,
+                          "column": 45
+                        }
+                      },
+                      "location": {
+                        "offset": 43,
+                        "line": 1,
+                        "column": 44
+                      }
+                    },
+                    "location": {
+                      "offset": 7,
+                      "line": 1,
+                      "column": 8
+                    }
+                  },
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                "right": {
+                  "kind": "binary",
+                  "op": "-",
+                  "left": {
+                    "kind": "variable",
+                    "name": "y",
+                    "location": {
+                      "offset": 50,
+                      "line": 1,
+                      "column": 51
+                    }
+                  },
+                  "right": {
+                    "kind": "number",
+                    "value": 0.5,
+                    "text": "0.5",
+                    "location": {
+                      "offset": 52,
+                      "line": 1,
+                      "column": 53
+                    }
+                  },
+                  "location": {
+                    "offset": 51,
+                    "line": 1,
+                    "column": 52
+                  }
+                },
+                "location": {
+                  "offset": 48,
+                  "line": 1,
+                  "column": 49
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "x",
+                  "location": {
+                    "offset": 58,
+                    "line": 1,
+                    "column": 59
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 0.5,
+                  "text": "0.5",
+                  "location": {
+                    "offset": 60,
+                    "line": 1,
+                    "column": 61
+                  }
+                },
+                "location": {
+                  "offset": 59,
+                  "line": 1,
+                  "column": 60
+                }
+              },
+              "location": {
+                "offset": 56,
+                "line": 1,
+                "column": 57
+              }
+            },
+            "right": {
+              "kind": "number",
+              "value": 0,
+              "text": "0",
+              "location": {
+                "offset": 65,
+                "line": 1,
+                "column": 66
+              }
+            },
+            "location": {
+              "offset": 64,
+              "line": 1,
+              "column": 65
+            }
+          }
+        ]
+      ],
+      "factorCount": 3,
+      "distanceMode": "explicit",
+      "crossings": [
+        {
+          "x": 240,
+          "y": 240,
+          "rgba": [
+            230,
+            230,
+            230,
+            255
+          ],
+          "neighbor": 3464
+        },
+        {
+          "x": 290,
+          "y": 240,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 3782
+        },
+        {
+          "x": 240,
+          "y": 180,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 3679
+        }
+      ],
+      "domainProbe": [
+        230,
+        230,
+        230,
+        255
+      ],
+      "pixelHash": "deba805e9bd3bac836100a58898948a45f8a49df4fb8f1af3e04de501e574697"
+    },
+    "separate": {
+      "source": "y=0.5+((8*x-4)*((8*x-4)*((8*x-4)-2)-5)+6)/40\ny=0.5\nx=0.5",
+      "backend": "webgpu",
+      "classification": [
+        "implicit-curve",
+        "implicit-curve",
+        "implicit-curve"
+      ],
+      "latex": "y = 0.5 + \\frac{\\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) \\cdot \\left(\\left(8 \\cdot x - 4\\right) - 2\\right) - 5\\right) + 6\\right)}{40}",
+      "ast": [
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "variable",
+            "name": "y",
+            "location": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            }
+          },
+          "right": {
+            "kind": "binary",
+            "op": "+",
+            "left": {
+              "kind": "number",
+              "value": 0.5,
+              "text": "0.5",
+              "location": {
+                "offset": 2,
+                "line": 1,
+                "column": 3
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "/",
+              "left": {
+                "kind": "binary",
+                "op": "+",
+                "left": {
+                  "kind": "binary",
+                  "op": "*",
+                  "left": {
+                    "kind": "binary",
+                    "op": "-",
+                    "left": {
+                      "kind": "binary",
+                      "op": "*",
+                      "left": {
+                        "kind": "number",
+                        "value": 8,
+                        "text": "8",
+                        "location": {
+                          "offset": 8,
+                          "line": 1,
+                          "column": 9
+                        }
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x",
+                        "location": {
+                          "offset": 10,
+                          "line": 1,
+                          "column": 11
+                        }
+                      },
+                      "location": {
+                        "offset": 9,
+                        "line": 1,
+                        "column": 10
+                      }
+                    },
+                    "right": {
+                      "kind": "number",
+                      "value": 4,
+                      "text": "4",
+                      "location": {
+                        "offset": 12,
+                        "line": 1,
+                        "column": 13
+                      }
+                    },
+                    "location": {
+                      "offset": 11,
+                      "line": 1,
+                      "column": 12
+                    }
+                  },
+                  "right": {
+                    "kind": "binary",
+                    "op": "-",
+                    "left": {
+                      "kind": "binary",
+                      "op": "*",
+                      "left": {
+                        "kind": "binary",
+                        "op": "-",
+                        "left": {
+                          "kind": "binary",
+                          "op": "*",
+                          "left": {
+                            "kind": "number",
+                            "value": 8,
+                            "text": "8",
+                            "location": {
+                              "offset": 17,
+                              "line": 1,
+                              "column": 18
+                            }
+                          },
+                          "right": {
+                            "kind": "variable",
+                            "name": "x",
+                            "location": {
+                              "offset": 19,
+                              "line": 1,
+                              "column": 20
+                            }
+                          },
+                          "location": {
+                            "offset": 18,
+                            "line": 1,
+                            "column": 19
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 4,
+                          "text": "4",
+                          "location": {
+                            "offset": 21,
+                            "line": 1,
+                            "column": 22
+                          }
+                        },
+                        "location": {
+                          "offset": 20,
+                          "line": 1,
+                          "column": 21
+                        }
+                      },
+                      "right": {
+                        "kind": "binary",
+                        "op": "-",
+                        "left": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "number",
+                              "value": 8,
+                              "text": "8",
+                              "location": {
+                                "offset": 26,
+                                "line": 1,
+                                "column": 27
+                              }
+                            },
+                            "right": {
+                              "kind": "variable",
+                              "name": "x",
+                              "location": {
+                                "offset": 28,
+                                "line": 1,
+                                "column": 29
+                              }
+                            },
+                            "location": {
+                              "offset": 27,
+                              "line": 1,
+                              "column": 28
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 4,
+                            "text": "4",
+                            "location": {
+                              "offset": 30,
+                              "line": 1,
+                              "column": 31
+                            }
+                          },
+                          "location": {
+                            "offset": 29,
+                            "line": 1,
+                            "column": 30
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 2,
+                          "text": "2",
+                          "location": {
+                            "offset": 33,
+                            "line": 1,
+                            "column": 34
+                          }
+                        },
+                        "location": {
+                          "offset": 32,
+                          "line": 1,
+                          "column": 33
+                        }
+                      },
+                      "location": {
+                        "offset": 23,
+                        "line": 1,
+                        "column": 24
+                      }
+                    },
+                    "right": {
+                      "kind": "number",
+                      "value": 5,
+                      "text": "5",
+                      "location": {
+                        "offset": 36,
+                        "line": 1,
+                        "column": 37
+                      }
+                    },
+                    "location": {
+                      "offset": 35,
+                      "line": 1,
+                      "column": 36
+                    }
+                  },
+                  "location": {
+                    "offset": 14,
+                    "line": 1,
+                    "column": 15
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 6,
+                  "text": "6",
+                  "location": {
+                    "offset": 39,
+                    "line": 1,
+                    "column": 40
+                  }
+                },
+                "location": {
+                  "offset": 38,
+                  "line": 1,
+                  "column": 39
+                }
+              },
+              "right": {
+                "kind": "number",
+                "value": 40,
+                "text": "40",
+                "location": {
+                  "offset": 42,
+                  "line": 1,
+                  "column": 43
+                }
+              },
+              "location": {
+                "offset": 41,
+                "line": 1,
+                "column": 42
+              }
+            },
+            "location": {
+              "offset": 5,
+              "line": 1,
+              "column": 6
+            }
+          },
+          "location": {
+            "offset": 1,
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "variable",
+            "name": "y",
+            "location": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            }
+          },
+          "right": {
+            "kind": "number",
+            "value": 0.5,
+            "text": "0.5",
+            "location": {
+              "offset": 2,
+              "line": 1,
+              "column": 3
+            }
+          },
+          "location": {
+            "offset": 1,
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "variable",
+            "name": "x",
+            "location": {
+              "offset": 0,
+              "line": 1,
+              "column": 1
+            }
+          },
+          "right": {
+            "kind": "number",
+            "value": 0.5,
+            "text": "0.5",
+            "location": {
+              "offset": 2,
+              "line": 1,
+              "column": 3
+            }
+          },
+          "location": {
+            "offset": 1,
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "variants": [
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "variable",
+              "name": "y",
+              "location": {
+                "offset": 0,
+                "line": 1,
+                "column": 1
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "+",
+              "left": {
+                "kind": "number",
+                "value": 0.5,
+                "text": "0.5",
+                "location": {
+                  "offset": 2,
+                  "line": 1,
+                  "column": 3
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "/",
+                "left": {
+                  "kind": "binary",
+                  "op": "+",
+                  "left": {
+                    "kind": "binary",
+                    "op": "*",
+                    "left": {
+                      "kind": "binary",
+                      "op": "-",
+                      "left": {
+                        "kind": "binary",
+                        "op": "*",
+                        "left": {
+                          "kind": "number",
+                          "value": 8,
+                          "text": "8",
+                          "location": {
+                            "offset": 8,
+                            "line": 1,
+                            "column": 9
+                          }
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x",
+                          "location": {
+                            "offset": 10,
+                            "line": 1,
+                            "column": 11
+                          }
+                        },
+                        "location": {
+                          "offset": 9,
+                          "line": 1,
+                          "column": 10
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 4,
+                        "text": "4",
+                        "location": {
+                          "offset": 12,
+                          "line": 1,
+                          "column": 13
+                        }
+                      },
+                      "location": {
+                        "offset": 11,
+                        "line": 1,
+                        "column": 12
+                      }
+                    },
+                    "right": {
+                      "kind": "binary",
+                      "op": "-",
+                      "left": {
+                        "kind": "binary",
+                        "op": "*",
+                        "left": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "*",
+                            "left": {
+                              "kind": "number",
+                              "value": 8,
+                              "text": "8",
+                              "location": {
+                                "offset": 17,
+                                "line": 1,
+                                "column": 18
+                              }
+                            },
+                            "right": {
+                              "kind": "variable",
+                              "name": "x",
+                              "location": {
+                                "offset": 19,
+                                "line": 1,
+                                "column": 20
+                              }
+                            },
+                            "location": {
+                              "offset": 18,
+                              "line": 1,
+                              "column": 19
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 4,
+                            "text": "4",
+                            "location": {
+                              "offset": 21,
+                              "line": 1,
+                              "column": 22
+                            }
+                          },
+                          "location": {
+                            "offset": 20,
+                            "line": 1,
+                            "column": 21
+                          }
+                        },
+                        "right": {
+                          "kind": "binary",
+                          "op": "-",
+                          "left": {
+                            "kind": "binary",
+                            "op": "-",
+                            "left": {
+                              "kind": "binary",
+                              "op": "*",
+                              "left": {
+                                "kind": "number",
+                                "value": 8,
+                                "text": "8",
+                                "location": {
+                                  "offset": 26,
+                                  "line": 1,
+                                  "column": 27
+                                }
+                              },
+                              "right": {
+                                "kind": "variable",
+                                "name": "x",
+                                "location": {
+                                  "offset": 28,
+                                  "line": 1,
+                                  "column": 29
+                                }
+                              },
+                              "location": {
+                                "offset": 27,
+                                "line": 1,
+                                "column": 28
+                              }
+                            },
+                            "right": {
+                              "kind": "number",
+                              "value": 4,
+                              "text": "4",
+                              "location": {
+                                "offset": 30,
+                                "line": 1,
+                                "column": 31
+                              }
+                            },
+                            "location": {
+                              "offset": 29,
+                              "line": 1,
+                              "column": 30
+                            }
+                          },
+                          "right": {
+                            "kind": "number",
+                            "value": 2,
+                            "text": "2",
+                            "location": {
+                              "offset": 33,
+                              "line": 1,
+                              "column": 34
+                            }
+                          },
+                          "location": {
+                            "offset": 32,
+                            "line": 1,
+                            "column": 33
+                          }
+                        },
+                        "location": {
+                          "offset": 23,
+                          "line": 1,
+                          "column": 24
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 5,
+                        "text": "5",
+                        "location": {
+                          "offset": 36,
+                          "line": 1,
+                          "column": 37
+                        }
+                      },
+                      "location": {
+                        "offset": 35,
+                        "line": 1,
+                        "column": 36
+                      }
+                    },
+                    "location": {
+                      "offset": 14,
+                      "line": 1,
+                      "column": 15
+                    }
+                  },
+                  "right": {
+                    "kind": "number",
+                    "value": 6,
+                    "text": "6",
+                    "location": {
+                      "offset": 39,
+                      "line": 1,
+                      "column": 40
+                    }
+                  },
+                  "location": {
+                    "offset": 38,
+                    "line": 1,
+                    "column": 39
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 40,
+                  "text": "40",
+                  "location": {
+                    "offset": 42,
+                    "line": 1,
+                    "column": 43
+                  }
+                },
+                "location": {
+                  "offset": 41,
+                  "line": 1,
+                  "column": 42
+                }
+              },
+              "location": {
+                "offset": 5,
+                "line": 1,
+                "column": 6
+              }
+            },
+            "location": {
+              "offset": 1,
+              "line": 1,
+              "column": 2
+            }
+          }
+        ],
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "variable",
+              "name": "y",
+              "location": {
+                "offset": 0,
+                "line": 1,
+                "column": 1
+              }
+            },
+            "right": {
+              "kind": "number",
+              "value": 0.5,
+              "text": "0.5",
+              "location": {
+                "offset": 2,
+                "line": 1,
+                "column": 3
+              }
+            },
+            "location": {
+              "offset": 1,
+              "line": 1,
+              "column": 2
+            }
+          }
+        ],
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "variable",
+              "name": "x",
+              "location": {
+                "offset": 0,
+                "line": 1,
+                "column": 1
+              }
+            },
+            "right": {
+              "kind": "number",
+              "value": 0.5,
+              "text": "0.5",
+              "location": {
+                "offset": 2,
+                "line": 1,
+                "column": 3
+              }
+            },
+            "location": {
+              "offset": 1,
+              "line": 1,
+              "column": 2
+            }
+          }
+        ]
+      ],
+      "factorCount": 0,
+      "distanceMode": "implicit",
+      "crossings": [
+        {
+          "x": 240,
+          "y": 240,
+          "rgba": [
+            230,
+            230,
+            230,
+            255
+          ],
+          "neighbor": 4115
+        },
+        {
+          "x": 290,
+          "y": 240,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 3837
+        },
+        {
+          "x": 240,
+          "y": 180,
+          "rgba": [
+            229,
+            229,
+            229,
+            255
+          ],
+          "neighbor": 3656
+        }
+      ],
+      "domainProbe": [
+        194,
+        194,
+        194,
+        255
+      ],
+      "pixelHash": "0e82a814051ae5b12bdf54e6a0e448eaac892581feccf6d2bfdfcc42a92ab2b6"
+    },
+    "domain": {
+      "source": "(y-sqrt(x-0.5))*(y-0.5)*(x-0.5)=0",
+      "backend": "webgpu",
+      "classification": [
+        "implicit-curve"
+      ],
+      "latex": "\\left(y - \\sqrt{x - 0.5}\\right) \\cdot \\left(y - 0.5\\right) \\cdot \\left(x - 0.5\\right) = 0",
+      "ast": [
+        {
+          "kind": "binary",
+          "op": "=",
+          "left": {
+            "kind": "binary",
+            "op": "*",
+            "left": {
+              "kind": "binary",
+              "op": "*",
+              "left": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "y",
+                  "location": {
+                    "offset": 1,
+                    "line": 1,
+                    "column": 2
+                  }
+                },
+                "right": {
+                  "kind": "call",
+                  "name": "sqrt",
+                  "args": [
+                    {
+                      "kind": "binary",
+                      "op": "-",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x",
+                        "location": {
+                          "offset": 8,
+                          "line": 1,
+                          "column": 9
+                        }
+                      },
+                      "right": {
+                        "kind": "number",
+                        "value": 0.5,
+                        "text": "0.5",
+                        "location": {
+                          "offset": 10,
+                          "line": 1,
+                          "column": 11
+                        }
+                      },
+                      "location": {
+                        "offset": 9,
+                        "line": 1,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "location": {
+                    "offset": 3,
+                    "line": 1,
+                    "column": 4
+                  }
+                },
+                "location": {
+                  "offset": 2,
+                  "line": 1,
+                  "column": 3
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "y",
+                  "location": {
+                    "offset": 17,
+                    "line": 1,
+                    "column": 18
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 0.5,
+                  "text": "0.5",
+                  "location": {
+                    "offset": 19,
+                    "line": 1,
+                    "column": 20
+                  }
+                },
+                "location": {
+                  "offset": 18,
+                  "line": 1,
+                  "column": 19
+                }
+              },
+              "location": {
+                "offset": 15,
+                "line": 1,
+                "column": 16
+              }
+            },
+            "right": {
+              "kind": "binary",
+              "op": "-",
+              "left": {
+                "kind": "variable",
+                "name": "x",
+                "location": {
+                  "offset": 25,
+                  "line": 1,
+                  "column": 26
+                }
+              },
+              "right": {
+                "kind": "number",
+                "value": 0.5,
+                "text": "0.5",
+                "location": {
+                  "offset": 27,
+                  "line": 1,
+                  "column": 28
+                }
+              },
+              "location": {
+                "offset": 26,
+                "line": 1,
+                "column": 27
+              }
+            },
+            "location": {
+              "offset": 23,
+              "line": 1,
+              "column": 24
+            }
+          },
+          "right": {
+            "kind": "number",
+            "value": 0,
+            "text": "0",
+            "location": {
+              "offset": 32,
+              "line": 1,
+              "column": 33
+            }
+          },
+          "location": {
+            "offset": 31,
+            "line": 1,
+            "column": 32
+          }
+        }
+      ],
+      "variants": [
+        [
+          {
+            "kind": "binary",
+            "op": "=",
+            "left": {
+              "kind": "binary",
+              "op": "*",
+              "left": {
+                "kind": "binary",
+                "op": "*",
+                "left": {
+                  "kind": "binary",
+                  "op": "-",
+                  "left": {
+                    "kind": "variable",
+                    "name": "y",
+                    "location": {
+                      "offset": 1,
+                      "line": 1,
+                      "column": 2
+                    }
+                  },
+                  "right": {
+                    "kind": "call",
+                    "name": "sqrt",
+                    "args": [
+                      {
+                        "kind": "binary",
+                        "op": "-",
+                        "left": {
+                          "kind": "variable",
+                          "name": "x",
+                          "location": {
+                            "offset": 8,
+                            "line": 1,
+                            "column": 9
+                          }
+                        },
+                        "right": {
+                          "kind": "number",
+                          "value": 0.5,
+                          "text": "0.5",
+                          "location": {
+                            "offset": 10,
+                            "line": 1,
+                            "column": 11
+                          }
+                        },
+                        "location": {
+                          "offset": 9,
+                          "line": 1,
+                          "column": 10
+                        }
+                      }
+                    ],
+                    "location": {
+                      "offset": 3,
+                      "line": 1,
+                      "column": 4
+                    }
+                  },
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                "right": {
+                  "kind": "binary",
+                  "op": "-",
+                  "left": {
+                    "kind": "variable",
+                    "name": "y",
+                    "location": {
+                      "offset": 17,
+                      "line": 1,
+                      "column": 18
+                    }
+                  },
+                  "right": {
+                    "kind": "number",
+                    "value": 0.5,
+                    "text": "0.5",
+                    "location": {
+                      "offset": 19,
+                      "line": 1,
+                      "column": 20
+                    }
+                  },
+                  "location": {
+                    "offset": 18,
+                    "line": 1,
+                    "column": 19
+                  }
+                },
+                "location": {
+                  "offset": 15,
+                  "line": 1,
+                  "column": 16
+                }
+              },
+              "right": {
+                "kind": "binary",
+                "op": "-",
+                "left": {
+                  "kind": "variable",
+                  "name": "x",
+                  "location": {
+                    "offset": 25,
+                    "line": 1,
+                    "column": 26
+                  }
+                },
+                "right": {
+                  "kind": "number",
+                  "value": 0.5,
+                  "text": "0.5",
+                  "location": {
+                    "offset": 27,
+                    "line": 1,
+                    "column": 28
+                  }
+                },
+                "location": {
+                  "offset": 26,
+                  "line": 1,
+                  "column": 27
+                }
+              },
+              "location": {
+                "offset": 23,
+                "line": 1,
+                "column": 24
+              }
+            },
+            "right": {
+              "kind": "number",
+              "value": 0,
+              "text": "0",
+              "location": {
+                "offset": 32,
+                "line": 1,
+                "column": 33
+              }
+            },
+            "location": {
+              "offset": 31,
+              "line": 1,
+              "column": 32
+            }
+          }
+        ]
+      ],
+      "factorCount": 0,
+      "distanceMode": "implicit",
+      "crossings": [
+        {
+          "x": 240,
+          "y": 240,
+          "rgba": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "neighbor": 3220
+        },
+        {
+          "x": 290,
+          "y": 240,
+          "rgba": [
+            194,
+            194,
+            194,
+            255
+          ],
+          "neighbor": 2300
+        },
+        {
+          "x": 240,
+          "y": 180,
+          "rgba": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "neighbor": 2300
+        }
+      ],
+      "domainProbe": [
+        230,
+        230,
+        230,
+        255
+      ],
+      "pixelHash": "71043424a5fe5603284c042ab86fc7a352335713f27c39494d9957f4d3246851"
+    }
+  },
+  "errors": [],
+  "scope": "same native AST/compiler/controller/GPU; productzero union only total-real explicit factors; domain-sensitive expressions unchanged"
+}

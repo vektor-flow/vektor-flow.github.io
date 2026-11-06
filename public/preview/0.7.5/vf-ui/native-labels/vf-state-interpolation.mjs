@@ -19,11 +19,18 @@ const middle=b=>[(b[0]+b[2])/2,(b[1]+b[3])/2];
 const signature=s=>JSON.stringify(s.physicalIdentity??s.commands);
 function objects(sources){return sources.map(s=>{const rings=nativeOutlineRings(s.commands,s.matrix,{tolerance:.025});return {...s,rings,bounds:bounds(rings)};});}
 const groupList=(sources,types)=>sources.flatMap((s,i)=>[types.get(signature(s)),i,1]);
-function cohorts(from,to,kernel){
+function cohorts(from,to,kernel,lockExact=true){
  const a=objects(from),b=objects(to),types=new Map();[...a,...b].forEach(s=>{const key=signature(s);if(!types.has(key))types.set(key,types.size+1);});
  const costs=a.flatMap(x=>b.map(y=>{const p=middle(x.bounds),q=middle(y.bounds);return (p[0]-q[0])**2+(p[1]-q[1])**2;}));
  const match=kernel.invokeValue('reserve_groups',[a.length,b.length,groupList(a,types),groupList(b,types),costs]);
  const used=new Set(match.filter(i=>i>=0)),left=a.map((_,i)=>i).filter(i=>match[i]<0),right=b.map((_,i)=>i).filter(i=>!used.has(i));
+ // Keep the native exact physical matches independent when residual matter has
+ // endpoints on both sides. Surplus residuals cannot recruit a locked glyph.
+ // A one-sided residual still needs existing split/merge donors.
+ if(lockExact&&left.length&&right.length&&used.size){
+  const exact=match.flatMap((j,i)=>j<0?[]:[{a:[a[i]],b:[b[j]],edges:[[0,0]]}]);
+  return [...exact,...cohorts(left.map(i=>a[i]),right.map(j=>b[j]),kernel,false)];
+ }
  if(left.length&&right.length){const m=kernel.invokeValue('reserve_groups',[left.length,right.length,left.flatMap((_,i)=>[1,i,1]),right.flatMap((_,i)=>[1,i,1]),left.flatMap(i=>right.map(j=>costs[i*b.length+j]))]);m.forEach((j,i)=>{if(j>=0){match[left[i]]=right[j];used.add(right[j]);}});}
  const edges=match.flatMap((j,i)=>j<0?[]:[[i,j]]);
  const nearest=(values)=>kernel.invokeValue('reserve_groups',[1,values.length,[1,0,1],values.flatMap((_,i)=>[1,i,1]),values])[0];

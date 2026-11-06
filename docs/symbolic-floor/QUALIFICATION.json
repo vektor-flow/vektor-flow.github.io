@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "date": "2026-11-06",
+  "shaderCommit": "afd3bbbd067774b5fd4ac376c6ced4411d675cf1",
+  "shaderPath": "public/preview/0.7.5/vf-ui/geom/vf-symbolic-relation-shader.mjs",
+  "shaderSha256": "1a3cef1910ede3911069951b61741ff050a29f195c30ab79a7a3cfa219728543",
+  "red": "Before the fix, floor(x) scalar and explicit-curve compilation both returned null.",
+  "pure": {
+    "command": "node tests/symbolic-floor/test.mjs",
+    "testSha256": "6d873338ec9f56c9fef6f99d261a06dcd48122e8ec620be4a77854a04132386c",
+    "numericCases": 20,
+    "coverage": [
+      "GLSL and WGSL scalar/relation emission",
+      "x and y explicit-curve first/second piecewise jets",
+      "negative and positive operands",
+      "time-only floor with exactly zero spatial derivatives",
+      "invalid arity and unsupported variable refusal"
+    ],
+    "existingRegression": "node tests/symbolic-exp/shader.mjs PASS"
+  },
+  "parentBrowserEvidence": {
+    "kind": "Root-owned actual-browser native controller initialization and time-uniform updates; inspected read-only",
+    "script": "/tmp/pp-qualify-live-native.cjs",
+    "scriptSha256": "5a17ec65f9992ca694c498816cace16ecb99cf37aff9dd3645db00d926cfb9d1",
+    "receipt": "/tmp/pp-live-native-time-proof.json",
+    "receiptSha256": "324de7b48c0c7c31d0a74acf2863596a3671631d096c0f80cc8014855c6f6667",
+    "viewport": [1280, 720],
+    "source": "y=a*x^3+b*x^2+c*x+d",
+    "timeUniformUpdatesMs": [0, 10, 20, 500, 1000, 1010, 2000],
+    "allNativeUpdatesAccepted": true,
+    "expectedDValues": [6, 6.01, 6.02, 6.5, 7, 6.99, 6],
+    "updateCallMsRange": [0, 0.4],
+    "qualificationBoundary": "The retained parent receipt records successful controller.updateTime calls and host-expected coefficient values. It does not contain GPU readback pixels or an explicit backend identity; it is not a decoded-pixel or 100Hz end-to-end throughput proof."
+  },
+  "limitations": [
+    "floor derivatives are zero only between integer crossings; derivatives at jumps are undefined.",
+    "No complex-valued floor support is introduced.",
+    "No native numeric-table binding or layout-performance claim is made."
+  ]
+}

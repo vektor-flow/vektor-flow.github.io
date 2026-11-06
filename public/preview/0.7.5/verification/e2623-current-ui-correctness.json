@@ -1,0 +1,86 @@
+{
+  "owner": "e2623",
+  "status": "SCOPED_CURRENT_UI_RESULTS_FULL_STABLE_RELEASE_BLOCKED",
+  "candidate": {
+    "actor": "svenviktorjonsson",
+    "permissions": {
+      "default_branch": "main",
+      "full_name": "vektor-flow/vektor-flow.github.io",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      }
+    },
+    "head": "f374cbb94736cf37c2d678376263396b4db840b7",
+    "pins": {
+      "preview/0.7.5/vf-ui/vf-display.js": {
+        "bytes": 715887,
+        "sha256": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026"
+      },
+      "preview/0.7.5/CURRENT-COMPOSITION.json": {
+        "bytes": 11523,
+        "sha256": "9a723d9bf01d148768b69dc8247d748a129311e83484ed36a5225019e694c83d"
+      }
+    },
+    "patchApplied": true
+  },
+  "results": [
+    {
+      "path": "verification/e2623-current-static5m-fixed-result.json",
+      "status": "FAIL_CURRENT_EXACT5M",
+      "bytes": 20630,
+      "sha256": "cd77a5cca5e1a0717f882efe49b7f776507ff181b3cf7604acbfd0798fcfa2d6"
+    },
+    {
+      "path": "verification/e2623-current-small-sin-result.json",
+      "status": "CURRENT_SMALL_SIN_COMPLETE",
+      "bytes": 66779,
+      "sha256": "5c4f6affdee37004b90bfd2b755d0531d74a3fdb70da3f2ba96d3aff2ae6f9e0"
+    },
+    {
+      "path": "verification/e2623-current-original10000-normal-result.json",
+      "status": "CURRENT_ORIGINAL10000_COMPLETE",
+      "bytes": 1306656,
+      "sha256": "48f7deedd18271418b2e61a81aab80dcd66c7db423f28ca497ec36e6147f2ee8"
+    },
+    {
+      "path": "verification/e2623-hosted-current-focused-review.json",
+      "status": "PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS",
+      "bytes": 49337,
+      "sha256": "196718ee65978c649074cb8695c1e83834f1b8cf27070961bfbcd1a5d49a142a"
+    },
+    {
+      "path": "verification/e2623-original-failure-current-small-sin-result.json",
+      "status": "FAIL_CURRENT_SMALL_SIN",
+      "bytes": 27016,
+      "sha256": "000d6527ad525187601e174ecb80816cf1062801e31e2423d2b9ac904327a558"
+    }
+  ],
+  "first5MFailurePreserved": true,
+  "fiveMillion": "std::bad_alloc before packet; no renderer/GPU/count/readback acceptance",
+  "smallSin": "Full1025 unprimed/repeat/edit numerical and actual Canvas2D draw/readback/changed hashes passed; known completed native-label WebGL2 overlay distinguished from geometry; original stale helper failure retained",
+  "original10000": "Full10000labels/200genuine layouts/35100ordered outlines/30views/AA16/two colors/ownership passed after reviewed completed-GPU assertion correction",
+  "helperCorrection": {
+    "path": "verification/e2623-small-sin-current-overlay-correction.patch",
+    "bytes": 3026,
+    "sha256": "d1adb744e2e01581e3d848b9b4c7d9fdc3d1a4f9d2fa9171766e2d41fa9f9781"
+  },
+  "stableReleaseQualified": false,
+  "physicalGPUQualified": false,
+  "benchmark": {
+    "acceptedCurrentMatchedTimingBundle": null,
+    "comparativeBenchmarksQualified": false,
+    "numericComparisonPublished": false,
+    "reason": "No accepted matched current input/correctness/preflight/parity timing bundle. Existing report.py requires genuine inputs; no measurements or peers invented. Historical149998TLC is failed partial, not1M."
+  },
+  "priorArchiveSecurity": "Exact5108325B db807a46 accepted12; reused unchanged; no repack/retest",
+  "limits": [
+    "5M allocation failure blocks full current UI075 stability",
+    "PhoneEX06 legibility and deployed fullEX05/EX06 remain unqualified",
+    "No broad compiler/nativeSDK/fullplatform qualification"
+  ],
+  "atMonotonic": 885287.604609192
+}

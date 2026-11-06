@@ -305,3 +305,14 @@ import/security only. Preserve its pending metadata and tested archive bytes. Th
 df9 Linux archive retains its historical scope; ee417 archive and records stay intact.
 This source patch still requires affected page/download checks and manifest refresh
 before the existing Pages workflow; it supplies no current scale/stable UI PASS.
+
+## Current UI correctness (2026-11-06, e2623)
+
+The existing full small-sin and original-10000 controls passed on the current
+renderer. The original 5,000,000-point request failed with `std::bad_alloc` before
+a retained packet; no 5M GPU or rendering result is qualified. The maintained
+10000-label control now requires the actual completed WebGL endpoint. Raw current
+results and the preserved original helper failure are in
+`public/preview/0.7.5/verification/e2623-current-ui-correctness.json`.
+Full stable 0.7.5 qualification remains blocked. No matched current timing bundle
+is available, so comparative benchmark numbers remain unpublished.

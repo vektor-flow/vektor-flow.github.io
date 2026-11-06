@@ -17,7 +17,7 @@ export async function originalLabels() {
   VfDisplay.renderFromJson({geom:{[id]:{meshes:[],texts:[],native_labels:{specs,camera:cameras[0]}}}});
   let status=VfDisplay.nativeLabelFrameStatus(id);need(status?.ready,'NORMAL_LABEL_READY');
   try {await status.ready;} finally {report.producerResults=engine.results;await phase({phase:'CURRENT_PRODUCER_AND_FIRST_RENDER_OBSERVED',statistics:VfDisplay.nativeLabelFrameStatus(id)?.statistics});}
-  status=VfDisplay.nativeLabelFrameStatus(id);need(status.statistics.status==='SUBMITTED_COMPLETION_UNMEASURED','CURRENT_RENDER_SUBMISSION:'+JSON.stringify(status.statistics));
+  status=VfDisplay.nativeLabelFrameStatus(id);need(status.statistics.status==='GPU_COMPLETED'&&status.statistics.completion?.status==='GPU_COMPLETED'&&status.statistics.completion?.endpoint==='webgl-commands-completed','CURRENT_RENDER_COMPLETION:'+JSON.stringify(status.statistics));
   need(engine.results.length===200&&sources.every(s=>engine.results.some(r=>r.source===s&&r.box.complete&&!r.box.diagnostics.length)),'ALL_200_CURRENT_GENUINE_WASM_LAYOUTS');
   const boxes=Object.fromEntries(engine.results.map(r=>[r.source,r.box]));
   const numeric=(a,b)=>typeof a==='number'&&typeof b==='number'&&Math.abs(a-b)<=1e-10*Math.max(1,Math.abs(a),Math.abs(b));

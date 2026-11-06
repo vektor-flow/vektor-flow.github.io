@@ -22,6 +22,8 @@ if preview.exists():
   m['source']='Current named integer capture, retained overlay ownership, colored3x2 output/edit/navigation and extracted Node/native CLI package controls only. Full authored EX01 execution, native ABI2 scenes, all requested features and physical GPU/fullframe timing remain open. Exact scope is current_focused_distribution; this inventory supplies no additional qualification.'
  if compiler.get('current_normal_ex01'):
   m['source']='Current named full3035 numerical/local geometry, shared renderer lighting component, focused required-label normal UI and extracted Node/package checks. Native/deployed fullscene, newf35, full SDK/ABI2/allfeatures and physicalGPU/fullframe timing remain explicitly unqualified in current_normal_ex01.'
+ if compiler.get('scoped_release', {}).get('stable') is True:
+  m['source']='Stable 0.7.5 ordinary UI/retained plotting and Node ESM console scope only. Exact qualification, delivered runtime identities and explicit limits are in scoped_release; broad language/platform, native SDK, physical GPU and comparative timing remain unqualified.'
  m['source_sha256_meaning']='Retained per-row source_sha256 values describe historical source inputs; sha256 describes the current deployed bytes.'
  previous={r['path']:r for r in m['files']};rows=[]
  for f in sorted(preview.rglob('*')):

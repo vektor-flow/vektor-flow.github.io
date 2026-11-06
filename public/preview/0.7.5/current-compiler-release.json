@@ -8,7 +8,7 @@
   "stable": false,
   "stable_release": false,
   "release_qualified": false,
-  "qualification": "Fresh bounded full authored EX05/EX06 normal output/navigation and focused website controls. Full physics/graphics/science/native runtime and comparative timing unqualified. Software SwiftShader is not physical GPU. Phone label legibility remains unqualified.",
+  "qualification": "Stable 0.7.5 within scoped_release only: tested current ordinary UI/plotting correctness, hosted Run/edit/presentation and exact Node/WASM console package. Current exact runtime and archive delivery verified at e9d9dfc before this metadata-only qualification. Full language/platform, native SDK/ABI2, phone EX06 legibility, deployed full scenes, physical GPU and comparative timings remain unqualified.",
   "compiler_source_commit": "f2b985583d585f8362b9c176629d1cea99a54677",
   "compiler_source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "release_source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
@@ -782,9 +782,9 @@
     "sha256": "9c31f2930c0e9e2d03f51ab2f40960b9a4580c7f0870ff23e7795dbfba7f7fe5"
   },
   "current_review_site_evidence": {
-    "path": "verification/e2629-current-review-site.json",
-    "bytes": 104097,
-    "sha256": "39fe4ce11126b33c85fe96e69af19f5ab0eb9990d23843f62854308afdabd086"
+    "path": "verification/e2630-current-review-site.json",
+    "bytes": 106092,
+    "sha256": "c53477943488e75f40a10395c0e4844415c02844b77dd2e545843c93d4c9d720"
   },
   "current_distribution_checksums": {
     "path": "downloads/current075-checksums.json",
@@ -809,5 +809,28 @@
     "path": "verification/e2627-current-formatter-correctness.json",
     "bytes": 2421,
     "sha256": "5744cbcdd72b404eb8a20fe4402ef8b2135825b0af2c6947ad20514e6e51f9ea"
+  },
+  "scoped_release": {
+    "version": "0.7.5",
+    "status": "stable",
+    "stable": true,
+    "published": true,
+    "components": [
+      "browser-WASM compiler and independent formatter",
+      "ordinary retained plotting",
+      "Node ESM compiler/guest/formatter embedding"
+    ],
+    "evidence": {
+      "path": "verification/e2630-scoped-stable-qualification.json",
+      "bytes": 6358,
+      "sha256": "f7bfed7cbb369adcb23d5a87ee744171004b08689a10eacd765e7e4da35d8110"
+    },
+    "linuxCompilerSDKQualified": false,
+    "crossTargetParityQualified": false,
+    "comparativeBenchmarksQualified": false,
+    "fullGpuWorldQualified": false,
+    "physicalGPUQualified": false,
+    "phoneEX06LegibilityQualified": false,
+    "fullPlatformReleaseQualified": false
   }
 }

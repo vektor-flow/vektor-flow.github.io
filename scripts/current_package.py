@@ -304,4 +304,32 @@ def verify_current_review_site(preview, release):
     allowed = dict(baseline['files'])
     allowed.update(download_delta)
     need(actual == allowed, 'review iteration changed unqualified downloads')
+    if release.get('scoped_release'):
+        scope = release['scoped_release']
+        need(scope['version'] == '0.7.5' and scope['status'] == 'stable'
+             and scope['stable'] is True and scope['published'] is True, 'invalid scoped stable designation')
+        need(scope['components'] == ['browser-WASM compiler and independent formatter', 'ordinary retained plotting', 'Node ESM compiler/guest/formatter embedding'], 'scoped components changed')
+        need(all(scope[k] is False for k in ('linuxCompilerSDKQualified', 'crossTargetParityQualified', 'comparativeBenchmarksQualified', 'fullGpuWorldQualified', 'physicalGPUQualified', 'phoneEX06LegibilityQualified', 'fullPlatformReleaseQualified')), 'unsupported scoped release claim')
+        qualified = read(pinned(preview, scope['evidence']))
+        need(qualified['status'] == 'PASS_SCOPED_STABLE_075_UI_PLOTTING_AND_NODE_CONSOLE'
+             and qualified['frontendBinding'] == binding and qualified['formatterBinding'] == expected['formatterBinding'], 'scoped qualification identity differs')
+        need(qualified['currentLocalWeb'] == release['current_review_site_evidence'] and qualified_replacement, 'current web/package scope incomplete')
+        checks = {name: read(pinned(preview, row)) for name, row in qualified['localControls'].items()}
+        need(checks['formatter']['status'] == 'PASS_INCREMENTAL_FORMATTER_SMALL_PARITY_AND_ORIGINAL5M_FULL_CORRECTNESS'
+             and checks['formatter']['browserBinding'] == binding and checks['formatter']['formatterBinding'] == expected['formatterBinding'], 'current formatter correctness incomplete')
+        for name, status in [('smallSin', 'CURRENT_SMALL_SIN_COMPLETE'), ('original5M', 'CURRENT_EXACT5M_COMPLETE'), ('original10000', 'CURRENT_ORIGINAL10000_COMPLETE')]:
+            need(checks[name]['status'] == status and checks[name]['browserClosed'] and checks[name]['serverClosed'], 'local plotting control incomplete: ' + name)
+        need(qualified['localControls']['package'] == checksums['currentQualification'], 'scoped package reference differs')
+        live = read(pinned(preview, qualified['hosted']))
+        delivered = read(pinned(preview, qualified['delivery']))
+        need(live['status'] == 'PASS_FOCUSED_CURRENT_REVIEW_SITE_WEB_CHECKS' and live['hosted']
+             and live['browserClosed'] and live['serverClosed'] and not live['errors'], 'hosted ordinary controls incomplete')
+        need([r['actual']['text'] for r in live['rows']] == ['Hello World\n', 'Hello World\n7\n'], 'hosted Run/edit output differs')
+        need(delivered['status'] == 'PASS_EXACT_PUBLISHED_HEAD_PAGES_SERVED_CURRENT_BYTES_AND_EXISTING_ORDINARY_LIVE_WEB_CONTROLS'
+             and delivered['head'] == delivered['remoteHead'] == delivered['localHead'] == qualified['qualifiedDeliveredHead']
+             and delivered['pagesRun']['headSha'] == delivered['head'] and delivered['pagesRun']['conclusion'] == 'success', 'exact delivered base incomplete')
+        need(len(delivered['oldMediaWithdrawal']) == 4 and all(r['absent'] and r['httpStatus'] in (404,410) for r in delivered['oldMediaWithdrawal']), 'withdrawn media absence incomplete')
+        need(len(qualified['runtime']) == 11 and qualified['runtime'] == live['servedIdentity'] == delivered['servedCompilerFormatterRendererNativePlotMapping'], 'scoped runtime evidence differs')
+        for row in qualified['runtime']:
+            pinned(preview, row)
     return {(row['path'].removeprefix('playground/canonical/') if expected['schema'] == 2 else Path(row['install']).name): row['sha256'] for row in compiler['files']}

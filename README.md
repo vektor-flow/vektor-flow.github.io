@@ -6,16 +6,21 @@ website changes. Browser checks use explicit software rendering; preserve the
 physical GPU stop.
 
 The active 0.7.5 descriptor in
-`public/preview/0.7.5/current-compiler-release.json` is a public preview candidate.
-Its broad complete, stable, published and release qualification flags are false;
-`scoped_release` is absent. Accepted current ordinary UI/plotting observations
-and the existing Pages publication retain their exact candidate identities.
-The exact current Node/WASM console archive has separately reviewed safe extraction,
-Node install/run/compile and 30 local import/security checks. Its tested bytes and
-original pending internal metadata remain unchanged; external qualification is
-pinned to archive SHA-256 db807a46c08e4801bb8d938f906549f7e457ab02bfb9e433e9456e9c3e5b083e. Earlier ee417/3580 archive qualification and the dated sections below
-remain historical. No full compiler, native SDK, all-font, full LaTeX, physical
-GPU or comparative timing qualification follows from website publication.
+`public/preview/0.7.5/current-compiler-release.json` qualifies the tested ordinary
+UI/plotting and Node ESM console scope as stable in `scoped_release`.
+Its broad complete, stable, published and release qualification flags describe
+the incomplete full language/platform release and remain false. Exact scope,
+current runtime identities, local correctness, current hosted ordinary controls
+and delivered bytes are pinned in `verification/e2630-scoped-stable-qualification.json`.
+The current 5,127,174-byte Node/WASM archive has SHA-256
+cffd102a00a45ae870eaf9c6e8d454ab121142947f67dd182bb024e650e33a67;
+its external qualification is `verification/e2627-current-local-package.json`.
+Its tested bytes and original pending internal metadata remain unchanged.
+Earlier db807/ee417/3580 archive reports and dated sections below are historical.
+Full platform/native SDK/ABI2, all-font/full LaTeX, phone EX06 legibility,
+deployed full scenes, physical GPU and comparative timing remain unqualified.
+PDF/fluid and the deferred features are outside this release scope; missing
+matched timing inputs do not block the qualified ordinary UI/plotting release.
 
 ## Current text example
 

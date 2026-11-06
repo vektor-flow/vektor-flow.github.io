@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "timesMs": [
+    0,
+    10,
+    20,
+    500,
+    1000,
+    1010,
+    2000
+  ],
+  "gpu": [
+    0.5,
+    0.5099999904632568,
+    0.5199999809265137,
+    1,
+    0.5,
+    0.4899999797344208,
+    0.5
+  ],
+  "expected": [
+    0.5,
+    0.51,
+    0.52,
+    1,
+    0.5,
+    0.49,
+    0.5
+  ],
+  "worst": 2.0265579214751028e-8,
+  "definitions": {
+    "global": [
+      "gain=(0+0.01*(100-abs(((floor(t*100+0.0000001)+50)-200*floor((floor(t*100+0.0000001)+50)/200))-100)))"
+    ]
+  },
+  "shader": "(0.0 + (0.01 * (100.0 - abs((((floor(((t * 100.0) + 1e-7)) + 50.0) - (200.0 * floor(((floor(((t * 100.0) + 1e-7)) + 50.0) / 200.0)))) - 100.0)))))",
+  "backend": "existing native AST/scalar shader + WebGPU real-f32; test wrapper only",
+  "clockLimit": "GPUtime isfloat32; this finite test doesnotestablishexactticks atarbitraryboundarytimes/longuptime"
+}

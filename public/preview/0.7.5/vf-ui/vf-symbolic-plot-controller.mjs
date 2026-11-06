@@ -751,15 +751,15 @@ export async function createSymbolicCompiler({
 
   return Object.freeze({
     setDefinitions({ global = [], local = {} } = {}) {
-      globalDefinitionSources = Object.freeze([...(global || [])].map(String));
-      definitionWorkspace = appendDefinitions(
-        emptyDefinitionWorkspace(),
-        globalDefinitionSources
-      );
-      localDefinitions = new Map(Object.entries(local).map(([scopeId, sources]) => [
-        scopeId,
-        Object.freeze([...(sources || [])].map(String))
-      ]));
+      const nextGlobal=Object.freeze([...(global||[])].map(String));
+      const nextLocal=new Map(Object.entries(local).map(([id,sources])=>[id,Object.freeze([...(sources||[])].map(String))]));
+      const same=(a,b)=>a.length===b.length&&a.every((value,index)=>value===b[index]);
+      if(same(nextGlobal,globalDefinitionSources)&&nextLocal.size===localDefinitions.size&&[...nextLocal].every(([id,sources])=>localDefinitions.has(id)&&same(sources,localDefinitions.get(id))))return;
+      // Keep the last accepted definition state intact if native preparation fails.
+      const nextWorkspace=appendDefinitions(emptyDefinitionWorkspace(),nextGlobal);
+      globalDefinitionSources=nextGlobal;
+      definitionWorkspace=nextWorkspace;
+      localDefinitions=nextLocal;
     },
     preview(source) {
       return publicDraftResult(previewPublicValue(String(source ?? '')).value);

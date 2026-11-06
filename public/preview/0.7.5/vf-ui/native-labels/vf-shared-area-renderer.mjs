@@ -41,7 +41,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
   const ratio=options.pixelRatio??(()=>globalThis.devicePixelRatio||1);
   const sampleCount=options.samplesPerAxis??COVERAGE_POLICY.samplesPerAxis;
   areaSampleOffsets(sampleCount);
-  let gl=null,paint=null,resolve=null,buffer=null,texture=null,framebuffer=null,vao=null,nativePaint=null;
+  let gl=null,capabilities=null,paint=null,resolve=null,buffer=null,texture=null,framebuffer=null,vao=null,nativePaint=null;
   let indexedSourceVertices=0,indexedUniqueVertices=0,indexedMeshes=0;
   let adaptiveScene=null,adaptiveGPU=new Map(),adaptiveLast=null,adaptiveDrawWallMs=0;
   let nativeStyleColor=null;
@@ -61,6 +61,9 @@ export function createSharedAreaRenderer(canvas,options={}) {
     }catch(error){gl.deleteProgram(p);throw error}finally{gl.deleteShader(vs);if(fs)gl.deleteShader(fs)}}
   async function initialize(){live();gl=canvas.getContext('webgl2',{alpha:true,antialias:false,premultipliedAlpha:true});
     if(!gl)throw failure('PLOT_AREA_WEBGL2_UNAVAILABLE','BLOCKED');
+    // These capabilities are immutable for this initialized WebGL context.
+    const precision=gl.getShaderPrecisionFormat(gl.VERTEX_SHADER,gl.HIGH_FLOAT);
+    capabilities=Object.freeze({maxTextureSize:gl.getParameter(gl.MAX_TEXTURE_SIZE),subpixelBits:gl.getParameter(gl.SUBPIXEL_BITS),precision:precision&&Object.freeze({precision:precision.precision,rangeMax:precision.rangeMax,rangeMin:precision.rangeMin})});
     try{
       paint=program(`#version 300 es
         layout(location=0) in vec2 position; layout(location=1) in vec4 color;
@@ -93,7 +96,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
   }
   function resize(width=canvas.clientWidth,height=canvas.clientHeight,{redraw=true}={}){live();const nextWidth=Math.max(1,Number(width)||1),nextHeight=Math.max(1,Number(height)||1);
     if(!gl){cssWidth=nextWidth;cssHeight=nextHeight;return;}
-    const next=areaTarget({cssWidth:nextWidth,cssHeight:nextHeight,pixelRatio:ratio(),samplesPerAxis:sampleCount,maxTextureSize:gl.getParameter(gl.MAX_TEXTURE_SIZE),maxBytes:options.maxCoverageBytes??536870912});
+    const next=areaTarget({cssWidth:nextWidth,cssHeight:nextHeight,pixelRatio:ratio(),samplesPerAxis:sampleCount,maxTextureSize:capabilities.maxTextureSize,maxBytes:options.maxCoverageBytes??536870912});
     const accepted=redraw&&accuracyScene?prepareAccuracy(accuracyScene,camera,nextWidth,nextHeight,next):null;
     const previous={width:cssWidth,height:cssHeight,target};
     cssWidth=nextWidth;cssHeight=nextHeight;
@@ -178,8 +181,8 @@ export function createSharedAreaRenderer(canvas,options={}) {
   // The indexed large-scene path and its immutable mesh keys are untouched.
   function setCertifiedNativeOutline({commands,matrix,color=[0,0,0,1],maxPixels=4096,...limits}){
     live();if(!gl||!target||sampleCount!==4)throw failure('PLOT_CERTIFIED_SAMPLE_POLICY','BLOCKED');
-    const precision=gl.getShaderPrecisionFormat(gl.VERTEX_SHADER,gl.HIGH_FLOAT);
-    const subpixelBits=gl.getParameter(gl.SUBPIXEL_BITS);
+    const precision=capabilities?.precision;
+    const subpixelBits=capabilities?.subpixelBits;
     if(!precision||precision.precision<23||precision.rangeMax<127||subpixelBits<2)throw failure('PLOT_CERTIFIED_RASTER_PRECISION','BLOCKED');
     const rasterErrorEnvelope=16*2**(-precision.precision)*Math.max(target.areaWidth,target.areaHeight)+2**(-subpixelBits-1);
     if(!(rasterErrorEnvelope<.5))throw failure('PLOT_CERTIFIED_RASTER_ENVELOPE','BLOCKED');
@@ -196,7 +199,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
    if(!gl||!nextTarget||sampleCount!==4)throw blocked('PLOT_CERTIFIED_SAMPLE_POLICY');
    if(!Array.isArray(nextCamera)||nextCamera.length!==6||!nextCamera.every(Number.isFinite))throw blocked('PLOT_NATIVE_CAMERA');
    if(typeof scene?.nativeSourceOutlines!=='function')throw blocked('NATIVE_ACCURACY_PHYSICAL_SOURCE_REQUIRED');
-   const precision=gl.getShaderPrecisionFormat(gl.VERTEX_SHADER,gl.HIGH_FLOAT),subpixelBits=gl.getParameter(gl.SUBPIXEL_BITS);
+   const precision=capabilities?.precision,subpixelBits=capabilities?.subpixelBits;
    if(!precision||precision.precision<23||precision.rangeMax<127||subpixelBits<2)throw blocked('PLOT_CERTIFIED_RASTER_PRECISION');
    const envelope=16*2**(-precision.precision)*Math.max(nextTarget.areaWidth,nextTarget.areaHeight)+2**(-subpixelBits-1),pixelRatio=nextTarget.pixelRatio;
    if(!(envelope<.5))throw blocked('PLOT_CERTIFIED_RASTER_ENVELOPE');
@@ -245,7 +248,7 @@ export function createSharedAreaRenderer(canvas,options={}) {
   }
   function nativeSourceSnapshot(){live();if(!accuracyScene||!accuracyReceipt)throw blocked('NATIVE_ACCURACY_NO_ACCEPTED_SOURCE');return {sources:structuredClone(accuracySources).map(s=>nativeStyleColor?{...s,color:[...nativeStyleColor]}:s),receipt:structuredClone(accuracyReceipt)};}
   function nativeStatistics(){return {styleColor:nativeStyleColor&&[...nativeStyleColor],nativeAccuracy:accuracyReceipt??{status:nativeAccuracy==='required'?'NO_NATIVE_SCENE':'DIAGNOSTIC_UNCERTIFIED',indexed10kAccuracy:'OPEN'},indexedMeshes,indexedSourceVertices,indexedUniqueVertices,batches:adaptiveScene?adaptiveGPU.size:(nativeBatches?.length??0),labels:adaptiveLast?.resident??nativeBatches?.reduce((n,b)=>n+b.count,0)??0,submittedVertices:adaptiveLast?adaptiveLast.triangles*3:(nativeBatches?.reduce((n,b)=>n+b.vertexCount*b.count,0)??0),gpuBytes:nativeBytes+(accuracyScene?capacity:0),coverageBytes:target?.bytes??0,uploads:nativeUploads,verifiedInstanceSamples:nativeVerifiedSamples,draws:nativeDraws,camera:[...camera],adaptive:adaptiveLast,adaptiveDrawWallMs};}
-  function destroy(){if(closed)return;closed=true;vertices=new Float32Array();if(gl){releaseNative();if(nativePaint)gl.deleteProgram(nativePaint);if(buffer)gl.deleteBuffer(buffer);if(texture)gl.deleteTexture(texture);if(framebuffer)gl.deleteFramebuffer(framebuffer);if(vao)gl.deleteVertexArray(vao);if(paint)gl.deleteProgram(paint);if(resolve)gl.deleteProgram(resolve)}outlineCache.close();gl=null;target=null}
+  function destroy(){if(closed)return;closed=true;vertices=new Float32Array();if(gl){releaseNative();if(nativePaint)gl.deleteProgram(nativePaint);if(buffer)gl.deleteBuffer(buffer);if(texture)gl.deleteTexture(texture);if(framebuffer)gl.deleteFramebuffer(framebuffer);if(vao)gl.deleteVertexArray(vao);if(paint)gl.deleteProgram(paint);if(resolve)gl.deleteProgram(resolve)}outlineCache.close();gl=null;capabilities=null;target=null}
   return Object.freeze({initialize,resize,setPackedVertices,setCertifiedNativeOutline,setNativeLabelBatches,setNativeScene,setNativeCamera,setNativeColor,nativeStatistics,nativeSourceSnapshot,setScene:scene=>setPackedVertices(buildScreenSpaceSimplexVertices(scene)),destroy,
     get backend(){return gl?'webgl2-area':null},coveragePolicy:()=>Object.freeze({...COVERAGE_POLICY,samplesPerAxis:sampleCount,target})});
 }

@@ -27,21 +27,23 @@ export async function createResidentMeshRenderer(canvas,{device,profile='mesh',c
  `});
  const pipeline=await device.createRenderPipelineAsync({layout:'auto',vertex:{module,entryPoint:'vertexMain',buffers:[{arrayStride:28,attributes:[{shaderLocation:0,offset:0,format:'float32x3'},{shaderLocation:1,offset:12,format:'float32x4'}]}]},fragment:{module,entryPoint:'fragmentMain',targets:[{format}]},primitive:{topology:'triangle-list',cullMode:'none'},multisample:{count:4},depthStencil:{format:depthFormat,depthWriteEnabled:true,depthCompare:materialField&&!coverageOnly?'greater-equal':'less'}});
  const group=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:uniform}}]});
- let color,depth,buffer=null,count=0,width=0,height=0,dead=false;
+ let color,depth,resolved,buffer=null,count=0,width=0,height=0,dead=false;
  let camera=materialField?{yaw:0,pitch:0,scale:1}:{yaw:.5,pitch:-.55,scale:.7};
  function updateCamera(){device.queue.writeBuffer(uniform,0,new Float32Array([camera.yaw,camera.pitch,camera.scale,width/height]));}
  function draw(){
   if(dead)throw Error('Renderer disposed');
-  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:color.createView(),resolveTarget:context.getCurrentTexture().createView(),clearValue:materialField?{r:0,g:0,b:0,a:0}:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'discard'}],depthStencilAttachment:{view:depth.createView(),depthClearValue:materialField&&!coverageOnly?0:1,depthLoadOp:'clear',depthStoreOp:'discard'}});
+  const encoder=device.createCommandEncoder(),pass=encoder.beginRenderPass({colorAttachments:[{view:color.createView(),resolveTarget:resolved.createView(),clearValue:materialField?{r:0,g:0,b:0,a:0}:{r:9/255,g:17/255,b:22/255,a:1},loadOp:'clear',storeOp:'discard'}],depthStencilAttachment:{view:depth.createView(),depthClearValue:materialField&&!coverageOnly?0:1,depthLoadOp:'clear',depthStoreOp:'discard'}});
   if(buffer&&count){pass.setPipeline(pipeline);pass.setBindGroup(0,group);pass.setVertexBuffer(0,buffer);pass.draw(count);}
-  pass.end();device.queue.submit([encoder.finish()]);
+  pass.end();encoder.copyTextureToTexture({texture:resolved},{texture:context.getCurrentTexture()},[width,height]);device.queue.submit([encoder.finish()]);
  }
  function resize(w,h=w){
   if(dead)throw Error('Renderer disposed');
-  if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1)throw Error('Invalid viewport');
+  if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w>device.limits.maxTextureDimension2D||h>device.limits.maxTextureDimension2D)throw Error('Invalid viewport');
+  if(w*h*36+16>maxResourceBytes)throw Object.assign(Error('STATE_GPU_MEMORY_BUDGET'),{code:'STATE_GPU_MEMORY_BUDGET'});
   width=w;height=h;canvas.width=w;canvas.height=h;
-  context.configure({device,format,alphaMode:materialField?'premultiplied':'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC});
-  color?.destroy();depth?.destroy();
+  context.configure({device,format,alphaMode:materialField?'premultiplied':'opaque',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.COPY_SRC|GPUTextureUsage.COPY_DST});
+  color?.destroy();depth?.destroy();resolved?.destroy();
+  resolved=device.createTexture({size:[w,h],format,usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.TEXTURE_BINDING|GPUTextureUsage.COPY_SRC});
   color=device.createTexture({size:[w,h],format,sampleCount:4,usage:GPUTextureUsage.RENDER_ATTACHMENT});
   depth=device.createTexture({size:[w,h],format:depthFormat,sampleCount:4,usage:GPUTextureUsage.RENDER_ATTACHMENT});
   updateCamera();
@@ -52,13 +54,14 @@ export async function createResidentMeshRenderer(canvas,{device,profile='mesh',c
   setCamera(next,redraw=true){if(materialField&&((next.yaw??0)!==0||(next.pitch??0)!==0))throw Error('Implicit material field uses an orthographic plane');if(Object.values(next).some(x=>!Number.isFinite(x)))throw Error('Invalid camera');camera={...camera,...next};updateCamera();if(redraw)draw();},
   setResidentVertices(next,n){if(!next||!Number.isInteger(n)||n<0||n%3||next.size<n*28)throw Error('Invalid resident mesh');buffer=next;count=n;draw();},
   captureBitmap(){if(dead)throw Error('Renderer disposed');if(typeof createImageBitmap!=='function')throw Error('Native bitmap snapshots unavailable');return createImageBitmap(canvas);},
-  statistics(){return{profile,coverageOnly,width,height,explicitTextureBytes:width*height*32,vertexFormat:'xyzRGBA',depthFormat,backend:'webgpu'};},
+  coverageTexture(){if(dead||!resolved)throw Error('Renderer unavailable');return{texture:resolved,width,height,format,borrowedUntilNextDraw:true};},
+  statistics(){return{profile,coverageOnly,width,height,explicitTextureBytes:width*height*36,vertexFormat:'xyzRGBA',depthFormat,backend:'webgpu'};},
   async captureFrame({timestamp,duration}){
    if(!Number.isSafeInteger(timestamp)||timestamp<0||!Number.isSafeInteger(duration)||duration<=0)throw Error('Invalid capture timing');
    const frameWidth=width,frameHeight=height;
    const stride=Math.ceil(frameWidth*4/256)*256,readback=device.createBuffer({size:stride*frameHeight,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
    try{const encoder=device.createCommandEncoder();encoder.copyTextureToBuffer({texture:context.getCurrentTexture()},{buffer:readback,bytesPerRow:stride,rowsPerImage:frameHeight},[frameWidth,frameHeight]);device.queue.submit([encoder.finish()]);await readback.mapAsync(GPUMapMode.READ);const frame=new VideoFrame(readback.getMappedRange(),{format:format.startsWith('bgra')?'BGRA':'RGBA',codedWidth:frameWidth,codedHeight:frameHeight,layout:[{offset:0,stride}],timestamp,duration});readback.unmap();return frame;}finally{readback.destroy();}
   },
-  destroy(){if(dead)return;dead=true;color?.destroy();depth?.destroy();uniform.destroy();buffer=null;}
+  destroy(){if(dead)return;dead=true;color?.destroy();depth?.destroy();resolved?.destroy();uniform.destroy();buffer=null;}
  };
 }

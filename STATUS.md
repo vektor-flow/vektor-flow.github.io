@@ -575,3 +575,33 @@ byte equality passes. Default generic mesh rendering is unchanged. Source and
 qualified snapshot tests saved alongside the explicitly experimental local mesh
 profile. No PP files/deploy/native fluid claim. Root owns FineReceiver native
 port, child owns Fluid baseline/markers/finalizer; GPU slot currently released.
+
+## 2026-11-06 21:39 UTC — STOP / research checkpoint, no SDK intake
+
+Read FULL coordinator125 `PP-AUTOMATIC-GPU-COMPUTE-INTEGRATION-HANDOVER-COORDINATOR125.txt`
+and current provider registry. Root owns the public application adapter. Stop
+private075 runtime integration now; do not promote this candidate into PP.
+See docs/geometric-material/PUBLIC-SDK-BOUNDARY.md for exact evidence and gaps.
+Actual27 all-native17q experiment passes its bounded no-shard/area/RGB gates,
+with explicit q.9 quantization-limited residual1.465098px. It does NOT establish
+near-linear visible contact/count timing or exact rendered area. Images and
+numerical artifacts are preserved, not an intake/release/performance claim.
+
+Native worker/chunk transport and compensated GPU coverage individually pass.
+The new sparse worker/state aliases and eight native GPU entry candidates are
+NOT connected to the existing public GPU player; this branch is intentionally
+unintegrated and must not be installed. No full29, complete ordinary/physical
+player, actual hardware or complete under10ms gate. SwiftShader evidence is
+software-only. No PP file changed or deployed by this task. No running jobs.
+
+Physical child checkpoints: qualified internal code d298245/853fad5, doc heads
+d7b7a31930f65dfe0bd6a54a08dd0fb61f6786b3 /efd7c15a30952c48a058d435a5fb04563f2bcc44.
+Later unexecuted ports candidate dd4de9b/0207c5a is isolated; factory/formation/
+suction/full physical integration remain unavailable. Both child trees clean.
+
+Required provider contract: documented public automatic GPU source/parameter
+execution with matching native/browser artifacts, typed Interp/scene results,
+engine-owned shared resources and opaque resident references, independent
+engine/view lifetimes, cancel/generation/completion and explicit capture,
+and genuine hardware/full agreed workload qualification. No private emitter,
+raw buffers, software or CPU fallback should become PP's engine API.

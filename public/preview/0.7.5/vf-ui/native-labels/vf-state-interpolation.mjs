@@ -2,7 +2,7 @@ import {createSymbolicKernel} from '../vf-symbolic-kernel-runtime.mjs';
 import {nativeOutlineRings} from './vf-native-plot-labels.mjs';
 const need=(v,c)=>{if(!v)throw Object.assign(Error(c),{code:c});};
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b)),x=>x.toString(16).padStart(2,'0')).join('');
-export const STATE_INTERP_COMMIT='86d584115c8d3e68e7aa0ceacfd29321f4e47268';
+export const STATE_INTERP_COMMIT='c13fab7533cab1f41acbf7e8a2bf6608ec141070';
 export async function loadNativeStateKernel({baseURL=new URL('../artifacts/state-interpolation/',import.meta.url),fetch:fetcher=globalThis.fetch}={}){
  const get=async name=>{const r=await fetcher(new URL(name,baseURL));need(r.ok,'STATE_INTERPOLATION_RESOURCE');return r.arrayBuffer();};
  const provenance=JSON.parse(new TextDecoder().decode(await get('PROVENANCE.json')));
@@ -67,7 +67,7 @@ function prepareCohort(c,kernel,number,provenance,computeBackend,path,preparatio
  need(computeBackend==='gpu'||uniformInk,'STATE_MIXED_INK_REQUIRES_GPU');
  const ink=kernel.invokeValue('prepare',[[0,1],[...colorA,...colorB],4,path,false,false]);
  const inkAt=q=>kernel.invokeValue('sample',[ink,q]).value;
- if(!c.removal&&c.a.length===1&&c.b.length===1&&JSON.stringify(c.a[0].commands)===JSON.stringify(c.b[0].commands)){
+ if(!c.removal&&c.a.length===1&&c.b.length===1&&JSON.stringify(c.a[0].commands)===JSON.stringify(c.b[0].commands)&&JSON.stringify(c.a[0].matrix.slice(0,4))===JSON.stringify(c.b[0].matrix.slice(0,4))){
   if(JSON.stringify(c.a[0].matrix)===JSON.stringify(c.b[0].matrix)&&JSON.stringify(colorA)===JSON.stringify(colorB))return ()=>c.a[0];
   const plan=kernel.invokeValue('prepare',[[0,1],[...c.a[0].matrix,...colorA,...c.b[0].matrix,...colorB],10,path,false,false]);
   return q=>{const values=kernel.invokeValue('sample',[plan,q]).value;const {programTransformRecipe,programRoundoffMagnitude,...base}=c.a[0];return {...base,matrix:values.slice(0,6),color:values.slice(6,10),provenance:{...base.provenance,interpolation:{libraryCommit:provenance.libraryCommit,coordinate:q}}};};
@@ -84,12 +84,12 @@ function prepareCohort(c,kernel,number,provenance,computeBackend,path,preparatio
  const plan=preparationKernel.invokeValue('prepare_geometry_attributes',[geometry,[0,c.a.length,c.a.length+c.b.length],[...c.edges.map(e=>e[0]),...c.edges.map(e=>e[1])],[...c.a,...c.b].flatMap(s=>s.color??[0,0,0,1]),4]);
  const translation=kernel.invokeValue('prepare',[[0,1],[...ac,...bc],2,path,false,false]);
  if(computeBackend==='gpu'){
-  const id='state-cohort-'+number;let measure;
-  const controls=(q,desired=1)=>{const p=kernel.invokeValue('sample',[translation,q]).value;return kernel.invokeValue('gpu_ink_controls',[plan,q,desired,129,257,2*radius,p[0]-radius,p[1]-radius,[1,1,1,1]]);};
+  const id='state-cohort-'+number;let measure,eventFields;
+  const controls=(q,desired=1)=>{const p=kernel.invokeValue('sample',[translation,q]).value;need(eventFields,'STATE_EVENT_FIELDS_NOT_PREPARED');return kernel.invokeValue('event_controls',[eventFields.controls,q,desired,2*radius,p[0]-radius,p[1]-radius,[]]);};
   const sample=q=>{need(measure,'STATE_GPU_MEASURE_NOT_PREPARED');const desired=kernel.invokeValue('sample',[measure,q]).value[0],p=kernel.invokeValue('sample',[translation,q]).value;
    return {gpuFieldId:id,controls:controls(q,desired),commands:[],matrix:[radius,0,0,radius,p[0]-radius,p[1]-radius],color:uniformInk?inkAt(q):null,carrierAttributes:{width:4,law:'canonical native state curve; per-vertex dominant material field'},provenance:{engineIdentity:'current-vkf-state:'+provenance.artifacts['state.wasm'].sha256,resourceIdentity:c.a[0].provenance.resourceIdentity,source:'native signed-field state interpolation',elementId:id,coordinate:q}};
   };
-  sample.gpuPlan={id,plan,extent:2*radius,resolution:129,lattice:257,attributeWidth:4,sourceRGBA:c.edges.flatMap(e=>c.a[e[0]].color??[0,0,0,1]),targetRGBA:c.edges.flatMap(e=>c.b[e[1]].color??[0,0,0,1])};sample.gpuControls=controls;
+  sample.gpuPlan={id,plan,sourceCount:c.a.length,targetCount:c.b.length,extent:2*radius,resolution:129,lattice:257,attributeWidth:4,sourceRGBA:c.edges.flatMap(e=>c.a[e[0]].color??[0,0,0,1]),targetRGBA:c.edges.flatMap(e=>c.b[e[1]].color??[0,0,0,1])};sample.gpuControls=controls;sample.gpuEventFields=prepared=>{need(prepared?.controls?.geometry?.carriers===plan.carriers&&prepared.controls.geometry.width===plan.curve.width&&Array.isArray(prepared.chunks),'STATE_EVENT_FIELDS_DESCRIPTOR');eventFields=prepared;sample.gpuPlan.eventFields=prepared;};
   sample.gpuMeasures=values=>{need(values.length===2&&values.every(v=>Number.isFinite(v)&&v>0),'STATE_GPU_ENDPOINT_MEASURE');measure=kernel.invokeValue('prepare',[[0,1],[values[0],c.removal?0:values[1]],1,0,false,false]);};
   return sample;
  }
@@ -118,7 +118,7 @@ export function prepareNativeLabelTransition({from,to,kernel,provenance,computeB
   need(label.from.length,'STATE_EMPTY_SOURCE_REQUIRES_WAVE');
   for(const c of cohorts(label.from,label.to.length?label.to:label.from,kernel)){c.removal=!label.to.length;samples.push(prepareCohort(c,kernel,`${groupId??'row'}-${count++}`,provenance,computeBackend,path,preparationKernel));}
  }
- return Object.freeze({cohorts:count,gpuPlans:samples.filter(s=>s.gpuPlan).map(s=>s.gpuPlan),gpuControls(id,q){const s=samples.find(s=>s.gpuPlan?.id===id);need(s,'STATE_GPU_PLAN');return s.gpuControls(q);},gpuMeasures(id,values){const s=samples.find(s=>s.gpuPlan?.id===id);need(s,'STATE_GPU_PLAN');s.gpuMeasures(values);},sample(q){need(Number.isFinite(q)&&q>=0&&q<=1,'STATE_INTERPOLATION_COORDINATE');if(q===0)return from;if(q===1)return to;const coordinate=easing==='linear'?q:kernel.invokeValue('time_coordinate',[q]),out=samples.map(sample=>sample(coordinate));
+ return Object.freeze({cohorts:count,gpuPlans:samples.filter(s=>s.gpuPlan).map(s=>s.gpuPlan),gpuControls(id,q){const s=samples.find(s=>s.gpuPlan?.id===id);need(s,'STATE_GPU_PLAN');return s.gpuControls(q);},gpuEventFields(id,prepared){const s=samples.find(s=>s.gpuPlan?.id===id);need(s,'STATE_GPU_PLAN');s.gpuEventFields(prepared);},gpuMeasures(id,values){const s=samples.find(s=>s.gpuPlan?.id===id);need(s,'STATE_GPU_PLAN');s.gpuMeasures(values);},sampleAtCoordinate(coordinate){need(Number.isFinite(coordinate)&&coordinate>=0&&coordinate<=1,'STATE_INTERPOLATION_COORDINATE');if(coordinate===0)return from;if(coordinate===1)return to;return samples.map(sample=>sample(coordinate));},sample(q){need(Number.isFinite(q)&&q>=0&&q<=1,'STATE_INTERPOLATION_COORDINATE');if(q===0)return from;if(q===1)return to;const coordinate=easing==='linear'?q:kernel.invokeValue('time_coordinate',[q]),out=samples.map(sample=>sample(coordinate));
   return out;
  }});
 }

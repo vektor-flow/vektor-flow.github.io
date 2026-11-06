@@ -1,9 +1,21 @@
 {
-  "libraryCommit": "86d584115c8d3e68e7aa0ceacfd29321f4e47268",
+  "libraryCommit": "c13fab7533cab1f41acbf7e8a2bf6608ec141070",
   "sources": {
+    "EventFields.vkf": {
+      "sha256": "9ab2c49281ef46f0c99643d44c50e30189ac39aa398fb307ed3d069d36f63ebe",
+      "bytes": 10373
+    },
     "Morphing.vkf": {
-      "sha256": "c394cf4eb00154075a3046140ed86c490d4e7a52d96e322c37815a5d501cd030",
-      "bytes": 12144
+      "sha256": "ec480efb5c44ed7a1c01aa3689fb500dbb1688a38cc2aee0614511ad577c47ea",
+      "bytes": 12446
+    },
+    "StateControls.vkf": {
+      "sha256": "aefb098b4eba61093150738cf2414da0dd53a105426d14fd9fdcd27087698cb1",
+      "bytes": 4525
+    },
+    "StateEvents.vkf": {
+      "sha256": "d94f8cd1b0b75a13a8a3d78e968da864e238a8f6e02d63688818319856c8f0aa",
+      "bytes": 4743
     },
     "morphing/biological.vkf": {
       "sha256": "d37dfb16e960b8ab6ea62bc69c346e16ce3a2687667422398190fa1b0543c016",
@@ -18,8 +30,12 @@
       "bytes": 4929
     },
     "morphing/dispatch.vkf": {
-      "sha256": "3c6a1d28cd5c15f070153db2266c376c260599a251457338a24f8d52cfe523a5",
-      "bytes": 10930
+      "sha256": "ba4e524d8ec39fe4f57e7ac946034ec06842709b300cf061420e8b9fc123aefc",
+      "bytes": 19828
+    },
+    "morphing/event_field.vkf": {
+      "sha256": "132c5566868d39d03c4d4b51cc30dd29941d128e5afd9c262e59b0b482586bf3",
+      "bytes": 1551
     },
     "morphing/examples.vkf": {
       "sha256": "7707cfdaf13a47502017d4d435c84f8ed1baf41d9016e5248a1ce825b240e248",
@@ -42,20 +58,24 @@
       "bytes": 2337
     },
     "morphing/parallel.vkf": {
-      "sha256": "701d79fd97f26701d20c1db8b961c9494dac3aca3d8883de07edd1cc19af7a34",
-      "bytes": 4596
+      "sha256": "4662e94b34a0fc274eaaf1a5e01a45e6a4a8f0a8c9a94ff552c35c58e1fef855",
+      "bytes": 7519
     },
     "morphing/presentation.vkf": {
       "sha256": "faebf2c9f7f6800e90e9adbe3f95d105b0208bb71bd3d41eb24a6f8fdc102703",
       "bytes": 8730
     },
     "morphing/segment.vkf": {
-      "sha256": "4c33a71557a69a086b68e1cab4d7337f493678016aed886817d36d5a55666558",
-      "bytes": 499
+      "sha256": "49d07b6b4cd43746272454502f17f1be8f3a81da576e62562f6d13a2e5eaf500",
+      "bytes": 733
     },
     "morphing/state.vkf": {
-      "sha256": "ea2e9d1dd2d255e1390791797c67dd627b4202adf63908d906a4279d5edcc85a",
-      "bytes": 5327
+      "sha256": "666816585f28d2a8ea425585555163a5b225ab131b4d8e7404c709ec484ec9ea",
+      "bytes": 7392
+    },
+    "morphing/topology.vkf": {
+      "sha256": "8a242126b3ff99b595f7b0e93af5b72bae530f6385201bd9b31507375e92ec4d",
+      "bytes": 10227
     },
     "morphing/unfold.vkf": {
       "sha256": "94a510fc839018bfd0715355e652b32938f8f306b2c214a0b967e95af473f005",
@@ -63,19 +83,19 @@
     }
   },
   "adapter": {
-    "sha256": "ab86f18038f7ab52f257b46ec2fac06229a36d1f3a02cbbf1b6ca29d2a6836c3",
-    "bytes": 5006
+    "sha256": "00c962316d754934c1e8754f211212222badc28a3a100667e16b4346eedf9387",
+    "bytes": 6412
   },
   "compilerVersion": "0.7.5",
   "compilerSourceBinding": "ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f",
   "artifacts": {
     "state.wasm": {
-      "sha256": "88a184cc9bebb2b1ccd7334fb834bdb9b4b8be3d6c00c95e6ce81e6267caebaf",
-      "bytes": 1655505
+      "sha256": "e628fc3c4c61e09df821a5c528e27bee53b64ae24ff04a5d313aacddac1c7b96",
+      "bytes": 2525129
     },
     "state.json": {
-      "sha256": "431ad4e27d4d2d6c7941c7851a996e4056e58718af2ccd307ef78e78f977aee5",
-      "bytes": 7417
+      "sha256": "5ab466840d37ec9c3073671f3b9f71d908807702bb5a9e7b22f16331a81114c4",
+      "bytes": 8894
     }
   },
   "qualification": "Compiled from unchanged library source using current canonical compiler. Numerical, browser and GPU qualification recorded separately; no inherited claim."

@@ -96,3 +96,18 @@ geometry_attributes_at(plan:GeometryPlan,coordinate:num)->[num]:
         out.(i):segment.value(values.(at),values.(width+at),second.(at),second.(width+at),1,coordinate)
         .i:i+1
     @:out
+
+# Sparse event preparation and frame controls from the same native state backend.
+event_fields:.EventFields
+state_controls:.StateControls
+CurveLayout:(knots:[num],count:int,width:int,mode:int)
+GeometryLayout:(dimension:int,size:int,stride:int,carriers:int,width:int,join:num)
+EventLayout:(source:int,target:int,support:int,grow:int,shrink:int,source_attributes:int,target_attributes:int,weights:int)
+StateDescriptor:(curve:CurveLayout,geometry:GeometryLayout,density:bit,events:[EventLayout])
+StateEventPlan:(embedding:Curve,weights:[num],parent:[int],children:[int],coordinates:[num],first_coordinates:[num],root_coordinate:num,centers:[num])
+StateInputChunk:(offset:int,values:[num])
+PreparedEventFields:(chunks:[StateInputChunk],input_width:int,controls:StateDescriptor,weights:[num],embedding:Curve,events:StateEventPlan,event_coordinates:[num],direction:int,source_rgba:[num],target_rgba:[num],identity:bit)
+prepare_event_fields(plan:GeometryPlan,source_count:int,target_count:int,weights:[num])->PreparedEventFields:event_fields.prepare(plan,source_count,target_count,weights)
+event_controls(desc:StateDescriptor,q:num,desired:num,extent:num,offset_x:num,offset_y:num,viewport:[num])->[num]:state_controls.sample(desc,q,desired,129,257,extent,offset_x,offset_y,[1,1,1,1],viewport,1)
+native_dispatch:.morphing.dispatch
+raster_gpu_controls(params:[num])->[num]:native_dispatch.raster_controls(params)

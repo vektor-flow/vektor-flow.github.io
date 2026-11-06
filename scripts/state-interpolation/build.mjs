@@ -8,7 +8,7 @@ const [library,revision,compilerDir,output]=process.argv.slice(2);
 if(!library||!/^[a-f0-9]{7,40}$/.test(revision??'')||!compilerDir||!output)throw Error('Expected library git root, immutable revision, canonical compiler folder, output folder');
 const git=(...args)=>execFileSync('git',['-C',library,...args],{maxBuffer:4*1024*1024});
 const commit=git('rev-parse',revision).toString().trim();
-const names=git('ls-tree','-r','--name-only',commit,'Morphing.vkf','morphing').toString().trim().split('\n').filter(x=>x.endsWith('.vkf'));
+const names=git('ls-tree','-r','--name-only',commit,'Morphing.vkf','StateEvents.vkf','StateControls.vkf','EventFields.vkf','morphing').toString().trim().split('\n').filter(x=>x.endsWith('.vkf'));
 const directory=await mkdtemp(path.join(os.tmpdir(),'vkf-state-renderer-')),hash=bytes=>createHash('sha256').update(bytes).digest('hex'),sources={};
 for(const name of names){const data=git('show',commit+':'+name);sources[name]={sha256:hash(data),bytes:data.length};await mkdir(path.dirname(path.join(directory,name)),{recursive:true});await writeFile(path.join(directory,name),data);}
 const adapter=await readFile(new URL('./renderer-adapter.vkf',import.meta.url));

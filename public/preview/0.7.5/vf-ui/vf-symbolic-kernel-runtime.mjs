@@ -394,6 +394,10 @@ export function createSymbolicKernel({ instance, manifest, diagnostics = false }
     compileDraft(source) {
       return invoke("symbolic_compile_draft", [source]);
     },
+    compileDraftValue(source) {
+      const value = invokeTransient('symbolic_compile_draft', [source], value => value);
+      return Object.freeze({value});
+    },
     compileDocument(source, profile = "default", context = null, clip = null) {
       const result = invoke(
         "symbolic_compile_document",

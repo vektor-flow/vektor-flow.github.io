@@ -1,0 +1,611 @@
+{
+  "passed": true,
+  "cases": [
+    "(y-(0.5+(1-trig)*(((a*(8*x-4+h)+b)*(8*x-4+h)+c)*(8*x-4+h)+d)/40+trig*(cos(3*(8*x-4))+28/(19*sqrt(19)))/3))*(y-0.5)*(x-0.5)=0",
+    "y=(x+",
+    "y=cos(x)",
+    "y=@",
+    ""
+  ],
+  "records": [
+    {
+      "method": "preview",
+      "metadataParityCount": 290,
+      "records": [
+        {
+          "label": "before",
+          "start": 339928,
+          "failure": {
+            "i": 290,
+            "error": "RuntimeError: unreachable",
+            "heap": 67381688
+          },
+          "count": 290,
+          "firstCases": [
+            {
+              "i": 0,
+              "heap": 1382656,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 1,
+              "heap": 1403448,
+              "metadataSha256": "f190bf55dd23a2f7114a303adbef374bf671e9eef2d0d0fed7d4901ca2d96383",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 5,
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "heap": 1471096,
+              "metadataSha256": "829a1920fcf8306ca45cb85883dd717fa0c4bff6c70ea68fff5f228cb351d0cc",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 3,
+              "heap": 1484520,
+              "metadataSha256": "2d369c3c7eeb2f88f87aaa22f7edbdf59bebd1c88047c38598a0c7e2e36273e8",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "unexpected-character",
+                  "message": "expected a mathematical expression token",
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 3,
+                    "line": 1,
+                    "column": 4
+                  }
+                }
+              ]
+            },
+            {
+              "i": 4,
+              "heap": 1486768,
+              "metadataSha256": "e980511663435892eaf6692b1ab54359447562b194b337b12e7a3b36ccf342d4",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 0,
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "heapMinimum": 1382656,
+          "heapMaximum": 66856648,
+          "checkpoints": [
+            {
+              "i": 0,
+              "heap": 1382656,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 100,
+              "heap": 24319456,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 200,
+              "heap": 47256256,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            }
+          ],
+          "allMetadataSha256": "9c1e1f69213ffa86bcb588b4791a52edd437b164fa30e63853b9a40fe2f7a5d9"
+        },
+        {
+          "label": "after",
+          "start": 339928,
+          "failure": null,
+          "count": 2000,
+          "firstCases": [
+            {
+              "i": 0,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 1,
+              "heap": 339928,
+              "metadataSha256": "f190bf55dd23a2f7114a303adbef374bf671e9eef2d0d0fed7d4901ca2d96383",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 5,
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "heap": 339928,
+              "metadataSha256": "829a1920fcf8306ca45cb85883dd717fa0c4bff6c70ea68fff5f228cb351d0cc",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 3,
+              "heap": 339928,
+              "metadataSha256": "2d369c3c7eeb2f88f87aaa22f7edbdf59bebd1c88047c38598a0c7e2e36273e8",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "unexpected-character",
+                  "message": "expected a mathematical expression token",
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 3,
+                    "line": 1,
+                    "column": 4
+                  }
+                }
+              ]
+            },
+            {
+              "i": 4,
+              "heap": 339928,
+              "metadataSha256": "e980511663435892eaf6692b1ab54359447562b194b337b12e7a3b36ccf342d4",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 0,
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "heapMinimum": 339928,
+          "heapMaximum": 339928,
+          "checkpoints": [
+            {
+              "i": 0,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 100,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 200,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 300,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 400,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 500,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 600,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 700,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 800,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 900,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1000,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1100,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1200,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1300,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1400,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1500,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1600,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1700,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1800,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1900,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            }
+          ],
+          "allMetadataSha256": "d148acf8628041c511509cf4a00750292fb1559b4fa92d3979810ebd1a6f5894"
+        }
+      ]
+    },
+    {
+      "method": "previewScoped",
+      "metadataParityCount": 290,
+      "records": [
+        {
+          "label": "before",
+          "start": 339928,
+          "failure": {
+            "i": 290,
+            "error": "RuntimeError: unreachable",
+            "heap": 67381688
+          },
+          "count": 290,
+          "firstCases": [
+            {
+              "i": 0,
+              "heap": 1382656,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 1,
+              "heap": 1403448,
+              "metadataSha256": "f190bf55dd23a2f7114a303adbef374bf671e9eef2d0d0fed7d4901ca2d96383",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 5,
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "heap": 1471096,
+              "metadataSha256": "829a1920fcf8306ca45cb85883dd717fa0c4bff6c70ea68fff5f228cb351d0cc",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 3,
+              "heap": 1484520,
+              "metadataSha256": "2d369c3c7eeb2f88f87aaa22f7edbdf59bebd1c88047c38598a0c7e2e36273e8",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "unexpected-character",
+                  "message": "expected a mathematical expression token",
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 3,
+                    "line": 1,
+                    "column": 4
+                  }
+                }
+              ]
+            },
+            {
+              "i": 4,
+              "heap": 1486768,
+              "metadataSha256": "e980511663435892eaf6692b1ab54359447562b194b337b12e7a3b36ccf342d4",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 0,
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "heapMinimum": 1382656,
+          "heapMaximum": 66856648,
+          "checkpoints": [
+            {
+              "i": 0,
+              "heap": 1382656,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 100,
+              "heap": 24319456,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 200,
+              "heap": 47256256,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            }
+          ],
+          "allMetadataSha256": "9c1e1f69213ffa86bcb588b4791a52edd437b164fa30e63853b9a40fe2f7a5d9"
+        },
+        {
+          "label": "after",
+          "start": 339928,
+          "failure": null,
+          "count": 2000,
+          "firstCases": [
+            {
+              "i": 0,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 1,
+              "heap": 339928,
+              "metadataSha256": "f190bf55dd23a2f7114a303adbef374bf671e9eef2d0d0fed7d4901ca2d96383",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 5,
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ]
+            },
+            {
+              "i": 2,
+              "heap": 339928,
+              "metadataSha256": "829a1920fcf8306ca45cb85883dd717fa0c4bff6c70ea68fff5f228cb351d0cc",
+              "complete": true,
+              "diagnostics": []
+            },
+            {
+              "i": 3,
+              "heap": 339928,
+              "metadataSha256": "2d369c3c7eeb2f88f87aaa22f7edbdf59bebd1c88047c38598a0c7e2e36273e8",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "unexpected-character",
+                  "message": "expected a mathematical expression token",
+                  "location": {
+                    "offset": 2,
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 3,
+                    "line": 1,
+                    "column": 4
+                  }
+                }
+              ]
+            },
+            {
+              "i": 4,
+              "heap": 339928,
+              "metadataSha256": "e980511663435892eaf6692b1ab54359447562b194b337b12e7a3b36ccf342d4",
+              "complete": false,
+              "diagnostics": [
+                {
+                  "code": "incomplete-expression",
+                  "message": "expression can be completed",
+                  "location": {
+                    "offset": 0,
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "heapMinimum": 339928,
+          "heapMaximum": 339928,
+          "checkpoints": [
+            {
+              "i": 0,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 100,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 200,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 300,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 400,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 500,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 600,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 700,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 800,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 900,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1000,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1100,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1200,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1300,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1400,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1500,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1600,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1700,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1800,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            },
+            {
+              "i": 1900,
+              "heap": 339928,
+              "metadataSha256": "944f504887211532b603b2b52efa03fffedfe2db22b317ab92cf5a76af28464c"
+            }
+          ],
+          "allMetadataSha256": "d148acf8628041c511509cf4a00750292fb1559b4fa92d3979810ebd1a6f5894"
+        }
+      ]
+    }
+  ],
+  "scope": "Public result-only preview and previewScoped; complete/incomplete/invalid/empty drafts; exact metadata/diagnostic parity; retained kernel draft/program handles survive; canonical WASM unchanged"
+}

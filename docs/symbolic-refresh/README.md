@@ -17,3 +17,15 @@ Reproduce native comparison after recovering the old runtime from Git:
 GPU integration defaults PP_CODE_ROOT to the owner's read-only PP src directory; set it explicitly when elsewhere:
   PP_CODE_ROOT=/path/to/PP/src node tests/symbolic-refresh/browser.cjs
 Software Chromium flags remain the existing required Vulkan/SwiftShader flags. This is the native result-allocation fix, not a general VM garbage collector or a new numerical backend. Intake only the two files listed with exact hashes in INTAKE.json; native state7347/fromIds8b47 bytes are unchanged apart from this shared runtime extension.
+
+## Preview ownership follow-up
+
+Public preview()/previewScoped() had the same discarded-retained-draft issue. A three-case typing cycle exhausted both at177 calls. The broader five-case complete/incomplete/invalid/empty diagnostic cycle exhausts the old runtime at290 calls. Added kernel.compileDraftValue() using the same copy/rewind primitive and routed ONLY public result-only previews through it. Existing retained kernel.compileDraft() is unchanged.
+
+`node tests/symbolic-refresh/preview.mjs` compares the old5ae6cc5 runtime with the new value-only preview route:2000 calls for EACH public method retain exact339928 heap checkpoint; all290 old successful complete/diagnostic/location metadata hashes match new results. Both retained native draft and ordinary program handles decode identically after2000 previews. No parser/compiler/WASM/GPU/math changes. No new plot-path behavior, so the existing216-frame GPU qualification remains the unchanged plot-route evidence; this follow-up's distinct evidence is PREVIEW-QUALIFICATION.json.
+
+Recover the comparison runtime with:
+  git show 5ae6cc5:public/preview/0.7.5/vf-ui/vf-symbolic-kernel-runtime.mjs > /tmp/vkf-before-preview-runtime.mjs
+  node tests/symbolic-refresh/preview.mjs
+
+INTAKE.json now hashes the paired runtime/controller INCLUDING this preview follow-up. Do not mix old runtime and new controller and assume bounded previews: the compatibility fallback deliberately preserves the old API when the value-only method is absent.

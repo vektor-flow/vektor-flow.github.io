@@ -732,6 +732,8 @@ export async function createSymbolicCompiler({
   const compileDefinition = (base, source, context, clip) => typeof kernel.workspaceCompileValue === 'function'
     ? kernel.workspaceCompileValue(base, source, context, clip)
     : kernel.workspaceCompile(base, source, context, clip);
+  const previewPublicValue = source => typeof kernel.compileDraftValue === 'function'
+    ? kernel.compileDraftValue(source) : kernel.compileDraft(source);
   const compilePublicValue = (source, context, clip) => typeof kernel.compileWithContextValue === 'function'
     ? kernel.compileWithContextValue(source, context, clip)
     : kernel.compileWithContext(source, context, clip);
@@ -760,14 +762,14 @@ export async function createSymbolicCompiler({
       ]));
     },
     preview(source) {
-      return publicDraftResult(kernel.compileDraft(String(source ?? '')).value);
+      return publicDraftResult(previewPublicValue(String(source ?? '')).value);
     },
     previewScoped(source, { scopeId = null } = {}) {
       const expanded = expandSymbolicReferences(
         String(source ?? ''),
         [...globalDefinitionSources, ...(localDefinitions.get(String(scopeId)) || [])]
       );
-      return publicDraftResult(kernel.compileDraft(expanded).value);
+      return publicDraftResult(previewPublicValue(expanded).value);
     },
     compile(source, context = globalSymbolicContext(), clip = null) {
       const result = compilePublicValue(String(source ?? ''), context, clip);

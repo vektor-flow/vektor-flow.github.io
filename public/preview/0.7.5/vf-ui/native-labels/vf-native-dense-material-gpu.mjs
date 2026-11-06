@@ -1,5 +1,5 @@
 import {createCompiledFieldKernel,createFieldBuffer} from '../vf-compiled-field-runtime.mjs';
-export const DENSE_GPU_PROVENANCE_SHA256='a1cb62cde62b534f7c0bffa8a511faae2af1d648c17b32670832c7afa41f6b5c';
+export const DENSE_GPU_PROVENANCE_SHA256='2bb48536e8c7c658167c962a94f56ae03098512e499ffa93f6847226110004e5';
 const need=(v,c)=>{if(!v)throw Object.assign(Error(c),{code:c});};
 const hash=async b=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(x=>x.toString(16).padStart(2,'0')).join('');
 // Scheduling/byte transport only. Restore, entropy walks, state and capture are VKF.

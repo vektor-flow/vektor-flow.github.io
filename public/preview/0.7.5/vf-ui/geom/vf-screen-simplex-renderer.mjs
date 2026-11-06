@@ -240,6 +240,15 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
     backend.renderResident(buffer, vertexCount);
   }
 
+  // Transient native compute packet. Submit the draw before its producer may
+  // overwrite the borrowed buffer; append preserves the same MSAA samples.
+  function drawResidentVertices(buffer, vertexCount, {clear=true}={}) {
+    assertAlive();
+    if (!backend?.renderResident) throw new Error('Resident vertices require WebGPU');
+    if (!Number.isInteger(vertexCount) || vertexCount<0 || !buffer || buffer.size<vertexCount*BYTES_PER_VERTEX || typeof clear!=='boolean') throw new RangeError('Invalid transient resident vertex packet');
+    backend.renderResident(buffer,vertexCount,{clear,preserve:true});
+  }
+
   function resize(width = canvas.clientWidth, height = canvas.clientHeight) {
     assertAlive();
     cssWidth = Math.max(1, Number(width) || 1);
@@ -272,6 +281,7 @@ export function createScreenSpaceSimplexRenderer(canvas, options = {}) {
     setScene,
     setPackedVertices,
     setResidentVertices,
+    drawResidentVertices,
     captureFrame(options) {
       assertAlive();
       if (!backend?.captureFrame) throw new Error('GPU frame readback is unavailable');
@@ -465,15 +475,15 @@ async function createWebGpuBackend(canvas, options = {}) {
   let textureWidth = 0;
   let textureHeight = 0;
 
-  function draw(buffer, count) {
+  function draw(buffer, count, {clear=true,preserve=false}={}) {
     const encoder = device.createCommandEncoder();
     const pass = encoder.beginRenderPass({
       colorAttachments: [{
         view: multisampleTexture.createView(),
         resolveTarget: context.getCurrentTexture().createView(),
         clearValue: options.clearColor || { r: 0, g: 0, b: 0, a: 0 },
-        loadOp: 'clear',
-        storeOp: 'discard'
+        loadOp: clear ? 'clear' : 'load',
+        storeOp: preserve ? 'store' : 'discard'
       }]
     });
     if (buffer && count) {

@@ -1,0 +1,11 @@
+# Bounded native field resources
+
+The presentation player samples and draws one canonical compiled contour packet at a time. A compute queue serializes the shared raster/contour scratch buffers. Each resident native draw is submitted before another compute pass can overwrite that packet; subsequent draws load and store the same MSAA samples. Computed GPU contour geometry is never read back to the host by the player. Before an asynchronous compositor turn can discard the GPU drawing buffer, the existing native `captureFrame` queues an exact texture-to-pixel copy. Its caller-owned VideoFrame is composed and closed. This is pixel readback, reported separately from geometry readback.
+
+The standalone GPU API retains its existing packet lifetime by default. `streaming:true` explicitly borrows a packet only until the next sample and disallows aggregate copies. Private per-plan input/evaluated-state buffers remain bounded by the existing 256 MiB policy; resolution and all nine native kernels are unchanged.
+
+Native glyph SDF preparation has an exact bounded LRU. Its key contains the immutable kernel hash, complete Float64 contour vertices, winding offsets and resolution. Limits are 256 entries and 16 MiB of numeric/key payload. It reuses only identical native results, without rounding, approximate matching, transform caching or tolerance changes. `CACHE-QUALIFICATION.json` verifies complete prepared-plan equality and zero additional native contour calls on an exact hit.
+
+The resource browser test compares retained packets with immediate streaming draws and compares native contour RGBA packets against the same-source WASM export. Its readbacks are qualification-only. The full authored-scene gate supplies separate real-font midpoint, endpoint, replay and peak-memory evidence.
+
+Heavy native preparation uses the explicit detached value arena described in `NATIVE_GC_GAP.md`; optional heavy diagnostics use the same boundary. The existing retained kernel and per-frame scalar controls keep their ordinary lifetime. See `PREPARATION-OWNERSHIP.json` for exact complete-plan and retained-handle survival checks, and `../state-colors/KERNEL_OWNERSHIP.json` for the complete recorded history and measured memory caveat.

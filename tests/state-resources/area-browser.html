@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><script type="module">
+import{loadNativeStateKernel}from'../../public/preview/0.7.5/vf-ui/native-labels/vf-state-interpolation.mjs';
+import{createStateInterpolationGpu}from'../../public/preview/0.7.5/vf-ui/native-labels/vf-state-interpolation-gpu.mjs';
+import{createScreenSpaceSimplexRenderer}from'../../public/preview/0.7.5/vf-ui/geom/vf-screen-simplex-renderer.mjs';
+window.run=async()=>{
+ const fixture=await(await fetch('/fixture.json')).json(),loaded=await loadNativeStateKernel(),k=loaded.kernel,p=loaded.preparationKernel;
+ const geometry=p.invokeValue('prepare_geometry',fixture.geometry),plan=p.invokeValue('prepare_geometry_attributes',[geometry,fixture.geometry[1],fixture.geometry[2],fixture.attributes,4]);
+ const adapter=await navigator.gpu.requestAdapter(),device=await adapter.requestDevice(),gpu=await createStateInterpolationGpu({device,libraryCommit:loaded.provenance.libraryCommit,streaming:true}),canvas=document.createElement('canvas');document.body.append(canvas);
+ const renderer=createScreenSpaceSimplexRenderer(canvas,{device,pixelRatio:()=>1});await renderer.initialize();renderer.resize(840,840);
+ try{
+  const extent=800,prepared=await gpu.createPlan({id:'actual-27',plan,resolution:129,lattice:257,extent}),controls=(q,desired)=>k.invokeValue('gpu_ink_controls',[plan,q,desired,129,257,extent,20,20,[1,1,1,1]]),areas=[];
+  for(const q of[0,1])areas.push(await prepared.measureEndpoint(controls(q,1)));
+  const areaCurve=k.invokeValue('prepare',[[0,1],areas,1,0,false,false]),frames=[];
+  for(const q of[0,.25,.5,.75,1]){
+   const desired=k.invokeValue('sample',[areaCurve,q]).value[0],packet=await prepared.sample(controls(q,desired));renderer.drawResidentVertices(packet.buffer,packet.vertexCount);
+   const frame=await renderer.captureFrame({timestamp:0,duration:1}),snapshot=document.createElement('canvas');snapshot.width=840;snapshot.height=840;const c=snapshot.getContext('2d',{willReadFrequently:true});c.drawImage(frame,0,0);frame.close();
+   const pixels=c.getImageData(0,0,840,840).data;let alphaArea=0;for(let i=3;i<pixels.length;i+=4)alphaArea+=pixels[i]/255;
+   const staging=device.createBuffer({size:packet.vertexCount*24,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ}),encoder=device.createCommandEncoder();encoder.copyBufferToBuffer(packet.buffer,0,staging,0,staging.size);device.queue.submit([encoder.finish()]);await staging.mapAsync(GPUMapMode.READ);const vertices=new Float32Array(staging.getMappedRange().slice(0));staging.unmap();staging.destroy();let triangleArea=0;for(let i=0;i<vertices.length;i+=18){if(vertices[i+5]>0&&vertices[i+11]>0&&vertices[i+17]>0)triangleArea+=Math.abs((vertices[i+6]-vertices[i])*(vertices[i+13]-vertices[i+1])-(vertices[i+12]-vertices[i])*(vertices[i+7]-vertices[i+1]))/2;}
+   frames.push({q,alphaArea,triangleArea,desiredArea:desired*extent*extent/4,measuredArea:packet.measuredArea*extent*extent/4,relativeContourMeasureError:(triangleArea-desired*extent*extent/4)/(desired*extent*extent/4),scale:packet.scale,png:snapshot.toDataURL()});
+  }
+  const expected=k.invokeValue('prepare',[[0,1],[frames[0].alphaArea,frames.at(-1).alphaArea],1,0,false,false]);for(const f of frames){f.endpointLinearAlphaArea=k.invokeValue('sample',[expected,f.q]).value[0];f.relativeAlphaError=(f.alphaArea-f.endpointLinearAlphaArea)/f.endpointLinearAlphaArea;}
+  return{libraryCommit:loaded.provenance.libraryCommit,fixture:fixture.provenance,extent,frames,scope:'Diagnostic only: actual native glyph field cohort, existing canonical GPU kernels, alpha pixel area vs native measure; no host interpolation in runtime.'};
+ }finally{renderer.destroy();gpu.close();device.destroy();}
+};</script>

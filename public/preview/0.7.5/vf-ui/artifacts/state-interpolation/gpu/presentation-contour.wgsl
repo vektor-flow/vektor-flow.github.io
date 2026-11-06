@@ -408,43 +408,605 @@ let v17 = v10;
 let v18 = v11;
 return fn2(v12,v13,v14,v15,v16,v17,v18);
 }
+fn fn6(v481:f32,v482:f32)->f32 {
+let v483 = v481;
+let v484 = v482;
+if ((v483<v484)) {
+return v481;
+}
+return v482;
+}
+fn fn7(v511:f32,v512:f32)->f32 {
+let v513 = v511;
+let v514 = v512;
+if ((v513>v514)) {
+return v511;
+}
+return v512;
+}
+fn fn8(v533:f32,v534:f32,v535:f32)->f32 {
+let v536 = v535;
+let v537 = v534;
+let v538 = v533;
+let v539 = fn7(v537,v538);
+return fn6(v536,v539);
+}
+fn fn9(v631:f32,v632:f32,v633:f32,v634:f32,v635:f32,v636:f32)->f32 {
+let v637 = 1i;
+let v638 = v635;
+let v639 = (f32(v637)-v638);
+let v640 = 1i;
+let v641 = v636;
+let v642 = (f32(v640)-v641);
+let v643 = (v639*v642);
+let v644 = v631;
+var v645: f32 = (v643*v644);
+let v646 = v645;
+let v647 = v635;
+let v648 = 1i;
+let v649 = v636;
+let v650 = (f32(v648)-v649);
+let v651 = (v647*v650);
+let v652 = v632;
+let v653 = (v651*v652);
+v645 = (v646+v653);
+let v654 = v645;
+let v655 = 1i;
+let v656 = v635;
+let v657 = (f32(v655)-v656);
+let v658 = v636;
+let v659 = (v657*v658);
+let v660 = v633;
+let v661 = (v659*v660);
+v645 = (v654+v661);
+let v662 = v645;
+let v663 = v635;
+let v664 = v636;
+let v665 = (v663*v664);
+let v666 = v634;
+let v667 = (v665*v666);
+v645 = (v662+v667);
+return v645;
+}
+fn fn5(v435:i32,v436:i32,v437:i32,v438:i32,v439:f32,v440:f32,v441:f32,v442:f32,v443:i32)->f32 {
+let v444 = v443;
+let v445 = v438;
+let v446 = v437;
+let v447 = (v445*v446);
+var v448: i32 = (v444+v447);
+let v449 = v448;
+let v450 = v435;
+let v451 = read_values((v449+v450));
+let v452 = v442;
+var v453: f32 = (v451*v452);
+let v454 = v448;
+let v455 = v435;
+let v456 = (v454+v455);
+let v457 = 1i;
+let v458 = read_values((v456+v457));
+let v459 = v442;
+var v460: f32 = (v458*v459);
+let v461 = v453;
+let v462 = 0i;
+var v465 = (v461>f32(v462));
+if (v465) {
+let v463 = v460;
+let v464 = 0i;
+v465 = (v463>f32(v464));
+}
+if (!(v465)) { vkf_failed = true; }
+let v466 = v439;
+let v467 = read_values(v448);
+let v468 = (v466-v467);
+let v469 = v453;
+if (v469 == 0.0f) { vkf_failed = true; }
+var v470: f32 = (v468/v469);
+let v471 = v440;
+let v472 = v448;
+let v473 = 1i;
+let v474 = read_values((v472+v473));
+let v475 = (v471-v474);
+let v476 = v460;
+if (v476 == 0.0f) { vkf_failed = true; }
+var v477: f32 = (v475/v476);
+var v478: f32 = 0.0f;
+let v479 = v453;
+let v480 = v460;
+var v485: f32 = fn6(v479,v480);
+let v486 = v435;
+let v487 = 3i;
+if ((v486==v487)) {
+let v488 = v448;
+let v489 = v435;
+let v490 = (v488+v489);
+let v491 = 2i;
+let v492 = read_values((v490+v491));
+let v493 = v442;
+var v494: f32 = (v492*v493);
+let v495 = v494;
+let v496 = 0i;
+if (!((v495>f32(v496)))) { vkf_failed = true; }
+let v497 = v441;
+let v498 = v448;
+let v499 = 2i;
+let v500 = read_values((v498+v499));
+let v501 = (v497-v500);
+let v502 = v494;
+if (v502 == 0.0f) { vkf_failed = true; }
+v478 = (v501/v502);
+let v503 = v485;
+let v504 = v494;
+v485 = fn6(v503,v504);
+}
+let v505 = abs(v470);
+let v506 = 1i;
+let v507 = (v505-f32(v506));
+let v508 = abs(v477);
+let v509 = 1i;
+let v510 = (v508-f32(v509));
+let v515 = fn7(v507,v510);
+let v516 = abs(v478);
+let v517 = 1i;
+let v518 = (v516-f32(v517));
+var v519: f32 = fn7(v515,v518);
+let v520 = v470;
+let v521 = 1i;
+let v522 = (v520+f32(v521));
+let v523 = v436;
+let v524 = 1i;
+let v525 = (v523-v524);
+let v526 = (v522*f32(v525));
+let v527 = 2i;
+if (f32(v527) == 0.0f) { vkf_failed = true; }
+let v528 = (v526/f32(v527));
+let v529 = 0.0f;
+let v530 = v436;
+let v531 = 1i;
+let v532 = (v530-v531);
+var v540: f32 = fn8(v528,v529,f32(v532));
+let v541 = v477;
+let v542 = 1i;
+let v543 = (v541+f32(v542));
+let v544 = v436;
+let v545 = 1i;
+let v546 = (v544-v545);
+let v547 = (v543*f32(v546));
+let v548 = 2i;
+if (f32(v548) == 0.0f) { vkf_failed = true; }
+let v549 = (v547/f32(v548));
+let v550 = 0.0f;
+let v551 = v436;
+let v552 = 1i;
+let v553 = (v551-v552);
+var v554: f32 = fn8(v549,v550,f32(v553));
+var v555: f32 = 0.0f;
+let v556 = v435;
+let v557 = 3i;
+if ((v556==v557)) {
+let v558 = v478;
+let v559 = 1i;
+let v560 = (v558+f32(v559));
+let v561 = v436;
+let v562 = 1i;
+let v563 = (v561-v562);
+let v564 = (v560*f32(v563));
+let v565 = 2i;
+if (f32(v565) == 0.0f) { vkf_failed = true; }
+let v566 = (v564/f32(v565));
+let v567 = 0.0f;
+let v568 = v436;
+let v569 = 1i;
+let v570 = (v568-v569);
+v555 = fn8(v566,v567,f32(v570));
+}
+let v571 = v540;
+let v572 = 1i;
+if (f32(v572) == 0.0f) { vkf_failed = true; }
+let v573 = floor(v571/f32(v572));
+let v574 = v436;
+let v575 = 2i;
+let v576 = (v574-v575);
+let v577 = fn6(v573,f32(v576));
+if (!(abs(v577) < 2147483648.0f)) { vkf_failed = true; }
+var v578: i32 = i32(v577);
+let v579 = v554;
+let v580 = 1i;
+if (f32(v580) == 0.0f) { vkf_failed = true; }
+let v581 = floor(v579/f32(v580));
+let v582 = v436;
+let v583 = 2i;
+let v584 = (v582-v583);
+let v585 = fn6(v581,f32(v584));
+if (!(abs(v585) < 2147483648.0f)) { vkf_failed = true; }
+var v586: i32 = i32(v585);
+let v587 = v555;
+let v588 = 1i;
+if (f32(v588) == 0.0f) { vkf_failed = true; }
+let v589 = floor(v587/f32(v588));
+let v590 = v436;
+let v591 = 2i;
+let v592 = (v590-v591);
+let v593 = fn6(v589,f32(v592));
+if (!(abs(v593) < 2147483648.0f)) { vkf_failed = true; }
+var v594: i32 = i32(v593);
+let v595 = v540;
+let v596 = v578;
+var v597: f32 = (v595-f32(v596));
+let v598 = v554;
+let v599 = v586;
+var v600: f32 = (v598-f32(v599));
+let v601 = v555;
+let v602 = v594;
+var v603: f32 = (v601-f32(v602));
+let v604 = v435;
+let v605 = 2i;
+if ((v604==v605)) {
+let v606 = v448;
+let v607 = 2i;
+let v608 = v435;
+let v609 = (v607*v608);
+let v610 = (v606+v609);
+let v611 = v586;
+let v612 = v436;
+let v613 = (v611*v612);
+let v614 = (v610+v613);
+let v615 = v578;
+var v616: i32 = (v614+v615);
+let v617 = read_values(v616);
+let v618 = v616;
+let v619 = 1i;
+let v620 = read_values((v618+v619));
+let v621 = v616;
+let v622 = v436;
+let v623 = read_values((v621+v622));
+let v624 = v616;
+let v625 = v436;
+let v626 = (v624+v625);
+let v627 = 1i;
+let v628 = read_values((v626+v627));
+let v629 = v597;
+let v630 = v600;
+var v668: f32 = fn9(v617,v620,v623,v628,v629,v630);
+let v669 = v668;
+let v670 = v519;
+let v671 = 0.0f;
+let v672 = fn7(v670,v671);
+let v673 = (v669-v672);
+let v674 = v485;
+return (v673*v674);
+}
+var v675: i32 = 1i;
+let v676 = v435;
+let v677 = 3i;
+if ((v676==v677)) {
+v675 = 2i;
+}
+var v678: f32 = 0.0f;
+var v679: i32 = 0i;
+loop {
+let v680 = v679;
+let v681 = v675;
+if (!((v680<v681))) { break; }
+if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
+vkf_ticks += 1u;
+var v682: f32 = 1.0f;
+let v683 = v435;
+let v684 = 3i;
+if ((v683==v684)) {
+let v685 = 1i;
+let v686 = v603;
+v682 = (f32(v685)-v686);
+let v687 = v679;
+let v688 = 1i;
+if ((v687==v688)) {
+v682 = v603;
+}
+}
+var v689: i32 = 0i;
+loop {
+let v690 = v689;
+let v691 = 2i;
+if (!((v690<v691))) { break; }
+if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
+vkf_ticks += 1u;
+let v692 = 1i;
+let v693 = v600;
+var v694: f32 = (f32(v692)-v693);
+let v695 = v689;
+let v696 = 1i;
+if ((v695==v696)) {
+v694 = v600;
+}
+var v697: i32 = 0i;
+loop {
+let v698 = v697;
+let v699 = 2i;
+if (!((v698<v699))) { break; }
+if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
+vkf_ticks += 1u;
+let v700 = 1i;
+let v701 = v597;
+var v702: f32 = (f32(v700)-v701);
+let v703 = v697;
+let v704 = 1i;
+if ((v703==v704)) {
+v702 = v597;
+}
+let v705 = v594;
+let v706 = v679;
+let v707 = (v705+v706);
+let v708 = v436;
+let v709 = (v707*v708);
+let v710 = v436;
+let v711 = (v709*v710);
+let v712 = v586;
+let v713 = v689;
+let v714 = (v712+v713);
+let v715 = v436;
+let v716 = (v714*v715);
+let v717 = (v711+v716);
+let v718 = v578;
+let v719 = (v717+v718);
+let v720 = v697;
+var v721: i32 = (v719+v720);
+let v722 = v678;
+let v723 = v702;
+let v724 = v694;
+let v725 = (v723*v724);
+let v726 = v682;
+let v727 = (v725*v726);
+let v728 = v448;
+let v729 = 2i;
+let v730 = v435;
+let v731 = (v729*v730);
+let v732 = (v728+v731);
+let v733 = v721;
+let v734 = read_values((v732+v733));
+let v735 = (v727*v734);
+v678 = (v722+v735);
+let v736 = v697;
+let v737 = 1i;
+v697 = (v736+v737);
+}
+let v738 = v689;
+let v739 = 1i;
+v689 = (v738+v739);
+}
+let v740 = v679;
+let v741 = 1i;
+v679 = (v740+v741);
+}
+let v742 = v678;
+let v743 = v519;
+let v744 = 0.0f;
+let v745 = fn7(v743,v744);
+let v746 = (v742-v745);
+let v747 = v485;
+return (v746*v747);
+}
+fn fn4(v395:i32,v396:i32,v397:i32,v398:i32,v399:f32,v400:f32,v401:f32,v402:f32,v403:i32)->i32 {
+let v404 = v398;
+let v405 = 0i;
+var v408 = (v404>v405);
+if (v408) {
+let v406 = v403;
+let v407 = 0i;
+v408 = (v406>=v407);
+}
+var v415 = v408;
+if (v415) {
+let v409 = i32(arrayLength(&values));
+let v410 = v403;
+let v411 = v398;
+let v412 = v397;
+let v413 = (v411*v412);
+let v414 = (v410+v413);
+v415 = (v409>=v414);
+}
+if (!(v415)) { vkf_failed = true; }
+var v416: i32 = 0i;
+let v417 = v395;
+let v418 = v396;
+let v419 = v397;
+let v420 = 0i;
+let v421 = v399;
+let v422 = v400;
+let v423 = v401;
+let v424 = v402;
+let v425 = v403;
+let v426 = v417;
+let v427 = v418;
+let v428 = v419;
+let v429 = v420;
+let v430 = v421;
+let v431 = v422;
+let v432 = v423;
+let v433 = v424;
+let v434 = v425;
+var v748: f32 = fn5(v426,v427,v428,v429,v430,v431,v432,v433,v434);
+var v749: i32 = 1i;
+loop {
+let v750 = v749;
+let v751 = v398;
+if (!((v750<v751))) { break; }
+if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
+vkf_ticks += 1u;
+let v752 = v395;
+let v753 = v396;
+let v754 = v397;
+let v755 = v749;
+let v756 = v399;
+let v757 = v400;
+let v758 = v401;
+let v759 = v402;
+let v760 = v403;
+var v761: f32 = fn5(v752,v753,v754,v755,v756,v757,v758,v759,v760);
+let v762 = v761;
+let v763 = v748;
+if ((v762>=v763)) {
+v416 = v749;
+v748 = v761;
+}
+let v764 = v749;
+let v765 = 1i;
+v749 = (v764+v765);
+}
+return v416;
+}
 fn fn0(v1:i32)->array<f32,72> {
 let v2 = v1;
 var v318: array<f32,72> = fn1(v2);
-var v319: i32 = 0i;
+let v319 = read_params(0i);
+if (!(abs(v319) < 2147483648.0f)) { vkf_failed = true; }
+var v320: i32 = i32(v319);
+let v321 = read_params(1i);
+if (!(abs(v321) < 2147483648.0f)) { vkf_failed = true; }
+var v322: i32 = i32(v321);
+let v323 = read_params(2i);
+if (!(abs(v323) < 2147483648.0f)) { vkf_failed = true; }
+var v324: i32 = i32(v323);
+let v325 = read_params(3i);
+if (!(abs(v325) < 2147483648.0f)) { vkf_failed = true; }
+var v326: i32 = i32(v325);
+let v327 = read_params(4i);
+if (!(abs(v327) < 2147483648.0f)) { vkf_failed = true; }
+var v328: i32 = i32(v327);
+let v329 = v328;
+let v330 = v328;
+var v331: i32 = (v329*v330);
+let v332 = 2i;
+let v333 = v320;
+let v334 = (v332*v333);
+let v335 = v322;
+let v336 = v322;
+let v337 = (v335*v336);
+var v338: i32 = (v334+v337);
+let v339 = v324;
+let v340 = v338;
+let v341 = 4i;
+let v342 = (v340+v341);
+var v343: bool = (v339==v342);
+var v344: i32 = 0i;
 loop {
-let v320 = v319;
-let v321 = 12i;
-if (!((v320<v321))) { break; }
+let v345 = v344;
+let v346 = 12i;
+if (!((v345<v346))) { break; }
 if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
 vkf_ticks += 1u;
-let v322 = v319;
-let v323 = 6i;
-let v324 = (v322*v323);
-let v325 = v319;
-let v326 = 6i;
-let v327 = (v325*v326);
-if (v327<0i || v327>=72i) { vkf_failed=true; }
-let v328 = v318[u32(clamp(v327,0i,72i-1i))];
-let v329 = read_params(34i);
-if (v324<0i || v324>=72i) { vkf_failed=true; } else { v318[u32(v324)]=(v328+v329); }
-let v330 = v319;
-let v331 = 6i;
-let v332 = (v330*v331);
-let v333 = 1i;
-let v334 = (v332+v333);
-let v335 = v319;
-let v336 = 6i;
-let v337 = (v335*v336);
-let v338 = 1i;
-let v339 = (v337+v338);
-if (v339<0i || v339>=72i) { vkf_failed=true; }
-let v340 = v318[u32(clamp(v339,0i,72i-1i))];
-let v341 = read_params(35i);
-if (v334<0i || v334>=72i) { vkf_failed=true; } else { v318[u32(v334)]=(v340+v341); }
-let v342 = v319;
-let v343 = 1i;
-v319 = (v342+v343);
+var v354 = v343;
+if (v354) {
+let v347 = v344;
+let v348 = 6i;
+let v349 = (v347*v348);
+let v350 = 5i;
+let v351 = (v349+v350);
+if (v351<0i || v351>=72i) { vkf_failed=true; }
+let v352 = v318[u32(clamp(v351,0i,72i-1i))];
+let v353 = 0i;
+v354 = (v352>f32(v353));
+}
+if (v354) {
+let v355 = 2i;
+let v356 = v344;
+let v357 = 6i;
+let v358 = (v356*v357);
+if (v358<0i || v358>=72i) { vkf_failed=true; }
+let v359 = v318[u32(clamp(v358,0i,72i-1i))];
+let v360 = (f32(v355)*v359);
+let v361 = read_params(20i);
+if (v361 == 0.0f) { vkf_failed = true; }
+let v362 = (v360/v361);
+let v363 = 1i;
+var v364: f32 = (v362-f32(v363));
+let v365 = 2i;
+let v366 = v344;
+let v367 = 6i;
+let v368 = (v366*v367);
+let v369 = 1i;
+let v370 = (v368+v369);
+if (v370<0i || v370>=72i) { vkf_failed=true; }
+let v371 = v318[u32(clamp(v370,0i,72i-1i))];
+let v372 = (f32(v365)*v371);
+let v373 = read_params(20i);
+if (v373 == 0.0f) { vkf_failed = true; }
+let v374 = (v372/v373);
+let v375 = 1i;
+var v376: f32 = (v374-f32(v375));
+let v377 = v320;
+let v378 = v322;
+let v379 = v324;
+let v380 = v326;
+let v381 = v364;
+let v382 = v376;
+let v383 = 0i;
+let v384 = read_params(11i);
+let v385 = v331;
+let v386 = v377;
+let v387 = v378;
+let v388 = v379;
+let v389 = v380;
+let v390 = v381;
+let v391 = v382;
+let v392 = v383;
+let v393 = v384;
+let v394 = v385;
+var v766: i32 = fn4(v386,v387,v388,v389,v390,v391,f32(v392),v393,v394);
+let v767 = v331;
+let v768 = v766;
+let v769 = v324;
+let v770 = (v768*v769);
+let v771 = (v767+v770);
+let v772 = v338;
+var v773: i32 = (v771+v772);
+var v774: i32 = 0i;
+loop {
+let v775 = v774;
+let v776 = 4i;
+if (!((v775<v776))) { break; }
+if (vkf_ticks >= 65536u) { vkf_failed = true; break; }
+vkf_ticks += 1u;
+let v777 = v344;
+let v778 = 6i;
+let v779 = (v777*v778);
+let v780 = 2i;
+let v781 = (v779+v780);
+let v782 = v774;
+let v783 = (v781+v782);
+let v784 = v773;
+let v785 = v774;
+if (v783<0i || v783>=72i) { vkf_failed=true; } else { v318[u32(v783)]=read_values((v784+v785)); }
+let v786 = v774;
+let v787 = 1i;
+v774 = (v786+v787);
+}
+}
+let v788 = v344;
+let v789 = 6i;
+let v790 = (v788*v789);
+let v791 = v344;
+let v792 = 6i;
+let v793 = (v791*v792);
+if (v793<0i || v793>=72i) { vkf_failed=true; }
+let v794 = v318[u32(clamp(v793,0i,72i-1i))];
+let v795 = read_params(34i);
+if (v790<0i || v790>=72i) { vkf_failed=true; } else { v318[u32(v790)]=(v794+v795); }
+let v796 = v344;
+let v797 = 6i;
+let v798 = (v796*v797);
+let v799 = 1i;
+let v800 = (v798+v799);
+let v801 = v344;
+let v802 = 6i;
+let v803 = (v801*v802);
+let v804 = 1i;
+let v805 = (v803+v804);
+if (v805<0i || v805>=72i) { vkf_failed=true; }
+let v806 = v318[u32(clamp(v805,0i,72i-1i))];
+let v807 = read_params(35i);
+if (v800<0i || v800>=72i) { vkf_failed=true; } else { v318[u32(v800)]=(v806+v807); }
+let v808 = v344;
+let v809 = 1i;
+v344 = (v808+v809);
 }
 return v318;
 }

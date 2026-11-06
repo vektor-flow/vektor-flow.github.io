@@ -51,14 +51,48 @@ geometry_measure_at(plan:GeometryPlan,coordinate:num,scale:num)->num:
     @:frame.measure
 # Positive interior is necessary: AA coverage alone must not certify material.
 geometry_peak_at(plan:GeometryPlan,coordinate:num)->num:
-    surface:presentation.prepare_surface(plan,coordinate,1)
+    curve:plan.curve
+    knots:curve.knots
+    mapping:s.clock(knots,coordinate,plan.smooth_start,plan.smooth_end)
+    interval:s.interval(knots,mapping.coordinate)
+    h:knots.(interval+1)-knots.(interval)
+    u:(mapping.coordinate-knots.(interval))/h
+    values:curve.values
+    second:curve.second
+    width:curve.width
+    carriers:plan.carriers
+    stride:plan.stride
+    cells:plan.cells
+    start:2*plan.dimension
+    before:interval*width
+    after:(interval+1)*width
     peak: -1000000.0
     carrier:0
-    carrier<plan.carriers?>
+    carrier<carriers?>
         i:0
-        i<plan.cells?>
-            at:carrier*plan.stride+2*plan.dimension+i
-            .peak:b.maximum(peak,surface.values.(at))
+        i<cells?>
+            at:carrier*stride+start+i
+            value:segment.value(values.(before+at),values.(after+at),second.(before+at),second.(after+at),h,u)
+            .peak:b.maximum(peak,value)
             .i:i+1
         .carrier:carrier+1
     @:peak
+
+# Small diagnostics reuse the exact native scalar segment evaluator. No color
+# averaging or separate timing law; all four channels are prepared carrier state.
+segment:.morphing.segment
+geometry_attributes_at(plan:GeometryPlan,coordinate:num)->[num]:
+    curve:plan.curve
+    (curve.count=2 /\ curve.knots.(0)=0 /\ curve.knots.(1)=1 /\ coordinate>=0 /\ coordinate<=1 /\ plan.stride=2*plan.dimension+plan.cells+4)?! "native RGBA state profile"
+    values:curve.values
+    second:curve.second
+    width:curve.width
+    stride:plan.stride
+    start:2*plan.dimension+plan.cells
+    [num] out:[0:4*plan.carriers]
+    i:0
+    i<out.length()?>
+        at:(i//4)*stride+start+i%4
+        out.(i):segment.value(values.(at),values.(width+at),second.(at),second.(width+at),1,coordinate)
+        .i:i+1
+    @:out

@@ -1,9 +1,28 @@
 # Rendering-only embedding of the existing current VKF field contour packet.
 g:.morphing.dispatch
+f:.morphing.field
 kernel(index:int,params:[num],values:[num])->[num]:
     packet:g.triangle_packet(index,params,values)
+    dimension:int(params.(0))
+    size:int(params.(1))
+    stride:int(params.(2))
+    carriers:int(params.(3))
+    lattice:int(params.(4))
+    offset:lattice*lattice
+    color_start:2*dimension+size*size
+    colored:stride=color_start+4
     i:0
     i<12?>
+        # Inactive packet slots retain zero alpha; never color empty triangles.
+        colored /\ packet.(i*6+5)>0?
+            x:2*packet.(i*6)/params.(20)-1
+            y:2*packet.(i*6+1)/params.(20)-1
+            owner:f.dominant(values,dimension,size,stride,carriers,x,y,0,params.(11),offset)
+            at:offset+owner*stride+color_start
+            channel:0
+            channel<4?>
+                packet.(i*6+2+channel):values.(at+channel)
+                .channel:channel+1
         packet.(i*6):packet.(i*6)+params.(34)
         packet.(i*6+1):packet.(i*6+1)+params.(35)
         .i:i+1

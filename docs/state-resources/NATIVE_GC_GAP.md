@@ -1,0 +1,11 @@
+# Native arena reuse gap and supported detached ownership
+
+Observed with the current075 compiler binding `ffcaeaae67079c714583d5487f3452a9ed4107abf14204a512f647400473c71f` and d429 state artifact `88a184cc9bebb2b1ccd7334fb834bdb9b4b8be3d6c00c95e6ce81e6267caebaf`.
+
+The restored active source86d5841 has the same native chunk builder as d429. The failed571a whole-output packing optimization is excluded.
+
+The exact fixture is `tests/state-resources/native-gc-fixture.json`, copied unchanged from the native library's `tests/morphing/packing-gc-fixture.json`. On ONE current kernel, invoke `contour_field(fixture.contour)` followed by `prepare_geometry(fixture.geometry)`. The second call traps in the native GC heap scanner's allocation-header-size check. The geometry alone passes repeatedly; both diagnostic and ordinary invocation exhibit the distinction. All observed transient heap pointers restore. Calling the exported full reset between these two operations did not repair this particular sequence. No broader compiler or retained-program defect is asserted.
+
+The general symbolic runtime, retained handles, compiler, guards and GPU algorithms remain unchanged. `loadNativeStateKernel` additionally supplies `preparationKernel`, a detached value-only execution boundary: every call instantiates the SAME verified compiled WebAssembly.Module, decodes its plain value result, and releases ownership of the instance. The player uses this for heavy contour/geometry preparation and optional heavy diagnostics. The ordinary `kernel` retains existing APIs and handles and executes per-frame scalar controls. Explicit `preparationKernel` can also be passed to `prepareNativeLabelTransition`; it defaults to the caller's kernel for compatibility.
+
+This is arena ownership, not a fix to the shared-kernel GC implementation. Instance memory becomes unreachable and is reclaimed by the JavaScript engine. The recorded216-operation history measured approximately312 MiB peak resident memory, with larger temporary external/virtual accounting before normal collection; it is not a constant-total-memory or low-memory-device qualification. GPU buffer accounting retains the existing256 MiB ceiling. Full browser-scene measurements accompany the final scene qualification.

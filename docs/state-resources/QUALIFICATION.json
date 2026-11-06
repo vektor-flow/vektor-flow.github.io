@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "retained": {
+    "frames": [
+      {
+        "q": 0.25,
+        "hash": "a87b0d68ec1d61459fd43e32f45d7a06ef2b050d65973d8935c0184a44c707d0",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.5,
+        "hash": "12cd1b5fa2b9594c2faf9117d93348b8dd7d14d20b8e7a7b09412e538cbb2018",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.75,
+        "hash": "0349ca5a1113b2a71d8a272f291a18c6e6b312da82909f2119a877d5308d204a",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.5,
+        "hash": "12cd1b5fa2b9594c2faf9117d93348b8dd7d14d20b8e7a7b09412e538cbb2018",
+        "nonzero": 1440
+      }
+    ],
+    "stats": {
+      "bytes": 116830572,
+      "maxBytes": 268435456,
+      "bufferPolicy": "retained packets",
+      "sharedProfiles": 0,
+      "plans": 3,
+      "libraryCommit": "d429453d73ae10533cb7c69b4de37bfc759172fe",
+      "backend": "current-vkf-compiled-gpu-real-f32"
+    }
+  },
+  "packetBounds": {
+    "live": 19998,
+    "minx": 128,
+    "maxx": 152,
+    "miny": 120,
+    "maxy": 140
+  },
+  "checkedActiveVertices": 54,
+  "streaming": {
+    "frames": [
+      {
+        "q": 0.25,
+        "hash": "a87b0d68ec1d61459fd43e32f45d7a06ef2b050d65973d8935c0184a44c707d0",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.5,
+        "hash": "12cd1b5fa2b9594c2faf9117d93348b8dd7d14d20b8e7a7b09412e538cbb2018",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.75,
+        "hash": "0349ca5a1113b2a71d8a272f291a18c6e6b312da82909f2119a877d5308d204a",
+        "nonzero": 1440
+      },
+      {
+        "q": 0.5,
+        "hash": "12cd1b5fa2b9594c2faf9117d93348b8dd7d14d20b8e7a7b09412e538cbb2018",
+        "nonzero": 1440
+      }
+    ],
+    "stats": {
+      "bytes": 20272348,
+      "maxBytes": 268435456,
+      "bufferPolicy": "serialized shared contour/field scratch; immediate native draw",
+      "sharedProfiles": 1,
+      "plans": 3,
+      "libraryCommit": "d429453d73ae10533cb7c69b4de37bfc759172fe",
+      "backend": "current-vkf-compiled-gpu-real-f32"
+    }
+  },
+  "maxPacketError": 1.210719347000122e-8,
+  "errors": [],
+  "note": "TestonlyGPUbufferreadbacks forsame-sourceWASM72floatreference; playergeometryreadback0. ExactMSAApixelswithsametypedkernels/sharedscratchvsretainedpackets; noresolution/quantity/backendchange."
+}

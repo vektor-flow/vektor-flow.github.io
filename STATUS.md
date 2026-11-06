@@ -503,3 +503,52 @@ limits/model evidence in README/QUALIFICATION. b0d value-only APIs, fonts/PMA/
 capture unchanged. NoPPedits/deploy. Separate shaderfloor fixafd3 has actualparent
 GPUtimeuniform proof. Numeric-table native cell capability is delegated independent
 follow-up; whole-array~1s, retainedcatalog shortcut unqualified andnotactive.
+
+## 2026-11-06: mixed native RGBA and bounded field resources — NOT READY
+
+Current branch codex/native-state-colors-20261106; native source d429453 is
+pushed, canonical current075 WASM + nine state/four material GPU kernels rebuilt.
+Per-carrier RGBA uses existing native state channels and dominant material-field
+ownership. Streaming contours share scratch, submit native draw before overwrite,
+and retain the same MSAA samples. Existing texture-copy captureFrame now resolves
+field pixels before a compositor turn can discard the GPU drawing buffer; only
+pixels cross to host. Resource control has1440 visible pixels, exact retained vs
+streaming RGBA/seek,54 active contour vertices compared to same-source WASM
+(max error1.22e-8),116.83MB ->20.27MB. Exact field-cache native unit also passes.
+
+Full actual29-view gate passed views1–6 including35fields/26.38MB, then RED at
+view7 native prepare_geometry. Trap is native GC allocation-header scan, before
+attributes/GPU. EXACT7-carrier inputs pass fresh Node repeatedly with both normal
+and diagnostic invocation; all reported heap checkpoints restore. Child is
+capturing/replaying exact preceding call history and testing existing reset
+semantics. Do not claim a general compiler defect or publish/intake this closure
+until this is isolated and full actual-scene gate passes.
+
+Independent SDK live-control ownership module committed/pushed1d96fe2;13unit
+cases plus seven-time native AST/GPU probe pass. Generic controls only; no state
+or physics substitute. NS remains accepted CPU research + native visualization,
+not an implemented native solver. Faithful port is queued after current closure.
+No PP files/deployment changed.
+
+## 2026-11-06: structural closure GREEN, rendered quantity RED
+
+Active numerical pin86d5841 restores exactd429 carrier-chunk packing; failed571a
+whole-output optimization is excluded (unknown native value tag on actual27→1).
+Detached heavy preparation uses the same verified compiled module in fresh scoped
+instances; retained/program APIs and per-frame control kernel remain unchanged.
+All29 actual authored midpoints plus all3 mixed-colour groups fullq/endpoints/seek
+pass; maximum GPU buffer accounting30,363,960B. Browser diagnostic run~18.8min,
+peak summed owned ChromeRSS~2.30GB (shared pages can double-count); NOT a low-memory
+or production-throughput claim. Actual10frame VP9 warmup decoded.
+
+STRONGER VISIBLE QUANTITY FALSIFICATION RED: actual27→1 glyph cohort at nativeq.5
+has contourtrianglearea65.06 CSSpx² vsnativecalibratedmeasure1150.70 atdeclared
+extent800; rawalphaarea64.66 is60.4%below interpolation ofGPUendpointalphaareas.
+Evidence docs/state-resources/RENDERED-AREA.json; test-only GPUgeometryreadback,
+no codec/RGB proxy. Not a readiness claim. Soft coverageclamp(F/h+.5) is not
+invariant underpositive rescaling ofF although zero contour is; anisotropic glyph
+embedding/lerpedfields are notunit-gradientSDFs. Fixed global257node contour also
+under-resolves large cohorts. Need SAMEbackend clipped-cell geometric measure
+aligned with the actual render lattice plus bounded tiled/highresolution sampling
+for large screen extents. Preserve exactfonts/endpoint states, nofade/hostalgorithm.
+READINESS.json explicitlyfalse. No PP edits/publication; no native NS port yet.

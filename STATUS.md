@@ -483,3 +483,23 @@ Cubic follow-up: equals-definitions all216global pixel hashes/LaTeX EXACTmatchco
 Unique branch codex/native-symbolic-refresh-arena-20261106. Root49-view history failed beforetrig1 nativeplot because compileScoped public-label refresh used retained compileWithContext twice and discarded handles. Definitions-only2000updates constant; definitions+compileScoped traps44 atheap67381688. Added detached compileWithContextValue and routed only result-only compile/compileScoped metadata through it. Retained program APIs untouched. CanonicalWASM/math/shaders unchanged. Actual2000refreshes exactheap298440;44before/aftermetadata parity; retainedprogramsurvives. ActualProducttyped-document refresh interleaved216nativefaceGPUplots exactheap272912 and ALL216RGBA/LaTeX equalpriorrawfacehistory; latecos/resetcorrect. docs/symbolic-refresh contains evidence,images,paired2fileintake hashes. No PP edits or nativeguard relaxation. Root owns actual49viewfastnav and finalmovie validation.
 
 Preview follow-up: public preview/previewScoped also retained discarded native draft allocations. Proven old3casecycle traps177; old5case complete/incomplete/invalid/empty cycle traps290. Added compileDraftValue and value-only previewrouting in SAME2publicfiles; existing retainedcompileDraft unchanged.2000previews EACH exactheap339928, all290oldmetadata+diagnostic hashes match, retaineddraft+programsurvive. PREVIEW-QUALIFICATION evidence and updatedpairedINTAKE hashes committed. No parser/WASM/math/GPU/plotpath changes; root must waituntilactivebrowserruncloses beforeintake.
+
+## 2026-11-06: ordinary physical glyph state, no lifecycle crossfade
+
+Unique native-glyph-material-state branch. Actual old public prepare_glyph_state
+RED: added physical glyph alpha .5 at midpoint while already at final shape.
+Text adapter now invokes existing canonical state/biological/field signed-ink
+split/merge path. Identity/affine shortcut is internal canonical native state;
+unchanged glyphs retain exact objects/affine recipes. Old pose-only native helper
+rejects differing IDs. Native source ad9f85b fixes physical nonzero contours and
+valid measured area brackets; doubled domain + proportional sampling resolution
+fixes clipped6→7 without precision downgrade. Native RGBA/area share one optional
+quadratic/linear clock. ActualGPU/WASM GREEN inclorderedgroup2→5glyphs,6→7,
+fixedheading/unchangedsuffix, exact endpoints/seek, full authoredalpha, no gas,
+geometric removal, positive field interiors. CPU hollow-ring oldtrap→new residual
+2.31e-6 at1e-4 tolerance. VP9 sixframe nativeclipdecoded. Material GPU parity16cases
+worst5.96e-8 /4.47e-8. docs/glyph-material-state/INTAKE.json pins20publicfiles;
+limits/model evidence in README/QUALIFICATION. b0d value-only APIs, fonts/PMA/
+capture unchanged. NoPPedits/deploy. Separate shaderfloor fixafd3 has actualparent
+GPUtimeuniform proof. Numeric-table native cell capability is delegated independent
+follow-up; whole-array~1s, retainedcatalog shortcut unqualified andnotactive.

@@ -1,5 +1,6 @@
 # Renderer-only adapter exports; the state/field/unfolding algorithms are VKF's.
-contour_field(vertices:[num],rings:[int],size:int)->[num]:b.polygon_field(vertices,rings,size)
+contour_field_evenodd(vertices:[num],rings:[int],size:int)->[num]:b.polygon_field(vertices,rings,size,false)
+contour_field(vertices:[num],rings:[int],size:int)->[num]:b.polygon_field(vertices,rings,size,true)
 Surface:(plan:GeometryPlan,values:[num],scale:num,neck:num)
 prepare_surface(plan:GeometryPlan,coordinate:num,scale:num)->Surface:presentation.prepare_surface(plan,coordinate,scale)
 surface_row(surface:Surface,size:int,row:int,lo:[num],hi:[num],extent:num,color:[num])->[num]:presentation.surface_row(surface,size,row,lo,hi,extent,color)
@@ -31,3 +32,33 @@ gpu_controls(plan:GeometryPlan,coordinate:num,desired:num,resolution:int,lattice
     neck:plan.join*16*u*u*(1-u)*(1-u)
     spacing:2/num(resolution)
     @:[num(plan.dimension),num(plan.size),num(plan.stride),num(plan.carriers),num(resolution),-1,-1,0,1,1,0,1,neck,spacing,spacing*spacing,desired,0.0001,0.125,4,0,extent,num(i),u,h,num(plan.curve.count),num(plan.curve.width),0,0,0,1,0,0,0,num(lattice),offset_x,offset_y]
+
+# Authored RGBA and geometric controls share the exact prepared state clock.
+# No opacity lifecycle is synthesized for unmatched glyphs.
+gpu_ink_controls(plan:GeometryPlan,coordinate:num,desired:num,resolution:int,lattice:int,extent:num,offset_x:num,offset_y:num,color:[num])->[num]:
+    (color.length()=4)?! "state field requires authored RGBA"
+    packet:gpu_controls(plan,coordinate,desired,resolution,lattice,extent,offset_x,offset_y)
+    packet.(17):0.000001
+    i:0
+    i<4?>
+        packet.(26+i):color.(i)
+        .i:i+1
+    @:packet
+# Bounded native diagnostic: the same geometric measure used by calibration.
+geometry_measure_at(plan:GeometryPlan,coordinate:num,scale:num)->num:
+    surface:presentation.prepare_surface(plan,coordinate,scale)
+    frame:b.raster(plan,surface.values,65,[-1,-1],[1,1],scale,surface.neck)
+    @:frame.measure
+# Positive interior is necessary: AA coverage alone must not certify material.
+geometry_peak_at(plan:GeometryPlan,coordinate:num)->num:
+    surface:presentation.prepare_surface(plan,coordinate,1)
+    peak: -1000000.0
+    carrier:0
+    carrier<plan.carriers?>
+        i:0
+        i<plan.cells?>
+            at:carrier*plan.stride+2*plan.dimension+i
+            .peak:b.maximum(peak,surface.values.(at))
+            .i:i+1
+        .carrier:carrier+1
+    @:peak

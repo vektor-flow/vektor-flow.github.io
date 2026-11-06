@@ -17,16 +17,17 @@ export async function createStateInterpolationGpu({device,libraryCommit,fetch:fe
  async function read(b){await b.mapAsync(GPUMapMode.READ);try{return new Uint8Array(b.getMappedRange()).slice();}finally{b.unmap();b.destroy();}}
  async function createPlan(description){
   need(!closed,'STATE_GPU_CLOSED');const plan=description.plan,width=plan.curve.width;
-  need(plan.dimension===2&&plan.size===65&&plan.curve.count===2&&plan.curve.mode===0&&width===plan.carriers*plan.stride&&plan.curve.values.length===2*width&&plan.curve.second.length===2*width,'STATE_GPU_PLAN_PROFILE');
-  const owned=[],own=(...args)=>{const b=allocate(...args);owned.push(b);return b;},res=65,lattice=129,chunks=Math.ceil(res*res/8),cells=(lattice-1)**2;
+  need(plan.dimension===2&&plan.size===65&&plan.curve.count===2&&(plan.curve.mode===0||(plan.curve.mode===1&&plan.curve.second.every(x=>x===0)))&&width===plan.carriers*plan.stride&&plan.curve.values.length===2*width&&plan.curve.second.length===2*width,'STATE_GPU_PLAN_PROFILE');
+  const owned=[],own=(...args)=>{const b=allocate(...args);owned.push(b);return b;},res=description.resolution??65,lattice=description.lattice??129,chunks=Math.ceil(res*res/8),cells=(lattice-1)**2;
   const input=own(new Float32Array([...plan.curve.values,...plan.curve.second])),values=own(width),stateError=own(width+1),params=[own(36),own(36)],controlError=own(37),measureResult=own(chunks),measureError=own(chunks+1),scalar=own(1),scalarError=own(2),field=own(lattice*lattice),fieldError=own(lattice*lattice+1),renderParams=own(36),checkedParams=own(36),boundaryError=own(4*res+1),boundary=own(4*res),vertices=own(cells*72,GPUBufferUsage.VERTEX),vertexError=own(cells+1);
+  need([65,129,257].includes(res)&&lattice===2*res-1,'STATE_GPU_RASTER_PROFILE');
   let disposed=false;const live=()=>need(!closed&&!disposed,'STATE_GPU_PLAN_CLOSED');
   function dispatch(encoder,name,p,v,out,err,count,trace,offset){
    encoder.clearBuffer(err);
    const bound=kernels[name].bind({params:p,values:v,result:out,errors:err,count});bound.encode(encoder);
    encoder.copyBufferToBuffer(err,bound.summaryOffset,trace,offset,4);
   }
-  function validate(raw){const words=new Uint32Array(raw.buffer,raw.byteOffset,raw.byteLength/4);need(words.every(v=>v===0),'STATE_GPU_NATIVE_DIAGNOSTIC');need(!errors.length,'STATE_GPU_DEVICE_ERROR: '+errors.join('; '));}
+  function validate(raw){const words=new Uint32Array(raw.buffer,raw.byteOffset,raw.byteLength/4);if(!words.every(v=>v===0))throw Object.assign(Error('STATE_GPU_NATIVE_DIAGNOSTIC '+Array.from(words,(value,pass)=>value?{pass,value}:null).filter(Boolean).map(x=>JSON.stringify(x)).join(',')),{code:'STATE_GPU_NATIVE_DIAGNOSTIC'});need(!errors.length,'STATE_GPU_DEVICE_ERROR: '+errors.join('; '));}
   async function measureEndpoint(controls){
    live();need(controls.length===36&&controls.every(Number.isFinite),'STATE_GPU_CONTROLS');device.queue.writeBuffer(params[0],0,new Float32Array(controls));
    const trace=stage(12),result=stage(4),encoder=device.createCommandEncoder();
@@ -55,11 +56,11 @@ export async function createStateInterpolationGpu({device,libraryCommit,fetch:fe
    const contourTrace=stage(4);
    dispatch(encoder,'presentation-contour',renderParams,field,vertices,vertexError,cells,contourTrace,0);
    encoder.copyBufferToBuffer(params[p],0,finalControls,0,36*4);device.queue.submit([encoder.finish()]);
-   const [checks,controlBytes,contourChecks]=await Promise.all([read(trace),read(finalControls),read(contourTrace)]);validate(checks);validate(contourChecks);
+   const [checks,controlBytes,contourChecks]=await Promise.all([read(trace),read(finalControls),read(contourTrace)]);try{validate(checks);validate(contourChecks);}catch(error){error.message+=' controls='+JSON.stringify(Array.from(new Float32Array(controlBytes.buffer)));throw error;}
    const controlsOut=new Float32Array(controlBytes.buffer);need(controlsOut[30]===1,'STATE_GPU_CALIBRATION_NOT_CONVERGED');
    return {buffer:vertices,vertexCount:cells*12,measuredArea:controlsOut[32],desiredArea:controlsOut[15],scale:controlsOut[11],backend:'current-vkf-compiled-gpu-real-f32',geometryReadbackBytes:0,controlReadbackBytes:checks.byteLength+controlBytes.byteLength+contourChecks.byteLength};
   }
   const api={id:description.id,extent:description.extent,measureEndpoint,sample,destroy(){if(disposed)return;disposed=true;plans.delete(api);owned.forEach(release);}};plans.add(api);return api;
  }
- return {device,createPlan,allocateFrameBuffers(vertexCount){need(Number.isSafeInteger(vertexCount)&&vertexCount>0,'STATE_GPU_VERTEX_COUNT');return [allocate(vertexCount*6,GPUBufferUsage.VERTEX),allocate(vertexCount*6,GPUBufferUsage.VERTEX)];},async copyFrame(fields,output){need(buffers.has(output),'STATE_GPU_FRAME_BUFFER');const encoder=device.createCommandEncoder();let offset=0;for(const f of fields){const size=f.vertexCount*24;need(buffers.has(f.buffer)&&size<=f.buffer.size&&offset+size<=output.size,'STATE_GPU_RESIDENT_COPY');encoder.copyBufferToBuffer(f.buffer,0,output,offset,size);offset+=size;}device.queue.submit([encoder.finish()]);await device.queue.onSubmittedWorkDone();return offset/24;},statistics:()=>({bytes,maxBytes,plans:plans.size,libraryCommit:provenance.libraryCommit,backend:'current-vkf-compiled-gpu-real-f32'}),close(){if(closed)return;closed=true;plans.forEach(p=>p.destroy());for(const b of buffers)release(b);device.removeEventListener('uncapturederror',errorListener);}};
+ return {device,createPlan,allocateFrameBuffer(vertexCount){need(Number.isSafeInteger(vertexCount)&&vertexCount>0,'STATE_GPU_VERTEX_COUNT');return allocate(vertexCount*6,GPUBufferUsage.VERTEX);},allocateFrameBuffers(vertexCount){need(Number.isSafeInteger(vertexCount)&&vertexCount>0,'STATE_GPU_VERTEX_COUNT');return [allocate(vertexCount*6,GPUBufferUsage.VERTEX),allocate(vertexCount*6,GPUBufferUsage.VERTEX)];},async copyFrame(fields,output){need(buffers.has(output),'STATE_GPU_FRAME_BUFFER');const encoder=device.createCommandEncoder();let offset=0;for(const f of fields){const size=f.vertexCount*24;need(buffers.has(f.buffer)&&size<=f.buffer.size&&offset+size<=output.size,'STATE_GPU_RESIDENT_COPY');encoder.copyBufferToBuffer(f.buffer,0,output,offset,size);offset+=size;}device.queue.submit([encoder.finish()]);await device.queue.onSubmittedWorkDone();return offset/24;},statistics:()=>({bytes,maxBytes,plans:plans.size,libraryCommit:provenance.libraryCommit,backend:'current-vkf-compiled-gpu-real-f32'}),close(){if(closed)return;closed=true;plans.forEach(p=>p.destroy());for(const b of buffers)release(b);device.removeEventListener('uncapturederror',errorListener);}};
 }

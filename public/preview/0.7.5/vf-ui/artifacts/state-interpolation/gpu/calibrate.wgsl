@@ -237,64 +237,106 @@ if (!((v128<=v129))) { vkf_failed = true; }
 let v130 = v3;
 let v131 = 11i;
 if ((v130==v131)) {
-return read_params(18i);
+let v132 = 1.0f;
+let v133 = read_params(18i);
+return fn5(v132,v133);
 }
-let v132 = v3;
-let v133 = 31i;
-if ((v132==v133)) {
+let v134 = v3;
+let v135 = 31i;
+if ((v134==v135)) {
 return 2.0f;
 }
 return read_params(v3);
 }
-var v134: f32 = read_params(17i);
-var v135: f32 = read_params(18i);
-let v136 = v49;
-let v137 = 2i;
-if ((v136==v137)) {
-let v138 = v35;
-let v139 = v40;
-if (!((v138>=v139))) { vkf_failed = true; }
-}
-let v140 = v49;
-let v141 = 2i;
-if ((v140>v141)) {
-let v142 = v35;
-let v143 = v40;
-if ((v142<v143)) {
-v134 = read_params(11i);
-}
-let v144 = v35;
-let v145 = v40;
-if ((v144>=v145)) {
-v135 = read_params(11i);
-}
+var v136: f32 = read_params(17i);
+var v137: f32 = read_params(18i);
+let v138 = v49;
+let v139 = 2i;
+if ((v138==v139)) {
+let v140 = v35;
+let v141 = v40;
+if ((v140<v141)) {
+let v142 = read_params(11i);
+let v143 = v137;
+if (!((v142<v143))) { vkf_failed = true; }
+let v144 = v3;
+let v145 = 17i;
+if ((v144==v145)) {
+return read_params(11i);
 }
 let v146 = v3;
 let v147 = 11i;
 if ((v146==v147)) {
-let v148 = v134;
-let v149 = v135;
-let v150 = (v148+v149);
-let v151 = 2i;
-if (f32(v151) == 0.0f) { vkf_failed = true; }
-return (v150/f32(v151));
+let v148 = v137;
+let v149 = read_params(11i);
+let v150 = 1.25f;
+let v151 = (v149*v150);
+return fn5(v148,v151);
+}
+return read_params(v3);
 }
 let v152 = v3;
-let v153 = 17i;
+let v153 = 18i;
 if ((v152==v153)) {
-return v134;
+return read_params(11i);
 }
 let v154 = v3;
-let v155 = 18i;
+let v155 = 11i;
 if ((v154==v155)) {
-return v135;
+let v156 = v136;
+let v157 = read_params(11i);
+let v158 = (v156+v157);
+let v159 = 2i;
+if (f32(v159) == 0.0f) { vkf_failed = true; }
+return (v158/f32(v159));
 }
-let v156 = v3;
-let v157 = 31i;
-if ((v156==v157)) {
-let v158 = v49;
-let v159 = 1i;
-return f32((v158+v159));
+let v160 = v3;
+let v161 = 31i;
+if ((v160==v161)) {
+return 3.0f;
+}
+return read_params(v3);
+}
+let v162 = v49;
+let v163 = 2i;
+if ((v162>v163)) {
+let v164 = v35;
+let v165 = v40;
+if ((v164<v165)) {
+v136 = read_params(11i);
+}
+let v166 = v35;
+let v167 = v40;
+if ((v166>=v167)) {
+v137 = read_params(11i);
+}
+}
+let v168 = v3;
+let v169 = 11i;
+if ((v168==v169)) {
+let v170 = v136;
+let v171 = v137;
+let v172 = (v170+v171);
+let v173 = 2i;
+if (f32(v173) == 0.0f) { vkf_failed = true; }
+return (v172/f32(v173));
+}
+let v174 = v3;
+let v175 = 17i;
+if ((v174==v175)) {
+return v136;
+}
+let v176 = v3;
+let v177 = 18i;
+if ((v176==v177)) {
+return v137;
+}
+let v178 = v3;
+let v179 = 31i;
+if ((v178==v179)) {
+let v180 = v49;
+let v181 = 1i;
+return f32((v180+v181));
 }
 return read_params(v3);
 }

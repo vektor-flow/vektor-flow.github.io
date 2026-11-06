@@ -1,6 +1,9 @@
+import {createResidentDensityRenderer} from './vf-resident-density-renderer.mjs';
+
 // Generic VKF presentation of resident xyz/RGBA triangle buffers.
 // Geometry and interpolation belong to compiled VKF kernels, not this renderer.
-export async function createResidentMeshRenderer(canvas,{device,profile='mesh',coverageOnly=false}={}) {
+export async function createResidentMeshRenderer(canvas,{device,profile='mesh',coverageOnly=false,densityKernels=null,maxResourceBytes=256*1024*1024}={}) {
+ if(profile==='implicit-material-density-2d') return createResidentDensityRenderer(canvas,{device,densityKernels,maxResourceBytes});
  const materialField=profile==='implicit-material-2d';
  if(!['mesh','implicit-material-2d'].includes(profile)||typeof coverageOnly!=='boolean'||(coverageOnly&&!materialField))throw Error('Unsupported resident mesh profile');
  const depthFormat=materialField?'depth32float':'depth24plus';

@@ -316,3 +316,14 @@ results and the preserved original helper failure are in
 `public/preview/0.7.5/verification/e2623-current-ui-correctness.json`.
 Full stable 0.7.5 qualification remains blocked. No matched current timing bundle
 is available, so comparative benchmark numbers remain unpublished.
+
+## Current point allocation investigation (2026-11-06, e2625)
+
+The selected formatter expands point channels into JSON objects before binary
+packing. Its required 50-million-entry vertex array exceeds its existing memory
+ceiling. A maintained source candidate now packs all captured uniform point rows
+directly into the existing arena. The patch is unbuilt and untested; the original
+5M allocation failure remains a release blocker. Exact evidence, candidate, limits,
+and next checks are in `public/preview/0.7.5/verification/e2625-allocation-causal-finding.json`.
+The exact previous Pages run for 9b3d1040 finished with failure; delivery is unverified.
+No stable qualification or new benchmark measurements are claimed.

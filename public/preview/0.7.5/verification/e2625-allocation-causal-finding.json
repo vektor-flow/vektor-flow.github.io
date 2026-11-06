@@ -1,0 +1,67 @@
+{
+  "owner": "e2625",
+  "status": "MAINTAINED_CAUSAL_PATCH_WRITTEN_BUILD_AND_REGRESSION_UNRUN",
+  "candidate": "9b3d1040f9226fc3a22b4fc4f3f824c7b7b29331",
+  "selectedCompilerBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+  "selectedFormatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+  "originalFailure": {
+    "sourceBytes": 221,
+    "sourceSHA256": "0da4371815759460a8b870d8c909c998c5dfd8b87973ca4726fd80973df9d6dc",
+    "error": "std::bad_alloc",
+    "elapsedSeconds": 126.62877630197909,
+    "normalCapSeconds": 260,
+    "completePacket": false,
+    "gpuAcceptance": false,
+    "exactThrowSite": "Not retained by existing ordinary error logs"
+  },
+  "causalSourceFinding": {
+    "reader": "compiler/native/vkf_ui_effect_packets.hpp dc19d5c6: value recursively owns entire captured p_ic in JSON, both dimension prepass and actual materialization",
+    "pointMaterializer": "Selected f08feade vkf_retained_scene_packet.hpp: material_mesh_normalized reserves x.size()*10 JsonValue elements before packing",
+    "objectLayout": "Selected JsonValue has separate double/string/vector/map fields. Emscripten wasm32 libc++ layout implies56B per entry; this is ABI/source reasoning, not a new measured allocator trace.",
+    "unavoidableAllocation": "5000000*10*56=2800000000 bytes for vertex JSON alone; selected formatter memory maximum2147418112. This establishes a necessary allocation barrier on the required normal path, not the unique captured std::bad_alloc throw site."
+  },
+  "patchBehavior": "Borrow validated guest p_ic row addresses only for this synchronous formatter call. Scan every original row for numeric/finite shape and complete min/max; normal materializer still validates authored uniform style and builds metadata from those complete bounds. Write every original XYZ plus all seven normal/RGBA channels and every ordered index directly to the existing float32/uint32 arena. Other channels/temporal/views retain existing paths. No source/population/output quality or memory-limit change.",
+  "sourceRepositoryParent": "f2b985583d585f8362b9c176629d1cea99a54677",
+  "maintainedPostimage": {
+    "bytes": 81993,
+    "sha256": "0ea7c3699b284563e10de468addad0c667db838083617d9987ef5daa5a7eacc8"
+  },
+  "patch": {
+    "bytes": 13316,
+    "sha256": "7c4683c03418430c3dabe6008e139b88538b9b15c0ab34512f1eb395704e87fe",
+    "path": "verification/e2625-uniform-point-allocation.patch"
+  },
+  "validation": {
+    "sourceDiffWhitespace": "PASS",
+    "compilerBuild": "UNRUN",
+    "smallerCausalRegression": "UNRUN",
+    "exactRequired5M": "UNRUN_ON_CHANGED_SOURCE",
+    "unchanged5MRetry": false,
+    "generatedRuntimeChanged": false
+  },
+  "admissionBoundary": "Fresh continuous controller started with UI/delivery whitelist only. It cannot admit formatter build180/link120/binding30. No mismatch submitted, no cap relabel, no FD reacquisition, no product build outside owner.",
+  "pages": {
+    "head": "9b3d1040f9226fc3a22b4fc4f3f824c7b7b29331",
+    "run": 42248292772,
+    "conclusion": "failure",
+    "exactServedBytes": "UNRUN_PREREQUISITE_FAILED",
+    "oneBoundedObservationCompleted": true,
+    "failureDetail": [
+      "deploy\tRun actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346\t2026-11-06T16:11:19.0816669Z ##[error]Timeout reached, aborting!",
+      "deploy\tRun actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346\t2026-11-06T16:11:19.0823311Z ##[error]Timeout reached, aborting!"
+    ]
+  },
+  "stable075Qualified": false,
+  "physicalGPUQualified": false,
+  "benchmark": "No accepted current matched timing bundle; no new export or numeric claims",
+  "next": [
+    "Existing ordinary smaller point-source regression before/after under unchanged3072Node/1GiBguest and normal cap; preserve full channels/order/bounds/material semantics. No new checker or binary diagnostic variant.",
+    "Incremental standalone formatter only, using exact existing compile180/link120/binding30 and current selected same-target providers; collect actual .d.",
+    "Existing exact current-exact5m.mjs normal260 with original221B0da43718 source and unchanged full oracle.",
+    "Affected Node/browser/security/integrity only on actual changed package; previous candidate PASS cannot bind new formatter."
+  ],
+  "atMonotonic": 886456.571156693,
+  "sourceRevision": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+  "staticReviewCorrection": "Independent24 found layer_id can repeat across executed adds. Final candidate binds each borrowed capture to a private per-materialized-mesh token removed before packing, not canonical layer_id; no repeat-effect rejection. View-distributed/temporal sources retain their ordinary route.",
+  "maintainedSourcePath": "compiler/native/vkf_ui_effect_packets.hpp"
+}

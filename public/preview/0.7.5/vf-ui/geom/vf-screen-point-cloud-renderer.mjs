@@ -134,6 +134,22 @@ export function createScreenSpacePointCloudRenderer(canvas, {premultipliedAlpha 
     worldMode = false; inkMode = true; projection = null; render();
   }
 
+  // XYZ + device-pixel footprint + straight RGBA. Projection runs in the same
+  // native vertex shader; the physical footprint is never clamped to one pixel.
+  function setWorldInkCarriers(nextPoints, nextProjection) {
+    assertAlive();
+    if (!premultipliedAlpha) throw new TypeError('ink coverage requires premultiplied point renderer');
+    if (!(nextPoints instanceof Float32Array) || nextPoints.length % 8 || nextPoints.length > 8 * 131072
+      || !nextPoints.every(Number.isFinite)) throw new RangeError('invalid bounded world ink carrier buffer');
+    for (let i=0;i<nextPoints.length;i+=8) {
+      if (!(nextPoints[i+3]>0 && nextPoints[i+3]<=64)
+        || !nextPoints.subarray(i+4,i+8).every(v=>v>=0&&v<=1)) throw new RangeError('invalid world ink footprint/RGBA');
+    }
+    projection = normalizeProjection(nextProjection, projection, projectionScratch);
+    pointDataDirty = true; points = nextPoints; components = 8; count = nextPoints.length / 8;
+    worldMode = true; inkMode = true; render();
+  }
+
   function setWorldPoints(nextPoints, nextProjection, options = {}) {
     assertAlive();
     if (!(nextPoints instanceof Float32Array)) throw new TypeError('world points must be a Float32Array');
@@ -198,9 +214,13 @@ export function createScreenSpacePointCloudRenderer(canvas, {premultipliedAlpha 
       pointDataDirty = false;
     }
     gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, inkMode ? 3 : components, gl.FLOAT, false, inkMode ? 28 : 0, 0);
-    if (inkMode) {gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,4,gl.FLOAT,false,28,12);}
+    const worldInk = inkMode && worldMode;
+    const inkStride = worldInk ? 32 : 28;
+    gl.vertexAttribPointer(0, inkMode ? 3 : components, gl.FLOAT, false, inkMode ? inkStride : 0, 0);
+    if (inkMode) {gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,4,gl.FLOAT,false,inkStride,worldInk ? 16 : 12);}
     else {gl.disableVertexAttribArray(1);gl.vertexAttrib4f(1,1,1,1,1);}
+    if (worldInk) {gl.enableVertexAttribArray(2);gl.vertexAttribPointer(2,1,gl.FLOAT,false,32,12);}
+    else {gl.disableVertexAttribArray(2);gl.vertexAttrib1f(2,0);}
     gl.uniform1i(inkModeLocation, inkMode ? 1 : 0);
     gl.uniform1i(premultipliedLocation, premultipliedAlpha ? 1 : 0);
     gl.uniform2f(viewportLocation, canvas.width, canvas.height);
@@ -240,6 +260,7 @@ export function createScreenSpacePointCloudRenderer(canvas, {premultipliedAlpha 
     setPoints,
     setWorldPoints,
     setInkCarriers,
+    setWorldInkCarriers,
     resize,
     destroy,
     [RETAINED_POINT_REDRAW]: render,
@@ -337,6 +358,7 @@ function createShader(gl, type, source) {
 const VERTEX_SHADER = `#version 300 es
 layout(location = 0) in vec3 a_position;
 layout(location = 1) in vec4 a_ink_color;
+layout(location = 2) in float a_ink_size;
 uniform bool u_ink_mode;
 flat out highp vec2 v_ink_center;
 flat out highp float v_ink_size;
@@ -364,9 +386,10 @@ void main() {
     0.0,
     1.0
   );
-  gl_PointSize = u_ink_mode ? max(3.0, ceil(a_position.z) + 2.0) : u_point_size;
+  float ink_size = u_world_mode ? a_ink_size : a_position.z;
+  gl_PointSize = u_ink_mode ? max(3.0, ceil(ink_size) + 2.0) : u_point_size;
   v_ink_center = vec2(screen_position.x,u_viewport.y-screen_position.y);
-  v_ink_size = a_position.z;
+  v_ink_size = ink_size;
   v_ink_color = a_ink_color;
 }`;
 

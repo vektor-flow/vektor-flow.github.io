@@ -139,7 +139,7 @@ function totalReal(node) {
   if (node.kind === 'call' && node.args.length === 1) {
     if (['sin', 'cos', 'exp'].includes(node.name)) return totalReal(node.args[0]);
     if (node.name === 'sqrt') return constantSign(node.args[0]) === 1;
-    if (node.name === 'floor') return totalReal(node.args[0]) && !containsVariable(node.args[0], 'x') && !containsVariable(node.args[0], 'y');
+    if (['floor', 'abs'].includes(node.name)) return totalReal(node.args[0]) && !containsVariable(node.args[0], 'x') && !containsVariable(node.args[0], 'y');
   }
   return false;
 }
@@ -401,6 +401,9 @@ function emitJet(node, language, parameter) {
     // Piecewise derivatives only: floor is constant between integer crossings;
     // the ordinary jet does not represent its undefined derivatives at jumps.
     if (node.name === 'floor') return [`floor(${a})`, '0.0', '0.0'];
+    // Authored time controls can contain abs/floor while remaining constant in
+    // the spatial curve parameter, including at their temporal corners.
+    if (node.name === 'abs' && !containsVariable(node.args[0], parameter)) return [`abs(${a})`, '0.0', '0.0'];
     if (node.name === 'exp') return [
       `exp(${a})`, `(exp(${a}) * ${a1})`,
       `(exp(${a}) * ((${a1} * ${a1}) + ${a2}))`

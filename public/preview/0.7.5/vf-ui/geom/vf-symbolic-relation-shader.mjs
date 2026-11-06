@@ -5,6 +5,7 @@ const CALLS = Object.freeze({
   atan2: ['atan2', 'atan'],
   cos: ['cos', 'cos'],
   exp: ['exp', 'exp'],
+  floor: ['floor', 'floor'],
   sin: ['sin', 'sin'],
   sqrt: ['sqrt', 'sqrt'],
   tan: ['tan', 'tan']
@@ -254,7 +255,7 @@ function emit(node, language) {
     const args = node.args.map((argument) => emit(argument, language));
     if (args.some((argument) => !argument)) return null;
     if (node.name === 'atan2' && args.length !== 2) return null;
-    if (node.name === 'exp' && args.length !== 1) return null;
+    if ((node.name === 'exp' || node.name === 'floor') && args.length !== 1) return null;
     return `${names[language === 'wgsl' ? 0 : 1]}(${args.join(', ')})`;
   }
   return null;
@@ -315,6 +316,9 @@ function emitJet(node, language, parameter) {
     const argument = emitJet(node.args[0], language, parameter);
     if (!argument) return null;
     const [a, a1, a2] = argument;
+    // Piecewise derivatives only: floor is constant between integer crossings;
+    // the ordinary jet does not represent its undefined derivatives at jumps.
+    if (node.name === 'floor') return [`floor(${a})`, '0.0', '0.0'];
     if (node.name === 'exp') return [
       `exp(${a})`, `(exp(${a}) * ${a1})`,
       `(exp(${a}) * ((${a1} * ${a1}) + ${a2}))`

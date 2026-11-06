@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><link rel="icon" href="data:,"><style>body{margin:0;background:#000}</style><script type="module">
+import {prepareNativeTextModes} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-native-text-modes.mjs';
+import {loadCurrentWasmLabelProducer} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-wasm-producer.mjs';
+import {createCurrentNativeTypography} from '../../public/preview/0.7.5/vf-ui/native-labels/vf-current-native-provider.mjs';
+window.run=async()=>{
+ const root=new URL('../../public/preview/0.7.5/vf-ui/artifacts/current-labels/',import.meta.url),get=async n=>(await fetch(new URL(n,root))).json(),descriptor=await get('producer.json'),vectors=await get('native-mapping/vectors.json'),binding=await get('native-mapping/binding.json'),files=Object.fromEntries(Object.entries(descriptor.files).map(([n,f])=>[n,{...f,url:new URL(f.url,new URL('producer.json',root)).href}])),producer=await loadCurrentWasmLabelProducer({...descriptor,files}),typography=createCurrentNativeTypography({boxes:{},vectors,binding,identity:producer.identity,typeset:(run,pins)=>producer.typeset(run,pins)});
+
+ const spec=(id,source,x,y)=>({id,kind:'math',source,anchor:[x,y],scale:2.6,color:[1,1,1,1],sizeSpace:'css'}),head=spec('head','\\text{State combination}',350,40),a=spec('a','x+1=0',40,110),b=spec('b','y+2=0',40,165),c=spec('a','x+y+3=0',40,110),options={width:640,height:360,pixelRatio:1,typography,interp:{mode:'state'}},players=[],result={};
+ const prepare=async extra=>{const p=await prepareNativeTextModes({...options,...extra});players.push(p);return p;},hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join(''),at=async(p,q)=>{const receipt=await p.sample(q),ctx=p.canvas.getContext('2d');return{q,receipt,hash:await hash(ctx.getImageData(0,0,640,360).data.slice()),heading:await hash(ctx.getImageData(345,8,295,42).data.slice()),prefix:await hash(ctx.getImageData(39,92,13,20).data.slice())};};
+ try{
+ const first=await prepare({fromSpecs:[head,a,b],toSpecs:[head,a,b]});result.first=await at(first,0);first.close();const endpoint=await prepare({fromSpecs:[head,c],toSpecs:[head,c]});result.endpoint=await at(endpoint,1);endpoint.close();
+ const group={fromIds:['a','b'],toId:'a',interp:{mode:'state'}},merged=await prepare({fromSpecs:[head,a,b],toSpecs:[head,c],rowTransitions:[group]});result.frames=[];for(const q of [0,.2,.35,.5,.75,1])result.frames.push(await at(merged,q));const seek1=await at(merged,.35);await at(merged,1);const seek2=await at(merged,.35);result.seek=[seek1.hash,seek2.hash];result.mergedMiddle=merged.canvas.toDataURL();merged.close();
+ const removed=await prepare({fromSpecs:[head,b],toSpecs:[head],rowTransitions:[{fromId:'b',toId:null,interp:{mode:'state'}}]});result.removal=[];for(const q of [0,.5,1])result.removal.push(await at(removed,q));removed.close();
+ // Explicit grouped source may include an unchanged selected target row.
+ const unchanged=await prepare({fromSpecs:[head,a,b],toSpecs:[head,a],rowTransitions:[group]});result.unchanged=[];for(const q of [0,.35,1])result.unchanged.push(await at(unchanged,q));unchanged.close();
+ const all=await prepare({fromSpecs:[a,b],toSpecs:[],rowTransitions:[{fromIds:['a','b'],toId:null,interp:{mode:'state'}}]});result.groupRemoval=await at(all,1);all.close();
+ result.invalid=[];for(const bad of [{fromIds:[],toId:'a'},{fromIds:['a','a'],toId:'a'},{fromIds:['missing'],toId:'a'},{fromId:'a',fromIds:['b'],toId:'a'},{fromIds:['a','b'],toId:'a',interp:{mode:'wave'}}]){try{const p=await prepare({fromSpecs:[head,a,b],toSpecs:[head,c],rowTransitions:[bad]});p.close();result.invalid.push('ACCEPTED');}catch(e){result.invalid.push(e.code??e.message);}}
+ return result;
+ }finally{for(const p of players)p.close();}
+};</script>

@@ -1,0 +1,49 @@
+{
+  "owner": "e2627",
+  "status": "PASS_INCREMENTAL_FORMATTER_SMALL_PARITY_AND_ORIGINAL5M_FULL_CORRECTNESS",
+  "formatterBinding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
+  "formatterSourceRevision": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+  "browserBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+  "sourcePostimage": {
+    "path": "/mnt/development/VektorFlow-e2627-short-launch-formatter-build-exact5m-actual-20261106/compiler/compiler/native/vkf_ui_effect_packets.hpp",
+    "bytes": 81993,
+    "sha256": "0ea7c3699b284563e10de468addad0c667db838083617d9987ef5daa5a7eacc8"
+  },
+  "build": {
+    "path": "verification/e2627-formatter-build.json",
+    "bytes": 41786,
+    "sha256": "da2c26faecaa49418ba3a8f4d0bb1736dea3ae2e729b41a872d4eb7a84c2458e"
+  },
+  "meaningfulBeforeAfter": {
+    "path": "verification/e2627-point-parity.json",
+    "bytes": 298,
+    "sha256": "e48cee8cdf1235a68211ef8f201426ddb3613bd261e1f145bf258f5fa875c2c0"
+  },
+  "original5M": {
+    "path": "verification/e2627-original5m-result.json",
+    "bytes": 34118,
+    "sha256": "9d4414499ad652b27a0d56eaf197196862f1bc124c16711a457973371c8b094a"
+  },
+  "originalSource": {
+    "path": "verification/e2627-original5m.vkf",
+    "bytes": 221,
+    "sha256": "0da4371815759460a8b870d8c909c998c5dfd8b87973ca4726fd80973df9d6dc"
+  },
+  "smallSin": {
+    "path": "verification/e2627-small-sin-result.json",
+    "bytes": 66859,
+    "sha256": "7cdf70e51f9a2527580b6d1c76ff1ea36a030909332cbf8e475d071633b986dd"
+  },
+  "package": {
+    "path": "verification/e2627-current-local-package.json",
+    "bytes": 7141,
+    "sha256": "ca93aaae81584a812a3b2c705eb17860ed45ada6f1ad4e8dac68a254f9b0a8a5"
+  },
+  "priorFailurePreserved": "e2623 originalstd::bad_alloc; e2625 source candidate only; e2626 input-frame4096 failure beforecompile. All old files unchanged.",
+  "originalGPUBackend": "Not captured by original runner. Genuine GPUQueue completion/readback passed; vendor/hardware identity remains unestablished.",
+  "physicalGPUQualified": false,
+  "comparativeBenchmarksQualified": false,
+  "fullStable075": false,
+  "timingScope": "Descriptive normal-run measurements only, no accepted comparative benchmark bundle",
+  "reuse": "Original10000 labels/native/sin/hosted evidence remains historical by exact dependencies; changed formatter gets fresh affected checks. No oldformatterPASS carried forward."
+}

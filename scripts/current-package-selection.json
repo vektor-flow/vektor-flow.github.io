@@ -1,17 +1,19 @@
 {
   "schema": 2,
-  "inputSha256": "dba770e82b30506b762679112136e1375edb35bdba891df20b53e085c00097d1",
+  "inputSha256": "cb79a9bba5e76baeecc8d450f835f3e90a07f684d0bccc0bc25cb1db84bd8cb0",
   "components": {
     "browser-node-compiler": {
       "id": "browser-node-compiler",
       "identity": {
         "sourceBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
         "sourceCommit": "f2b985583d585f8362b9c176629d1cea99a54677",
-        "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+        "formatterBinding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
         "compilerOwner": "e2493",
         "packageOwner": "e2500",
         "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
-        "targetQualification": "Current browser ordinary UI observations only; Node and full release not newly qualified"
+        "targetQualification": "Fresh affected formatter parity/original5M/smallSin/Node30 only; full release unqualified.",
+        "formatterSourceCommit": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+        "formatterBuildEvidence": "verification/e2627-formatter-build.json"
       },
       "files": [
         {
@@ -27,7 +29,7 @@
         {
           "path": "playground/canonical/compiler.mjs",
           "bytes": 1464,
-          "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+          "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
         },
         {
           "path": "playground/canonical/compiler.wasm",
@@ -36,13 +38,13 @@
         },
         {
           "path": "playground/canonical/formatter.mjs",
-          "bytes": 63048,
-          "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+          "bytes": 63276,
+          "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
         },
         {
           "path": "playground/canonical/formatter.wasm",
-          "bytes": 2199252,
-          "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+          "bytes": 2250062,
+          "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
         }
       ]
     },
@@ -286,7 +288,7 @@
       ]
     }
   },
-  "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+  "formatterBinding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
   "installedFiles": [
     {
       "path": "playground/canonical/compiler-base.mjs",
@@ -301,7 +303,7 @@
     {
       "path": "playground/canonical/compiler.mjs",
       "bytes": 1464,
-      "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+      "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
     },
     {
       "path": "playground/canonical/compiler.wasm",
@@ -310,13 +312,13 @@
     },
     {
       "path": "playground/canonical/formatter.mjs",
-      "bytes": 63048,
-      "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+      "bytes": 63276,
+      "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
     },
     {
       "path": "playground/canonical/formatter.wasm",
-      "bytes": 2199252,
-      "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+      "bytes": 2250062,
+      "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
     },
     {
       "path": "inline-retained-scene-view.mjs",
@@ -517,9 +519,9 @@
   ],
   "archives": [
     {
-      "path": "downloads/vkf-canonical-0.7.5-ee417b0f-normal-ex01-notices.tar.gz",
-      "bytes": 4998458,
-      "sha256": "86546d9273122f8b2b28742857f5c376fe2394aee9aa7c2dd5074e888c5808ef",
+      "path": "downloads/vkf-canonical-0.7.5-45da9f64-d1d6ab8b-notices.tar.gz",
+      "bytes": 5127174,
+      "sha256": "cffd102a00a45ae870eaf9c6e8d454ab121142947f67dd182bb024e650e33a67",
       "target": "canonical"
     },
     {

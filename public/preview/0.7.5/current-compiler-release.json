@@ -15,7 +15,7 @@
   "source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "browser_binding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "frontend_binding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
-  "formatter_binding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+  "formatter_binding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
   "files": {
     "compiler-base.mjs": {
       "bytes": 189782,
@@ -27,19 +27,19 @@
     },
     "compiler.mjs": {
       "bytes": 1464,
-      "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+      "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
     },
     "compiler.wasm": {
       "bytes": 20827756,
       "sha256": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893"
     },
     "formatter.mjs": {
-      "bytes": 63048,
-      "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+      "bytes": 63276,
+      "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
     },
     "formatter.wasm": {
-      "bytes": 2199252,
-      "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+      "bytes": 2250062,
+      "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
     },
     "package-tools/addresses.mjs": {
       "bytes": 22794,
@@ -98,12 +98,12 @@
       "sha256": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5"
     },
     "package.json": {
-      "bytes": 8918,
-      "sha256": "2b344dca635c8af7b1419423dc61ef9ae04e1385d1b2c449eab5f78713d563a9"
+      "bytes": 8749,
+      "sha256": "82e6dc2ea33200b320cefcd4ca2824e4885763c82b4e153689778837b6d2e8ac"
     },
     "README.txt": {
-      "bytes": 1850,
-      "sha256": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d"
+      "bytes": 618,
+      "sha256": "f628e467099982e2cdc3fa800f909a6d72224a53dbf87de3441fa4d7569e1178"
     },
     "third-party/emscripten-toolchain-copyright.txt": {
       "bytes": 131248,
@@ -122,8 +122,8 @@
       "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
     },
     "VERIFICATION.json": {
-      "bytes": 3237,
-      "sha256": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09"
+      "bytes": 387,
+      "sha256": "1cf45a734ad739144fe1177c7634ca26706a2ae51d9c2ff1010dd556e45b5181"
     },
     "PAIRED-STDLIB-MANIFEST.json": {
       "bytes": 6367,
@@ -133,10 +133,10 @@
   "sha256": {
     "compiler-base.mjs": "3f9570fd471df8971fdaa5f6d66b7b1339719fa2e213ca7ad9305196088d6534",
     "compiler.data": "03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa",
-    "compiler.mjs": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c",
+    "compiler.mjs": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7",
     "compiler.wasm": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893",
-    "formatter.mjs": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765",
-    "formatter.wasm": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada",
+    "formatter.mjs": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c",
+    "formatter.wasm": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7",
     "package-tools/addresses.mjs": "314ac0216bc8c8d53911c74f7da8ec30af299a73b9f890755b1e8f9f846220eb",
     "package-tools/cli.mjs": "13231b3178e5fcb25cb9ac341f830f997807bfd8059df83ef1652fd59a0b660f",
     "package-tools/git-source.mjs": "85223392c70347d43bf872868f267534f09508fdcf5fa3e48da82af859ae918a",
@@ -151,24 +151,24 @@
     "package-tools/resolve.mjs": "cc2c3b6a2561696b17dd27db8275aade87df7bc684e3b30b22e7451286036d6d",
     "prepare-formatter-ir.mjs": "f311930519249aa6826cb81156bd3f40347724f0dba314cafd8782c1ecc6eb09",
     "package-tools/owner-protection.mjs": "e5aa1451f4e0a9662efc7c936ceb1ba2e3ded13e3e456c246efd4bce6e45d6f5",
-    "package.json": "2b344dca635c8af7b1419423dc61ef9ae04e1385d1b2c449eab5f78713d563a9",
-    "README.txt": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d",
+    "package.json": "82e6dc2ea33200b320cefcd4ca2824e4885763c82b4e153689778837b6d2e8ac",
+    "README.txt": "f628e467099982e2cdc3fa800f909a6d72224a53dbf87de3441fa4d7569e1178",
     "third-party/emscripten-toolchain-copyright.txt": "ce634edaef481af9d247ba06a8ce10786048a70a62688b86ea63d4dba999802c",
     "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
     "third-party/emscripten-musl-copyright.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
-    "VERIFICATION.json": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09",
+    "VERIFICATION.json": "1cf45a734ad739144fe1177c7634ca26706a2ae51d9c2ff1010dd556e45b5181",
     "PAIRED-STDLIB-MANIFEST.json": "5fa52d5622dedbdf0d6c201e697a31dcee8ae041406d7ff5f3a9626f94d7e371"
   },
   "package": {
-    "module": "./playground/canonical/compiler.mjs?sha256=e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c",
+    "module": "./playground/canonical/compiler.mjs?sha256=70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7",
     "wasm": "./playground/canonical/compiler.wasm?sha256=4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893",
     "data": "./playground/canonical/compiler.data?sha256=03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa"
   },
   "current_package_composition": {
     "path": "CURRENT-COMPOSITION.json",
-    "bytes": 11523,
-    "sha256": "9a723d9bf01d148768b69dc8247d748a129311e83484ed36a5225019e694c83d"
+    "bytes": 12861,
+    "sha256": "f801262e07d391a5b06a9e1677721809fc2b0bc62ceac6e996d1b2aa232f14f0"
   },
   "download_packages_offered": true,
   "physical_gpu_tested": false,
@@ -768,8 +768,10 @@
     ],
     "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
     "bindingScope": "Retained45da compiled package/target compatibility association, not complete changed-source digest. sourceCompositionBinding pins new31 and genuine retained2484/current96 association.",
-    "formatter": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
-    "runtimePass": false
+    "formatter": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
+    "runtimePass": false,
+    "formatterSourceRevision": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+    "formatterBuild": "verification/e2627-formatter-build.json"
   },
   "current_distribution": {
     "enabled": false
@@ -780,20 +782,32 @@
     "sha256": "9c31f2930c0e9e2d03f51ab2f40960b9a4580c7f0870ff23e7795dbfba7f7fe5"
   },
   "current_review_site_evidence": {
-    "path": "verification/e2616-current-review-site.json",
-    "bytes": 32303,
-    "sha256": "cc58a445a5fb56e7b3f0149bd02739959dddb3876da6380a650ac742b9edd8c8"
+    "path": "verification/e2627-current-review-site.json",
+    "bytes": 103885,
+    "sha256": "718055ee0dc34c291000df085e332ea2ce9c7864da7c7fc9d1d384006fc91108"
   },
   "current_distribution_checksums": {
     "path": "downloads/current075-checksums.json",
-    "bytes": 1819,
-    "sha256": "1aa98f5602fe81efeda1213b4143eba98735bb17f59469fb46b4ea91b5c05df5"
+    "bytes": 1874,
+    "sha256": "589672ff7f1c3f0ef9b3a259406e7f7f1c5b029bbdb85d50eaf7148ce47c0f36"
   },
   "pinned_downloads": {
     "checksums": "downloads/current075-checksums.json",
     "archives": [
-      "downloads/vkf-canonical-0.7.5-45da9f64-current-notices.tar.gz",
+      "downloads/vkf-canonical-0.7.5-45da9f64-d1d6ab8b-notices.tar.gz",
       "downloads/vkf-native-linux-x86_64-0.7.5-df9feb23-current-cli-notices.tar.gz"
     ]
+  },
+  "formatter_execution_candidate": {
+    "owner": "e2627",
+    "sourceRevision": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+    "qualification": "PASS_INCREMENTAL_FORMATTER_SMALL_PARITY_AND_ORIGINAL5M_FULL_CORRECTNESS",
+    "priorChecksDoNotQualifyChangedFormatter": true,
+    "build": "verification/e2627-formatter-build.json"
+  },
+  "current_formatter_correctness": {
+    "path": "verification/e2627-current-formatter-correctness.json",
+    "bytes": 2421,
+    "sha256": "5744cbcdd72b404eb8a20fe4402ef8b2135825b0af2c6947ad20514e6e51f9ea"
   }
 }

@@ -1,19 +1,21 @@
 {
   "schema": "vektor-flow.current-composition/1",
   "qualification": "IDENTITY_ONLY_NOT_A_TEST_RECEIPT",
-  "owner": "e2500",
-  "inputSha256": "dba770e82b30506b762679112136e1375edb35bdba891df20b53e085c00097d1",
+  "owner": "e2627",
+  "inputSha256": "cb79a9bba5e76baeecc8d450f835f3e90a07f684d0bccc0bc25cb1db84bd8cb0",
   "components": [
     {
       "id": "browser-node-compiler",
       "identity": {
         "sourceBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
         "sourceCommit": "f2b985583d585f8362b9c176629d1cea99a54677",
-        "formatterBinding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+        "formatterBinding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
         "compilerOwner": "e2493",
         "packageOwner": "e2500",
         "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
-        "targetQualification": "Current browser ordinary UI observations only; Node and full release not newly qualified"
+        "targetQualification": "Fresh affected formatter parity/original5M/smallSin/Node30 only; full release unqualified.",
+        "formatterSourceCommit": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+        "formatterBuildEvidence": "verification/e2627-formatter-build.json"
       },
       "files": [
         {
@@ -29,7 +31,7 @@
         {
           "path": "playground/canonical/compiler.mjs",
           "bytes": 1464,
-          "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+          "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
         },
         {
           "path": "playground/canonical/compiler.wasm",
@@ -38,13 +40,13 @@
         },
         {
           "path": "playground/canonical/formatter.mjs",
-          "bytes": 63048,
-          "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+          "bytes": 63276,
+          "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
         },
         {
           "path": "playground/canonical/formatter.wasm",
-          "bytes": 2199252,
-          "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+          "bytes": 2250062,
+          "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
         }
       ]
     },
@@ -289,11 +291,66 @@
     }
   ],
   "input": {
-    "path": "verification/e2508-publication-composition-inputs.json",
-    "bytes": 11835,
-    "sha256": "bd9909491f485fc3c4a07d68342aedd95e77d65e24574c365853fb4d8f35ac64"
+    "path": "verification/e2627-composition-inputs.json",
+    "bytes": 11545,
+    "sha256": "b4bb5f30af82a7f6d97613c04913fade0ffbc85775e8460fa5fdf34c490a8e97"
   },
   "compilerOwner": "e2493",
-  "sceneSourceComposition": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+  "sceneSourceComposition": {
+    "compiler": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+    "normalPhysicsMode": "actual-persistent-target",
+    "normalPhysicsBuildPhase": "unqualified-build-only",
+    "rebuiltIndices": [
+      31
+    ],
+    "reusedCurrentObjects": 139,
+    "inheritedRebuiltIndices": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      42,
+      52,
+      56,
+      60,
+      69,
+      74,
+      77,
+      95,
+      98,
+      130,
+      139
+    ],
+    "sourceCompositionBinding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+    "bindingScope": "Retained45da compiled package/target compatibility association, not complete changed-source digest. sourceCompositionBinding pins new31 and genuine retained2484/current96 association.",
+    "formatter": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
+    "runtimePass": false,
+    "formatterSourceRevision": "79f626f6434f701dc5d2b8e18138d863a05c3a61",
+    "formatterBuild": "verification/e2627-formatter-build.json"
+  },
   "nativeAndDeployedCompleteframeUnder10ms": "UNMEASURED"
 }

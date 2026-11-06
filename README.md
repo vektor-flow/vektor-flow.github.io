@@ -327,3 +327,7 @@ directly into the existing arena. The patch is unbuilt and untested; the origina
 and next checks are in `public/preview/0.7.5/verification/e2625-allocation-causal-finding.json`.
 The exact previous Pages run for 9b3d1040 finished with failure; delivery is unverified.
 No stable qualification or new benchmark measurements are claimed.
+
+## Maintained formatter correctness (2026-11-06, e2627)
+
+The maintained79f incremental formatter compiled, linked and matched its fresh binding. Before/after ordinary point packet values and metadata agree, including repeated captures and view fallback. The original full5M program passes all50M finite attributes, ordered indices and GPU-completed readback/view/color controls. The fresh archive passes extraction, original271byte stdout, normal CLI install/run/compile and30 import/security checks. No full stable release, physical-GPU identity/performance or comparative benchmark claim. Exact evidence: `public/preview/0.7.5/verification/e2627-current-formatter-correctness.json`. Earlier source-only and failure records remain historical.

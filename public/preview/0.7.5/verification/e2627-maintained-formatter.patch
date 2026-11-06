@@ -1,0 +1,224 @@
+diff --git a/compiler/native/vkf_ui_effect_packets.hpp b/compiler/native/vkf_ui_effect_packets.hpp
+index 6185ed2..a12eefb 100644
+--- a/compiler/native/vkf_ui_effect_packets.hpp
++++ b/compiler/native/vkf_ui_effect_packets.hpp
+@@ -7,6 +7,8 @@
+ #include "compiler/native/vkf_wasm_value_layout.hpp"
+ 
+ #include <algorithm>
++#include <array>
++#include <limits>
+ #include <cmath>
+ #include <cstddef>
+ #include <cstdint>
+@@ -91,6 +93,11 @@ inline vf::JsonValue packed_retained_scene(native_scene::PackedScene packed,
+ }
+ 
+ class Reader {
++    struct CapturedPoints {
++        std::uint32_t payload = 0, count = 0;
++        std::array<double, 3> lower{}, upper{};
++        std::array<double, 7> tail{};
++    };
+ public:
+     Reader(const std::uint8_t* memory, std::size_t size)
+         : memory_(memory), size_(size) {}
+@@ -296,6 +303,54 @@ public:
+             if (!shown) return retained;
+         }
+ 
++        // Uniform independent points already exist as a validated captured guest
++        // array. Keep only its borrowed address until this synchronous formatter
++        // call finishes; never expand the data-sized channel into JsonValue.
++        // Other material/view/temporal channels retain their ordinary route.
++        std::vector<CapturedPoints> captured_points;
++        const auto point_operand = [&](const std::vector<std::uint32_t>& values) {
++            std::uint32_t position = 0;
++            bool color = false;
++            std::set<std::string> names;
++            if (!operations) return position;
++            for (const auto& raw : *operations) {
++                const auto& operation = raw.as_object();
++                if (operation.at("kind").as_string() == "push" || operation.count("time"))
++                    return position;
++                const auto properties = operation.find("properties");
++                if (properties != operation.end() && properties->second.is_object())
++                    for (const auto& property : properties->second.as_object())
++                        if (property.first == "n" || property.first.rfind("view_title_", 0) == 0)
++                            return position;
++            }
++            for (std::size_t operand = 1; operand < values.size(); operand += 2) {
++                const auto name = string(values[operand], "UI effect operand name");
++                if (!names.insert(name).second ||
++                    (name != "p_ic" && name != "s" && name != "c" && name != "color" &&
++                     name != "id" && name != "operation_index" && name != "display_id"))
++                    return std::uint32_t{0};
++                if (name == "p_ic") position = values[operand + 1];
++                if (name == "color" || name == "c") color = true;
++            }
++            // Theme/distributed color needs the ordinary materializer's complete
++            // domain. This route handles an explicitly authored uniform color.
++            if (!color || !position || !names.count("operation_index")) return std::uint32_t{0};
++            const auto value_tag = tag(position);
++            if (value_tag != wasm::values::Tag::Array && value_tag != wasm::values::Tag::Tuple)
++                return std::uint32_t{0};
++            const auto length = u32(position + wasm::values::length_offset);
++            const auto data = u32(position + wasm::values::payload_offset);
++            if (length > size_ / wasm::values::pointer_size)
++                throw std::runtime_error("captured point count exceeds guest memory");
++            range(data, static_cast<std::size_t>(length) * wasm::values::pointer_size);
++            if (!length) return std::uint32_t{0};
++            const auto first = u32(data);
++            const auto first_tag = tag(first);
++            if ((first_tag != wasm::values::Tag::Array && first_tag != wasm::values::Tag::Tuple) ||
++                u32(first + wasm::values::length_offset) != 3) return std::uint32_t{0};
++            return position;
++        };
++
+         // Dimension promotion must follow the values that actually executed. Canonical
+         // expressions may contain arbitrary user calls that cannot be replayed here, and
+         // replaying them would violate the effect snapshot contract.
+@@ -306,9 +361,13 @@ public:
+             if (values.empty() || (values.size() & 1U) == 0U ||
+                 string(values[0], "UI effect kind") != "add") continue;
+             vf::JsonValue::Object executed;
++            const auto position = point_operand(values);
+             for (std::size_t operand = 1; operand < values.size(); operand += 2) {
+                 const auto name = string(values[operand], "UI effect operand name");
+-                executed.emplace(name, value(values[operand + 1], name));
++                // Axes depend on row width, not on the number of point rows.
++                executed.emplace(name, position && name == "p_ic"
++                    ? vf::JsonValue(vf::JsonValue::Array{value(u32(u32(position + wasm::values::payload_offset)), name)})
++                    : value(values[operand + 1], name));
+             }
+             const auto identity = executed.find("operation_index");
+             if (identity == executed.end() || !identity->second.is_number()) continue;
+@@ -331,10 +390,25 @@ public:
+                 throw std::runtime_error("compiler-owned UI effect payload is malformed");
+             }
+             const auto kind = string(values[0], "UI effect kind");
++            const auto position = kind == "add" ? point_operand(values) : 0;
++            std::optional<CapturedPoints> point_data;
+             vf::JsonValue::Object properties;
+             for (std::size_t operand = 1; operand < values.size(); operand += 2) {
+                 const auto name = string(values[operand], "UI effect operand name");
+-                if (!properties.emplace(name, value(values[operand + 1], name)).second) {
++                vf::JsonValue decoded;
++                if (position && name == "p_ic") {
++                    point_data = read_points(position);
++                    vf::JsonValue::Array lower, upper;
++                    for (std::size_t c = 0; c < 3; ++c) {
++                        lower.emplace_back(point_data->lower[c]);
++                        upper.emplace_back(point_data->upper[c]);
++                    }
++                    // The ordinary materializer validates style and computes the
++                    // same axis bounds from the complete captured domain bounds.
++                    decoded = vf::JsonValue(vf::JsonValue::Array{
++                        vf::JsonValue(std::move(lower)), vf::JsonValue(std::move(upper))});
++                } else decoded = value(values[operand + 1], name);
++                if (!properties.emplace(name, std::move(decoded)).second) {
+                     throw std::runtime_error("duplicate compiler-owned UI effect operand " + name);
+                 }
+             }
+@@ -751,6 +825,21 @@ public:
+                 auto mesh = retained_scene::detail::material_mesh(
+                     material, layer_id, frame->second.spatial_axes);
+                 if (world_source) mesh.as_object()["world_source"] = *world_source;
++                if (point_data) {
++                    auto& object = mesh.as_object();
++                    if (object.at("topology").as_string() != "point-list")
++                        throw std::runtime_error("captured independent point topology differs");
++                    const auto& vertices = object.at("vertices").as_array();
++                    for (std::size_t c = 0; c < point_data->tail.size(); ++c)
++                        point_data->tail[c] = vertices.at(3 + c).as_number();
++                    // Canonical layer_id can repeat across executed add effects.
++                    // This private token belongs to this exact materialized mesh
++                    // and is removed before metadata crosses the packing seam.
++                    object["__vkf_captured_points"] = vf::JsonValue(static_cast<double>(captured_points.size()));
++                    captured_points.push_back(*point_data);
++                    object["vertices"] = vf::JsonValue(vf::JsonValue::Array{});
++                    object["indices"] = vf::JsonValue(vf::JsonValue::Array{});
++                }
+                 retained_scene::detail::attach_material_texts(material, mesh);
+                 const auto legend = material.find("legend");
+                 if (legend != material.end()) mesh.as_object()["legend"] = legend->second;
+@@ -1010,7 +1099,23 @@ public:
+                 if (views) scene.as_object()["views"] = vf::JsonValue(std::move(*views));
+                 if (title) scene.as_object()["title"] = vf::JsonValue(*title);
+                 else if (current_frame.title) scene.as_object()["title"] = vf::JsonValue(*current_frame.title);
++                std::map<std::size_t, std::size_t> point_meshes;
++                auto& scene_meshes = scene.as_object().at("meshes").as_array();
++                for (std::size_t i = 0; i < scene_meshes.size(); ++i) {
++                    auto& mesh = scene_meshes[i].as_object();
++                    const auto token = mesh.find("__vkf_captured_points");
++                    if (token == mesh.end()) continue;
++                    point_meshes.emplace(i, static_cast<std::size_t>(token->second.as_number()));
++                    mesh.erase(token);
++                }
+                 auto packed = native_scene::pack_scene_geometry(std::move(scene));
++                if (!point_meshes.empty()) {
++                    auto metadata = vf::parse_json(packed.metadata_json);
++                    auto& meshes = metadata.as_object().at("scene").as_object().at("meshes").as_array();
++                    for (const auto& [mesh_index, capture_index] : point_meshes)
++                        pack_points(packed.arena_bytes, meshes.at(mesh_index).as_object(), captured_points.at(capture_index));
++                    packed.metadata_json = vf::json_stringify(metadata, -1);
++                }
+                 retained.emplace_back(packed_retained_scene(std::move(packed), binary_arenas));
+             };
+             if (frame.views.empty()) {
+@@ -1063,6 +1168,55 @@ public:
+     }
+ 
+ private:
++    CapturedPoints read_points(std::uint32_t pointer) const {
++        CapturedPoints result;
++        result.count = u32(pointer + wasm::values::length_offset);
++        result.payload = u32(pointer + wasm::values::payload_offset);
++        if (result.count > size_ / wasm::values::pointer_size)
++            throw std::runtime_error("captured point count exceeds guest memory");
++        range(result.payload, static_cast<std::size_t>(result.count) * wasm::values::pointer_size);
++        for (std::uint32_t i = 0; i < result.count; ++i) {
++            const auto row = u32(result.payload + i * wasm::values::pointer_size);
++            const auto row_tag = tag(row);
++            if ((row_tag != wasm::values::Tag::Array && row_tag != wasm::values::Tag::Tuple) ||
++                u32(row + wasm::values::length_offset) != 3)
++                throw std::runtime_error("Frame.add p_ic must contain three-component point rows");
++            const auto data = u32(row + wasm::values::payload_offset);
++            range(data, 3 * wasm::values::pointer_size);
++            for (std::size_t c = 0; c < 3; ++c) {
++                const auto v = number(u32(data + c * wasm::values::pointer_size), "Frame.add p_ic");
++                if (!i || v < result.lower[c]) result.lower[c] = v;
++                if (!i || v > result.upper[c]) result.upper[c] = v;
++            }
++        }
++        return result;
++    }
++
++    void pack_points(std::vector<std::uint8_t>& arena, vf::JsonValue::Object& mesh,
++                     const CapturedPoints& points) const {
++        const auto bytes = static_cast<std::uint64_t>(points.count) * 44;
++        if (bytes > std::numeric_limits<std::size_t>::max() - arena.size())
++            throw std::runtime_error("captured point arena exceeds address space");
++        arena.reserve(arena.size() + static_cast<std::size_t>(bytes));
++        const auto vertex_offset = arena.size();
++        for (std::uint32_t i = 0; i < points.count; ++i) {
++            const auto row = u32(points.payload + i * wasm::values::pointer_size);
++            const auto data = u32(row + wasm::values::payload_offset);
++            for (std::size_t c = 0; c < 3; ++c)
++                native_scene::append_f32(arena, number(u32(data + c * wasm::values::pointer_size), "Frame.add p_ic"));
++            for (const auto v : points.tail) native_scene::append_f32(arena, v);
++        }
++        const auto index_offset = arena.size();
++        for (std::uint32_t i = 0; i < points.count; ++i)
++            native_scene::append_u32(arena, vf::JsonValue(static_cast<double>(i)));
++        const auto reference = [](std::size_t offset, double length, const char* storage) {
++            return vf::JsonValue(vf::JsonValue::Object{
++                {"byte_offset", static_cast<double>(offset)}, {"length", length}, {"storage", storage}});
++        };
++        mesh["vertices"] = reference(vertex_offset, static_cast<double>(points.count) * 10, "float32");
++        mesh["indices"] = reference(index_offset, points.count, "uint32");
++    }
++
+     const std::uint8_t* memory_;
+     std::size_t size_;
+ 

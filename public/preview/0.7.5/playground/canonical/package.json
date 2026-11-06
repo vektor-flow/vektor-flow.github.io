@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "version": "0.7.5",
-  "status": "PRIVATE_CURRENT_CANDIDATE_PACKAGE_CHECKS_PENDING",
+  "status": "CURRENT_FORMATTER_BUILT_ARCHIVE_CHECKS_PENDING",
   "source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "release_source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "compiler_source": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "browser_binding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
   "frontend_binding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
-  "formatter_binding": "22f08b9506b55af67fcace77f66aa8555211115ac4af5d98555be65f3b398f3c",
+  "formatter_binding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
   "compiler_source_commit": "f2b985583d585f8362b9c176629d1cea99a54677",
   "library_source_identity": "d2236abf29bde40e0ac4ded82a8da9be217d909346d7b4f07f4d53b14ca68e73",
   "library_sources": 34,
@@ -20,7 +20,7 @@
   "physical_gpu_tested": false,
   "verification": {
     "evidence": "VERIFICATION.json",
-    "status": "SOURCE_PREPARED_CURRENT_ARCHIVE_EXTRACTION_SECURITY_UNRUN",
+    "status": "ARCHIVE_CHECKS_PENDING",
     "oldPassCarry": false
   },
   "scoped_release": {
@@ -34,10 +34,9 @@
     "comparativeBenchmarksQualified": false
   },
   "limitations": [
-    "Current compatibility binding45da and f2b985 source association retain mixed source composition74f717; no uniform whole-build claim.",
-    "Only existing e2609 local Node install/run/compile3/3 on unchanged runtime bytes is accepted here; new archive extraction and changed-package import/security are UNRUN.",
-    "Existing exact5M and original10000-label correctness, phone390 EX06 compression and full presentation boundaries remain open where not bound to current components.",
-    "No full0.7.5/stable/nativeSDK/all-font/fullLaTeX/physicalGPU or comparative benchmark qualification. STOP PDF."
+    "Frontend compatibility45da/sourcef2 and mixed source74f remain unchanged; standalone formatter d1d6 uses maintained79f source and matching reused providers.",
+    "Original exact5M full numerical/render/view/color control passed locally; physical adapter identity and performance unqualified.",
+    "This archive remains a focused Node/WASM preview, not a complete stable compiler/platform SDK."
   ],
   "files": {
     "PAIRED-STDLIB-MANIFEST.json": {
@@ -45,12 +44,12 @@
       "sha256": "5fa52d5622dedbdf0d6c201e697a31dcee8ae041406d7ff5f3a9626f94d7e371"
     },
     "README.txt": {
-      "bytes": 1850,
-      "sha256": "827ef1c8afcc3139b7d6ba618382b632f50bfa5e2c075c0f6d63194a8e9a274d"
+      "bytes": 618,
+      "sha256": "f628e467099982e2cdc3fa800f909a6d72224a53dbf87de3441fa4d7569e1178"
     },
     "VERIFICATION.json": {
-      "bytes": 3237,
-      "sha256": "00fa7cd416b69a2449f890d0846616a154bd9610ff78ab1713b291e96b491e09"
+      "bytes": 387,
+      "sha256": "1cf45a734ad739144fe1177c7634ca26706a2ae51d9c2ff1010dd556e45b5181"
     },
     "compiler-base.mjs": {
       "bytes": 189782,
@@ -62,19 +61,19 @@
     },
     "compiler.mjs": {
       "bytes": 1464,
-      "sha256": "e288407022fc8b34677736285d743c7c8c9d9244c7df23bc10619a0135bd189c"
+      "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
     },
     "compiler.wasm": {
       "bytes": 20827756,
       "sha256": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893"
     },
     "formatter.mjs": {
-      "bytes": 63048,
-      "sha256": "96f59972bf83b9f13bcd9506bae074bdd5ddcfd6d7cdbe4219c71bec1d1c9765"
+      "bytes": 63276,
+      "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
     },
     "formatter.wasm": {
-      "bytes": 2199252,
-      "sha256": "6aa8fda277d2dab576376766392c980f80e58f4c51c5438494922baca42e5ada"
+      "bytes": 2250062,
+      "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
     },
     "package-tools/addresses.mjs": {
       "bytes": 22794,
@@ -112,10 +111,6 @@
       "bytes": 2891,
       "sha256": "d498a2b1939f308fea3250d5071997648a4ced9c436fa94b90547e606d7b76ce"
     },
-    "package-tools/package.json": {
-      "bytes": 602,
-      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
-    },
     "package-tools/project.mjs": {
       "bytes": 7664,
       "sha256": "999763fb79137ca8b936cb44a8d62baa111b6d23253791dcdb32c7396df2c3bf"
@@ -147,6 +142,10 @@
     "third-party/vkf-runtime-musl-license.txt": {
       "bytes": 6204,
       "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    "package-tools/package.json": {
+      "bytes": 602,
+      "sha256": "4457ec9b73d6b3fa01723d50d5ab5d2b90ba602926e4abe47cd1d6e9555e44f8"
     }
   },
   "sha256": {
@@ -178,5 +177,6 @@
     "third-party/trigonometric-source-notices.txt": "e605f0d90cdd2838c7fc9f92a5582b35c82826cca1e04285f27c5e2a0635da8b",
     "third-party/vkf-runtime-musl-license.txt": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
   },
-  "source_composition_binding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b"
+  "source_composition_binding": "74f7173c22d8cb8c32063f5ea710c0675bb3374a5afd6fd931185509c335d88b",
+  "formatter_source_commit": "79f626f6434f701dc5d2b8e18138d863a05c3a61"
 }

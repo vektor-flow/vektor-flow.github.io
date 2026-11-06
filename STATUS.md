@@ -523,3 +523,10 @@ render+transport23.1/32.2ms, prepare5.69s14glyph/reservequeries+1layout. No100Hz
 end-to-end rendering claim. docs/native-bound-tables contains qualification,
 source/build contract and five-file public intake hashes. Product integration
 and actual live UI/capture remain parent-owned. No PP edits or deployment.
+
+Bound-table tiled-camera correction: actualPP1280/rightanchor1062 raw layer was
+blank because the adapter returned precomputed outlines and ignored each native
+tile camera. Callback now resolves authentic outlines with tilecamera+CSSchart;
+no font/certificate weakening. Direct1280rawpixel/bbox/replay GREEN DPR1/2/3;
+DPR2boundary940 additionally has ink onbothsides960CSS. Source/tableWASM4036,
+worker and allglyphassets unchanged. See docs/native-bound-tables/TILES.json.

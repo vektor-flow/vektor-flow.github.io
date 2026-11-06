@@ -63,3 +63,13 @@ f9578e11f92889027ace0b64a695bc72f6755f07; the new module is
 `renderer-source/native_number_table.vkf`. Dependencies are hash-checked against
 the installed producer closure during build. Producer WASM/catalog/physical
 fonts and the ordinary glyph/state interpolation artifacts remain unchanged.
+
+Tiled-canvas correction: the source callback now resolves original physical
+outlines for each renderer-supplied tile camera, composing that camera with the
+existing CSS chart flip. This preserves native affine/roundoff metadata and
+certified physical M/L/C/Z source geometry. A callback returning precomputed
+viewport sources had ignored off-origin tiles and made right-side tables blank.
+`TILES.json` qualifies direct raw pixels at1280×720, anchor1062/72, DPR1/2/3,
+changed numeric endpoints and exact replay. `TILE-BOUNDARY.json` additionally
+qualifies a table crossing the960CSS-pixel boundary atDPR2; both sides retain
+native ink. No WASM, font, layout or numerical interpolation asset changed.

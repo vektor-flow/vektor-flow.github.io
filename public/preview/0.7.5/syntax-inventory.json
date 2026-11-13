@@ -2,7 +2,7 @@
   "schema": 1,
   "spec_source": "0de4a2b32b7d2bf4bf9ff9b3abf7771adfe9b4c7",
   "compiler_version": "0.7.2",
-  "inventory_scope": "22 canonical construct categories; all22 Section0clauses mapped. Runtime verification covers explicit example sources, not untested grammar or full conformance.",
+  "inventory_scope": "Historical category/specification mapping plus the later agreed 0.7.5 language reference. Runtime evidence applies only to its exact source and compiler binding; language examples and expected outputs do not claim execution.",
   "groups": [
     {
       "id": "values-and-types",
@@ -50,7 +50,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#type-descriptions"
+      ]
     },
     {
       "id": "bindings-and-scopes",
@@ -158,7 +161,10 @@
         }
       ],
       "coverage": "Simple function, local calculation and argument-binding examples; changed source and expected outputs await genuine current compiler execution.",
-      "shared_example_url": "syntax.html#example-syntax-example-6"
+      "shared_example_url": "syntax.html#example-syntax-example-6",
+      "agreed_reference_urls": [
+        "syntax.html#definition-return-boundaries"
+      ]
     },
     {
       "id": "bound-arguments-and-structural-selectors",
@@ -233,7 +239,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#importing"
+      ]
     },
     {
       "id": "index-access-and-ranges",
@@ -242,17 +251,31 @@
       "examples": [
         {
           "id": "syntax-extra-index-access-and-ranges-1",
-          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-          "expected_stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+          "presentation": "language-example",
+          "canonical_url": "syntax.html#example-syntax-extra-index-access-and-ranges-1",
+          "source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
-          }
+            "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+            "actual_execution": false
+          },
+          "previous_runtime_example": {
+            "id": "syntax-extra-index-access-and-ranges-1",
+            "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+            "expected_stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
+          },
+          "expected_stdout": "[3, 4]\n[1, 3]\n[[[1, 2], [3, 4]]]\n"
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Agreed language example with expected output; previous runtime-source evidence is retained separately and does not qualify this source.",
+      "agreed_reference_urls": [
+        "syntax.html#index-access-and-ranges"
+      ]
     },
     {
       "id": "named-and-anonymous-dimensions",
@@ -334,7 +357,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#named-and-anonymous-dimensions"
+      ]
     },
     {
       "id": "lifting-and-structural-calls",
@@ -364,7 +390,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#lifting-and-structural-calls"
+      ]
     },
     {
       "id": "operators",
@@ -409,7 +438,14 @@
           ]
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#operator-overloads",
+        "syntax.html#mathematical-precedence",
+        "syntax.html#numeric-division",
+        "syntax.html#operator-lists",
+        "syntax.html#multiset-operators"
+      ]
     },
     {
       "id": "ranges-and-demand",
@@ -492,7 +528,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#pipes-and-loop-coordinates"
+      ]
     },
     {
       "id": "conditionals-and-loops",
@@ -511,7 +550,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#conditionals-and-loops"
+      ]
     },
     {
       "id": "conditions-matching-and-errors",
@@ -541,7 +583,11 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#boolean-assertions",
+        "syntax.html#boolean-and-comparison"
+      ]
     },
     {
       "id": "nominal-types-reflection-and-modules",
@@ -579,7 +625,10 @@
           }
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#symbolic-numeric-boundary"
+      ]
     },
     {
       "id": "physical-domains-and-units",
@@ -607,17 +656,33 @@
       "examples": [
         {
           "id": "more-example-25",
-          "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-          "expected_stdout": "x = 1.3\n[1.3, 2.5]\n",
+          "presentation": "language-example",
+          "canonical_url": "syntax.html#example-more-example-25",
+          "source_sha256": "0f11fc1d507ed4d026bff399bd970a31afeceb7f93ff7970dadec5316cee8da5",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
-          }
+            "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+            "actual_execution": false
+          },
+          "previous_runtime_example": {
+            "id": "more-example-25",
+            "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+            "expected_stdout": "x = 1.3\n[1.3, 2.5]\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
+          },
+          "expected_stdout": "temperature = 21.3\n[21.3, 45.5]\n"
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Agreed language example with expected output; previous runtime-source evidence is retained separately and does not qualify this source.",
+      "agreed_reference_urls": [
+        "syntax.html#dynamic-format-values",
+        "syntax.html#compact-format-grammar",
+        "syntax.html#decimal-rounding"
+      ]
     },
     {
       "id": "geometry-views-and-physics",
@@ -644,24 +709,41 @@
       "examples": [
         {
           "id": "syntax-example-18",
-          "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-          "expected_stdout": "1\n2\n",
+          "presentation": "language-example",
+          "canonical_url": "syntax.html#example-syntax-example-18",
+          "source_sha256": "a7661f60f5cdbb0ff47938b1dae72f9dea31b164c22c4785677466d323f302b5",
           "runtime_verification": {
-            "status": "PASS",
-            "compiler_version": "0.7.2",
-            "proof": "verification/site-remake-e1079.json",
-            "match": "exact source_sha256; expected stdout and visual-packet presence checked"
-          }
+            "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+            "actual_execution": false
+          },
+          "previous_runtime_example": {
+            "id": "syntax-example-18",
+            "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+            "expected_stdout": "1\n2\n",
+            "runtime_verification": {
+              "status": "PASS",
+              "compiler_version": "0.7.2",
+              "proof": "verification/site-remake-e1079.json",
+              "match": "exact source_sha256; expected stdout and visual-packet presence checked"
+            }
+          },
+          "expected_stdout": "1\n2\n"
         }
       ],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Agreed language example with expected output; previous runtime-source evidence is retained separately and does not qualify this source.",
+      "agreed_reference_urls": [
+        "syntax.html#fixed-input-output"
+      ]
     },
     {
       "id": "grammar-decisions-still-open",
       "title": "Open grammar decisions",
       "canonical_url": "syntax.html#grammar-decisions-still-open",
       "examples": [],
-      "coverage": "Specific examples only; surrounding design rules are not established by a sample run"
+      "coverage": "Specific examples only; surrounding design rules are not established by a sample run",
+      "agreed_reference_urls": [
+        "syntax.html#grammar-decisions-still-open"
+      ]
     }
   ],
   "foundational_clauses": [
@@ -709,9 +791,9 @@
     },
     {
       "clause": "0.8",
-      "title": "Operator specialization",
-      "reference": "syntax.html#bound-arguments-and-structural-selectors",
-      "support": "Design rule; only the displayed specific programs are covered by example verification"
+      "title": "Operators are not specializable",
+      "reference": "syntax.html#operator-overloads",
+      "support": "Agreed language rule; no execution is claimed by this documentation update."
     },
     {
       "clause": "0.9",
@@ -833,6 +915,46 @@
     },
     {
       "construct": "final process variadic declaration",
+      "section": "grammar-decisions-still-open",
+      "runtime_verification": {
+        "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
+      },
+      "example": null
+    },
+    {
+      "construct": "public symbolic API and complete infinity/indeterminate algebra",
+      "section": "grammar-decisions-still-open",
+      "runtime_verification": {
+        "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
+      },
+      "example": null
+    },
+    {
+      "construct": "public range/axis-selector types and custom get-item packing",
+      "section": "grammar-decisions-still-open",
+      "runtime_verification": {
+        "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
+      },
+      "example": null
+    },
+    {
+      "construct": "custom get-item declaration/operator-value spelling and item setters",
+      "section": "grammar-decisions-still-open",
+      "runtime_verification": {
+        "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
+      },
+      "example": null
+    },
+    {
+      "construct": "format-value object schema and optional-argument encoding",
+      "section": "grammar-decisions-still-open",
+      "runtime_verification": {
+        "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
+      },
+      "example": null
+    },
+    {
+      "construct": "remaining precedence/type inference/union normalization",
       "section": "grammar-decisions-still-open",
       "runtime_verification": {
         "status": "DESIGN_UNSETTLED_NOT_RUNNABLE"
@@ -1319,90 +1441,138 @@
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
-      "construct": "computed member selection",
+      "construct": "typed binary get-item; fixed direct members",
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "multidimensional index selection",
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "slices",
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "axis preservation markers",
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "singleton-axis insertion",
       "canonical_section": "index-access-and-ranges",
       "reference": "syntax.html#index-access-and-ranges",
       "illustrative_example": "syntax-extra-index-access-and-ranges-1",
-      "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0279d7dab00a21e9c8fc10001e1f30708d54d12669e827f20d1c276533e4b58c",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "961a34c54438d4a880475f54cb67dff7233d48d123026dde87564e96c6cd04c9",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "named dimensions",
@@ -2046,7 +2216,7 @@
       "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
     },
     {
-      "construct": "operator and dotted-access overloads",
+      "construct": "custom operator and binary get-item overloads",
       "canonical_section": "nominal-types-reflection-and-modules",
       "reference": "syntax.html#nominal-types-reflection-and-modules",
       "illustrative_example": "more-example-9",
@@ -2194,45 +2364,69 @@
       "canonical_section": "strings-and-templates",
       "reference": "syntax.html#strings-and-templates",
       "illustrative_example": "more-example-25",
-      "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0f11fc1d507ed4d026bff399bd970a31afeceb7f93ff7970dadec5316cee8da5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "deferred templates",
       "canonical_section": "strings-and-templates",
       "reference": "syntax.html#strings-and-templates",
       "illustrative_example": "more-example-25",
-      "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0f11fc1d507ed4d026bff399bd970a31afeceb7f93ff7970dadec5316cee8da5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "field and formatting interpolation",
       "canonical_section": "strings-and-templates",
       "reference": "syntax.html#strings-and-templates",
       "illustrative_example": "more-example-25",
-      "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "0f11fc1d507ed4d026bff399bd970a31afeceb7f93ff7970dadec5316cee8da5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "52c33f0540a5a4670846616541ce1f395748d6a0fb2ec724dcc4d239637fff5a",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "viewport construction",
@@ -2327,61 +2521,100 @@
       "canonical_section": "event-and-i-o-concurrency",
       "reference": "syntax.html#event-and-i-o-concurrency",
       "illustrative_example": "syntax-example-18",
-      "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "a7661f60f5cdbb0ff47938b1dae72f9dea31b164c22c4785677466d323f302b5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "blocking queue",
       "canonical_section": "event-and-i-o-concurrency",
       "reference": "syntax.html#event-and-i-o-concurrency",
       "illustrative_example": "syntax-example-18",
-      "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "a7661f60f5cdbb0ff47938b1dae72f9dea31b164c22c4785677466d323f302b5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "broadcast subscriptions",
       "canonical_section": "event-and-i-o-concurrency",
       "reference": "syntax.html#event-and-i-o-concurrency",
       "illustrative_example": "syntax-example-18",
-      "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "a7661f60f5cdbb0ff47938b1dae72f9dea31b164c22c4785677466d323f302b5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     },
     {
       "construct": "immutable shared values",
       "canonical_section": "event-and-i-o-concurrency",
       "reference": "syntax.html#event-and-i-o-concurrency",
       "illustrative_example": "syntax-example-18",
-      "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-      "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+      "example_source_sha256": "a7661f60f5cdbb0ff47938b1dae72f9dea31b164c22c4785677466d323f302b5",
+      "coverage_status": "AGREED_LANGUAGE_EXAMPLE_NOT_EXECUTED",
       "runtime_verification": {
-        "status": "GROUP_EXAMPLE_PASS",
-        "proof": "verification/site-remake-e1079.json",
-        "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
-        "scope": "Only this illustrative example; not complete construct conformance"
+        "status": "NOT_EXECUTED_LANGUAGE_EXAMPLE",
+        "actual_execution": false
       },
-      "limitation": "A group example illustrates this category; it does not establish all forms or full grammar conformance."
+      "limitation": "This language example states agreed semantics and expected output. Retained previous evidence applies only to the old source, not this listing.",
+      "previous_runtime_example": {
+        "example_source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+        "coverage_status": "GROUP_EXAMPLE_PASSED_FULL_CONSTRUCT_NOT_ESTABLISHED",
+        "runtime_verification": {
+          "status": "GROUP_EXAMPLE_PASS",
+          "proof": "verification/site-remake-e1079.json",
+          "source_sha256": "534defd3c197dc2537f3f12d496387acac6002415ff5455cb91bf4736ffc0849",
+          "scope": "Only this illustrative example; not complete construct conformance"
+        }
+      }
     }
   ],
-  "editorial_note": "22 construct categories map to 21 page disclosures; scopes and bound arguments share one disclosure. Removed redundant examples retain deep-link anchors at their surviving lesson. Historical source hashes remain historical."
+  "editorial_note": "22 construct categories map to 21 page disclosures; scopes and bound arguments share one disclosure. Removed redundant examples retain deep-link anchors at their surviving lesson. Historical source hashes remain historical. Later agreed 0.7.5 rules are integrated into those same disclosures. Replaced selector, formatting and event-loop listings are language examples; their former runtime-source evidence remains separately identified.",
+  "language_reference": {
+    "version": "0.7.5",
+    "discussion": "Open; named undecided public choices remain open.",
+    "canonical_url": "syntax.html",
+    "semantics": "Agreed rules are documented separately from the shipped compiler examples.",
+    "compiler_support": "Complete matching native and WASM language conformance is not established by this website update."
+  }
 }

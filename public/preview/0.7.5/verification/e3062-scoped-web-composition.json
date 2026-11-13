@@ -1,0 +1,136 @@
+{
+  "owner": "e2630",
+  "status": "PASS_SCOPED_STABLE_075_UI_PLOTTING_AND_NODE_CONSOLE",
+  "version": "0.7.5",
+  "frontendBinding": "45da9f646f488500745f5a142c84843daae26ef46168802de00a2b9b714b7a94",
+  "formatterBinding": "d1d6ab8b3471997d64ad428b18c1bb2b9a132566a098f26dc45938bda493314b",
+  "qualifiedDeliveredHead": "e9d9dfc102664afb55e26bd7300e088699d268b4",
+  "localControls": {
+    "formatter": {
+      "path": "verification/e2627-current-formatter-correctness.json",
+      "bytes": 2421,
+      "sha256": "5744cbcdd72b404eb8a20fe4402ef8b2135825b0af2c6947ad20514e6e51f9ea"
+    },
+    "smallSin": {
+      "path": "verification/e2627-small-sin-result.json",
+      "bytes": 66859,
+      "sha256": "7cdf70e51f9a2527580b6d1c76ff1ea36a030909332cbf8e475d071633b986dd"
+    },
+    "original5M": {
+      "path": "verification/e2627-original5m-result.json",
+      "bytes": 34118,
+      "sha256": "9d4414499ad652b27a0d56eaf197196862f1bc124c16711a457973371c8b094a"
+    },
+    "original10000": {
+      "path": "verification/e2623-current-original10000-normal-result.json",
+      "bytes": 1306656,
+      "sha256": "48f7deedd18271418b2e61a81aab80dcd66c7db423f28ca497ec36e6147f2ee8"
+    },
+    "package": {
+      "path": "verification/e2627-current-local-package.json",
+      "bytes": 7141,
+      "sha256": "ca93aaae81584a812a3b2c705eb17860ed45ada6f1ad4e8dac68a254f9b0a8a5"
+    }
+  },
+  "currentLocalWeb": {
+    "path": "verification/e3062-agreed-syntax-local-web.json",
+    "bytes": 121493,
+    "sha256": "e2fe925d26a1f8b6786897898ac0790a9a0176b48e9111744b5daad47cb503b5"
+  },
+  "hosted": {
+    "path": "verification/e2630-hosted-current-focused-review.json",
+    "bytes": 49341,
+    "sha256": "df9ff30facb7940689cea6fac862439109376179ce6f68460a47a8593bfda4c1"
+  },
+  "delivery": {
+    "path": "verification/e2630-delivered-base.json",
+    "bytes": 20993,
+    "sha256": "59eb89d7abd2232818f6a396f7019776e071edb071e5de3d0d563ceb0784c33d"
+  },
+  "runtime": [
+    {
+      "path": "playground/canonical/compiler-base.mjs",
+      "bytes": 189782,
+      "sha256": "3f9570fd471df8971fdaa5f6d66b7b1339719fa2e213ca7ad9305196088d6534"
+    },
+    {
+      "path": "playground/canonical/compiler.data",
+      "bytes": 660994,
+      "sha256": "03719014da87cfedb34f0928c1e6d709fa75148bede8802c9eedd1572d7ff0fa"
+    },
+    {
+      "path": "playground/canonical/compiler.mjs",
+      "bytes": 1464,
+      "sha256": "70d69fea213b6e157195daa50d1df46aac994c36f8923eb2124ff33a4b36e8b7"
+    },
+    {
+      "path": "playground/canonical/compiler.wasm",
+      "bytes": 20827756,
+      "sha256": "4aaa113636b4898bdf52f0a51476b72ca958ddc106f61eddee6f882f6db90893"
+    },
+    {
+      "path": "playground/canonical/formatter.mjs",
+      "bytes": 63276,
+      "sha256": "998f545c78c51a933ed8debcbfaf0606e4d3011b550feaa22d879c80cecc000c"
+    },
+    {
+      "path": "playground/canonical/formatter.wasm",
+      "bytes": 2250062,
+      "sha256": "d8bd8712b7032201c78bddb9eb4fabbb26c04562138e7e10402d046c8d252bf7"
+    },
+    {
+      "path": "vf-ui/vf-display.js",
+      "bytes": 715887,
+      "sha256": "a63e5e93d7fc001c06b534d35b0a9879ee27921775efff2a846e751ae1504026"
+    },
+    {
+      "path": "vf-ui/native-labels/vf-native-plot-text.mjs",
+      "bytes": 10792,
+      "sha256": "a9666daf9e36367c8a07a3e7de6ec84dd5cbf9a0fdbf69cfaa7fa2a5a14e58d8"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/bundle.json",
+      "bytes": 9772,
+      "sha256": "37fd90bff373bcc32455febbfbc772caa369a93b247e97637c65c0dfe3e3865e"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/vectors.json",
+      "bytes": 267670,
+      "sha256": "a54c006829bf91257158dcbd053400e6174478c372cf4cc880b2383065cd84ea"
+    },
+    {
+      "path": "vf-ui/artifacts/current-labels/native-mapping/binding.json",
+      "bytes": 157919,
+      "sha256": "56ee6183b065365b52a632f146de57110596f36edd2a1f72a1a1a363d42941cb"
+    }
+  ],
+  "unchangedOriginal10000": "Independently accepted e2624/e2628 at matching native producer/mapping/renderer dependencies; formatter-dependent original5M and smallSin use fresh e2627 evidence.",
+  "limits": [
+    "Full language/platform release and native SDK/ABI2/all-font/full LaTeX not qualified",
+    "Phone EX06 label legibility and deployed full EX05/EX06 scenes unqualified",
+    "Physical GPU identity, compositor/display timing and comparative benchmarks unqualified",
+    "PDF/fluid/native SDF/ports/fullWorld/physics demo deferred; optional timing is not a stable UI correctness gate"
+  ],
+  "priorErrorsPreserved": true,
+  "atMonotonic": 890240.065319488,
+  "metadataOnlyBodyChange": {
+    "path": "release-status.html",
+    "originalReportUnchanged": true,
+    "previousBodySHA256": "f924c57ffce77c70af0f21ec6315826c065e355bcf9cf31be823bbc6933f3451",
+    "currentBody": {
+      "bytes": 8197,
+      "sha256": "546fc7b77519fb0eb576d8c1d73d6ab3254ab6ad186fd3d12d5dfbddff56b39a"
+    },
+    "exactDelta": "<section id=\"scoped-stable-075\"><h2>Stable 0.7.5 UI and plotting scope</h2><p>The tested ordinary UI and retained plotting scope is qualified as stable. This covers the current browser compiler and independent formatter, ordinary Run and real edits, output replacement, copy, syntax highlighting, navigation and pinned downloads. Local plotting correctness includes the original 5M point program, the small sine source-edit control and the unchanged original 10,000-label renderer control. The exact Node/WebAssembly console archive is qualified for install, run, compile and local import/security.</p><p>The current Pages deployment, hosted ordinary controls, all 11 runtime identities and offered archive bytes were verified together. All four withdrawn media URLs return absence. This scope does not extend to the full language/platform release, native SDK/ABI2, all fonts, full LaTeX, phone EX06 label legibility, deployed full EX05/EX06 scenes, physical GPU identity or comparative performance. Benchmark results remain pending separately. <a href=\"verification/e2630-scoped-stable-qualification.json\">Exact qualification and limits</a> \u00b7 <a href=\"performance.html\">Benchmark status</a></p></section>",
+    "staticCheck": "Removing this single added qualification section reproduces the exact previously hosted and tested body. All 11 runtime bytes unchanged; existing behavioral Run/edit/copy/Prism outcomes reused, not rerun."
+  },
+  "documentationUpdate": {
+    "owner": "e3062",
+    "scope": "Current local web evidence replacement for agreed syntax documentation; unchanged historical runtime/package/localControls/hosted/delivery scopes retained.",
+    "priorQualification": {
+      "path": "verification/e2630-scoped-stable-qualification.json",
+      "bytes": 6358,
+      "sha256": "f7bfed7cbb369adcb23d5a87ee744171004b08689a10eacd765e7e4da35d8110"
+    }
+  }
+}

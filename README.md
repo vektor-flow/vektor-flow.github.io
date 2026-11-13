@@ -229,6 +229,48 @@ scope supported by the compiler; computational helper values use the narrowest
 qualified local block. Callable intermediates may share the enclosing value
 computation when the compiler cannot return them from a tighter binding block.
 
+### Documentation-only syntax publication (2026-11-13)
+
+`python3 scripts/check-example-style.py` retains the full preview textarea
+check and its existing diagnostics. The publication attempt on November 13
+failed at `stdlib.html:4`, on `>` in the unchanged EX01 source
+`abs(y)>0.5-0.0266666667`. That full-site failure remains unresolved; a focused
+documentation check must not be reported as a full-site style PASS.
+
+For a documentation update, record the current publication parent **before**
+integrating the page and checker changes. Then use that exact commit:
+
+```bash
+python3 tests/check-example-style-selection.py
+python3 scripts/check-example-style.py --changed-since "$syntax_publication_base"
+git diff --check "$syntax_publication_base" HEAD
+```
+
+Set `syntax_publication_base` to the recorded parent, never the post-integration
+HEAD. The focused command examines every preview HTML page in the working tree,
+including new pages. It applies the same rules to each added or modified
+textarea source, matched by its textarea/example section identity (ordinal for
+anonymous editors). Duplicate identities fail rather than hiding a change.
+Unchanged sources are counted separately and receive no new qualification.
+The JSON names the exact base and checked sources; zero changed editors returns
+`NO_CHANGED_TEXTAREA_SOURCES`, not PASS. This command does not rewrite source
+or normalize meaningful juxtaposition/format-fill spaces.
+
+The agreed syntax candidate retains all 32 editable sources byte for byte.
+Its changed static listings and prose require their independent source review
+and focused browser checks; the textarea lint has never checked those forms.
+Preserve the browser's DOMParser/textContent comparison, highlighted text, Copy
+and no-Run checks for `more-example-25`, `syntax-example-18` and
+`syntax-extra-index-access-and-ranges-1`, together with existing runtime/download
+and affected search, anchors, themes, scrolling and selection controls. These
+listings describe agreed semantics without promoting the shipped compiler.
+
+After genuine local checks, refresh current sourceFreeze/currentLocalWeb and
+the existing descriptor/composition pins, retaining historical evidence. Run
+`python3 scripts/update-manifest.py` and `python3 scripts/verify-current-site.py`
+before the existing nonforce main/Pages publication and exact-head/served-byte
+checks. The focused style mode changes none of those policy or CI guards.
+
 ## Current package preparation (2026-11-01, e1816)
 
 The local release preparation branch selects the frozen 4ee3a748 / b459ecbc
